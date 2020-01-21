@@ -1,0 +1,22 @@
+require_relative 'xml_verb'
+
+module Bandwidth
+  module Voice
+    # The StartRecording verb is used to trigger call recording
+    class StartRecording
+      include XmlVerb
+
+      def to_bxml(xml)
+        xml.StartRecording(compact_hash({
+         'tag' => tag,
+         'username' => username,
+         'password' => password,
+         'recordingAvailableUrl' => recording_available_url,
+         'recordingAvailableMethod' => recording_available_method,
+         'fileFormat' => file_format,
+         'multiChannel' => multi_channel
+        }))
+      end
+    end
+  end
+end
