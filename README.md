@@ -7,16 +7,16 @@ Bandwidth's set of APIs
 Install the gem from the command line:
 
 ```ruby
-gem install bandwidth-sdk -v 2.1.0
+gem install bandwidth-sdk -v 2.1.1
 ```
 
 Or add the gem to your Gemfile and run `bundle`:
 
 ```ruby
-gem 'bandwidth-sdk', '2.1.0'
+gem 'bandwidth-sdk', '2.1.1'
 ```
 
-For additional gem details, see the [RubyGems page for the bandwidth-sdk gem](https://rubygems.org/gems/bandwidth-sdk/versions/2.1.0).
+For additional gem details, see the [RubyGems page for the bandwidth-sdk gem](https://rubygems.org/gems/bandwidth-sdk/versions/2.1.1).
 
 ## Initialize the API Client
 

@@ -23,7 +23,7 @@ module Bandwidth
     attr_accessor :time
 
     # TODO: Write general description for this method
-    # @return [String]
+    # @return [Integer]
     attr_accessor :segment_count
 
     # TODO: Write general description for this method
