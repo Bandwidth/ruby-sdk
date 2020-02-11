@@ -17,7 +17,10 @@ module Bandwidth
          'recordingAvailableMethod' => recording_available_method,
          'terminatingDigits' => terminating_digits,
          'maxDuration' => max_duration,
-         'fileFormat' => file_format
+         'fileFormat' => file_format,
+         'transcribe' => transcribe,
+         'transcriptionAvailableUrl' => transcription_available_url,
+         'transcriptionAvailableMethod' => transcription_available_method
         }))
       end
     end

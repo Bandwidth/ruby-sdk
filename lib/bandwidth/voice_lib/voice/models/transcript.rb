@@ -4,21 +4,28 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ModifyCallRecordingState Model.
-  class ModifyCallRecordingState < BaseModel
+  # Transcript Model.
+  class Transcript < BaseModel
     # TODO: Write general description for this method
-    # @return [State2Enum]
-    attr_accessor :state
+    # @return [String]
+    attr_accessor :text
+
+    # TODO: Write general description for this method
+    # @return [Float]
+    attr_accessor :confidence
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['state'] = 'state'
+      @_hash['text'] = 'text'
+      @_hash['confidence'] = 'confidence'
       @_hash
     end
 
-    def initialize(state = nil)
-      @state = state
+    def initialize(text = nil,
+                   confidence = nil)
+      @text = text
+      @confidence = confidence
     end
 
     # Creates an instance of the object from a hash.
@@ -26,10 +33,12 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      state = hash['state']
+      text = hash['text']
+      confidence = hash['confidence']
 
       # Create object from extracted values.
-      ModifyCallRecordingState.new(state)
+      Transcript.new(text,
+                     confidence)
     end
   end
 end

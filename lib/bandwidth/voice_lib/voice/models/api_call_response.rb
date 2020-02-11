@@ -9,6 +9,10 @@ module Bandwidth
   class ApiCallResponse < BaseModel
     # TODO: Write general description for this method
     # @return [String]
+    attr_accessor :account_id
+
+    # TODO: Write general description for this method
+    # @return [String]
     attr_accessor :call_id
 
     # TODO: Write general description for this method
@@ -66,6 +70,7 @@ module Bandwidth
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
+      @_hash['account_id'] = 'accountId'
       @_hash['call_id'] = 'callId'
       @_hash['application_id'] = 'applicationId'
       @_hash['to'] = 'to'
@@ -83,7 +88,8 @@ module Bandwidth
       @_hash
     end
 
-    def initialize(call_id = nil,
+    def initialize(account_id = nil,
+                   call_id = nil,
                    application_id = nil,
                    to = nil,
                    from = nil,
@@ -97,6 +103,7 @@ module Bandwidth
                    username = nil,
                    password = nil,
                    tag = nil)
+      @account_id = account_id
       @call_id = call_id
       @application_id = application_id
       @to = to
@@ -118,6 +125,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
+      account_id = hash['accountId']
       call_id = hash['callId']
       application_id = hash['applicationId']
       to = hash['to']
@@ -134,7 +142,8 @@ module Bandwidth
       tag = hash['tag']
 
       # Create object from extracted values.
-      ApiCallResponse.new(call_id,
+      ApiCallResponse.new(account_id,
+                          call_id,
                           application_id,
                           to,
                           from,

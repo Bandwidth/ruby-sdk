@@ -4,19 +4,15 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ApiModifyCallRequest Model.
-  class ApiModifyCallRequest < BaseModel
-    # TODO: Write general description for this method
-    # @return [State1Enum]
-    attr_accessor :state
-
+  # ApiTranscribeRecordingRequest Model.
+  class ApiTranscribeRecordingRequest < BaseModel
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :redirect_url
+    attr_accessor :callback_url
 
     # TODO: Write general description for this method
-    # @return [RedirectMethodEnum]
-    attr_accessor :redirect_method
+    # @return [CallbackMethodEnum]
+    attr_accessor :callback_method
 
     # TODO: Write general description for this method
     # @return [String]
@@ -33,24 +29,21 @@ module Bandwidth
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['state'] = 'state'
-      @_hash['redirect_url'] = 'redirectUrl'
-      @_hash['redirect_method'] = 'redirectMethod'
+      @_hash['callback_url'] = 'callbackUrl'
+      @_hash['callback_method'] = 'callbackMethod'
       @_hash['username'] = 'username'
       @_hash['password'] = 'password'
       @_hash['tag'] = 'tag'
       @_hash
     end
 
-    def initialize(redirect_url = nil,
-                   state = nil,
-                   redirect_method = nil,
+    def initialize(callback_url = nil,
+                   callback_method = nil,
                    username = nil,
                    password = nil,
                    tag = nil)
-      @state = state
-      @redirect_url = redirect_url
-      @redirect_method = redirect_method
+      @callback_url = callback_url
+      @callback_method = callback_method
       @username = username
       @password = password
       @tag = tag
@@ -61,20 +54,18 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      redirect_url = hash['redirectUrl']
-      state = hash['state']
-      redirect_method = hash['redirectMethod']
+      callback_url = hash['callbackUrl']
+      callback_method = hash['callbackMethod']
       username = hash['username']
       password = hash['password']
       tag = hash['tag']
 
       # Create object from extracted values.
-      ApiModifyCallRequest.new(redirect_url,
-                               state,
-                               redirect_method,
-                               username,
-                               password,
-                               tag)
+      ApiTranscribeRecordingRequest.new(callback_url,
+                                        callback_method,
+                                        username,
+                                        password,
+                                        tag)
     end
   end
 end

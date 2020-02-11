@@ -4,10 +4,10 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ErrorResponse class.
-  class ErrorResponseException < APIException
+  # ApiErrorResponse class.
+  class ApiErrorResponseException < APIException
     # TODO: Write general description for this method
-    # @return [TypeEnum]
+    # @return [String]
     attr_accessor :type
 
     # TODO: Write general description for this method

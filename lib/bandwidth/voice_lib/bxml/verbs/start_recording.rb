@@ -14,7 +14,10 @@ module Bandwidth
          'recordingAvailableUrl' => recording_available_url,
          'recordingAvailableMethod' => recording_available_method,
          'fileFormat' => file_format,
-         'multiChannel' => multi_channel
+         'multiChannel' => multi_channel,
+         'transcribe' => transcribe,
+         'transcriptionAvailableUrl' => transcription_available_url,
+         'transcriptionAvailableMethod' => transcription_available_method
         }))
       end
     end

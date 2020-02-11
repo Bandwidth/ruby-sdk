@@ -8,6 +8,10 @@ module Bandwidth
   class RecordingMetadataResponse < BaseModel
     # TODO: Write general description for this method
     # @return [String]
+    attr_accessor :application_id
+
+    # TODO: Write general description for this method
+    # @return [String]
     attr_accessor :account_id
 
     # TODO: Write general description for this method
@@ -26,45 +30,46 @@ module Bandwidth
     # @return [String]
     attr_accessor :from
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [String]
     attr_accessor :duration
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [DirectionEnum]
     attr_accessor :direction
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [Integer]
     attr_accessor :channels
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [Long]
     attr_accessor :start_time
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [Long]
     attr_accessor :end_time
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [FileFormatEnum]
     attr_accessor :file_format
 
-    # TODO: Write general description for this method
-    # @return [TranscriptionStatusEnum]
-    attr_accessor :transcription_status
+    # Format is ISO-8601
+    # @return [StatusEnum]
+    attr_accessor :status
 
-    # TODO: Write general description for this method
+    # Format is ISO-8601
     # @return [String]
     attr_accessor :media_url
 
-    # TODO: Write general description for this method
-    # @return [String]
-    attr_accessor :transcription_url
+    # Format is ISO-8601
+    # @return [Transcription]
+    attr_accessor :transcription
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
+      @_hash['application_id'] = 'applicationId'
       @_hash['account_id'] = 'accountId'
       @_hash['call_id'] = 'callId'
       @_hash['recording_id'] = 'recordingId'
@@ -76,13 +81,14 @@ module Bandwidth
       @_hash['start_time'] = 'startTime'
       @_hash['end_time'] = 'endTime'
       @_hash['file_format'] = 'fileFormat'
-      @_hash['transcription_status'] = 'transcriptionStatus'
+      @_hash['status'] = 'status'
       @_hash['media_url'] = 'mediaUrl'
-      @_hash['transcription_url'] = 'transcriptionUrl'
+      @_hash['transcription'] = 'transcription'
       @_hash
     end
 
-    def initialize(account_id = nil,
+    def initialize(application_id = nil,
+                   account_id = nil,
                    call_id = nil,
                    recording_id = nil,
                    to = nil,
@@ -93,9 +99,10 @@ module Bandwidth
                    start_time = nil,
                    end_time = nil,
                    file_format = nil,
-                   transcription_status = nil,
+                   status = nil,
                    media_url = nil,
-                   transcription_url = nil)
+                   transcription = nil)
+      @application_id = application_id
       @account_id = account_id
       @call_id = call_id
       @recording_id = recording_id
@@ -107,9 +114,9 @@ module Bandwidth
       @start_time = start_time
       @end_time = end_time
       @file_format = file_format
-      @transcription_status = transcription_status
+      @status = status
       @media_url = media_url
-      @transcription_url = transcription_url
+      @transcription = transcription
     end
 
     # Creates an instance of the object from a hash.
@@ -117,6 +124,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
+      application_id = hash['applicationId']
       account_id = hash['accountId']
       call_id = hash['callId']
       recording_id = hash['recordingId']
@@ -128,12 +136,14 @@ module Bandwidth
       start_time = hash['startTime']
       end_time = hash['endTime']
       file_format = hash['fileFormat']
-      transcription_status = hash['transcriptionStatus']
+      status = hash['status']
       media_url = hash['mediaUrl']
-      transcription_url = hash['transcriptionUrl']
+      transcription = Transcription.from_hash(hash['transcription']) if
+        hash['transcription']
 
       # Create object from extracted values.
-      RecordingMetadataResponse.new(account_id,
+      RecordingMetadataResponse.new(application_id,
+                                    account_id,
                                     call_id,
                                     recording_id,
                                     to,
@@ -144,9 +154,9 @@ module Bandwidth
                                     start_time,
                                     end_time,
                                     file_format,
-                                    transcription_status,
+                                    status,
                                     media_url,
-                                    transcription_url)
+                                    transcription)
     end
   end
 end
