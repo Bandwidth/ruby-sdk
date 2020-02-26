@@ -12,6 +12,9 @@ require 'logging'
 require_relative 'bandwidth/api_helper.rb'
 require_relative 'bandwidth/client.rb'
 
+# Utilities
+require_relative 'bandwidth/utilities/file_wrapper.rb'
+
 # Http
 require_relative 'bandwidth/http/api_response.rb'
 require_relative 'bandwidth/http/http_call_back.rb'

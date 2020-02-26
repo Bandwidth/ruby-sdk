@@ -198,15 +198,16 @@ module Messaging
     # @param [String] user_id Required parameter: Example:
     # @param [String] media_id Required parameter: Example:
     # @param [Long] content_length Required parameter: Example:
-    # @param [String] body Required parameter: Example:
-    # @param [String] content_type Optional parameter: Example:
+    # @param [File | UploadIO] body Required parameter: Example:
+    # @param [String] content_type Optional parameter:
+    # Example:application/octet-stream
     # @param [String] cache_control Optional parameter: Example:
     # @return [void] response from the API call
     def upload_media(user_id,
                      media_id,
                      content_length,
                      body,
-                     content_type: nil,
+                     content_type: 'application/octet-stream',
                      cache_control: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
@@ -218,10 +219,19 @@ module Messaging
       )
       _query_url = APIHelper.clean_url _query_builder
 
+      if body.is_a? FileWrapper
+        body_wrapper = body.file
+        body_content_type = body.content_type
+      else
+        body_wrapper = body
+        body_content_type = content_type
+      end
+
       # Prepare headers.
       _headers = {
+        'content-type' => body_content_type,
+        'content-length' => body_wrapper.size.to_s,
         'Content-Length' => content_length,
-        'Content-Type' => content_type,
         'Cache-Control' => cache_control
       }
 
@@ -229,7 +239,7 @@ module Messaging
       _request = config.http_client.put(
         _query_url,
         headers: _headers,
-        parameters: body
+        parameters: body_wrapper
       )
       MessagingBasicAuth.apply(config, _request)
       _response = execute_request(_request)
