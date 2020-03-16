@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'bandwidth-sdk'
-  s.version = '2.2.1'
+  s.version = '2.2.2'
   s.summary = 'bandwidth'
   s.description = 'Bandwidth\'s set of APIs'
   s.authors = ['APIMatic SDK Generator']
@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.add_dependency('faraday_middleware', '~> 0.13')
   s.add_dependency('certifi', '~> 2018.1')
   s.add_dependency('faraday-http-cache', '~> 2.0.0')
+  s.add_dependency('builder', '~> 3.2.4')
   s.required_ruby_version = '~> 2.0'
   s.files = Dir['{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*']
   s.require_paths = ['lib']
