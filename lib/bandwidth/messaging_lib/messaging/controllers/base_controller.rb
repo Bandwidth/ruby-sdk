@@ -13,7 +13,7 @@ module Bandwidth
       @http_call_back = http_call_back
 
       @global_headers = {
-        'user-agent' => 'APIMATIC 2.0'
+        'user-agent' => 'ruby-sdk-refs/tags/ruby3.0.0'
       }
     end
 

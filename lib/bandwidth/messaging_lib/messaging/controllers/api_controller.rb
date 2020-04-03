@@ -11,59 +11,6 @@ module Messaging
       super(config, http_call_back: http_call_back)
     end
 
-    # getMessage
-    # @return [void] response from the API call
-    def get_message
-      # Prepare query url.
-      _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/ping'
-      _query_url = APIHelper.clean_url _query_builder
-
-      # Prepare and execute HttpRequest.
-      _request = config.http_client.get(
-        _query_url
-      )
-      MessagingBasicAuth.apply(config, _request)
-      _response = execute_request(_request)
-
-      # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
-        raise GenericClientException.new(
-          '400 Request is malformed or invalid',
-          _response
-        )
-      elsif _response.status_code == 401
-        raise PathClientException.new(
-          '401 The specified user does not have access to the account',
-          _response
-        )
-      elsif _response.status_code == 403
-        raise PathClientException.new(
-          '403 The user does not have access to this API',
-          _response
-        )
-      elsif _response.status_code == 404
-        raise PathClientException.new(
-          '404 Path not found',
-          _response
-        )
-      elsif _response.status_code == 415
-        raise GenericClientException.new(
-          '415 The content-type of the request is incorrect',
-          _response
-        )
-      elsif _response.status_code == 429
-        raise GenericClientException.new(
-          '429 The rate limit has been reached',
-          _response
-        )
-      end
-      validate_response(_response)
-
-      # Return appropriate response type.
-      ApiResponse.new(_response)
-    end
-
     # listMedia
     # @param [String] user_id Required parameter: Example:
     # @param [String] continuation_token Optional parameter: Example:
@@ -95,32 +42,32 @@ module Messaging
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
       elsif _response.status_code == 401
-        raise PathClientException.new(
+        raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
       elsif _response.status_code == 403
-        raise PathClientException.new(
+        raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
       elsif _response.status_code == 404
-        raise PathClientException.new(
+        raise MessagingException.new(
           '404 Path not found',
           _response
         )
       elsif _response.status_code == 415
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
       elsif _response.status_code == 429
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
         )
@@ -158,32 +105,32 @@ module Messaging
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
       elsif _response.status_code == 401
-        raise PathClientException.new(
+        raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
       elsif _response.status_code == 403
-        raise PathClientException.new(
+        raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
       elsif _response.status_code == 404
-        raise PathClientException.new(
+        raise MessagingException.new(
           '404 Path not found',
           _response
         )
       elsif _response.status_code == 415
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
       elsif _response.status_code == 429
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
         )
@@ -246,32 +193,32 @@ module Messaging
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
       elsif _response.status_code == 401
-        raise PathClientException.new(
+        raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
       elsif _response.status_code == 403
-        raise PathClientException.new(
+        raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
       elsif _response.status_code == 404
-        raise PathClientException.new(
+        raise MessagingException.new(
           '404 Path not found',
           _response
         )
       elsif _response.status_code == 415
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
       elsif _response.status_code == 429
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
         )
@@ -307,32 +254,32 @@ module Messaging
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
       elsif _response.status_code == 401
-        raise PathClientException.new(
+        raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
       elsif _response.status_code == 403
-        raise PathClientException.new(
+        raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
       elsif _response.status_code == 404
-        raise PathClientException.new(
+        raise MessagingException.new(
           '404 Path not found',
           _response
         )
       elsif _response.status_code == 415
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
       elsif _response.status_code == 429
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
         )
@@ -375,32 +322,32 @@ module Messaging
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
       elsif _response.status_code == 401
-        raise PathClientException.new(
+        raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
       elsif _response.status_code == 403
-        raise PathClientException.new(
+        raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
       elsif _response.status_code == 404
-        raise PathClientException.new(
+        raise MessagingException.new(
           '404 Path not found',
           _response
         )
       elsif _response.status_code == 415
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
       elsif _response.status_code == 429
-        raise GenericClientException.new(
+        raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
         )

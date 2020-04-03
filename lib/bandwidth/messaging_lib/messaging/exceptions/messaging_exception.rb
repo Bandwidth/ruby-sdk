@@ -4,27 +4,15 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # PathClientException class.
-  class PathClientException < APIException
+  # MessagingException class.
+  class MessagingException < APIException
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :timestamp
-
-    # TODO: Write general description for this method
-    # @return [Integer]
-    attr_accessor :status
+    attr_accessor :type
 
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :error
-
-    # TODO: Write general description for this method
-    # @return [String]
-    attr_accessor :message
-
-    # TODO: Write general description for this method
-    # @return [String]
-    attr_accessor :path
+    attr_accessor :description
 
     # The constructor.
     # @param [String] The reason for raising an exception.
@@ -39,11 +27,8 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @timestamp = hash['timestamp']
-      @status = hash['status']
-      @error = hash['error']
-      @message = hash['message']
-      @path = hash['path']
+      @type = hash['type']
+      @description = hash['description']
     end
   end
 end

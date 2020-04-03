@@ -7,7 +7,6 @@
 require_relative 'messaging/client.rb'
 
 # Models
-require_relative 'messaging/models/field_error.rb'
 require_relative 'messaging/models/media.rb'
 require_relative 'messaging/models/tag.rb'
 require_relative 'messaging/models/deferred_result.rb'
@@ -16,8 +15,7 @@ require_relative 'messaging/models/bandwidth_message.rb'
 require_relative 'messaging/models/message_request.rb'
 
 # Exceptions
-require_relative 'messaging/exceptions/generic_client_exception.rb'
-require_relative 'messaging/exceptions/path_client_exception.rb'
+require_relative 'messaging/exceptions/messaging_exception.rb'
 # Controllers
 require_relative 'messaging/controllers/base_controller.rb'
 require_relative 'messaging/controllers/api_controller.rb'
