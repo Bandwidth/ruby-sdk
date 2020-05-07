@@ -20,7 +20,8 @@ module Bandwidth
          'fileFormat' => file_format,
          'transcribe' => transcribe,
          'transcriptionAvailableUrl' => transcription_available_url,
-         'transcriptionAvailableMethod' => transcription_available_method
+         'transcriptionAvailableMethod' => transcription_available_method,
+         'silenceTimeout' => silence_timeout
         }))
       end
     end

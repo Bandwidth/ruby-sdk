@@ -6,7 +6,10 @@ module Bandwidth
       include XmlVerb
 
       def to_bxml(xml)
-        xml.SendDtmf(dtmf)
+        xml.SendDtmf(dtmf, compact_hash({
+            'toneDuration' => tone_duration,
+            'toneInterval' => tone_interval
+        }))
       end
     end
   end

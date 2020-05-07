@@ -38,5 +38,4 @@ require_relative 'bandwidth/http/auth/messaging_basic_auth.rb'
 require_relative 'bandwidth/voice_lib/voice'
 require_relative 'bandwidth/http/auth/voice_basic_auth.rb'
 
-
 # Controllers

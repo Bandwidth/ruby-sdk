@@ -59,7 +59,7 @@ module Bandwidth
       @backoff_factor = backoff_factor
 
       # Current API environment
-      @environment = environment
+      @environment = String(environment)
 
       # The username to use with basic authentication
       @messaging_basic_auth_user_name = messaging_basic_auth_user_name
@@ -111,20 +111,20 @@ module Bandwidth
     end
 
     # All the environments the SDK can run in.
-    @environments = {
+    ENVIRONMENTS = {
       Environment::PRODUCTION => {
         Server::DEFAULT => 'api.bandwidth.com',
         Server::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
         Server::VOICEDEFAULT => 'https://voice.bandwidth.com'
       }
-    }
+    }.freeze
 
     # Generates the appropriate base URI for the environment and the server.
     # @param [Configuration::Server] The server enum for which the base URI is
     # required.
     # @return [String] The base URI.
     def get_base_uri(server = Server::DEFAULT)
-      self.class.environments[environment][server].clone
+      ENVIRONMENTS[environment][server].clone
     end
   end
 end
