@@ -16,6 +16,7 @@ module Bandwidth
     SERVER = [
       DEFAULT = 'default'.freeze,
       MESSAGINGDEFAULT = 'MessagingDefault'.freeze,
+      TWOFACTORAUTHDEFAULT = 'TwoFactorAuthDefault'.freeze,
       VOICEDEFAULT = 'VoiceDefault'.freeze
     ].freeze
   end
@@ -32,6 +33,8 @@ module Bandwidth
     attr_reader :environment
     attr_reader :messaging_basic_auth_user_name
     attr_reader :messaging_basic_auth_password
+    attr_reader :two_factor_auth_basic_auth_user_name
+    attr_reader :two_factor_auth_basic_auth_password
     attr_reader :voice_basic_auth_user_name
     attr_reader :voice_basic_auth_password
 
@@ -43,6 +46,8 @@ module Bandwidth
                    backoff_factor: 1, environment: Environment::PRODUCTION,
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
+                   two_factor_auth_basic_auth_user_name: 'TODO: Replace',
+                   two_factor_auth_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
                    voice_basic_auth_password: 'TODO: Replace')
       # The value to use for connection timeout
@@ -68,6 +73,12 @@ module Bandwidth
       @messaging_basic_auth_password = messaging_basic_auth_password
 
       # The username to use with basic authentication
+      @two_factor_auth_basic_auth_user_name = two_factor_auth_basic_auth_user_name
+
+      # The password to use with basic authentication
+      @two_factor_auth_basic_auth_password = two_factor_auth_basic_auth_password
+
+      # The username to use with basic authentication
       @voice_basic_auth_user_name = voice_basic_auth_user_name
 
       # The password to use with basic authentication
@@ -81,6 +92,8 @@ module Bandwidth
                    backoff_factor: nil, environment: nil,
                    messaging_basic_auth_user_name: nil,
                    messaging_basic_auth_password: nil,
+                   two_factor_auth_basic_auth_user_name: nil,
+                   two_factor_auth_basic_auth_password: nil,
                    voice_basic_auth_user_name: nil,
                    voice_basic_auth_password: nil)
       timeout ||= self.timeout
@@ -90,6 +103,8 @@ module Bandwidth
       environment ||= self.environment
       messaging_basic_auth_user_name ||= self.messaging_basic_auth_user_name
       messaging_basic_auth_password ||= self.messaging_basic_auth_password
+      two_factor_auth_basic_auth_user_name ||= self.two_factor_auth_basic_auth_user_name
+      two_factor_auth_basic_auth_password ||= self.two_factor_auth_basic_auth_password
       voice_basic_auth_user_name ||= self.voice_basic_auth_user_name
       voice_basic_auth_password ||= self.voice_basic_auth_password
 
@@ -99,6 +114,8 @@ module Bandwidth
         environment: environment,
         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
         messaging_basic_auth_password: messaging_basic_auth_password,
+        two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
+        two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
         voice_basic_auth_user_name: voice_basic_auth_user_name,
         voice_basic_auth_password: voice_basic_auth_password
       )
@@ -115,6 +132,7 @@ module Bandwidth
       Environment::PRODUCTION => {
         Server::DEFAULT => 'api.bandwidth.com',
         Server::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
+        Server::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
         Server::VOICEDEFAULT => 'https://voice.bandwidth.com'
       }
     }.freeze

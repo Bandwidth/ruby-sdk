@@ -4,7 +4,7 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-    module Messaging
+    module TwoFactorAuth
       #  bandwidth client class.
       class Client
         attr_reader :config

@@ -35,6 +35,8 @@ require_relative 'bandwidth/configuration.rb'
 # Namespaces
 require_relative 'bandwidth/messaging_lib/messaging'
 require_relative 'bandwidth/http/auth/messaging_basic_auth.rb'
+require_relative 'bandwidth/two_factor_auth_lib/two_factor_auth'
+require_relative 'bandwidth/http/auth/two_factor_auth_basic_auth.rb'
 require_relative 'bandwidth/voice_lib/voice'
 require_relative 'bandwidth/http/auth/voice_basic_auth.rb'
 

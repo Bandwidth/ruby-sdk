@@ -12,6 +12,11 @@ module Bandwidth
     def messaging_client
       @messaging_client ||= Messaging::Client.new(config: config)
     end
+    # Access to two_factor_auth_client controller.
+    # @return [TwoFactorAuth::Client] Returns the client instance.
+    def two_factor_auth_client
+      @two_factor_auth_client ||= TwoFactorAuth::Client.new(config: config)
+    end
     # Access to voice_client controller.
     # @return [Voice::Client] Returns the client instance.
     def voice_client
@@ -22,6 +27,8 @@ module Bandwidth
                    backoff_factor: 1, environment: Environment::PRODUCTION,
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
+                   two_factor_auth_basic_auth_user_name: 'TODO: Replace',
+                   two_factor_auth_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
                    voice_basic_auth_password: 'TODO: Replace', config: nil)
       @config = if config.nil?
@@ -31,6 +38,8 @@ module Bandwidth
                                     environment: environment,
                                     messaging_basic_auth_user_name: messaging_basic_auth_user_name,
                                     messaging_basic_auth_password: messaging_basic_auth_password,
+                                    two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
+                                    two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
                                     voice_basic_auth_user_name: voice_basic_auth_user_name,
                                     voice_basic_auth_password: voice_basic_auth_password)
                 else
