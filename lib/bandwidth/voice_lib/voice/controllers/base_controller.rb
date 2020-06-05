@@ -13,7 +13,7 @@ module Bandwidth
       @http_call_back = http_call_back
 
       @global_headers = {
-        'user-agent' => 'ruby-sdk-refs/tags/ruby3.2.0'
+        'user-agent' => 'ruby-sdk-refs/tags/ruby3.3.0'
       }
     end
 

@@ -28,8 +28,16 @@ module Bandwidth
                s.to_bxml(xml)
              end
            end
+           def nest_verbs_list(xml, property)
+             if property
+               property.each do |verb|
+                 verb.to_bxml(xml)
+               end
+             end
+           end
           embedded_xml(xml, speak_sentence, SpeakSentence)
           embedded_xml(xml, play_audio, PlayAudio)
+          nest_verbs_list(xml, nested_verbs)
         end
       end
     end
