@@ -38,7 +38,10 @@ module Bandwidth
       NODECAPACITYEXCEEDED = 'node-capacity-exceeded'.freeze,
 
       # TODO: Write general description for UNKNOWN
-      UNKNOWN = 'unknown'.freeze
+      UNKNOWN = 'unknown'.freeze,
+
+      # TODO: Write general description for APPLICATIONERROR
+      APPLICATIONERROR = 'application-error'.freeze
     ].freeze
   end
 end

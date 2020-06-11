@@ -50,6 +50,14 @@ module Bandwidth
     # @return [String]
     attr_accessor :application_id
 
+    # Format is E164
+    # @return [String]
+    attr_accessor :obfuscated_to
+
+    # Format is E164
+    # @return [String]
+    attr_accessor :obfuscated_from
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -64,6 +72,8 @@ module Bandwidth
       @_hash['disconnect_method'] = 'disconnectMethod'
       @_hash['tag'] = 'tag'
       @_hash['application_id'] = 'applicationId'
+      @_hash['obfuscated_to'] = 'obfuscatedTo'
+      @_hash['obfuscated_from'] = 'obfuscatedFrom'
       @_hash
     end
 
@@ -77,7 +87,9 @@ module Bandwidth
                    answer_method = nil,
                    disconnect_url = nil,
                    disconnect_method = nil,
-                   tag = nil)
+                   tag = nil,
+                   obfuscated_to = nil,
+                   obfuscated_from = nil)
       @from = from
       @to = to
       @call_timeout = call_timeout
@@ -89,6 +101,8 @@ module Bandwidth
       @disconnect_method = disconnect_method
       @tag = tag
       @application_id = application_id
+      @obfuscated_to = obfuscated_to
+      @obfuscated_from = obfuscated_from
     end
 
     # Creates an instance of the object from a hash.
@@ -107,6 +121,8 @@ module Bandwidth
       disconnect_url = hash['disconnectUrl']
       disconnect_method = hash['disconnectMethod']
       tag = hash['tag']
+      obfuscated_to = hash['obfuscatedTo']
+      obfuscated_from = hash['obfuscatedFrom']
 
       # Create object from extracted values.
       ApiCreateCallRequest.new(from,
@@ -119,7 +135,9 @@ module Bandwidth
                                answer_method,
                                disconnect_url,
                                disconnect_method,
-                               tag)
+                               tag,
+                               obfuscated_to,
+                               obfuscated_from)
     end
   end
 end

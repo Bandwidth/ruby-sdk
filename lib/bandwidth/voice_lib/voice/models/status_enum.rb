@@ -7,20 +7,11 @@ module Bandwidth
   # Status.
   class StatusEnum
     STATUS_ENUM = [
-      # TODO: Write general description for PROCESSING
-      PROCESSING = 'processing'.freeze,
+      # TODO: Write general description for ACTIVE
+      ACTIVE = 'active'.freeze,
 
-      # TODO: Write general description for PARTIAL
-      PARTIAL = 'partial'.freeze,
-
-      # TODO: Write general description for COMPLETE
-      COMPLETE = 'complete'.freeze,
-
-      # TODO: Write general description for DELETED
-      DELETED = 'deleted'.freeze,
-
-      # TODO: Write general description for ERROR
-      ERROR = 'error'.freeze
+      # TODO: Write general description for COMPLETED
+      COMPLETED = 'completed'.freeze
     ].freeze
   end
 end

@@ -44,20 +44,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -122,20 +121,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -203,20 +201,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -283,20 +280,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -376,20 +372,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -460,20 +455,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -536,20 +530,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -610,20 +603,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -684,20 +676,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -764,20 +755,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -848,20 +838,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -928,20 +917,99 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      ApiResponse.new(_response)
+    end
+
+    # Modify the conference state
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @param [CallEngineModifyConferenceRequest] body Optional parameter:
+    # Example:
+    # @return [void] response from the API call
+    def modify_conference(account_id,
+                          conference_id,
+                          body: nil)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => account_id,
+        'conferenceId' => conference_id
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'content-type' => 'application/json; charset=utf-8'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.post(
+        _query_url,
+        headers: _headers,
+        parameters: body.to_json
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
@@ -1020,20 +1088,19 @@ module Voice
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
         raise ApiErrorResponseException.new(
-          'Something\'s not quite right... Either your request is invalid or' \
-          ' you\'re requesting it at a bad time. Please fix it' \
-          ' before trying again.',
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
           _response
         )
       elsif _response.status_code == 401
         raise APIException.new(
-          'Please authenticate yourself.',
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
           _response
         )
       elsif _response.status_code == 403
         raise ApiErrorResponseException.new(
-          'Your credentials are invalid. Please use your API credentials for' \
-          ' the Bandwidth Dashboard.',
+          'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404

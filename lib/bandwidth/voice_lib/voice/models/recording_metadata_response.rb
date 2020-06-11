@@ -55,7 +55,7 @@ module Bandwidth
     attr_accessor :file_format
 
     # Format is ISO-8601
-    # @return [StatusEnum]
+    # @return [Status1Enum]
     attr_accessor :status
 
     # Format is ISO-8601

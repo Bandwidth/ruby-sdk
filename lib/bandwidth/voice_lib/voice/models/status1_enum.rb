@@ -7,26 +7,20 @@ module Bandwidth
   # Status1.
   class Status1Enum
     STATUS1_ENUM = [
-      # TODO: Write general description for REQUESTED
-      REQUESTED = 'requested'.freeze,
-
-      # TODO: Write general description for NONE
-      NONE = 'none'.freeze,
-
       # TODO: Write general description for PROCESSING
       PROCESSING = 'processing'.freeze,
 
-      # TODO: Write general description for AVAILABLE
-      AVAILABLE = 'available'.freeze,
+      # TODO: Write general description for PARTIAL
+      PARTIAL = 'partial'.freeze,
+
+      # TODO: Write general description for COMPLETE
+      COMPLETE = 'complete'.freeze,
+
+      # TODO: Write general description for DELETED
+      DELETED = 'deleted'.freeze,
 
       # TODO: Write general description for ERROR
-      ERROR = 'error'.freeze,
-
-      # TODO: Write general description for TIMEOUT
-      TIMEOUT = 'timeout'.freeze,
-
-      # TODO: Write general description for FILESIZETOOBIG
-      FILESIZETOOBIG = 'file-size-too-big'.freeze
+      ERROR = 'error'.freeze
     ].freeze
   end
 end
