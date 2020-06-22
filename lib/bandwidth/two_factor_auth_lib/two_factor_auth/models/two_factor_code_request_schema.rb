@@ -6,21 +6,37 @@
 module Bandwidth
   # TwoFactorCodeRequestSchema Model.
   class TwoFactorCodeRequestSchema < BaseModel
-    # TODO: Write general description for this method
+    # The phone number to send the 2fa code to.
     # @return [String]
     attr_accessor :to
 
-    # TODO: Write general description for this method
+    # The application phone number, the sender of the 2fa code.
     # @return [String]
     attr_accessor :from
 
-    # TODO: Write general description for this method
+    # The application unique ID, obtained from Bandwidth.
     # @return [String]
     attr_accessor :application_id
 
-    # TODO: Write general description for this method
+    # An optional field to denote what scope or action the 2fa code is
+    # addressing.  If not supplied, defaults to "2FA".
     # @return [String]
     attr_accessor :scope
+
+    # The message format of the 2fa code.  There are three values that the
+    # system will replace "{CODE}", "{NAME}", "{SCOPE}".  The "{SCOPE}" and
+    # "{NAME} value template are optional, while "{CODE}" must be supplied.  As
+    # the name would suggest, code will be replace with the actual 2fa code. 
+    # Name is replaced with the application name, configured during provisioning
+    # of 2fa.  The scope value is the same value sent during the call and
+    # partitioned by the server.
+    # @return [String]
+    attr_accessor :message
+
+    # The number of digits for your 2fa code.  The valid number ranges from 2 to
+    # 8, inclusively.
+    # @return [Float]
+    attr_accessor :digits
 
     # A mapping from model property names to API property names.
     def self.names
@@ -29,17 +45,23 @@ module Bandwidth
       @_hash['from'] = 'from'
       @_hash['application_id'] = 'applicationId'
       @_hash['scope'] = 'scope'
+      @_hash['message'] = 'message'
+      @_hash['digits'] = 'digits'
       @_hash
     end
 
     def initialize(to = nil,
                    from = nil,
                    application_id = nil,
+                   message = nil,
+                   digits = nil,
                    scope = nil)
       @to = to
       @from = from
       @application_id = application_id
       @scope = scope
+      @message = message
+      @digits = digits
     end
 
     # Creates an instance of the object from a hash.
@@ -50,12 +72,16 @@ module Bandwidth
       to = hash['to']
       from = hash['from']
       application_id = hash['applicationId']
+      message = hash['message']
+      digits = hash['digits']
       scope = hash['scope']
 
       # Create object from extracted values.
       TwoFactorCodeRequestSchema.new(to,
                                      from,
                                      application_id,
+                                     message,
+                                     digits,
                                      scope)
     end
   end

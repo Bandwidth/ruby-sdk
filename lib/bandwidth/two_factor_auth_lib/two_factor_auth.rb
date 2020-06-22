@@ -14,6 +14,7 @@ require_relative 'two_factor_auth/models/two_factor_verify_request_schema.rb'
 require_relative 'two_factor_auth/models/two_factor_verify_code_response.rb'
 
 # Exceptions
+require_relative 'two_factor_auth/exceptions/invalid_request_exception.rb'
 # Controllers
 require_relative 'two_factor_auth/controllers/base_controller.rb'
 require_relative 'two_factor_auth/controllers/api_controller.rb'

@@ -41,6 +41,14 @@ module TwoFactorAuth
       )
       TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise InvalidRequestException.new(
+          'client request error',
+          _response
+        )
+      end
       validate_response(_response)
 
       # Return appropriate response type.
@@ -79,6 +87,14 @@ module TwoFactorAuth
       )
       TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise InvalidRequestException.new(
+          'client request error',
+          _response
+        )
+      end
       validate_response(_response)
 
       # Return appropriate response type.
@@ -117,6 +133,14 @@ module TwoFactorAuth
       )
       TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise InvalidRequestException.new(
+          'client request error',
+          _response
+        )
+      end
       validate_response(_response)
 
       # Return appropriate response type.

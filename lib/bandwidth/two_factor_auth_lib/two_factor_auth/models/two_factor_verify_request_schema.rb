@@ -6,23 +6,36 @@
 module Bandwidth
   # TwoFactorVerifyRequestSchema Model.
   class TwoFactorVerifyRequestSchema < BaseModel
-    # TODO: Write general description for this method
+    # The phone number to send the 2fa code to.
     # @return [String]
     attr_accessor :to
 
-    # TODO: Write general description for this method
+    # The application phone number, the sender of the 2fa code.
     # @return [String]
     attr_accessor :from
 
-    # TODO: Write general description for this method
+    # The application unique ID, obtained from Bandwidth.
     # @return [String]
     attr_accessor :application_id
 
-    # TODO: Write general description for this method
+    # An optional field to denote what scope or action the 2fa code is
+    # addressing.  If not supplied, defaults to "2FA".
     # @return [String]
     attr_accessor :scope
 
-    # TODO: Write general description for this method
+    # The number of digits for your 2fa code.  The valid number ranges from 2 to
+    # 8, inclusively.
+    # @return [Float]
+    attr_accessor :digits
+
+    # The time period, in minutes, to validate the 2fa code.  By setting this to
+    # 3 minutes, it will mean any code generated within the last 3 minutes are
+    # still valid.  The valid range for expiration time is between 0 and 15
+    # minutes, exclusively and inclusively, respectively.
+    # @return [Float]
+    attr_accessor :expiration_time_in_minutes
+
+    # The generated 2fa code to check if valid
     # @return [String]
     attr_accessor :code
 
@@ -33,6 +46,8 @@ module Bandwidth
       @_hash['from'] = 'from'
       @_hash['application_id'] = 'applicationId'
       @_hash['scope'] = 'scope'
+      @_hash['digits'] = 'digits'
+      @_hash['expiration_time_in_minutes'] = 'expirationTimeInMinutes'
       @_hash['code'] = 'code'
       @_hash
     end
@@ -40,12 +55,16 @@ module Bandwidth
     def initialize(to = nil,
                    from = nil,
                    application_id = nil,
-                   scope = nil,
-                   code = nil)
+                   digits = nil,
+                   expiration_time_in_minutes = nil,
+                   code = nil,
+                   scope = nil)
       @to = to
       @from = from
       @application_id = application_id
       @scope = scope
+      @digits = digits
+      @expiration_time_in_minutes = expiration_time_in_minutes
       @code = code
     end
 
@@ -57,15 +76,19 @@ module Bandwidth
       to = hash['to']
       from = hash['from']
       application_id = hash['applicationId']
-      scope = hash['scope']
+      digits = hash['digits']
+      expiration_time_in_minutes = hash['expirationTimeInMinutes']
       code = hash['code']
+      scope = hash['scope']
 
       # Create object from extracted values.
       TwoFactorVerifyRequestSchema.new(to,
                                        from,
                                        application_id,
-                                       scope,
-                                       code)
+                                       digits,
+                                       expiration_time_in_minutes,
+                                       code,
+                                       scope)
     end
   end
 end
