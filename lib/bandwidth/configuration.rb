@@ -17,7 +17,8 @@ module Bandwidth
       DEFAULT = 'default'.freeze,
       MESSAGINGDEFAULT = 'MessagingDefault'.freeze,
       TWOFACTORAUTHDEFAULT = 'TwoFactorAuthDefault'.freeze,
-      VOICEDEFAULT = 'VoiceDefault'.freeze
+      VOICEDEFAULT = 'VoiceDefault'.freeze,
+      WEBRTCDEFAULT = 'WebRtcDefault'.freeze
     ].freeze
   end
 
@@ -37,6 +38,8 @@ module Bandwidth
     attr_reader :two_factor_auth_basic_auth_password
     attr_reader :voice_basic_auth_user_name
     attr_reader :voice_basic_auth_password
+    attr_reader :web_rtc_basic_auth_user_name
+    attr_reader :web_rtc_basic_auth_password
 
     class << self
       attr_reader :environments
@@ -49,7 +52,9 @@ module Bandwidth
                    two_factor_auth_basic_auth_user_name: 'TODO: Replace',
                    two_factor_auth_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
-                   voice_basic_auth_password: 'TODO: Replace')
+                   voice_basic_auth_password: 'TODO: Replace',
+                   web_rtc_basic_auth_user_name: 'TODO: Replace',
+                   web_rtc_basic_auth_password: 'TODO: Replace')
       # The value to use for connection timeout
       @timeout = timeout
 
@@ -84,6 +89,12 @@ module Bandwidth
       # The password to use with basic authentication
       @voice_basic_auth_password = voice_basic_auth_password
 
+      # The username to use with basic authentication
+      @web_rtc_basic_auth_user_name = web_rtc_basic_auth_user_name
+
+      # The password to use with basic authentication
+      @web_rtc_basic_auth_password = web_rtc_basic_auth_password
+
       # The Http Client to use for making requests.
       @http_client = create_http_client
     end
@@ -95,7 +106,9 @@ module Bandwidth
                    two_factor_auth_basic_auth_user_name: nil,
                    two_factor_auth_basic_auth_password: nil,
                    voice_basic_auth_user_name: nil,
-                   voice_basic_auth_password: nil)
+                   voice_basic_auth_password: nil,
+                   web_rtc_basic_auth_user_name: nil,
+                   web_rtc_basic_auth_password: nil)
       timeout ||= self.timeout
       max_retries ||= self.max_retries
       retry_interval ||= self.retry_interval
@@ -107,6 +120,8 @@ module Bandwidth
       two_factor_auth_basic_auth_password ||= self.two_factor_auth_basic_auth_password
       voice_basic_auth_user_name ||= self.voice_basic_auth_user_name
       voice_basic_auth_password ||= self.voice_basic_auth_password
+      web_rtc_basic_auth_user_name ||= self.web_rtc_basic_auth_user_name
+      web_rtc_basic_auth_password ||= self.web_rtc_basic_auth_password
 
       Configuration.new(
         timeout: timeout, max_retries: max_retries,
@@ -117,7 +132,9 @@ module Bandwidth
         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
         two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
         voice_basic_auth_user_name: voice_basic_auth_user_name,
-        voice_basic_auth_password: voice_basic_auth_password
+        voice_basic_auth_password: voice_basic_auth_password,
+        web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,
+        web_rtc_basic_auth_password: web_rtc_basic_auth_password
       )
     end
 
@@ -133,7 +150,8 @@ module Bandwidth
         Server::DEFAULT => 'api.bandwidth.com',
         Server::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
         Server::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
-        Server::VOICEDEFAULT => 'https://voice.bandwidth.com'
+        Server::VOICEDEFAULT => 'https://voice.bandwidth.com',
+        Server::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1'
       }
     }.freeze
 

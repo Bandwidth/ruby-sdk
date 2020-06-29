@@ -22,7 +22,10 @@ module Bandwidth
                        two_factor_auth_basic_auth_user_name: 'TODO: Replace',
                        two_factor_auth_basic_auth_password: 'TODO: Replace',
                        voice_basic_auth_user_name: 'TODO: Replace',
-                       voice_basic_auth_password: 'TODO: Replace', config: nil)
+                       voice_basic_auth_password: 'TODO: Replace',
+                       web_rtc_basic_auth_user_name: 'TODO: Replace',
+                       web_rtc_basic_auth_password: 'TODO: Replace',
+                       config: nil)
           @config = if config.nil?
                       Configuration.new(timeout: timeout,
                                         max_retries: max_retries,
@@ -34,7 +37,9 @@ module Bandwidth
                                         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
                                         two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
                                         voice_basic_auth_user_name: voice_basic_auth_user_name,
-                                        voice_basic_auth_password: voice_basic_auth_password)
+                                        voice_basic_auth_password: voice_basic_auth_password,
+                                        web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,
+                                        web_rtc_basic_auth_password: web_rtc_basic_auth_password)
                     else
                       config
                     end
