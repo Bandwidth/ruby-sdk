@@ -22,7 +22,7 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id
+        'accountId' => { 'value' => account_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -86,7 +86,9 @@ module Voice
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response, data: ApiCallResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: ApiCallResponse.from_hash(decoded)
+      )
     end
 
     # Returns near-realtime metadata about the specified call
@@ -100,8 +102,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -163,7 +165,9 @@ module Voice
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response, data: ApiCallStateResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: ApiCallStateResponse.from_hash(decoded)
+      )
     end
 
     # Interrupts and replaces an active call's BXML document
@@ -179,8 +183,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -258,8 +262,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recording'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -344,8 +348,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true }
       )
       _query_builder = APIHelper.append_url_with_query_parameters(
         _query_builder,
@@ -433,9 +437,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -497,8 +501,9 @@ module Voice
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response,
-                      data: RecordingMetadataResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: RecordingMetadataResponse.from_hash(decoded)
+      )
     end
 
     # Deletes the specified recording
@@ -514,9 +519,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -587,9 +592,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -644,7 +649,9 @@ module Voice
       validate_response(_response)
 
       # Return appropriate response type.
-      ApiResponse.new(_response, data: _response.raw_body)
+      ApiResponse.new(
+        _response, data: _response.raw_body
+      )
     end
 
     # Deletes the specified recording's media
@@ -660,9 +667,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -733,9 +740,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -797,7 +804,9 @@ module Voice
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response, data: TranscriptionResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: TranscriptionResponse.from_hash(decoded)
+      )
     end
 
     # Requests that the specified recording be transcribed
@@ -815,9 +824,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -901,9 +910,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'callId' => call_id,
-        'recordingId' => recording_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -961,6 +970,85 @@ module Voice
       ApiResponse.new(_response)
     end
 
+    # Returns information about the specified conference
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @return [ConferenceDetail] response from the API call
+    def get_conference_by_id(account_id,
+                             conference_id)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_response.raw_body)
+      ApiResponse.new(
+        _response, data: ConferenceDetail.from_hash(decoded)
+      )
+    end
+
     # Modify the conference state
     # @param [String] account_id Required parameter: Example:
     # @param [String] conference_id Required parameter: Example:
@@ -975,8 +1063,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id,
-        'conferenceId' => conference_id
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1041,6 +1129,88 @@ module Voice
       ApiResponse.new(_response)
     end
 
+    # Returns information about the specified conference member
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @param [String] member_id Required parameter: Example:
+    # @return [ConferenceMemberDetail] response from the API call
+    def get_conference_member(account_id,
+                              conference_id,
+                              member_id)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true },
+        'memberId' => { 'value' => member_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_response.raw_body)
+      ApiResponse.new(
+        _response, data: ConferenceMemberDetail.from_hash(decoded)
+      )
+    end
+
     # Returns a list of metadata for the recordings associated with the
     # specified account. The list can be filtered by the optional from, to,
     # minStartTime, and maxStartTime arguments. The list is capped at 1000
@@ -1061,7 +1231,7 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/recordings'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id
+        'accountId' => { 'value' => account_id, 'encode' => true }
       )
       _query_builder = APIHelper.append_url_with_query_parameters(
         _query_builder,

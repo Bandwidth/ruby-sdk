@@ -23,7 +23,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/voice'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id
+        'accountId' => { 'value' => account_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -53,8 +53,9 @@ module TwoFactorAuth
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response,
-                      data: TwoFactorVoiceResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: TwoFactorVoiceResponse.from_hash(decoded)
+      )
     end
 
     # Two-Factor authentication with Bandwidth messaging services
@@ -69,7 +70,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/messaging'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id
+        'accountId' => { 'value' => account_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -99,8 +100,10 @@ module TwoFactorAuth
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response,
-                      data: TwoFactorMessagingResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response,
+        data: TwoFactorMessagingResponse.from_hash(decoded)
+      )
     end
 
     # Verify a previously sent two-factor authentication code
@@ -115,7 +118,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/verify'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => account_id
+        'accountId' => { 'value' => account_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -145,8 +148,10 @@ module TwoFactorAuth
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response,
-                      data: TwoFactorVerifyCodeResponse.from_hash(decoded))
+      ApiResponse.new(
+        _response,
+        data: TwoFactorVerifyCodeResponse.from_hash(decoded)
+      )
     end
   end
 end

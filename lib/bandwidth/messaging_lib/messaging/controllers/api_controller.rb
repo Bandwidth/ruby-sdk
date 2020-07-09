@@ -22,7 +22,7 @@ module Messaging
       _query_builder << '/users/{userId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'userId' => user_id
+        'userId' => { 'value' => user_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -76,8 +76,10 @@ module Messaging
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response,
-                      data: decoded.map { |element| Media.from_hash(element) })
+      ApiResponse.new(
+        _response,
+        data: decoded.map { |element| Media.from_hash(element) }
+      )
     end
 
     # getMedia
@@ -91,8 +93,8 @@ module Messaging
       _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'userId' => user_id,
-        'mediaId' => media_id
+        'userId' => { 'value' => user_id, 'encode' => true },
+        'mediaId' => { 'value' => media_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -138,7 +140,9 @@ module Messaging
       validate_response(_response)
 
       # Return appropriate response type.
-      ApiResponse.new(_response, data: _response.raw_body)
+      ApiResponse.new(
+        _response, data: _response.raw_body
+      )
     end
 
     # uploadMedia
@@ -161,8 +165,8 @@ module Messaging
       _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'userId' => user_id,
-        'mediaId' => media_id
+        'userId' => { 'value' => user_id, 'encode' => true },
+        'mediaId' => { 'value' => media_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -240,8 +244,8 @@ module Messaging
       _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'userId' => user_id,
-        'mediaId' => media_id
+        'userId' => { 'value' => user_id, 'encode' => true },
+        'mediaId' => { 'value' => media_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -301,7 +305,7 @@ module Messaging
       _query_builder << '/users/{userId}/messages'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'userId' => user_id
+        'userId' => { 'value' => user_id, 'encode' => true }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -356,7 +360,9 @@ module Messaging
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      ApiResponse.new(_response, data: BandwidthMessage.from_hash(decoded))
+      ApiResponse.new(
+        _response, data: BandwidthMessage.from_hash(decoded)
+      )
     end
   end
 end
