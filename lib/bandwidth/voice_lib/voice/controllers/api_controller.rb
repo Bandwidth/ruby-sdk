@@ -332,17 +332,9 @@ module Voice
     # took place during the specified call
     # @param [String] account_id Required parameter: Example:
     # @param [String] call_id Required parameter: Example:
-    # @param [String] from Optional parameter: Example:
-    # @param [String] to Optional parameter: Example:
-    # @param [String] min_start_time Optional parameter: Example:
-    # @param [String] max_start_time Optional parameter: Example:
     # @return [List of RecordingMetadataResponse] response from the API call
     def get_query_metadata_for_account_and_call(account_id,
-                                                call_id,
-                                                from: nil,
-                                                to: nil,
-                                                min_start_time: nil,
-                                                max_start_time: nil)
+                                                call_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings'
@@ -350,13 +342,6 @@ module Voice
         _query_builder,
         'accountId' => { 'value' => account_id, 'encode' => true },
         'callId' => { 'value' => call_id, 'encode' => true }
-      )
-      _query_builder = APIHelper.append_url_with_query_parameters(
-        _query_builder,
-        'from' => from,
-        'to' => to,
-        'minStartTime' => min_start_time,
-        'maxStartTime' => max_start_time
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -970,6 +955,101 @@ module Voice
       ApiResponse.new(_response)
     end
 
+    # Returns information about the conferences in the account
+    # @param [String] account_id Required parameter: Example:
+    # @param [Integer] page_size Optional parameter: Example:1000
+    # @param [String] page_token Optional parameter: Example:
+    # @param [String] name Optional parameter: Example:
+    # @param [String] min_created_time Optional parameter: Example:
+    # @param [String] max_created_time Optional parameter: Example:
+    # @return [List of ConferenceDetail] response from the API call
+    def get_conferences_by_account(account_id,
+                                   page_size: 1000,
+                                   page_token: nil,
+                                   name: nil,
+                                   min_created_time: nil,
+                                   max_created_time: nil)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true }
+      )
+      _query_builder = APIHelper.append_url_with_query_parameters(
+        _query_builder,
+        'pageSize' => page_size,
+        'pageToken' => page_token,
+        'name' => name,
+        'minCreatedTime' => min_created_time,
+        'maxCreatedTime' => max_created_time
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_response.raw_body)
+      ApiResponse.new(
+        _response,
+        data: decoded.map { |element| ConferenceDetail.from_hash(element) }
+      )
+    end
+
     # Returns information about the specified conference
     # @param [String] account_id Required parameter: Example:
     # @param [String] conference_id Required parameter: Example:
@@ -1129,6 +1209,88 @@ module Voice
       ApiResponse.new(_response)
     end
 
+    # Updates settings for a particular conference member
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @param [String] call_id Required parameter: Example:
+    # @param [ConferenceMemberDetail] body Optional parameter: Example:
+    # @return [void] response from the API call
+    def modify_conference_member(account_id,
+                                 conference_id,
+                                 call_id,
+                                 body: nil)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{callId}'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true },
+        'callId' => { 'value' => call_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'content-type' => 'application/json; charset=utf-8'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.put(
+        _query_url,
+        headers: _headers,
+        parameters: body.to_json
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      ApiResponse.new(_response)
+    end
+
     # Returns information about the specified conference member
     # @param [String] account_id Required parameter: Example:
     # @param [String] conference_id Required parameter: Example:
@@ -1208,6 +1370,244 @@ module Voice
       decoded = APIHelper.json_deserialize(_response.raw_body)
       ApiResponse.new(
         _response, data: ConferenceMemberDetail.from_hash(decoded)
+      )
+    end
+
+    # Returns a (potentially empty) list of metadata for the recordings that
+    # took place during the specified conference
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @return [List of ConferenceRecordingMetadataResponse] response from the API call
+    def get_query_metadata_for_account_and_conference(account_id,
+                                                      conference_id)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_response.raw_body)
+      ApiResponse.new(
+        _response,
+        data: decoded.map { |element| ConferenceRecordingMetadataResponse.from_hash(element) }
+      )
+    end
+
+    # Returns metadata for the specified recording
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @param [String] recording_id Required parameter: Example:
+    # @return [RecordingMetadataResponse] response from the API call
+    def get_metadata_for_conference_recording(account_id,
+                                              conference_id,
+                                              recording_id)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_response.raw_body)
+      ApiResponse.new(
+        _response, data: RecordingMetadataResponse.from_hash(decoded)
+      )
+    end
+
+    # Downloads the specified recording
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] conference_id Required parameter: Example:
+    # @param [String] recording_id Required parameter: Example:
+    # @return [Binary] response from the API call
+    def get_stream_conference_recording_media(account_id,
+                                              conference_id,
+                                              recording_id)
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => true },
+        'conferenceId' => { 'value' => conference_id, 'encode' => true },
+        'recordingId' => { 'value' => recording_id, 'encode' => true }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.get(
+        _query_url
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request, binary: true)
+
+      # Validate response against endpoint and global error codes.
+      if _response.status_code == 400
+        raise ApiErrorResponseException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ApiErrorResponseException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      elsif _response.status_code == 404
+        raise ApiErrorResponseException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      elsif _response.status_code == 415
+        raise ApiErrorResponseException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ApiErrorResponseException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ApiErrorResponseException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      ApiResponse.new(
+        _response, data: _response.raw_body
       )
     end
 

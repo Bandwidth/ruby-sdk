@@ -20,6 +20,10 @@ module Bandwidth
 
     # TODO: Write general description for this method
     # @return [String]
+    attr_accessor :parent_call_id
+
+    # TODO: Write general description for this method
+    # @return [String]
     attr_accessor :recording_id
 
     # TODO: Write general description for this method
@@ -29,6 +33,14 @@ module Bandwidth
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :from
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :transfer_caller_id
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :transfer_to
 
     # Format is ISO-8601
     # @return [String]
@@ -72,9 +84,12 @@ module Bandwidth
       @_hash['application_id'] = 'applicationId'
       @_hash['account_id'] = 'accountId'
       @_hash['call_id'] = 'callId'
+      @_hash['parent_call_id'] = 'parentCallId'
       @_hash['recording_id'] = 'recordingId'
       @_hash['to'] = 'to'
       @_hash['from'] = 'from'
+      @_hash['transfer_caller_id'] = 'transferCallerId'
+      @_hash['transfer_to'] = 'transferTo'
       @_hash['duration'] = 'duration'
       @_hash['direction'] = 'direction'
       @_hash['channels'] = 'channels'
@@ -90,9 +105,12 @@ module Bandwidth
     def initialize(application_id = nil,
                    account_id = nil,
                    call_id = nil,
+                   parent_call_id = nil,
                    recording_id = nil,
                    to = nil,
                    from = nil,
+                   transfer_caller_id = nil,
+                   transfer_to = nil,
                    duration = nil,
                    direction = nil,
                    channels = nil,
@@ -105,9 +123,12 @@ module Bandwidth
       @application_id = application_id
       @account_id = account_id
       @call_id = call_id
+      @parent_call_id = parent_call_id
       @recording_id = recording_id
       @to = to
       @from = from
+      @transfer_caller_id = transfer_caller_id
+      @transfer_to = transfer_to
       @duration = duration
       @direction = direction
       @channels = channels
@@ -127,9 +148,12 @@ module Bandwidth
       application_id = hash['applicationId']
       account_id = hash['accountId']
       call_id = hash['callId']
+      parent_call_id = hash['parentCallId']
       recording_id = hash['recordingId']
       to = hash['to']
       from = hash['from']
+      transfer_caller_id = hash['transferCallerId']
+      transfer_to = hash['transferTo']
       duration = hash['duration']
       direction = hash['direction']
       channels = hash['channels']
@@ -145,9 +169,12 @@ module Bandwidth
       RecordingMetadataResponse.new(application_id,
                                     account_id,
                                     call_id,
+                                    parent_call_id,
                                     recording_id,
                                     to,
                                     from,
+                                    transfer_caller_id,
+                                    transfer_to,
                                     duration,
                                     direction,
                                     channels,

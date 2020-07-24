@@ -20,7 +20,10 @@ module Bandwidth
       DELETED = 'deleted'.freeze,
 
       # TODO: Write general description for ERROR
-      ERROR = 'error'.freeze
+      ERROR = 'error'.freeze,
+
+      # TODO: Write general description for ALREADYINPROGRESS
+      ALREADYINPROGRESS = 'already-in-progress'.freeze
     ].freeze
   end
 end

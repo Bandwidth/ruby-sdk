@@ -10,15 +10,43 @@ module Bandwidth
     # @return [StatusEnum]
     attr_accessor :status
 
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :redirect_url
+
+    # TODO: Write general description for this method
+    # @return [RedirectMethodEnum]
+    attr_accessor :redirect_method
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :username
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :password
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['status'] = 'status'
+      @_hash['redirect_url'] = 'redirectUrl'
+      @_hash['redirect_method'] = 'redirectMethod'
+      @_hash['username'] = 'username'
+      @_hash['password'] = 'password'
       @_hash
     end
 
-    def initialize(status = nil)
+    def initialize(redirect_url = nil,
+                   status = nil,
+                   redirect_method = nil,
+                   username = nil,
+                   password = nil)
       @status = status
+      @redirect_url = redirect_url
+      @redirect_method = redirect_method
+      @username = username
+      @password = password
     end
 
     # Creates an instance of the object from a hash.
@@ -26,10 +54,18 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
+      redirect_url = hash['redirectUrl']
       status = hash['status']
+      redirect_method = hash['redirectMethod']
+      username = hash['username']
+      password = hash['password']
 
       # Create object from extracted values.
-      CallEngineModifyConferenceRequest.new(status)
+      CallEngineModifyConferenceRequest.new(redirect_url,
+                                            status,
+                                            redirect_method,
+                                            username,
+                                            password)
     end
   end
 end

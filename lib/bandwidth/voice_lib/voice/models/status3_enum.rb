@@ -4,9 +4,9 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # Status2.
-  class Status2Enum
-    STATUS2_ENUM = [
+  # Status3.
+  class Status3Enum
+    STATUS3_ENUM = [
       # TODO: Write general description for NONE
       NONE = 'none'.freeze,
 

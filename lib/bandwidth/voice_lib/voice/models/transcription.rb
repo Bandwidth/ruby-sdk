@@ -11,7 +11,7 @@ module Bandwidth
     attr_accessor :id
 
     # TODO: Write general description for this method
-    # @return [Status2Enum]
+    # @return [Status3Enum]
     attr_accessor :status
 
     # TODO: Write general description for this method
