@@ -8,13 +8,13 @@ module Bandwidth
   class StateEnum
     STATE_ENUM = [
       # TODO: Write general description for DISCONNECTED
-      DISCONNECTED = 'DISCONNECTED'.freeze,
+      DISCONNECTED = 'disconnected'.freeze,
 
       # TODO: Write general description for ANSWERED
-      ANSWERED = 'ANSWERED'.freeze,
+      ANSWERED = 'answered'.freeze,
 
       # TODO: Write general description for INITIATED
-      INITIATED = 'INITIATED'.freeze
+      INITIATED = 'initiated'.freeze
     ].freeze
   end
 end

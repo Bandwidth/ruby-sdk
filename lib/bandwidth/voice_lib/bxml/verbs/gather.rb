@@ -17,7 +17,11 @@ module Bandwidth
           'username' => username,
           'password' => password,
           'firstDigitTimeout' => first_digit_timeout,
-          'repeatCount' => repeat_count
+          'repeatCount' => repeat_count,
+          'gatherFallbackUrl' => gather_fallback_url,
+          'gatherFallbackMethod' => gather_fallback_method,
+          'fallbackUsername' => fallback_username,
+          'fallbackPassword' => fallback_password
          })) do
            def embedded_xml(xml, property, type)
              if property

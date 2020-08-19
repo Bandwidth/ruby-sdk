@@ -14,7 +14,13 @@ module Bandwidth
          'bridgeTargetCompleteMethod' => bridge_target_complete_method,
          'username' => username,
          'password' => password,
-         'tag' => tag
+         'tag' => tag,
+         'bridgeCompleteFallbackUrl' => bridge_complete_fallback_url,
+         'bridgeCompleteFallbackMethod' => bridge_complete_fallback_method,
+         'bridgeTargetCompleteFallbackUrl' => bridge_target_complete_fallback_url,
+         'bridgeTargetCompleteFallbackMethod' => bridge_target_complete_fallback_method,
+         'fallbackUsername' => fallback_username,
+         'fallbackPassword' => fallback_password
         }))
       end
     end

@@ -19,8 +19,16 @@ module Bandwidth
     attr_accessor :call_timeout
 
     # Format is E164
+    # @return [Float]
+    attr_accessor :callback_timeout
+
+    # Format is E164
     # @return [String]
     attr_accessor :answer_url
+
+    # Format is E164
+    # @return [String]
+    attr_accessor :answer_fallback_url
 
     # Format is E164
     # @return [String]
@@ -31,8 +39,20 @@ module Bandwidth
     attr_accessor :password
 
     # Format is E164
+    # @return [String]
+    attr_accessor :fallback_username
+
+    # Format is E164
+    # @return [String]
+    attr_accessor :fallback_password
+
+    # Format is E164
     # @return [AnswerMethodEnum]
     attr_accessor :answer_method
+
+    # Format is E164
+    # @return [AnswerFallbackMethodEnum]
+    attr_accessor :answer_fallback_method
 
     # Format is E164
     # @return [String]
@@ -64,10 +84,15 @@ module Bandwidth
       @_hash['from'] = 'from'
       @_hash['to'] = 'to'
       @_hash['call_timeout'] = 'callTimeout'
+      @_hash['callback_timeout'] = 'callbackTimeout'
       @_hash['answer_url'] = 'answerUrl'
+      @_hash['answer_fallback_url'] = 'answerFallbackUrl'
       @_hash['username'] = 'username'
       @_hash['password'] = 'password'
+      @_hash['fallback_username'] = 'fallbackUsername'
+      @_hash['fallback_password'] = 'fallbackPassword'
       @_hash['answer_method'] = 'answerMethod'
+      @_hash['answer_fallback_method'] = 'answerFallbackMethod'
       @_hash['disconnect_url'] = 'disconnectUrl'
       @_hash['disconnect_method'] = 'disconnectMethod'
       @_hash['tag'] = 'tag'
@@ -82,9 +107,14 @@ module Bandwidth
                    answer_url = nil,
                    application_id = nil,
                    call_timeout = nil,
+                   callback_timeout = nil,
+                   answer_fallback_url = nil,
                    username = nil,
                    password = nil,
+                   fallback_username = nil,
+                   fallback_password = nil,
                    answer_method = nil,
+                   answer_fallback_method = nil,
                    disconnect_url = nil,
                    disconnect_method = nil,
                    tag = nil,
@@ -93,10 +123,15 @@ module Bandwidth
       @from = from
       @to = to
       @call_timeout = call_timeout
+      @callback_timeout = callback_timeout
       @answer_url = answer_url
+      @answer_fallback_url = answer_fallback_url
       @username = username
       @password = password
+      @fallback_username = fallback_username
+      @fallback_password = fallback_password
       @answer_method = answer_method
+      @answer_fallback_method = answer_fallback_method
       @disconnect_url = disconnect_url
       @disconnect_method = disconnect_method
       @tag = tag
@@ -115,9 +150,14 @@ module Bandwidth
       answer_url = hash['answerUrl']
       application_id = hash['applicationId']
       call_timeout = hash['callTimeout']
+      callback_timeout = hash['callbackTimeout']
+      answer_fallback_url = hash['answerFallbackUrl']
       username = hash['username']
       password = hash['password']
+      fallback_username = hash['fallbackUsername']
+      fallback_password = hash['fallbackPassword']
       answer_method = hash['answerMethod']
+      answer_fallback_method = hash['answerFallbackMethod']
       disconnect_url = hash['disconnectUrl']
       disconnect_method = hash['disconnectMethod']
       tag = hash['tag']
@@ -130,9 +170,14 @@ module Bandwidth
                                answer_url,
                                application_id,
                                call_timeout,
+                               callback_timeout,
+                               answer_fallback_url,
                                username,
                                password,
+                               fallback_username,
+                               fallback_password,
                                answer_method,
+                               answer_fallback_method,
                                disconnect_url,
                                disconnect_method,
                                tag,

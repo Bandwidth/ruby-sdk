@@ -12,7 +12,11 @@ module Bandwidth
          'redirectMethod' => redirect_method,
          'tag' => tag,
          'username' => username,
-         'password' => password
+         'password' => password,
+         'redirectFallbackUrl' => redirect_fallback_url,
+         'redirectFallbackMethod' => redirect_fallback_method,
+         'fallbackUsername' => fallback_username,
+         'fallbackPassword' => fallback_password
         }))
       end
     end

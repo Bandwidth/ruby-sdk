@@ -12,7 +12,11 @@ module Bandwidth
           'transferDisconnectMethod' => transfer_disconnect_method,
           'username' => username,
           'password' => password,
-          'tag' => tag
+          'tag' => tag,
+          'transferAnswerFallbackUrl' => transfer_answer_fallback_url,
+          'transferAnswerFallbackMethod' => transfer_answer_fallback_method,
+          'fallbackUsername' => fallback_username,
+          'fallbackPassword' => fallback_password
         }))
       end
     end

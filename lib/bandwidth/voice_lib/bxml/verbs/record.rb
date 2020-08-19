@@ -21,7 +21,11 @@ module Bandwidth
          'transcribe' => transcribe,
          'transcriptionAvailableUrl' => transcription_available_url,
          'transcriptionAvailableMethod' => transcription_available_method,
-         'silenceTimeout' => silence_timeout
+         'silenceTimeout' => silence_timeout,
+         'recordCompleteFallbackUrl' => record_complete_fallback_url,
+         'recordCompleteFallbackMethod' => record_complete_fallback_method,
+         'fallbackUsername' => fallback_username,
+         'fallbackPassword' => fallback_password
         }))
       end
     end

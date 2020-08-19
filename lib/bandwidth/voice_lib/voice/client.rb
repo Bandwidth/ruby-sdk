@@ -17,6 +17,7 @@ module Bandwidth
 
         def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
                        backoff_factor: 1, environment: Environment::PRODUCTION,
+                       base_url: 'https://www.example.com',
                        messaging_basic_auth_user_name: 'TODO: Replace',
                        messaging_basic_auth_password: 'TODO: Replace',
                        two_factor_auth_basic_auth_user_name: 'TODO: Replace',
@@ -32,6 +33,7 @@ module Bandwidth
                                         retry_interval: retry_interval,
                                         backoff_factor: backoff_factor,
                                         environment: environment,
+                                        base_url: base_url,
                                         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
                                         messaging_basic_auth_password: messaging_basic_auth_password,
                                         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,

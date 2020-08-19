@@ -7,7 +7,8 @@ module Bandwidth
   # An enum for SDK environments.
   class Environment
     ENVIRONMENT = [
-      PRODUCTION = 'production'.freeze
+      PRODUCTION = 'production'.freeze,
+      CUSTOM = 'custom'.freeze
     ].freeze
   end
 
@@ -32,6 +33,7 @@ module Bandwidth
     attr_reader :retry_interval
     attr_reader :backoff_factor
     attr_reader :environment
+    attr_reader :base_url
     attr_reader :messaging_basic_auth_user_name
     attr_reader :messaging_basic_auth_password
     attr_reader :two_factor_auth_basic_auth_user_name
@@ -47,6 +49,7 @@ module Bandwidth
 
     def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
                    backoff_factor: 1, environment: Environment::PRODUCTION,
+                   base_url: 'https://www.example.com',
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
                    two_factor_auth_basic_auth_user_name: 'TODO: Replace',
@@ -70,6 +73,9 @@ module Bandwidth
 
       # Current API environment
       @environment = String(environment)
+
+      # baseUrl value
+      @base_url = base_url
 
       # The username to use with basic authentication
       @messaging_basic_auth_user_name = messaging_basic_auth_user_name
@@ -100,7 +106,7 @@ module Bandwidth
     end
 
     def clone_with(timeout: nil, max_retries: nil, retry_interval: nil,
-                   backoff_factor: nil, environment: nil,
+                   backoff_factor: nil, environment: nil, base_url: nil,
                    messaging_basic_auth_user_name: nil,
                    messaging_basic_auth_password: nil,
                    two_factor_auth_basic_auth_user_name: nil,
@@ -114,6 +120,7 @@ module Bandwidth
       retry_interval ||= self.retry_interval
       backoff_factor ||= self.backoff_factor
       environment ||= self.environment
+      base_url ||= self.base_url
       messaging_basic_auth_user_name ||= self.messaging_basic_auth_user_name
       messaging_basic_auth_password ||= self.messaging_basic_auth_password
       two_factor_auth_basic_auth_user_name ||= self.two_factor_auth_basic_auth_user_name
@@ -126,7 +133,7 @@ module Bandwidth
       Configuration.new(
         timeout: timeout, max_retries: max_retries,
         retry_interval: retry_interval, backoff_factor: backoff_factor,
-        environment: environment,
+        environment: environment, base_url: base_url,
         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
         messaging_basic_auth_password: messaging_basic_auth_password,
         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
@@ -152,6 +159,13 @@ module Bandwidth
         Server::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
         Server::VOICEDEFAULT => 'https://voice.bandwidth.com',
         Server::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1'
+      },
+      Environment::CUSTOM => {
+        Server::DEFAULT => '{base_url}',
+        Server::MESSAGINGDEFAULT => '{base_url}',
+        Server::TWOFACTORAUTHDEFAULT => '{base_url}',
+        Server::VOICEDEFAULT => '{base_url}',
+        Server::WEBRTCDEFAULT => '{base_url}'
       }
     }.freeze
 
@@ -160,7 +174,12 @@ module Bandwidth
     # required.
     # @return [String] The base URI.
     def get_base_uri(server = Server::DEFAULT)
-      ENVIRONMENTS[environment][server].clone
+      parameters = {
+        'base_url' => { 'value' => base_url, 'encode' => false }
+      }
+      APIHelper.append_url_with_template_parameters(
+        ENVIRONMENTS[environment][server], parameters
+      )
     end
   end
 end

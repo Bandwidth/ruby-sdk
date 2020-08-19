@@ -40,12 +40,24 @@ module Bandwidth
     attr_accessor :call_timeout
 
     # TODO: Write general description for this method
+    # @return [Float]
+    attr_accessor :callback_timeout
+
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :answer_url
 
     # TODO: Write general description for this method
     # @return [AnswerMethodEnum]
     attr_accessor :answer_method
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :answer_fallback_url
+
+    # TODO: Write general description for this method
+    # @return [AnswerFallbackMethodEnum]
+    attr_accessor :answer_fallback_method
 
     # TODO: Write general description for this method
     # @return [String]
@@ -65,6 +77,14 @@ module Bandwidth
 
     # TODO: Write general description for this method
     # @return [String]
+    attr_accessor :fallback_username
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :fallback_password
+
+    # TODO: Write general description for this method
+    # @return [String]
     attr_accessor :tag
 
     # A mapping from model property names to API property names.
@@ -78,12 +98,17 @@ module Bandwidth
       @_hash['start_time'] = 'startTime'
       @_hash['call_url'] = 'callUrl'
       @_hash['call_timeout'] = 'callTimeout'
+      @_hash['callback_timeout'] = 'callbackTimeout'
       @_hash['answer_url'] = 'answerUrl'
       @_hash['answer_method'] = 'answerMethod'
+      @_hash['answer_fallback_url'] = 'answerFallbackUrl'
+      @_hash['answer_fallback_method'] = 'answerFallbackMethod'
       @_hash['disconnect_url'] = 'disconnectUrl'
       @_hash['disconnect_method'] = 'disconnectMethod'
       @_hash['username'] = 'username'
       @_hash['password'] = 'password'
+      @_hash['fallback_username'] = 'fallbackUsername'
+      @_hash['fallback_password'] = 'fallbackPassword'
       @_hash['tag'] = 'tag'
       @_hash
     end
@@ -99,9 +124,14 @@ module Bandwidth
                    disconnect_method = nil,
                    start_time = nil,
                    call_timeout = nil,
+                   callback_timeout = nil,
+                   answer_fallback_url = nil,
+                   answer_fallback_method = nil,
                    disconnect_url = nil,
                    username = nil,
                    password = nil,
+                   fallback_username = nil,
+                   fallback_password = nil,
                    tag = nil)
       @account_id = account_id
       @call_id = call_id
@@ -111,12 +141,17 @@ module Bandwidth
       @start_time = start_time
       @call_url = call_url
       @call_timeout = call_timeout
+      @callback_timeout = callback_timeout
       @answer_url = answer_url
       @answer_method = answer_method
+      @answer_fallback_url = answer_fallback_url
+      @answer_fallback_method = answer_fallback_method
       @disconnect_url = disconnect_url
       @disconnect_method = disconnect_method
       @username = username
       @password = password
+      @fallback_username = fallback_username
+      @fallback_password = fallback_password
       @tag = tag
     end
 
@@ -136,9 +171,14 @@ module Bandwidth
       disconnect_method = hash['disconnectMethod']
       start_time = APIHelper.rfc3339(hash['startTime']) if hash['startTime']
       call_timeout = hash['callTimeout']
+      callback_timeout = hash['callbackTimeout']
+      answer_fallback_url = hash['answerFallbackUrl']
+      answer_fallback_method = hash['answerFallbackMethod']
       disconnect_url = hash['disconnectUrl']
       username = hash['username']
       password = hash['password']
+      fallback_username = hash['fallbackUsername']
+      fallback_password = hash['fallbackPassword']
       tag = hash['tag']
 
       # Create object from extracted values.
@@ -153,9 +193,14 @@ module Bandwidth
                           disconnect_method,
                           start_time,
                           call_timeout,
+                          callback_timeout,
+                          answer_fallback_url,
+                          answer_fallback_method,
                           disconnect_url,
                           username,
                           password,
+                          fallback_username,
+                          fallback_password,
                           tag)
     end
   end

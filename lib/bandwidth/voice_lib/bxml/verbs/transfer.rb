@@ -16,7 +16,11 @@ module Bandwidth
          'username' => username,
          'password' => password,
          'diversionTreatment' => diversion_treatment,
-         'diversionReason' => diversion_reason
+         'diversionReason' => diversion_reason,
+         'transferCompleteFallbackUrl' => transfer_complete_fallback_url,
+         'transferCompleteFallbackMethod' => transfer_complete_fallback_method,
+         'fallbackUsername' => fallback_username,
+         'fallbackPassword' => fallback_password
         })) do
           def embedded_xml(xml, property, type)
             if property

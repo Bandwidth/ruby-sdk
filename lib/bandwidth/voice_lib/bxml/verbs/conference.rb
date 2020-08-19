@@ -20,7 +20,11 @@ module Bandwidth
          'conferenceEventMethod' => conference_event_method,
          'username' => username,
          'password' => password,
-         'tag' => tag
+         'tag' => tag,
+         'conferenceEventFallbackUrl' => conference_event_fallback_url,
+         'conferenceEventFallbackMethod' => conference_event_fallback_method,
+         'fallbackUsername' => fallback_username,
+         'fallbackPassword' => fallback_password
         }))
       end
     end

@@ -26,6 +26,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :tag
 
+    # TODO: Write general description for this method
+    # @return [Float]
+    attr_accessor :callback_timeout
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -34,6 +38,7 @@ module Bandwidth
       @_hash['username'] = 'username'
       @_hash['password'] = 'password'
       @_hash['tag'] = 'tag'
+      @_hash['callback_timeout'] = 'callbackTimeout'
       @_hash
     end
 
@@ -41,12 +46,14 @@ module Bandwidth
                    callback_method = nil,
                    username = nil,
                    password = nil,
-                   tag = nil)
+                   tag = nil,
+                   callback_timeout = nil)
       @callback_url = callback_url
       @callback_method = callback_method
       @username = username
       @password = password
       @tag = tag
+      @callback_timeout = callback_timeout
     end
 
     # Creates an instance of the object from a hash.
@@ -59,13 +66,15 @@ module Bandwidth
       username = hash['username']
       password = hash['password']
       tag = hash['tag']
+      callback_timeout = hash['callbackTimeout']
 
       # Create object from extracted values.
       ApiTranscribeRecordingRequest.new(callback_url,
                                         callback_method,
                                         username,
                                         password,
-                                        tag)
+                                        tag,
+                                        callback_timeout)
     end
   end
 end
