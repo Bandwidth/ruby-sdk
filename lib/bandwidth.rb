@@ -44,7 +44,6 @@ require_relative 'bandwidth/http/auth/web_rtc_basic_auth.rb'
 
 # External Files
 require_relative 'bandwidth/voice_lib/bxml/bxml.rb'
-require_relative 'bandwidth/web_rtc_lib/utils/web_rtc_transfer.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/bridge.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/conference.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/forward.rb'
@@ -66,3 +65,4 @@ require_relative 'bandwidth/voice_lib/bxml/verbs/stop_gather.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/stop_recording.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/transfer.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/xml_verb.rb'
+require_relative 'bandwidth/web_rtc_lib/utils/web_rtc_transfer.rb'
