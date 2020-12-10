@@ -34,6 +34,9 @@ module Bandwidth
           phone_numbers.each do |number|
             embedded_xml(xml, number, PhoneNumber)
           end
+          sip_uris.each do |sip_uri|
+            embedded_xml(xml, sip_uri, SipUri)
+          end
         end
       end
     end
