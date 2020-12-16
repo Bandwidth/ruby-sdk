@@ -31,11 +31,15 @@ module Bandwidth
               s.to_bxml(xml)
             end
           end
-          phone_numbers.each do |number|
-            embedded_xml(xml, number, PhoneNumber)
+          if not phone_numbers.nil?
+            phone_numbers.each do |number|
+              embedded_xml(xml, number, PhoneNumber)
+            end
           end
-          sip_uris.each do |sip_uri|
-            embedded_xml(xml, sip_uri, SipUri)
+          if not sip_uris.nil?
+            sip_uris.each do |sip_uri|
+              embedded_xml(xml, sip_uri, SipUri)
+            end
           end
         end
       end
