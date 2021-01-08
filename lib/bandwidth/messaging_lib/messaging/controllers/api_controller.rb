@@ -94,7 +94,7 @@ module Messaging
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
         'userId' => { 'value' => user_id, 'encode' => true },
-        'mediaId' => { 'value' => media_id, 'encode' => true }
+        'mediaId' => { 'value' => media_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
