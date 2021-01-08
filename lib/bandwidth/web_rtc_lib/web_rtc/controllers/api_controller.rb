@@ -24,7 +24,7 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/participants'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -87,8 +87,8 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/participants/{participantId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -148,8 +148,8 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/participants/{participantId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -202,7 +202,7 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -264,8 +264,8 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -325,8 +325,8 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -377,8 +377,8 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -445,9 +445,9 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -509,9 +509,9 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -564,9 +564,9 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -634,9 +634,9 @@ module WebRtc
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'participantId' => { 'value' => participant_id, 'encode' => true },
-        'sessionId' => { 'value' => session_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false },
+        'sessionId' => { 'value' => session_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 

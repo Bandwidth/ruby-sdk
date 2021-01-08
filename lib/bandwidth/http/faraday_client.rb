@@ -15,6 +15,7 @@ module Bandwidth
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use FaradayMiddleware::FollowRedirects
+        faraday.use :gzip
         faraday.request :multipart
         faraday.request :url_encoded
         faraday.ssl[:ca_file] = Certifi.where
@@ -34,7 +35,10 @@ module Bandwidth
         http_request.query_url
       ) do |request|
         request.headers = http_request.headers
-        request.body = http_request.parameters
+        unless http_request.http_method == HttpMethodEnum::GET &&
+               http_request.parameters.empty?
+          request.body = http_request.parameters
+        end
       end
       convert_response(response, http_request)
     end
@@ -46,7 +50,10 @@ module Bandwidth
         http_request.query_url
       ) do |request|
         request.headers = http_request.headers
-        request.body = http_request.parameters
+        unless http_request.http_method == HttpMethodEnum::GET &&
+               http_request.parameters.empty?
+          request.body = http_request.parameters
+        end
       end
       convert_response(response, http_request)
     end
