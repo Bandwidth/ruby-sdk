@@ -23,7 +23,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/voice'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -70,7 +70,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/messaging'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -118,7 +118,7 @@ module TwoFactorAuth
       _query_builder << '/accounts/{accountId}/code/verify'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 

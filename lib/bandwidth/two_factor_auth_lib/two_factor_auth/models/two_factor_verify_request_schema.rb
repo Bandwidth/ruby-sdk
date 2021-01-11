@@ -10,10 +10,6 @@ module Bandwidth
     # @return [String]
     attr_accessor :to
 
-    # The application phone number, the sender of the 2fa code.
-    # @return [String]
-    attr_accessor :from
-
     # The application unique ID, obtained from Bandwidth.
     # @return [String]
     attr_accessor :application_id
@@ -22,11 +18,6 @@ module Bandwidth
     # addressing.  If not supplied, defaults to "2FA".
     # @return [String]
     attr_accessor :scope
-
-    # The number of digits for your 2fa code.  The valid number ranges from 2 to
-    # 8, inclusively.
-    # @return [Float]
-    attr_accessor :digits
 
     # The time period, in minutes, to validate the 2fa code.  By setting this to
     # 3 minutes, it will mean any code generated within the last 3 minutes are
@@ -43,27 +34,21 @@ module Bandwidth
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['to'] = 'to'
-      @_hash['from'] = 'from'
       @_hash['application_id'] = 'applicationId'
       @_hash['scope'] = 'scope'
-      @_hash['digits'] = 'digits'
       @_hash['expiration_time_in_minutes'] = 'expirationTimeInMinutes'
       @_hash['code'] = 'code'
       @_hash
     end
 
     def initialize(to = nil,
-                   from = nil,
                    application_id = nil,
-                   digits = nil,
                    expiration_time_in_minutes = nil,
                    code = nil,
                    scope = nil)
       @to = to
-      @from = from
       @application_id = application_id
       @scope = scope
-      @digits = digits
       @expiration_time_in_minutes = expiration_time_in_minutes
       @code = code
     end
@@ -74,18 +59,14 @@ module Bandwidth
 
       # Extract variables from the hash.
       to = hash['to']
-      from = hash['from']
       application_id = hash['applicationId']
-      digits = hash['digits']
       expiration_time_in_minutes = hash['expirationTimeInMinutes']
       code = hash['code']
       scope = hash['scope']
 
       # Create object from extracted values.
       TwoFactorVerifyRequestSchema.new(to,
-                                       from,
                                        application_id,
-                                       digits,
                                        expiration_time_in_minutes,
                                        code,
                                        scope)

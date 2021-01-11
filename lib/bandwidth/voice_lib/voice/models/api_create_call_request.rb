@@ -10,71 +10,126 @@ module Bandwidth
     # @return [String]
     attr_accessor :from
 
-    # Format is E164
+    # Format is E164 or SIP URI
     # @return [String]
     attr_accessor :to
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
+    # @return [String]
+    attr_accessor :uui
+
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [Float]
     attr_accessor :call_timeout
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [Float]
     attr_accessor :callback_timeout
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :answer_url
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :answer_fallback_url
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :username
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :password
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :fallback_username
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :fallback_password
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [AnswerMethodEnum]
     attr_accessor :answer_method
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [AnswerFallbackMethodEnum]
     attr_accessor :answer_fallback_method
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :disconnect_url
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [DisconnectMethodEnum]
     attr_accessor :disconnect_method
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :tag
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :application_id
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :obfuscated_to
 
-    # Format is E164
+    # When calling a SIP URI, this will be sent as the 'User-To-User' header
+    # within the initial INVITE. An 'encoding' parameter must be specified as
+    # described in https://tools.ietf.org/html/rfc7433. This header cannot
+    # exceed 256 characters, including the encoding parameter.
     # @return [String]
     attr_accessor :obfuscated_from
 
@@ -83,6 +138,7 @@ module Bandwidth
       @_hash = {} if @_hash.nil?
       @_hash['from'] = 'from'
       @_hash['to'] = 'to'
+      @_hash['uui'] = 'uui'
       @_hash['call_timeout'] = 'callTimeout'
       @_hash['callback_timeout'] = 'callbackTimeout'
       @_hash['answer_url'] = 'answerUrl'
@@ -106,6 +162,7 @@ module Bandwidth
                    to = nil,
                    answer_url = nil,
                    application_id = nil,
+                   uui = nil,
                    call_timeout = nil,
                    callback_timeout = nil,
                    answer_fallback_url = nil,
@@ -122,6 +179,7 @@ module Bandwidth
                    obfuscated_from = nil)
       @from = from
       @to = to
+      @uui = uui
       @call_timeout = call_timeout
       @callback_timeout = callback_timeout
       @answer_url = answer_url
@@ -149,6 +207,7 @@ module Bandwidth
       to = hash['to']
       answer_url = hash['answerUrl']
       application_id = hash['applicationId']
+      uui = hash['uui']
       call_timeout = hash['callTimeout']
       callback_timeout = hash['callbackTimeout']
       answer_fallback_url = hash['answerFallbackUrl']
@@ -169,6 +228,7 @@ module Bandwidth
                                to,
                                answer_url,
                                application_id,
+                               uui,
                                call_timeout,
                                callback_timeout,
                                answer_fallback_url,

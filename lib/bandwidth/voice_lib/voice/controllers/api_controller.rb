@@ -22,7 +22,7 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -102,8 +102,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -183,8 +183,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -262,8 +262,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recording'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -340,8 +340,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -422,9 +422,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -504,9 +504,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -577,9 +577,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -652,9 +652,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -725,9 +725,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -809,9 +809,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -895,9 +895,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -974,7 +974,7 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_builder = APIHelper.append_url_with_query_parameters(
         _query_builder,
@@ -1061,8 +1061,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1132,8 +1132,7 @@ module Voice
     # Modify the conference state
     # @param [String] account_id Required parameter: Example:
     # @param [String] conference_id Required parameter: Example:
-    # @param [CallEngineModifyConferenceRequest] body Optional parameter:
-    # Example:
+    # @param [ApiModifyConferenceRequest] body Optional parameter: Example:
     # @return [void] response from the API call
     def modify_conference(account_id,
                           conference_id,
@@ -1143,8 +1142,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1224,9 +1223,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{callId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true },
-        'callId' => { 'value' => call_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1304,9 +1303,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true },
-        'memberId' => { 'value' => member_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false },
+        'memberId' => { 'value' => member_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1385,8 +1384,8 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1467,9 +1466,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1549,9 +1548,9 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true },
-        'conferenceId' => { 'value' => conference_id, 'encode' => true },
-        'recordingId' => { 'value' => recording_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'conferenceId' => { 'value' => conference_id, 'encode' => false },
+        'recordingId' => { 'value' => recording_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -1631,7 +1630,7 @@ module Voice
       _query_builder << '/api/v2/accounts/{accountId}/recordings'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => true }
+        'accountId' => { 'value' => account_id, 'encode' => false }
       )
       _query_builder = APIHelper.append_url_with_query_parameters(
         _query_builder,
