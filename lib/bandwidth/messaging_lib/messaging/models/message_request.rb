@@ -6,27 +6,29 @@
 module Bandwidth
   # MessageRequest Model.
   class MessageRequest < BaseModel
-    # TODO: Write general description for this method
+    # The ID of the Application your from number is associated with in the
+    # Bandwidth Phone Number Dashboard.
     # @return [String]
     attr_accessor :application_id
 
-    # TODO: Write general description for this method
+    # The phone number(s) the message should be sent to in E164 format
     # @return [List of String]
     attr_accessor :to
 
-    # TODO: Write general description for this method
+    # One of your telephone numbers the message should come from in E164 format
     # @return [String]
     attr_accessor :from
 
-    # TODO: Write general description for this method
+    # The contents of the text message. Must be 2048 characters or less.
     # @return [String]
     attr_accessor :text
 
-    # TODO: Write general description for this method
+    # A list of URLs to include as media attachments as part of the message.
     # @return [List of String]
     attr_accessor :media
 
-    # TODO: Write general description for this method
+    # A custom string that will be included in callback events of the message.
+    # Max 1024 characters
     # @return [String]
     attr_accessor :tag
 

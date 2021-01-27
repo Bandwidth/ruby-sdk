@@ -6,47 +6,48 @@
 module Bandwidth
   # BandwidthMessage Model.
   class BandwidthMessage < BaseModel
-    # TODO: Write general description for this method
+    # The id of the message
     # @return [String]
     attr_accessor :id
 
-    # TODO: Write general description for this method
+    # The Bandwidth phone number associated with the message
     # @return [String]
     attr_accessor :owner
 
-    # TODO: Write general description for this method
+    # The application ID associated with the message
     # @return [String]
     attr_accessor :application_id
 
-    # TODO: Write general description for this method
+    # The datetime stamp of the message in ISO 8601
     # @return [String]
     attr_accessor :time
 
-    # TODO: Write general description for this method
+    # The number of segments the original message from the user is broken into
+    # before sending over to carrier networks
     # @return [Integer]
     attr_accessor :segment_count
 
-    # TODO: Write general description for this method
+    # The direction of the message relative to Bandwidth. Can be in or out
     # @return [String]
     attr_accessor :direction
 
-    # TODO: Write general description for this method
+    # The phone number recipients of the message
     # @return [List of String]
     attr_accessor :to
 
-    # TODO: Write general description for this method
+    # The phone number the message was sent from
     # @return [String]
     attr_accessor :from
 
-    # TODO: Write general description for this method
+    # The list of media URLs sent in the message
     # @return [List of String]
     attr_accessor :media
 
-    # TODO: Write general description for this method
+    # The contents of the message
     # @return [String]
     attr_accessor :text
 
-    # TODO: Write general description for this method
+    # The custom string set by the user
     # @return [String]
     attr_accessor :tag
 

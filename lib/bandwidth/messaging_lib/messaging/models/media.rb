@@ -30,19 +30,19 @@ module Bandwidth
     # @return [List of Tag]
     attr_accessor :tags
 
-    # TODO: Write general description for this method
+    # User's account ID
     # @return [String]
     attr_accessor :user_id
 
-    # TODO: Write general description for this method
+    # User's account ID
     # @return [String]
     attr_accessor :media_name
 
-    # TODO: Write general description for this method
+    # User's account ID
     # @return [String]
     attr_accessor :media_id
 
-    # TODO: Write general description for this method
+    # User's account ID
     # @return [String]
     attr_accessor :cache_control
 
