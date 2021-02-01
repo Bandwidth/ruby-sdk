@@ -7,6 +7,9 @@
 require_relative 'messaging/client.rb'
 
 # Models
+require_relative 'messaging/models/bandwidth_messages_list.rb'
+require_relative 'messaging/models/bandwidth_message_item.rb'
+require_relative 'messaging/models/page_info.rb'
 require_relative 'messaging/models/media.rb'
 require_relative 'messaging/models/tag.rb'
 require_relative 'messaging/models/deferred_result.rb'
