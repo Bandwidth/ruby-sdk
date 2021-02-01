@@ -51,6 +51,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :tag
 
+    # The priority specified by the user
+    # @return [String]
+    attr_accessor :priority
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -65,6 +69,7 @@ module Bandwidth
       @_hash['media'] = 'media'
       @_hash['text'] = 'text'
       @_hash['tag'] = 'tag'
+      @_hash['priority'] = 'priority'
       @_hash
     end
 
@@ -78,7 +83,8 @@ module Bandwidth
                    from = nil,
                    media = nil,
                    text = nil,
-                   tag = nil)
+                   tag = nil,
+                   priority = nil)
       @id = id
       @owner = owner
       @application_id = application_id
@@ -90,6 +96,7 @@ module Bandwidth
       @media = media
       @text = text
       @tag = tag
+      @priority = priority
     end
 
     # Creates an instance of the object from a hash.
@@ -108,6 +115,7 @@ module Bandwidth
       media = hash['media']
       text = hash['text']
       tag = hash['tag']
+      priority = hash['priority']
 
       # Create object from extracted values.
       BandwidthMessage.new(id,
@@ -120,7 +128,8 @@ module Bandwidth
                            from,
                            media,
                            text,
-                           tag)
+                           tag,
+                           priority)
     end
   end
 end

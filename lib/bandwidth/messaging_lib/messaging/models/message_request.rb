@@ -32,6 +32,12 @@ module Bandwidth
     # @return [String]
     attr_accessor :tag
 
+    # The message's priority, currently for toll-free or short code SMS only.
+    # Messages with a priority value of `"high"` are given preference over your
+    # other traffic.
+    # @return [PriorityEnum]
+    attr_accessor :priority
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -41,6 +47,7 @@ module Bandwidth
       @_hash['text'] = 'text'
       @_hash['media'] = 'media'
       @_hash['tag'] = 'tag'
+      @_hash['priority'] = 'priority'
       @_hash
     end
 
@@ -49,13 +56,15 @@ module Bandwidth
                    from = nil,
                    text = nil,
                    media = nil,
-                   tag = nil)
+                   tag = nil,
+                   priority = nil)
       @application_id = application_id
       @to = to
       @from = from
       @text = text
       @media = media
       @tag = tag
+      @priority = priority
     end
 
     # Creates an instance of the object from a hash.
@@ -69,6 +78,7 @@ module Bandwidth
       text = hash['text']
       media = hash['media']
       tag = hash['tag']
+      priority = hash['priority']
 
       # Create object from extracted values.
       MessageRequest.new(application_id,
@@ -76,7 +86,8 @@ module Bandwidth
                          from,
                          text,
                          media,
-                         tag)
+                         tag,
+                         priority)
     end
   end
 end

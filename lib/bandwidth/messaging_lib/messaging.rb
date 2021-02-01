@@ -16,6 +16,7 @@ require_relative 'messaging/models/deferred_result.rb'
 require_relative 'messaging/models/bandwidth_callback_message.rb'
 require_relative 'messaging/models/bandwidth_message.rb'
 require_relative 'messaging/models/message_request.rb'
+require_relative 'messaging/models/priority_enum.rb'
 
 # Exceptions
 require_relative 'messaging/exceptions/messaging_exception.rb'
