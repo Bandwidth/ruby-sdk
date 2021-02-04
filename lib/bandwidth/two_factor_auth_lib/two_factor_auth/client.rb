@@ -9,10 +9,10 @@ module Bandwidth
       class Client
         attr_reader :config
 
-        # Access to client controller.
-        # @return [APIController] Returns the controller instance.
-        def client
-          @client ||= APIController.new config
+        # Access to mfa controller.
+        # @return [MFAController] Returns the controller instance.
+        def mfa
+          @mfa ||= MFAController.new config
         end
 
         def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
