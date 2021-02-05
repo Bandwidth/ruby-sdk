@@ -5,13 +5,13 @@
 
 module Bandwidth
 module TwoFactorAuth
-  # APIController
-  class APIController < BaseController
+  # MFAController
+  class MFAController < BaseController
     def initialize(config, http_call_back: nil)
       super(config, http_call_back: http_call_back)
     end
 
-    # Two-Factor authentication with Bandwidth Voice services
+    # Allows a user to send a MFA code through a phone call
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Voice service enabled
     # @param [TwoFactorCodeRequestSchema] body Required parameter: Example:
@@ -44,8 +44,23 @@ module TwoFactorAuth
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise InvalidRequestException.new(
-          'client request error',
+        raise ErrorWithRequestException.new(
+          'If there is any issue with values passed in by the user',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise UnauthorizedRequestException.new(
+          'Authentication is either incorrect or not present',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ForbiddenRequestException.new(
+          'The user is not authorized to access this resource',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ErrorWithRequestException.new(
+          'An internal server error occurred',
           _response
         )
       end
@@ -58,7 +73,7 @@ module TwoFactorAuth
       )
     end
 
-    # Two-Factor authentication with Bandwidth messaging services
+    # Allows a user to send a MFA code through a text message (SMS)
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Messaging service enabled
     # @param [TwoFactorCodeRequestSchema] body Required parameter: Example:
@@ -91,8 +106,23 @@ module TwoFactorAuth
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise InvalidRequestException.new(
-          'client request error',
+        raise ErrorWithRequestException.new(
+          'If there is any issue with values passed in by the user',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise UnauthorizedRequestException.new(
+          'Authentication is either incorrect or not present',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ForbiddenRequestException.new(
+          'The user is not authorized to access this resource',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ErrorWithRequestException.new(
+          'An internal server error occurred',
           _response
         )
       end
@@ -106,7 +136,7 @@ module TwoFactorAuth
       )
     end
 
-    # Verify a previously sent two-factor authentication code
+    # Allows a user to verify an MFA code
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Two-Factor enabled
     # @param [TwoFactorVerifyRequestSchema] body Required parameter: Example:
@@ -139,8 +169,29 @@ module TwoFactorAuth
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise InvalidRequestException.new(
-          'client request error',
+        raise ErrorWithRequestException.new(
+          'If there is any issue with values passed in by the user',
+          _response
+        )
+      elsif _response.status_code == 401
+        raise UnauthorizedRequestException.new(
+          'Authentication is either incorrect or not present',
+          _response
+        )
+      elsif _response.status_code == 403
+        raise ForbiddenRequestException.new(
+          'The user is not authorized to access this resource',
+          _response
+        )
+      elsif _response.status_code == 429
+        raise ErrorWithRequestException.new(
+          'The user has made too many bad requests and is temporarily locked' \
+          ' out',
+          _response
+        )
+      elsif _response.status_code == 500
+        raise ErrorWithRequestException.new(
+          'An internal server error occurred',
           _response
         )
       end

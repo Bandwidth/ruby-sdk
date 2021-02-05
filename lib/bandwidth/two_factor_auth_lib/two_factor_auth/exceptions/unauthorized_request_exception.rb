@@ -4,11 +4,11 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # InvalidRequest class.
-  class InvalidRequestException < APIException
-    # An error message pertaining to what the issue could be
+  # UnauthorizedRequest class.
+  class UnauthorizedRequestException < APIException
+    # The message containing the reason behind the request being unauthorized
     # @return [String]
-    attr_accessor :result
+    attr_accessor :message
 
     # The constructor.
     # @param [String] The reason for raising an exception.
@@ -23,7 +23,7 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @result = hash['result']
+      @message = hash['message']
     end
   end
 end
