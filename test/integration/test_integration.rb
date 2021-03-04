@@ -122,7 +122,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Forward to="+15554443333" from="+13334445555" callTimeout="25" diversionTreatment="none" diversionReason="away"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        #File.write("test_forward.bxml", actual)
     end
 
     def test_gather
@@ -148,7 +147,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather gatherUrl="https://test.com" gatherMethod="POST" terminatingDigits="#" tag="tag" maxDigits="3" interDigitTimeout="5" username="user" password="pass" firstDigitTimeout="10" repeatCount="1" gatherFallbackUrl="https://test.com" gatherFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"></Gather></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_gather.bxml", actual)
     end
 
     def test_gather_nested_speak_sentence
@@ -164,7 +162,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather><SpeakSentence>test</SpeakSentence></Gather></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_gather_nested_speak_sentence.bxml", actual)
     end
 
     def test_gather_nested_play_audio
@@ -180,7 +177,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather><PlayAudio>https://test.com</PlayAudio></Gather></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_gather_nested_play_audio.bxml", actual)
     end
 
     def test_gather_multiple_nested_verbs
@@ -199,7 +195,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather><PlayAudio>https://test.com</PlayAudio><SpeakSentence>test</SpeakSentence></Gather></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_gather_multiple_nested_verbs.bxml", actual)
     end
 
     def test_hangup
@@ -210,7 +205,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_hangup.bxml", actual)
     end
 
     def test_pause
@@ -223,7 +217,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Pause duration="2"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_pause.bxml", actual)
     end
 
     def test_pause_recording
@@ -234,7 +227,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><PauseRecording/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_pause_recording.bxml", actual)
     end
 
     def test_play_audio
@@ -249,7 +241,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><PlayAudio username="user" password="pass">https://test.com</PlayAudio></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_play_audio.bxml", actual)
     end
 
     def test_record
@@ -279,7 +270,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Record tag="tag" username="user" password="pass" recordCompleteUrl="https://complete.com" recordCompleteMethod="POST" recordingAvailableUrl="https://available.com" recordingAvailableMethod="GET" terminatingDigits="#" maxDuration="3" fileFormat="wav" transcribe="false" transcriptionAvailableUrl="https://transcribe.com" transcriptionAvailableMethod="POST" silenceTimeout="5" recordCompleteFallbackUrl="https://test.com" recordCompleteFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_record.bxml", actual)
     end
 
     def test_redirect
@@ -300,7 +290,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Redirect redirectUrl="https://redirect.com" redirectMethod="GET" tag="tag" username="user" password="pass" redirectFallbackUrl="https://test.com" redirectFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_redirect.bxml", actual)
     end
 
     def test_resume_recording
@@ -311,7 +300,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><ResumeRecording/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_resume_recording.bxml", actual)
     end
 
     def test_send_dtmf
@@ -326,7 +314,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><SendDtmf toneDuration="75" toneInterval="65">12w34</SendDtmf></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_send_dtmf.bxml", actual)
     end
 
     def test_speak_sentence
@@ -342,7 +329,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><SpeakSentence voice="julie" locale="en_US" gender="female">test</SpeakSentence></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_speak_sentence.bxml", actual)
     end
 
     def test_speak_sentence_ssml
@@ -355,7 +341,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><SpeakSentence>Hello, you have reached the home of <lang xml:lang="es-MX">Antonio Mendoza</lang>.Please leave a message.</SpeakSentence></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_speak_sentence_ssml.bxml", actual)
     end
 
     def test_start_recording
@@ -377,7 +362,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartRecording tag="tag" username="user" password="pass" recordingAvailableUrl="https://available.com" recordingAvailableMethod="POST" fileFormat="mp3" multiChannel="true" transcribe="false" transcriptionAvailableUrl="https://transcribe.com" transcriptionAvailableMethod="GET"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_start_recording.bxml", actual)
     end
 
     def test_stop_recording
@@ -388,7 +372,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StopRecording/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_stop_recording.bxml", actual)
     end
 
     def test_transfer
@@ -428,7 +411,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Transfer transferCallerId="+13334445555" callTimeout="3" tag="transfertag" transferCompleteUrl="https://transfercomplete.com" transferCompleteMethod="POST" username="transferuser" password="transferpass" diversionTreatment="none" diversionReason="away" transferCompleteFallbackUrl="https://test.com" transferCompleteFallbackMethod="GET" fallbackUsername="fusern" fallbackPassword="fpassw"><PhoneNumber transferAnswerUrl="https://phoneanswer.com" transferAnswerMethod="GET" transferDisconnectUrl="https://phonedisconnect.com" transferDisconnectMethod="POST" username="phoneuser" password="phonepassword" tag="phonetag" transferAnswerFallbackUrl="https://test.com" transferAnswerFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass">+15554443333</PhoneNumber></Transfer></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_transfer.bxml", actual)
     end
 
     def test_conference
@@ -453,7 +435,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Conference mute="false" hold="true" callIdsToCoach="c-123,c-234" conferenceEventUrl="https://test.com" conferenceEventMethod="POST" username="user" password="pass" tag="tag" conferenceEventFallbackUrl="https://test2.com" conferenceEventFallbackMethod="POST" fallbackUsername="fuser" fallbackPassword="fpass">my-conference</Conference></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_conference.bxml", actual)
     end
 
     def test_conference_coach_ids_array
@@ -467,7 +448,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Conference callIdsToCoach="c-123,c-234">my-conference</Conference></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_conference_coach_ids_array.bxml", actual)
     end
 
     def test_conference_no_coach
@@ -480,7 +460,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Conference>my-conference</Conference></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_conference_no_coach.bxml", actual)
     end
 
     def test_mfa_messaging
@@ -548,7 +527,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Bridge bridgeCompleteUrl="https://test.com" bridgeCompleteMethod="POST" bridgeTargetCompleteUrl="https://test2.com" bridgeTargetCompleteMethod="GET" username="user" password="pass" tag="custom tag" bridgeCompleteFallbackUrl="https://test3.com" bridgeCompleteFallbackMethod="GET" bridgeTargetCompleteFallbackUrl="https://test4.com" bridgeTargetCompleteFallbackMethod="POST" fallbackUsername="fuser" fallbackPassword="fpass">c-c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d</Bridge></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_bridge.bxml", actual)
     end
 
     def test_ring
@@ -562,7 +540,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Ring duration="5"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_ring.bxml", actual)
     end
 
     def test_start_gather
@@ -580,7 +557,6 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartGather username="user" password="pass" tag="custom tag" dtmfUrl="https://test.com" dtmfMethod="GET"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_start_gather.bxml", actual)
     end
     
     def test_stop_gather
@@ -592,6 +568,5 @@ class MonitorTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StopGather/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
-        File.write("test_stop_gather.bxml", actual)
     end
 end
