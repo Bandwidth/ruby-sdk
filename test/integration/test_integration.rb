@@ -494,7 +494,6 @@ class IntegrationTest < Test::Unit::TestCase
         body.application_id = MFA_VOICE_APPLICATION_ID
         body.scope = "scope"
         body.code = "123456"
-        body.digits = 6
         body.expiration_time_in_minutes = 3
         response = @bandwidth_client.two_factor_auth_client.mfa.create_verify_two_factor(ACCOUNT_ID, body)
         #Ruby has no check to see if variables are of type boolean
