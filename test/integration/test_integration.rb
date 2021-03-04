@@ -45,7 +45,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.to = [PHONE_NUMBER_INBOUND]
         body.from = PHONE_NUMBER_OUTBOUND
         body.text = "Ruby Integration"
-        response = @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, :body => body)
+        response = @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, body)
         assert(response.data.id.length > 0, "id value not set") #validate that _some_ id was returned
     end
 
@@ -490,7 +490,6 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_mfa_verify
         body = TwoFactorVerifyRequestSchema.new
-        body.from = PHONE_NUMBER_MFA
         body.to = PHONE_NUMBER_INBOUND
         body.application_id = MFA_VOICE_APPLICATION_ID
         body.scope = "scope"
