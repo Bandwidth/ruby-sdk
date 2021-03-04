@@ -11,23 +11,23 @@ include Bandwidth::Messaging
 include Bandwidth::TwoFactorAuth
 
 begin
-    USERNAME = ENV.fetch("MONITORING_USERNAME")
-    PASSWORD = ENV.fetch("MONITORING_PASSWORD")
-    ACCOUNT_ID = ENV.fetch("MONITORING_ACCOUNT_ID")
-    VOICE_APPLICATION_ID = ENV.fetch("MONITORING_VOICE_APPLICATION_ID")
-    MESSAGING_APPLICATION_ID = ENV.fetch("MONITORING_MESSAGING_APPLICATION_ID")
-    CALLBACK_URL = ENV.fetch("MONITORING_CALLBACK_URL")
-    PHONE_NUMBER_OUTBOUND = ENV.fetch("MONITORING_PHONE_NUMBER_OUTBOUND")
-    PHONE_NUMBER_INBOUND = ENV.fetch("MONITORING_PHONE_NUMBER_INBOUND")
-    MFA_MESSAGING_APPLICATION_ID = ENV.fetch("MONITORING_MFA_MESSAGING_APPLICATION_ID")
-    MFA_VOICE_APPLICATION_ID = ENV.fetch("MONITORING_MFA_VOICE_APPLICATION_ID")
-    PHONE_NUMBER_MFA = ENV.fetch("MONITORING_PHONE_NUMBER_MFA")
+    USERNAME = ENV.fetch("USERNAME")
+    PASSWORD = ENV.fetch("PASSWORD")
+    ACCOUNT_ID = ENV.fetch("ACCOUNT_ID")
+    VOICE_APPLICATION_ID = ENV.fetch("VOICE_APPLICATION_ID")
+    MESSAGING_APPLICATION_ID = ENV.fetch("MESSAGING_APPLICATION_ID")
+    CALLBACK_URL = ENV.fetch("CALLBACK_URL")
+    PHONE_NUMBER_OUTBOUND = ENV.fetch("PHONE_NUMBER_OUTBOUND")
+    PHONE_NUMBER_INBOUND = ENV.fetch("PHONE_NUMBER_INBOUND")
+    MFA_MESSAGING_APPLICATION_ID = ENV.fetch("MFA_MESSAGING_APPLICATION_ID")
+    MFA_VOICE_APPLICATION_ID = ENV.fetch("MFA_VOICE_APPLICATION_ID")
+    PHONE_NUMBER_MFA = ENV.fetch("PHONE_NUMBER_MFA")
 rescue
     puts "Environmental variables not found"
     exit(-1)
 end
 
-class MonitorTest < Test::Unit::TestCase
+class IntegrationTest < Test::Unit::TestCase
     def setup
         @bandwidth_client = Bandwidth::Client.new(
             voice_basic_auth_user_name: USERNAME,
@@ -44,7 +44,7 @@ class MonitorTest < Test::Unit::TestCase
         body.application_id = MESSAGING_APPLICATION_ID
         body.to = [PHONE_NUMBER_INBOUND]
         body.from = PHONE_NUMBER_OUTBOUND
-        body.text = "Ruby Monitoring"
+        body.text = "Ruby Integration"
         response = @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, :body => body)
         assert(response.data.id.length > 0, "id value not set") #validate that _some_ id was returned
     end
@@ -54,7 +54,7 @@ class MonitorTest < Test::Unit::TestCase
         body.application_id = MESSAGING_APPLICATION_ID
         body.to = ["+1invalid"]
         body.from = PHONE_NUMBER_OUTBOUND
-        body.text = "Ruby Monitoring"
+        body.text = "Ruby Integration"
         begin
             @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, :body => body)
             #workaround to make sure that if the above error is not raised, the build will fail
@@ -66,7 +66,7 @@ class MonitorTest < Test::Unit::TestCase
 
     def test_upload_download_media
         #define constants for upload media and download media
-        media_file_name = 'ruby_monitoring' #future update to add special symbols
+        media_file_name = 'ruby_integration' #future update to add special symbols
         media_file = '12345' #todo: check a binary string
 
         #media upload
