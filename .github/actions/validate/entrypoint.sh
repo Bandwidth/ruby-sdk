@@ -1,3 +1,4 @@
 #!/bin/sh
 
-gem build *.gemspec
+bundle install
+rake
