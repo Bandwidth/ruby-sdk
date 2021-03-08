@@ -10,6 +10,7 @@ require_relative 'voice/client.rb'
 require_relative 'voice/models/api_call_response.rb'
 require_relative 'voice/models/api_call_state_response.rb'
 require_relative 'voice/models/api_create_call_request.rb'
+require_relative 'voice/models/api_error_response.rb'
 require_relative 'voice/models/api_modify_call_request.rb'
 require_relative 'voice/models/api_modify_conference_request.rb'
 require_relative 'voice/models/api_transcribe_recording_request.rb'
@@ -39,8 +40,7 @@ require_relative 'voice/models/status1_enum.rb'
 require_relative 'voice/models/status3_enum.rb'
 
 # Exceptions
-require_relative 'voice/exceptions/api_error_response_exception.rb'
+require_relative 'voice/exceptions/api_error_response_error_exception.rb'
 # Controllers
 require_relative 'voice/controllers/base_controller.rb'
 require_relative 'voice/controllers/api_controller.rb'
-require_relative 'bxml/bxml.rb'

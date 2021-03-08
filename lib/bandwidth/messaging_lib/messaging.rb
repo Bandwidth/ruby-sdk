@@ -10,6 +10,7 @@ require_relative 'messaging/client.rb'
 require_relative 'messaging/models/bandwidth_messages_list.rb'
 require_relative 'messaging/models/bandwidth_message_item.rb'
 require_relative 'messaging/models/page_info.rb'
+require_relative 'messaging/models/messaging_exception.rb'
 require_relative 'messaging/models/media.rb'
 require_relative 'messaging/models/tag.rb'
 require_relative 'messaging/models/deferred_result.rb'
@@ -19,7 +20,7 @@ require_relative 'messaging/models/message_request.rb'
 require_relative 'messaging/models/priority_enum.rb'
 
 # Exceptions
-require_relative 'messaging/exceptions/messaging_exception.rb'
+require_relative 'messaging/exceptions/messaging_exception_error_exception.rb'
 # Controllers
 require_relative 'messaging/controllers/base_controller.rb'
 require_relative 'messaging/controllers/api_controller.rb'

@@ -4,7 +4,7 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-module TwoFactorAuth
+module MultiFactorAuth
   # MFAController
   class MFAController < BaseController
     def initialize(config, http_call_back: nil)
@@ -19,7 +19,7 @@ module TwoFactorAuth
     def create_voice_two_factor(account_id,
                                 body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/voice'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -39,27 +39,27 @@ module TwoFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      TwoFactorAuthBasicAuth.apply(config, _request)
+      MultiFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
       elsif _response.status_code == 401
-        raise UnauthorizedRequestException.new(
+        raise UnauthorizedRequestErrorException.new(
           'Authentication is either incorrect or not present',
           _response
         )
       elsif _response.status_code == 403
-        raise ForbiddenRequestException.new(
+        raise ForbiddenRequestErrorException.new(
           'The user is not authorized to access this resource',
           _response
         )
       elsif _response.status_code == 500
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'An internal server error occurred',
           _response
         )
@@ -81,7 +81,7 @@ module TwoFactorAuth
     def create_messaging_two_factor(account_id,
                                     body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/messaging'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -101,27 +101,27 @@ module TwoFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      TwoFactorAuthBasicAuth.apply(config, _request)
+      MultiFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
       elsif _response.status_code == 401
-        raise UnauthorizedRequestException.new(
+        raise UnauthorizedRequestErrorException.new(
           'Authentication is either incorrect or not present',
           _response
         )
       elsif _response.status_code == 403
-        raise ForbiddenRequestException.new(
+        raise ForbiddenRequestErrorException.new(
           'The user is not authorized to access this resource',
           _response
         )
       elsif _response.status_code == 500
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'An internal server error occurred',
           _response
         )
@@ -144,7 +144,7 @@ module TwoFactorAuth
     def create_verify_two_factor(account_id,
                                  body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/verify'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -164,33 +164,33 @@ module TwoFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      TwoFactorAuthBasicAuth.apply(config, _request)
+      MultiFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
       elsif _response.status_code == 401
-        raise UnauthorizedRequestException.new(
+        raise UnauthorizedRequestErrorException.new(
           'Authentication is either incorrect or not present',
           _response
         )
       elsif _response.status_code == 403
-        raise ForbiddenRequestException.new(
+        raise ForbiddenRequestErrorException.new(
           'The user is not authorized to access this resource',
           _response
         )
       elsif _response.status_code == 429
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'The user has made too many bad requests and is temporarily locked' \
           ' out',
           _response
         )
       elsif _response.status_code == 500
-        raise ErrorWithRequestException.new(
+        raise ErrorWithRequestErrorException.new(
           'An internal server error occurred',
           _response
         )

@@ -40,6 +40,14 @@ module Bandwidth
     attr_accessor :state
 
     # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :identity
+
+    # TODO: Write general description for this method
+    # @return [Hash]
+    attr_accessor :pai
+
+    # TODO: Write general description for this method
     # @return [DateTime]
     attr_accessor :start_time
 
@@ -78,6 +86,8 @@ module Bandwidth
       @_hash['from'] = 'from'
       @_hash['direction'] = 'direction'
       @_hash['state'] = 'state'
+      @_hash['identity'] = 'identity'
+      @_hash['pai'] = 'pai'
       @_hash['start_time'] = 'startTime'
       @_hash['answer_time'] = 'answerTime'
       @_hash['end_time'] = 'endTime'
@@ -96,6 +106,8 @@ module Bandwidth
                    from = nil,
                    direction = nil,
                    state = nil,
+                   identity = nil,
+                   pai = nil,
                    start_time = nil,
                    answer_time = nil,
                    end_time = nil,
@@ -111,6 +123,8 @@ module Bandwidth
       @from = from
       @direction = direction
       @state = state
+      @identity = identity
+      @pai = pai
       @start_time = start_time
       @answer_time = answer_time
       @end_time = end_time
@@ -133,6 +147,8 @@ module Bandwidth
       from = hash['from']
       direction = hash['direction']
       state = hash['state']
+      identity = hash['identity']
+      pai = hash['pai']
       start_time = APIHelper.rfc3339(hash['startTime']) if hash['startTime']
       answer_time = APIHelper.rfc3339(hash['answerTime']) if
         hash['answerTime']
@@ -152,6 +168,8 @@ module Bandwidth
                                from,
                                direction,
                                state,
+                               identity,
+                               pai,
                                start_time,
                                answer_time,
                                end_time,

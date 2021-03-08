@@ -4,11 +4,19 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ForbiddenRequest class.
-  class ForbiddenRequestException < APIException
-    # The message containing the reason behind the request being forbidden
+  # ApiErrorResponse_Error class.
+  class ApiErrorResponseErrorException < APIException
+    # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :message
+    attr_accessor :type
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :description
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :id
 
     # The constructor.
     # @param [String] The reason for raising an exception.
@@ -23,7 +31,9 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @message = hash['Message']
+      @type = hash['type']
+      @description = hash['description']
+      @id = hash['id']
     end
   end
 end

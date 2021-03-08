@@ -4,35 +4,35 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # Media Model.
-  class Media < BaseModel
+  # ApiErrorResponse Model.
+  class ApiErrorResponse < BaseModel
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :content
-
-    # TODO: Write general description for this method
-    # @return [Integer]
-    attr_accessor :content_length
+    attr_accessor :type
 
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :media_name
+    attr_accessor :description
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :id
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['content'] = 'content'
-      @_hash['content_length'] = 'contentLength'
-      @_hash['media_name'] = 'mediaName'
+      @_hash['type'] = 'type'
+      @_hash['description'] = 'description'
+      @_hash['id'] = 'id'
       @_hash
     end
 
-    def initialize(content = nil,
-                   content_length = nil,
-                   media_name = nil)
-      @content = content
-      @content_length = content_length
-      @media_name = media_name
+    def initialize(type = nil,
+                   description = nil,
+                   id = nil)
+      @type = type
+      @description = description
+      @id = id
     end
 
     # Creates an instance of the object from a hash.
@@ -40,14 +40,14 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      content = hash['content']
-      content_length = hash['contentLength']
-      media_name = hash['mediaName']
+      type = hash['type']
+      description = hash['description']
+      id = hash['id']
 
       # Create object from extracted values.
-      Media.new(content,
-                content_length,
-                media_name)
+      ApiErrorResponse.new(type,
+                           description,
+                           id)
     end
   end
 end
