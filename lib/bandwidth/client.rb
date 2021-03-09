@@ -12,10 +12,10 @@ module Bandwidth
     def messaging_client
       @messaging_client ||= Messaging::Client.new(config: config)
     end
-    # Access to multi_factor_auth_client controller.
-    # @return [MultiFactorAuth::Client] Returns the client instance.
-    def multi_factor_auth_client
-      @multi_factor_auth_client ||= MultiFactorAuth::Client.new(config: config)
+    # Access to two_factor_auth_client controller.
+    # @return [TwoFactorAuth::Client] Returns the client instance.
+    def two_factor_auth_client
+      @two_factor_auth_client ||= TwoFactorAuth::Client.new(config: config)
     end
     # Access to voice_client controller.
     # @return [Voice::Client] Returns the client instance.
@@ -33,8 +33,8 @@ module Bandwidth
                    base_url: 'https://www.example.com',
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
-                   multi_factor_auth_basic_auth_user_name: 'TODO: Replace',
-                   multi_factor_auth_basic_auth_password: 'TODO: Replace',
+                   two_factor_auth_basic_auth_user_name: 'TODO: Replace',
+                   two_factor_auth_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
                    voice_basic_auth_password: 'TODO: Replace',
                    web_rtc_basic_auth_user_name: 'TODO: Replace',
@@ -47,8 +47,8 @@ module Bandwidth
                                     base_url: base_url,
                                     messaging_basic_auth_user_name: messaging_basic_auth_user_name,
                                     messaging_basic_auth_password: messaging_basic_auth_password,
-                                    multi_factor_auth_basic_auth_user_name: multi_factor_auth_basic_auth_user_name,
-                                    multi_factor_auth_basic_auth_password: multi_factor_auth_basic_auth_password,
+                                    two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
+                                    two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
                                     voice_basic_auth_user_name: voice_basic_auth_user_name,
                                     voice_basic_auth_password: voice_basic_auth_password,
                                     web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,

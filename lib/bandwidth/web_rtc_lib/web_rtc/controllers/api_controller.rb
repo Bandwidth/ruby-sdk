@@ -61,7 +61,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -123,7 +123,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -178,7 +178,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -239,7 +239,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -300,7 +300,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -355,7 +355,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -413,7 +413,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -483,7 +483,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -540,7 +540,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -601,7 +601,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )
@@ -677,7 +677,7 @@ module WebRtc
         )
       end
       unless _response.status_code.between?(200, 208)
-        raise ErrorErrorException.new(
+        raise ErrorException.new(
           'Unexpected Error',
           _response
         )

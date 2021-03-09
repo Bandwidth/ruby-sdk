@@ -4,15 +4,19 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # Error_Error class.
-  class ErrorErrorException < APIException
+  # ApiErrorResponse class.
+  class ApiErrorResponseException < APIException
     # TODO: Write general description for this method
-    # @return [Integer]
-    attr_accessor :code
+    # @return [String]
+    attr_accessor :type
 
     # TODO: Write general description for this method
     # @return [String]
-    attr_accessor :message
+    attr_accessor :description
+
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :id
 
     # The constructor.
     # @param [String] The reason for raising an exception.
@@ -27,8 +31,9 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @code = hash['code']
-      @message = hash['message']
+      @type = hash['type']
+      @description = hash['description']
+      @id = hash['id']
     end
   end
 end

@@ -43,7 +43,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -55,29 +55,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -122,7 +122,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -134,29 +134,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -204,7 +204,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -216,29 +216,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -283,7 +283,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -295,29 +295,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -360,7 +360,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -372,29 +372,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -443,7 +443,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -455,29 +455,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -519,7 +519,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -531,29 +531,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -592,7 +592,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -604,29 +604,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -667,7 +667,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -679,29 +679,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -746,7 +746,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -758,29 +758,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -831,7 +831,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -843,35 +843,35 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 410
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The media for this recording has been deleted, so we can\'t' \
           ' transcribe it',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -910,7 +910,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -922,29 +922,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1001,7 +1001,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1013,29 +1013,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1081,7 +1081,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1093,29 +1093,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1163,7 +1163,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1175,29 +1175,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1245,7 +1245,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1257,29 +1257,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1324,7 +1324,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1336,29 +1336,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1404,7 +1404,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1416,29 +1416,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1487,7 +1487,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1499,29 +1499,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1563,7 +1563,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1575,29 +1575,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )
@@ -1656,7 +1656,7 @@ module Voice
 
       # Validate response against endpoint and global error codes.
       if _response.status_code == 400
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
@@ -1668,29 +1668,29 @@ module Voice
           _response
         )
       elsif _response.status_code == 403
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'User unauthorized to perform this action.',
           _response
         )
       elsif _response.status_code == 404
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
       elsif _response.status_code == 415
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
       elsif _response.status_code == 429
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
       elsif _response.status_code == 500
-        raise ApiErrorResponseErrorException.new(
+        raise ApiErrorResponseException.new(
           'Something unexpected happened. Please try again.',
           _response
         )

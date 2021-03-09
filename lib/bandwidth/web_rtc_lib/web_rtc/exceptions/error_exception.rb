@@ -4,9 +4,13 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # UnauthorizedRequest_Error class.
-  class UnauthorizedRequestErrorException < APIException
-    # The message containing the reason behind the request being unauthorized
+  # Error class.
+  class ErrorException < APIException
+    # TODO: Write general description for this method
+    # @return [Integer]
+    attr_accessor :code
+
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :message
 
@@ -23,6 +27,7 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
+      @code = hash['code']
       @message = hash['message']
     end
   end
