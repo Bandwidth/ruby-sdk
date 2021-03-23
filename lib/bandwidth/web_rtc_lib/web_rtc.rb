@@ -12,6 +12,7 @@ require_relative 'web_rtc/models/participant.rb'
 require_relative 'web_rtc/models/subscriptions.rb'
 require_relative 'web_rtc/models/participant_subscription.rb'
 require_relative 'web_rtc/models/accounts_participants_response.rb'
+require_relative 'web_rtc/models/device_api_version_enum.rb'
 require_relative 'web_rtc/models/publish_permission_enum.rb'
 
 # Exceptions

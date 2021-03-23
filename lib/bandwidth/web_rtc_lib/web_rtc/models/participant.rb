@@ -32,6 +32,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :tag
 
+    # Optional field to define the device api version of this participant
+    # @return [DeviceApiVersionEnum]
+    attr_accessor :device_api_version
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -41,6 +45,7 @@ module Bandwidth
       @_hash['sessions'] = 'sessions'
       @_hash['subscriptions'] = 'subscriptions'
       @_hash['tag'] = 'tag'
+      @_hash['device_api_version'] = 'deviceApiVersion'
       @_hash
     end
 
@@ -49,13 +54,15 @@ module Bandwidth
                    publish_permissions = nil,
                    sessions = nil,
                    subscriptions = nil,
-                   tag = nil)
+                   tag = nil,
+                   device_api_version = DeviceApiVersionEnum::V2)
       @id = id
       @callback_url = callback_url
       @publish_permissions = publish_permissions
       @sessions = sessions
       @subscriptions = subscriptions
       @tag = tag
+      @device_api_version = device_api_version
     end
 
     # Creates an instance of the object from a hash.
@@ -70,6 +77,7 @@ module Bandwidth
       subscriptions = Subscriptions.from_hash(hash['subscriptions']) if
         hash['subscriptions']
       tag = hash['tag']
+      device_api_version = hash['deviceApiVersion'] ||= DeviceApiVersionEnum::V2
 
       # Create object from extracted values.
       Participant.new(id,
@@ -77,7 +85,8 @@ module Bandwidth
                       publish_permissions,
                       sessions,
                       subscriptions,
-                      tag)
+                      tag,
+                      device_api_version)
     end
   end
 end

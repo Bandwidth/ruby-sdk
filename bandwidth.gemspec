@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'bandwidth-sdk'
-  s.version = '6.0.0'
+  s.version = '6.1.0'
   s.summary = 'bandwidth'
   s.description = 'Bandwidth\'s set of APIs'
   s.authors = ['APIMatic SDK Generator']
