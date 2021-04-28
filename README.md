@@ -151,7 +151,7 @@ web_rtc_client.add_participant_to_session(account_id, session_id, participant_id
 
 ## Supported Ruby Versions
 
-This package can be used with Ruby >= 3.0 
+This package can be used with Ruby >= 2.0 
 
 ## Documentation
 
