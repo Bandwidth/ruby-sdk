@@ -148,3 +148,15 @@ puts participant_id
 
 web_rtc_client.add_participant_to_session(account_id, session_id, participant_id)
 ```
+
+## Supported Ruby Versions
+
+This package can be used with Ruby >= 3.0 
+
+## Documentation
+
+Documentation for this package can be found at https://dev.bandwidth.com/sdks/ruby.html
+
+## Credentials
+
+Information for credentials for this package can be found at https://dev.bandwidth.com/guides/accountCredentials.html
