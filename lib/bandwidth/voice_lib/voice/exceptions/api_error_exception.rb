@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ApiErrorResponse class.
-  class ApiErrorResponseException < APIException
+  # ApiError class.
+  class ApiErrorException < APIException
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :type

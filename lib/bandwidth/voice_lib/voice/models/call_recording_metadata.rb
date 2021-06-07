@@ -5,8 +5,8 @@
 
 require 'date'
 module Bandwidth
-  # RecordingMetadataResponse Model.
-  class RecordingMetadataResponse < BaseModel
+  # CallRecordingMetadata Model.
+  class CallRecordingMetadata < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :application_id
@@ -67,16 +67,25 @@ module Bandwidth
     # @return [FileFormatEnum]
     attr_accessor :file_format
 
-    # Format is ISO-8601
-    # @return [Status1Enum]
+    # The current status of the recording. Current values are 'processing',
+    # 'partial', 'complete', 'deleted' and 'error'. Additional states may be
+    # added in the future, so your application must be tolerant of unknown
+    # values.
+    # @return [String]
     attr_accessor :status
 
-    # Format is ISO-8601
+    # The current status of the recording. Current values are 'processing',
+    # 'partial', 'complete', 'deleted' and 'error'. Additional states may be
+    # added in the future, so your application must be tolerant of unknown
+    # values.
     # @return [String]
     attr_accessor :media_url
 
-    # Format is ISO-8601
-    # @return [Transcription]
+    # The current status of the recording. Current values are 'processing',
+    # 'partial', 'complete', 'deleted' and 'error'. Additional states may be
+    # added in the future, so your application must be tolerant of unknown
+    # values.
+    # @return [TranscriptionMetadata]
     attr_accessor :transcription
 
     # A mapping from model property names to API property names.
@@ -163,28 +172,28 @@ module Bandwidth
       file_format = hash['fileFormat']
       status = hash['status']
       media_url = hash['mediaUrl']
-      transcription = Transcription.from_hash(hash['transcription']) if
+      transcription = TranscriptionMetadata.from_hash(hash['transcription']) if
         hash['transcription']
 
       # Create object from extracted values.
-      RecordingMetadataResponse.new(application_id,
-                                    account_id,
-                                    call_id,
-                                    parent_call_id,
-                                    recording_id,
-                                    to,
-                                    from,
-                                    transfer_caller_id,
-                                    transfer_to,
-                                    duration,
-                                    direction,
-                                    channels,
-                                    start_time,
-                                    end_time,
-                                    file_format,
-                                    status,
-                                    media_url,
-                                    transcription)
+      CallRecordingMetadata.new(application_id,
+                                account_id,
+                                call_id,
+                                parent_call_id,
+                                recording_id,
+                                to,
+                                from,
+                                transfer_caller_id,
+                                transfer_to,
+                                duration,
+                                direction,
+                                channels,
+                                start_time,
+                                end_time,
+                                file_format,
+                                status,
+                                media_url,
+                                transcription)
     end
   end
 end

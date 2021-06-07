@@ -17,6 +17,11 @@ module Bandwidth
     def two_factor_auth_client
       @two_factor_auth_client ||= TwoFactorAuth::Client.new(config: config)
     end
+    # Access to phone_number_lookup_client controller.
+    # @return [PhoneNumberLookup::Client] Returns the client instance.
+    def phone_number_lookup_client
+      @phone_number_lookup_client ||= PhoneNumberLookup::Client.new(config: config)
+    end
     # Access to voice_client controller.
     # @return [Voice::Client] Returns the client instance.
     def voice_client
@@ -29,7 +34,10 @@ module Bandwidth
     end
 
     def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
-                   backoff_factor: 1, environment: Environment::PRODUCTION,
+                   backoff_factor: 2,
+                   retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+                   retry_methods: %i[get put get put],
+                   environment: Environment::PRODUCTION,
                    base_url: 'https://www.example.com',
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
@@ -43,6 +51,8 @@ module Bandwidth
                   Configuration.new(timeout: timeout, max_retries: max_retries,
                                     retry_interval: retry_interval,
                                     backoff_factor: backoff_factor,
+                                    retry_statuses: retry_statuses,
+                                    retry_methods: retry_methods,
                                     environment: environment,
                                     base_url: base_url,
                                     messaging_basic_auth_user_name: messaging_basic_auth_user_name,

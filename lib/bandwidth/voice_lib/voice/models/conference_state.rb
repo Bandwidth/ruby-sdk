@@ -5,8 +5,8 @@
 
 require 'date'
 module Bandwidth
-  # ConferenceDetail Model.
-  class ConferenceDetail < BaseModel
+  # ConferenceState Model.
+  class ConferenceState < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :id
@@ -36,7 +36,7 @@ module Bandwidth
     attr_accessor :tag
 
     # TODO: Write general description for this method
-    # @return [List of ConferenceMemberDetail]
+    # @return [List of ConferenceMemberState]
     attr_accessor :active_members
 
     # A mapping from model property names to API property names.
@@ -90,19 +90,19 @@ module Bandwidth
       unless hash['activeMembers'].nil?
         active_members = []
         hash['activeMembers'].each do |structure|
-          active_members << (ConferenceMemberDetail.from_hash(structure) if structure)
+          active_members << (ConferenceMemberState.from_hash(structure) if structure)
         end
       end
 
       # Create object from extracted values.
-      ConferenceDetail.new(id,
-                           name,
-                           created_time,
-                           completed_time,
-                           conference_event_url,
-                           conference_event_method,
-                           tag,
-                           active_members)
+      ConferenceState.new(id,
+                          name,
+                          created_time,
+                          completed_time,
+                          conference_event_url,
+                          conference_event_method,
+                          tag,
+                          active_members)
     end
   end
 end

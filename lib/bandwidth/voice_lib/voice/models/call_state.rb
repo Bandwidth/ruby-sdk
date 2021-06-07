@@ -5,8 +5,8 @@
 
 require 'date'
 module Bandwidth
-  # ApiCallStateResponse Model.
-  class ApiCallStateResponse < BaseModel
+  # CallState Model.
+  class CallState < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :call_id
@@ -35,35 +35,75 @@ module Bandwidth
     # @return [String]
     attr_accessor :direction
 
-    # TODO: Write general description for this method
-    # @return [StateEnum]
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
+    # @return [String]
     attr_accessor :state
 
-    # TODO: Write general description for this method
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
+    # @return [String]
+    attr_accessor :identity
+
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
+    # @return [Hash]
+    attr_accessor :pai
+
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
     # @return [DateTime]
     attr_accessor :start_time
 
-    # TODO: Write general description for this method
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
     # @return [DateTime]
     attr_accessor :answer_time
 
-    # TODO: Write general description for this method
+    # The current state of the call. Current possible values are 'initiated',
+    # 'answered' and 'disconnected'. Additional states may be added in the
+    # future, so your application must be tolerant of unknown values.
     # @return [DateTime]
     attr_accessor :end_time
 
-    # TODO: Write general description for this method
-    # @return [DisconnectCauseEnum]
+    # The reason the call was disconnected, or null if the call is still active.
+    # Current values are 'cancel', 'timeout', 'busy', 'rejected', 'hangup',
+    # 'invalid-bxml', 'callback-error', 'application-error', 'error',
+    # 'account-limit', 'node-capacity-exceeded' and 'unknown'. Additional causes
+    # may be added in the future, so your application must be tolerant of
+    # unknown values.
+    # @return [String]
     attr_accessor :disconnect_cause
 
-    # TODO: Write general description for this method
+    # The reason the call was disconnected, or null if the call is still active.
+    # Current values are 'cancel', 'timeout', 'busy', 'rejected', 'hangup',
+    # 'invalid-bxml', 'callback-error', 'application-error', 'error',
+    # 'account-limit', 'node-capacity-exceeded' and 'unknown'. Additional causes
+    # may be added in the future, so your application must be tolerant of
+    # unknown values.
     # @return [String]
     attr_accessor :error_message
 
-    # TODO: Write general description for this method
+    # The reason the call was disconnected, or null if the call is still active.
+    # Current values are 'cancel', 'timeout', 'busy', 'rejected', 'hangup',
+    # 'invalid-bxml', 'callback-error', 'application-error', 'error',
+    # 'account-limit', 'node-capacity-exceeded' and 'unknown'. Additional causes
+    # may be added in the future, so your application must be tolerant of
+    # unknown values.
     # @return [String]
     attr_accessor :error_id
 
-    # TODO: Write general description for this method
+    # The reason the call was disconnected, or null if the call is still active.
+    # Current values are 'cancel', 'timeout', 'busy', 'rejected', 'hangup',
+    # 'invalid-bxml', 'callback-error', 'application-error', 'error',
+    # 'account-limit', 'node-capacity-exceeded' and 'unknown'. Additional causes
+    # may be added in the future, so your application must be tolerant of
+    # unknown values.
     # @return [DateTime]
     attr_accessor :last_update
 
@@ -78,6 +118,8 @@ module Bandwidth
       @_hash['from'] = 'from'
       @_hash['direction'] = 'direction'
       @_hash['state'] = 'state'
+      @_hash['identity'] = 'identity'
+      @_hash['pai'] = 'pai'
       @_hash['start_time'] = 'startTime'
       @_hash['answer_time'] = 'answerTime'
       @_hash['end_time'] = 'endTime'
@@ -96,6 +138,8 @@ module Bandwidth
                    from = nil,
                    direction = nil,
                    state = nil,
+                   identity = nil,
+                   pai = nil,
                    start_time = nil,
                    answer_time = nil,
                    end_time = nil,
@@ -111,6 +155,8 @@ module Bandwidth
       @from = from
       @direction = direction
       @state = state
+      @identity = identity
+      @pai = pai
       @start_time = start_time
       @answer_time = answer_time
       @end_time = end_time
@@ -133,6 +179,8 @@ module Bandwidth
       from = hash['from']
       direction = hash['direction']
       state = hash['state']
+      identity = hash['identity']
+      pai = hash['pai']
       start_time = APIHelper.rfc3339(hash['startTime']) if hash['startTime']
       answer_time = APIHelper.rfc3339(hash['answerTime']) if
         hash['answerTime']
@@ -144,21 +192,23 @@ module Bandwidth
         hash['lastUpdate']
 
       # Create object from extracted values.
-      ApiCallStateResponse.new(call_id,
-                               parent_call_id,
-                               application_id,
-                               account_id,
-                               to,
-                               from,
-                               direction,
-                               state,
-                               start_time,
-                               answer_time,
-                               end_time,
-                               disconnect_cause,
-                               error_message,
-                               error_id,
-                               last_update)
+      CallState.new(call_id,
+                    parent_call_id,
+                    application_id,
+                    account_id,
+                    to,
+                    from,
+                    direction,
+                    state,
+                    identity,
+                    pai,
+                    start_time,
+                    answer_time,
+                    end_time,
+                    disconnect_cause,
+                    error_message,
+                    error_id,
+                    last_update)
     end
   end
 end

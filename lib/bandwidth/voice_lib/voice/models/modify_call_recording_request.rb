@@ -4,10 +4,10 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ModifyCallRecordingState Model.
-  class ModifyCallRecordingState < BaseModel
+  # ModifyCallRecordingRequest Model.
+  class ModifyCallRecordingRequest < BaseModel
     # TODO: Write general description for this method
-    # @return [State2Enum]
+    # @return [State1Enum]
     attr_accessor :state
 
     # A mapping from model property names to API property names.
@@ -29,7 +29,7 @@ module Bandwidth
       state = hash['state']
 
       # Create object from extracted values.
-      ModifyCallRecordingState.new(state)
+      ModifyCallRecordingRequest.new(state)
     end
   end
 end

@@ -11,7 +11,8 @@ module Bandwidth
   class FaradayClient < HttpClient
     # The constructor.
     def initialize(timeout:, max_retries:, retry_interval:,
-                   backoff_factor:, cache: false, verify: true)
+                   backoff_factor:, retry_statuses:, retry_methods:,
+                   cache: false, verify: true)
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use FaradayMiddleware::FollowRedirects
@@ -21,7 +22,9 @@ module Bandwidth
         faraday.ssl[:ca_file] = Certifi.where
         faraday.ssl[:verify] = verify
         faraday.request :retry, max: max_retries, interval: retry_interval,
-                                backoff_factor: backoff_factor
+                                backoff_factor: backoff_factor,
+                                retry_statuses: retry_statuses,
+                                methods: retry_methods
         faraday.adapter Faraday.default_adapter
         faraday.options[:params_encoder] = Faraday::FlatParamsEncoder
         faraday.options[:timeout] = timeout if timeout > 0

@@ -8,10 +8,10 @@ module Bandwidth
   class DeviceApiVersionEnum
     DEVICE_API_VERSION_ENUM = [
       # TODO: Write general description for V3
-      V3 = 'v3'.freeze,
+      V3 = 'V3'.freeze,
 
       # TODO: Write general description for V2
-      V2 = 'v2'.freeze
+      V2 = 'V2'.freeze
     ].freeze
   end
 end

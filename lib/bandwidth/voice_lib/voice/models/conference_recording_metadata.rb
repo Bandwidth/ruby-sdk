@@ -5,8 +5,8 @@
 
 require 'date'
 module Bandwidth
-  # ConferenceRecordingMetadataResponse Model.
-  class ConferenceRecordingMetadataResponse < BaseModel
+  # ConferenceRecordingMetadata Model.
+  class ConferenceRecordingMetadata < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :account_id
@@ -43,11 +43,17 @@ module Bandwidth
     # @return [FileFormatEnum]
     attr_accessor :file_format
 
-    # Format is ISO-8601
-    # @return [Status1Enum]
+    # The current status of the recording. Current possible values are
+    # 'processing', 'partial', 'complete', 'deleted', and 'error'. Additional
+    # states may be added in the future, so your application must be tolerant of
+    # unknown values.
+    # @return [String]
     attr_accessor :status
 
-    # Format is ISO-8601
+    # The current status of the recording. Current possible values are
+    # 'processing', 'partial', 'complete', 'deleted', and 'error'. Additional
+    # states may be added in the future, so your application must be tolerant of
+    # unknown values.
     # @return [String]
     attr_accessor :media_url
 
@@ -110,17 +116,17 @@ module Bandwidth
       media_url = hash['mediaUrl']
 
       # Create object from extracted values.
-      ConferenceRecordingMetadataResponse.new(account_id,
-                                              conference_id,
-                                              name,
-                                              recording_id,
-                                              duration,
-                                              channels,
-                                              start_time,
-                                              end_time,
-                                              file_format,
-                                              status,
-                                              media_url)
+      ConferenceRecordingMetadata.new(account_id,
+                                      conference_id,
+                                      name,
+                                      recording_id,
+                                      duration,
+                                      channels,
+                                      start_time,
+                                      end_time,
+                                      file_format,
+                                      status,
+                                      media_url)
     end
   end
 end
