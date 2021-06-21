@@ -578,6 +578,9 @@ class IntegrationTest < Test::Unit::TestCase
         assert(create_response.data.request_id.length > 0, "request_id value not set")
 
         request_id = create_response.data.request_id
+        
+        puts request_id
+        
         get_response = @bandwidth_client.phone_number_lookup_client.client.get_tn_lookup_result(ACCOUNT_ID, request_id)
         assert(get_response.data.status.length > 0, "status value not set")
     end
