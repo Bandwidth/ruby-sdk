@@ -9,10 +9,10 @@ module Bandwidth
       class Client
         attr_reader :config
 
-        # Access to number_lookup controller.
-        # @return [NumberLookupController] Returns the controller instance.
-        def number_lookup
-          @number_lookup ||= NumberLookupController.new config
+        # Access to client controller.
+        # @return [APIController] Returns the controller instance.
+        def client
+          @client ||= APIController.new config
         end
 
         def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
@@ -25,6 +25,8 @@ module Bandwidth
                        messaging_basic_auth_password: 'TODO: Replace',
                        two_factor_auth_basic_auth_user_name: 'TODO: Replace',
                        two_factor_auth_basic_auth_password: 'TODO: Replace',
+                       phone_number_lookup_basic_auth_user_name: 'TODO: Replace',
+                       phone_number_lookup_basic_auth_password: 'TODO: Replace',
                        voice_basic_auth_user_name: 'TODO: Replace',
                        voice_basic_auth_password: 'TODO: Replace',
                        web_rtc_basic_auth_user_name: 'TODO: Replace',
@@ -43,6 +45,8 @@ module Bandwidth
                                         messaging_basic_auth_password: messaging_basic_auth_password,
                                         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
                                         two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
+                                        phone_number_lookup_basic_auth_user_name: phone_number_lookup_basic_auth_user_name,
+                                        phone_number_lookup_basic_auth_password: phone_number_lookup_basic_auth_password,
                                         voice_basic_auth_user_name: voice_basic_auth_user_name,
                                         voice_basic_auth_password: voice_basic_auth_password,
                                         web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,
@@ -54,3 +58,4 @@ module Bandwidth
   end
 end
 end
+

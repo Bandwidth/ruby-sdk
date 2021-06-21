@@ -17,4 +17,4 @@ require_relative 'phone_number_lookup/exceptions/accounts_tnlookup400_error' \
                  '_exception.rb'
 # Controllers
 require_relative 'phone_number_lookup/controllers/base_controller.rb'
-require_relative 'phone_number_lookup/controllers/number_lookup_controller.rb'
+require_relative 'phone_number_lookup/controllers/api_controller.rb'
