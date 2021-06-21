@@ -50,26 +50,6 @@ module Bandwidth
     # @return [String]
     attr_accessor :carrier_name
 
-    # The size of the message including message content and headers
-    # @return [Integer]
-    attr_accessor :message_size
-
-    # The length of the message content
-    # @return [Integer]
-    attr_accessor :message_length
-
-    # The number of attachments the message has
-    # @return [Integer]
-    attr_accessor :attachment_count
-
-    # The number of recipients the message has
-    # @return [Integer]
-    attr_accessor :recipient_count
-
-    # The campaign class of the message, if it has one
-    # @return [String]
-    attr_accessor :campaign_class
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -84,11 +64,6 @@ module Bandwidth
       @_hash['error_code'] = 'errorCode'
       @_hash['receive_time'] = 'receiveTime'
       @_hash['carrier_name'] = 'carrierName'
-      @_hash['message_size'] = 'messageSize'
-      @_hash['message_length'] = 'messageLength'
-      @_hash['attachment_count'] = 'attachmentCount'
-      @_hash['recipient_count'] = 'recipientCount'
-      @_hash['campaign_class'] = 'campaignClass'
       @_hash
     end
 
@@ -102,12 +77,7 @@ module Bandwidth
                    segment_count = nil,
                    error_code = nil,
                    receive_time = nil,
-                   carrier_name = nil,
-                   message_size = nil,
-                   message_length = nil,
-                   attachment_count = nil,
-                   recipient_count = nil,
-                   campaign_class = nil)
+                   carrier_name = nil)
       @message_id = message_id
       @account_id = account_id
       @source_tn = source_tn
@@ -119,11 +89,6 @@ module Bandwidth
       @error_code = error_code
       @receive_time = receive_time
       @carrier_name = carrier_name
-      @message_size = message_size
-      @message_length = message_length
-      @attachment_count = attachment_count
-      @recipient_count = recipient_count
-      @campaign_class = campaign_class
     end
 
     # Creates an instance of the object from a hash.
@@ -142,11 +107,6 @@ module Bandwidth
       error_code = hash['errorCode']
       receive_time = hash['receiveTime']
       carrier_name = hash['carrierName']
-      message_size = hash['messageSize']
-      message_length = hash['messageLength']
-      attachment_count = hash['attachmentCount']
-      recipient_count = hash['recipientCount']
-      campaign_class = hash['campaignClass']
 
       # Create object from extracted values.
       BandwidthMessageItem.new(message_id,
@@ -159,12 +119,7 @@ module Bandwidth
                                segment_count,
                                error_code,
                                receive_time,
-                               carrier_name,
-                               message_size,
-                               message_length,
-                               attachment_count,
-                               recipient_count,
-                               campaign_class)
+                               carrier_name)
     end
   end
 end

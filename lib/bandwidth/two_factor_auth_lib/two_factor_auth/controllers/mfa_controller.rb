@@ -4,7 +4,7 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-module MultiFactorAuth
+module TwoFactorAuth
   # MFAController
   class MFAController < BaseController
     def initialize(config, http_call_back: nil)
@@ -19,7 +19,7 @@ module MultiFactorAuth
     def create_voice_two_factor(account_id,
                                 body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/voice'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -39,7 +39,7 @@ module MultiFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      MultiFactorAuthBasicAuth.apply(config, _request)
+      TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
@@ -81,7 +81,7 @@ module MultiFactorAuth
     def create_messaging_two_factor(account_id,
                                     body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/messaging'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -101,7 +101,7 @@ module MultiFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      MultiFactorAuthBasicAuth.apply(config, _request)
+      TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
@@ -144,7 +144,7 @@ module MultiFactorAuth
     def create_verify_two_factor(account_id,
                                  body)
       # Prepare query url.
-      _query_builder = config.get_base_uri(Server::MULTIFACTORAUTHDEFAULT)
+      _query_builder = config.get_base_uri(Server::TWOFACTORAUTHDEFAULT)
       _query_builder << '/accounts/{accountId}/code/verify'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
@@ -164,7 +164,7 @@ module MultiFactorAuth
         headers: _headers,
         parameters: body.to_json
       )
-      MultiFactorAuthBasicAuth.apply(config, _request)
+      TwoFactorAuthBasicAuth.apply(config, _request)
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
