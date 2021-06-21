@@ -567,4 +567,15 @@ class IntegrationTest < Test::Unit::TestCase
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
+
+    def test_tn_lookup
+        body = AccountsTnlookupRequest.new
+        body.tns = ['+19195554444']
+        create_response = @bandwidth_client.phone_number_lookup_client.create_tn_lookup_request(ACCOUNT_ID, body)
+        assert(create_response.data.request_id.length > 0, "request_id value not set")
+
+        request_id = create_response.data.request_id
+        get_response = @bandwidth_client.phone_number_lookup_client.get_tn_lookup_result(ACCOUNT_ID, request_id)
+        assert(get_response.data.status.length > 0, "status value not set")
+    end
 end
