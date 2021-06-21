@@ -12,18 +12,18 @@ module Messaging
     end
 
     # listMedia
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [String] continuation_token Optional parameter: Continuation token
     # used to retrieve subsequent media.
     # @return [List of Media] response from the API call
-    def list_media(account_id,
+    def list_media(user_id,
                    continuation_token: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/media'
+      _query_builder << '/users/{userId}/media'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false }
+        'userId' => { 'value' => user_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -84,17 +84,17 @@ module Messaging
     end
 
     # getMedia
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: Media ID to retrieve
     # @return [Binary] response from the API call
-    def get_media(account_id,
+    def get_media(user_id,
                   media_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/media/{mediaId}'
+      _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false },
+        'userId' => { 'value' => user_id, 'encode' => false },
         'mediaId' => { 'value' => media_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
@@ -147,9 +147,11 @@ module Messaging
     end
 
     # uploadMedia
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: The user supplied custom
     # media ID
+    # @param [Long] content_length Required parameter: The size of the
+    # entity-body
     # @param [File | UploadIO] body Required parameter: Example:
     # @param [String] content_type Optional parameter: The media type of the
     # entity-body
@@ -157,17 +159,18 @@ module Messaging
     # used to specify directives that MUST be obeyed by all caching mechanisms
     # along the request/response chain.
     # @return [void] response from the API call
-    def upload_media(account_id,
+    def upload_media(user_id,
                      media_id,
+                     content_length,
                      body,
                      content_type: 'application/octet-stream',
                      cache_control: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/media/{mediaId}'
+      _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false },
+        'userId' => { 'value' => user_id, 'encode' => false },
         'mediaId' => { 'value' => media_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
@@ -184,6 +187,7 @@ module Messaging
       _headers = {
         'content-type' => body_content_type,
         'content-length' => body_wrapper.size.to_s,
+        'Content-Length' => content_length,
         'Cache-Control' => cache_control
       }
 
@@ -235,17 +239,17 @@ module Messaging
     end
 
     # deleteMedia
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: The media ID to delete
     # @return [void] response from the API call
-    def delete_media(account_id,
+    def delete_media(user_id,
                      media_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/media/{mediaId}'
+      _query_builder << '/users/{userId}/media/{mediaId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false },
+        'userId' => { 'value' => user_id, 'encode' => false },
         'mediaId' => { 'value' => media_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
@@ -296,7 +300,7 @@ module Messaging
     end
 
     # getMessages
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [String] message_id Optional parameter: The ID of the message to
     # search for. Special characters need to be encoded using URL encoding
     # @param [String] source_tn Optional parameter: The phone number that sent
@@ -305,7 +309,7 @@ module Messaging
     # received the message
     # @param [String] message_status Optional parameter: The status of the
     # message. One of RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED,
-    # ACCEPTED, UNDELIVERED
+    # DLR_EXPIRED
     # @param [Integer] error_code Optional parameter: The error code of the
     # message
     # @param [String] from_date_time Optional parameter: The start of the date
@@ -320,7 +324,7 @@ module Messaging
     # in search result. Default 100. The sum of limit and after cannot be more
     # than 10000
     # @return [BandwidthMessagesList] response from the API call
-    def get_messages(account_id,
+    def get_messages(user_id,
                      message_id: nil,
                      source_tn: nil,
                      destination_tn: nil,
@@ -332,10 +336,10 @@ module Messaging
                      limit: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/messages'
+      _query_builder << '/users/{userId}/messages'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false }
+        'userId' => { 'value' => user_id, 'encode' => false }
       )
       _query_builder = APIHelper.append_url_with_query_parameters(
         _query_builder,
@@ -406,17 +410,17 @@ module Messaging
     end
 
     # createMessage
-    # @param [String] account_id Required parameter: User's account ID
+    # @param [String] user_id Required parameter: User's account ID
     # @param [MessageRequest] body Required parameter: Example:
     # @return [BandwidthMessage] response from the API call
-    def create_message(account_id,
+    def create_message(user_id,
                        body)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
-      _query_builder << '/users/{accountId}/messages'
+      _query_builder << '/users/{userId}/messages'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
-        'accountId' => { 'value' => account_id, 'encode' => false }
+        'userId' => { 'value' => user_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
