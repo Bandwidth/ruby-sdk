@@ -20,4 +20,3 @@ module Bandwidth
     end
   end
 end
-

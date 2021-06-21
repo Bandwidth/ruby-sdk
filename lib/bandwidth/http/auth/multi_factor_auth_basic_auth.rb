@@ -7,13 +7,13 @@ require 'base64'
 
 module Bandwidth
   # Utility class for basic authorization.
-  class TwoFactorAuthBasicAuth
+  class MultiFactorAuthBasicAuth
     # Add basic authentication to the request.
     # @param [HttpRequest] The HttpRequest object to which authentication will
     # be added.
     def self.apply(config, http_request)
-      username = config.two_factor_auth_basic_auth_user_name
-      password = config.two_factor_auth_basic_auth_password
+      username = config.multi_factor_auth_basic_auth_user_name
+      password = config.multi_factor_auth_basic_auth_password
       value = Base64.strict_encode64("#{username}:#{password}")
       header_value = "Basic #{value}"
       http_request.headers['Authorization'] = header_value
