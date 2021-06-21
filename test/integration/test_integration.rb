@@ -9,6 +9,7 @@ include Bandwidth
 include Bandwidth::Voice
 include Bandwidth::Messaging
 include Bandwidth::TwoFactorAuth
+include Bandwidth::PhoneNumberLookup
 
 begin
     USERNAME = ENV.fetch("USERNAME")
