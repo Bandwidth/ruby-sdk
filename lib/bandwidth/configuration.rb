@@ -41,6 +41,8 @@ module Bandwidth
     attr_reader :messaging_basic_auth_password
     attr_reader :two_factor_auth_basic_auth_user_name
     attr_reader :two_factor_auth_basic_auth_password
+    attr_reader :phone_number_lookup_basic_auth_user_name
+    attr_reader :phone_number_lookup_basic_auth_password
     attr_reader :voice_basic_auth_user_name
     attr_reader :voice_basic_auth_password
     attr_reader :web_rtc_basic_auth_user_name
@@ -60,6 +62,8 @@ module Bandwidth
                    messaging_basic_auth_password: 'TODO: Replace',
                    two_factor_auth_basic_auth_user_name: 'TODO: Replace',
                    two_factor_auth_basic_auth_password: 'TODO: Replace',
+                   phone_number_lookup_basic_auth_user_name: 'TODO: Replace',
+                   phone_number_lookup_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
                    voice_basic_auth_password: 'TODO: Replace',
                    web_rtc_basic_auth_user_name: 'TODO: Replace',
@@ -102,6 +106,12 @@ module Bandwidth
       @two_factor_auth_basic_auth_password = two_factor_auth_basic_auth_password
 
       # The username to use with basic authentication
+      @phone_number_lookup_basic_auth_user_name = phone_number_lookup_basic_auth_user_name
+
+      # The password to use with basic authentication
+      @phone_number_lookup_basic_auth_password = phone_number_lookup_basic_auth_password
+
+      # The username to use with basic authentication
       @voice_basic_auth_user_name = voice_basic_auth_user_name
 
       # The password to use with basic authentication
@@ -124,6 +134,8 @@ module Bandwidth
                    messaging_basic_auth_password: nil,
                    two_factor_auth_basic_auth_user_name: nil,
                    two_factor_auth_basic_auth_password: nil,
+                   phone_number_lookup_basic_auth_user_name: nil,
+                   phone_number_lookup_basic_auth_password: nil,
                    voice_basic_auth_user_name: nil,
                    voice_basic_auth_password: nil,
                    web_rtc_basic_auth_user_name: nil,
@@ -140,6 +152,8 @@ module Bandwidth
       messaging_basic_auth_password ||= self.messaging_basic_auth_password
       two_factor_auth_basic_auth_user_name ||= self.two_factor_auth_basic_auth_user_name
       two_factor_auth_basic_auth_password ||= self.two_factor_auth_basic_auth_password
+      phone_number_lookup_basic_auth_user_name ||= self.phone_number_lookup_basic_auth_user_name
+      phone_number_lookup_basic_auth_password ||= self.phone_number_lookup_basic_auth_password
       voice_basic_auth_user_name ||= self.voice_basic_auth_user_name
       voice_basic_auth_password ||= self.voice_basic_auth_password
       web_rtc_basic_auth_user_name ||= self.web_rtc_basic_auth_user_name
@@ -154,6 +168,8 @@ module Bandwidth
         messaging_basic_auth_password: messaging_basic_auth_password,
         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
         two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
+        phone_number_lookup_basic_auth_user_name: phone_number_lookup_basic_auth_user_name,
+        phone_number_lookup_basic_auth_password: phone_number_lookup_basic_auth_password,
         voice_basic_auth_user_name: voice_basic_auth_user_name,
         voice_basic_auth_password: voice_basic_auth_password,
         web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,
