@@ -11,13 +11,13 @@ module PhoneNumberLookup
       super(config, http_call_back: http_call_back)
     end
 
-    # Creates a request for a given TN, or batch of TNs.
+    # Create a TN Lookup Order
     # @param [String] account_id Required parameter: The ID of the Bandwidth
     # account that the user belongs to.
-    # @param [AccountsTnlookupRequest] body Required parameter: Example:
-    # @return [AccountsTnlookupResponse] response from the API call
-    def create_tn_lookup_request(account_id,
-                                 body)
+    # @param [OrderRequest] body Required parameter: Example:
+    # @return [OrderResponse] response from the API call
+    def create_lookup_request(account_id,
+                              body)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::PHONENUMBERLOOKUPDEFAULT)
       _query_builder << '/accounts/{accountId}/tnlookup'
@@ -775,17 +775,17 @@ module PhoneNumberLookup
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
       ApiResponse.new(
-        _response, data: AccountsTnlookupResponse.from_hash(decoded)
+        _response, data: OrderResponse.from_hash(decoded)
       )
     end
 
-    # Returns the result of a request by id.
+    # Query an existing TN Lookup Order
     # @param [String] account_id Required parameter: The ID of the Bandwidth
     # account that the user belongs to.
-    # @param [UUID | String] request_id Required parameter: Example:
-    # @return [AccountsTnlookupResponse1] response from the API call
-    def get_tn_lookup_result(account_id,
-                             request_id)
+    # @param [String] request_id Required parameter: Example:
+    # @return [OrderStatus] response from the API call
+    def get_lookup_request_status(account_id,
+                                  request_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::PHONENUMBERLOOKUPDEFAULT)
       _query_builder << '/accounts/{accountId}/tnlookup/{requestId}'
@@ -1543,7 +1543,7 @@ module PhoneNumberLookup
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
       ApiResponse.new(
-        _response, data: AccountsTnlookupResponse1.from_hash(decoded)
+        _response, data: OrderStatus.from_hash(decoded)
       )
     end
   end

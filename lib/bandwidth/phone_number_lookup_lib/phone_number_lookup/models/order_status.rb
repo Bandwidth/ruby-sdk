@@ -4,8 +4,12 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # AccountsTnlookupResponse1 Model.
-  class AccountsTnlookupResponse1 < BaseModel
+  # If requestId exists, the result for that request is returned. See the
+  # Examples for details on the various responses that you can receive. 
+  # Generally, if you see a Response Code of 0 in a result for a TN, information
+  # will be available for it.  Any other Response Code will indicate no
+  # information was available for the TN.
+  class OrderStatus < BaseModel
     # The requestId.
     # @return [String]
     attr_accessor :request_id
@@ -61,10 +65,10 @@ module Bandwidth
       end
 
       # Create object from extracted values.
-      AccountsTnlookupResponse1.new(request_id,
-                                    status,
-                                    failed_telephone_numbers,
-                                    result)
+      OrderStatus.new(request_id,
+                      status,
+                      failed_telephone_numbers,
+                      result)
     end
   end
 end

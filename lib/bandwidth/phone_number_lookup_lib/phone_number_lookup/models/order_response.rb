@@ -4,13 +4,14 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # AccountsTnlookupResponse Model.
-  class AccountsTnlookupResponse < BaseModel
-    # The requestId.
+  # The request has been accepted for processing but not yet finished and in a
+  # terminal state (COMPLETE, PARTIAL_COMPLETE, or FAILED)
+  class OrderResponse < BaseModel
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :request_id
 
-    # The status of the request.
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :status
 
@@ -37,8 +38,8 @@ module Bandwidth
       status = hash['status']
 
       # Create object from extracted values.
-      AccountsTnlookupResponse.new(request_id,
-                                   status)
+      OrderResponse.new(request_id,
+                        status)
     end
   end
 end

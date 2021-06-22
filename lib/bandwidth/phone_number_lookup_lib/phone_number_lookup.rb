@@ -7,9 +7,9 @@
 require_relative 'phone_number_lookup/client.rb'
 
 # Models
-require_relative 'phone_number_lookup/models/accounts_tnlookup_request.rb'
-require_relative 'phone_number_lookup/models/accounts_tnlookup_response.rb'
-require_relative 'phone_number_lookup/models/accounts_tnlookup_response1.rb'
+require_relative 'phone_number_lookup/models/order_request.rb'
+require_relative 'phone_number_lookup/models/order_response.rb'
+require_relative 'phone_number_lookup/models/order_status.rb'
 require_relative 'phone_number_lookup/models/result.rb'
 
 # Exceptions

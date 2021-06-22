@@ -571,7 +571,7 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_tn_lookup
-        body = AccountsTnlookupRequest.new
+        body = OrderRequest.new
         body.tns = [PHONE_NUMBER_OUTBOUND]
         create_response = @bandwidth_client.phone_number_lookup_client.client.create_tn_lookup_request(ACCOUNT_ID, body)
         assert(create_response.data.request_id.length > 0, "request_id value not set")

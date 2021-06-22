@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # AccountsTnlookupRequest Model.
-  class AccountsTnlookupRequest < BaseModel
+  # Create TN Lookup Request
+  class OrderRequest < BaseModel
     # TODO: Write general description for this method
     # @return [List of String]
     attr_accessor :tns
@@ -29,7 +29,7 @@ module Bandwidth
       tns = hash['tns']
 
       # Create object from extracted values.
-      AccountsTnlookupRequest.new(tns)
+      OrderRequest.new(tns)
     end
   end
 end
