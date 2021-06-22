@@ -18,6 +18,7 @@ module Bandwidth
       DEFAULT = 'default'.freeze,
       MESSAGINGDEFAULT = 'MessagingDefault'.freeze,
       TWOFACTORAUTHDEFAULT = 'TwoFactorAuthDefault'.freeze,
+      PHONENUMBERLOOKUPDEFAULT = 'PhoneNumberLookupDefault'.freeze,
       VOICEDEFAULT = 'VoiceDefault'.freeze,
       WEBRTCDEFAULT = 'WebRtcDefault'.freeze
     ].freeze
@@ -32,12 +33,16 @@ module Bandwidth
     attr_reader :max_retries
     attr_reader :retry_interval
     attr_reader :backoff_factor
+    attr_reader :retry_statuses
+    attr_reader :retry_methods
     attr_reader :environment
     attr_reader :base_url
     attr_reader :messaging_basic_auth_user_name
     attr_reader :messaging_basic_auth_password
     attr_reader :two_factor_auth_basic_auth_user_name
     attr_reader :two_factor_auth_basic_auth_password
+    attr_reader :phone_number_lookup_basic_auth_user_name
+    attr_reader :phone_number_lookup_basic_auth_password
     attr_reader :voice_basic_auth_user_name
     attr_reader :voice_basic_auth_password
     attr_reader :web_rtc_basic_auth_user_name
@@ -48,12 +53,17 @@ module Bandwidth
     end
 
     def initialize(timeout: 60, max_retries: 0, retry_interval: 1,
-                   backoff_factor: 1, environment: Environment::PRODUCTION,
+                   backoff_factor: 2,
+                   retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+                   retry_methods: %i[get put get put],
+                   environment: Environment::PRODUCTION,
                    base_url: 'https://www.example.com',
                    messaging_basic_auth_user_name: 'TODO: Replace',
                    messaging_basic_auth_password: 'TODO: Replace',
                    two_factor_auth_basic_auth_user_name: 'TODO: Replace',
                    two_factor_auth_basic_auth_password: 'TODO: Replace',
+                   phone_number_lookup_basic_auth_user_name: 'TODO: Replace',
+                   phone_number_lookup_basic_auth_password: 'TODO: Replace',
                    voice_basic_auth_user_name: 'TODO: Replace',
                    voice_basic_auth_password: 'TODO: Replace',
                    web_rtc_basic_auth_user_name: 'TODO: Replace',
@@ -70,6 +80,12 @@ module Bandwidth
       # The amount to multiply each successive retry's interval amount
       # by in order to provide backoff
       @backoff_factor = backoff_factor
+
+      # A list of HTTP statuses to retry
+      @retry_statuses = retry_statuses
+
+      # A list of HTTP methods to retry
+      @retry_methods = retry_methods
 
       # Current API environment
       @environment = String(environment)
@@ -90,6 +106,12 @@ module Bandwidth
       @two_factor_auth_basic_auth_password = two_factor_auth_basic_auth_password
 
       # The username to use with basic authentication
+      @phone_number_lookup_basic_auth_user_name = phone_number_lookup_basic_auth_user_name
+
+      # The password to use with basic authentication
+      @phone_number_lookup_basic_auth_password = phone_number_lookup_basic_auth_password
+
+      # The username to use with basic authentication
       @voice_basic_auth_user_name = voice_basic_auth_user_name
 
       # The password to use with basic authentication
@@ -106,11 +128,14 @@ module Bandwidth
     end
 
     def clone_with(timeout: nil, max_retries: nil, retry_interval: nil,
-                   backoff_factor: nil, environment: nil, base_url: nil,
+                   backoff_factor: nil, retry_statuses: nil, retry_methods: nil,
+                   environment: nil, base_url: nil,
                    messaging_basic_auth_user_name: nil,
                    messaging_basic_auth_password: nil,
                    two_factor_auth_basic_auth_user_name: nil,
                    two_factor_auth_basic_auth_password: nil,
+                   phone_number_lookup_basic_auth_user_name: nil,
+                   phone_number_lookup_basic_auth_password: nil,
                    voice_basic_auth_user_name: nil,
                    voice_basic_auth_password: nil,
                    web_rtc_basic_auth_user_name: nil,
@@ -119,12 +144,16 @@ module Bandwidth
       max_retries ||= self.max_retries
       retry_interval ||= self.retry_interval
       backoff_factor ||= self.backoff_factor
+      retry_statuses ||= self.retry_statuses
+      retry_methods ||= self.retry_methods
       environment ||= self.environment
       base_url ||= self.base_url
       messaging_basic_auth_user_name ||= self.messaging_basic_auth_user_name
       messaging_basic_auth_password ||= self.messaging_basic_auth_password
       two_factor_auth_basic_auth_user_name ||= self.two_factor_auth_basic_auth_user_name
       two_factor_auth_basic_auth_password ||= self.two_factor_auth_basic_auth_password
+      phone_number_lookup_basic_auth_user_name ||= self.phone_number_lookup_basic_auth_user_name
+      phone_number_lookup_basic_auth_password ||= self.phone_number_lookup_basic_auth_password
       voice_basic_auth_user_name ||= self.voice_basic_auth_user_name
       voice_basic_auth_password ||= self.voice_basic_auth_password
       web_rtc_basic_auth_user_name ||= self.web_rtc_basic_auth_user_name
@@ -133,11 +162,14 @@ module Bandwidth
       Configuration.new(
         timeout: timeout, max_retries: max_retries,
         retry_interval: retry_interval, backoff_factor: backoff_factor,
+        retry_statuses: retry_statuses, retry_methods: retry_methods,
         environment: environment, base_url: base_url,
         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
         messaging_basic_auth_password: messaging_basic_auth_password,
         two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
         two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
+        phone_number_lookup_basic_auth_user_name: phone_number_lookup_basic_auth_user_name,
+        phone_number_lookup_basic_auth_password: phone_number_lookup_basic_auth_password,
         voice_basic_auth_user_name: voice_basic_auth_user_name,
         voice_basic_auth_password: voice_basic_auth_password,
         web_rtc_basic_auth_user_name: web_rtc_basic_auth_user_name,
@@ -148,7 +180,9 @@ module Bandwidth
     def create_http_client
       FaradayClient.new(timeout: timeout, max_retries: max_retries,
                         retry_interval: retry_interval,
-                        backoff_factor: backoff_factor)
+                        backoff_factor: backoff_factor,
+                        retry_statuses: retry_statuses,
+                        retry_methods: retry_methods)
     end
 
     # All the environments the SDK can run in.
@@ -157,6 +191,7 @@ module Bandwidth
         Server::DEFAULT => 'api.bandwidth.com',
         Server::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
         Server::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
+        Server::PHONENUMBERLOOKUPDEFAULT => 'https://numbers.bandwidth.com/api/v1',
         Server::VOICEDEFAULT => 'https://voice.bandwidth.com',
         Server::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1'
       },
@@ -164,6 +199,7 @@ module Bandwidth
         Server::DEFAULT => '{base_url}',
         Server::MESSAGINGDEFAULT => '{base_url}',
         Server::TWOFACTORAUTHDEFAULT => '{base_url}',
+        Server::PHONENUMBERLOOKUPDEFAULT => '{base_url}',
         Server::VOICEDEFAULT => '{base_url}',
         Server::WEBRTCDEFAULT => '{base_url}'
       }

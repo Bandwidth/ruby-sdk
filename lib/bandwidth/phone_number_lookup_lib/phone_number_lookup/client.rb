@@ -4,7 +4,7 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-    module WebRtc
+    module PhoneNumberLookup
       #  bandwidth client class.
       class Client
         attr_reader :config
@@ -23,8 +23,8 @@ module Bandwidth
                        base_url: 'https://www.example.com',
                        messaging_basic_auth_user_name: 'TODO: Replace',
                        messaging_basic_auth_password: 'TODO: Replace',
-                       two_factor_auth_basic_auth_user_name: 'TODO: Replace',
-                       two_factor_auth_basic_auth_password: 'TODO: Replace',
+                       multi_factor_auth_basic_auth_user_name: 'TODO: Replace',
+                       multi_factor_auth_basic_auth_password: 'TODO: Replace',
                        phone_number_lookup_basic_auth_user_name: 'TODO: Replace',
                        phone_number_lookup_basic_auth_password: 'TODO: Replace',
                        voice_basic_auth_user_name: 'TODO: Replace',
@@ -43,8 +43,8 @@ module Bandwidth
                                         base_url: base_url,
                                         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
                                         messaging_basic_auth_password: messaging_basic_auth_password,
-                                        two_factor_auth_basic_auth_user_name: two_factor_auth_basic_auth_user_name,
-                                        two_factor_auth_basic_auth_password: two_factor_auth_basic_auth_password,
+                                        multi_factor_auth_basic_auth_user_name: multi_factor_auth_basic_auth_user_name,
+                                        multi_factor_auth_basic_auth_password: multi_factor_auth_basic_auth_password,
                                         phone_number_lookup_basic_auth_user_name: phone_number_lookup_basic_auth_user_name,
                                         phone_number_lookup_basic_auth_password: phone_number_lookup_basic_auth_password,
                                         voice_basic_auth_user_name: voice_basic_auth_user_name,

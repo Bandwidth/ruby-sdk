@@ -68,9 +68,7 @@ module Bandwidth
     # Appends the given set of parameters to the given query string.
     # @param [String] The query string builder to add the query parameters to.
     # @param [Hash] The parameters to append.
-    # @param [String] The format of array parameter serialization.
-    def self.append_url_with_query_parameters(query_builder, parameters,
-                                              array_serialization: 'indexed')
+    def self.append_url_with_query_parameters(query_builder, parameters)
       # Perform parameter validation.
       unless query_builder.instance_of? String
         raise ArgumentError, 'Given value for parameter \"query_builder\"
@@ -79,6 +77,8 @@ module Bandwidth
 
       # Return if there are no parameters to replace.
       return query_builder if parameters.nil?
+
+      array_serialization = 'indexed'
 
       parameters.each do |key, value|
         seperator = query_builder.include?('?') ? '&' : '?'
@@ -156,8 +156,8 @@ module Bandwidth
     # Form encodes a hash of parameters.
     # @param [Hash] The hash of parameters to encode.
     # @return [Hash] A hash with the same parameters form encoded.
-    def self.form_encode_parameters(form_parameters,
-                                    array_serialization: 'indexed')
+    def self.form_encode_parameters(form_parameters)
+      array_serialization = 'indexed'
       encoded = {}
       form_parameters.each do |key, value|
         encoded.merge!(APIHelper.form_encode(value, key, formatting:

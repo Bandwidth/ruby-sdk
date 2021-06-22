@@ -35,7 +35,9 @@ class IntegrationTest < Test::Unit::TestCase
             messaging_basic_auth_user_name: USERNAME,
             messaging_basic_auth_password: PASSWORD,
             two_factor_auth_basic_auth_user_name: USERNAME,
-            two_factor_auth_basic_auth_password: PASSWORD
+            two_factor_auth_basic_auth_password: PASSWORD,
+            phone_number_lookup_basic_auth_user_name: USERNAME,
+            phone_number_lookup_basic_auth_password: PASSWORD
         )
     end
 
@@ -566,5 +568,16 @@ class IntegrationTest < Test::Unit::TestCase
         expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StopGather/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
+    end
+
+    def test_tn_lookup
+        body = OrderRequest.new
+        body.tns = [PHONE_NUMBER_OUTBOUND]
+        create_response = @bandwidth_client.phone_number_lookup_client.client.create_lookup_request(ACCOUNT_ID, body)
+        assert(create_response.data.request_id.length > 0, "request_id value not set")
+
+        request_id = create_response.data.request_id
+        get_response = @bandwidth_client.phone_number_lookup_client.client.get_lookup_request_status(ACCOUNT_ID, request_id)
+        assert(get_response.data.status.length > 0, "status value not set")
     end
 end
