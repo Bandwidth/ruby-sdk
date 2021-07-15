@@ -7,29 +7,11 @@ module Bandwidth
   # CallbackMethod.
   class CallbackMethodEnum
     CALLBACK_METHOD_ENUM = [
-      # TODO: Write general description for GET
-      GET = 'GET'.freeze,
-
-      # TODO: Write general description for HEAD
-      HEAD = 'HEAD'.freeze,
-
       # TODO: Write general description for POST
       POST = 'POST'.freeze,
 
-      # TODO: Write general description for PUT
-      PUT = 'PUT'.freeze,
-
-      # TODO: Write general description for PATCH
-      PATCH = 'PATCH'.freeze,
-
-      # TODO: Write general description for DELETE
-      DELETE = 'DELETE'.freeze,
-
-      # TODO: Write general description for OPTIONS
-      OPTIONS = 'OPTIONS'.freeze,
-
-      # TODO: Write general description for TRACE
-      TRACE = 'TRACE'.freeze
+      # TODO: Write general description for GET
+      GET = 'GET'.freeze
     ].freeze
   end
 end

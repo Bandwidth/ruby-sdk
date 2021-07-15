@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ConferenceMemberDetail Model.
-  class ConferenceMemberDetail < BaseModel
+  # ConferenceMemberState Model.
+  class ConferenceMemberState < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :call_id
@@ -69,12 +69,12 @@ module Bandwidth
       call_ids_to_coach = hash['callIdsToCoach']
 
       # Create object from extracted values.
-      ConferenceMemberDetail.new(call_id,
-                                 conference_id,
-                                 member_url,
-                                 mute,
-                                 hold,
-                                 call_ids_to_coach)
+      ConferenceMemberState.new(call_id,
+                                conference_id,
+                                member_url,
+                                mute,
+                                hold,
+                                call_ids_to_coach)
     end
   end
 end

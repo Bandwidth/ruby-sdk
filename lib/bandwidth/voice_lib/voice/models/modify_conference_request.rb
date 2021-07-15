@@ -4,11 +4,11 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ApiModifyCallRequest Model.
-  class ApiModifyCallRequest < BaseModel
+  # ModifyConferenceRequest Model.
+  class ModifyConferenceRequest < BaseModel
     # TODO: Write general description for this method
-    # @return [State1Enum]
-    attr_accessor :state
+    # @return [StatusEnum]
+    attr_accessor :status
 
     # TODO: Write general description for this method
     # @return [String]
@@ -42,14 +42,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :fallback_password
 
-    # TODO: Write general description for this method
-    # @return [String]
-    attr_accessor :tag
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['state'] = 'state'
+      @_hash['status'] = 'status'
       @_hash['redirect_url'] = 'redirectUrl'
       @_hash['redirect_fallback_url'] = 'redirectFallbackUrl'
       @_hash['redirect_method'] = 'redirectMethod'
@@ -58,21 +54,19 @@ module Bandwidth
       @_hash['password'] = 'password'
       @_hash['fallback_username'] = 'fallbackUsername'
       @_hash['fallback_password'] = 'fallbackPassword'
-      @_hash['tag'] = 'tag'
       @_hash
     end
 
-    def initialize(redirect_url = nil,
-                   state = nil,
+    def initialize(status = nil,
+                   redirect_url = nil,
                    redirect_fallback_url = nil,
                    redirect_method = nil,
                    redirect_fallback_method = nil,
                    username = nil,
                    password = nil,
                    fallback_username = nil,
-                   fallback_password = nil,
-                   tag = nil)
-      @state = state
+                   fallback_password = nil)
+      @status = status
       @redirect_url = redirect_url
       @redirect_fallback_url = redirect_fallback_url
       @redirect_method = redirect_method
@@ -81,7 +75,6 @@ module Bandwidth
       @password = password
       @fallback_username = fallback_username
       @fallback_password = fallback_password
-      @tag = tag
     end
 
     # Creates an instance of the object from a hash.
@@ -89,8 +82,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
+      status = hash['status']
       redirect_url = hash['redirectUrl']
-      state = hash['state']
       redirect_fallback_url = hash['redirectFallbackUrl']
       redirect_method = hash['redirectMethod']
       redirect_fallback_method = hash['redirectFallbackMethod']
@@ -98,19 +91,17 @@ module Bandwidth
       password = hash['password']
       fallback_username = hash['fallbackUsername']
       fallback_password = hash['fallbackPassword']
-      tag = hash['tag']
 
       # Create object from extracted values.
-      ApiModifyCallRequest.new(redirect_url,
-                               state,
-                               redirect_fallback_url,
-                               redirect_method,
-                               redirect_fallback_method,
-                               username,
-                               password,
-                               fallback_username,
-                               fallback_password,
-                               tag)
+      ModifyConferenceRequest.new(status,
+                                  redirect_url,
+                                  redirect_fallback_url,
+                                  redirect_method,
+                                  redirect_fallback_method,
+                                  username,
+                                  password,
+                                  fallback_username,
+                                  fallback_password)
     end
   end
 end

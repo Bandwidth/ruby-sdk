@@ -4,48 +4,52 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ApiModifyConferenceRequest Model.
-  class ApiModifyConferenceRequest < BaseModel
+  # ModifyCallRequest Model.
+  class ModifyCallRequest < BaseModel
     # TODO: Write general description for this method
-    # @return [StatusEnum]
-    attr_accessor :status
+    # @return [StateEnum]
+    attr_accessor :state
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :redirect_url
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :redirect_fallback_url
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [RedirectMethodEnum]
     attr_accessor :redirect_method
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [RedirectFallbackMethodEnum]
     attr_accessor :redirect_fallback_method
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :username
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :password
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :fallback_username
 
-    # TODO: Write general description for this method
+    # Required if state is 'active'
     # @return [String]
     attr_accessor :fallback_password
+
+    # Required if state is 'active'
+    # @return [String]
+    attr_accessor :tag
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['status'] = 'status'
+      @_hash['state'] = 'state'
       @_hash['redirect_url'] = 'redirectUrl'
       @_hash['redirect_fallback_url'] = 'redirectFallbackUrl'
       @_hash['redirect_method'] = 'redirectMethod'
@@ -54,10 +58,11 @@ module Bandwidth
       @_hash['password'] = 'password'
       @_hash['fallback_username'] = 'fallbackUsername'
       @_hash['fallback_password'] = 'fallbackPassword'
+      @_hash['tag'] = 'tag'
       @_hash
     end
 
-    def initialize(status = nil,
+    def initialize(state = StateEnum::ACTIVE,
                    redirect_url = nil,
                    redirect_fallback_url = nil,
                    redirect_method = nil,
@@ -65,8 +70,9 @@ module Bandwidth
                    username = nil,
                    password = nil,
                    fallback_username = nil,
-                   fallback_password = nil)
-      @status = status
+                   fallback_password = nil,
+                   tag = nil)
+      @state = state
       @redirect_url = redirect_url
       @redirect_fallback_url = redirect_fallback_url
       @redirect_method = redirect_method
@@ -75,6 +81,7 @@ module Bandwidth
       @password = password
       @fallback_username = fallback_username
       @fallback_password = fallback_password
+      @tag = tag
     end
 
     # Creates an instance of the object from a hash.
@@ -82,7 +89,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      status = hash['status']
+      state = hash['state'] ||= StateEnum::ACTIVE
       redirect_url = hash['redirectUrl']
       redirect_fallback_url = hash['redirectFallbackUrl']
       redirect_method = hash['redirectMethod']
@@ -91,17 +98,19 @@ module Bandwidth
       password = hash['password']
       fallback_username = hash['fallbackUsername']
       fallback_password = hash['fallbackPassword']
+      tag = hash['tag']
 
       # Create object from extracted values.
-      ApiModifyConferenceRequest.new(status,
-                                     redirect_url,
-                                     redirect_fallback_url,
-                                     redirect_method,
-                                     redirect_fallback_method,
-                                     username,
-                                     password,
-                                     fallback_username,
-                                     fallback_password)
+      ModifyCallRequest.new(state,
+                            redirect_url,
+                            redirect_fallback_url,
+                            redirect_method,
+                            redirect_fallback_method,
+                            username,
+                            password,
+                            fallback_username,
+                            fallback_password,
+                            tag)
     end
   end
 end

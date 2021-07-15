@@ -13,15 +13,26 @@ module Bandwidth
         value = instance_variable_get(name)
         name = name[1..-1]
         key = self.class.names.key?(name) ? self.class.names[name] : name
-        if value.instance_of? Array
-          hash[key] = value.map { |v| v.is_a?(BaseModel) ? v.to_hash : v }
-        elsif value.instance_of? Hash
-          hash[key] = {}
-          value.each do |k, v|
-            hash[key][k] = v.is_a?(BaseModel) ? v.to_hash : v
+
+        hash[key] = nil
+        unless value.nil?
+          if respond_to?("to_#{name}")
+            if (value.instance_of? Array) || (value.instance_of? Hash)
+              params = [hash, key]
+              hash[key] = send("to_#{name}", *params)
+            else
+              hash[key] = send("to_#{name}")
+            end
+          elsif value.instance_of? Array
+            hash[key] = value.map { |v| v.is_a?(BaseModel) ? v.to_hash : v }
+          elsif value.instance_of? Hash
+            hash[key] = {}
+            value.each do |k, v|
+              hash[key][k] = v.is_a?(BaseModel) ? v.to_hash : v
+            end
+          else
+            hash[key] = value.is_a?(BaseModel) ? value.to_hash : value
           end
-        else
-          hash[key] = value.is_a?(BaseModel) ? value.to_hash : value
         end
       end
       hash

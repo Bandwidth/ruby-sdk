@@ -5,8 +5,8 @@
 
 require 'date'
 module Bandwidth
-  # ApiCallResponse Model.
-  class ApiCallResponse < BaseModel
+  # CreateCallResponse Model.
+  class CreateCallResponse < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :account_id
@@ -169,7 +169,8 @@ module Bandwidth
       answer_url = hash['answerUrl']
       answer_method = hash['answerMethod']
       disconnect_method = hash['disconnectMethod']
-      start_time = APIHelper.rfc3339(hash['startTime']) if hash['startTime']
+      start_time = DateTimeHelper.from_rfc3339(hash['startTime']) if
+        hash['startTime']
       call_timeout = hash['callTimeout']
       callback_timeout = hash['callbackTimeout']
       answer_fallback_url = hash['answerFallbackUrl']
@@ -182,26 +183,30 @@ module Bandwidth
       tag = hash['tag']
 
       # Create object from extracted values.
-      ApiCallResponse.new(account_id,
-                          call_id,
-                          application_id,
-                          to,
-                          from,
-                          call_url,
-                          answer_url,
-                          answer_method,
-                          disconnect_method,
-                          start_time,
-                          call_timeout,
-                          callback_timeout,
-                          answer_fallback_url,
-                          answer_fallback_method,
-                          disconnect_url,
-                          username,
-                          password,
-                          fallback_username,
-                          fallback_password,
-                          tag)
+      CreateCallResponse.new(account_id,
+                             call_id,
+                             application_id,
+                             to,
+                             from,
+                             call_url,
+                             answer_url,
+                             answer_method,
+                             disconnect_method,
+                             start_time,
+                             call_timeout,
+                             callback_timeout,
+                             answer_fallback_url,
+                             answer_fallback_method,
+                             disconnect_url,
+                             username,
+                             password,
+                             fallback_username,
+                             fallback_password,
+                             tag)
+    end
+
+    def to_start_time
+      DateTimeHelper.to_rfc3339(start_time)
     end
   end
 end

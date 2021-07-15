@@ -14,6 +14,7 @@ require_relative 'bandwidth/client.rb'
 
 # Utilities
 require_relative 'bandwidth/utilities/file_wrapper.rb'
+require_relative 'bandwidth/utilities/date_time_helper.rb'
 
 # Http
 require_relative 'bandwidth/http/api_response.rb'
@@ -35,8 +36,8 @@ require_relative 'bandwidth/configuration.rb'
 # Namespaces
 require_relative 'bandwidth/messaging_lib/messaging'
 require_relative 'bandwidth/http/auth/messaging_basic_auth.rb'
-require_relative 'bandwidth/two_factor_auth_lib/two_factor_auth'
-require_relative 'bandwidth/http/auth/two_factor_auth_basic_auth.rb'
+require_relative 'bandwidth/multi_factor_auth_lib/multi_factor_auth'
+require_relative 'bandwidth/http/auth/multi_factor_auth_basic_auth.rb'
 require_relative 'bandwidth/phone_number_lookup_lib/phone_number_lookup'
 require_relative 'bandwidth/http/auth/phone_number_lookup_basic_auth.rb'
 require_relative 'bandwidth/voice_lib/voice'
