@@ -58,7 +58,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.from = PHONE_NUMBER_OUTBOUND
         body.text = "Ruby Integration"
         begin
-            @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, :body => body)
+            @bandwidth_client.messaging_client.client.create_message(ACCOUNT_ID, body)
             #workaround to make sure that if the above error is not raised, the build will fail
             assert(false, "Expected exception not raised")
         rescue MessagingException => e
@@ -95,7 +95,7 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_create_call_invalid_phone_number
-        body = ApiCreateCallRequest.new
+        body = CreateCallRequest.new
         body.from = PHONE_NUMBER_OUTBOUND
         body.to = "+1invalid"
         body.application_id = VOICE_APPLICATION_ID
@@ -105,7 +105,7 @@ class IntegrationTest < Test::Unit::TestCase
             @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, :body => body)
             #workaround to make sure that if the above error is not raised, the build will fail
             assert(false, "Expected exception not raised")
-        rescue ApiErrorResponseException => e
+        rescue ApiErrorException => e
             assert(e.description.length > 0, "description value not set")
         end
     end
