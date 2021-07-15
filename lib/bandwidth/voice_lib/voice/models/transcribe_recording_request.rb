@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # ApiTranscribeRecordingRequest Model.
-  class ApiTranscribeRecordingRequest < BaseModel
+  # TranscribeRecordingRequest Model.
+  class TranscribeRecordingRequest < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :callback_url
@@ -69,12 +69,12 @@ module Bandwidth
       callback_timeout = hash['callbackTimeout']
 
       # Create object from extracted values.
-      ApiTranscribeRecordingRequest.new(callback_url,
-                                        callback_method,
-                                        username,
-                                        password,
-                                        tag,
-                                        callback_timeout)
+      TranscribeRecordingRequest.new(callback_url,
+                                     callback_method,
+                                     username,
+                                     password,
+                                     tag,
+                                     callback_timeout)
     end
   end
 end

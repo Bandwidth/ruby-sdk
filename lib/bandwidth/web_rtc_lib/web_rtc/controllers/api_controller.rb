@@ -498,20 +498,20 @@ module WebRtc
     # This will automatically remove any subscriptions the participant has
     # associated with this session
     # @param [String] account_id Required parameter: Account ID
-    # @param [String] participant_id Required parameter: Participant ID
     # @param [String] session_id Required parameter: Session ID
+    # @param [String] participant_id Required parameter: Participant ID
     # @return [void] response from the API call
     def remove_participant_from_session(account_id,
-                                        participant_id,
-                                        session_id)
+                                        session_id,
+                                        participant_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::WEBRTCDEFAULT)
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
         'accountId' => { 'value' => account_id, 'encode' => false },
-        'participantId' => { 'value' => participant_id, 'encode' => false },
-        'sessionId' => { 'value' => session_id, 'encode' => false }
+        'sessionId' => { 'value' => session_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -553,20 +553,20 @@ module WebRtc
 
     # Get a participant's subscriptions
     # @param [String] account_id Required parameter: Account ID
-    # @param [String] participant_id Required parameter: Participant ID
     # @param [String] session_id Required parameter: Session ID
+    # @param [String] participant_id Required parameter: Participant ID
     # @return [Subscriptions] response from the API call
     def get_participant_subscriptions(account_id,
-                                      participant_id,
-                                      session_id)
+                                      session_id,
+                                      participant_id)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::WEBRTCDEFAULT)
       _query_builder << '/accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions'
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
         'accountId' => { 'value' => account_id, 'encode' => false },
-        'participantId' => { 'value' => participant_id, 'encode' => false },
-        'sessionId' => { 'value' => session_id, 'encode' => false }
+        'sessionId' => { 'value' => session_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 
@@ -621,13 +621,13 @@ module WebRtc
     # subscriptions. Call this function with no `Subscriptions` object to remove
     # all subscriptions
     # @param [String] account_id Required parameter: Account ID
-    # @param [String] participant_id Required parameter: Participant ID
     # @param [String] session_id Required parameter: Session ID
+    # @param [String] participant_id Required parameter: Participant ID
     # @param [Subscriptions] body Optional parameter: Initial state
     # @return [void] response from the API call
     def update_participant_subscriptions(account_id,
-                                         participant_id,
                                          session_id,
+                                         participant_id,
                                          body: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::WEBRTCDEFAULT)
@@ -635,8 +635,8 @@ module WebRtc
       _query_builder = APIHelper.append_url_with_template_parameters(
         _query_builder,
         'accountId' => { 'value' => account_id, 'encode' => false },
-        'participantId' => { 'value' => participant_id, 'encode' => false },
-        'sessionId' => { 'value' => session_id, 'encode' => false }
+        'sessionId' => { 'value' => session_id, 'encode' => false },
+        'participantId' => { 'value' => participant_id, 'encode' => false }
       )
       _query_url = APIHelper.clean_url _query_builder
 

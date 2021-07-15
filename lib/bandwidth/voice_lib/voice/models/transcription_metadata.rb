@@ -4,21 +4,30 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # Transcription Model.
-  class Transcription < BaseModel
+  # TranscriptionMetadata Model.
+  class TranscriptionMetadata < BaseModel
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :id
 
-    # TODO: Write general description for this method
-    # @return [Status3Enum]
+    # The current status of the transcription. Current values are 'none',
+    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
+    # 'file-size-too-small'. Additional states may be added in the future, so
+    # your application must be tolerant of unknown values.
+    # @return [String]
     attr_accessor :status
 
-    # TODO: Write general description for this method
+    # The current status of the transcription. Current values are 'none',
+    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
+    # 'file-size-too-small'. Additional states may be added in the future, so
+    # your application must be tolerant of unknown values.
     # @return [String]
     attr_accessor :completed_time
 
-    # TODO: Write general description for this method
+    # The current status of the transcription. Current values are 'none',
+    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
+    # 'file-size-too-small'. Additional states may be added in the future, so
+    # your application must be tolerant of unknown values.
     # @return [String]
     attr_accessor :url
 
@@ -53,10 +62,10 @@ module Bandwidth
       url = hash['url']
 
       # Create object from extracted values.
-      Transcription.new(id,
-                        status,
-                        completed_time,
-                        url)
+      TranscriptionMetadata.new(id,
+                                status,
+                                completed_time,
+                                url)
     end
   end
 end
