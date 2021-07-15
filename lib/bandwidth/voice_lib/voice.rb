@@ -39,3 +39,4 @@ require_relative 'voice/exceptions/api_error_exception.rb'
 # Controllers
 require_relative 'voice/controllers/base_controller.rb'
 require_relative 'voice/controllers/api_controller.rb'
+require_relative 'bxml/bxml.rb'
