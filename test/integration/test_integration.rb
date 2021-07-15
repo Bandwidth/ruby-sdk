@@ -8,7 +8,7 @@ require_relative '../../lib/bandwidth.rb'
 include Bandwidth
 include Bandwidth::Voice
 include Bandwidth::Messaging
-include Bandwidth::TwoFactorAuth
+include Bandwidth::MultiFactorAuth
 
 begin
     USERNAME = ENV.fetch("USERNAME")
@@ -34,8 +34,8 @@ class IntegrationTest < Test::Unit::TestCase
             voice_basic_auth_password: PASSWORD,
             messaging_basic_auth_user_name: USERNAME,
             messaging_basic_auth_password: PASSWORD,
-            two_factor_auth_basic_auth_user_name: USERNAME,
-            two_factor_auth_basic_auth_password: PASSWORD,
+            multi_factor_auth_basic_auth_user_name: USERNAME,
+            multi_factor_auth_basic_auth_password: PASSWORD,
             phone_number_lookup_basic_auth_user_name: USERNAME,
             phone_number_lookup_basic_auth_password: PASSWORD
         )
@@ -72,7 +72,7 @@ class IntegrationTest < Test::Unit::TestCase
         media_file = '12345' #todo: check a binary string
 
         #media upload
-        @bandwidth_client.messaging_client.client.upload_media(ACCOUNT_ID, media_file_name, media_file.length.to_s, media_file, :content_type => "application/octet-stream", :cache_control => "no-cache")
+        @bandwidth_client.messaging_client.client.upload_media(ACCOUNT_ID, media_file_name, media_file, :content_type => "application/octet-stream", :cache_control => "no-cache")
 
         #media download
         downloaded_media_file = @bandwidth_client.messaging_client.client.get_media(ACCOUNT_ID, media_file_name).data
@@ -81,7 +81,7 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_create_call_and_get_call_state
-        body = ApiCreateCallRequest.new
+        body = CreateCallRequest.new
         body.from = PHONE_NUMBER_OUTBOUND
         body.to = PHONE_NUMBER_INBOUND
         body.application_id = VOICE_APPLICATION_ID
@@ -90,7 +90,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
-        response = @bandwidth_client.voice_client.client.get_call_state(ACCOUNT_ID, response.data.call_id)
+        response = @bandwidth_client.voice_client.client.get_call(ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
     end
 
@@ -473,7 +473,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.digits = 6
         body.message = "Your temporary {NAME} {SCOPE} code is {CODE}"
 
-        response = @bandwidth_client.two_factor_auth_client.mfa.create_messaging_two_factor(ACCOUNT_ID, body)
+        response = @bandwidth_client.multi_factor_auth_client.mfa.create_messaging_two_factor(ACCOUNT_ID, body)
         assert(response.data.message_id.length > 0, "message id value not set")
     end
 
@@ -486,7 +486,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.digits = 6
         body.message = "Your temporary {NAME} {SCOPE} code is {CODE}"
 
-        response = @bandwidth_client.two_factor_auth_client.mfa.create_voice_two_factor(ACCOUNT_ID, body)
+        response = @bandwidth_client.multi_factor_auth_client.mfa.create_voice_two_factor(ACCOUNT_ID, body)
         assert(response.data.call_id.length > 0, "call id value not set")
     end
 
@@ -497,7 +497,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.scope = "scope"
         body.code = "123456"
         body.expiration_time_in_minutes = 3
-        response = @bandwidth_client.two_factor_auth_client.mfa.create_verify_two_factor(ACCOUNT_ID, body)
+        response = @bandwidth_client.multi_factor_auth_client.mfa.create_verify_two_factor(ACCOUNT_ID, body)
         #Ruby has no check to see if variables are of type boolean
         #An explicit true/false check is required
         assert(response.data.valid == true || response.data.valid == false, "'valid' variable is not a boolean")
