@@ -86,7 +86,7 @@ class IntegrationTest < Test::Unit::TestCase
         body.to = PHONE_NUMBER_INBOUND
         body.application_id = VOICE_APPLICATION_ID
         body.answer_url = CALLBACK_URL
-        response = @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, :body => body)
+        response = @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, body)
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
