@@ -9,6 +9,7 @@ include Bandwidth
 include Bandwidth::Voice
 include Bandwidth::Messaging
 include Bandwidth::MultiFactorAuth
+include Bandwidth::WebRtc
 
 begin
     USERNAME = ENV.fetch("USERNAME")
