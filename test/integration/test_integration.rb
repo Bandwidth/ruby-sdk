@@ -9,6 +9,7 @@ include Bandwidth
 include Bandwidth::Voice
 include Bandwidth::Messaging
 include Bandwidth::MultiFactorAuth
+include Bandwidth::WebRtc
 
 begin
     USERNAME = ENV.fetch("USERNAME")
@@ -579,5 +580,17 @@ class IntegrationTest < Test::Unit::TestCase
         request_id = create_response.data.request_id
         get_response = @bandwidth_client.phone_number_lookup_client.client.get_lookup_request_status(ACCOUNT_ID, request_id)
         assert(get_response.data.status.length > 0, "status value not set")
+    end
+
+    def test_webrtc_generate_bxml
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Transfer><SipUri uui="asdf;encoding=jwt">sip:sipx.webrtc.bandwidth.com:5060</SipUri></Transfer></Response>'
+        actual = Bandwidth::WebRtc.generate_bxml('asdf')
+        assert_equal(expected, actual)
+    end
+
+    def test_webrtc_generate_transfer_bxml_verb
+        expected = '<Transfer><SipUri uui="asdf;encoding=jwt">sip:sipx.webrtc.bandwidth.com:5060</SipUri></Transfer>'
+        actual = Bandwidth::WebRtc.generate_transfer_bxml_verb('asdf')
+        assert_equal(expected, actual)
     end
 end
