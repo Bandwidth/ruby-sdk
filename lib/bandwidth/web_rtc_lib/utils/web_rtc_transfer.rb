@@ -11,7 +11,8 @@ module Bandwidth
     end
 
     def generate_transfer_bxml_verb(device_token, voice_call_id, sip_uri="sip:sipx.webrtc.bandwidth.com:5060")
-        return '<Transfer><SipUri uui="%s;encoding=base64,%s;encoding=jwt">%s</SipUri></Transfer>' % [device_token, voice_call_id, sip_uri]
+        voice_call_id = voice_call_id.split("-", 2).last.split("-").join()
+        return '<Transfer><SipUri uui="%s;encoding=base64,%s;encoding=jwt">%s</SipUri></Transfer>' % [voice_call_id, device_token, sip_uri]
     end
   end
 end
