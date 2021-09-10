@@ -6,6 +6,9 @@
 module Bandwidth
   # TwoFactorMessagingResponse Model.
   class TwoFactorMessagingResponse < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :message_id
@@ -17,8 +20,20 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        message_id
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(message_id = nil)
-      @message_id = message_id
+      @message_id = message_id unless message_id == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -26,7 +41,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      message_id = hash['messageId']
+      message_id = hash.key?('messageId') ? hash['messageId'] : SKIP
 
       # Create object from extracted values.
       TwoFactorMessagingResponse.new(message_id)

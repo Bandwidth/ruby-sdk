@@ -6,6 +6,9 @@
 module Bandwidth
   # ModifyConferenceRequest Model.
   class ModifyConferenceRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [StatusEnum]
     attr_accessor :status
@@ -57,6 +60,35 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        status
+        redirect_url
+        redirect_fallback_url
+        redirect_method
+        redirect_fallback_method
+        username
+        password
+        fallback_username
+        fallback_password
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        redirect_url
+        redirect_fallback_url
+        redirect_method
+        redirect_fallback_method
+        username
+        password
+        fallback_username
+        fallback_password
+      ]
+    end
+
     def initialize(status = nil,
                    redirect_url = nil,
                    redirect_fallback_url = nil,
@@ -66,15 +98,15 @@ module Bandwidth
                    password = nil,
                    fallback_username = nil,
                    fallback_password = nil)
-      @status = status
-      @redirect_url = redirect_url
-      @redirect_fallback_url = redirect_fallback_url
-      @redirect_method = redirect_method
-      @redirect_fallback_method = redirect_fallback_method
-      @username = username
-      @password = password
-      @fallback_username = fallback_username
-      @fallback_password = fallback_password
+      @status = status unless status == SKIP
+      @redirect_url = redirect_url unless redirect_url == SKIP
+      @redirect_fallback_url = redirect_fallback_url unless redirect_fallback_url == SKIP
+      @redirect_method = redirect_method unless redirect_method == SKIP
+      @redirect_fallback_method = redirect_fallback_method unless redirect_fallback_method == SKIP
+      @username = username unless username == SKIP
+      @password = password unless password == SKIP
+      @fallback_username = fallback_username unless fallback_username == SKIP
+      @fallback_password = fallback_password unless fallback_password == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -82,15 +114,20 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      status = hash['status']
-      redirect_url = hash['redirectUrl']
-      redirect_fallback_url = hash['redirectFallbackUrl']
-      redirect_method = hash['redirectMethod']
-      redirect_fallback_method = hash['redirectFallbackMethod']
-      username = hash['username']
-      password = hash['password']
-      fallback_username = hash['fallbackUsername']
-      fallback_password = hash['fallbackPassword']
+      status = hash.key?('status') ? hash['status'] : SKIP
+      redirect_url = hash.key?('redirectUrl') ? hash['redirectUrl'] : SKIP
+      redirect_fallback_url =
+        hash.key?('redirectFallbackUrl') ? hash['redirectFallbackUrl'] : SKIP
+      redirect_method =
+        hash.key?('redirectMethod') ? hash['redirectMethod'] : SKIP
+      redirect_fallback_method =
+        hash.key?('redirectFallbackMethod') ? hash['redirectFallbackMethod'] : SKIP
+      username = hash.key?('username') ? hash['username'] : SKIP
+      password = hash.key?('password') ? hash['password'] : SKIP
+      fallback_username =
+        hash.key?('fallbackUsername') ? hash['fallbackUsername'] : SKIP
+      fallback_password =
+        hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
 
       # Create object from extracted values.
       ModifyConferenceRequest.new(status,

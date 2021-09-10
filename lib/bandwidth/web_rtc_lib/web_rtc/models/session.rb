@@ -6,6 +6,9 @@
 module Bandwidth
   # A session object
   class Session < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # Unique id of the session
     # @return [String]
     attr_accessor :id
@@ -22,10 +25,23 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        id
+        tag
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(id = nil,
                    tag = nil)
-      @id = id
-      @tag = tag
+      @id = id unless id == SKIP
+      @tag = tag unless tag == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -33,8 +49,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
-      tag = hash['tag']
+      id = hash.key?('id') ? hash['id'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
 
       # Create object from extracted values.
       Session.new(id,

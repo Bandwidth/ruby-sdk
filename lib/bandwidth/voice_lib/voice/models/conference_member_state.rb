@@ -6,6 +6,9 @@
 module Bandwidth
   # ConferenceMemberState Model.
   class ConferenceMemberState < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :call_id
@@ -42,18 +45,37 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        call_id
+        conference_id
+        member_url
+        mute
+        hold
+        call_ids_to_coach
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        call_ids_to_coach
+      ]
+    end
+
     def initialize(call_id = nil,
                    conference_id = nil,
                    member_url = nil,
                    mute = nil,
                    hold = nil,
                    call_ids_to_coach = nil)
-      @call_id = call_id
-      @conference_id = conference_id
-      @member_url = member_url
-      @mute = mute
-      @hold = hold
-      @call_ids_to_coach = call_ids_to_coach
+      @call_id = call_id unless call_id == SKIP
+      @conference_id = conference_id unless conference_id == SKIP
+      @member_url = member_url unless member_url == SKIP
+      @mute = mute unless mute == SKIP
+      @hold = hold unless hold == SKIP
+      @call_ids_to_coach = call_ids_to_coach unless call_ids_to_coach == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -61,12 +83,13 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      call_id = hash['callId']
-      conference_id = hash['conferenceId']
-      member_url = hash['memberUrl']
-      mute = hash['mute']
-      hold = hash['hold']
-      call_ids_to_coach = hash['callIdsToCoach']
+      call_id = hash.key?('callId') ? hash['callId'] : SKIP
+      conference_id = hash.key?('conferenceId') ? hash['conferenceId'] : SKIP
+      member_url = hash.key?('memberUrl') ? hash['memberUrl'] : SKIP
+      mute = hash.key?('mute') ? hash['mute'] : SKIP
+      hold = hash.key?('hold') ? hash['hold'] : SKIP
+      call_ids_to_coach =
+        hash.key?('callIdsToCoach') ? hash['callIdsToCoach'] : SKIP
 
       # Create object from extracted values.
       ConferenceMemberState.new(call_id,

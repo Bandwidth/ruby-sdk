@@ -6,6 +6,9 @@
 module Bandwidth
   # UnauthorizedRequest class.
   class UnauthorizedRequestException < APIException
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The message containing the reason behind the request being unauthorized
     # @return [String]
     attr_accessor :message
@@ -23,7 +26,7 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @message = hash['message']
+      @message = hash.key?('message') ? hash['message'] : SKIP
     end
   end
 end

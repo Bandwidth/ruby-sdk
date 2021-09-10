@@ -6,6 +6,9 @@
 module Bandwidth
   # TwoFactorCodeRequestSchema Model.
   class TwoFactorCodeRequestSchema < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The phone number to send the 2fa code to.
     # @return [String]
     attr_accessor :to
@@ -50,18 +53,30 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        scope
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(to = nil,
                    from = nil,
                    application_id = nil,
                    message = nil,
                    digits = nil,
                    scope = nil)
-      @to = to
-      @from = from
-      @application_id = application_id
-      @scope = scope
-      @message = message
-      @digits = digits
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @application_id = application_id unless application_id == SKIP
+      @scope = scope unless scope == SKIP
+      @message = message unless message == SKIP
+      @digits = digits unless digits == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -69,12 +84,12 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      to = hash['to']
-      from = hash['from']
-      application_id = hash['applicationId']
-      message = hash['message']
-      digits = hash['digits']
-      scope = hash['scope']
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      message = hash.key?('message') ? hash['message'] : SKIP
+      digits = hash.key?('digits') ? hash['digits'] : SKIP
+      scope = hash.key?('scope') ? hash['scope'] : SKIP
 
       # Create object from extracted values.
       TwoFactorCodeRequestSchema.new(to,

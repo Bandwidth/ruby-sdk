@@ -6,6 +6,9 @@
 module Bandwidth
   # BandwidthMessage Model.
   class BandwidthMessage < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The id of the message
     # @return [String]
     attr_accessor :id
@@ -39,7 +42,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :from
 
-    # The list of media URLs sent in the message
+    # The list of media URLs sent in the message. Including a `filename` field
+    # in the `Content-Disposition` header of the media linked with a URL will
+    # set the displayed file name. This is a best practice to ensure that your
+    # media has a readable file name.
     # @return [List of String]
     attr_accessor :media
 
@@ -73,6 +79,29 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        id
+        owner
+        application_id
+        time
+        segment_count
+        direction
+        to
+        from
+        media
+        text
+        tag
+        priority
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(id = nil,
                    owner = nil,
                    application_id = nil,
@@ -85,18 +114,18 @@ module Bandwidth
                    text = nil,
                    tag = nil,
                    priority = nil)
-      @id = id
-      @owner = owner
-      @application_id = application_id
-      @time = time
-      @segment_count = segment_count
-      @direction = direction
-      @to = to
-      @from = from
-      @media = media
-      @text = text
-      @tag = tag
-      @priority = priority
+      @id = id unless id == SKIP
+      @owner = owner unless owner == SKIP
+      @application_id = application_id unless application_id == SKIP
+      @time = time unless time == SKIP
+      @segment_count = segment_count unless segment_count == SKIP
+      @direction = direction unless direction == SKIP
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @media = media unless media == SKIP
+      @text = text unless text == SKIP
+      @tag = tag unless tag == SKIP
+      @priority = priority unless priority == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -104,18 +133,18 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
-      owner = hash['owner']
-      application_id = hash['applicationId']
-      time = hash['time']
-      segment_count = hash['segmentCount']
-      direction = hash['direction']
-      to = hash['to']
-      from = hash['from']
-      media = hash['media']
-      text = hash['text']
-      tag = hash['tag']
-      priority = hash['priority']
+      id = hash.key?('id') ? hash['id'] : SKIP
+      owner = hash.key?('owner') ? hash['owner'] : SKIP
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      time = hash.key?('time') ? hash['time'] : SKIP
+      segment_count = hash.key?('segmentCount') ? hash['segmentCount'] : SKIP
+      direction = hash.key?('direction') ? hash['direction'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      media = hash.key?('media') ? hash['media'] : SKIP
+      text = hash.key?('text') ? hash['text'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
+      priority = hash.key?('priority') ? hash['priority'] : SKIP
 
       # Create object from extracted values.
       BandwidthMessage.new(id,

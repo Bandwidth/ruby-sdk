@@ -11,7 +11,7 @@ module PhoneNumberLookup
       super(config, http_call_back: http_call_back)
     end
 
-    # Create a TN Lookup Order
+    # Create a TN Lookup Order.
     # @param [String] account_id Required parameter: The ID of the Bandwidth
     # account that the user belongs to.
     # @param [OrderRequest] body Required parameter: Example:
@@ -43,13 +43,14 @@ module PhoneNumberLookup
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise AccountsTnlookup400ErrorException.new(
           'Bad Request. Ensure that your request payload is properly' \
           ' formatted and that the telephone numbers used are valid.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Unauthorized. Ensure that you are using the proper credentials' \
           ' for the environment you are accessing, your user has' \
@@ -57,712 +58,712 @@ module PhoneNumberLookup
           ' Bandwidth account is enabled for TN Lookup access.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise APIException.new(
           'Invalid content-type. Ensure that your content-type header is set' \
           ' to application/json.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise APIException.new(
           'Too Many Requests. Reduce the amount of requests that you are' \
           ' sending in order to avoid receiving this status code.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 501
+      when 501
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 502
+      when 502
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 503
+      when 503
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 504
+      when 504
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 505
+      when 505
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 506
+      when 506
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 507
+      when 507
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 508
+      when 508
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 509
+      when 509
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 510
+      when 510
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 511
+      when 511
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 512
+      when 512
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 513
+      when 513
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 514
+      when 514
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 515
+      when 515
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 516
+      when 516
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 517
+      when 517
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 518
+      when 518
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 519
+      when 519
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 520
+      when 520
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 521
+      when 521
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 522
+      when 522
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 523
+      when 523
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 524
+      when 524
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 525
+      when 525
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 526
+      when 526
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 527
+      when 527
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 528
+      when 528
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 529
+      when 529
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 530
+      when 530
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 531
+      when 531
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 532
+      when 532
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 533
+      when 533
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 534
+      when 534
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 535
+      when 535
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 536
+      when 536
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 537
+      when 537
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 538
+      when 538
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 539
+      when 539
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 540
+      when 540
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 541
+      when 541
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 542
+      when 542
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 543
+      when 543
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 544
+      when 544
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 545
+      when 545
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 546
+      when 546
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 547
+      when 547
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 548
+      when 548
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 549
+      when 549
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 550
+      when 550
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 551
+      when 551
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 552
+      when 552
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 553
+      when 553
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 554
+      when 554
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 555
+      when 555
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 556
+      when 556
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 557
+      when 557
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 558
+      when 558
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 559
+      when 559
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 560
+      when 560
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 561
+      when 561
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 562
+      when 562
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 563
+      when 563
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 564
+      when 564
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 565
+      when 565
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 566
+      when 566
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 567
+      when 567
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 568
+      when 568
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 569
+      when 569
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 570
+      when 570
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 571
+      when 571
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 572
+      when 572
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 573
+      when 573
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 574
+      when 574
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 575
+      when 575
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 576
+      when 576
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 577
+      when 577
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 578
+      when 578
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 579
+      when 579
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 580
+      when 580
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 581
+      when 581
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 582
+      when 582
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 583
+      when 583
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 584
+      when 584
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 585
+      when 585
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 586
+      when 586
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 587
+      when 587
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 588
+      when 588
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 589
+      when 589
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 590
+      when 590
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 591
+      when 591
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 592
+      when 592
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 593
+      when 593
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 594
+      when 594
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 595
+      when 595
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 596
+      when 596
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 597
+      when 597
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 598
+      when 598
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 599
+      when 599
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
@@ -779,7 +780,7 @@ module PhoneNumberLookup
       )
     end
 
-    # Query an existing TN Lookup Order
+    # Query an existing TN Lookup Order.
     # @param [String] account_id Required parameter: The ID of the Bandwidth
     # account that the user belongs to.
     # @param [String] request_id Required parameter: Example:
@@ -810,13 +811,14 @@ module PhoneNumberLookup
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise APIException.new(
           'Bad Request. Ensure that you have set the requestId as a URL path' \
           ' parameter.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Unauthorized. Ensure that you are using the proper credentials' \
           ' for the environment you are accessing, your user has' \
@@ -824,713 +826,713 @@ module PhoneNumberLookup
           ' Bandwidth account is enabled for TN Lookup access.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'RequestId not found. Ensure that the requestId used in the URL' \
           ' path is valid and maps to a previous request that was' \
           ' submitted.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise APIException.new(
           'Too Many Requests. Reduce the amount of requests that you are' \
           ' sending in order to avoid receiving this status code.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 501
+      when 501
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 502
+      when 502
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 503
+      when 503
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 504
+      when 504
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 505
+      when 505
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 506
+      when 506
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 507
+      when 507
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 508
+      when 508
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 509
+      when 509
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 510
+      when 510
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 511
+      when 511
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 512
+      when 512
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 513
+      when 513
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 514
+      when 514
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 515
+      when 515
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 516
+      when 516
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 517
+      when 517
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 518
+      when 518
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 519
+      when 519
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 520
+      when 520
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 521
+      when 521
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 522
+      when 522
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 523
+      when 523
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 524
+      when 524
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 525
+      when 525
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 526
+      when 526
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 527
+      when 527
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 528
+      when 528
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 529
+      when 529
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 530
+      when 530
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 531
+      when 531
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 532
+      when 532
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 533
+      when 533
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 534
+      when 534
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 535
+      when 535
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 536
+      when 536
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 537
+      when 537
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 538
+      when 538
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 539
+      when 539
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 540
+      when 540
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 541
+      when 541
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 542
+      when 542
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 543
+      when 543
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 544
+      when 544
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 545
+      when 545
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 546
+      when 546
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 547
+      when 547
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 548
+      when 548
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 549
+      when 549
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 550
+      when 550
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 551
+      when 551
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 552
+      when 552
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 553
+      when 553
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 554
+      when 554
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 555
+      when 555
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 556
+      when 556
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 557
+      when 557
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 558
+      when 558
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 559
+      when 559
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 560
+      when 560
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 561
+      when 561
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 562
+      when 562
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 563
+      when 563
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 564
+      when 564
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 565
+      when 565
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 566
+      when 566
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 567
+      when 567
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 568
+      when 568
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 569
+      when 569
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 570
+      when 570
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 571
+      when 571
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 572
+      when 572
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 573
+      when 573
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 574
+      when 574
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 575
+      when 575
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 576
+      when 576
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 577
+      when 577
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 578
+      when 578
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 579
+      when 579
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 580
+      when 580
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 581
+      when 581
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 582
+      when 582
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 583
+      when 583
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 584
+      when 584
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 585
+      when 585
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 586
+      when 586
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 587
+      when 587
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 588
+      when 588
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 589
+      when 589
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 590
+      when 590
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 591
+      when 591
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 592
+      when 592
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 593
+      when 593
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 594
+      when 594
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 595
+      when 595
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 596
+      when 596
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 597
+      when 597
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 598
+      when 598
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \
           ' extended period of time.',
           _response
         )
-      elsif _response.status_code == 599
+      when 599
         raise APIException.new(
           'Unexpected error. Please contact Bandwidth Support if your' \
           ' requests are receiving this status code for an' \

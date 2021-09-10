@@ -6,6 +6,9 @@
 module Bandwidth
   # BandwidthMessagesList Model.
   class BandwidthMessagesList < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # Total number of messages matched by the search
     # @return [Integer]
     attr_accessor :total_count
@@ -27,12 +30,26 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        total_count
+        page_info
+        messages
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(total_count = nil,
                    page_info = nil,
                    messages = nil)
-      @total_count = total_count
-      @page_info = page_info
-      @messages = messages
+      @total_count = total_count unless total_count == SKIP
+      @page_info = page_info unless page_info == SKIP
+      @messages = messages unless messages == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -40,7 +57,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      total_count = hash['totalCount']
+      total_count = hash.key?('totalCount') ? hash['totalCount'] : SKIP
       page_info = PageInfo.from_hash(hash['pageInfo']) if hash['pageInfo']
       # Parameter is an array, so we need to iterate through it
       messages = nil
@@ -50,6 +67,8 @@ module Bandwidth
           messages << (BandwidthMessageItem.from_hash(structure) if structure)
         end
       end
+
+      messages = SKIP unless hash.key?('messages')
 
       # Create object from extracted values.
       BandwidthMessagesList.new(total_count,

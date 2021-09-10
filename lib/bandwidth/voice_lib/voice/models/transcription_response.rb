@@ -6,6 +6,9 @@
 module Bandwidth
   # TranscriptionResponse Model.
   class TranscriptionResponse < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [List of Transcript]
     attr_accessor :transcripts
@@ -17,8 +20,20 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        transcripts
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(transcripts = nil)
-      @transcripts = transcripts
+      @transcripts = transcripts unless transcripts == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -34,6 +49,8 @@ module Bandwidth
           transcripts << (Transcript.from_hash(structure) if structure)
         end
       end
+
+      transcripts = SKIP unless hash.key?('transcripts')
 
       # Create object from extracted values.
       TranscriptionResponse.new(transcripts)

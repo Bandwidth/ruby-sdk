@@ -6,6 +6,9 @@
 module Bandwidth
   # ErrorWithRequest class.
   class ErrorWithRequestException < APIException
+    SKIP = Object.new
+    private_constant :SKIP
+
     # An error message pertaining to what the issue could be
     # @return [String]
     attr_accessor :error
@@ -27,8 +30,8 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @error = hash['error']
-      @request_id = hash['requestId']
+      @error = hash.key?('error') ? hash['error'] : SKIP
+      @request_id = hash.key?('requestId') ? hash['requestId'] : SKIP
     end
   end
 end

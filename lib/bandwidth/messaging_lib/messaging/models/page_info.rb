@@ -6,6 +6,9 @@
 module Bandwidth
   # PageInfo Model.
   class PageInfo < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The link to the previous page for pagination
     # @return [String]
     attr_accessor :prev_page
@@ -32,14 +35,29 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        prev_page
+        next_page
+        prev_page_token
+        next_page_token
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(prev_page = nil,
                    next_page = nil,
                    prev_page_token = nil,
                    next_page_token = nil)
-      @prev_page = prev_page
-      @next_page = next_page
-      @prev_page_token = prev_page_token
-      @next_page_token = next_page_token
+      @prev_page = prev_page unless prev_page == SKIP
+      @next_page = next_page unless next_page == SKIP
+      @prev_page_token = prev_page_token unless prev_page_token == SKIP
+      @next_page_token = next_page_token unless next_page_token == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -47,10 +65,12 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      prev_page = hash['prevPage']
-      next_page = hash['nextPage']
-      prev_page_token = hash['prevPageToken']
-      next_page_token = hash['nextPageToken']
+      prev_page = hash.key?('prevPage') ? hash['prevPage'] : SKIP
+      next_page = hash.key?('nextPage') ? hash['nextPage'] : SKIP
+      prev_page_token =
+        hash.key?('prevPageToken') ? hash['prevPageToken'] : SKIP
+      next_page_token =
+        hash.key?('nextPageToken') ? hash['nextPageToken'] : SKIP
 
       # Create object from extracted values.
       PageInfo.new(prev_page,
