@@ -464,9 +464,9 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_mfa_messaging
         body = TwoFactorCodeRequestSchema.new
-        body.from = PHONE_NUMBER_MFA
+        body.from = BW_NUMBER
         body.to = USER_NUMBER
-        body.application_id = MFA_BW_MESSAGING_APPLICATION_ID
+        body.application_id = BW_MESSAGING_APPLICATION_ID
         body.scope = "scope"
         body.digits = 6
         body.message = "Your temporary {NAME} {SCOPE} code is {CODE}"
@@ -477,9 +477,9 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_mfa_voice
         body = TwoFactorCodeRequestSchema.new
-        body.from = PHONE_NUMBER_MFA
+        body.from = BW_NUMBER
         body.to = USER_NUMBER
-        body.application_id = MFA_BW_VOICE_APPLICATION_ID
+        body.application_id = BW_VOICE_APPLICATION_ID
         body.scope = "scope"
         body.digits = 6
         body.message = "Your temporary {NAME} {SCOPE} code is {CODE}"
@@ -491,7 +491,7 @@ class IntegrationTest < Test::Unit::TestCase
     def test_mfa_verify
         body = TwoFactorVerifyRequestSchema.new
         body.to = USER_NUMBER
-        body.application_id = MFA_BW_VOICE_APPLICATION_ID
+        body.application_id = BW_VOICE_APPLICATION_ID
         body.scope = "scope"
         body.code = "123456"
         body.expiration_time_in_minutes = 3
