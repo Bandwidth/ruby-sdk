@@ -144,7 +144,7 @@ class IntegrationTest < Test::Unit::TestCase
 
         response = Bandwidth::Voice::Response.new()
         response.push(gather)
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather gatherUrl="https://test.com" gatherMethod="POST" terminatingDigits="#" tag="tag" maxDigits="3" interDigitTimeout="5" BW_USERNAME="user" BW_PASSWORD="pass" firstDigitTimeout="10" repeatCount="1" gatherFallbackUrl="https://test.com" gatherFallbackMethod="GET" fallbackBW_USERNAME="fuser" fallbackBW_PASSWORD="fpass"></Gather></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather gatherUrl="https://test.com" gatherMethod="POST" terminatingDigits="#" tag="tag" maxDigits="3" interDigitTimeout="5" BW_USERNAME="user" BW_PASSWORD="pass" firstDigitTimeout="10" repeatCount="1" gatherFallbackUrl="https://test.com" gatherFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"></Gather></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
@@ -238,7 +238,7 @@ class IntegrationTest < Test::Unit::TestCase
 
         response = Bandwidth::Voice::Response.new()
         response.push(play_audio)
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><PlayAudio BW_USERNAME="user" BW_PASSWORD="pass">https://test.com</PlayAudio></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><PlayAudio username="user" password="pass">https://test.com</PlayAudio></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
