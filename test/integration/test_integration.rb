@@ -138,8 +138,8 @@ class IntegrationTest < Test::Unit::TestCase
             :repeat_count => 1,
             :gather_fallback_url => "https://test.com",
             :gather_fallback_method => "GET",
-            :fallback_BW_USERNAME => "fuser",
-            :fallback_BW_PASSWORD => "fpass"
+            :fallback_username => "fuser",
+            :fallback_password => "fpass"
         })
 
         response = Bandwidth::Voice::Response.new()
