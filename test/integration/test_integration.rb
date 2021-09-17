@@ -109,11 +109,11 @@ class IntegrationTest < Test::Unit::TestCase
         body.application_id = BW_VOICE_APPLICATION_ID
         body.answer_url = BASE_CALLBACK_URL
         body.machine_detection = machine_detection
-        response = @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, body)
+        response = @bandwidth_client.voice_client.client.create_call(BW_ACCOUNT_ID, body)
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
-        response = @bandwidth_client.voice_client.client.get_call(ACCOUNT_ID, response.data.call_id)
+        response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
     end
 
