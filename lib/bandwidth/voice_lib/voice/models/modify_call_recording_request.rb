@@ -6,6 +6,9 @@
 module Bandwidth
   # ModifyCallRecordingRequest Model.
   class ModifyCallRecordingRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [State1Enum]
     attr_accessor :state
@@ -17,8 +20,18 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      []
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(state = nil)
-      @state = state
+      @state = state unless state == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -26,7 +39,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      state = hash['state']
+      state = hash.key?('state') ? hash['state'] : SKIP
 
       # Create object from extracted values.
       ModifyCallRecordingRequest.new(state)

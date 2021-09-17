@@ -6,6 +6,9 @@
 module Bandwidth
   # Media Model.
   class Media < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :content
@@ -27,12 +30,26 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        content
+        content_length
+        media_name
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(content = nil,
                    content_length = nil,
                    media_name = nil)
-      @content = content
-      @content_length = content_length
-      @media_name = media_name
+      @content = content unless content == SKIP
+      @content_length = content_length unless content_length == SKIP
+      @media_name = media_name unless media_name == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -40,9 +57,9 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      content = hash['content']
-      content_length = hash['contentLength']
-      media_name = hash['mediaName']
+      content = hash.key?('content') ? hash['content'] : SKIP
+      content_length = hash.key?('contentLength') ? hash['contentLength'] : SKIP
+      media_name = hash.key?('mediaName') ? hash['mediaName'] : SKIP
 
       # Create object from extracted values.
       Media.new(content,

@@ -6,6 +6,9 @@
 module Bandwidth
   # TwoFactorVerifyCodeResponse Model.
   class TwoFactorVerifyCodeResponse < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [Boolean]
     attr_accessor :valid
@@ -17,8 +20,20 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        valid
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(valid = nil)
-      @valid = valid
+      @valid = valid unless valid == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -26,7 +41,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      valid = hash['valid']
+      valid = hash.key?('valid') ? hash['valid'] : SKIP
 
       # Create object from extracted values.
       TwoFactorVerifyCodeResponse.new(valid)

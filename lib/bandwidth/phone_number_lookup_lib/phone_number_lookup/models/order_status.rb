@@ -10,6 +10,9 @@ module Bandwidth
   # will be available for it.  Any other Response Code will indicate no
   # information was available for the TN.
   class OrderStatus < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The requestId.
     # @return [String]
     attr_accessor :request_id
@@ -37,14 +40,29 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        request_id
+        status
+        failed_telephone_numbers
+        result
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(request_id = nil,
                    status = nil,
                    failed_telephone_numbers = nil,
                    result = nil)
-      @request_id = request_id
-      @status = status
-      @failed_telephone_numbers = failed_telephone_numbers
-      @result = result
+      @request_id = request_id unless request_id == SKIP
+      @status = status unless status == SKIP
+      @failed_telephone_numbers = failed_telephone_numbers unless failed_telephone_numbers == SKIP
+      @result = result unless result == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -52,9 +70,10 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      request_id = hash['requestId']
-      status = hash['status']
-      failed_telephone_numbers = hash['failedTelephoneNumbers']
+      request_id = hash.key?('requestId') ? hash['requestId'] : SKIP
+      status = hash.key?('status') ? hash['status'] : SKIP
+      failed_telephone_numbers =
+        hash.key?('failedTelephoneNumbers') ? hash['failedTelephoneNumbers'] : SKIP
       # Parameter is an array, so we need to iterate through it
       result = nil
       unless hash['result'].nil?
@@ -63,6 +82,8 @@ module Bandwidth
           result << (Result.from_hash(structure) if structure)
         end
       end
+
+      result = SKIP unless hash.key?('result')
 
       # Create object from extracted values.
       OrderStatus.new(request_id,

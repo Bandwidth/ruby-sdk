@@ -6,6 +6,9 @@
 module Bandwidth
   # DeferredResult Model.
   class DeferredResult < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [Object]
     attr_accessor :result
@@ -22,10 +25,23 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        result
+        set_or_expired
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(result = nil,
                    set_or_expired = nil)
-      @result = result
-      @set_or_expired = set_or_expired
+      @result = result unless result == SKIP
+      @set_or_expired = set_or_expired unless set_or_expired == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -33,8 +49,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      result = hash['result']
-      set_or_expired = hash['setOrExpired']
+      result = hash.key?('result') ? hash['result'] : SKIP
+      set_or_expired = hash.key?('setOrExpired') ? hash['setOrExpired'] : SKIP
 
       # Create object from extracted values.
       DeferredResult.new(result,

@@ -6,6 +6,9 @@
 module Bandwidth
   # Create TN Lookup Request
   class OrderRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [List of String]
     attr_accessor :tns
@@ -17,8 +20,20 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        tns
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(tns = nil)
-      @tns = tns
+      @tns = tns unless tns == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -26,7 +41,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      tns = hash['tns']
+      tns = hash.key?('tns') ? hash['tns'] : SKIP
 
       # Create object from extracted values.
       OrderRequest.new(tns)

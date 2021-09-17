@@ -6,6 +6,9 @@
 module Bandwidth
   # Subscriptions Model.
   class Subscriptions < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # Session the subscriptions are associated with
     # If this is the only field, the subscriber will be subscribed to all
     # participants in the session (including any participants that are later
@@ -25,10 +28,22 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        participants
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(session_id = nil,
                    participants = nil)
-      @session_id = session_id
-      @participants = participants
+      @session_id = session_id unless session_id == SKIP
+      @participants = participants unless participants == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -36,7 +51,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      session_id = hash['sessionId']
+      session_id = hash.key?('sessionId') ? hash['sessionId'] : SKIP
       # Parameter is an array, so we need to iterate through it
       participants = nil
       unless hash['participants'].nil?
@@ -45,6 +60,8 @@ module Bandwidth
           participants << (ParticipantSubscription.from_hash(structure) if structure)
         end
       end
+
+      participants = SKIP unless hash.key?('participants')
 
       # Create object from extracted values.
       Subscriptions.new(session_id,

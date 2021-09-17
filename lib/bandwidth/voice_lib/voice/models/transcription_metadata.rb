@@ -6,6 +6,9 @@
 module Bandwidth
   # TranscriptionMetadata Model.
   class TranscriptionMetadata < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :id
@@ -41,14 +44,29 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        id
+        status
+        completed_time
+        url
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(id = nil,
                    status = nil,
                    completed_time = nil,
                    url = nil)
-      @id = id
-      @status = status
-      @completed_time = completed_time
-      @url = url
+      @id = id unless id == SKIP
+      @status = status unless status == SKIP
+      @completed_time = completed_time unless completed_time == SKIP
+      @url = url unless url == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -56,10 +74,10 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
-      status = hash['status']
-      completed_time = hash['completedTime']
-      url = hash['url']
+      id = hash.key?('id') ? hash['id'] : SKIP
+      status = hash.key?('status') ? hash['status'] : SKIP
+      completed_time = hash.key?('completedTime') ? hash['completedTime'] : SKIP
+      url = hash.key?('url') ? hash['url'] : SKIP
 
       # Create object from extracted values.
       TranscriptionMetadata.new(id,

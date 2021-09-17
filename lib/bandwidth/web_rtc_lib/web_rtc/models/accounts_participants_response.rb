@@ -6,6 +6,9 @@
 module Bandwidth
   # AccountsParticipantsResponse Model.
   class AccountsParticipantsResponse < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # A participant object
     # @return [Participant]
     attr_accessor :participant
@@ -24,10 +27,23 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        participant
+        token
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(participant = nil,
                    token = nil)
-      @participant = participant
-      @token = token
+      @participant = participant unless participant == SKIP
+      @token = token unless token == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -35,9 +51,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      participant = Participant.from_hash(hash['participant']) if
-        hash['participant']
-      token = hash['token']
+      participant = Participant.from_hash(hash['participant']) if hash['participant']
+      token = hash.key?('token') ? hash['token'] : SKIP
 
       # Create object from extracted values.
       AccountsParticipantsResponse.new(participant,

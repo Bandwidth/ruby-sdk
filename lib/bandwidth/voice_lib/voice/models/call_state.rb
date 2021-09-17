@@ -7,6 +7,9 @@ require 'date'
 module Bandwidth
   # CallState Model.
   class CallState < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :call_id
@@ -51,7 +54,7 @@ module Bandwidth
     # 'answered' and 'disconnected'. Additional states may be added in the
     # future, so your application must be tolerant of unknown values.
     # @return [Hash]
-    attr_accessor :pai
+    attr_accessor :stir_shaken
 
     # The current state of the call. Current possible values are 'initiated',
     # 'answered' and 'disconnected'. Additional states may be added in the
@@ -119,7 +122,7 @@ module Bandwidth
       @_hash['direction'] = 'direction'
       @_hash['state'] = 'state'
       @_hash['identity'] = 'identity'
-      @_hash['pai'] = 'pai'
+      @_hash['stir_shaken'] = 'stirShaken'
       @_hash['start_time'] = 'startTime'
       @_hash['answer_time'] = 'answerTime'
       @_hash['end_time'] = 'endTime'
@@ -128,6 +131,42 @@ module Bandwidth
       @_hash['error_id'] = 'errorId'
       @_hash['last_update'] = 'lastUpdate'
       @_hash
+    end
+
+    # An array for optional fields
+    def optionals
+      %w[
+        call_id
+        parent_call_id
+        application_id
+        account_id
+        to
+        from
+        direction
+        state
+        identity
+        stir_shaken
+        start_time
+        answer_time
+        end_time
+        disconnect_cause
+        error_message
+        error_id
+        last_update
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        parent_call_id
+        identity
+        answer_time
+        end_time
+        disconnect_cause
+        error_message
+        error_id
+      ]
     end
 
     def initialize(call_id = nil,
@@ -139,7 +178,7 @@ module Bandwidth
                    direction = nil,
                    state = nil,
                    identity = nil,
-                   pai = nil,
+                   stir_shaken = nil,
                    start_time = nil,
                    answer_time = nil,
                    end_time = nil,
@@ -147,23 +186,23 @@ module Bandwidth
                    error_message = nil,
                    error_id = nil,
                    last_update = nil)
-      @call_id = call_id
-      @parent_call_id = parent_call_id
-      @application_id = application_id
-      @account_id = account_id
-      @to = to
-      @from = from
-      @direction = direction
-      @state = state
-      @identity = identity
-      @pai = pai
-      @start_time = start_time
-      @answer_time = answer_time
-      @end_time = end_time
-      @disconnect_cause = disconnect_cause
-      @error_message = error_message
-      @error_id = error_id
-      @last_update = last_update
+      @call_id = call_id unless call_id == SKIP
+      @parent_call_id = parent_call_id unless parent_call_id == SKIP
+      @application_id = application_id unless application_id == SKIP
+      @account_id = account_id unless account_id == SKIP
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @direction = direction unless direction == SKIP
+      @state = state unless state == SKIP
+      @identity = identity unless identity == SKIP
+      @stir_shaken = stir_shaken unless stir_shaken == SKIP
+      @start_time = start_time unless start_time == SKIP
+      @answer_time = answer_time unless answer_time == SKIP
+      @end_time = end_time unless end_time == SKIP
+      @disconnect_cause = disconnect_cause unless disconnect_cause == SKIP
+      @error_message = error_message unless error_message == SKIP
+      @error_id = error_id unless error_id == SKIP
+      @last_update = last_update unless last_update == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -171,27 +210,40 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      call_id = hash['callId']
-      parent_call_id = hash['parentCallId']
-      application_id = hash['applicationId']
-      account_id = hash['accountId']
-      to = hash['to']
-      from = hash['from']
-      direction = hash['direction']
-      state = hash['state']
-      identity = hash['identity']
-      pai = hash['pai']
-      start_time = DateTimeHelper.from_rfc3339(hash['startTime']) if
-        hash['startTime']
-      answer_time = DateTimeHelper.from_rfc3339(hash['answerTime']) if
-        hash['answerTime']
-      end_time = DateTimeHelper.from_rfc3339(hash['endTime']) if
-        hash['endTime']
-      disconnect_cause = hash['disconnectCause']
-      error_message = hash['errorMessage']
-      error_id = hash['errorId']
-      last_update = DateTimeHelper.from_rfc3339(hash['lastUpdate']) if
-        hash['lastUpdate']
+      call_id = hash.key?('callId') ? hash['callId'] : SKIP
+      parent_call_id = hash.key?('parentCallId') ? hash['parentCallId'] : SKIP
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      account_id = hash.key?('accountId') ? hash['accountId'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      direction = hash.key?('direction') ? hash['direction'] : SKIP
+      state = hash.key?('state') ? hash['state'] : SKIP
+      identity = hash.key?('identity') ? hash['identity'] : SKIP
+      stir_shaken = hash.key?('stirShaken') ? hash['stirShaken'] : SKIP
+      start_time = if hash.key?('startTime')
+                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+                   else
+                     SKIP
+                   end
+      answer_time = if hash.key?('answerTime')
+                      (DateTimeHelper.from_rfc3339(hash['answerTime']) if hash['answerTime'])
+                    else
+                      SKIP
+                    end
+      end_time = if hash.key?('endTime')
+                   (DateTimeHelper.from_rfc3339(hash['endTime']) if hash['endTime'])
+                 else
+                   SKIP
+                 end
+      disconnect_cause =
+        hash.key?('disconnectCause') ? hash['disconnectCause'] : SKIP
+      error_message = hash.key?('errorMessage') ? hash['errorMessage'] : SKIP
+      error_id = hash.key?('errorId') ? hash['errorId'] : SKIP
+      last_update = if hash.key?('lastUpdate')
+                      (DateTimeHelper.from_rfc3339(hash['lastUpdate']) if hash['lastUpdate'])
+                    else
+                      SKIP
+                    end
 
       # Create object from extracted values.
       CallState.new(call_id,
@@ -203,7 +255,7 @@ module Bandwidth
                     direction,
                     state,
                     identity,
-                    pai,
+                    stir_shaken,
                     start_time,
                     answer_time,
                     end_time,

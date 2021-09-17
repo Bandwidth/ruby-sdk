@@ -28,25 +28,13 @@ module Bandwidth
   # are configured in this class.
   class Configuration
     # The attribute readers for properties.
-    attr_reader :http_client
-    attr_reader :timeout
-    attr_reader :max_retries
-    attr_reader :retry_interval
-    attr_reader :backoff_factor
-    attr_reader :retry_statuses
-    attr_reader :retry_methods
-    attr_reader :environment
-    attr_reader :base_url
-    attr_reader :messaging_basic_auth_user_name
-    attr_reader :messaging_basic_auth_password
-    attr_reader :multi_factor_auth_basic_auth_user_name
-    attr_reader :multi_factor_auth_basic_auth_password
-    attr_reader :phone_number_lookup_basic_auth_user_name
-    attr_reader :phone_number_lookup_basic_auth_password
-    attr_reader :voice_basic_auth_user_name
-    attr_reader :voice_basic_auth_password
-    attr_reader :web_rtc_basic_auth_user_name
-    attr_reader :web_rtc_basic_auth_password
+    attr_reader :http_client, :timeout, :max_retries, :retry_interval, :backoff_factor,
+                :retry_statuses, :retry_methods, :environment, :base_url,
+                :messaging_basic_auth_user_name, :messaging_basic_auth_password,
+                :multi_factor_auth_basic_auth_user_name, :multi_factor_auth_basic_auth_password,
+                :phone_number_lookup_basic_auth_user_name, :phone_number_lookup_basic_auth_password,
+                :voice_basic_auth_user_name, :voice_basic_auth_password,
+                :web_rtc_basic_auth_user_name, :web_rtc_basic_auth_password
 
     class << self
       attr_reader :environments

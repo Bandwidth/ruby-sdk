@@ -6,6 +6,9 @@
 module Bandwidth
   # Tag Model.
   class Tag < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :key
@@ -22,10 +25,23 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        key
+        value
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(key = nil,
                    value = nil)
-      @key = key
-      @value = value
+      @key = key unless key == SKIP
+      @value = value unless value == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -33,8 +49,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      key = hash['key']
-      value = hash['value']
+      key = hash.key?('key') ? hash['key'] : SKIP
+      value = hash.key?('value') ? hash['value'] : SKIP
 
       # Create object from extracted values.
       Tag.new(key,

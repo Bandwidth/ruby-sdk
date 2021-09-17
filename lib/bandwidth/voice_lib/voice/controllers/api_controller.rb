@@ -11,7 +11,7 @@ module Voice
       super(config, http_call_back: http_call_back)
     end
 
-    # Creates an outbound call.
+    # Creates an outbound phone call.
     # @param [String] account_id Required parameter: Example:
     # @param [CreateCallRequest] body Required parameter: Example:
     # @return [CreateCallResponse] response from the API call
@@ -42,41 +42,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -121,41 +122,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -203,41 +205,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -282,41 +285,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -329,7 +333,7 @@ module Voice
     end
 
     # Returns a (potentially empty) list of metadata for the recordings that
-    # took place during the specified call
+    # took place during the specified call.
     # @param [String] account_id Required parameter: Example:
     # @param [String] call_id Required parameter: Example:
     # @return [List of CallRecordingMetadata] response from the API call
@@ -359,41 +363,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -442,41 +447,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -518,41 +524,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -597,41 +604,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -675,41 +683,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -754,41 +763,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -839,47 +849,48 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 410
+      when 410
         raise ApiErrorException.new(
           'The media for this recording has been deleted, so we can\'t' \
           ' transcribe it',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -918,41 +929,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1009,41 +1021,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1089,41 +1102,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1171,41 +1185,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1253,41 +1268,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1332,41 +1348,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1412,41 +1429,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1495,41 +1513,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1577,41 +1596,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response
@@ -1673,41 +1693,42 @@ module Voice
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ApiErrorException.new(
           'Something\'s not quite right... Your request is invalid. Please' \
           ' fix it before trying again.',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Your credentials are invalid. Please use your Bandwidth dashboard' \
           ' credentials to authenticate to the API.',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ApiErrorException.new(
           'User unauthorized to perform this action.',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise ApiErrorException.new(
           'The resource specified cannot be found or does not belong to you.',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
           ' please send it to us as `application/json`.',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ApiErrorException.new(
           'You\'re sending requests to this endpoint too frequently. Please' \
           ' slow your request rate down and try again.',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ApiErrorException.new(
           'Something unexpected happened. Please try again.',
           _response

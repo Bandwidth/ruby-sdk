@@ -6,6 +6,9 @@
 module Bandwidth
   # Result Model.
   class Result < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # Our vendor's response code.
     # @return [Integer]
     attr_accessor :response_code
@@ -57,6 +60,26 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        response_code
+        message
+        e_164_format
+        formatted
+        country
+        line_type
+        line_provider
+        mobile_country_code
+        mobile_network_code
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(response_code = nil,
                    message = nil,
                    e_164_format = nil,
@@ -66,15 +89,15 @@ module Bandwidth
                    line_provider = nil,
                    mobile_country_code = nil,
                    mobile_network_code = nil)
-      @response_code = response_code
-      @message = message
-      @e_164_format = e_164_format
-      @formatted = formatted
-      @country = country
-      @line_type = line_type
-      @line_provider = line_provider
-      @mobile_country_code = mobile_country_code
-      @mobile_network_code = mobile_network_code
+      @response_code = response_code unless response_code == SKIP
+      @message = message unless message == SKIP
+      @e_164_format = e_164_format unless e_164_format == SKIP
+      @formatted = formatted unless formatted == SKIP
+      @country = country unless country == SKIP
+      @line_type = line_type unless line_type == SKIP
+      @line_provider = line_provider unless line_provider == SKIP
+      @mobile_country_code = mobile_country_code unless mobile_country_code == SKIP
+      @mobile_network_code = mobile_network_code unless mobile_network_code == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -82,15 +105,17 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      response_code = hash['Response Code']
-      message = hash['Message']
-      e_164_format = hash['E.164 Format']
-      formatted = hash['Formatted']
-      country = hash['Country']
-      line_type = hash['Line Type']
-      line_provider = hash['Line Provider']
-      mobile_country_code = hash['Mobile Country Code']
-      mobile_network_code = hash['Mobile Network Code']
+      response_code = hash.key?('Response Code') ? hash['Response Code'] : SKIP
+      message = hash.key?('Message') ? hash['Message'] : SKIP
+      e_164_format = hash.key?('E.164 Format') ? hash['E.164 Format'] : SKIP
+      formatted = hash.key?('Formatted') ? hash['Formatted'] : SKIP
+      country = hash.key?('Country') ? hash['Country'] : SKIP
+      line_type = hash.key?('Line Type') ? hash['Line Type'] : SKIP
+      line_provider = hash.key?('Line Provider') ? hash['Line Provider'] : SKIP
+      mobile_country_code =
+        hash.key?('Mobile Country Code') ? hash['Mobile Country Code'] : SKIP
+      mobile_network_code =
+        hash.key?('Mobile Network Code') ? hash['Mobile Network Code'] : SKIP
 
       # Create object from extracted values.
       Result.new(response_code,

@@ -7,6 +7,9 @@ require 'date'
 module Bandwidth
   # CreateCallResponse Model.
   class CreateCallResponse < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :account_id
@@ -113,6 +116,38 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        start_time
+        call_timeout
+        callback_timeout
+        answer_fallback_url
+        answer_fallback_method
+        disconnect_url
+        username
+        password
+        fallback_username
+        fallback_password
+        tag
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        answer_fallback_url
+        answer_fallback_method
+        disconnect_url
+        disconnect_method
+        username
+        password
+        fallback_username
+        fallback_password
+        tag
+      ]
+    end
+
     def initialize(account_id = nil,
                    call_id = nil,
                    application_id = nil,
@@ -133,26 +168,26 @@ module Bandwidth
                    fallback_username = nil,
                    fallback_password = nil,
                    tag = nil)
-      @account_id = account_id
-      @call_id = call_id
-      @application_id = application_id
-      @to = to
-      @from = from
-      @start_time = start_time
-      @call_url = call_url
-      @call_timeout = call_timeout
-      @callback_timeout = callback_timeout
-      @answer_url = answer_url
-      @answer_method = answer_method
-      @answer_fallback_url = answer_fallback_url
-      @answer_fallback_method = answer_fallback_method
-      @disconnect_url = disconnect_url
-      @disconnect_method = disconnect_method
-      @username = username
-      @password = password
-      @fallback_username = fallback_username
-      @fallback_password = fallback_password
-      @tag = tag
+      @account_id = account_id unless account_id == SKIP
+      @call_id = call_id unless call_id == SKIP
+      @application_id = application_id unless application_id == SKIP
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @start_time = start_time unless start_time == SKIP
+      @call_url = call_url unless call_url == SKIP
+      @call_timeout = call_timeout unless call_timeout == SKIP
+      @callback_timeout = callback_timeout unless callback_timeout == SKIP
+      @answer_url = answer_url unless answer_url == SKIP
+      @answer_method = answer_method unless answer_method == SKIP
+      @answer_fallback_url = answer_fallback_url unless answer_fallback_url == SKIP
+      @answer_fallback_method = answer_fallback_method unless answer_fallback_method == SKIP
+      @disconnect_url = disconnect_url unless disconnect_url == SKIP
+      @disconnect_method = disconnect_method unless disconnect_method == SKIP
+      @username = username unless username == SKIP
+      @password = password unless password == SKIP
+      @fallback_username = fallback_username unless fallback_username == SKIP
+      @fallback_password = fallback_password unless fallback_password == SKIP
+      @tag = tag unless tag == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -160,27 +195,36 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      account_id = hash['accountId']
-      call_id = hash['callId']
-      application_id = hash['applicationId']
-      to = hash['to']
-      from = hash['from']
-      call_url = hash['callUrl']
-      answer_url = hash['answerUrl']
-      answer_method = hash['answerMethod']
-      disconnect_method = hash['disconnectMethod']
-      start_time = DateTimeHelper.from_rfc3339(hash['startTime']) if
-        hash['startTime']
-      call_timeout = hash['callTimeout']
-      callback_timeout = hash['callbackTimeout']
-      answer_fallback_url = hash['answerFallbackUrl']
-      answer_fallback_method = hash['answerFallbackMethod']
-      disconnect_url = hash['disconnectUrl']
-      username = hash['username']
-      password = hash['password']
-      fallback_username = hash['fallbackUsername']
-      fallback_password = hash['fallbackPassword']
-      tag = hash['tag']
+      account_id = hash.key?('accountId') ? hash['accountId'] : SKIP
+      call_id = hash.key?('callId') ? hash['callId'] : SKIP
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      call_url = hash.key?('callUrl') ? hash['callUrl'] : SKIP
+      answer_url = hash.key?('answerUrl') ? hash['answerUrl'] : SKIP
+      answer_method = hash.key?('answerMethod') ? hash['answerMethod'] : SKIP
+      disconnect_method =
+        hash.key?('disconnectMethod') ? hash['disconnectMethod'] : SKIP
+      start_time = if hash.key?('startTime')
+                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+                   else
+                     SKIP
+                   end
+      call_timeout = hash.key?('callTimeout') ? hash['callTimeout'] : SKIP
+      callback_timeout =
+        hash.key?('callbackTimeout') ? hash['callbackTimeout'] : SKIP
+      answer_fallback_url =
+        hash.key?('answerFallbackUrl') ? hash['answerFallbackUrl'] : SKIP
+      answer_fallback_method =
+        hash.key?('answerFallbackMethod') ? hash['answerFallbackMethod'] : SKIP
+      disconnect_url = hash.key?('disconnectUrl') ? hash['disconnectUrl'] : SKIP
+      username = hash.key?('username') ? hash['username'] : SKIP
+      password = hash.key?('password') ? hash['password'] : SKIP
+      fallback_username =
+        hash.key?('fallbackUsername') ? hash['fallbackUsername'] : SKIP
+      fallback_password =
+        hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
 
       # Create object from extracted values.
       CreateCallResponse.new(account_id,

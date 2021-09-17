@@ -6,6 +6,9 @@
 module Bandwidth
   # ParticipantSubscription Model.
   class ParticipantSubscription < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # Participant the subscriber should be subscribed to
     # @return [String]
     attr_accessor :participant_id
@@ -17,8 +20,18 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      []
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(participant_id = nil)
-      @participant_id = participant_id
+      @participant_id = participant_id unless participant_id == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -26,7 +39,7 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      participant_id = hash['participantId']
+      participant_id = hash.key?('participantId') ? hash['participantId'] : SKIP
 
       # Create object from extracted values.
       ParticipantSubscription.new(participant_id)

@@ -6,6 +6,9 @@
 module Bandwidth
   # MessageRequest Model.
   class MessageRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The ID of the Application your from number is associated with in the
     # Bandwidth Phone Number Dashboard.
     # @return [String]
@@ -51,6 +54,21 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        text
+        media
+        tag
+        priority
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(application_id = nil,
                    to = nil,
                    from = nil,
@@ -58,13 +76,13 @@ module Bandwidth
                    media = nil,
                    tag = nil,
                    priority = nil)
-      @application_id = application_id
-      @to = to
-      @from = from
-      @text = text
-      @media = media
-      @tag = tag
-      @priority = priority
+      @application_id = application_id unless application_id == SKIP
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @text = text unless text == SKIP
+      @media = media unless media == SKIP
+      @tag = tag unless tag == SKIP
+      @priority = priority unless priority == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -72,13 +90,13 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      application_id = hash['applicationId']
-      to = hash['to']
-      from = hash['from']
-      text = hash['text']
-      media = hash['media']
-      tag = hash['tag']
-      priority = hash['priority']
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      text = hash.key?('text') ? hash['text'] : SKIP
+      media = hash.key?('media') ? hash['media'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
+      priority = hash.key?('priority') ? hash['priority'] : SKIP
 
       # Create object from extracted values.
       MessageRequest.new(application_id,

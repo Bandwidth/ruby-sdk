@@ -19,14 +19,12 @@ module Bandwidth
 
     def validate_parameters(args)
       args.each do |_name, value|
-        if value.nil?
-          raise ArgumentError, "Required parameter #{_name} cannot be nil."
-        end
+        raise ArgumentError, "Required parameter #{_name} cannot be nil." if value.nil?
       end
     end
 
     def execute_request(request, binary: false)
-      @http_call_back.on_before_request(request) if @http_call_back
+      @http_call_back&.on_before_request(request)
 
       APIHelper.clean_hash(request.headers)
       request.headers.merge!(@global_headers)
@@ -36,7 +34,7 @@ module Bandwidth
                  else
                    config.http_client.execute_as_string(request)
                  end
-      @http_call_back.on_after_response(response) if @http_call_back
+      @http_call_back&.on_after_response(response)
 
       response
     end

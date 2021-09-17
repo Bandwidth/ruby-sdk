@@ -6,6 +6,9 @@
 module Bandwidth
   # TranscribeRecordingRequest Model.
   class TranscribeRecordingRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :callback_url
@@ -42,18 +45,41 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        callback_url
+        callback_method
+        username
+        password
+        tag
+        callback_timeout
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        callback_method
+        username
+        password
+        tag
+        callback_timeout
+      ]
+    end
+
     def initialize(callback_url = nil,
                    callback_method = nil,
                    username = nil,
                    password = nil,
                    tag = nil,
                    callback_timeout = nil)
-      @callback_url = callback_url
-      @callback_method = callback_method
-      @username = username
-      @password = password
-      @tag = tag
-      @callback_timeout = callback_timeout
+      @callback_url = callback_url unless callback_url == SKIP
+      @callback_method = callback_method unless callback_method == SKIP
+      @username = username unless username == SKIP
+      @password = password unless password == SKIP
+      @tag = tag unless tag == SKIP
+      @callback_timeout = callback_timeout unless callback_timeout == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -61,12 +87,14 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      callback_url = hash['callbackUrl']
-      callback_method = hash['callbackMethod']
-      username = hash['username']
-      password = hash['password']
-      tag = hash['tag']
-      callback_timeout = hash['callbackTimeout']
+      callback_url = hash.key?('callbackUrl') ? hash['callbackUrl'] : SKIP
+      callback_method =
+        hash.key?('callbackMethod') ? hash['callbackMethod'] : SKIP
+      username = hash.key?('username') ? hash['username'] : SKIP
+      password = hash.key?('password') ? hash['password'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
+      callback_timeout =
+        hash.key?('callbackTimeout') ? hash['callbackTimeout'] : SKIP
 
       # Create object from extracted values.
       TranscribeRecordingRequest.new(callback_url,

@@ -6,6 +6,9 @@
 module Bandwidth
   # ModifyCallRequest Model.
   class ModifyCallRequest < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [StateEnum]
     attr_accessor :state
@@ -62,6 +65,38 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        state
+        redirect_url
+        redirect_fallback_url
+        redirect_method
+        redirect_fallback_method
+        username
+        password
+        fallback_username
+        fallback_password
+        tag
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        state
+        redirect_url
+        redirect_fallback_url
+        redirect_method
+        redirect_fallback_method
+        username
+        password
+        fallback_username
+        fallback_password
+        tag
+      ]
+    end
+
     def initialize(state = StateEnum::ACTIVE,
                    redirect_url = nil,
                    redirect_fallback_url = nil,
@@ -72,16 +107,16 @@ module Bandwidth
                    fallback_username = nil,
                    fallback_password = nil,
                    tag = nil)
-      @state = state
-      @redirect_url = redirect_url
-      @redirect_fallback_url = redirect_fallback_url
-      @redirect_method = redirect_method
-      @redirect_fallback_method = redirect_fallback_method
-      @username = username
-      @password = password
-      @fallback_username = fallback_username
-      @fallback_password = fallback_password
-      @tag = tag
+      @state = state unless state == SKIP
+      @redirect_url = redirect_url unless redirect_url == SKIP
+      @redirect_fallback_url = redirect_fallback_url unless redirect_fallback_url == SKIP
+      @redirect_method = redirect_method unless redirect_method == SKIP
+      @redirect_fallback_method = redirect_fallback_method unless redirect_fallback_method == SKIP
+      @username = username unless username == SKIP
+      @password = password unless password == SKIP
+      @fallback_username = fallback_username unless fallback_username == SKIP
+      @fallback_password = fallback_password unless fallback_password == SKIP
+      @tag = tag unless tag == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -90,15 +125,20 @@ module Bandwidth
 
       # Extract variables from the hash.
       state = hash['state'] ||= StateEnum::ACTIVE
-      redirect_url = hash['redirectUrl']
-      redirect_fallback_url = hash['redirectFallbackUrl']
-      redirect_method = hash['redirectMethod']
-      redirect_fallback_method = hash['redirectFallbackMethod']
-      username = hash['username']
-      password = hash['password']
-      fallback_username = hash['fallbackUsername']
-      fallback_password = hash['fallbackPassword']
-      tag = hash['tag']
+      redirect_url = hash.key?('redirectUrl') ? hash['redirectUrl'] : SKIP
+      redirect_fallback_url =
+        hash.key?('redirectFallbackUrl') ? hash['redirectFallbackUrl'] : SKIP
+      redirect_method =
+        hash.key?('redirectMethod') ? hash['redirectMethod'] : SKIP
+      redirect_fallback_method =
+        hash.key?('redirectFallbackMethod') ? hash['redirectFallbackMethod'] : SKIP
+      username = hash.key?('username') ? hash['username'] : SKIP
+      password = hash.key?('password') ? hash['password'] : SKIP
+      fallback_username =
+        hash.key?('fallbackUsername') ? hash['fallbackUsername'] : SKIP
+      fallback_password =
+        hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
 
       # Create object from extracted values.
       ModifyCallRequest.new(state,

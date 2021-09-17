@@ -7,6 +7,9 @@ require 'date'
 module Bandwidth
   # ConferenceRecordingMetadata Model.
   class ConferenceRecordingMetadata < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :account_id
@@ -74,6 +77,28 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        account_id
+        conference_id
+        name
+        recording_id
+        duration
+        channels
+        start_time
+        end_time
+        file_format
+        status
+        media_url
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(account_id = nil,
                    conference_id = nil,
                    name = nil,
@@ -85,17 +110,17 @@ module Bandwidth
                    file_format = nil,
                    status = nil,
                    media_url = nil)
-      @account_id = account_id
-      @conference_id = conference_id
-      @name = name
-      @recording_id = recording_id
-      @duration = duration
-      @channels = channels
-      @start_time = start_time
-      @end_time = end_time
-      @file_format = file_format
-      @status = status
-      @media_url = media_url
+      @account_id = account_id unless account_id == SKIP
+      @conference_id = conference_id unless conference_id == SKIP
+      @name = name unless name == SKIP
+      @recording_id = recording_id unless recording_id == SKIP
+      @duration = duration unless duration == SKIP
+      @channels = channels unless channels == SKIP
+      @start_time = start_time unless start_time == SKIP
+      @end_time = end_time unless end_time == SKIP
+      @file_format = file_format unless file_format == SKIP
+      @status = status unless status == SKIP
+      @media_url = media_url unless media_url == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -103,19 +128,25 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      account_id = hash['accountId']
-      conference_id = hash['conferenceId']
-      name = hash['name']
-      recording_id = hash['recordingId']
-      duration = hash['duration']
-      channels = hash['channels']
-      start_time = DateTimeHelper.from_rfc3339(hash['startTime']) if
-        hash['startTime']
-      end_time = DateTimeHelper.from_rfc3339(hash['endTime']) if
-        hash['endTime']
-      file_format = hash['fileFormat']
-      status = hash['status']
-      media_url = hash['mediaUrl']
+      account_id = hash.key?('accountId') ? hash['accountId'] : SKIP
+      conference_id = hash.key?('conferenceId') ? hash['conferenceId'] : SKIP
+      name = hash.key?('name') ? hash['name'] : SKIP
+      recording_id = hash.key?('recordingId') ? hash['recordingId'] : SKIP
+      duration = hash.key?('duration') ? hash['duration'] : SKIP
+      channels = hash.key?('channels') ? hash['channels'] : SKIP
+      start_time = if hash.key?('startTime')
+                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+                   else
+                     SKIP
+                   end
+      end_time = if hash.key?('endTime')
+                   (DateTimeHelper.from_rfc3339(hash['endTime']) if hash['endTime'])
+                 else
+                   SKIP
+                 end
+      file_format = hash.key?('fileFormat') ? hash['fileFormat'] : SKIP
+      status = hash.key?('status') ? hash['status'] : SKIP
+      media_url = hash.key?('mediaUrl') ? hash['mediaUrl'] : SKIP
 
       # Create object from extracted values.
       ConferenceRecordingMetadata.new(account_id,

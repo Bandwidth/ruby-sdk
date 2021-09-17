@@ -6,6 +6,9 @@
 module Bandwidth
   # BandwidthCallbackMessage Model.
   class BandwidthCallbackMessage < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :time
@@ -42,18 +45,35 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        time
+        type
+        to
+        error_code
+        description
+        message
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(time = nil,
                    type = nil,
                    to = nil,
                    error_code = nil,
                    description = nil,
                    message = nil)
-      @time = time
-      @type = type
-      @to = to
-      @error_code = error_code
-      @description = description
-      @message = message
+      @time = time unless time == SKIP
+      @type = type unless type == SKIP
+      @to = to unless to == SKIP
+      @error_code = error_code unless error_code == SKIP
+      @description = description unless description == SKIP
+      @message = message unless message == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -61,11 +81,11 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      time = hash['time']
-      type = hash['type']
-      to = hash['to']
-      error_code = hash['errorCode']
-      description = hash['description']
+      time = hash.key?('time') ? hash['time'] : SKIP
+      type = hash.key?('type') ? hash['type'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      error_code = hash.key?('errorCode') ? hash['errorCode'] : SKIP
+      description = hash.key?('description') ? hash['description'] : SKIP
       message = BandwidthMessage.from_hash(hash['message']) if hash['message']
 
       # Create object from extracted values.
