@@ -94,20 +94,20 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_create_call_with_amd_and_get_call_state
         machine_detection = MachineDetectionRequest.new
-        machine_detection.mode = ModeEnum.ASYNC
+        machine_detection.mode = 'async'
         machine_detection.detection_timeout = 5.0
         machine_detection.silence_timeout = 5.0
         machine_detection.speech_threshold = 5.0
         machine_detection.speech_end_threshold = 5.0
         machine_detection.delay_result = true
-        machine_detection.callback_url = CALLBACK_URL + '/machineDetection'
-        machine_detection.callback_method = CallbackMethodEnum.POST
+        machine_detection.callback_url = BASE_CALLBACK_URL + '/machineDetection'
+        machine_detection.callback_method = 'POST'
 
         body = CreateCallRequest.new
-        body.from = PHONE_NUMBER_OUTBOUND
-        body.to = PHONE_NUMBER_INBOUND
-        body.application_id = VOICE_APPLICATION_ID
-        body.answer_url = CALLBACK_URL
+        body.from = BW_NUMBER
+        body.to = USER_NUMBER
+        body.application_id = BW_VOICE_APPLICATION_ID
+        body.answer_url = BASE_CALLBACK_URL
         body.machine_deteciton = machine_detection
         response = @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, body)
         assert(response.data.call_id.length > 0, "call_id value not set")
