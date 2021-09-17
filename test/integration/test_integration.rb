@@ -92,6 +92,31 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.state.length > 0, "state value not set")
     end
 
+    def test_create_call_with_amd_and_get_call_state
+        machine_detection = MachineDetectionRequest.new
+        machine_detection.mode = ModeEnum.ASYNC
+        machine_detection.detection_timeout = 5.0
+        machine_detection.silence_timeout = 5.0
+        machine_detection.speech_threshold = 5.0
+        machine_detection.speech_end_threshold = 5.0
+        machine_detection.delay_result = true
+        machine_detection.callback_url = CALLBACK_URL + '/machineDetection'
+        machine_detection.callback_method = CallbackMethodEnum.POST
+
+        body = CreateCallRequest.new
+        body.from = PHONE_NUMBER_OUTBOUND
+        body.to = PHONE_NUMBER_INBOUND
+        body.application_id = VOICE_APPLICATION_ID
+        body.answer_url = CALLBACK_URL
+        body.machine_deteciton = machine_detection
+        response = @bandwidth_client.voice_client.client.create_call(ACCOUNT_ID, body)
+        assert(response.data.call_id.length > 0, "call_id value not set")
+
+        #Get phone call information
+        response = @bandwidth_client.voice_client.client.get_call(ACCOUNT_ID, response.data.call_id)
+        assert(response.data.state.length > 0, "state value not set")
+    end
+
     def test_create_call_invalid_phone_number
         body = CreateCallRequest.new
         body.from = BW_NUMBER
@@ -556,7 +581,7 @@ class IntegrationTest < Test::Unit::TestCase
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
-    
+
     def test_stop_gather
         stop_gather = Bandwidth::Voice::StopGather.new()
 
