@@ -7,6 +7,9 @@ require 'date'
 module Bandwidth
   # CallRecordingMetadata Model.
   class CallRecordingMetadata < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :application_id
@@ -112,6 +115,37 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        application_id
+        account_id
+        call_id
+        parent_call_id
+        recording_id
+        to
+        from
+        transfer_caller_id
+        transfer_to
+        duration
+        direction
+        channels
+        start_time
+        end_time
+        file_format
+        status
+        media_url
+        transcription
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        parent_call_id
+      ]
+    end
+
     def initialize(application_id = nil,
                    account_id = nil,
                    call_id = nil,
@@ -130,24 +164,24 @@ module Bandwidth
                    status = nil,
                    media_url = nil,
                    transcription = nil)
-      @application_id = application_id
-      @account_id = account_id
-      @call_id = call_id
-      @parent_call_id = parent_call_id
-      @recording_id = recording_id
-      @to = to
-      @from = from
-      @transfer_caller_id = transfer_caller_id
-      @transfer_to = transfer_to
-      @duration = duration
-      @direction = direction
-      @channels = channels
-      @start_time = start_time
-      @end_time = end_time
-      @file_format = file_format
-      @status = status
-      @media_url = media_url
-      @transcription = transcription
+      @application_id = application_id unless application_id == SKIP
+      @account_id = account_id unless account_id == SKIP
+      @call_id = call_id unless call_id == SKIP
+      @parent_call_id = parent_call_id unless parent_call_id == SKIP
+      @recording_id = recording_id unless recording_id == SKIP
+      @to = to unless to == SKIP
+      @from = from unless from == SKIP
+      @transfer_caller_id = transfer_caller_id unless transfer_caller_id == SKIP
+      @transfer_to = transfer_to unless transfer_to == SKIP
+      @duration = duration unless duration == SKIP
+      @direction = direction unless direction == SKIP
+      @channels = channels unless channels == SKIP
+      @start_time = start_time unless start_time == SKIP
+      @end_time = end_time unless end_time == SKIP
+      @file_format = file_format unless file_format == SKIP
+      @status = status unless status == SKIP
+      @media_url = media_url unless media_url == SKIP
+      @transcription = transcription unless transcription == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -155,25 +189,32 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      application_id = hash['applicationId']
-      account_id = hash['accountId']
-      call_id = hash['callId']
-      parent_call_id = hash['parentCallId']
-      recording_id = hash['recordingId']
-      to = hash['to']
-      from = hash['from']
-      transfer_caller_id = hash['transferCallerId']
-      transfer_to = hash['transferTo']
-      duration = hash['duration']
-      direction = hash['direction']
-      channels = hash['channels']
-      start_time = DateTimeHelper.from_rfc3339(hash['startTime']) if
-        hash['startTime']
-      end_time = DateTimeHelper.from_rfc3339(hash['endTime']) if
-        hash['endTime']
-      file_format = hash['fileFormat']
-      status = hash['status']
-      media_url = hash['mediaUrl']
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      account_id = hash.key?('accountId') ? hash['accountId'] : SKIP
+      call_id = hash.key?('callId') ? hash['callId'] : SKIP
+      parent_call_id = hash.key?('parentCallId') ? hash['parentCallId'] : SKIP
+      recording_id = hash.key?('recordingId') ? hash['recordingId'] : SKIP
+      to = hash.key?('to') ? hash['to'] : SKIP
+      from = hash.key?('from') ? hash['from'] : SKIP
+      transfer_caller_id =
+        hash.key?('transferCallerId') ? hash['transferCallerId'] : SKIP
+      transfer_to = hash.key?('transferTo') ? hash['transferTo'] : SKIP
+      duration = hash.key?('duration') ? hash['duration'] : SKIP
+      direction = hash.key?('direction') ? hash['direction'] : SKIP
+      channels = hash.key?('channels') ? hash['channels'] : SKIP
+      start_time = if hash.key?('startTime')
+                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+                   else
+                     SKIP
+                   end
+      end_time = if hash.key?('endTime')
+                   (DateTimeHelper.from_rfc3339(hash['endTime']) if hash['endTime'])
+                 else
+                   SKIP
+                 end
+      file_format = hash.key?('fileFormat') ? hash['fileFormat'] : SKIP
+      status = hash.key?('status') ? hash['status'] : SKIP
+      media_url = hash.key?('mediaUrl') ? hash['mediaUrl'] : SKIP
       transcription = TranscriptionMetadata.from_hash(hash['transcription']) if
         hash['transcription']
 

@@ -6,6 +6,9 @@
 module Bandwidth
   # TwoFactorVerifyRequestSchema Model.
   class TwoFactorVerifyRequestSchema < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The phone number to send the 2fa code to.
     # @return [String]
     attr_accessor :to
@@ -41,16 +44,31 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        scope
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(to = nil,
                    application_id = nil,
                    expiration_time_in_minutes = nil,
                    code = nil,
                    scope = nil)
-      @to = to
-      @application_id = application_id
-      @scope = scope
-      @expiration_time_in_minutes = expiration_time_in_minutes
-      @code = code
+      @to = to unless to == SKIP
+      @application_id = application_id unless application_id == SKIP
+      @scope = scope unless scope == SKIP
+      unless expiration_time_in_minutes == SKIP
+        @expiration_time_in_minutes =
+          expiration_time_in_minutes
+      end
+      @code = code unless code == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -58,11 +76,12 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      to = hash['to']
-      application_id = hash['applicationId']
-      expiration_time_in_minutes = hash['expirationTimeInMinutes']
-      code = hash['code']
-      scope = hash['scope']
+      to = hash.key?('to') ? hash['to'] : SKIP
+      application_id = hash.key?('applicationId') ? hash['applicationId'] : SKIP
+      expiration_time_in_minutes =
+        hash.key?('expirationTimeInMinutes') ? hash['expirationTimeInMinutes'] : SKIP
+      code = hash.key?('code') ? hash['code'] : SKIP
+      scope = hash.key?('scope') ? hash['scope'] : SKIP
 
       # Create object from extracted values.
       TwoFactorVerifyRequestSchema.new(to,

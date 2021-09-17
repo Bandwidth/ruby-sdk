@@ -14,6 +14,17 @@ module Bandwidth
         name = name[1..-1]
         key = self.class.names.key?(name) ? self.class.names[name] : name
 
+        optional_fields = optionals if respond_to? 'optionals'
+        nullable_fields = nullables if respond_to? 'nullables'
+        if value.nil?
+          next unless nullable_fields.include?(name)
+
+          if !optional_fields.include?(name) && !nullable_fields.include?(name)
+            raise ArgumentError,
+                  "`#{name}` cannot be nil in `#{self.class}`. Please specify a valid value."
+          end
+        end
+
         hash[key] = nil
         unless value.nil?
           if respond_to?("to_#{name}")

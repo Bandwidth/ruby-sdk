@@ -7,6 +7,9 @@ require 'date'
 module Bandwidth
   # ConferenceState Model.
   class ConferenceState < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :id
@@ -53,6 +56,30 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        id
+        name
+        created_time
+        completed_time
+        conference_event_url
+        conference_event_method
+        tag
+        active_members
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      %w[
+        completed_time
+        conference_event_url
+        conference_event_method
+        tag
+      ]
+    end
+
     def initialize(id = nil,
                    name = nil,
                    created_time = nil,
@@ -61,14 +88,14 @@ module Bandwidth
                    conference_event_method = nil,
                    tag = nil,
                    active_members = nil)
-      @id = id
-      @name = name
-      @created_time = created_time
-      @completed_time = completed_time
-      @conference_event_url = conference_event_url
-      @conference_event_method = conference_event_method
-      @tag = tag
-      @active_members = active_members
+      @id = id unless id == SKIP
+      @name = name unless name == SKIP
+      @created_time = created_time unless created_time == SKIP
+      @completed_time = completed_time unless completed_time == SKIP
+      @conference_event_url = conference_event_url unless conference_event_url == SKIP
+      @conference_event_method = conference_event_method unless conference_event_method == SKIP
+      @tag = tag unless tag == SKIP
+      @active_members = active_members unless active_members == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -76,15 +103,23 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
-      name = hash['name']
-      created_time = DateTimeHelper.from_rfc3339(hash['createdTime']) if
-        hash['createdTime']
-      completed_time = DateTimeHelper.from_rfc3339(hash['completedTime']) if
-        hash['completedTime']
-      conference_event_url = hash['conferenceEventUrl']
-      conference_event_method = hash['conferenceEventMethod']
-      tag = hash['tag']
+      id = hash.key?('id') ? hash['id'] : SKIP
+      name = hash.key?('name') ? hash['name'] : SKIP
+      created_time = if hash.key?('createdTime')
+                       (DateTimeHelper.from_rfc3339(hash['createdTime']) if hash['createdTime'])
+                     else
+                       SKIP
+                     end
+      completed_time = if hash.key?('completedTime')
+                         (DateTimeHelper.from_rfc3339(hash['completedTime']) if hash['completedTime'])
+                       else
+                         SKIP
+                       end
+      conference_event_url =
+        hash.key?('conferenceEventUrl') ? hash['conferenceEventUrl'] : SKIP
+      conference_event_method =
+        hash.key?('conferenceEventMethod') ? hash['conferenceEventMethod'] : SKIP
+      tag = hash.key?('tag') ? hash['tag'] : SKIP
       # Parameter is an array, so we need to iterate through it
       active_members = nil
       unless hash['activeMembers'].nil?
@@ -93,6 +128,8 @@ module Bandwidth
           active_members << (ConferenceMemberState.from_hash(structure) if structure)
         end
       end
+
+      active_members = SKIP unless hash.key?('activeMembers')
 
       # Create object from extracted values.
       ConferenceState.new(id,

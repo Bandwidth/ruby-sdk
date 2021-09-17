@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # TranscriptionMetadata Model.
-  class TranscriptionMetadata < BaseModel
+  # Transcription Model.
+  class Transcription < BaseModel
     SKIP = Object.new
     private_constant :SKIP
 
@@ -13,34 +13,25 @@ module Bandwidth
     # @return [String]
     attr_accessor :id
 
-    # The current status of the transcription. Current values are 'none',
-    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
-    # 'file-size-too-small'. Additional states may be added in the future, so
-    # your application must be tolerant of unknown values.
+    # TODO: Write general description for this method
+    # @return [String]
+    attr_accessor :url
+
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :status
 
-    # The current status of the transcription. Current values are 'none',
-    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
-    # 'file-size-too-small'. Additional states may be added in the future, so
-    # your application must be tolerant of unknown values.
+    # TODO: Write general description for this method
     # @return [String]
     attr_accessor :completed_time
-
-    # The current status of the transcription. Current values are 'none',
-    # 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and
-    # 'file-size-too-small'. Additional states may be added in the future, so
-    # your application must be tolerant of unknown values.
-    # @return [String]
-    attr_accessor :url
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['id'] = 'id'
+      @_hash['url'] = 'url'
       @_hash['status'] = 'status'
       @_hash['completed_time'] = 'completedTime'
-      @_hash['url'] = 'url'
       @_hash
     end
 
@@ -48,9 +39,9 @@ module Bandwidth
     def optionals
       %w[
         id
+        url
         status
         completed_time
-        url
       ]
     end
 
@@ -60,13 +51,13 @@ module Bandwidth
     end
 
     def initialize(id = nil,
+                   url = nil,
                    status = nil,
-                   completed_time = nil,
-                   url = nil)
+                   completed_time = nil)
       @id = id unless id == SKIP
+      @url = url unless url == SKIP
       @status = status unless status == SKIP
       @completed_time = completed_time unless completed_time == SKIP
-      @url = url unless url == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -75,15 +66,15 @@ module Bandwidth
 
       # Extract variables from the hash.
       id = hash.key?('id') ? hash['id'] : SKIP
+      url = hash.key?('url') ? hash['url'] : SKIP
       status = hash.key?('status') ? hash['status'] : SKIP
       completed_time = hash.key?('completedTime') ? hash['completedTime'] : SKIP
-      url = hash.key?('url') ? hash['url'] : SKIP
 
       # Create object from extracted values.
-      TranscriptionMetadata.new(id,
-                                status,
-                                completed_time,
-                                url)
+      Transcription.new(id,
+                        url,
+                        status,
+                        completed_time)
     end
   end
 end

@@ -6,6 +6,9 @@
 module Bandwidth
   # Transcript Model.
   class Transcript < BaseModel
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :text
@@ -22,10 +25,23 @@ module Bandwidth
       @_hash
     end
 
+    # An array for optional fields
+    def optionals
+      %w[
+        text
+        confidence
+      ]
+    end
+
+    # An array for nullable fields
+    def nullables
+      []
+    end
+
     def initialize(text = nil,
                    confidence = nil)
-      @text = text
-      @confidence = confidence
+      @text = text unless text == SKIP
+      @confidence = confidence unless confidence == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -33,8 +49,8 @@ module Bandwidth
       return nil unless hash
 
       # Extract variables from the hash.
-      text = hash['text']
-      confidence = hash['confidence']
+      text = hash.key?('text') ? hash['text'] : SKIP
+      confidence = hash.key?('confidence') ? hash['confidence'] : SKIP
 
       # Create object from extracted values.
       Transcript.new(text,

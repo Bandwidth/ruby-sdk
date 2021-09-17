@@ -11,9 +11,9 @@ module WebRtc
       super(config, http_call_back: http_call_back)
     end
 
-    # Create a new participant under this account
+    # Create a new participant under this account.
     # Participants are idempotent, so relevant parameters must be set in this
-    # function if desired
+    # function if desired.
     # @param [String] account_id Required parameter: Account ID
     # @param [Participant] body Optional parameter: Participant parameters
     # @return [AccountsParticipantsResponse] response from the API call
@@ -44,17 +44,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise APIException.new(
           'Bad Request',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
@@ -76,7 +77,7 @@ module WebRtc
       )
     end
 
-    # Get participant by ID
+    # Get participant by ID.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] participant_id Required parameter: Participant ID
     # @return [Participant] response from the API call
@@ -106,17 +107,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -137,7 +139,7 @@ module WebRtc
       )
     end
 
-    # Delete participant by ID
+    # Delete participant by ID.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] participant_id Required parameter: Example:
     # @return [void] response from the API call
@@ -161,17 +163,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -189,9 +192,9 @@ module WebRtc
       ApiResponse.new(_response)
     end
 
-    # Create a new session
+    # Create a new session.
     # Sessions are idempotent, so relevant parameters must be set in this
-    # function if desired
+    # function if desired.
     # @param [String] account_id Required parameter: Account ID
     # @param [Session] body Optional parameter: Session parameters
     # @return [Session] response from the API call
@@ -222,17 +225,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise APIException.new(
           'Bad Request',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
@@ -253,7 +257,7 @@ module WebRtc
       )
     end
 
-    # Get session by ID
+    # Get session by ID.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @return [Session] response from the API call
@@ -283,17 +287,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -314,7 +319,7 @@ module WebRtc
       )
     end
 
-    # Delete session by ID
+    # Delete session by ID.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @return [void] response from the API call
@@ -338,17 +343,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -366,7 +372,7 @@ module WebRtc
       ApiResponse.new(_response)
     end
 
-    # List participants in a session
+    # List participants in a session.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @return [List of Participant] response from the API call
@@ -396,17 +402,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -428,8 +435,8 @@ module WebRtc
       )
     end
 
-    # Add a participant to a session
-    # Subscriptions can optionally be provided as part of this call
+    # Add a participant to a session.
+    # Subscriptions can optionally be provided as part of this call.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @param [String] participant_id Required parameter: Participant ID
@@ -466,17 +473,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -494,9 +502,9 @@ module WebRtc
       ApiResponse.new(_response)
     end
 
-    # Remove a participant from a session
+    # Remove a participant from a session.
     # This will automatically remove any subscriptions the participant has
-    # associated with this session
+    # associated with this session.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @param [String] participant_id Required parameter: Participant ID
@@ -523,17 +531,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -551,7 +560,7 @@ module WebRtc
       ApiResponse.new(_response)
     end
 
-    # Get a participant's subscriptions
+    # Get a participant's subscriptions.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @param [String] participant_id Required parameter: Participant ID
@@ -584,17 +593,18 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 401
+      case _response.status_code
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response
@@ -615,11 +625,11 @@ module WebRtc
       )
     end
 
-    # Update a participant's subscriptions
+    # Update a participant's subscriptions.
     # This is a full update that will replace the participant's subscriptions.
     # First call `getParticipantSubscriptions` if you need the current
     # subscriptions. Call this function with no `Subscriptions` object to remove
-    # all subscriptions
+    # all subscriptions.
     # @param [String] account_id Required parameter: Account ID
     # @param [String] session_id Required parameter: Session ID
     # @param [String] participant_id Required parameter: Participant ID
@@ -655,22 +665,23 @@ module WebRtc
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise APIException.new(
           'Bad Request',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise APIException.new(
           'Unauthorized',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise APIException.new(
           'Access Denied',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise APIException.new(
           'Not Found',
           _response

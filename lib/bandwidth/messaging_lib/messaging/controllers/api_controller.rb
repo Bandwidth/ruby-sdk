@@ -11,7 +11,7 @@ module Messaging
       super(config, http_call_back: http_call_back)
     end
 
-    # listMedia
+    # Gets a list of your media files. No query parameters are supported.
     # @param [String] account_id Required parameter: User's account ID
     # @param [String] continuation_token Optional parameter: Continuation token
     # used to retrieve subsequent media.
@@ -42,32 +42,33 @@ module Messaging
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
@@ -83,7 +84,7 @@ module Messaging
       )
     end
 
-    # getMedia
+    # Downloads a media file you previously uploaded.
     # @param [String] account_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: Media ID to retrieve
     # @return [Binary] response from the API call
@@ -107,32 +108,33 @@ module Messaging
       _response = execute_request(_request, binary: true)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
@@ -146,7 +148,8 @@ module Messaging
       )
     end
 
-    # uploadMedia
+    # Uploads a file the normal HTTP way. You may add headers to the request in
+    # order to provide some control to your media-file.
     # @param [String] account_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: The user supplied custom
     # media ID
@@ -197,32 +200,33 @@ module Messaging
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
@@ -234,7 +238,10 @@ module Messaging
       ApiResponse.new(_response)
     end
 
-    # deleteMedia
+    # Deletes a media file from Bandwidth API server. Make sure you don't have
+    # any application scripts still using the media before you delete. If you
+    # accidentally delete a media file, you can immediately upload a new file
+    # with the same name.
     # @param [String] account_id Required parameter: User's account ID
     # @param [String] media_id Required parameter: The media ID to delete
     # @return [void] response from the API call
@@ -258,32 +265,33 @@ module Messaging
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
@@ -295,7 +303,7 @@ module Messaging
       ApiResponse.new(_response)
     end
 
-    # getMessages
+    # Gets a list of messages based on query parameters.
     # @param [String] account_id Required parameter: User's account ID
     # @param [String] message_id Optional parameter: The ID of the message to
     # search for. Special characters need to be encoded using URL encoding
@@ -365,32 +373,33 @@ module Messaging
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response
@@ -405,7 +414,8 @@ module Messaging
       )
     end
 
-    # createMessage
+    # Endpoint for sending text messages and picture messages using V2
+    # messaging.
     # @param [String] account_id Required parameter: User's account ID
     # @param [MessageRequest] body Required parameter: Example:
     # @return [BandwidthMessage] response from the API call
@@ -436,32 +446,33 @@ module Messaging
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise MessagingException.new(
           '400 Request is malformed or invalid',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise MessagingException.new(
           '401 The specified user does not have access to the account',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise MessagingException.new(
           '403 The user does not have access to this API',
           _response
         )
-      elsif _response.status_code == 404
+      when 404
         raise MessagingException.new(
           '404 Path not found',
           _response
         )
-      elsif _response.status_code == 415
+      when 415
         raise MessagingException.new(
           '415 The content-type of the request is incorrect',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise MessagingException.new(
           '429 The rate limit has been reached',
           _response

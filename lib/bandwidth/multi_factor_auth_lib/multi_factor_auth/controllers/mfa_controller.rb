@@ -11,7 +11,8 @@ module MultiFactorAuth
       super(config, http_call_back: http_call_back)
     end
 
-    # Allows a user to send a MFA code through a phone call
+    # Multi-Factor authentication with Bandwidth Voice services. Allows for a
+    # user to send an MFA code via a phone call.
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Voice service enabled
     # @param [TwoFactorCodeRequestSchema] body Required parameter: Example:
@@ -43,22 +44,23 @@ module MultiFactorAuth
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ErrorWithRequestException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise UnauthorizedRequestException.new(
           'Authentication is either incorrect or not present',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ForbiddenRequestException.new(
           'The user is not authorized to access this resource',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ErrorWithRequestException.new(
           'An internal server error occurred',
           _response
@@ -73,7 +75,8 @@ module MultiFactorAuth
       )
     end
 
-    # Allows a user to send a MFA code through a text message (SMS)
+    # Multi-Factor authentication with Bandwidth Messaging services. Allows a
+    # user to send an MFA code via a text message (SMS).
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Messaging service enabled
     # @param [TwoFactorCodeRequestSchema] body Required parameter: Example:
@@ -105,22 +108,23 @@ module MultiFactorAuth
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ErrorWithRequestException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise UnauthorizedRequestException.new(
           'Authentication is either incorrect or not present',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ForbiddenRequestException.new(
           'The user is not authorized to access this resource',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ErrorWithRequestException.new(
           'An internal server error occurred',
           _response
@@ -136,7 +140,7 @@ module MultiFactorAuth
       )
     end
 
-    # Allows a user to verify an MFA code
+    # Allows a user to verify an MFA code.
     # @param [String] account_id Required parameter: Bandwidth Account ID with
     # Two-Factor enabled
     # @param [TwoFactorVerifyRequestSchema] body Required parameter: Example:
@@ -168,28 +172,29 @@ module MultiFactorAuth
       _response = execute_request(_request)
 
       # Validate response against endpoint and global error codes.
-      if _response.status_code == 400
+      case _response.status_code
+      when 400
         raise ErrorWithRequestException.new(
           'If there is any issue with values passed in by the user',
           _response
         )
-      elsif _response.status_code == 401
+      when 401
         raise UnauthorizedRequestException.new(
           'Authentication is either incorrect or not present',
           _response
         )
-      elsif _response.status_code == 403
+      when 403
         raise ForbiddenRequestException.new(
           'The user is not authorized to access this resource',
           _response
         )
-      elsif _response.status_code == 429
+      when 429
         raise ErrorWithRequestException.new(
           'The user has made too many bad requests and is temporarily locked' \
           ' out',
           _response
         )
-      elsif _response.status_code == 500
+      when 500
         raise ErrorWithRequestException.new(
           'An internal server error occurred',
           _response

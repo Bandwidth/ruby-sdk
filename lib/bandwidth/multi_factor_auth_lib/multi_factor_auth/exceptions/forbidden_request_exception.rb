@@ -6,6 +6,9 @@
 module Bandwidth
   # ForbiddenRequest class.
   class ForbiddenRequestException < APIException
+    SKIP = Object.new
+    private_constant :SKIP
+
     # The message containing the reason behind the request being forbidden
     # @return [String]
     attr_accessor :message
@@ -23,7 +26,7 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @message = hash['Message']
+      @message = hash.key?('Message') ? hash['Message'] : SKIP
     end
   end
 end

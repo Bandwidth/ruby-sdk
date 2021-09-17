@@ -6,6 +6,9 @@
 module Bandwidth
   # MessagingException class.
   class MessagingException < APIException
+    SKIP = Object.new
+    private_constant :SKIP
+
     # TODO: Write general description for this method
     # @return [String]
     attr_accessor :type
@@ -27,8 +30,8 @@ module Bandwidth
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @type = hash['type']
-      @description = hash['description']
+      @type = hash.key?('type') ? hash['type'] : SKIP
+      @description = hash.key?('description') ? hash['description'] : SKIP
     end
   end
 end
