@@ -4,7 +4,7 @@
 # ( https://apimatic.io ).
 
 module Bandwidth
-  # MachineDetectionRequest Model.
+  # MachineDetectionConfiguration Model.
   class MachineDetectionConfiguration < BaseModel
     SKIP = Object.new
     private_constant :SKIP
