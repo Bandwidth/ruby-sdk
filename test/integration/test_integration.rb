@@ -93,7 +93,7 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_create_call_with_amd_and_get_call_state
-        machine_detection = MachineDetectionRequest.new
+        machine_detection = MachineDetectionConfiguration.new
         machine_detection.mode = 'async'
         machine_detection.detection_timeout = 5.0
         machine_detection.silence_timeout = 5.0

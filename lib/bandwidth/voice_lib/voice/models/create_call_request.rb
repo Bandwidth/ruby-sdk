@@ -274,7 +274,7 @@ module Bandwidth
       disconnect_method =
         hash.key?('disconnectMethod') ? hash['disconnectMethod'] : SKIP
       tag = hash.key?('tag') ? hash['tag'] : SKIP
-      machine_detection = MachineDetectionRequest.from_hash(hash['machineDetection']) if
+      machine_detection = MachineDetectionConfiguration.from_hash(hash['machineDetection']) if
         hash['machineDetection']
 
       # Create object from extracted values.
