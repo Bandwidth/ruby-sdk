@@ -515,7 +515,7 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_mfa_verify
         body = TwoFactorVerifyRequestSchema.new
-        body.to = USER_NUMBER
+        body.to = "+1000" + rand(1111111..9999999).to_s
         body.application_id = BW_VOICE_APPLICATION_ID
         body.scope = "scope"
         body.code = "123456"
