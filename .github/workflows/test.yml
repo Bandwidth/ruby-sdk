@@ -39,7 +39,7 @@ jobs:
     run: rake
 
     - name: Notify Slack of Failures    
-    - uses: Bandwidth/build-notify-slack-action@v1.0.0
+      uses: Bandwidth/build-notify-slack-action@v1.0.0
       if: failure() && !github.event.pull_request.draft
       with:
         job-status: ${{ job.status }}
