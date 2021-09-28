@@ -1,5 +1,12 @@
 # Bandwidth Ruby SDK
 
+| **OS** | **Ruby** |
+|:---:|:---:|
+| Windows 2016 | 2.6, 2.7, 3.0 |
+| Windows 2019 | 2.6, 2.7, 3.0 |
+| Ubuntu 18.04 | 2.6, 2.7, 3.0 |
+| Ubuntu 20.04 | 2.6, 2.7, 3.0 |
+
 ## Getting Started
 
 ### Installation
