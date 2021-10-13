@@ -3,6 +3,7 @@
 # A simple integration test against Bandwidth's APIs
 
 require 'test/unit'
+require 'securerandom'
 require_relative '../../lib/bandwidth.rb'
 
 include Bandwidth
@@ -66,16 +67,16 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_upload_download_media
         #define constants for upload media and download media
-        media_file_name = 'ruby_integration' #future update to add special symbols
-        media_file = '12345' #todo: check a binary string
+        media_id = "text-media-id-" + SecureRandom.uuid
+        media = "Hello world"
 
         #media upload
-        @bandwidth_client.messaging_client.client.upload_media(BW_ACCOUNT_ID, media_file_name, media_file, :content_type => "application/octet-stream", :cache_control => "no-cache")
+        @bandwidth_client.messaging_client.client.upload_media(BW_ACCOUNT_ID, media_id, media, :content_type => "application/octet-stream", :cache_control => "no-cache")
 
         #media download
-        downloaded_media_file = @bandwidth_client.messaging_client.client.get_media(BW_ACCOUNT_ID, media_file_name).data
+        downloaded_media = @bandwidth_client.messaging_client.client.get_media(BW_ACCOUNT_ID, media_id).data
 
-        assert_equal(downloaded_media_file, media_file, "Downloaded media file not equal to upload")
+        assert_equal(downloaded_media, media, "Downloaded media file not equal to upload")
     end
 
     def test_create_call_and_get_call_state
