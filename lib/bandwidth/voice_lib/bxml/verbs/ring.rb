@@ -7,7 +7,8 @@ module Bandwidth
 
       def to_bxml(xml)
         xml.Ring(compact_hash({
-         'duration' => duration
+         'duration' => duration,
+         'answerCall' => answer_call
       }))
       end
     end
