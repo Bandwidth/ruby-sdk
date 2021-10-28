@@ -555,13 +555,14 @@ class IntegrationTest < Test::Unit::TestCase
 
     def test_ring
         ring = Bandwidth::Voice::Ring.new({
-            :duration => 5
+            :duration => 5,
+            :answer_call => false
         })
 
         response = Bandwidth::Voice::Response.new()
         response.push(ring)
 
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Ring duration="5"/></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Ring duration="5" answerCall="false"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
