@@ -38,6 +38,17 @@ class IntegrationTest < Test::Unit::TestCase
             phone_number_lookup_basic_auth_user_name: BW_USERNAME,
             phone_number_lookup_basic_auth_password: BW_PASSWORD
         )
+
+        @bandwidth_client_invalid_auth = Bandwidth::Client.new(
+            voice_basic_auth_user_name: "bad_username",
+            voice_basic_auth_password: "bad_password",
+            messaging_basic_auth_user_name: "bad_username",
+            messaging_basic_auth_password: "bad_password",
+            multi_factor_auth_basic_auth_user_name: "bad_username",
+            multi_factor_auth_basic_auth_password: "bad_password",
+            phone_number_lookup_basic_auth_user_name: "bad_username",
+            phone_number_lookup_basic_auth_password: "bad_password"
+        )
     end
 
     def test_create_message
@@ -78,6 +89,19 @@ class IntegrationTest < Test::Unit::TestCase
 
         assert_equal(downloaded_media, media, "Downloaded media file not equal to upload")
     end
+
+    def test_get_message
+        # Send a successful request to the GET messages API
+        response = @bandwidth_client.messaging_client.client.get_messages(BW_ACCOUNT_ID, :message_id => "abc123")
+        assert_equal(response.status_code, 200, "API did not return a 200 OK")
+    end 
+
+    def test_get_message_invalid_auth
+        # Send an unsuccessful request to the GET messages API
+        assert_raise MessagingException do
+            response = @bandwidth_client_invalid_auth.messaging_client.client.get_messages(BW_ACCOUNT_ID)
+        end
+    end 
 
     def test_create_call_and_get_call_state
         body = CreateCallRequest.new
