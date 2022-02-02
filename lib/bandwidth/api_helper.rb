@@ -144,6 +144,7 @@ module Bandwidth
     # Parses JSON string.
     # @param [String] A JSON string.
     def self.json_deserialize(json)
+      return {} if json.nil? || json.empty?
       JSON.parse(json)
     rescue StandardError
       raise TypeError, 'Server responded with invalid JSON.'
