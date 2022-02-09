@@ -590,15 +590,9 @@ module Voice
       )
       _query_url = APIHelper.clean_url _query_builder
 
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
-
       # Prepare and execute HttpRequest.
       _request = config.http_client.get(
-        _query_url,
-        headers: _headers
+        _query_url
       )
       VoiceBasicAuth.apply(config, _request)
       _response = execute_request(_request)
@@ -648,11 +642,8 @@ module Voice
       validate_response(_response)
 
       # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_response.raw_body) unless
-        _response.raw_body.nil? ||
-        _response.raw_body.to_s.strip.empty?
       ApiResponse.new(
-        _response, data: decoded
+        _response, data: _response.raw_body
       )
     end
 
