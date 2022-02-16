@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name = 'bandwidth-sdk'
-  s.version = '9.1.1'
+  s.version = '9.1.2'
   s.summary = 'Bandwidth'
-  s.description = 'Bandwidth\'s set of APIs'
-  s.authors = ['APIMatic SDK Generator']
-  s.email = 'support@apimatic.io'
-  s.homepage = 'https://apimatic.io'
+  s.description = 'The official client SDK for Bandwidht\'s Voice, Messaging, MFA, and WebRTC APIs'
+  s.authors = ['Bandwidth']
+  s.email = 'dx@bandwidth.com'
+  s.homepage = 'https://github.com/Bandwidth/ruby-sdk'
   s.license = 'MIT'
   s.add_dependency('logging', '~> 2.3')
   s.add_dependency('faraday', '~> 1.0', '<= 1.9.3')
