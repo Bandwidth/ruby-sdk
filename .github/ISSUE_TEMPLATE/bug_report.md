@@ -10,7 +10,7 @@ labels: 'bug'
  - [ ] Have you provided your Environment information?
  - [ ] Have you provided a sample code snippet?
  - [ ] Have you provided a stack trace?
- - [ ] Have you outlined the expected bahvior?
+ - [ ] Have you outlined the expected behavior?
 
 ### Description
 <!-- Please provide a clear and concise description of the bug. -->
@@ -37,4 +37,4 @@ labels: 'bug'
 <!-- Please outline the expected behavior of the SDK. -->
 
 ### Suggested Fix
-<!-- If you have a fix or a suggestion for how this bug may be fixed, describe it here. -->
+<!-- If you have a fix or a suggestion for how this bug may be resolved, describe it here. -->
