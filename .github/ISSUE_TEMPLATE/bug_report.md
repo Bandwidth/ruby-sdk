@@ -17,15 +17,21 @@ labels: 'bug'
 
 ### Environment Information
 <!-- Please provide the version of the OS, SDK, and Environment you are experiencing the bug in. -->
- - OS Version: (e.g. Windows 10)
- - SDK Version: (e.g. 1.1.0)
- - Environment: (e.g. Ruby 3.1.0)
+ - OS Version: _(e.g. Windows 10)_
+ - SDK Version: _(e.g. 1.1.0)_
+ - Environment: _(e.g. Ruby 3.1.0)_
 
 ### Sample Code Snippet
 <!-- Please provide a code snippet that produces or is relevant to the bug. -->
+```
+
+```
 
 ### Stack Trace
 <!-- Please provide the stack trace that shows the bug. -->
+```
+
+```
 
 ### Expected Behavior
 <!-- Please outline the expected behavior of the SDK. -->
