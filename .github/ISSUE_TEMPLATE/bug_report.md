@@ -6,11 +6,11 @@ labels: 'bug'
 ---
 
 ### Checklist
- - [] Have you provided a description of the bug?
- - [] Have you provided your Environment information?
- - [] Have you provided a sample code snippet?
- - [] Have you provided a stack trace?
- - [] Have you outlined the expected bahvior?
+ - [ ] Have you provided a description of the bug?
+ - [ ] Have you provided your Environment information?
+ - [ ] Have you provided a sample code snippet?
+ - [ ] Have you provided a stack trace?
+ - [ ] Have you outlined the expected bahvior?
 
 ### Description
 <!-- Please provide a clear and concise description of the bug. -->
