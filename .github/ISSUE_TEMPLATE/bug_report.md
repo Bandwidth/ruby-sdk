@@ -23,14 +23,14 @@ labels: 'bug'
 
 ### Sample Code Snippet
 <!-- Please provide a code snippet that produces or is relevant to the bug. -->
-```
-
+```ruby
+# Please provide a code snippet that produces or is relevant to the bug.
 ```
 
 ### Stack Trace
 <!-- Please provide the stack trace that shows the bug. -->
-```
-
+```shell
+# Please provide the stack trace that shows the bug.
 ```
 
 ### Expected Behavior
