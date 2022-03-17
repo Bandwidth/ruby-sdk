@@ -20,7 +20,8 @@ begin
     BW_MESSAGING_APPLICATION_ID = ENV.fetch("BW_MESSAGING_APPLICATION_ID")
     BASE_CALLBACK_URL = ENV.fetch("BASE_CALLBACK_URL")
     BW_NUMBER = ENV.fetch("BW_NUMBER")
-    USER_NUMBER = ENV.fetch("USER_NUMBER")
+    # USER_NUMBER = ENV.fetch("USER_NUMBER")
+    USER_NUMBER = '+19195551234'
 rescue
     puts "Environmental variables not found"
     exit(-1)
@@ -141,6 +142,19 @@ class IntegrationTest < Test::Unit::TestCase
         #Get phone call information
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
+    end
+
+    def test_create_call_with_priority
+        body = CreateCallRequest.new
+        body.from = BW_NUMBER
+        body.to = USER_NUMBER
+        body.application_id = BW_VOICE_APPLICATION_ID
+        body.answer_url = BASE_CALLBACK_URL
+        body.priority = 1
+
+        response = @bandwidth_client.voice_client.client.create_call(BW_ACCOUNT_ID, body)
+        assert(response.data.call_id.length > 0, "call_id value not set")
+        assert(response.data.priority == 1, "priority not set")
     end
 
     def test_create_call_invalid_phone_number

@@ -90,6 +90,9 @@ module Bandwidth
     # @return [String]
     attr_accessor :tag
 
+    # @return [Integer]
+    attr_accessor :priority
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -113,6 +116,7 @@ module Bandwidth
       @_hash['fallback_username'] = 'fallbackUsername'
       @_hash['fallback_password'] = 'fallbackPassword'
       @_hash['tag'] = 'tag'
+      @_hash['priority'] = 'priority'
       @_hash
     end
 
@@ -130,6 +134,7 @@ module Bandwidth
         fallback_username
         fallback_password
         tag
+        priority
       ]
     end
 
@@ -145,6 +150,7 @@ module Bandwidth
         fallback_username
         fallback_password
         tag
+        priority
       ]
     end
 
@@ -167,7 +173,8 @@ module Bandwidth
                    password = nil,
                    fallback_username = nil,
                    fallback_password = nil,
-                   tag = nil)
+                   tag = nil,
+                   priority = nil)
       @account_id = account_id unless account_id == SKIP
       @call_id = call_id unless call_id == SKIP
       @application_id = application_id unless application_id == SKIP
@@ -188,6 +195,7 @@ module Bandwidth
       @fallback_username = fallback_username unless fallback_username == SKIP
       @fallback_password = fallback_password unless fallback_password == SKIP
       @tag = tag unless tag == SKIP
+      @priority = priority unless priority == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -225,6 +233,7 @@ module Bandwidth
       fallback_password =
         hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
       tag = hash.key?('tag') ? hash['tag'] : SKIP
+      priority = hash.key?('priority') ? hash['priority'] : SKIP
 
       # Create object from extracted values.
       CreateCallResponse.new(account_id,
@@ -246,7 +255,8 @@ module Bandwidth
                              password,
                              fallback_username,
                              fallback_password,
-                             tag)
+                             tag,
+                             priority)
     end
 
     def to_start_time

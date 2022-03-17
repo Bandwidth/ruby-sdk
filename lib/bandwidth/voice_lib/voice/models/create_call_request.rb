@@ -25,125 +25,53 @@ module Bandwidth
     # @return [String]
     attr_accessor :uui
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [Float]
     attr_accessor :call_timeout
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [Float]
     attr_accessor :callback_timeout
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :answer_url
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :answer_fallback_url
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :username
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :password
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :fallback_username
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :fallback_password
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [AnswerMethodEnum]
     attr_accessor :answer_method
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [AnswerFallbackMethodEnum]
     attr_accessor :answer_fallback_method
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :disconnect_url
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [DisconnectMethodEnum]
     attr_accessor :disconnect_method
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :tag
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [String]
     attr_accessor :application_id
 
-    # A comma-separated list of 'User-To-User' headers to be sent in the INVITE
-    # when calling a SIP URI. Each value must end with an 'encoding' parameter
-    # as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and
-    # 'base64' encodings are allowed. The entire value cannot exceed 350
-    # characters, including parameters and separators.
     # @return [MachineDetectionRequest]
     attr_accessor :machine_detection
+
+    # @return [Integer]
+    attr_accessor :priority
 
     # A mapping from model property names to API property names.
     def self.names
@@ -166,7 +94,7 @@ module Bandwidth
       @_hash['tag'] = 'tag'
       @_hash['application_id'] = 'applicationId'
       @_hash['machine_detection'] = 'machineDetection'
-      @_hash
+      @_hash['priority'] = 'priority'
     end
 
     # An array for optional fields
@@ -186,6 +114,7 @@ module Bandwidth
         disconnect_method
         tag
         machine_detection
+        priority
       ]
     end
 
@@ -205,6 +134,7 @@ module Bandwidth
         disconnect_url
         disconnect_method
         tag
+        priority
       ]
     end
 
@@ -225,7 +155,8 @@ module Bandwidth
                    disconnect_url = nil,
                    disconnect_method = nil,
                    tag = nil,
-                   machine_detection = nil)
+                   machine_detection = nil,
+                   priority = nil)
       @from = from unless from == SKIP
       @to = to unless to == SKIP
       @uui = uui unless uui == SKIP
@@ -244,6 +175,7 @@ module Bandwidth
       @tag = tag unless tag == SKIP
       @application_id = application_id unless application_id == SKIP
       @machine_detection = machine_detection unless machine_detection == SKIP
+      @priority = priority unless priority == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -276,6 +208,7 @@ module Bandwidth
       tag = hash.key?('tag') ? hash['tag'] : SKIP
       machine_detection = MachineDetectionConfiguration.from_hash(hash['machineDetection']) if
         hash['machineDetection']
+      priority = hash.key?('priority') ? hash['priority'] : SKIP
 
       # Create object from extracted values.
       CreateCallRequest.new(from,
@@ -295,7 +228,8 @@ module Bandwidth
                             disconnect_url,
                             disconnect_method,
                             tag,
-                            machine_detection)
+                            machine_detection,
+                            priority)
     end
   end
 end
