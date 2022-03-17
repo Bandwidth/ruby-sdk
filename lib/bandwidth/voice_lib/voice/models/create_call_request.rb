@@ -95,6 +95,7 @@ module Bandwidth
       @_hash['application_id'] = 'applicationId'
       @_hash['machine_detection'] = 'machineDetection'
       @_hash['priority'] = 'priority'
+      @_hash
     end
 
     # An array for optional fields
