@@ -20,8 +20,7 @@ begin
     BW_MESSAGING_APPLICATION_ID = ENV.fetch("BW_MESSAGING_APPLICATION_ID")
     BASE_CALLBACK_URL = ENV.fetch("BASE_CALLBACK_URL")
     BW_NUMBER = ENV.fetch("BW_NUMBER")
-    # USER_NUMBER = ENV.fetch("USER_NUMBER")
-    USER_NUMBER = '+19195551234'
+    USER_NUMBER = ENV.fetch("USER_NUMBER")
 rescue
     puts "Environmental variables not found"
     exit(-1)
