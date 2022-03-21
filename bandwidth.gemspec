@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'bandwidth-sdk'
-  s.version = '9.1.2'
+  s.version = '9.2.0'
   s.summary = 'Bandwidth'
   s.description = 'The official client SDK for Bandwidht\'s Voice, Messaging, MFA, and WebRTC APIs'
   s.authors = ['Bandwidth']

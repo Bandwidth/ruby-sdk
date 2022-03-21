@@ -143,6 +143,19 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.state.length > 0, "state value not set")
     end
 
+    def test_create_call_with_priority
+        body = CreateCallRequest.new
+        body.from = BW_NUMBER
+        body.to = USER_NUMBER
+        body.application_id = BW_VOICE_APPLICATION_ID
+        body.answer_url = BASE_CALLBACK_URL
+        body.priority = 1
+
+        response = @bandwidth_client.voice_client.client.create_call(BW_ACCOUNT_ID, body)
+        assert(response.data.call_id.length > 0, "call_id value not set")
+        assert(response.data.priority == 1, "priority not set")
+    end
+
     def test_create_call_invalid_phone_number
         body = CreateCallRequest.new
         body.from = BW_NUMBER
