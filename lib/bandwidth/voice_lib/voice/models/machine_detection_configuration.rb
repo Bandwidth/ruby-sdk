@@ -108,7 +108,7 @@ module Bandwidth
       @_hash['password'] = 'password'
       @_hash['fallback_username'] = 'fallbackUsername'
       @_hash['fallback_password'] = 'fallbackPassword'
-      @_hash['machine_speech_end_threshold'] = 'machine_speech_end_threshold'
+      @_hash['machine_speech_end_threshold'] = 'machineSpeechEndThreshold'
       @_hash
     end
 
