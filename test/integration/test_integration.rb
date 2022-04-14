@@ -128,6 +128,7 @@ class IntegrationTest < Test::Unit::TestCase
         machine_detection.delay_result = true
         machine_detection.callback_url = BASE_CALLBACK_URL + '/machineDetection'
         machine_detection.callback_method = 'POST'
+        machine_detection.machine_speech_end_threshold = 5.0
 
         body = CreateCallRequest.new
         body.from = BW_NUMBER

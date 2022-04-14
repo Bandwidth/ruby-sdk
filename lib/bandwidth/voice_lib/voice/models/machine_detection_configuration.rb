@@ -86,6 +86,11 @@ module Bandwidth
     # @return [String]
     attr_accessor :fallback_password
 
+    # When an answering machine is detected, the amount of silence (in seconds) 
+    # before assuming the message has finished playing.
+    # return [Float]
+    attr_accessor :machine_speech_end_threshold
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -103,6 +108,7 @@ module Bandwidth
       @_hash['password'] = 'password'
       @_hash['fallback_username'] = 'fallbackUsername'
       @_hash['fallback_password'] = 'fallbackPassword'
+      @_hash['machine_speech_end_threshold'] = 'machine_speech_end_threshold'
       @_hash
     end
 
@@ -123,6 +129,7 @@ module Bandwidth
         password
         fallback_username
         fallback_password
+        machine_speech_end_threshold
       ]
     end
 
@@ -137,6 +144,7 @@ module Bandwidth
         password
         fallback_username
         fallback_password
+        machine_speech_end_threshold
       ]
     end
 
@@ -153,7 +161,8 @@ module Bandwidth
                    username = nil,
                    password = nil,
                    fallback_username = nil,
-                   fallback_password = nil)
+                   fallback_password = nil,
+                   machine_speech_end_threshold = nil)
       @mode = mode unless mode == SKIP
       @detection_timeout = detection_timeout unless detection_timeout == SKIP
       @silence_timeout = silence_timeout unless silence_timeout == SKIP
@@ -168,6 +177,7 @@ module Bandwidth
       @password = password unless password == SKIP
       @fallback_username = fallback_username unless fallback_username == SKIP
       @fallback_password = fallback_password unless fallback_password == SKIP
+      @machine_speech_end_threshold = machine_speech_end_threshold unless machine_speech_end_threshold == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -197,6 +207,8 @@ module Bandwidth
         hash.key?('fallbackUsername') ? hash['fallbackUsername'] : SKIP
       fallback_password =
         hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
+      machine_speech_end_threshold = 
+        hash.key?('machine_speech_end_threshold') ? hash['machine_speech_end_threshold'] : SKIP
 
       # Create object from extracted values.
       MachineDetectionConfiguration.new(mode,
@@ -212,7 +224,8 @@ module Bandwidth
                                   username,
                                   password,
                                   fallback_username,
-                                  fallback_password)
+                                  fallback_password,
+                                  machine_speech_end_threshold)
     end
   end
 end
