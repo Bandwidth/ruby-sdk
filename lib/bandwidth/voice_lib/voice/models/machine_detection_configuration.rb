@@ -208,7 +208,7 @@ module Bandwidth
       fallback_password =
         hash.key?('fallbackPassword') ? hash['fallbackPassword'] : SKIP
       machine_speech_end_threshold = 
-        hash.key?('machine_speech_end_threshold') ? hash['machineSpeechEndThreshold'] : SKIP
+        hash.key?('machineSpeechEndThreshold') ? hash['machineSpeechEndThreshold'] : SKIP
 
       # Create object from extracted values.
       MachineDetectionConfiguration.new(mode,
