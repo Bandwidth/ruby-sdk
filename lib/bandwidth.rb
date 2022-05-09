@@ -47,6 +47,7 @@ require_relative 'bandwidth/http/auth/web_rtc_basic_auth'
 require_relative 'bandwidth/http/auth/web_rtc_basic_auth.rb'
 
 # External Files
+require_relative 'bandwidth/voice_lib/bxml/response.rb'
 require_relative 'bandwidth/voice_lib/bxml/bxml.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/bridge.rb'
 require_relative 'bandwidth/voice_lib/bxml/verbs/conference.rb'

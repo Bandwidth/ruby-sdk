@@ -252,6 +252,87 @@ module Voice
       ApiResponse.new(_response)
     end
 
+    # Makes a PUT request to /api/v2/accounts/{accountId}/calls/{callId}/bxml
+    # @param [String] account_id Required parameter: Example:
+    # @param [String] call_id Required parameter: Example:
+    # @param [String] body Required parameter: Example:
+    # @return [void] response from the API call
+    def modify_call_bxml(account_id,
+                         call_id,
+                         body
+                        )
+      # Prepare query url.
+      _query_builder = config.get_base_uri(Server::VOICEDEFAULT)
+      _query_builder << '/api/v2/accounts/{accountId}/calls/{callId}/bxml'
+      _query_builder = APIHelper.append_url_with_template_parameters(
+        _query_builder,
+        'accountId' => { 'value' => account_id, 'encode' => false },
+        'callId' => { 'value' => call_id, 'encode' => false }
+      )
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'content-type' => 'application/xml; charset=utf-8'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = config.http_client.put(
+        _query_url,
+        headers: _headers,
+        parameters: body.to_json
+      )
+      VoiceBasicAuth.apply(config, _request)
+      _response = execute_request(_request)
+
+      # Validate response against endpoint and global error codes.
+      case _response.status_code
+      when 400
+        raise ApiErrorException.new(
+          'Something\'s not quite right... Your request is invalid. Please' \
+          ' fix it before trying again.',
+          _response
+        )
+      when 401
+        raise APIException.new(
+          'Your credentials are invalid. Please use your Bandwidth dashboard' \
+          ' credentials to authenticate to the API.',
+          _response
+        )
+      when 403
+        raise ApiErrorException.new(
+          'User unauthorized to perform this action.',
+          _response
+        )
+      when 404
+        raise ApiErrorException.new(
+          'The resource specified cannot be found or does not belong to you.',
+          _response
+        )
+      when 415
+        raise ApiErrorException.new(
+          'We don\'t support that media type. If a request body is required,' \
+          ' please send it to us as `application/json`.',
+          _response
+        )
+      when 429
+        raise ApiErrorException.new(
+          'You\'re sending requests to this endpoint too frequently. Please' \
+          ' slow your request rate down and try again.',
+          _response
+        )
+      when 500
+        raise ApiErrorException.new(
+          'Something unexpected happened. Please try again.',
+          _response
+        )
+      end
+      validate_response(_response)
+
+      # Return appropriate response type.
+      ApiResponse.new(_response)
+    end
+
     # Pauses or resumes a recording.
     # @param [String] account_id Required parameter: Example:
     # @param [String] call_id Required parameter: Example:
