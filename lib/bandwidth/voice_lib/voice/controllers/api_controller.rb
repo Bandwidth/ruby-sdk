@@ -312,7 +312,7 @@ module Voice
       when 415
         raise ApiErrorException.new(
           'We don\'t support that media type. If a request body is required,' \
-          ' please send it to us as `application/json`.',
+          ' please send it to us as `application/xml`.',
           _response
         )
       when 429

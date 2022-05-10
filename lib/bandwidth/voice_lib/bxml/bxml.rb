@@ -7,7 +7,7 @@ module Bandwidth
   module Voice 
     class Bxml
       # Initializer
-      # @param verbs [Array] optional list of verbs to include into response
+      # @param verbs [Array] optional list of verbs to include in the bxml tag
       def initialize(verbs = nil)
         @verbs = verbs || []
       end
