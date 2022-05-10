@@ -262,6 +262,34 @@ class IntegrationTest < Test::Unit::TestCase
         assert_equal(expected, actual)
     end
 
+    def test_empty_bxml_verb
+        bxml = Bandwidth::Voice::Bxml.new()
+
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Bxml></Bxml>'
+        actual = bxml.to_bxml()
+        assert_equal(expected, actual)
+    end
+
+    def test_bxml_speak_sentence_pause
+        bxml = Bandwidth::Voice::Bxml.new()
+
+        speak_sentence = Bandwidth::Voice::SpeakSentence.new({
+            :sentence => "new modify call bxml is pog",
+            :voice => "Julie"
+        })
+
+        pause = Bandwidth::Voice::Pause.new({
+            :duration => 6
+        })
+
+        bxml.push(speak_sentence)
+        bxml.push(pause)
+
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence voice="Julie">new modify call bxml is pog</SpeakSentence><Pause duration="6"/></Bxml>'
+        actual = bxml.to_bxml()
+        assert_equal(expected, actual)
+    end
+
     def test_hangup
         hangup = Bandwidth::Voice::Hangup.new()
 
