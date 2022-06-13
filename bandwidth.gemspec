@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency('builder', '~> 3.2.4')
   s.add_development_dependency('minitest', '~> 5.14', '>= 5.14.1')
   s.add_development_dependency('minitest-proveit', '~> 1.0')
-  s.add_development_dependency('test-unit')
   s.required_ruby_version = ['>= 2.0']
   s.files = Dir['{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*']
   s.require_paths = ['lib']
