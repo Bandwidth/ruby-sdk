@@ -156,7 +156,10 @@ create_participant_response = web_rtc_client.create_participant(account_id, :bod
 participant_id = create_participant_response.data.participant.id
 puts participant_id
 
-web_rtc_client.add_participant_to_session(account_id, session_id, participant_id)
+body = Subscriptions.new
+body.session_id = "1234-abcd"
+
+web_rtc_client.add_participant_to_session(account_id, session_id, participant_id, body: body)
 ```
 
 ## Supported Ruby Versions
