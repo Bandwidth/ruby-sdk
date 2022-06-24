@@ -62,6 +62,9 @@ module Bandwidth
     # @return [DateTime]
     attr_accessor :start_time
 
+    # @return [DateTime]
+    attr_accessor :enqueued_time
+
     # The current state of the call. Current possible values are 'initiated',
     # 'answered' and 'disconnected'. Additional states may be added in the
     # future, so your application must be tolerant of unknown values.
@@ -124,6 +127,7 @@ module Bandwidth
       @_hash['identity'] = 'identity'
       @_hash['stir_shaken'] = 'stirShaken'
       @_hash['start_time'] = 'startTime'
+      @_hash['enqueued_time'] = 'enqueuedTime'
       @_hash['answer_time'] = 'answerTime'
       @_hash['end_time'] = 'endTime'
       @_hash['disconnect_cause'] = 'disconnectCause'
@@ -147,6 +151,7 @@ module Bandwidth
         identity
         stir_shaken
         start_time
+        enqueued_time
         answer_time
         end_time
         disconnect_cause
@@ -180,6 +185,7 @@ module Bandwidth
                    identity = nil,
                    stir_shaken = nil,
                    start_time = nil,
+                   enqueued_time = nil,
                    answer_time = nil,
                    end_time = nil,
                    disconnect_cause = nil,
@@ -197,6 +203,7 @@ module Bandwidth
       @identity = identity unless identity == SKIP
       @stir_shaken = stir_shaken unless stir_shaken == SKIP
       @start_time = start_time unless start_time == SKIP
+      @enqueued_time = enqueued_time unless enqueued_time == SKIP
       @answer_time = answer_time unless answer_time == SKIP
       @end_time = end_time unless end_time == SKIP
       @disconnect_cause = disconnect_cause unless disconnect_cause == SKIP
@@ -221,17 +228,22 @@ module Bandwidth
       identity = hash.key?('identity') ? hash['identity'] : SKIP
       stir_shaken = hash.key?('stirShaken') ? hash['stirShaken'] : SKIP
       start_time = if hash.key?('startTime')
-                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+                      (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
                    else
                      SKIP
                    end
+      enqueued_time = if hash.key?('enqueuedTime')
+                        (DateTimeHelper.from_rfc3339(hash['enqueuedTime']) if hash['enqueuedTime'])
+                      else
+                        SKIP
+                      end
       answer_time = if hash.key?('answerTime')
                       (DateTimeHelper.from_rfc3339(hash['answerTime']) if hash['answerTime'])
                     else
                       SKIP
                     end
       end_time = if hash.key?('endTime')
-                   (DateTimeHelper.from_rfc3339(hash['endTime']) if hash['endTime'])
+                    (DateTimeHelper.from_rfc3339(hash['endTime']) if hash['endTime'])
                  else
                    SKIP
                  end
@@ -257,6 +269,7 @@ module Bandwidth
                     identity,
                     stir_shaken,
                     start_time,
+                    enqueued_time,
                     answer_time,
                     end_time,
                     disconnect_cause,
@@ -267,6 +280,10 @@ module Bandwidth
 
     def to_start_time
       DateTimeHelper.to_rfc3339(start_time)
+    end
+
+    def to_enqueued_time
+      DateTimeHelper.to_rfc3339(enqueued_time)
     end
 
     def to_answer_time

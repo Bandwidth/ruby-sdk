@@ -32,7 +32,7 @@ module Bandwidth
 
     # TODO: Write general description for this method
     # @return [DateTime]
-    attr_accessor :start_time
+    attr_accessor :enqueued_time
 
     # TODO: Write general description for this method
     # @return [String]
@@ -101,7 +101,7 @@ module Bandwidth
       @_hash['application_id'] = 'applicationId'
       @_hash['to'] = 'to'
       @_hash['from'] = 'from'
-      @_hash['start_time'] = 'startTime'
+      @_hash['enqueued_time'] = 'enqueuedTime '
       @_hash['call_url'] = 'callUrl'
       @_hash['call_timeout'] = 'callTimeout'
       @_hash['callback_timeout'] = 'callbackTimeout'
@@ -123,7 +123,7 @@ module Bandwidth
     # An array for optional fields
     def optionals
       %w[
-        start_time
+        enqueued_time
         call_timeout
         callback_timeout
         answer_fallback_url
@@ -163,7 +163,7 @@ module Bandwidth
                    answer_url = nil,
                    answer_method = nil,
                    disconnect_method = nil,
-                   start_time = nil,
+                   enqueued_time = nil,
                    call_timeout = nil,
                    callback_timeout = nil,
                    answer_fallback_url = nil,
@@ -180,7 +180,7 @@ module Bandwidth
       @application_id = application_id unless application_id == SKIP
       @to = to unless to == SKIP
       @from = from unless from == SKIP
-      @start_time = start_time unless start_time == SKIP
+      @enqueued_time = enqueued_time unless enqueued_time == SKIP
       @call_url = call_url unless call_url == SKIP
       @call_timeout = call_timeout unless call_timeout == SKIP
       @callback_timeout = callback_timeout unless callback_timeout == SKIP
@@ -213,8 +213,8 @@ module Bandwidth
       answer_method = hash.key?('answerMethod') ? hash['answerMethod'] : SKIP
       disconnect_method =
         hash.key?('disconnectMethod') ? hash['disconnectMethod'] : SKIP
-      start_time = if hash.key?('startTime')
-                     (DateTimeHelper.from_rfc3339(hash['startTime']) if hash['startTime'])
+        enqueued_time = if hash.key?('enqueuedTime')
+                     (DateTimeHelper.from_rfc3339(hash['enqueuedTime']) if hash['enqueuedTime'])
                    else
                      SKIP
                    end
@@ -245,7 +245,7 @@ module Bandwidth
                              answer_url,
                              answer_method,
                              disconnect_method,
-                             start_time,
+                             enqueued_time,
                              call_timeout,
                              callback_timeout,
                              answer_fallback_url,
@@ -259,8 +259,8 @@ module Bandwidth
                              priority)
     end
 
-    def to_start_time
-      DateTimeHelper.to_rfc3339(start_time)
+    def to_enqueued_time
+      DateTimeHelper.to_rfc3339(enqueued_time)
     end
   end
 end
