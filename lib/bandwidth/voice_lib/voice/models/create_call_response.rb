@@ -32,7 +32,7 @@ module Bandwidth
 
     # TODO: Write general description for this method
     # @return [DateTime]
-    attr_accessor :start_time
+    attr_accessor :enqueued_time
 
     # TODO: Write general description for this method
     # @return [String]
