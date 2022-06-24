@@ -116,6 +116,8 @@ class IntegrationTest < Test::Unit::TestCase
         sleep 1
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
+        assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
+        assert_not_nil(response.data.enqueued_time, "enqueued time is nil")
     end
 
     def test_create_call_with_amd_and_get_call_state
