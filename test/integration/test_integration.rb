@@ -688,4 +688,28 @@ class IntegrationTest < Test::Unit::TestCase
         actual = Bandwidth::WebRtc.generate_transfer_bxml_verb('asdf', 'c-93d6f3c0-be584596-0b74-4fa2-8015-d8ede84bd1a4')
         assert_equal(expected, actual)
     end
+
+    def test_start_and_stop_stream_bxml_verbs
+        start_stream_expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www/test/com/stream" name="test_stream" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"/></Response>'
+        start_stream_response = Bandwidth::Voice::Response.new()
+        start_stream = Bandwidth::Voice::StartStream.new({
+            :destination => "https://www/test/com/stream",
+            :name => "test_stream",
+            :streamEventUrl => "https://www/test/com/event",
+            :streamEventMethod => "POST",
+            :username => "username",
+            :password => "password"
+        })
+        start_stream_response.push(start_stream)
+
+        stop_stream_expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StopStream name="test_stream"/></Response>'
+        stop_stream_response = Bandwidth::Voice::Response.new()
+        stop_stream = Bandwidth::Voice::StopStream.new({
+            :name => "test_stream"
+        })
+        stop_stream_response.push(stop_stream)
+
+        assert_equal(start_stream_expected, start_stream_response.to_bxml())
+        assert_equal(stop_stream_expected, stop_stream_response.to_bxml())
+    end
 end
