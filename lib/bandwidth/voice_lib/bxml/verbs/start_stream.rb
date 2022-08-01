@@ -7,7 +7,7 @@ module Bandwidth
       include XmlVerb
 
       def to_bxml(xml)
-        xml.PlayAudio(compact_hash({
+        xml.StartStream(compact_hash({
          'destination' => destination,
          'name' => name,
          'streamEventUrl' => streamEventUrl,
