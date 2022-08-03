@@ -690,11 +690,12 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_start_stream_bxml_verb
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www.test.com/stream" name="test_stream" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"/></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www.test.com/stream" name="test_stream" tracks="inbound" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"/></Response>'
         response = Bandwidth::Voice::Response.new()
         start_stream = Bandwidth::Voice::StartStream.new({
             :destination => "https://www.test.com/stream",
             :name => "test_stream",
+            :tracks => "inbound",
             :streamEventUrl => "https://www.test.com/event",
             :streamEventMethod => "POST",
             :username => "username",

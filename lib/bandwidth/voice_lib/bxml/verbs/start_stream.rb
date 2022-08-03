@@ -10,6 +10,7 @@ module Bandwidth
         xml.StartStream(compact_hash({
          'destination' => destination,
          'name' => name,
+         'tracks' => tracks,
          'streamEventUrl' => streamEventUrl,
          'streamEventMethod' => streamEventMethod,
          'username' => username,
