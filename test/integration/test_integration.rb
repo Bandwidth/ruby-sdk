@@ -82,7 +82,7 @@ class IntegrationTest < Test::Unit::TestCase
         media = "Hello world"
 
         #media upload
-        @bandwidth_client.messaging_client.client.upload_media(BW_ACCOUNT_ID, media_id, media, :content_type => "application/octet-stream", :cache_control => "no-cache")
+        @bandwidth_client.messaging_client.client.upload_media(BW_ACCOUNT_ID, media_id, media, :content_type => "text/plain", :cache_control => "no-cache")
 
         #media download
         downloaded_media = @bandwidth_client.messaging_client.client.get_media(BW_ACCOUNT_ID, media_id).data

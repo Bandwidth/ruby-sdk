@@ -163,7 +163,7 @@ module Messaging
     def upload_media(account_id,
                      media_id,
                      body,
-                     content_type: 'application/octet-stream',
+                     content_type: 'text/plain',
                      cache_control: nil)
       # Prepare query url.
       _query_builder = config.get_base_uri(Server::MESSAGINGDEFAULT)
