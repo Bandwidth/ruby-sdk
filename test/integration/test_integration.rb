@@ -274,7 +274,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert_equal(expected, actual)
     end
 
-    def test_bxml_speak_sentence_pause
+    def test_speak_sentence_pause
         bxml = Bandwidth::Voice::Bxml.new()
 
         speak_sentence = Bandwidth::Voice::SpeakSentence.new({
@@ -690,8 +690,14 @@ class IntegrationTest < Test::Unit::TestCase
     end
 
     def test_start_stream_bxml_verb
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www.test.com/stream" name="test_stream" tracks="inbound" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"/></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www.test.com/stream" name="test_stream" tracks="inbound" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"><StreamParam name="name1" value="value1"/></StartStream></Response>'
         response = Bandwidth::Voice::Response.new()
+
+        stream_param1 = Bandwidth::Voice::StreamParam.new({
+            :name => "name1",
+            :value => "value1"
+        })
+        
         start_stream = Bandwidth::Voice::StartStream.new({
             :destination => "https://www.test.com/stream",
             :name => "test_stream",
@@ -699,8 +705,41 @@ class IntegrationTest < Test::Unit::TestCase
             :streamEventUrl => "https://www.test.com/event",
             :streamEventMethod => "POST",
             :username => "username",
-            :password => "password"
+            :password => "password",
+            :stream_params => stream_param1
         })
+
+        response.push(start_stream)
+        actual = response.to_bxml()
+
+        assert_equal(expected, actual)
+    end
+
+    def test_start_stream_multiple_nested_stream_params
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://www.test.com/stream" name="test_stream" tracks="inbound" streamEventUrl="https://www.test.com/event" streamEventMethod="POST" username="username" password="password"><StreamParam name="name1" value="value1"/><StreamParam name="name2" value="value2"/></StartStream></Response>'
+        response = Bandwidth::Voice::Response.new()
+
+        stream_param1 = Bandwidth::Voice::StreamParam.new({
+            :name => "name1",
+            :value => "value1"
+        })
+
+        stream_param2 = Bandwidth::Voice::StreamParam.new({
+            :name => "name2",
+            :value => "value2"
+        })
+
+        start_stream = Bandwidth::Voice::StartStream.new({
+            :destination => "https://www.test.com/stream",
+            :name => "test_stream",
+            :tracks => "inbound",
+            :streamEventUrl => "https://www.test.com/event",
+            :streamEventMethod => "POST",
+            :username => "username",
+            :password => "password",
+            :nested_verbs => [stream_param1, stream_param2]
+        })
+
         response.push(start_stream)
         actual = response.to_bxml()
 
