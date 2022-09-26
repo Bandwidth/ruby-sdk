@@ -1,0 +1,11 @@
+gemAuthor: Bandwidth
+gemAuthorEmail: dx@bandwidth.com
+gemDescription: The official client SDK for Bandwidth's Voice, Messaging, MFA, and WebRTC APIs
+gemHomepage: https://github.com/Bandwidth/ruby-sdk
+gemLicense: MIT
+gemName: bandwidth-sdk
+gemRequiredRubyVersion: '>=2.4'
+gemSummary: Bandwidth Ruby SDK
+gemVersion: 11.0.0
+library: faraday
+moduleName: Bandwidth
