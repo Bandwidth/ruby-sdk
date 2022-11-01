@@ -4,7 +4,6 @@
 # ( https://apimatic.io ).
 
 require 'faraday/follow_redirects'
-require 'faraday/gzip'
 require 'faraday/http_cache'
 require 'faraday/multipart'
 require 'faraday/retry'
@@ -19,7 +18,6 @@ module Bandwidth
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use Faraday::FollowRedirects::Middleware
-        faraday.request :gzip
         faraday.request :multipart
         faraday.request :url_encoded
         faraday.ssl[:ca_file] = Certifi.where
