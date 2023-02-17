@@ -64,6 +64,7 @@ describe 'MFAApi Integration Tests' do
     end
   end
 
+  # HTTP 4XX Errors
   describe 'http error' do
     
   end
