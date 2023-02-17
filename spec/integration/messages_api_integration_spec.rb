@@ -4,14 +4,11 @@ require 'json'
 # Integration Tests for Bandwidth::MessagesApi
 describe 'MessagesApi Integration Tests' do
   before(:all) do
-    @api_instance_msg = Bandwidth::MessagesApi.new()
-  end
-
-  before do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
+    @api_instance_msg = Bandwidth::MessagesApi.new()
   end
 
   # Create Message
