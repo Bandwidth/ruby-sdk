@@ -1,8 +1,8 @@
 require 'test/unit'
-require_relative '../lib/openapi_ruby_sdk.rb'
+require_relative '../lib/bandwidth-sdk.rb'
 require 'securerandom'
 require 'set'
-include RubySdk
+include Bandwidth
 
 DATA = 0    # index for response array related to the response data
 CODE = 1    # index for response array related to the status code
@@ -22,7 +22,7 @@ rescue
 end
 
 class ValidationTest < Test::Unit::TestCase
-    RubySdk.configure do |config|
+    Bandwidth.configure do |config|
         # Configure HTTP basic authorization: httpBasic
         config.username = BW_USERNAME
         config.password = BW_PASSWORD
@@ -30,12 +30,12 @@ class ValidationTest < Test::Unit::TestCase
     end
     
     #-----------Messaging and Media Tests-----------
-    $api_instance_msg = RubySdk::MessagesApi.new()
-    $api_instance_media = RubySdk::MediaApi.new()
+    $api_instance_msg = Bandwidth::MessagesApi.new()
+    $api_instance_media = Bandwidth::MediaApi.new()
 
     def test_create_message_sms     # Test sending an SMS message
         message_text = "ruby sdk test SMS"
-        body = RubySdk::MessageRequest.new(
+        body = Bandwidth::MessageRequest.new(
             application_id: BW_MESSAGING_APPLICATION_ID,
             to: [USER_NUMBER],
             from: BW_NUMBER,
@@ -54,7 +54,7 @@ class ValidationTest < Test::Unit::TestCase
 
     def test_create_message_mms     # Test sending an MMS message
         message_text = "ruby sdk test MMS"
-        body = RubySdk::MessageRequest.new(
+        body = Bandwidth::MessageRequest.new(
             application_id: BW_MESSAGING_APPLICATION_ID,
             to: [USER_NUMBER],
             from: BW_NUMBER,
@@ -85,13 +85,13 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_create_message_invalid_phone_number    # Test to make sure correct errors are thrown when trying to send a text to an invalid number
-        body = RubySdk::MessageRequest.new(
+        body = Bandwidth::MessageRequest.new(
             application_id: BW_MESSAGING_APPLICATION_ID,
             to: ["+1invalid"],
             from: BW_NUMBER,
             text: "ruby sdk test"
         )
-        e = assert_raise(RubySdk::ApiError, "expected exception not raised") do 
+        e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do 
             $response = $api_instance_msg.create_message_with_http_info(BW_ACCOUNT_ID, body)
             
         end
@@ -128,7 +128,7 @@ class ValidationTest < Test::Unit::TestCase
     def test_get_delete_invalid_media      # Test to make sure correct errors are thrown when trying to list and get media that does not exist
         media_name = "invalid_media"
         # get media
-        e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, media_name, debug_return_type: 'String')
         end
         assert_equal(404, e.code, "incorrect response code")
@@ -141,10 +141,10 @@ class ValidationTest < Test::Unit::TestCase
 
 
     #-----------Voice Tests-----------
-    $api_instance_voice = RubySdk::CallsApi.new()
+    $api_instance_voice = Bandwidth::CallsApi.new()
     
     def test_create_call_and_get_call_state     # Test to create an outbound call and get its state
-        amd_config = RubySdk::MachineDetectionConfiguration.new(
+        amd_config = Bandwidth::MachineDetectionConfiguration.new(
             mode: "async",
             detection_timeout: 5.0,
             silence_timeout: 5.0,
@@ -154,7 +154,7 @@ class ValidationTest < Test::Unit::TestCase
             callback_url: BASE_CALLBACK_URL + "/machineDetection",
             callback_method: "POST"
         )
-        call_body = RubySdk::CreateCallRequest.new(
+        call_body = Bandwidth::CreateCallRequest.new(
             application_id: BW_VOICE_APPLICATION_ID,
             to: USER_NUMBER,
             from: BW_NUMBER,
@@ -204,7 +204,7 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_create_get_failed_call     # Test to make sure correct errors are thrown when trying to create a call incorrectly and get a call that does not exist
-        call_body = RubySdk::CreateCallRequest.new(
+        call_body = Bandwidth::CreateCallRequest.new(
             application_id: BW_VOICE_APPLICATION_ID,
             to: "+1invalid",
             from: BW_NUMBER,
@@ -216,10 +216,10 @@ class ValidationTest < Test::Unit::TestCase
 
         dne_id = "does-not-exist"
 
-        call_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        call_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
         end
-        get_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        get_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_voice.get_call_with_http_info(BW_ACCOUNT_ID, dne_id)
         end
 
@@ -235,10 +235,10 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     #-----------MFA Tests-----------
-    $api_instance_mfa = RubySdk::MFAApi.new()
+    $api_instance_mfa = Bandwidth::MFAApi.new()
 
     def test_mfa_messaging     # Test to send a messaging mfa code
-    req_schema = RubySdk::TwoFactorCodeRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorCodeRequestSchema.new(
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
@@ -251,14 +251,14 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_failed_mfa_messaging      # Test to make sure correct errors are thrown when trying to send a messaging mfa code incorrectly
-    req_schema = RubySdk::TwoFactorCodeRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorCodeRequestSchema.new(
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
         message: "Your temporary {NAME} {SCOPE} code is: ",
         digits: 6
     )
-    e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+    e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
         $api_instance_mfa.messaging_two_factor_with_http_info(BW_ACCOUNT_ID, req_schema)
     end
     assert_equal(400, e.code, "incorrect response code")
@@ -266,7 +266,7 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_mfa_voice     # Test to send a voice mfa code
-    req_schema = RubySdk::TwoFactorCodeRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorCodeRequestSchema.new(
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_VOICE_APPLICATION_ID,
@@ -279,14 +279,14 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_failed_mfa_voice      # Test to make sure correct errors are thrown when trying to send a voice mfa code incorrectly
-    req_schema = RubySdk::TwoFactorCodeRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorCodeRequestSchema.new(
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_VOICE_APPLICATION_ID,
         message: "Your temporary {NAME} {SCOPE} code is: ",
         digits: 6
     )
-    e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+    e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
         $api_instance_mfa.voice_two_factor_with_http_info(BW_ACCOUNT_ID, req_schema)
     end
     assert_equal(400, e.code, "incorrect response code")
@@ -295,7 +295,7 @@ class ValidationTest < Test::Unit::TestCase
 
     def test_mfa_verify # Test to verify a correct received mfa code
     omit("Currently no way to do this without receiving callbacks")
-    req_schema = RubySdk::TwoFactorVerifyRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorVerifyRequestSchema.new(
         to: "+1000" + rand(1...10000000).to_s,
         application_id: BW_VOICE_APPLICATION_ID,
         expiration_time_in_minutes: 3,
@@ -307,7 +307,7 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_failed_mfa_verify     # Test to verify an incorrect received mfa code
-    req_schema = RubySdk::TwoFactorVerifyRequestSchema.new(
+    req_schema = Bandwidth::TwoFactorVerifyRequestSchema.new(
         to: "+1000" + rand(1...10000000).to_s,
         application_id: BW_VOICE_APPLICATION_ID,
         expiration_time_in_minutes: 3,
@@ -319,11 +319,11 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     #-----------WebRTC Tests-----------
-    $api_instance_webrtc = RubySdk::SessionsApi.new()
-    $api_instance_participants = RubySdk::ParticipantsApi.new()
+    $api_instance_webrtc = Bandwidth::SessionsApi.new()
+    $api_instance_participants = Bandwidth::ParticipantsApi.new()
 
     def test_webrtc_create_get_delete_session      # Test to create, get, and delete a webrtc session
-    session_body = RubySdk::Session.new(
+    session_body = Bandwidth::Session.new(
         tag: "ruby sdk test"
     )
     create_response = $api_instance_webrtc.create_session_with_http_info(BW_ACCOUNT_ID, session: session_body)
@@ -344,13 +344,13 @@ class ValidationTest < Test::Unit::TestCase
         malf_id = "invalid"
         dne_id = "11111111-2222-3333-4444-555555555555"
         expected_error = "Could not find session for id " + dne_id
-        malf_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        malf_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_webrtc.get_session_with_http_info(BW_ACCOUNT_ID, malf_id)
         end
         assert_equal(400, malf_e.code, "incorrect response code")
         assert_equal("Malformed session id", JSON.parse(malf_e.response_body)['error'], "response error does not match")
 
-        dne_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        dne_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_webrtc.get_session_with_http_info(BW_ACCOUNT_ID, dne_id)
         end
         assert_equal(404, dne_e.code, "incorrect response code")
@@ -358,7 +358,7 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_create_get_delete_participant      # Test to successfully create, get, and delete a webrtc participant
-        part_body = RubySdk::Participant.new(
+        part_body = Bandwidth::Participant.new(
             publish_permissions: ["VIDEO", "AUDIO"],
             device_api_version: "V3",
             tag: "ruby sdk test"
@@ -383,7 +383,7 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_failed_create_get_delete_participant       # Test to make sure correct errors are thrown when using invalid participant info
-        part_body_bad = RubySdk::Participant.new(
+        part_body_bad = Bandwidth::Participant.new(
             publish_permissions: ["AUDIO", "VIDEO", "INVALID"],
             device_api_version: "V3",
             tag: "ruby sdk test invalid"
@@ -391,18 +391,18 @@ class ValidationTest < Test::Unit::TestCase
         dne_id = "11111111-2222-3333-4444-555555555555"
         expected_error = "Could not find participant for id " + dne_id
 
-        create_e = assert_raise(RubySdk::ApiError, "expected ecpetion not raised") do
+        create_e = assert_raise(Bandwidth::ApiError, "expected ecpetion not raised") do
             $api_instance_participants.create_participant_with_http_info(BW_ACCOUNT_ID, participant: part_body_bad)
         end
         assert_equal(400, create_e.code, "incorrect response code")
         
-        get_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        get_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_participants.get_participant_with_http_info(BW_ACCOUNT_ID, dne_id)
         end
         assert_equal(404, get_e.code, "incorrect response code")
         assert_equal(expected_error, JSON.parse(get_e.response_body)['error'], "response error does not match")
 
-        del_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        del_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_participants.delete_participant_with_http_info(BW_ACCOUNT_ID, dne_id)
         end
         assert_equal(404, del_e.code, "incorrect response code")
@@ -410,10 +410,10 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     #-----------TN Lookup Tests-----------
-    $api_instance_tnlookup = RubySdk::PhoneNumberLookupApi.new()
+    $api_instance_tnlookup = Bandwidth::PhoneNumberLookupApi.new()
 
     def test_create_get_tn_lookup   # Test to create and get the status of a TN Lookup Request
-        tn_body = RubySdk::OrderRequest.new(
+        tn_body = Bandwidth::OrderRequest.new(
             tns: [BW_NUMBER]
         )
         create_response = $api_instance_tnlookup.lookup_request_with_http_info(BW_ACCOUNT_ID, tn_body)
@@ -433,19 +433,19 @@ class ValidationTest < Test::Unit::TestCase
     end
 
     def test_failed_create_get_tn_lookup    # Test to make sure correct errors are thrown when trying to improperly create and get a TN Lookup Request
-        tn_body_bad = RubySdk::OrderRequest.new(
+        tn_body_bad = Bandwidth::OrderRequest.new(
             tns: ["+1invalid"]
         )
         req_id_dne = "invalid"
         expected_error = "Some tns do not match e164 format: " + tn_body_bad.tns[0]
         #req_id_dne = "11111111-2222-3333-4444-555555555555"
-        create_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        create_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_tnlookup.lookup_request_with_http_info(BW_ACCOUNT_ID, tn_body_bad)
         end
         assert_equal(400, create_e.code, "incorrect response type")
         assert_equal(expected_error, JSON.parse(create_e.response_body)['message'], "response error does not match")
 
-        get_e = assert_raise(RubySdk::ApiError, "expected exception not raised") do
+        get_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
             $api_instance_tnlookup.lookup_request_status_with_http_info(BW_ACCOUNT_ID, req_id_dne)
         end
         assert_equal(404, get_e.code, "incorrect response type")

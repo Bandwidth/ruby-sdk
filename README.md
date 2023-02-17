@@ -106,9 +106,6 @@ Class | Method | HTTP request | Description
 *Bandwidth::MediaApi* | [**upload_media**](docs/MediaApi.md#upload_media) | **PUT** /users/{accountId}/media/{mediaId} | Upload Media
 *Bandwidth::MessagesApi* | [**create_message**](docs/MessagesApi.md#create_message) | **POST** /users/{accountId}/messages | Create Message
 *Bandwidth::MessagesApi* | [**list_messages**](docs/MessagesApi.md#list_messages) | **GET** /users/{accountId}/messages | List Messages
-*Bandwidth::ParticipantsApi* | [**create_participant**](docs/ParticipantsApi.md#create_participant) | **POST** /accounts/{accountId}/participants | Create Participant
-*Bandwidth::ParticipantsApi* | [**delete_participant**](docs/ParticipantsApi.md#delete_participant) | **DELETE** /accounts/{accountId}/participants/{participantId} | Delete Participant
-*Bandwidth::ParticipantsApi* | [**get_participant**](docs/ParticipantsApi.md#get_participant) | **GET** /accounts/{accountId}/participants/{participantId} | Get Participant
 *Bandwidth::PhoneNumberLookupApi* | [**create_lookup**](docs/PhoneNumberLookupApi.md#create_lookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup
 *Bandwidth::PhoneNumberLookupApi* | [**get_lookup_status**](docs/PhoneNumberLookupApi.md#get_lookup_status) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status
 *Bandwidth::RecordingsApi* | [**delete_call_transcription**](docs/RecordingsApi.md#delete_call_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription
@@ -121,14 +118,6 @@ Class | Method | HTTP request | Description
 *Bandwidth::RecordingsApi* | [**list_call_recordings**](docs/RecordingsApi.md#list_call_recordings) | **GET** /accounts/{accountId}/calls/{callId}/recordings | List Call Recordings
 *Bandwidth::RecordingsApi* | [**transcribe_call_recording**](docs/RecordingsApi.md#transcribe_call_recording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request
 *Bandwidth::RecordingsApi* | [**update_call_recording_state**](docs/RecordingsApi.md#update_call_recording_state) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording
-*Bandwidth::SessionsApi* | [**add_participant_to_session**](docs/SessionsApi.md#add_participant_to_session) | **PUT** /accounts/{accountId}/sessions/{sessionId}/participants/{participantId} | Add Participant to Session
-*Bandwidth::SessionsApi* | [**create_session**](docs/SessionsApi.md#create_session) | **POST** /accounts/{accountId}/sessions | Create Session
-*Bandwidth::SessionsApi* | [**delete_session**](docs/SessionsApi.md#delete_session) | **DELETE** /accounts/{accountId}/sessions/{sessionId} | Delete Session
-*Bandwidth::SessionsApi* | [**get_participant_subscriptions**](docs/SessionsApi.md#get_participant_subscriptions) | **GET** /accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions | Get Participant Subscriptions
-*Bandwidth::SessionsApi* | [**get_session**](docs/SessionsApi.md#get_session) | **GET** /accounts/{accountId}/sessions/{sessionId} | Get Session
-*Bandwidth::SessionsApi* | [**list_session_participants**](docs/SessionsApi.md#list_session_participants) | **GET** /accounts/{accountId}/sessions/{sessionId}/participants | List Participants in Session
-*Bandwidth::SessionsApi* | [**remove_participant_from_session**](docs/SessionsApi.md#remove_participant_from_session) | **DELETE** /accounts/{accountId}/sessions/{sessionId}/participants/{participantId} | Remove Participant from Session
-*Bandwidth::SessionsApi* | [**update_participant_subscriptions**](docs/SessionsApi.md#update_participant_subscriptions) | **PUT** /accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions | Update Participant Subscriptions
 *Bandwidth::StatisticsApi* | [**get_statistics**](docs/StatisticsApi.md#get_statistics) | **GET** /accounts/{accountId}/statistics | Get Account Statistics
 
 
@@ -158,17 +147,15 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CreateCallResponse](docs/CreateCallResponse.md)
  - [Bandwidth::CreateLookupResponse](docs/CreateLookupResponse.md)
  - [Bandwidth::CreateMessageRequestError](docs/CreateMessageRequestError.md)
- - [Bandwidth::CreateParticipantRequest](docs/CreateParticipantRequest.md)
- - [Bandwidth::CreateParticipantResponse](docs/CreateParticipantResponse.md)
  - [Bandwidth::DeferredResult](docs/DeferredResult.md)
- - [Bandwidth::DeviceApiVersionEnum](docs/DeviceApiVersionEnum.md)
  - [Bandwidth::DisconenctCallback](docs/DisconenctCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
  - [Bandwidth::DtmfCallback](docs/DtmfCallback.md)
  - [Bandwidth::FieldError](docs/FieldError.md)
  - [Bandwidth::FileFormatEnum](docs/FileFormatEnum.md)
- - [Bandwidth::ForbiddenRequest](docs/ForbiddenRequest.md)
  - [Bandwidth::GatherCallback](docs/GatherCallback.md)
+ - [Bandwidth::InboundMessageCallback](docs/InboundMessageCallback.md)
+ - [Bandwidth::InboundMessageCallbackMessage](docs/InboundMessageCallbackMessage.md)
  - [Bandwidth::InitiateCallback](docs/InitiateCallback.md)
  - [Bandwidth::ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Bandwidth::ListMessageItem](docs/ListMessageItem.md)
@@ -181,8 +168,14 @@ Class | Method | HTTP request | Description
  - [Bandwidth::MachineDetectionModeEnum](docs/MachineDetectionModeEnum.md)
  - [Bandwidth::Media](docs/Media.md)
  - [Bandwidth::Message](docs/Message.md)
+ - [Bandwidth::MessageDeliveredCallback](docs/MessageDeliveredCallback.md)
+ - [Bandwidth::MessageDeliveredCallbackMessage](docs/MessageDeliveredCallbackMessage.md)
  - [Bandwidth::MessageDirectionEnum](docs/MessageDirectionEnum.md)
+ - [Bandwidth::MessageFailedCallback](docs/MessageFailedCallback.md)
+ - [Bandwidth::MessageFailedCallbackMessage](docs/MessageFailedCallbackMessage.md)
  - [Bandwidth::MessageRequest](docs/MessageRequest.md)
+ - [Bandwidth::MessageSendingCallback](docs/MessageSendingCallback.md)
+ - [Bandwidth::MessageSendingCallbackMessage](docs/MessageSendingCallbackMessage.md)
  - [Bandwidth::MessageStatusEnum](docs/MessageStatusEnum.md)
  - [Bandwidth::MessageTypeEnum](docs/MessageTypeEnum.md)
  - [Bandwidth::MessagesList](docs/MessagesList.md)
@@ -192,19 +185,13 @@ Class | Method | HTTP request | Description
  - [Bandwidth::MfaRequestError](docs/MfaRequestError.md)
  - [Bandwidth::MfaUnauthorizedRequestError](docs/MfaUnauthorizedRequestError.md)
  - [Bandwidth::PageInfo](docs/PageInfo.md)
- - [Bandwidth::Participant](docs/Participant.md)
- - [Bandwidth::ParticipantSubscription](docs/ParticipantSubscription.md)
  - [Bandwidth::PriorityEnum](docs/PriorityEnum.md)
- - [Bandwidth::PublishPermissionsEnum](docs/PublishPermissionsEnum.md)
  - [Bandwidth::RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Bandwidth::RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Bandwidth::RecordingStateEnum](docs/RecordingStateEnum.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
- - [Bandwidth::RequestError](docs/RequestError.md)
- - [Bandwidth::Session](docs/Session.md)
  - [Bandwidth::StirShaken](docs/StirShaken.md)
- - [Bandwidth::Subscriptions](docs/Subscriptions.md)
  - [Bandwidth::Tag](docs/Tag.md)
  - [Bandwidth::TnLookupRequestError](docs/TnLookupRequestError.md)
  - [Bandwidth::TranscribeRecording](docs/TranscribeRecording.md)
@@ -215,7 +202,6 @@ Class | Method | HTTP request | Description
  - [Bandwidth::TransferAnswerCallback](docs/TransferAnswerCallback.md)
  - [Bandwidth::TransferCompleteCallback](docs/TransferCompleteCallback.md)
  - [Bandwidth::TransferDisconnectCallback](docs/TransferDisconnectCallback.md)
- - [Bandwidth::UnauthorizedRequest](docs/UnauthorizedRequest.md)
  - [Bandwidth::UpdateCall](docs/UpdateCall.md)
  - [Bandwidth::UpdateCallRecording](docs/UpdateCallRecording.md)
  - [Bandwidth::UpdateConference](docs/UpdateConference.md)
