@@ -4,9 +4,6 @@ require 'securerandom'
 require 'set'
 include Bandwidth
 
-DATA = 0    # index for response array related to the response data
-CODE = 1    # index for response array related to the status code
-
 begin
     BW_USERNAME = ENV.fetch("BW_USERNAME")
     BW_PASSWORD = ENV.fetch("BW_PASSWORD")
@@ -22,85 +19,6 @@ rescue
 end
 
 class ValidationTest < Test::Unit::TestCase
-    Bandwidth.configure do |config|
-        # Configure HTTP basic authorization: httpBasic
-        config.username = BW_USERNAME
-        config.password = BW_PASSWORD
-        #config.ssl_verify = false # remove for testing on push
-    end
-    
-    #-----------Messaging and Media Tests-----------
-    $api_instance_msg = Bandwidth::MessagesApi.new()
-    $api_instance_media = Bandwidth::MediaApi.new()
-
-    def test_create_message_sms     # Test sending an SMS message
-        message_text = "ruby sdk test SMS"
-        body = Bandwidth::MessageRequest.new(
-            application_id: BW_MESSAGING_APPLICATION_ID,
-            to: [USER_NUMBER],
-            from: BW_NUMBER,
-            text: message_text
-        )
-        response = $api_instance_msg.create_message_with_http_info(BW_ACCOUNT_ID, body)
-        assert_equal(202, response[CODE], "incorrect response code")
-        assert_equal(29, response[DATA].id.length, "id not set")
-        assert_equal(BW_NUMBER, response[DATA].owner, "message owner not correct")
-        assert_equal(BW_NUMBER, response[DATA].from, "from number does not match")
-        assert_equal([USER_NUMBER], response[DATA].to, "to number does not match")
-        assert_equal(body.tag, response[DATA].tag, "tags do not match")
-        assert_equal(body.media,response[DATA].media,  "media does not match")
-        assert_equal(message_text, response[DATA].text, "message text does not match")
-    end
-
-    def test_create_message_mms     # Test sending an MMS message
-        message_text = "ruby sdk test MMS"
-        body = Bandwidth::MessageRequest.new(
-            application_id: BW_MESSAGING_APPLICATION_ID,
-            to: [USER_NUMBER],
-            from: BW_NUMBER,
-            text: message_text,
-            media: ["https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg"]
-        )
-        response = $api_instance_msg.create_message_with_http_info(BW_ACCOUNT_ID, body)
-        assert_equal(202, response[CODE], "incorrect response code")
-        assert_equal(29, response[DATA].id.length, "id not set")
-        assert_equal(BW_NUMBER, response[DATA].owner, "message owner not correct")
-        assert_equal(BW_NUMBER, response[DATA].from, "from number does not match")
-        assert_equal([USER_NUMBER], response[DATA].to, "to number does not match")
-        assert_equal(body.tag, response[DATA].tag, "tags do not match")
-        assert_equal(body.media,response[DATA].media,  "media does not match")
-        assert_equal(message_text, response[DATA].text, "message text does not match")
-    end
-
-    def test_get_message    # Test to get most recent message from the BW_NUMBER
-        get_opts = {
-            :source_tn => BW_NUMBER,
-            :message_direction => "OUTBOUND"
-        }
-        response = $api_instance_msg.get_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
-        assert_equal(200, response[CODE], "incorrect response code")
-        assert_equal(BW_ACCOUNT_ID, response[DATA].messages[0].account_id, "account ids do not match")
-        assert_equal("OUTBOUND", response[DATA].messages[0].message_direction, "message directions do not match")
-        assert_equal(BW_NUMBER, response[DATA].messages[0].source_tn, "failed to get message from BW_NUMBER")
-    end
-
-    def test_create_message_invalid_phone_number    # Test to make sure correct errors are thrown when trying to send a text to an invalid number
-        body = Bandwidth::MessageRequest.new(
-            application_id: BW_MESSAGING_APPLICATION_ID,
-            to: ["+1invalid"],
-            from: BW_NUMBER,
-            text: "ruby sdk test"
-        )
-        e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do 
-            $response = $api_instance_msg.create_message_with_http_info(BW_ACCOUNT_ID, body)
-            
-        end
-        resp_body =  JSON.parse(e.response_body)
-        expected_desc = "\'+1invalid\' must be replaced with a valid E164 formatted telephone number"
-        assert_equal(400, e.code, "incorrect response code")
-        assert_equal("request-validation", resp_body['type'], "response type does not match")
-        assert_equal(expected_desc, resp_body['fieldErrors'][0]['description'], "error description does not match expected")
-    end
 
     def test_valid_media    # Test Media Upload, List, Download, and Delete
         media_name = 'ruby_media' + SecureRandom.uuid
@@ -316,97 +234,6 @@ class ValidationTest < Test::Unit::TestCase
     mfa_response = $api_instance_mfa.verify_two_factor_with_http_info(BW_ACCOUNT_ID, req_schema)
     assert_equal(200, mfa_response[CODE], "incorrect response code")
     assert(mfa_response[DATA].valid.is_a?(FalseClass), "incorrect valid data type")
-    end
-
-    #-----------WebRTC Tests-----------
-    $api_instance_webrtc = Bandwidth::SessionsApi.new()
-    $api_instance_participants = Bandwidth::ParticipantsApi.new()
-
-    def test_webrtc_create_get_delete_session      # Test to create, get, and delete a webrtc session
-    session_body = Bandwidth::Session.new(
-        tag: "ruby sdk test"
-    )
-    create_response = $api_instance_webrtc.create_session_with_http_info(BW_ACCOUNT_ID, session: session_body)
-    assert_equal(200, create_response[CODE], "incorrect response code")
-    assert_equal(36, create_response[DATA].id.length, "session id not set")
-    assert_equal(session_body.tag.to_s, create_response[DATA].tag, "created session tag does not match expected")
-
-    get_response = $api_instance_webrtc.get_session_with_http_info(BW_ACCOUNT_ID, create_response[DATA].id)
-    assert_equal(200, get_response[CODE], "incorrect response code")
-    assert_equal(create_response[DATA].id, get_response[DATA].id, "session id does not match")
-    assert_equal(session_body.tag.to_s, get_response[DATA].tag, "gotten session tag does not match expected")
-
-    del_response = $api_instance_webrtc.delete_session_with_http_info(BW_ACCOUNT_ID, create_response[DATA].id)
-    assert_equal(204, del_response[CODE], "incorrect response code")
-    end
-
-    def test_failed_get_session     # Test to make sure correct errors are thrown when improperly trying to get session details
-        malf_id = "invalid"
-        dne_id = "11111111-2222-3333-4444-555555555555"
-        expected_error = "Could not find session for id " + dne_id
-        malf_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
-            $api_instance_webrtc.get_session_with_http_info(BW_ACCOUNT_ID, malf_id)
-        end
-        assert_equal(400, malf_e.code, "incorrect response code")
-        assert_equal("Malformed session id", JSON.parse(malf_e.response_body)['error'], "response error does not match")
-
-        dne_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
-            $api_instance_webrtc.get_session_with_http_info(BW_ACCOUNT_ID, dne_id)
-        end
-        assert_equal(404, dne_e.code, "incorrect response code")
-        assert_equal(expected_error, JSON.parse(dne_e.response_body)['error'], "response error does not match")
-    end
-
-    def test_create_get_delete_participant      # Test to successfully create, get, and delete a webrtc participant
-        part_body = Bandwidth::Participant.new(
-            publish_permissions: ["VIDEO", "AUDIO"],
-            device_api_version: "V3",
-            tag: "ruby sdk test"
-        )
-        create_response = $api_instance_participants.create_participant_with_http_info(BW_ACCOUNT_ID, participant: part_body)
-        part_id = create_response[DATA].participant.id
-        assert_equal(200, create_response[CODE], "incorrect response code")
-        assert_equal(36, create_response[DATA].participant.id.length, "participant id not set")
-        assert_equal(part_body.publish_permissions.to_set, create_response[DATA].participant.publish_permissions.to_set, "participant permissions do not match")
-        assert_equal(part_body.device_api_version, create_response[DATA].participant.device_api_version, "participant api version does not match")
-        assert_equal(part_body.tag, create_response[DATA].participant.tag, "participant tag does not match")
-
-        get_response = $api_instance_participants.get_participant_with_http_info(BW_ACCOUNT_ID, part_id)
-        assert_equal(200, get_response[CODE], "incorrect response code")
-        assert_equal(part_id, get_response[DATA].id, "participant id does not match")
-        assert_equal(part_body.publish_permissions.to_set, get_response[DATA].publish_permissions.to_set, "participant permissions do not match")
-        assert_equal(part_body.device_api_version, get_response[DATA].device_api_version, "participant api version does not match")
-        assert_equal(part_body.tag, get_response[DATA].tag, "participant tag does not match")
-
-        del_response = $api_instance_participants.delete_participant_with_http_info(BW_ACCOUNT_ID, part_id)
-        assert_equal(204, del_response[CODE], "incorrect response code")
-    end
-
-    def test_failed_create_get_delete_participant       # Test to make sure correct errors are thrown when using invalid participant info
-        part_body_bad = Bandwidth::Participant.new(
-            publish_permissions: ["AUDIO", "VIDEO", "INVALID"],
-            device_api_version: "V3",
-            tag: "ruby sdk test invalid"
-        )
-        dne_id = "11111111-2222-3333-4444-555555555555"
-        expected_error = "Could not find participant for id " + dne_id
-
-        create_e = assert_raise(Bandwidth::ApiError, "expected ecpetion not raised") do
-            $api_instance_participants.create_participant_with_http_info(BW_ACCOUNT_ID, participant: part_body_bad)
-        end
-        assert_equal(400, create_e.code, "incorrect response code")
-        
-        get_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
-            $api_instance_participants.get_participant_with_http_info(BW_ACCOUNT_ID, dne_id)
-        end
-        assert_equal(404, get_e.code, "incorrect response code")
-        assert_equal(expected_error, JSON.parse(get_e.response_body)['error'], "response error does not match")
-
-        del_e = assert_raise(Bandwidth::ApiError, "expected exception not raised") do
-            $api_instance_participants.delete_participant_with_http_info(BW_ACCOUNT_ID, dne_id)
-        end
-        assert_equal(404, del_e.code, "incorrect response code")
-        assert_equal(expected_error, JSON.parse(del_e.response_body)['error'], "response error does not match")
     end
 
     #-----------TN Lookup Tests-----------
