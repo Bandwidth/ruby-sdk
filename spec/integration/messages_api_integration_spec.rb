@@ -11,7 +11,6 @@ describe 'MessagesApi Integration Tests' do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
-      #config.ssl_verify = false # remove for testing on push
     end
   end
 
