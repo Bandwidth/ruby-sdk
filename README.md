@@ -1,5 +1,15 @@
 # bandwidth-sdk
 
+[![Test](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml)
+
+
+| **OS** | **Ruby** |
+|:---:|:---:|
+| Windows 2019 | 2.7, 3.0, 3.1, 3.2 |
+| Windows 2022 | 2.7, 3.0, 3.1, 3.2 |
+| Ubuntu 20.04 | 2.7, 3.0, 3.1, 3.2 |
+| Ubuntu 22.04 | 2.7, 3.0, 3.1, 3.2 |
+
 Bandwidth - the Ruby gem for the Bandwidth
 
 Bandwidth's Communication APIs
