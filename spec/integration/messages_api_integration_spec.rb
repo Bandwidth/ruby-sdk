@@ -13,26 +13,9 @@ OpenAPI Generator version: 6.3.0
 require 'spec_helper'
 require 'json'
 
-DATA = 0    # index for response array related to the response data
-CODE = 1    # index for response array related to the status code
-
 # Integration Tests for Bandwidth::MessagesApi
 describe 'MessagesApi Integration Tests' do
   before(:all) do
-    begin
-      BW_USERNAME = ENV.fetch("BW_USERNAME")
-      BW_PASSWORD = ENV.fetch("BW_PASSWORD")
-      BW_ACCOUNT_ID = ENV.fetch("BW_ACCOUNT_ID")
-      BW_VOICE_APPLICATION_ID = ENV.fetch("BW_VOICE_APPLICATION_ID")
-      BW_MESSAGING_APPLICATION_ID = ENV.fetch("BW_MESSAGING_APPLICATION_ID")
-      BASE_CALLBACK_URL = ENV.fetch("BASE_CALLBACK_URL")
-      BW_NUMBER = ENV.fetch("BW_NUMBER")
-      USER_NUMBER = ENV.fetch("USER_NUMBER")
-    rescue
-      puts "Environmental variables not found"
-      exit(-1)
-    end
-
     @api_instance_msg = Bandwidth::MessagesApi.new()
   end
 
