@@ -18,8 +18,6 @@ tags:
   - name: Statistics
   - name: MFA
   - name: Phone Number Lookup
-  - name: Participants
-  - name: Sessions
 paths:
   /users/{accountId}/media:
     get:
@@ -83,6 +81,10 @@ paths:
       description: >-
         Upload a file. You may add headers to the request in order to provide
         some control to your media file.
+
+
+        If a file is uploaded with the same name as a file that already exists
+        under this account, the previous file will be overwritten.
 
 
         A list of supported media types can be found
@@ -214,6 +216,11 @@ paths:
           $ref: '#/components/responses/messagingTooManyRequestsError'
         '500':
           $ref: '#/components/responses/messagingInternalServerError'
+      callbacks:
+        inboundCallback:
+          $ref: '#/components/callbacks/inboundCallback'
+        statusCallback:
+          $ref: '#/components/callbacks/statusCallback'
     servers: *ref_0
   /accounts/{accountId}/calls:
     post:
@@ -1164,296 +1171,6 @@ paths:
         '500':
           $ref: '#/components/responses/tnLookupInternalServerError'
     servers: *ref_3
-  /accounts/{accountId}/participants:
-    post:
-      tags:
-        - Participants
-      summary: Create Participant
-      description: >-
-        Create a new participant under this account. Participants are
-        idempotent, so relevant parameters must be set in this function if
-        desired.
-      operationId: createParticipant
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-      requestBody:
-        $ref: '#/components/requestBodies/createParticipantRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/createParticipantResponse'
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: &ref_4
-      - url: https://api.webrtc.bandwidth.com/v1
-        description: Production
-  /accounts/{accountId}/participants/{participantId}:
-    get:
-      tags:
-        - Participants
-      summary: Get Participant
-      description: Get participant by ID.
-      operationId: getParticipant
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/participantId'
-      responses:
-        '200':
-          $ref: '#/components/responses/getParticipantResponse'
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    delete:
-      tags:
-        - Participants
-      summary: Delete Participant
-      description: Delete participant by ID.
-      operationId: deleteParticipant
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/participantId'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
-  /accounts/{accountId}/sessions:
-    post:
-      tags:
-        - Sessions
-      summary: Create Session
-      description: >-
-        Create a new session. Sessions are idempotent, so relevant parameters
-        must be set in this function if desired.
-      operationId: createSession
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-      requestBody:
-        $ref: '#/components/requestBodies/createSessionRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/sessionResponse'
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
-  /accounts/{accountId}/sessions/{sessionId}:
-    get:
-      tags:
-        - Sessions
-      summary: Get Session
-      description: Get session by ID.
-      operationId: getSession
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-      responses:
-        '200':
-          $ref: '#/components/responses/sessionResponse'
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    delete:
-      tags:
-        - Sessions
-      summary: Delete Session
-      description: Delete session by ID.
-      operationId: deleteSession
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
-  /accounts/{accountId}/sessions/{sessionId}/participants:
-    get:
-      tags:
-        - Sessions
-      summary: List Participants in Session
-      description: List participants in a session.
-      operationId: listSessionParticipants
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-      responses:
-        '200':
-          $ref: '#/components/responses/listSessionParticipantsResponse'
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
-  /accounts/{accountId}/sessions/{sessionId}/participants/{participantId}:
-    put:
-      tags:
-        - Sessions
-      summary: Add Participant to Session
-      description: |
-        Add a participant to a session.
-
-        Subscriptions can optionally be provided as part of this call.
-      operationId: addParticipantToSession
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-        - $ref: '#/components/parameters/participantId'
-      requestBody:
-        $ref: '#/components/requestBodies/addParticipantToSessionRequest'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '409':
-          $ref: '#/components/responses/webrtcConflictError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    delete:
-      tags:
-        - Sessions
-      summary: Remove Participant from Session
-      description: >-
-        Remove a participant from a session. This will automatically remove any
-        subscriptions the participant has associated with this session.
-      operationId: removeParticipantFromSession
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-        - $ref: '#/components/parameters/participantId'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
-  /accounts/{accountId}/sessions/{sessionId}/participants/{participantId}/subscriptions:
-    get:
-      tags:
-        - Sessions
-      summary: Get Participant Subscriptions
-      description: Get a participant's subscriptions.
-      operationId: getParticipantSubscriptions
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-        - $ref: '#/components/parameters/participantId'
-      responses:
-        '200':
-          $ref: '#/components/responses/getParticipantSubscriptionsResponse'
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    put:
-      tags:
-        - Sessions
-      summary: Update Participant Subscriptions
-      description: >-
-        Update a participant's subscriptions. This is a full update that will
-        replace the participant's subscriptions. It allows subscription to the
-        entire Session, a subset list of Participants in that Session, or
-        specific media streams on any of the listed Participants.
-
-        First call `getParticipantSubscriptions` if you need the current
-        subscriptions.
-
-        Calling this API with no `Subscriptions` object to remove all
-        subscriptions.
-      operationId: updateParticipantSubscriptions
-      parameters:
-        - $ref: '#/components/parameters/accountId4'
-        - $ref: '#/components/parameters/sessionId'
-        - $ref: '#/components/parameters/participantId'
-      requestBody:
-        $ref: '#/components/requestBodies/updateParticipantSubscriptionsRequest'
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/webrtcBadRequestError'
-        '401':
-          $ref: '#/components/responses/webrtcUnauthorizedError'
-        '403':
-          $ref: '#/components/responses/webrtcForbiddenError'
-        '404':
-          $ref: '#/components/responses/webrtcNotFoundError'
-        '500':
-          $ref: '#/components/responses/webrtcInternalServerError'
-    servers: *ref_4
 components:
   schemas:
     priorityEnum:
@@ -1768,9 +1485,12 @@ components:
           items:
             type: string
             format: uri
+            maxLength: 4096
           description: >-
             A list of URLs to include as media attachments as part of the
             message.
+
+            Each URL can be at most 4096 characters.
           example:
             - https://dev.bandwidth.com/images/bandwidth-logo.png
             - https://dev.bandwidth.com/images/github_logo.png
@@ -1789,6 +1509,335 @@ components:
             automatically expire by. This must be a valid RFC-3339 value, e.g.,
             2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.
           example: '2021-02-01T11:29:18-05:00'
+    inboundMessageCallback:
+      description: Inbound Message Callback
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          example: 2016-09-14T18:20:16.000Z
+        type:
+          type: string
+          example: message-received
+        to:
+          type: string
+          example: '+15552223333'
+        description:
+          type: string
+          example: Incoming message received
+        message:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 1661365814859loidf7mcwd4qacn7
+            owner:
+              type: string
+              example: '+15553332222'
+            applicationId:
+              type: string
+              example: 93de2206-9669-4e07-948d-329f4b722ee2
+            time:
+              type: string
+              format: date-time
+              example: 2016-09-14T18:20:16.000Z
+            segmentCount:
+              type: integer
+              example: 1
+            direction:
+              $ref: '#/components/schemas/messageDirectionEnum'
+            to:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example:
+                - '+15552223333'
+            from:
+              type: string
+              example: '+15553332222'
+            text:
+              type: string
+              example: Hello world
+            tag:
+              type: string
+              example: custom string
+            media:
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - https://dev.bandwidth.com/images/bandwidth-logo.png
+                - https://dev.bandwidth.com/images/github_logo.png
+            priority:
+              $ref: '#/components/schemas/priorityEnum'
+          required:
+            - id
+            - owner
+            - applicationId
+            - time
+            - segmentCount
+            - direction
+            - to
+            - from
+            - text
+      required:
+        - time
+        - type
+        - to
+        - description
+        - message
+    messageSendingCallback:
+      type: object
+      description: Message Sending Callback
+      properties:
+        time:
+          type: string
+          format: date-time
+          example: 2016-09-14T18:20:16.000Z
+        type:
+          type: string
+          example: message-sending
+        to:
+          type: string
+          example: '+15552223333'
+        description:
+          type: string
+          example: Message is sending to carrier
+        message:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 1661365814859loidf7mcwd4qacn7
+            owner:
+              type: string
+              example: '+15553332222'
+            applicationId:
+              type: string
+              example: 93de2206-9669-4e07-948d-329f4b722ee2
+            time:
+              type: string
+              format: date-time
+              example: 2016-09-14T18:20:16.000Z
+            segmentCount:
+              type: integer
+              example: 1
+            direction:
+              $ref: '#/components/schemas/messageDirectionEnum'
+            to:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example:
+                - '+15552223333'
+            from:
+              type: string
+              example: '+15553332222'
+            text:
+              type: string
+              example: ''
+            tag:
+              type: string
+              example: custom string
+            media:
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - https://dev.bandwidth.com/images/bandwidth-logo.png
+                - https://dev.bandwidth.com/images/github_logo.png
+            priority:
+              $ref: '#/components/schemas/priorityEnum'
+          required:
+            - id
+            - owner
+            - applicationId
+            - time
+            - segmentCount
+            - direction
+            - to
+            - from
+            - text
+            - media
+            - priority
+      required:
+        - time
+        - type
+        - to
+        - description
+        - message
+    messageDeliveredCallback:
+      description: Message Delivered Callback
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          example: 2016-09-14T18:20:16.000Z
+        type:
+          type: string
+          example: message-delivered
+        to:
+          type: string
+          example: '+15552223333'
+        description:
+          type: string
+          example: Message delivered to carrier.
+        message:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 1661365814859loidf7mcwd4qacn7
+            owner:
+              type: string
+              example: '+15553332222'
+            applicationId:
+              type: string
+              example: 93de2206-9669-4e07-948d-329f4b722ee2
+            time:
+              type: string
+              format: date-time
+              example: 2016-09-14T18:20:16.000Z
+            segmentCount:
+              type: integer
+              example: 1
+            direction:
+              $ref: '#/components/schemas/messageDirectionEnum'
+            to:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example:
+                - '+15552223333'
+            from:
+              type: string
+              example: '+15553332222'
+            text:
+              type: string
+              example: ''
+            tag:
+              type: string
+              example: custom string
+            media:
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - https://dev.bandwidth.com/images/bandwidth-logo.png
+                - https://dev.bandwidth.com/images/github_logo.png
+            priority:
+              $ref: '#/components/schemas/priorityEnum'
+          required:
+            - id
+            - owner
+            - applicationId
+            - time
+            - segmentCount
+            - direction
+            - to
+            - from
+            - text
+            - tag
+      required:
+        - time
+        - type
+        - to
+        - description
+        - message
+    messageFailedCallback:
+      description: Message Failed Callback
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          example: 2016-09-14T18:20:16.000Z
+        type:
+          type: string
+          example: message-failed
+        to:
+          type: string
+          example: '+15552223333'
+        description:
+          type: string
+          example: rejected-unallocated-from-number
+        message:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 1661365814859loidf7mcwd4qacn7
+            owner:
+              type: string
+              example: '+15553332222'
+            applicationId:
+              type: string
+              example: 93de2206-9669-4e07-948d-329f4b722ee2
+            time:
+              type: string
+              format: date-time
+              example: 2016-09-14T18:20:16.000Z
+            segmentCount:
+              type: integer
+              example: 1
+            direction:
+              $ref: '#/components/schemas/messageDirectionEnum'
+            to:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example:
+                - '+15552223333'
+            from:
+              type: string
+              example: '+15553332222'
+            text:
+              type: string
+              example: ''
+            tag:
+              type: string
+              example: custom string
+            media:
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - https://dev.bandwidth.com/images/bandwidth-logo.png
+                - https://dev.bandwidth.com/images/github_logo.png
+            priority:
+              $ref: '#/components/schemas/priorityEnum'
+          required:
+            - id
+            - owner
+            - applicationId
+            - time
+            - segmentCount
+            - direction
+            - to
+            - from
+            - text
+            - tag
+            - priority
+        errorCode:
+          type: integer
+          example: 9902
+      required:
+        - time
+        - type
+        - to
+        - description
+        - message
+        - errorCode
     callbackMethodEnum:
       type: string
       nullable: true
@@ -4254,193 +4303,6 @@ components:
           type: string
           description: A description of what validation error occurred.
           example: example error message
-    publishPermissionsEnum:
-      type: string
-      enum:
-        - AUDIO
-        - VIDEO
-    deviceApiVersionEnum:
-      type: string
-      description: Optional field to define the device api version of this participant.
-      example: V3
-      default: V3
-      enum:
-        - V3
-    session:
-      type: object
-      description: Session object.
-      properties:
-        id:
-          type: string
-          description: Unique id of the session.
-          example: 75c21163-e110-41bc-bd76-1bb428ec85d5
-        tag:
-          type: string
-          description: User defined tag to associate with the session.
-          example: session1
-    participant:
-      type: object
-      description: Participant object.
-      properties:
-        id:
-          type: string
-          description: Unique id of the participant.
-          readOnly: true
-          example: 320e2af6-13ec-498d-8b51-daba52c37853
-        callbackUrl:
-          type: string
-          nullable: true
-          description: Full callback url to use for notifications about this participant.
-          example: https://example.com/callback
-        publishPermissions:
-          type: array
-          description: Defines if this participant can publish audio or video.
-          example:
-            - VIDEO
-            - AUDIO
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/publishPermissionsEnum'
-        sessions:
-          type: array
-          description: |-
-            List of session ids this participant is associated with
-
-            Capped to one
-
-            Upon creation of a Participant, returns as an empty array.
-          example:
-            - 75c21163-e110-41bc-bd76-1bb428ec85d5
-          readOnly: true
-          items:
-            type: string
-        subscriptions:
-          $ref: '#/components/schemas/subscriptions'
-        tag:
-          type: string
-          description: User defined tag to associate with the participant.
-          example: participant1
-        deviceApiVersion:
-          $ref: '#/components/schemas/deviceApiVersionEnum'
-    createParticipantResponse:
-      type: object
-      description: Response generated when a Participant is created.
-      properties:
-        participant:
-          $ref: '#/components/schemas/participant'
-        token:
-          type: string
-          example: >-
-            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.L8i6g3PfcHlioHCCPURC9pmXT7gdJpx3kOoyAfNUwCc
-          description: >-
-            Auth token for the returned participant.  This should be passed to
-            the participant so that they can connect to the platform.
-    createParticipantRequest:
-      type: object
-      description: Create a participant request.
-      properties:
-        callbackUrl:
-          type: string
-          nullable: true
-          description: Full callback url to use for notifications about this participant.
-          example: https://example.com/callback
-        publishPermissions:
-          type: array
-          description: Defines if this participant can publish audio or video.
-          example:
-            - VIDEO
-            - AUDIO
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/publishPermissionsEnum'
-        tag:
-          type: string
-          description: User defined tag to associate with the participant.
-          example: participant1
-        deviceApiVersion:
-          $ref: '#/components/schemas/deviceApiVersionEnum'
-    subscriptions:
-      type: object
-      readOnly: true
-      properties:
-        sessionId:
-          type: string
-          description: >-
-            If present, and not overridden by the array of participants, it 
-            represents the session the subscriptions are associated with. If
-            this is the only field, the subscriber will be subscribed to all
-            participants in the session (including any participants that are
-            later added to the session). Upon creation of a Participant, returns
-            as an empty object.
-          example: d8886aad-b956-4e1b-b2f4-d7c9f8162772
-        participants:
-          type: array
-          description: >-
-            (optional) A list of participants  in the session that will be
-            subscribed to.  If present and not  empty or null, this will
-            override  any sessionId specified in the body. Returns empty if used
-            during the creation of a Participant. 
-          example:
-            - participantId: 568749d5-04d5-483d-adf5-deac7dd3d521
-            - participantId: 0275e47f-dd21-4cf0-a1e1-dfdc719e73a7
-              streamAliases:
-                - alias_1
-                - alias_2
-          items:
-            $ref: '#/components/schemas/participantSubscription'
-    participantSubscription:
-      type: object
-      required:
-        - participantId
-      properties:
-        participantId:
-          type: string
-          description: The Participant the subscriber will be subscribed to
-          example: 568749d5-04d5-483d-adf5-deac7dd3d521
-        streamAliases:
-          type: array
-          description: >-
-            (optional) An array of specific streamAliases owned by the
-            Participant that the subscriber will be subscribed to. Background: A
-            streamAlias is created by a WebRTC client when it connects and
-            declares a name for the related stream. The client is responsible
-            for informing the application of any created streamAliases to enable
-            the application to subscribe to specific streamAliases. Subscribing
-            to a `streamAlias` that does not exist is undefined. If the array is
-            empty all aliases are assumed.
-          example:
-            - alias_1
-            - alias_2
-          uniqueItems: true
-          items:
-            type: string
-    requestError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A message describing the error with your request.
-          example: Internal error
-        requestId:
-          type: string
-          description: The associated requestId from AWS.
-          example: 12af78d1-5f88-4917-925d-17c1ac8fda7a
-    unauthorizedRequest:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Unauthorized
-          example: Unauthorized
-    forbiddenRequest:
-      type: object
-      properties:
-        message:
-          type: string
-          description: >-
-            The message containing the reason behind the request being
-            forbidden.
-          example: Missing Authentication Token
   responses:
     createMessageResponse:
       description: Accepted
@@ -4857,80 +4719,6 @@ components:
               summary: Example Internal Server Error Error
               value:
                 message: Request has not been passed further.
-    createParticipantResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/createParticipantResponse'
-    getParticipantResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/participant'
-    sessionResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/session'
-    listSessionParticipantsResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-    getParticipantSubscriptionsResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/subscriptions'
-    webrtcBadRequestError:
-      description: Bad Request
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/requestError'
-    webrtcUnauthorizedError:
-      description: Unauthorized
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequest'
-    webrtcForbiddenError:
-      description: Forbidden
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenRequest'
-    webrtcNotFoundError:
-      description: Not Found
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/requestError'
-    webrtcConflictError:
-      description: Conflict
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/requestError'
-    webrtcInternalServerError:
-      description: Internal Server Error
-      headers: {}
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/requestError'
   parameters:
     accountId:
       in: path
@@ -5254,30 +5042,6 @@ components:
         type: string
       description: The phone number lookup request ID from Bandwidth.
       example: 004223a0-8b17-41b1-bf81-20732adf5590
-    accountId4:
-      name: accountId
-      in: path
-      description: Account ID
-      required: true
-      schema:
-        type: string
-      example: '9900000'
-    sessionId:
-      name: sessionId
-      in: path
-      description: Session ID
-      required: true
-      schema:
-        type: string
-      example: cb5054ee-a69b-41ac-9ab2-04d6370826b4
-    participantId:
-      name: participantId
-      in: path
-      description: Participant ID
-      required: true
-      schema:
-        type: string
-      example: 62e0ecb9-0b1b-5115-aae4-4f36123d6bb1
   requestBodies:
     createMessageRequest:
       content:
@@ -5567,55 +5331,6 @@ components:
               $ref: '#/components/examples/singleNumberRequestExample'
             multipleNumberRequestExample:
               $ref: '#/components/examples/multipleNumberRequestExample'
-    createParticipantRequest:
-      description: Create participant request body.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/createParticipantRequest'
-    createSessionRequest:
-      description: Create session request body.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/session'
-    addParticipantToSessionRequest:
-      description: >-
-        The Body describes an optional set of subscriptions to apply to the
-        participant.
-
-
-        Calling this endpoint with no/empty body will only add the participant
-        to the session, and will not subscribe the Participant to any media.
-
-
-        The request body for this endpoint is OPTIONAL and provided as a
-        convenience to avoid additional calls to the Update Participant
-        Subscriptions endpoint. --- If a body is provided it will result in
-        direct control over what Participants are subscribed to.
-
-          - if the participants Array is provided and not empty, that list of Participants will be subscribed To
-          - if the participants Array is missing or empty, and the sessionId is provided, the participant will be subscribed to the session, including all subsequent changes to the membership of the session
-          - if the sessionId and the participant Array are both missing or empty, no subscriptions will be created
-      required: false
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/subscriptions'
-    updateParticipantSubscriptionsRequest:
-      description: >-
-        The body describes the desired subscriptions for the Participant. --- If
-        a body is provided it will result in direct control over what
-        Participants are subscribed to.
-
-          - if the participants Array is provided and not empty, that list of Participants will be subscribed To
-          - if the participants Array is missing or empty, and the sessionId is provided, the participant will be subscribed to the session, including all subsequent changes to the membership of the session
-          - if the sessionId and the participant Array are both missing or empty, no subscriptions will be created
-      required: false
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/subscriptions'
   securitySchemes:
     Basic:
       type: http
@@ -5626,6 +5341,37 @@ components:
         header that contains the word Basic followed by a space and a
         base64-encoded string `username:password`Example: `Authorization: Basic
         ZGVtbZpwQDU1dzByZA==`
+  callbacks:
+    inboundCallback:
+      '{inboundCallbackUrl}':
+        post:
+          requestBody:
+            required: true
+            description: Inbound Message Callback Payload
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/inboundMessageCallback'
+          responses:
+            '200':
+              description: OK
+    statusCallback:
+      '{statusCallbackUrl}':
+        post:
+          requestBody:
+            required: true
+            description: Status Callback Payload
+            content:
+              application/json:
+                schema:
+                  type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/messageSendingCallback'
+                    - $ref: '#/components/schemas/messageDeliveredCallback'
+                    - $ref: '#/components/schemas/messageFailedCallback'
+          responses:
+            '200':
+              description: OK
   examples:
     createCallResponseExample:
       summary: Example of a createCall Response
