@@ -73,4 +73,16 @@ describe 'MediaApi Integration Tests' do
     end
   end
 
+  # HTTP 4XX Errors
+  describe 'http error' do
+    it 'causes a 404 error' do
+      expect {
+        response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, "does_not_exist")
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(404)
+      }
+    end
+  end
+
 end
