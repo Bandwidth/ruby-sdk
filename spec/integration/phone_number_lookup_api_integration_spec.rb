@@ -12,10 +12,6 @@ describe 'PhoneNumberLookupApi Integration Tests' do
     @lookup_request_id = ""
   end
 
-  after do
-    # run after each test
-  end
-
   # Create Lookup
   describe 'create_lookup and get_lookup_status' do
     it 'creates a tn lookup request and gets its status' do
