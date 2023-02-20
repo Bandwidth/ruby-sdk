@@ -3,12 +3,18 @@ require 'json'
 
 # Integration Tests for Bandwidth::MediaApi
 describe 'MediaApi Integration Tests' do
-  before do
+  before(:all) do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
+      config.return_binary_data = true
     end
     @api_instance_media = Bandwidth::MediaApi.new
+    @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid
+    @binary_media_data = '123456'
+    @media_file_name = 'ruby_media_file' + SecureRandom.uuid
+    @media_file_data = File.open("spec/fixtures/ruby_cat.jpeg").read
+    @media_file_md5 = Digest::MD5.hexdigest(@media_file_data)
   end
 
   after do
@@ -18,18 +24,12 @@ describe 'MediaApi Integration Tests' do
   # Upload Media
   describe 'upload_media' do
     it 'uploads binary media' do
-      media_name = 'ruby_media' + SecureRandom.uuid
-      media_data = '123456'
-
-      response = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, media_name, media_data)
+      response = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, @binary_media_data)
       expect(response[CODE]).to eq(204)
     end
 
     it 'uploads media file' do
-      media_name = 'ruby_media' + SecureRandom.uuid
-      media_file = File.open("spec/fixtures/ruby_cat.jpeg")
-
-      response = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, media_name, media_file)
+      response = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @media_file_name, @media_file_data)
       expect(response[CODE]).to eq(204)
     end
   end
@@ -44,16 +44,32 @@ describe 'MediaApi Integration Tests' do
     end
 
   # Get Media
-  describe 'get_media test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  describe 'get_media' do
+    it 'gets uploaded binary media' do
+      response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, debug_return_type: 'String')
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to eq(@binary_media_data)
+    end
+
+    it 'gets uploaded media file' do
+      response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, @media_file_name)
+      response_md5 = Digest::MD5.hexdigest(response[DATA])
+
+      expect(response[CODE]).to eq(200)
+      expect(response_md5).to eq(@media_file_md5)
     end
   end
 
   # Delete Media
-  describe 'delete_media test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  describe 'delete_media' do
+    it 'deletes the binary media' do
+      response = @api_instance_media.delete_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name)
+      expect(response[CODE]).to eq(204)
+    end
+
+    it 'deletes the media file' do
+      response = @api_instance_media.delete_media_with_http_info(BW_ACCOUNT_ID, @media_file_name)
+      expect(response[CODE]).to eq(204)
     end
   end
 
