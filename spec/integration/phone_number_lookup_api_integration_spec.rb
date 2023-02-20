@@ -12,7 +12,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
     @lookup_request_id = ""
   end
 
-  # Create Lookup
+  # Create Lookup and Get Lookup Status
   describe 'create_lookup and get_lookup_status' do
     it 'creates a tn lookup request and gets its status' do
       tn_body = Bandwidth::LookupRequest.new(
