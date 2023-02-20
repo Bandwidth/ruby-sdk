@@ -17,10 +17,6 @@ describe 'MediaApi Integration Tests' do
     @media_file_md5 = Digest::MD5.hexdigest(@media_file_data)
   end
 
-  after do
-    # run after each test
-  end
-
   # Upload Media
   describe 'upload_media' do
     it 'uploads binary media' do
