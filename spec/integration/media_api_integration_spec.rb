@@ -4,7 +4,10 @@ require 'json'
 # Integration Tests for Bandwidth::MediaApi
 describe 'MediaApi Integration Tests' do
   before do
-    # run before each test
+    Bandwidth.configure do |config|
+      config.username = BW_USERNAME
+      config.password = BW_PASSWORD
+    end
     @api_instance = Bandwidth::MediaApi.new
   end
 
