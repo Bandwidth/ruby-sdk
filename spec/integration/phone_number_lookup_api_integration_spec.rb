@@ -9,30 +9,36 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       config.password = BW_PASSWORD
     end
     @api_instance_tnlookup = Bandwidth::PhoneNumberLookupApi.new
+    $lookup_request_id = ""
   end
 
-  # Create Lookup and Get Lookup Status
-  describe 'create_lookup and get_lookup_status' do
-    it 'creates a tn lookup request and gets its status' do
+  # Create Lookup
+  describe 'create_lookup' do
+    it 'creates a tn lookup request' do
       tn_body = Bandwidth::LookupRequest.new(
         tns: [BW_NUMBER]
       )
-      create_response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
+      response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
 
-      expect(create_response[CODE]).to eq(202)
-      expect(create_response[DATA].request_id.length).to eq(36)
-      expect(create_response[DATA].status).to be_a(String)
+      expect(response[CODE]).to eq(202)
+      expect(response[DATA].request_id.length).to eq(36)
+      expect(response[DATA].status).to be_a(String)
 
-      lookup_request_id  = create_response[DATA].request_id
+      $lookup_request_id  = response[DATA].request_id
       sleep(1)
+    end
+  end
 
-      get_response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, lookup_request_id)
+  # Get Lookup Status
+  describe 'get_lookup_status' do
+    it 'gets lookup status' do
+      response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
 
-      expect(get_response[CODE]).to eq(200)
-      expect(get_response[DATA].request_id).to eq(lookup_request_id)
-      expect(get_response[DATA].status).to be_a(String)
-      expect(get_response[DATA].result[0].response_code).to be_a(Integer)
-      expect(get_response[DATA].result[0].e_164_format).to eq(BW_NUMBER)
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].request_id).to eq($lookup_request_id)
+      expect(response[DATA].status).to be_a(String)
+      expect(response[DATA].result[0].response_code).to be_a(Integer)
+      expect(response[DATA].result[0].e_164_format).to eq(BW_NUMBER)
     end
   end
 
