@@ -9,14 +9,15 @@ describe 'CallsApi Integration Tests' do
       config.password = BW_PASSWORD
     end
     @api_instance_voice = Bandwidth::CallsApi.new
+    $call_id = ""
   end
 
   after do
     # run after each test
   end
 
-  # Create Call and Get Call State Information
-  describe 'create_call and get_call_state' do
+  # Create Call
+  describe 'create_call' do
     it 'creates a call with amd' do
       amd_config = Bandwidth::MachineDetectionConfiguration.new(
         mode: "async",
@@ -59,6 +60,15 @@ describe 'CallsApi Integration Tests' do
       expect(call_response[DATA].disconnect_method).to eq("GET")
       expect(call_response[DATA].answer_url).to eq(BASE_CALLBACK_URL + "/callbacks/answer")
       expect(call_response[DATA].disconnect_url).to eq(BASE_CALLBACK_URL + "/callbacks/disconnect")
+
+      $call_id = call_response[DATA].call_id
+    end
+  end
+
+  # Get Call State Information
+  describe 'get_call_state' do
+    it 'gets the call state' do
+      puts $call_id
     end
   end
 
