@@ -4,14 +4,11 @@ require 'json'
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
   before(:all) do
-    @api_instance_mfa = Bandwidth::MFAApi.new
-  end
-
-  before do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
+    @api_instance_mfa = Bandwidth::MFAApi.new
   end
 
   # Messaging Authentication Code
@@ -66,7 +63,44 @@ describe 'MFAApi Integration Tests' do
 
   # HTTP 4XX Errors
   describe 'http error' do
-    
+    it 'causes a 400 error' do
+      req_schema = Bandwidth::CodeRequest.new(
+        to: USER_NUMBER,
+        from: BW_NUMBER,
+        application_id: "not_an_application_id",
+        message: "Your temporary {NAME} {SCOPE} code is: {CODE}",
+        digits: 6
+      )
+
+      expect {
+        mfa_response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(400)
+      }
+    end
+
+    it 'causes a 403 error' do
+      Bandwidth.configure do |config|
+        config.username = 'bad_username'
+        config.password = 'bad_password'
+      end
+
+      req_schema = Bandwidth::CodeRequest.new(
+        to: USER_NUMBER,
+        from: BW_NUMBER,
+        application_id: BW_MESSAGING_APPLICATION_ID,
+        message: "Your temporary {NAME} {SCOPE} code is: {CODE}",
+        digits: 6
+      )
+      
+      expect {
+        mfa_response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(403)
+      }
+    end
   end
 
 end
