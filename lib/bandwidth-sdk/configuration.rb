@@ -67,6 +67,9 @@ module Bandwidth
     # @return [Proc]
     attr_accessor :access_token_getter
 
+    # Set this to return data as binary instead of downloading a temp file. When enabled (set to true)
+    # HTTP responses with return type `File` will be returned as a stream of binary data.
+    # Default to false.
     attr_accessor :return_binary_data
 
     # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
