@@ -21,10 +21,10 @@ describe 'MFAApi Integration Tests' do
         message: "Your temporary {NAME} {SCOPE} code is: {CODE}",
         digits: 6
       )
-      mfa_response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
-      expect(mfa_response[CODE]).to eq(200)
-      expect(mfa_response[DATA].message_id.length).to eq(29)
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].message_id.length).to eq(29)
     end
   end
 
@@ -38,10 +38,10 @@ describe 'MFAApi Integration Tests' do
         message: "Your temporary {NAME} {SCOPE} code is: {CODE}",
         digits: 6
       )
-      mfa_response = @api_instance_mfa.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      response = @api_instance_mfa.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
-      expect(mfa_response[CODE]).to eq(200)
-      expect(mfa_response[DATA].call_id.length).to eq(47)
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].call_id.length).to eq(47)
     end
   end
 
@@ -54,10 +54,10 @@ describe 'MFAApi Integration Tests' do
         expiration_time_in_minutes: 3,
         code: "12345"
       )
-      mfa_response = @api_instance_mfa.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      response = @api_instance_mfa.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
-      expect(mfa_response[CODE]).to eq(200)
-      expect(mfa_response[DATA].valid).to be_a(FalseClass)
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].valid).to be_a(FalseClass)
     end
   end
 
@@ -73,7 +73,7 @@ describe 'MFAApi Integration Tests' do
       )
 
       expect {
-        mfa_response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+        response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(400)
@@ -95,7 +95,7 @@ describe 'MFAApi Integration Tests' do
       )
       
       expect {
-        mfa_response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+        response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(403)
