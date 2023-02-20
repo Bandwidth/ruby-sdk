@@ -3,9 +3,13 @@ require 'json'
 
 # Integration Tests for Bandwidth::PhoneNumberLookupApi
 describe 'PhoneNumberLookupApi Integration Tests' do
-  before do
-    # run before each test
-    @api_instance = Bandwidth::PhoneNumberLookupApi.new
+  before(:all) do
+    Bandwidth.configure do |config|
+      config.username = BW_USERNAME
+      config.password = BW_PASSWORD
+    end
+    @api_instance_tnlookup = Bandwidth::PhoneNumberLookupApi.new
+    @lookup_request_id = ""
   end
 
   after do
@@ -13,16 +17,72 @@ describe 'PhoneNumberLookupApi Integration Tests' do
   end
 
   # Create Lookup
-  describe 'create_lookup test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  describe 'create_lookup and get_lookup_status' do
+    it 'creates a tn lookup request and gets its status' do
+      tn_body = Bandwidth::LookupRequest.new(
+        tns: [BW_NUMBER]
+      )
+      create_response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
+
+      expect(create_response[CODE]).to eq(202)
+      expect(create_response[DATA].request_id.length).to eq(36)
+      expect(create_response[DATA].status).to be_a(String)
+
+      lookup_request_id  = create_response[DATA].request_id
+      sleep(1)
+
+      get_response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, lookup_request_id)
+
+      expect(get_response[CODE]).to eq(200)
+      expect(get_response[DATA].request_id).to eq(lookup_request_id)
+      expect(get_response[DATA].status).to be_a(String)
+      expect(get_response[DATA].result[0].response_code).to be_a(Integer)
+      expect(get_response[DATA].result[0].e_164_format).to eq(BW_NUMBER)
     end
   end
 
-  # Get Lookup Request Status
-  describe 'get_lookup_status test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  # HTTP 4XX Errors
+  describe 'http error' do
+    it 'causes a 400 error' do
+      tn_body_bad = Bandwidth::LookupRequest.new(
+        tns: ["+1invalid"]
+      )
+
+      expect {
+        @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body_bad)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(400)
+      }
+    end
+    
+    it 'causes a 404 error' do
+      req_id_dne = "12345678-abcd-cdef-9876-12345678abcd"
+
+      expect {
+        @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, req_id_dne)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(404)
+      }
+    end
+
+    it 'causes a 401 error' do
+      Bandwidth.configure do |config|
+        config.username = 'bad_username'
+        config.password = 'bad_password'
+      end
+
+      tn_body = Bandwidth::LookupRequest.new(
+        tns: [BW_NUMBER]
+      )
+
+      expect {
+        @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(401)
+      }
     end
   end
 
