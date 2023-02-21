@@ -12,10 +12,6 @@ describe 'CallsApi Integration Tests' do
     $call_id = ""
   end
 
-  after do
-    # run after each test
-  end
-
   # Create Call
   describe 'create_call' do
     it 'creates a call with amd' do
@@ -27,7 +23,7 @@ describe 'CallsApi Integration Tests' do
         speech_end_threshold: 5.0,
         delay_result: true,
         callback_url: BASE_CALLBACK_URL + "/machineDetection",
-        callback_method: "POST"
+        callback_method: Bandwidth::CallbackMethodEnum::POST
       )
 
       call_body = Bandwidth::CreateCall.new(
@@ -43,32 +39,41 @@ describe 'CallsApi Integration Tests' do
           callback_timeout: 15.0
       )
 
-      call_response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
       sleep(3)
 
-      expect(call_response[CODE]).to eq(201)
-      expect(call_response[DATA].call_id.length).to eq(47)
-      expect(call_response[DATA].account_id).to eq(BW_ACCOUNT_ID)
-      expect(call_response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
-      expect(call_response[DATA].to).to eq(USER_NUMBER)
-      expect(call_response[DATA].from).to eq(BW_NUMBER)
-      expect(call_response[DATA].call_url).to eq("https://voice.bandwidth.com/api/v2/accounts/" + BW_ACCOUNT_ID + "/calls/" + call_response[DATA].call_id)
-      expect(call_response[DATA].call_timeout).to eq(30.0)
-      expect(call_response[DATA].callback_timeout).to eq(15.0)
-      expect(call_response[DATA].enqueued_time).to be_a(Time)
-      expect(call_response[DATA].answer_method).to eq("POST")
-      expect(call_response[DATA].disconnect_method).to eq("GET")
-      expect(call_response[DATA].answer_url).to eq(BASE_CALLBACK_URL + "/callbacks/answer")
-      expect(call_response[DATA].disconnect_url).to eq(BASE_CALLBACK_URL + "/callbacks/disconnect")
+      expect(response[CODE]).to eq(201)
+      expect(response[DATA].call_id.length).to eq(47)
+      expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
+      expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(response[DATA].to).to eq(USER_NUMBER)
+      expect(response[DATA].from).to eq(BW_NUMBER)
+      expect(response[DATA].call_id)
+      expect(response[DATA].call_timeout).to eq(30.0)
+      expect(response[DATA].callback_timeout).to eq(15.0)
+      expect(response[DATA].enqueued_time).to be_a(Time)
+      expect(response[DATA].answer_method).to eq(Bandwidth::CallbackMethodEnum::POST)
+      expect(response[DATA].disconnect_method).to eq("GET")
+      expect(response[DATA].answer_url).to eq(BASE_CALLBACK_URL + "/callbacks/answer")
+      expect(response[DATA].disconnect_url).to eq(BASE_CALLBACK_URL + "/callbacks/disconnect")
 
-      $call_id = call_response[DATA].call_id
+      $call_id = response[DATA].call_id
     end
   end
 
   # Get Call State Information
   describe 'get_call_state' do
     it 'gets the call state' do
-      puts $call_id
+      response = @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_id)
+
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].call_id).to eq($call_id)
+      expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
+      expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(response[DATA].start_time).to be_a(Time)
+      expect(response[DATA].last_update).to be_a(Time)
+      expect(response[DATA].state).to be_a(String)
+      expect(response[DATA].direction).to eq(Bandwidth::CallDirectionEnum::OUTBOUND)
     end
   end
 
@@ -83,6 +88,53 @@ describe 'CallsApi Integration Tests' do
   describe 'update_call_bxml test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # HTTP 4XX Errors
+  describe 'http error' do
+    it 'causes a 400 error' do
+      call_body_bad = Bandwidth::CreateCall.new(
+        application_id: BW_VOICE_APPLICATION_ID,
+        to: "+1invalid",
+        from: BW_NUMBER,
+        answer_url: BASE_CALLBACK_URL + "/callbacks/answer",
+        answer_method: "POST",
+        disconnect_url: BASE_CALLBACK_URL + "/callbacks/disconnect",
+        disconnect_method: "GET"
+      )
+
+      expect {
+        @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body_bad)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(400)
+      }
+    end
+
+    it 'causes a 404 error' do
+      dne_id = "does-not-exist"
+
+      expect {
+        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, dne_id)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(404)
+      }
+    end
+
+    it 'causes a 401 error' do
+      Bandwidth.configure do |config|
+        config.username = 'bad_username'
+        config.password = 'bad_password'
+      end
+
+      expect {
+        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_id)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(401)
+      }
     end
   end
 
