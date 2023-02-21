@@ -136,6 +136,20 @@ describe 'CallsApi Integration Tests' do
         expect(e.code).to eq(401)
       }
     end
+
+    it 'causes a 403 error' do
+      Bandwidth.configure do |config|
+        config.username = FORBIDDEN_USERNAME
+        config.password = FORBIDDEN_PASSWORD
+      end
+
+      expect {
+        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_id)
+      }.to raise_error { |e|
+        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e.code).to eq(403)
+      }
+    end
   end
 
 end
