@@ -98,14 +98,14 @@ describe 'CallsApi Integration Tests' do
 
       create_response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
       expect(create_response[CODE]).to eq(201)
-      call_id = create_response[DATA].call_id
+      update_call_id = create_response[DATA].call_id
       sleep(3)
 
-      update_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, call_id, update_call_body)
+      update_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
       expect(update_response[CODE]).to eq(200)
       sleep(3)
 
-      complete_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, call_id, complete_call_body)
+      complete_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, complete_call_body)
       expect(complete_response[CODE]).to eq(200)
     end
   end

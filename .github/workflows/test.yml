@@ -31,11 +31,17 @@ jobs:
         BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
         BW_USERNAME: ${{ secrets.BW_USERNAME }}
         BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+        BW_USERNAME_FORBIDDEN: ${{ BW_USERNAME_FORBIDDEN }}
+        BW_PASSWORD_FORBIDDEN: ${{ BW_PASSWORD_FORBIDDEN }}
         BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
         BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
         BW_NUMBER: ${{ secrets.BW_NUMBER }}
         USER_NUMBER: ${{ secrets.USER_NUMBER }}
         BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+        MANTECA_ACTIVE_NUMBER: ${{ MANTECA_ACTIVE_NUMBER }}
+        MANTECA_IDLE_NUMBER: ${{ MANTECA_IDLE_NUMBER }}
+        MANTECA_BASE_URL: ${{ MANTECA_BASE_URL }}
+        MANTECA_APPLICATION_ID: ${{ MANTECA_APPLICATION_ID }}
       run: rake
 
     - name: Notify Slack of Failures    
