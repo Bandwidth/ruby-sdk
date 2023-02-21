@@ -27,16 +27,16 @@ describe 'CallsApi Integration Tests' do
       )
 
       call_body = Bandwidth::CreateCall.new(
-          application_id: BW_VOICE_APPLICATION_ID,
-          to: USER_NUMBER,
-          from: BW_NUMBER,
-          answer_url: BASE_CALLBACK_URL + "/callbacks/answer",
-          answer_method: "POST",
-          disconnect_url: BASE_CALLBACK_URL + "/callbacks/disconnect",
-          disconnect_method: "GET",
-          machine_detection: amd_config,
-          call_timeout: 30.0,
-          callback_timeout: 15.0
+        application_id: BW_VOICE_APPLICATION_ID,
+        to: USER_NUMBER,
+        from: BW_NUMBER,
+        answer_url: BASE_CALLBACK_URL + "/callbacks/answer",
+        answer_method: "POST",
+        disconnect_url: BASE_CALLBACK_URL + "/callbacks/disconnect",
+        disconnect_method: "GET",
+        machine_detection: amd_config,
+        call_timeout: 30.0,
+        callback_timeout: 15.0
       )
 
       response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
@@ -78,9 +78,19 @@ describe 'CallsApi Integration Tests' do
   end
 
   # Update Call
-  describe 'update_call test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  describe 'update_call' do
+    it 'creates and updates a call' do
+      call_body = Bandwidth::CreateCall.new(
+        application_id: MANTECA_APPLICATION_ID,
+        to: MANTECA_IDLE_NUMBER,
+        from: MANTECA_ACTIVE_NUMBER,
+        answer_url: MANTECA_BASE_URL + "/bxml/pause",
+      )
+
+      response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      sleep(3)
+
+      expect(response[CODE]).to eq(201)
     end
   end
 

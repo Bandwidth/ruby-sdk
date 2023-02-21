@@ -44,6 +44,10 @@ RSpec.configure do |config|
       BASE_CALLBACK_URL = ENV.fetch("BASE_CALLBACK_URL")
       BW_NUMBER = ENV.fetch("BW_NUMBER")
       USER_NUMBER = ENV.fetch("USER_NUMBER")
+      MANTECA_ACTIVE_NUMBER = ENV.fetch("MANTECA_ACTIVE_NUMBER")
+      MANTECA_IDLE_NUMBER = ENV.fetch("MANTECA_IDLE_NUMBER")
+      MANTECA_BASE_URL = ENV.fetch("MANTECA_BASE_URL")
+      MANTECA_APPLICATION_ID = ENV.fetch("MANTECA_APPLICATION_ID")
     rescue
       puts "Environmental variables not found"
       exit(-1)
