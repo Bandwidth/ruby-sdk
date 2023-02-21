@@ -42,6 +42,8 @@ jobs:
         MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
         MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
         MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+        OPERATING_SYSTEM: ${{ matrix.os }}
+        RUBY_VERSION: ${{ matrix.ruby-version }}
       run: rake
 
     - name: Notify Slack of Failures    

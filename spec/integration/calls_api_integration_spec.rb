@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'json'
+require_relative '../manteca_utils'
 
 # Integration Tests for Bandwidth::CallsApi
 describe 'CallsApi Integration Tests' do
@@ -8,18 +9,8 @@ describe 'CallsApi Integration Tests' do
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    @api_instance_voice = Bandwidth::CallsApi.new
+    @api_instance_calls = Bandwidth::CallsApi.new
     $call_info_id = ""
-    @sleep_time_s = 3
-    @manteca_call_body = Bandwidth::CreateCall.new(
-      application_id: MANTECA_APPLICATION_ID,
-      to: MANTECA_IDLE_NUMBER,
-      from: MANTECA_ACTIVE_NUMBER,
-      answer_url: MANTECA_BASE_URL + "/bxml/pause",
-    )
-    @complete_call_body = Bandwidth::UpdateCall.new(
-      state: Bandwidth::CallStateEnum::COMPLETED
-    )
   end
 
   # Create Call
@@ -49,8 +40,8 @@ describe 'CallsApi Integration Tests' do
         callback_timeout: 15.0
       )
 
-      response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
-      sleep(@sleep_time_s)
+      response = @api_instance_calls.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      sleep(SLEEP_TIME_S)
 
       expect(response[CODE]).to eq(201)
       expect(response[DATA].call_id.length).to eq(47)
@@ -68,13 +59,14 @@ describe 'CallsApi Integration Tests' do
       expect(response[DATA].disconnect_url).to eq(BASE_CALLBACK_URL + "/callbacks/disconnect")
 
       $call_info_id = response[DATA].call_id
+      $active_calls.append($call_info_id)
     end
   end
 
   # Get Call State Information
   describe 'get_call_state' do
     it 'gets the call state' do
-      response = @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+      response = @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
       expect(response[CODE]).to eq(200)
       expect(response[DATA].call_id).to eq($call_info_id)
@@ -95,16 +87,14 @@ describe 'CallsApi Integration Tests' do
         redirect_url: MANTECA_BASE_URL + "/bxml/pause"
       )
       
-      create_response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, @manteca_call_body)
-      expect(create_response[CODE]).to eq(201)
-      update_call_id = create_response[DATA].call_id
-      sleep(@sleep_time_s)
+      update_call_id = create_manteca_call(@api_instance_calls)
+      sleep(SLEEP_TIME_S)
       
-      update_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
+      update_response = @api_instance_calls.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
       expect(update_response[CODE]).to eq(200)
-      sleep(@sleep_time_s)
+      sleep(SLEEP_TIME_S)
       
-      complete_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, @complete_call_body)
+      complete_response = @api_instance_calls.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
       expect(complete_response[CODE]).to eq(200)
     end
   end
@@ -112,17 +102,15 @@ describe 'CallsApi Integration Tests' do
   # Update Call BXML
   describe 'update_call_bxml' do
     it 'updates a call using bxml' do
-      create_response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, @manteca_call_body)
-      expect(create_response[CODE]).to eq(201)
-      update_call_id = create_response[DATA].call_id
-      sleep(@sleep_time_s)
+      update_call_id = create_manteca_call(@api_instance_calls)
+      sleep(SLEEP_TIME_S)
 
       update_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is a test bxml response</SpeakSentence><Pause duration=\"3\"/></Bxml>";
-      update_response = @api_instance_voice.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_xml)
+      update_response = @api_instance_calls.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_xml)
       expect(update_response[CODE]).to eq(204)
-      sleep(@sleep_time_s)
+      sleep(SLEEP_TIME_S)
       
-      complete_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, @complete_call_body)
+      complete_response = @api_instance_calls.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
       expect(complete_response[CODE]).to eq(200)
     end
   end
@@ -141,7 +129,7 @@ describe 'CallsApi Integration Tests' do
       )
 
       expect {
-        @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body_bad)
+        @api_instance_calls.create_call_with_http_info(BW_ACCOUNT_ID, call_body_bad)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(400)
@@ -152,7 +140,7 @@ describe 'CallsApi Integration Tests' do
       dne_id = "does-not-exist"
 
       expect {
-        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, dne_id)
+        @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, dne_id)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(404)
@@ -166,7 +154,7 @@ describe 'CallsApi Integration Tests' do
       end
 
       expect {
-        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+        @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(401)
@@ -180,7 +168,7 @@ describe 'CallsApi Integration Tests' do
       end
 
       expect {
-        @api_instance_voice.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+        @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
       }.to raise_error { |e|
         expect(e).to be_a(Bandwidth::ApiError)
         expect(e.code).to eq(403)
