@@ -87,16 +87,32 @@ describe 'CallsApi Integration Tests' do
         answer_url: MANTECA_BASE_URL + "/bxml/pause",
       )
 
-      response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      update_call_body = Bandwidth::UpdateCall.new(
+        state: Bandwidth::CallStateEnum::ACTIVE,
+        redirect_url: MANTECA_BASE_URL + "/bxml/pause"
+      )
+
+      complete_call_body = Bandwidth::UpdateCall.new(
+        state: Bandwidth::CallStateEnum::COMPLETED
+      )
+
+      create_response = @api_instance_voice.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      expect(create_response[CODE]).to eq(201)
+      call_id = create_response[DATA].call_id
       sleep(3)
 
-      expect(response[CODE]).to eq(201)
+      update_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, call_id, update_call_body)
+      expect(update_response[CODE]).to eq(200)
+      sleep(3)
+
+      complete_response = @api_instance_voice.update_call_with_http_info(BW_ACCOUNT_ID, call_id, complete_call_body)
+      expect(complete_response[CODE]).to eq(200)
     end
   end
 
   # Update Call BXML
-  describe 'update_call_bxml test' do
-    it 'should work' do
+  describe 'update_call_bxml' do
+    it 'updates a call using bxml' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
