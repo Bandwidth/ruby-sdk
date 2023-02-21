@@ -72,6 +72,8 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR_USERNAME'
   config.password = 'YOUR_PASSWORD'
+  # Configure faraday connection
+  config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
 end
 
 api_instance = Bandwidth::CallsApi.new
@@ -158,7 +160,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CreateLookupResponse](docs/CreateLookupResponse.md)
  - [Bandwidth::CreateMessageRequestError](docs/CreateMessageRequestError.md)
  - [Bandwidth::DeferredResult](docs/DeferredResult.md)
- - [Bandwidth::DisconenctCallback](docs/DisconenctCallback.md)
+ - [Bandwidth::DisconnectCallback](docs/DisconnectCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
  - [Bandwidth::DtmfCallback](docs/DtmfCallback.md)
  - [Bandwidth::FieldError](docs/FieldError.md)
