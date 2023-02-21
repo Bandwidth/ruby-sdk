@@ -52,13 +52,6 @@ messaging_client.create_message(account_id, body)
 
 # OpenApiGenerator Quirks
 
-* The Get Messages function defaults its return type to 'File', this downloads a temporary file that must be written to the disk to be accessed. 
-     * Adding `debug_return_type: 'String'` to the function arguments overrides this and saves the file data as a string.
-* All of the files in `openapi_client.rb` needed their `require` to be changed to `require_relative`.
-* Using the configs default HTTP client, typhoeus, generates libcurl issues on Windows Machines.
-* Switching to Farady for the HTTP client fixes the libcurl issue, but the SDK uses a deprecated form of Faraday's `basic_auth`. This looks like its fixed in a PR on their repo, but its not in prod yet. Changing `conn.basic_auth(config.username, config.password)` to `conn.request(:basic_auth, config.username, config.password)` in `api_client.rb` line 59 is the fix.
-* The sdk generator writes code in the gemspec file that cannot be run in Windows, resulting in an empty gem if used.
-      *   `s.files         = Dir['./**/*']` and `s.test_files    = Dir['spec/*']` fixes this
 * To get a custom url, instead of setting the `environment` parameter in the config, you must make a custom operation in `configuration.rb`
 ``` ruby
 "Pipedream": [
