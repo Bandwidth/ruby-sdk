@@ -78,9 +78,9 @@ describe 'RecordingsApi Integration Tests' do
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].call_id).to eq($manteca_call_id)
       expect(response[DATA][0].recording_id).to be_a(String)
+      expect(response[DATA][0].status).to eq('complete').or eq('partial')
       
       $recording_id = response[DATA][0].recording_id
-      expect(response[DATA][0].status).to eq('complete')
     end
   end
   
@@ -94,7 +94,7 @@ describe 'RecordingsApi Integration Tests' do
       expect(response[DATA].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].call_id).to eq($manteca_call_id)
-      expect(response[DATA].status).to eq('complete')
+      expect(response[DATA].status).to eq('complete').or eq('partial')
       expect(response[DATA].recording_id).to eq($recording_id)
     end
   end

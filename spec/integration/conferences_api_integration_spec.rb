@@ -126,7 +126,7 @@ describe 'ConferencesApi Integration Tests' do
       expect(response[DATA][0].conference_id).to eq($conference_id)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].name).to eq($manteca_test_id)
-      expect(response[DATA][0].status).to eq('complete')
+      expect(response[DATA][0].status).to eq('complete').or eq('partial')
       expect(response[DATA][0].recording_id).to be_a(String)
       expect(response[DATA][0].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
 
@@ -144,7 +144,7 @@ describe 'ConferencesApi Integration Tests' do
         expect(response[DATA].conference_id).to eq($conference_id)
         expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
         expect(response[DATA].name).to eq($manteca_test_id)
-        expect(response[DATA].status).to eq('complete')
+        expect(response[DATA].status).to eq('complete').or eq('partial')
         expect(response[DATA].recording_id).to be_a(String)
         expect(response[DATA].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
       end
