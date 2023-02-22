@@ -37,6 +37,86 @@ describe 'RecordingsApi Integration Tests' do
 
       complete_response = @api_instance_calls.update_call_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $complete_call_body)
       expect(complete_response[CODE]).to eq(200)
+
+      retries = 0
+      recording_complete = false
+      begin
+        while !recording_complete && retries < MAX_RETRIES
+          recording_complete = get_manteca_test_status($manteca_test_id)["callRecorded"]
+          retries += 1
+          sleep(SLEEP_TIME_S)
+        end
+      rescue => e
+        puts e.inspect
+      end
+
+      expect(recording_complete).to be_a(TrueClass)
+    end
+  end
+  
+  # List Call Recordings
+  describe 'list_call_recordings' do
+    it 'lists all recordings for a single call' do
+      response = @api_instance_recordings.list_call_recordings_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
+
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
+      expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
+      expect(response[DATA][0].call_id).to eq($manteca_call_id)
+      expect(response[DATA][0].status).to eq('complete')
+      expect(response[DATA][0].recording_id).to be_a(String)
+
+      $recording_id = response[DATA][0].recording_id
+    end
+  end
+  
+  # Get Call Recording
+  describe 'get_call_recording' do
+    it 'gets a call recording by id' do
+      response = @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA].application_id).to eq(MANTECA_APPLICATION_ID)
+      expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
+      expect(response[DATA].call_id).to eq($manteca_call_id)
+      expect(response[DATA].status).to eq('complete')
+      expect(response[DATA].recording_id).to eq($recording_id)
+    end
+  end
+  
+    # Download Recording
+    describe 'download_call_recording' do
+      it 'downloads a call recording by id' do
+        response = @api_instance_recordings.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+        expect(response[CODE]).to eq(200)
+        expect(response[DATA]).to be_a()
+      end
+    end
+  
+  # Create Transcription Request
+  describe 'transcribe_call_recording' do
+    it 'creates a transcription request' do
+      transcribe_recording = Bandwidth::TranscribeRecording.new(
+        callback_url: MANTECA_BASE_URL + "/transcriptions",
+        tag: $manteca_test_id
+      )
+
+      response = @api_instance_recordings.transcribe_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id, transcribe_recording)
+      expect(response[CODE]).to eq(204)
+
+      retries = 0
+      transcription_complete = false
+      begin
+        while !transcription_complete && retries < MAX_RETRIES
+          transcription_complete = get_manteca_test_status($manteca_test_id)["callTranscribed"]
+          retries += 1
+          sleep(SLEEP_TIME_S)
+        end
+      rescue => e
+        puts e.inspect
+      end
+
+      expect(transcription_complete).to be_a(TrueClass)
     end
   end
 
@@ -61,36 +141,8 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
 
-  # Download Recording
-  describe 'download_call_recording test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # Get Call Recording
-  describe 'get_call_recording test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # Get Transcription
   describe 'get_call_transcription test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # List Call Recordings
-  describe 'list_call_recordings test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-  
-  # Create Transcription Request
-  describe 'transcribe_call_recording test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

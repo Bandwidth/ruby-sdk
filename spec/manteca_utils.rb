@@ -7,11 +7,11 @@ def setup_manteca(type)
       language: RUBY_VERSION,
       type: type
     }
-    manteca_url = URI(MANTECA_BASE_URL + "/tests")
+    manteca_test_url = URI(MANTECA_BASE_URL + "/tests")
     manteca_header = { 'Content-Type': 'application/json' }
   
     begin
-      test_id = Net::HTTP.post(manteca_url, manteca_body.to_json, manteca_header)
+      test_id = Net::HTTP.post(manteca_test_url, manteca_body.to_json, manteca_header)
       return test_id.body.to_s.gsub("\"", "")
     rescue => e
       puts e.inspect
@@ -30,4 +30,10 @@ def create_manteca_call(tag = "ruby", answer_path = "/bxml/pause", calls_api)
     response = calls_api.create_call(BW_ACCOUNT_ID, manteca_call_body)
     $active_calls.append(response.call_id)
     return response.call_id
+end
+
+def get_manteca_test_status(test_id)
+  manteca_status_url = URI(MANTECA_BASE_URL + "/tests/" + test_id)
+  response = JSON.parse(Net::HTTP.get(manteca_status_url))
+  return response
 end

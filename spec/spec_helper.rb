@@ -58,6 +58,7 @@ RSpec.configure do |config|
     DATA = 0    # index for response array related to the response data
     CODE = 1    # index for response array related to the status code
     SLEEP_TIME_S = 3  # default sleep time in seconds
+    MAX_RETRIES = 40
     $active_calls = []
 
     $complete_call_body = Bandwidth::UpdateCall.new(
