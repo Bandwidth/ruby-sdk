@@ -44,6 +44,7 @@ describe 'CallsApi Integration Tests' do
       sleep(SLEEP_TIME_S)
 
       expect(response[CODE]).to eq(201)
+      expect(response[DATA]).to be_a(Bandwidth::CreateCallResponse)
       expect(response[DATA].call_id.length).to eq(47)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
@@ -69,6 +70,7 @@ describe 'CallsApi Integration Tests' do
       response = @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
       expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_a(CallState)
       expect(response[DATA].call_id).to eq($call_info_id)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
