@@ -25,6 +25,7 @@ describe 'MessagesApi Integration Tests' do
         response = @api_instance_msg.create_message_with_http_info(BW_ACCOUNT_ID, body)
 
         expect(response[CODE]).to eq(202)
+        expect(response[DATA]).to be_a(Bandwidth::Message)
         expect(response[DATA].id.length).to eq(29)
         expect(response[DATA].owner).to eq(BW_NUMBER)
         expect(response[DATA].from).to eq(BW_NUMBER)
@@ -45,6 +46,8 @@ describe 'MessagesApi Integration Tests' do
       response = @api_instance_msg.list_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
 
       expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_a(Bandwidth::MessagesList)
+      expect(response[DATA].messages[0]).to be_a(Bandwidth::ListMessageItem)
       expect(response[DATA].messages[0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].messages[0].message_direction).to eq("OUTBOUND")
       expect(response[DATA].messages[0].source_tn).to eq(BW_NUMBER)
