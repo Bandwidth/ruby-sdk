@@ -70,7 +70,7 @@ describe 'CallsApi Integration Tests' do
       response = @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(CallState)
+      expect(response[DATA]).to be_a(Bandwidth::CallState)
       expect(response[DATA].call_id).to eq($call_info_id)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
@@ -107,8 +107,8 @@ describe 'CallsApi Integration Tests' do
       update_call_id = create_manteca_call(@api_instance_calls)
       sleep(SLEEP_TIME_S)
 
-      update_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is a test bxml response</SpeakSentence><Pause duration=\"3\"/></Bxml>";
-      update_response = @api_instance_calls.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_xml)
+      update_bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is a test bxml response</SpeakSentence><Pause duration=\"3\"/></Bxml>";
+      update_response = @api_instance_calls.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_bxml)
       expect(update_response[CODE]).to eq(204)
       sleep(SLEEP_TIME_S)
       
