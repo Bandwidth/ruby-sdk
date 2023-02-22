@@ -55,6 +55,18 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
   
+  # Get Call Recordings
+  describe 'list_account_call_recordings' do
+    it 'lists account call recordings' do
+      response = @api_instance_recordings.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
+
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
+      expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
+      expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
+    end
+  end
+
   # List Call Recordings
   describe 'list_call_recordings' do
     it 'lists all recordings for a single call' do
@@ -65,24 +77,12 @@ describe 'RecordingsApi Integration Tests' do
       expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].call_id).to eq($manteca_call_id)
-      expect(response[DATA][0].status).to eq('complete')
       expect(response[DATA][0].recording_id).to be_a(String)
-
+      
       $recording_id = response[DATA][0].recording_id
+      expect(response[DATA][0].status).to eq('complete')
     end
   end
-  
-    # Get Call Recordings
-    describe 'list_account_call_recordings' do
-      it 'lists account call recordings' do
-        response = @api_instance_recordings.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
-  
-        expect(response[CODE]).to eq(200)
-        expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
-        expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
-        expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
-      end
-    end
   
   # Get Call Recording
   describe 'get_call_recording' do
@@ -122,6 +122,7 @@ describe 'RecordingsApi Integration Tests' do
 
       retries = 0
       transcription_complete = false
+      sleep(SLEEP_TIME_S * 10)
       begin
         while !transcription_complete && retries < MAX_RETRIES
           transcription_complete = get_manteca_test_status($manteca_test_id)["callTranscribed"]
