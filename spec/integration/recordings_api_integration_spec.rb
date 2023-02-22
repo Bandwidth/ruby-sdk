@@ -8,6 +8,7 @@ describe 'RecordingsApi Integration Tests' do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
+      config.return_binary_data = true
     end
     @api_instance_recordings = Bandwidth::RecordingsApi.new
     @api_instance_calls = Bandwidth::CallsApi.new
@@ -60,6 +61,7 @@ describe 'RecordingsApi Integration Tests' do
       response = @api_instance_recordings.list_call_recordings_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
 
       expect(response[CODE]).to eq(200)
+      expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
       expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].call_id).to eq($manteca_call_id)
@@ -70,12 +72,25 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
   
+    # Get Call Recordings
+    describe 'list_account_call_recordings' do
+      it 'lists account call recordings' do
+        response = @api_instance_recordings.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
+  
+        expect(response[CODE]).to eq(200)
+        expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
+        expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
+        expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
+      end
+    end
+  
   # Get Call Recording
   describe 'get_call_recording' do
     it 'gets a call recording by id' do
       response = @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       
       expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_a(Bandwidth::CallRecordingMetadata)
       expect(response[DATA].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].call_id).to eq($manteca_call_id)
@@ -88,8 +103,9 @@ describe 'RecordingsApi Integration Tests' do
     describe 'download_call_recording' do
       it 'downloads a call recording by id' do
         response = @api_instance_recordings.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+
         expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_a()
+        expect(response[DATA]).to be_a(String)
       end
     end
   
@@ -119,43 +135,41 @@ describe 'RecordingsApi Integration Tests' do
       expect(transcription_complete).to be_a(TrueClass)
     end
   end
+  
+    # Get Transcription
+    describe 'get_call_transcription' do
+      it 'gets the completed call recording transcription' do
+        response = @api_instance_recordings.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+
+        expect(response[CODE]).to eq(200)
+        expect(response[DATA]).to be_a(Bandwidth::TranscriptionList)
+        expect(response[DATA].transcripts[0]).to be_a(Bandwidth::Transcription)
+        expect(response[DATA].transcripts[0].text).to be_a(String)
+        expect(response[DATA].transcripts[0].confidence).to be_a(Numeric)
+      end
+    end
 
   # Delete Transcription
-  describe 'delete_call_transcription test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+  describe 'delete_call_transcription' do
+    it 'deletes the completed call recording transcription' do
+      response = @api_instance_recordings.delete_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      expect(response[CODE]).to eq(204)
     end
   end
+  
+    # Delete Recording Media
+    describe 'delete_recording_media' do
+      it 'deletes the completed call recording media' do
+        response = @api_instance_recordings.delete_recording_media_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+        expect(response[CODE]).to eq(204)
+      end
+    end
 
   # Delete Recording
-  describe 'delete_recording test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # Delete Recording Media
-  describe 'delete_recording_media test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # Get Transcription
-  describe 'get_call_transcription test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # Get Call Recordings
-  describe 'list_account_call_recordings' do
-    it 'lists account call recordings' do
-      response = @api_instance_recordings.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
-
-      expect(response[CODE]).to eq(200)
-      expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
-      expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
+  describe 'delete_recording' do
+    it 'deletes the completed call recording data' do
+      response = @api_instance_recordings.delete_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      expect(response[CODE]).to eq(204)
     end
   end
 
