@@ -21,6 +21,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
 
       expect(response[CODE]).to eq(202)
+      expect(response[DATA]).to be_a(Bandwidth::CreateLookupResponse)
       expect(response[DATA].request_id.length).to eq(36)
       expect(response[DATA].status).to be_a(String)
 
@@ -35,6 +36,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
 
       expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_a(Bandwidth::LookupStatus)
       expect(response[DATA].request_id).to eq($lookup_request_id)
       expect(response[DATA].status).to be_a(String)
       expect(response[DATA].result[0].response_code).to be_a(Integer)
