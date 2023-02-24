@@ -5,12 +5,13 @@ module Bandwidth
 
       # Initializer
       # @param name [String] The name of the conference. Can contain up to 100 characters of letters, numbers, and the symbols -, _, and .
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(name, attributes = {})
         super("Conference", name, attributes)
         
         @attribute_map = {
-          mute: 'mute',                                                       # Optional [String]: A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak. Defaults to false.
-          hold: 'hold',                                                       # Optional [String]: A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard. Defaults to false.
+          mute: 'mute',                                                       # Optional [Boolean]: A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak. Defaults to false.
+          hold: 'hold',                                                       # Optional [Boolean]: A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard. Defaults to false.
           call_ids_to_coach: 'callIdsToCoach',                                # Optional [String]: A comma-separated list of call ids to coach. When a call joins a conference with this attribute set, it will coach the listed calls. Those calls will be able to hear and be heard by the coach, but other calls in the conference will not hear the coach.
           conference_event_url: 'conferenceEventUrl',                         # Optional [String]: URL to send Conference events to. The URL, method, username, and password are set by the BXML document that creates the conference, and all events related to that conference will be delivered to that same endpoint. If more calls join afterwards and also have this property (or any other webhook related properties like username and password), they will be ignored and the original webhook information will be used. This URL may be a relative endpoint.
           conference_event_method: 'conferenceEventMethod',                   # Optional [String]: The HTTP method to use for the request to conferenceEventUrl. GET or POST. Default value is POST.

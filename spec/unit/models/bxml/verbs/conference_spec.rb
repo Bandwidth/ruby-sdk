@@ -4,37 +4,37 @@ require 'spec_helper'
 describe 'Bandwidth::Bxml::Conference' do
   let(:initial_attributes) {
     {
-        mute: 'true',
-        hold: 'true',
-        call_ids_to_coach: 'initial',
-        conference_event_url: 'https://initial.com',
-        conference_event_method: 'POST',
-        conference_event_fallback_url: 'https://initial.com',
-        conference_event_fallback_method: 'POST',
-        username: 'initial_username',
-        password: 'initial_password',
-        fallback_username: 'initial_fallback_username',
-        fallback_password: 'initial_fallback_password',
-        tag: 'initial_tag',
-        callback_timeout: '5'
+      mute: true,
+      hold: true,
+      call_ids_to_coach: 'initial',
+      conference_event_url: 'https://initial.com',
+      conference_event_method: 'POST',
+      conference_event_fallback_url: 'https://initial.com',
+      conference_event_fallback_method: 'POST',
+      username: 'initial_username',
+      password: 'initial_password',
+      fallback_username: 'initial_fallback_username',
+      fallback_password: 'initial_fallback_password',
+      tag: 'initial_tag',
+      callback_timeout: '5'
     }
   }
 
   let(:new_attributes) {
     {
-        mute: 'false',
-        hold: 'false',
-        call_ids_to_coach: 'new',
-        conference_event_url: 'https://new.com',
-        conference_event_method: 'GET',
-        conference_event_fallback_url: 'https://new.com',
-        conference_event_fallback_method: 'GET',
-        username: 'new_username',
-        password: 'new_password',
-        fallback_username: 'new_fallback_username',
-        fallback_password: 'new_fallback_password',
-        tag: 'new_tag',
-        callback_timeout: '10'
+      mute: false,
+      hold: false,
+      call_ids_to_coach: 'new',
+      conference_event_url: 'https://new.com',
+      conference_event_method: 'GET',
+      conference_event_fallback_url: 'https://new.com',
+      conference_event_fallback_method: 'GET',
+      username: 'new_username',
+      password: 'new_password',
+      fallback_username: 'new_fallback_username',
+      fallback_password: 'new_fallback_password',
+      tag: 'new_tag',
+      callback_timeout: '10'
     }
   }
 
