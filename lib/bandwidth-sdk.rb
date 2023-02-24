@@ -112,6 +112,7 @@ require 'bandwidth-sdk/models/bxml/response'
 require 'bandwidth-sdk/models/bxml/verb'
 require 'bandwidth-sdk/models/bxml/terminal_verb'
 require 'bandwidth-sdk/models/bxml/verbs/bridge'
+require 'bandwidth-sdk/models/bxml/verbs/conference'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
