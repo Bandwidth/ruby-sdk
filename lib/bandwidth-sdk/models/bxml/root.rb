@@ -1,4 +1,4 @@
-require 'xml'
+require 'libxml'
 
 module Bandwidth
   module Bxml
@@ -14,8 +14,8 @@ module Bandwidth
       # Generate an XML element for the BXML response
       # @return [Document] The XML element.
       def generate_xml
-        xml = XML::Document.new
-        xml.root = XML::Node.new(@tag)
+        xml = LibXML::XML::Document.new
+        xml.root = LibXML::XML::Node.new(@tag)
         @nested_verbs.each do |verb|
           xml.root << verb.generate_xml
         end

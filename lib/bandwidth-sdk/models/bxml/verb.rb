@@ -1,4 +1,4 @@
-require 'xml'
+require 'libxml'
 
 module Bandwidth
   module Bxml
@@ -25,7 +25,7 @@ module Bandwidth
       # Generate an XML element for the verb
       # @return [Node] The XML element.
       def generate_xml
-        root = XML::Node.new(@tag)
+        root = LibXML::XML::Node.new(@tag)
         if @content
           root << @content
         end
