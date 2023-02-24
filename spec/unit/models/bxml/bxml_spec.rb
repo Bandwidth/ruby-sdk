@@ -10,8 +10,8 @@ describe 'Bandwidth::Bxml::Bxml' do
     end
 
     it 'test the to_bxml method of the Bxml instance' do
-      expected_bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Bxml/>\n"
-      expect(instance.to_bxml).to eq(expected_bxml)
+      expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Bxml/>\n"
+      expect(instance.to_bxml).to eq(expected)
     end
   end
 end
