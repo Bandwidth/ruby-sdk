@@ -38,7 +38,7 @@ describe 'Bandwidth::Bxml::Bridge' do
     }
   }
 
-  let(:instance) { Bandwidth::Bxml::Bridge.new('+19198675309', initial_attributes) }
+  let(:instance) { Bandwidth::Bxml::Bridge.new('+19195551234', initial_attributes) }
 
   describe 'test an instance of Bridge' do
     it 'validates instance of Bridge' do
@@ -47,13 +47,13 @@ describe 'Bandwidth::Bxml::Bridge' do
     end
 
     it 'tests the to_bxml method of the Bridge instance' do
-      expected = "\n<Bridge bridgeCompleteUrl=\"https://initial.com\" bridgeCompleteMethod=\"POST\" bridgeCompleteFallbackUrl=\"https://initial.com\" bridgeCompleteFallbackMethod=\"POST\" bridgeTargetCompleteUrl=\"https://initial.com\" bridgeTargetCompleteMethod=\"POST\" bridgeTargetCompleteFallbackUrl=\"https://initial.com\" bridgeTargetCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\">+19198675309</Bridge>\n"
+      expected = "\n<Bridge bridgeCompleteUrl=\"https://initial.com\" bridgeCompleteMethod=\"POST\" bridgeCompleteFallbackUrl=\"https://initial.com\" bridgeCompleteFallbackMethod=\"POST\" bridgeTargetCompleteUrl=\"https://initial.com\" bridgeTargetCompleteMethod=\"POST\" bridgeTargetCompleteFallbackUrl=\"https://initial.com\" bridgeTargetCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\">+19195551234</Bridge>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Bridge instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Bridge bridgeCompleteUrl=\"https://new.com\" bridgeCompleteMethod=\"GET\" bridgeCompleteFallbackUrl=\"https://new.com\" bridgeCompleteFallbackMethod=\"GET\" bridgeTargetCompleteUrl=\"https://new.com\" bridgeTargetCompleteMethod=\"GET\" bridgeTargetCompleteFallbackUrl=\"https://new.com\" bridgeTargetCompleteFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\">+19198675309</Bridge>\n"
+      expected = "\n<Bridge bridgeCompleteUrl=\"https://new.com\" bridgeCompleteMethod=\"GET\" bridgeCompleteFallbackUrl=\"https://new.com\" bridgeCompleteFallbackMethod=\"GET\" bridgeTargetCompleteUrl=\"https://new.com\" bridgeTargetCompleteMethod=\"GET\" bridgeTargetCompleteFallbackUrl=\"https://new.com\" bridgeTargetCompleteFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\">+19195551234</Bridge>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
