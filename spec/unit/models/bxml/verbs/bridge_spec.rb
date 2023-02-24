@@ -5,8 +5,9 @@ describe 'Bandwidth::Bxml::Bridge' do
   let(:instance) { Bandwidth::Bxml::Bridge.new('+19198675309', {bridge_complete_url:  'https://example.com', tag: 'ruby bridge init tag'}) }
 
   describe 'test an instance of Bridge' do
-    it 'validates insatnce of Bridge' do
+    it 'validates instance of Bridge' do
       expect(instance).to be_instance_of(Bandwidth::Bxml::Bridge)
+      expect(instance).to be_a(Bandwidth::Bxml::Verb)
     end
 
     it 'test the to_bxml method of the Bridge instance' do
