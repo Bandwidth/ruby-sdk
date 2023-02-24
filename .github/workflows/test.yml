@@ -27,6 +27,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
 
+      - name: Install Packages
+        run: bundle install
+
       - name: Test
         env:
           BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -46,10 +49,7 @@ jobs:
           OPERATING_SYSTEM: ${{ matrix.os }}
           RUBY_VERSION: ${{ matrix.ruby-version }}
         run: rake
-
-      - name: Install Packages
-        run: bundle install
-
+        
       - name: Notify Slack of Failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
         if: failure() && !github.event.pull_request.draft
