@@ -5,6 +5,7 @@ module Bandwidth
 
       # Initializer
       # @param target_call [String] The callId of the call to be bridged.
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(target_call, attributes = {})
         super("Bridge", target_call, attributes)
         
