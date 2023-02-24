@@ -38,8 +38,8 @@ module Bandwidth
 
         if !@attributes.empty?
           @attributes.each do |key, value|
-            if @attribute_map.include? key.to_s
-              root[key.to_s] = value
+            if @attribute_map.include? key.to_sym
+              root[@attribute_map[key.to_sym]] = value
             else
               raise NoMethodError.new("attribute '#{key}' is not a valid attribute for this verb")
             end
