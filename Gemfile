@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'libxml-ruby', '~> 2.8'
+
 gemspec
 
 group :development, :test do
