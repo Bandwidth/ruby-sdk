@@ -4,9 +4,9 @@ module Bandwidth
       include Bandwidth::Bxml::TerminalVerb
 
       # Initializer
-      # @param target_call [String] String containing the callId of the call to be bridged.
-      def initialize(target_call, attributes = {})
-        super("Bridge", target_call, attributes)
+      # @param name [String] The name of the conference. Can contain up to 100 characters of letters, numbers, and the symbols -, _, and .
+      def initialize(name, attributes = {})
+        super("Conference", target_call, attributes)
         
         @attribute_map = [
             
