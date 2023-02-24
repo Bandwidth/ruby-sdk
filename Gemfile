@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'libxml-ruby', '~> 2.8'
+gem 'ox', '~> 2.4', '>= 2.4.1'
 
 gemspec
 
