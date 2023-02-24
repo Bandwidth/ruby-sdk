@@ -1,4 +1,4 @@
-require 'libxml'
+require 'ox'
 
 module Bandwidth
   module Bxml
@@ -14,11 +14,16 @@ module Bandwidth
       # Generate an XML element for the BXML response
       # @return [Document] The XML element.
       def generate_xml
-        xml = LibXML::XML::Document.new
-        xml.root = LibXML::XML::Node.new(@tag)
+        xml = Ox::Document.new
+        instruct = Ox::Instruct.new(:xml)
+        instruct[:version] = '1.0'
+        instruct[:encoding] = 'UTF-8'
+        xml << instruct
+        root = Ox::Element.new(@tag)
         @nested_verbs.each do |verb|
-          xml.root << verb.generate_xml
+          root << verb.generate_xml
         end
+        xml << root
         return xml
         # xml.target!().gsub(SPEAK_SENTENCE_REGEX){|s|s.gsub(SSML_REGEX, '<\1>')}
       end
@@ -32,7 +37,7 @@ module Bandwidth
       # Return BXML representaion of this response
       # @return [String] The XML response in string format.
       def to_bxml
-        return generate_xml.to_s
+        return Ox.dump(generate_xml)
       end
     end
   end
