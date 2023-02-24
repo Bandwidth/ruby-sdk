@@ -1,48 +1,30 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice 
-    # The Gather verb is used to collect digits for some period of time
+module Bandwidth
+  module Bxml
     class Gather
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.Gather(compact_hash({
-          'gatherUrl' => gather_url,
-          'gatherMethod' => gather_method,
-          'terminatingDigits' => terminating_digits,
-          'tag' => tag,
-          'maxDigits' => max_digits,
-          'interDigitTimeout' => inter_digit_timeout,
-          'username' => username,
-          'password' => password,
-          'firstDigitTimeout' => first_digit_timeout,
-          'repeatCount' => repeat_count,
-          'gatherFallbackUrl' => gather_fallback_url,
-          'gatherFallbackMethod' => gather_fallback_method,
-          'fallbackUsername' => fallback_username,
-          'fallbackPassword' => fallback_password
-         })) do
-           def embedded_xml(xml, property, type)
-             if property
-               s = if property.is_a?(type)
-                     then property
-                   else type.new(property)
-                     end
-               s.to_bxml(xml)
-             end
-           end
-           def nest_verbs_list(xml, property)
-             if property
-               property.each do |verb|
-                 verb.to_bxml(xml)
-               end
-             end
-           end
-          embedded_xml(xml, speak_sentence, SpeakSentence)
-          embedded_xml(xml, play_audio, PlayAudio)
-          nest_verbs_list(xml, nested_verbs)
-        end
+      # Initializer
+      # @param nested_verbs [Array] XML element children. Defaults to an empty array.
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
+      def initialize(nested_verbs = [], attributes = {})
+        super("Gather", nil, nested_verbs, attributes)
+
+        @attribute_map = [
+          'gather_url',             # Optional [String]: URL to send Gather event to and request new BXML. May be a relative URL.
+          'gather_method',          # Optional [String]: The HTTP method to use for the request to gather_url. GET or POST. Default value is POST.
+          'gather_fallback_url',    # Optional [String]: A fallback url which, if provided, will be used to retry the Gather event callback delivery in case gather_url fails to respond.
+          'gather_fallback_method', # Optional [String]: The HTTP method to use to deliver the Gather event callback to gather_fallback_url. GET or POST. Default value is POST.
+          'username',               # Optional [String]: The username to send in the HTTP request to gather_url.
+          'password',               # Optional [String]: The password to send in the HTTP request to gather_url.
+          'fallback_username',      # Optional [String]: The username to send in the HTTP request to gather_fallback_url.
+          'fallback_password',      # Optional [String]: The password to send in the HTTP request to gather_fallback_url.
+          'tag',                    # Optional [String]: A custom string that will be sent with this and all future callbacks unless overwritten by a future tag attribute or <Tag> verb, or cleared. May be cleared by setting tag="". Max length 256 characters.
+          'terminating_digits',     # Optional [String]: When any of these digits are pressed, it will terminate the Gather. Default value is "", which disables this feature.
+          'max_digits',             # Optional [Number]: Max number of digits to collect. Default value is 50. Range: decimal values between 1 - 50.
+          'inter_digit_timeout',    # Optional [Number]: Time (in seconds) allowed between digit presses before automatically terminating the Gather. Default value is 5. Range: decimal values between 1 - 60.
+          'first_digit_timeout',    # Optional [Number]: Time (in seconds) to pause after any audio from nested <SpeakSentence> or <PlayAudio> verb is played (in seconds) before terminating the Gather. Default value is 5. Range: decimal values between 0 - 60.
+          'repeat_count',           # Optional [Number]: The number of times the audio prompt should be played if no digits are pressed. For example, if this value is 3, the nested audio clip will be played a maximum of three times. The delay between repetitions will be equal to first_digit_timeout. Default value is 1. repeat_count * number of verbs must not be greater than 20.
+        ]
       end
     end
   end
