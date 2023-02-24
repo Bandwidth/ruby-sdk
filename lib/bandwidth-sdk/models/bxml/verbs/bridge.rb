@@ -4,7 +4,7 @@ module Bandwidth
       include Bandwidth::Bxml::TerminalVerb
 
       # Initializer
-      # @param target_call [String] String containing the callId of the call to be bridged.
+      # @param target_call [String] The callId of the call to be bridged.
       def initialize(target_call, attributes = {})
         super("Bridge", target_call, attributes)
         
