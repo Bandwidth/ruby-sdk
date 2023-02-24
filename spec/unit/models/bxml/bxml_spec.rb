@@ -5,7 +5,7 @@ describe 'Bandwidth::Bxml::Bxml' do
   let(:instance) { Bandwidth::Bxml::Bxml.new }
 
   describe 'test an instance of Bxml' do
-    it 'validates insatnce of Bxml' do
+    it 'validates instance of Bxml' do
       expect(instance).to be_instance_of(Bandwidth::Bxml::Bxml)
     end
 
