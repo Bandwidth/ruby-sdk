@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'libxml-ruby', '~> 2.8'
-gem 'ffi', '~> 1.15', '>= 1.15.4'
+gem 'libxml-ruby', '~> 3.2', '>= 3.2.2'
 
 gemspec
 
