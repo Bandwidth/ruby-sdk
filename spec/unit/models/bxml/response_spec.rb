@@ -5,7 +5,7 @@ describe 'Bandwidth::Bxml::Response' do
   let(:instance) { Bandwidth::Bxml::Response.new }
 
   describe 'test an instance of Response' do
-    it 'validates insatnce of Response' do
+    it 'validates instance of Response' do
       expect(instance).to be_instance_of(Bandwidth::Bxml::Response)
     end
 
