@@ -1,12 +1,12 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice 
+module Bandwidth
+  module Bxml
     class Tag
-      include XmlVerb
+      include Bandwidth::Bxml::TerminalVerb
 
-      def to_bxml(xml)
-        xml.Tag(tag)
+      # Initializer
+      # @param content [String] Custom tag value. Defaults to nil.
+      def initialize(content = nil)
+        super("Tag", content)
       end
     end
   end
