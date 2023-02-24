@@ -1,4 +1,4 @@
-require 'xml'
+require 'ox'
 
 module Bandwidth
   module Bxml
@@ -25,7 +25,7 @@ module Bandwidth
       # Generate an XML element for the verb
       # @return [Node] The XML element.
       def generate_xml
-        root = XML::Node.new(@tag)
+        root = Ox::Element.new(@tag)
         if @content
           root << @content
         end
@@ -39,7 +39,6 @@ module Bandwidth
         if !@attributes.empty?
           @attributes.each do |key, value|
             if @attribute_map.include? key.to_s
-              puts "exists"
               root[key.to_s] = value
             else
               raise NoMethodError.new("attribute '#{key}' is not a valid attribute for this verb")
@@ -59,7 +58,7 @@ module Bandwidth
       # Return BXML representaion of this element
       # @return [String] The XML element in string format.
       def to_bxml
-        return generate_xml.to_s
+        return Ox.dump(generate_xml)
       end
     end
   end

@@ -1,5 +1,3 @@
-require 'xml'
-
 module Bandwidth
   module Bxml
     class Response
