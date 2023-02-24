@@ -53,7 +53,7 @@ describe 'Bandwidth::Bxml::Conference' do
 
     it 'tests the set_attributes method of the Conference instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Conference mute=\"false\" hold=\"false\" callIdsToCoach=\"new\" conferenceEventUrl=\"https:\/\/new.com\" conferenceEventMethod=\"GET\" conferenceEventFallbackUrl=\"https:\/\/new.com\" conferenceEventFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" callbackTimeout=\"10\">conference_name<\/Conference>\n"
+      expected = "\n<Conference mute=\"false\" hold=\"false\" callIdsToCoach=\"new\" conferenceEventUrl=\"https://new.com\" conferenceEventMethod=\"GET\" conferenceEventFallbackUrl=\"https://new.com\" conferenceEventFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" callbackTimeout=\"10\">conference_name</Conference>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
