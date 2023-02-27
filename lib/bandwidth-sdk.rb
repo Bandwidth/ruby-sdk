@@ -125,6 +125,7 @@ require 'bandwidth-sdk/models/bxml/verbs/resume_recording'
 require 'bandwidth-sdk/models/bxml/verbs/ring'
 require 'bandwidth-sdk/models/bxml/verbs/send_dtmf'
 require 'bandwidth-sdk/models/bxml/verbs/sip_uri'
+require 'bandwidth-sdk/models/bxml/verbs/speak_sentence'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
