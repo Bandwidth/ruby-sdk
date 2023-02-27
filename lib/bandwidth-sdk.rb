@@ -115,6 +115,7 @@ require 'bandwidth-sdk/models/bxml/verbs/bridge'
 require 'bandwidth-sdk/models/bxml/verbs/conference'
 require 'bandwidth-sdk/models/bxml/verbs/forward'
 require 'bandwidth-sdk/models/bxml/verbs/hangup'
+require 'bandwidth-sdk/models/bxml/verbs/pause_recording'
 require 'bandwidth-sdk/models/bxml/verbs/pause'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
