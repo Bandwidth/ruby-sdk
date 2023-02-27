@@ -2,6 +2,9 @@ require 'ox'
 
 module Bandwidth
   module Bxml
+    SPEAK_SENTENCE_REGEX = /<SpeakSentence.*?>(.*?)<\/SpeakSentence>/
+    SSML_REGEX = /&lt;([a-zA-Z\/\/].*?)&gt;/
+
     module Root
       # Initializer
       # @param tag [String] Name of the XML element.
@@ -25,7 +28,6 @@ module Bandwidth
         end
         xml << root
         return xml
-        # xml.target!().gsub(SPEAK_SENTENCE_REGEX){|s|s.gsub(SSML_REGEX, '<\1>')}
       end
 
       # Add a verb to the nested verbs array
@@ -38,7 +40,7 @@ module Bandwidth
       # @return [String] The XML response in string format.
       def to_bxml
         bxml = Ox.dump(generate_xml)
-        return bxml.gsub(/<SpeakSentence.*?>(.*?)<\/SpeakSentence>/) { |text| text.gsub(/&lt;([a-zA-Z\/\/].*?)&gt;/, '<\1>')}
+        return bxml.gsub(SPEAK_SENTENCE_REGEX) { |text| text.gsub(SSML_REGEX, '<\1>')}
       end
     end
   end
