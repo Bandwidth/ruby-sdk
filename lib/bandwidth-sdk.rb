@@ -130,6 +130,7 @@ require 'bandwidth-sdk/models/bxml/verbs/start_gather'
 require 'bandwidth-sdk/models/bxml/verbs/start_recording'
 require 'bandwidth-sdk/models/bxml/verbs/stop_gather'
 require 'bandwidth-sdk/models/bxml/verbs/stop_recording'
+require 'bandwidth-sdk/models/bxml/verbs/stop_stream'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
