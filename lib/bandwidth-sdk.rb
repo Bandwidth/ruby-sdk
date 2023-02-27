@@ -122,6 +122,7 @@ require 'bandwidth-sdk/models/bxml/verbs/play_audio'
 require 'bandwidth-sdk/models/bxml/verbs/record'
 require 'bandwidth-sdk/models/bxml/verbs/redirect'
 require 'bandwidth-sdk/models/bxml/verbs/resume_recording'
+require 'bandwidth-sdk/models/bxml/verbs/ring'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
