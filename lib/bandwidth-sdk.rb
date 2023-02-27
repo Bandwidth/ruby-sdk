@@ -135,6 +135,7 @@ require 'bandwidth-sdk/models/bxml/verbs/stop_recording'
 require 'bandwidth-sdk/models/bxml/verbs/stop_stream'
 require 'bandwidth-sdk/models/bxml/verbs/stream_param'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
+require 'bandwidth-sdk/models/bxml/verbs/transfer'
 
 # APIs
 require 'bandwidth-sdk/api/calls_api'
