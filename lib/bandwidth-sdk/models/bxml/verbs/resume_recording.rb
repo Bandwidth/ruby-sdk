@@ -1,13 +1,11 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice  
-    # The ResumeRecording verb is used to resume recording in a call 
+module Bandwidth
+  module Bxml
     class ResumeRecording
-      include XmlVerb
+      include Bandwidth::Bxml::TerminalVerb
 
-      def to_bxml(xml)
-        xml.ResumeRecording()
+      # Initializer
+      def initialize
+        super("ResumeRecording", nil, {})
       end
     end
   end
