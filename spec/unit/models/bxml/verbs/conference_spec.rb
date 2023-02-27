@@ -16,7 +16,7 @@ describe 'Bandwidth::Bxml::Conference' do
       fallback_username: 'initial_fallback_username',
       fallback_password: 'initial_fallback_password',
       tag: 'initial_tag',
-      callback_timeout: '5'
+      callback_timeout: 5
     }
   }
 
@@ -34,7 +34,7 @@ describe 'Bandwidth::Bxml::Conference' do
       fallback_username: 'new_fallback_username',
       fallback_password: 'new_fallback_password',
       tag: 'new_tag',
-      callback_timeout: '10'
+      callback_timeout: 10
     }
   }
 

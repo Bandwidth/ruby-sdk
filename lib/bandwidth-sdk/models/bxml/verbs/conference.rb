@@ -22,7 +22,7 @@ module Bandwidth
           fallback_username: 'fallbackUsername',                              # Optional [String]: The username to send in the HTTP request to conferenceEventFallbackUrl.
           fallback_password: 'fallbackPassword',                              # Optional [String]: The password to send in the HTTP request to conferenceEventFallbackUrl.
           tag: 'tag',                                                         # Optional [String]: A custom string that will be sent with this and all future callbacks unless overwritten by a future tag attribute or <Tag> verb, or cleared. May be cleared by setting tag="". Max length 256 characters. Defaults to None.
-          callback_timeout: 'callbackTimeout',                                # Optional [String]: This is the timeout (in seconds) to use when delivering webhooks for the conference. If not set, it will inherit the webhook timeout from the call that creates the conference. Can be any numeric value (including decimals) between 1 and 25.
+          callback_timeout: 'callbackTimeout',                                # Optional [Number]: This is the timeout (in seconds) to use when delivering webhooks for the conference. If not set, it will inherit the webhook timeout from the call that creates the conference. Can be any numeric value (including decimals) between 1 and 25.
         }
       end
     end
