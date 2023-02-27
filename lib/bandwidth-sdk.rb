@@ -118,6 +118,7 @@ require 'bandwidth-sdk/models/bxml/verbs/hangup'
 require 'bandwidth-sdk/models/bxml/verbs/pause_recording'
 require 'bandwidth-sdk/models/bxml/verbs/pause'
 require 'bandwidth-sdk/models/bxml/verbs/phone_number'
+require 'bandwidth-sdk/models/bxml/verbs/play_audio'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
