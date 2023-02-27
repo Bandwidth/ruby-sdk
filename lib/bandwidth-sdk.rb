@@ -128,6 +128,7 @@ require 'bandwidth-sdk/models/bxml/verbs/sip_uri'
 require 'bandwidth-sdk/models/bxml/verbs/speak_sentence'
 require 'bandwidth-sdk/models/bxml/verbs/start_gather'
 require 'bandwidth-sdk/models/bxml/verbs/start_recording'
+require 'bandwidth-sdk/models/bxml/verbs/stop_gather'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
