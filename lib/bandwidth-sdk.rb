@@ -120,6 +120,7 @@ require 'bandwidth-sdk/models/bxml/verbs/pause'
 require 'bandwidth-sdk/models/bxml/verbs/phone_number'
 require 'bandwidth-sdk/models/bxml/verbs/play_audio'
 require 'bandwidth-sdk/models/bxml/verbs/record'
+require 'bandwidth-sdk/models/bxml/verbs/redirect'
 require 'bandwidth-sdk/models/bxml/verbs/tag'
 
 # APIs
