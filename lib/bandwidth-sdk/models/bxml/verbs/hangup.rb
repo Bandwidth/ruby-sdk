@@ -1,13 +1,11 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice  
-    # The Hangup verb is used to hangup current call
+module Bandwidth
+  module Bxml
     class Hangup
-      include XmlVerb
+      include Bandwidth::Bxml::TerminalVerb
 
-      def to_bxml(xml)
-        xml.Hangup()
+      # Initializer
+      def initialize
+        super("Hangup", nil, {})
       end
     end
   end
