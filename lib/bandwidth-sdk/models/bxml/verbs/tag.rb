@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param content [String] Custom tag value. Defaults to nil.
       def initialize(content = nil)
-        super("Tag", content)
+        super("Tag", content, {})
       end
     end
   end
