@@ -5,6 +5,7 @@ module Bandwidth
 
       # Initializer
       # @param number [String] A phone number to transfer the call to. Value must be in E.164 format (e.g. +15555555555).
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(number, attributes = {})
         super("PhoneNumber", number, attributes)
         
