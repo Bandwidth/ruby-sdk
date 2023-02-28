@@ -16,7 +16,7 @@ describe 'Bandwidth::Bxml::Conference' do
       fallback_username: 'initial_fallback_username',
       fallback_password: 'initial_fallback_password',
       tag: 'initial_tag',
-      callback_timeout: 5
+      callback_timeout: 5.0
     }
   }
 
@@ -34,7 +34,7 @@ describe 'Bandwidth::Bxml::Conference' do
       fallback_username: 'new_fallback_username',
       fallback_password: 'new_fallback_password',
       tag: 'new_tag',
-      callback_timeout: 10
+      callback_timeout: 10.0
     }
   }
 
@@ -47,13 +47,13 @@ describe 'Bandwidth::Bxml::Conference' do
     end
 
     it 'tests the to_bxml method of the Conference instance' do
-      expected = "\n<Conference mute=\"true\" hold=\"true\" callIdsToCoach=\"initial\" conferenceEventUrl=\"https://initial.com\" conferenceEventMethod=\"POST\" conferenceEventFallbackUrl=\"https://initial.com\" conferenceEventFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" callbackTimeout=\"5\">conference_name</Conference>\n"
+      expected = "\n<Conference mute=\"true\" hold=\"true\" callIdsToCoach=\"initial\" conferenceEventUrl=\"https://initial.com\" conferenceEventMethod=\"POST\" conferenceEventFallbackUrl=\"https://initial.com\" conferenceEventFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" callbackTimeout=\"5.0\">conference_name</Conference>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Conference instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Conference mute=\"false\" hold=\"false\" callIdsToCoach=\"new\" conferenceEventUrl=\"https://new.com\" conferenceEventMethod=\"GET\" conferenceEventFallbackUrl=\"https://new.com\" conferenceEventFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" callbackTimeout=\"10\">conference_name</Conference>\n"
+      expected = "\n<Conference mute=\"false\" hold=\"false\" callIdsToCoach=\"new\" conferenceEventUrl=\"https://new.com\" conferenceEventMethod=\"GET\" conferenceEventFallbackUrl=\"https://new.com\" conferenceEventFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" callbackTimeout=\"10.0\">conference_name</Conference>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
