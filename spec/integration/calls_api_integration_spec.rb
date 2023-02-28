@@ -44,7 +44,7 @@ describe 'CallsApi Integration Tests' do
       sleep(SLEEP_TIME_S)
 
       expect(response[CODE]).to eq(201)
-      expect(response[DATA]).to be_a(Bandwidth::CreateCallResponse)
+      expect(response[DATA]).to be_instance_of(Bandwidth::CreateCallResponse)
       expect(response[DATA].call_id.length).to eq(47)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
@@ -53,7 +53,7 @@ describe 'CallsApi Integration Tests' do
       expect(response[DATA].call_id)
       expect(response[DATA].call_timeout).to eq(30.0)
       expect(response[DATA].callback_timeout).to eq(15.0)
-      expect(response[DATA].enqueued_time).to be_a(Time)
+      expect(response[DATA].enqueued_time).to be_instance_of(Time)
       expect(response[DATA].answer_method).to eq(Bandwidth::CallbackMethodEnum::POST)
       expect(response[DATA].disconnect_method).to eq("GET")
       expect(response[DATA].answer_url).to eq(BASE_CALLBACK_URL + "/callbacks/answer")
@@ -70,13 +70,13 @@ describe 'CallsApi Integration Tests' do
       response = @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::CallState)
+      expect(response[DATA]).to be_instance_of(Bandwidth::CallState)
       expect(response[DATA].call_id).to eq($call_info_id)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].application_id).to eq(BW_VOICE_APPLICATION_ID)
-      expect(response[DATA].start_time).to be_a(Time)
-      expect(response[DATA].last_update).to be_a(Time)
-      expect(response[DATA].state).to be_a(String)
+      expect(response[DATA].start_time).to be_instance_of(Time)
+      expect(response[DATA].last_update).to be_instance_of(Time)
+      expect(response[DATA].state).to be_instance_of(String)
       expect(response[DATA].direction).to eq(Bandwidth::CallDirectionEnum::OUTBOUND)
     end
   end
@@ -133,7 +133,7 @@ describe 'CallsApi Integration Tests' do
       expect {
         @api_instance_calls.create_call_with_http_info(BW_ACCOUNT_ID, call_body_bad)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(400)
       }
     end
@@ -144,7 +144,7 @@ describe 'CallsApi Integration Tests' do
       expect {
         @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, dne_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(404)
       }
     end
@@ -158,7 +158,7 @@ describe 'CallsApi Integration Tests' do
       expect {
         @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)
       }
     end
@@ -172,7 +172,7 @@ describe 'CallsApi Integration Tests' do
       expect {
         @api_instance_calls.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)
       }
     end

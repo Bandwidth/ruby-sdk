@@ -29,8 +29,8 @@ describe 'ConferencesApi Integration Tests' do
       response = @api_instance_conferences.list_conferences_with_http_info(BW_ACCOUNT_ID, conference_opts)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA][0]).to be_a(Bandwidth::Conference)
-      expect(response[DATA][0].id).to be_a(String)
+      expect(response[DATA][0]).to be_instance_of(Bandwidth::Conference)
+      expect(response[DATA][0].id).to be_instance_of(String)
       $conference_id = response[DATA][0].id
     end
   end
@@ -41,7 +41,7 @@ describe 'ConferencesApi Integration Tests' do
       response = @api_instance_conferences.get_conference_with_http_info(BW_ACCOUNT_ID, $conference_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::Conference)
+      expect(response[DATA]).to be_instance_of(Bandwidth::Conference)
       expect(response[DATA].id).to eq($conference_id)
       expect(response[DATA].name).to eq($manteca_test_id)
       expect(response[DATA].tag).to eq($manteca_test_id)
@@ -54,7 +54,7 @@ describe 'ConferencesApi Integration Tests' do
       response = @api_instance_conferences.get_conference_member_with_http_info(BW_ACCOUNT_ID, $conference_id, $manteca_call_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::ConferenceMember)
+      expect(response[DATA]).to be_instance_of(Bandwidth::ConferenceMember)
       expect(response[DATA].conference_id).to eq($conference_id)
       expect(response[DATA].call_id).to eq($manteca_call_id)
     end
@@ -112,7 +112,7 @@ describe 'ConferencesApi Integration Tests' do
         puts e.inspect
       end
 
-      expect(recording_complete).to be_a(TrueClass)
+      expect(recording_complete).to be_instance_of(TrueClass)
     end
   end
   
@@ -122,12 +122,12 @@ describe 'ConferencesApi Integration Tests' do
       response = @api_instance_conferences.list_conference_recordings_with_http_info(BW_ACCOUNT_ID, $conference_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA][0]).to be_a(Bandwidth::ConferenceRecordingMetadata)
+      expect(response[DATA][0]).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
       expect(response[DATA][0].conference_id).to eq($conference_id)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].name).to eq($manteca_test_id)
       expect(response[DATA][0].status).to eq('complete').or eq('partial')
-      expect(response[DATA][0].recording_id).to be_a(String)
+      expect(response[DATA][0].recording_id).to be_instance_of(String)
       expect(response[DATA][0].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
 
       $recording_id = response[DATA][0].recording_id
@@ -140,12 +140,12 @@ describe 'ConferencesApi Integration Tests' do
         response = @api_instance_conferences.get_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
 
         expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_a(Bandwidth::ConferenceRecordingMetadata)
+        expect(response[DATA]).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
         expect(response[DATA].conference_id).to eq($conference_id)
         expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
         expect(response[DATA].name).to eq($manteca_test_id)
         expect(response[DATA].status).to eq('complete').or eq('partial')
-        expect(response[DATA].recording_id).to be_a(String)
+        expect(response[DATA].recording_id).to be_instance_of(String)
         expect(response[DATA].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
       end
     end
@@ -156,7 +156,7 @@ describe 'ConferencesApi Integration Tests' do
       response = @api_instance_conferences.download_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(String)
+      expect(response[DATA]).to be_instance_of(String)
     end
   end
 
