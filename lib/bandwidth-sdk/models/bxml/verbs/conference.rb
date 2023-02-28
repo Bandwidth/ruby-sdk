@@ -17,7 +17,7 @@ module Bandwidth
           conference_event_method: 'conferenceEventMethod',                   # Optional [String]: The HTTP method to use for the request to conferenceEventUrl. GET or POST. Default value is POST.
           conference_event_fallback_url: 'conferenceEventFallbackUrl',        # Optional [String]: A fallback url which, if provided, will be used to retry the conference webhook deliveries in case conferenceEventUrl fails to respond.
           conference_event_fallback_method: 'conferenceEventFallbackMethod',  # Optional [String]: The HTTP method to use to deliver the conference webhooks to conferenceEventFallbackUrl. GET or POST. Default value is POST.
-          username: 'username',                                               # Optional [String]:The username to send in the HTTP request to conferenceEventUrl.
+          username: 'username',                                               # Optional [String]: The username to send in the HTTP request to conferenceEventUrl.
           password: 'password',                                               # Optional [String]: The password to send in the HTTP request to conferenceEventUrl.
           fallback_username: 'fallbackUsername',                              # Optional [String]: The username to send in the HTTP request to conferenceEventFallbackUrl.
           fallback_password: 'fallbackPassword',                              # Optional [String]: The password to send in the HTTP request to conferenceEventFallbackUrl.

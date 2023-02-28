@@ -21,7 +21,7 @@ module Bandwidth
           password: 'password',                                             # Optional [String]: The password to send in the HTTP request to transferAnswerUrl and transferDisconnectUrl. Defaults to Defaults to None.
           fallback_username: 'fallbackUsername',                            # Optional [String]: The username to send in the HTTP request to transferAnswerFallbackUrl. Defaults to None.
           fallback_password: 'fallbackPassword',                            # Optional [String]: The password to send in the HTTP request to transferAnswerFallbackUrl. Defaults to None.
-          tag: 'tag',                                                       # Optional [String]:  A custom string that will be sent with these and all future callbacks unless overwritten by a future tag attribute or cleared. May be cleared by setting tag="" Max length 256 characters. Defaults to None.
+          tag: 'tag',                                                       # Optional [String]: A custom string that will be sent with these and all future callbacks unless overwritten by a future tag attribute or cleared. May be cleared by setting tag="" Max length 256 characters. Defaults to None.
         }
       end
     end

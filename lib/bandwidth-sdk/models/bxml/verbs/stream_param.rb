@@ -9,7 +9,7 @@ module Bandwidth
         super("StreamParam", nil, attributes)
         
         @attribute_map = {
-          name: 'name', # [String]: The name of this parameter, up to 256 characters.
+          name: 'name',   # [String]: The name of this parameter, up to 256 characters.
           value: 'value', # [String]: The value of this parameter, up to 2048 characters.
         }
       end
