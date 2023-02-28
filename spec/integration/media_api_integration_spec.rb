@@ -35,8 +35,8 @@ describe 'MediaApi Integration Tests' do
       it 'lists media' do
         response = @api_instance_media.list_media_with_http_info(BW_ACCOUNT_ID)
         expect(response[CODE]).to eq(200)
-        expect(response[DATA][0]).to be_a(Bandwidth::Media)
-        expect(response[DATA][0].content).to be_a(String)
+        expect(response[DATA][0]).to be_instance_of(Bandwidth::Media)
+        expect(response[DATA][0].content).to be_instance_of(String)
         expect(response[DATA][0].content_length).to be > 0
       end
     end
@@ -77,7 +77,7 @@ describe 'MediaApi Integration Tests' do
       expect {
         response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, "does_not_exist")
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(404)
       }
     end
