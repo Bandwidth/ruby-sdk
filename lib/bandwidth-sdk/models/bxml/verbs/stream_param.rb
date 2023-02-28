@@ -1,16 +1,17 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice 
-    # The StartStream verb allows a segment of a call to be sent off to another destination for additional processing
+module Bandwidth
+  module Bxml
     class StreamParam
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.StreamParam(compact_hash({
-         'name' => name,
-         'value' => value
-        }))
+      # Initializer
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
+      def initialize(attributes = {})
+        super("StreamParam", nil, attributes)
+        
+        @attribute_map = {
+          name: 'name',   # [String]: The name of this parameter, up to 256 characters.
+          value: 'value', # [String]: The value of this parameter, up to 2048 characters.
+        }
       end
     end
   end

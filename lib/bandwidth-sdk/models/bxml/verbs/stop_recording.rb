@@ -1,13 +1,11 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice  
-    # The StopRecording verb is used to stop recording in a call 
+module Bandwidth
+  module Bxml
     class StopRecording
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.StopRecording()
+      # Initializer
+      def initialize
+        super("StopRecording", nil, {})
       end
     end
   end

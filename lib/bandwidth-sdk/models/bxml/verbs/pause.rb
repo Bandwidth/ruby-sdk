@@ -1,14 +1,16 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice 
+module Bandwidth
+  module Bxml
     class Pause
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.Pause(compact_hash({
-         'duration' => duration
-      }))
+      # Initializer
+      # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
+      def initialize(attributes = {})
+        super("Pause", nil, attributes)
+        
+        @attribute_map = {
+          duration: 'duration', # Optional [Number]: The time in seconds to pause. Default value is 1.
+        }
       end
     end
   end
