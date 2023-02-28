@@ -10,12 +10,6 @@ module Bandwidth
       def initialize(tag, content = nil,  attributes = {})
         super(tag, content, [], attributes)
       end
-
-      # Adding verbs is not allowed for this class
-      # @param nested_verbs [Verb] or [Array<Verb>] Verb or verbs to add to the array.
-      def add_verb(nested_verbs)
-        raise NameError.new('adding nested verbs is not allowed for this class.')
-      end
     end
   end
 end

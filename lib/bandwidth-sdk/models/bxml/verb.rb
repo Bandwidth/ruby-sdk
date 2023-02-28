@@ -49,12 +49,6 @@ module Bandwidth
         return root
       end
 
-      # Add a verb to the nested verbs array
-      # @param nested_verbs [Verb] or [Array<Verb>] Verb or verbs to add to the array.
-      def add_verb(nested_verbs)
-        @nested_verbs.push(*nested_verbs)
-      end
-
       # Return BXML representaion of this element
       # @return [String] The XML element in string format.
       def to_bxml

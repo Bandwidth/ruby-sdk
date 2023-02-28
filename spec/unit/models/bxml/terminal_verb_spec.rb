@@ -7,14 +7,7 @@ describe 'Bandwidth::Bxml::Verb' do
   describe 'test an instance of TerminalVerb' do
     it 'validates instance of TerminalVerb' do
       expect(instance).to be_a(Bandwidth::Bxml::TerminalVerb)
-    end
-
-    it 'tests invalid nested verb' do       
-      expect {
-        instance.add_verb('invalid')
-      }.to raise_error { |e|
-        expect(e).to be_a(NameError)
-      }
+      expect(instance).to be_a(Bandwidth::Bxml::Verb)
     end
   end
 end
