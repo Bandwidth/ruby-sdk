@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class StopGather
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       def initialize

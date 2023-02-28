@@ -2,22 +2,20 @@ require 'ox'
 
 module Bandwidth
   module Bxml
-    module Verb
+    module NestableVerb
+      include Bandwidth::Bxml::Verb
+
       # Initializer
       # @param tag [String] Name of the XML element.
       # @param content [String] XML element content. Defaults to nil.
+      # @param nested_verbs [Array] XML element children. Defaults to an empty array.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
-      def initialize(tag, content = nil, attributes = {})
+      def initialize(tag, content = nil, nested_verbs = [], attributes = {})
         @tag = tag
         @content = content
+        @nested_verbs = nested_verbs
         @attributes = attributes
         @attribute_map = []
-      end
-
-      # Set XML attributes for the verb
-      # @param attributes [Hash] The attributes to add to the element.
-      def set_attributes(attributes)
-        @attributes = attributes
       end
 
       # Generate an XML element for the verb
@@ -26,6 +24,12 @@ module Bandwidth
         root = Ox::Element.new(@tag)
         if @content
           root << @content
+        end
+
+        if @nested_verbs.length > 0
+          @nested_verbs.each do |verb|
+            root << verb.generate_xml
+          end
         end
 
         if !@attributes.empty?
@@ -41,11 +45,6 @@ module Bandwidth
         return root
       end
 
-      # Return BXML representaion of this element
-      # @return [String] The XML element in string format.
-      def to_bxml
-        return Ox.dump(generate_xml)
-      end
     end
   end
 end
