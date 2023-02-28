@@ -74,9 +74,13 @@ describe 'Bandwidth::Bxml::Transfer' do
     end
 
     it 'tests the add_verb method of the nested Transfer instance' do
-      expected = "\n<Transfer transferCallerId=\"+19195551234\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propogate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n</Transfer>\n"
-      instance_nested.add_verb(sip_uri)
-      expect(instance_nested.to_bxml).to eq(expected)
+      expected_single = "\n<Transfer transferCallerId=\"+19195551234\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propogate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n</Transfer>\n"
+      instance_nested.add_transfer_recipient(sip_uri)
+      expect(instance_nested.to_bxml).to eq(expected_single)
+
+      expected_multiple = "\n<Transfer transferCallerId=\"+19195551234\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propogate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
+      instance_nested.add_transfer_recipient([sip_uri, phone_number])
+      expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end
 end

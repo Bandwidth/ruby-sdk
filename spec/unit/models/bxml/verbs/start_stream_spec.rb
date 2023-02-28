@@ -61,10 +61,14 @@ describe 'Bandwidth::Bxml::StartStream' do
       expect(instance_nested.to_bxml).to eq(expected)
     end
 
-    it 'tests the add_verb method of the nested StartStream instance' do
-      expected = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
-      instance_nested.add_verb(stream_param_2)
-      expect(instance_nested.to_bxml).to eq(expected)
+    it 'tests the add_stream_param method of the nested StartStream instance' do
+      expected_single = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
+      instance_nested.add_stream_param(stream_param_2)
+      expect(instance_nested.to_bxml).to eq(expected_single)
+
+      expected_multiple = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
+      instance_nested.add_stream_param([stream_param_2, stream_param_2])
+      expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end
 end

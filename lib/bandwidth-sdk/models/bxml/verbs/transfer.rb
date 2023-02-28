@@ -25,6 +25,12 @@ module Bandwidth
           diversion_reason: 'diversionReason',                                  # Optional [String]: Can be any of the following values: unknown, user-busy, no-answer, unavailable, unconditional, time-of-day, do-not-disturb, deflection, follow-me, out-of-service, away. This parameter is considered only when diversionTreatment is set to stack. Defaults to None.
         }
       end
+
+      # Add transfer recipient/s to the nested verbs array
+      # @param recipients [PhoneNumber] || [SipUri] or [Array<PhoneNumber || SipUri>] Verb or verbs to add to the array.
+      def add_transfer_recipient(recipients)
+        @nested_verbs.push(*recipients)
+      end
     end
   end
 end

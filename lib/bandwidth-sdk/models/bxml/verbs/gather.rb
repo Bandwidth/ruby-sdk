@@ -33,6 +33,12 @@ module Bandwidth
         bxml = Ox.dump(generate_xml)
         return bxml.gsub(SPEAK_SENTENCE_REGEX) { |text| text.gsub(SSML_REGEX, '<\1>')}
       end
+
+      # Add audio verb/s to the nested verbs array
+      # @param audio_verbs [SpeakSentence] || [PlayAudio] or [Array<SpeakSentence || PlayAudio>] Verb or verbs to add to the array.
+      def add_audio_verb(audio_verbs)
+        @nested_verbs.push(*audio_verbs)
+      end
     end
   end
 end

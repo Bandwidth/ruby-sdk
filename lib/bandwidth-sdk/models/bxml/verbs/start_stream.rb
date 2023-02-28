@@ -19,6 +19,12 @@ module Bandwidth
           password: 'password',                     # Optional [String]: The password to send in the HTTP request to streamEventUrl. If specified, the URLs must be TLS-encrypted (i.e., https).
         }
       end
+
+      # Add stream param/s to the nested verbs array
+      # @param stream_params [StreamParam] or [Array<StreamParam>] Verb or verbs to add to the array.
+      def add_stream_param(stream_params)
+        @nested_verbs.push(*stream_params)
+      end
     end
   end
 end
