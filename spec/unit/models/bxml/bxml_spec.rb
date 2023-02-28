@@ -7,6 +7,7 @@ describe 'Bandwidth::Bxml::Bxml' do
   describe 'test an instance of Bxml' do
     it 'validates instance of Bxml' do
       expect(instance).to be_instance_of(Bandwidth::Bxml::Bxml)
+      expect(instance).to be_a(Bandwidth::Bxml::Root)
     end
 
     it 'test the to_bxml method of the Bxml instance' do
