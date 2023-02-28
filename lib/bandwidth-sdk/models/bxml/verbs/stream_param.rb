@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class StreamParam
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class PlayAudio
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param audio_uri [String] The URL of the audio file to play. May be a relative URL.

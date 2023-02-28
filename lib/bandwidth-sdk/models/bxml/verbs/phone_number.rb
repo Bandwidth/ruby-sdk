@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class PhoneNumber
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param number [String] A phone number to transfer the call to. Value must be in E.164 format (e.g. +15555555555).

@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class Conference
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param name [String] The name of the conference. Can contain up to 100 characters of letters, numbers, and the symbols -, _, and .
