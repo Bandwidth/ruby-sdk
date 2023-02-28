@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class Bridge
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param target_call [String] The callId of the call to be bridged.

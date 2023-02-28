@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class SipUri
-      include Bandwidth::Bxml::TerminalVerb
+      include Bandwidth::Bxml::Verb
 
       # Initializer
       # @param uri [String] A SIP URI to transfer the call to (e.g. sip:user@server.com)

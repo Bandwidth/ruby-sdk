@@ -1,7 +1,7 @@
 module Bandwidth
   module Bxml
     class Gather
-      include Bandwidth::Bxml::Verb
+      include Bandwidth::Bxml::NestableVerb
 
       # Initializer
       # @param audio_verbs [Array] XML element children. Defaults to an empty array. Valid nested audio verbs are: SpeakSentence, PlayAudio.
