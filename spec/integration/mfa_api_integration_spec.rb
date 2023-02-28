@@ -24,7 +24,7 @@ describe 'MFAApi Integration Tests' do
       response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::MessagingCodeResponse)
+      expect(response[DATA]).to be_instance_of(Bandwidth::MessagingCodeResponse)
       expect(response[DATA].message_id.length).to eq(29)
     end
   end
@@ -42,7 +42,7 @@ describe 'MFAApi Integration Tests' do
       response = @api_instance_mfa.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::VoiceCodeResponse)
+      expect(response[DATA]).to be_instance_of(Bandwidth::VoiceCodeResponse)
       expect(response[DATA].call_id.length).to eq(47)
     end
   end
@@ -59,8 +59,8 @@ describe 'MFAApi Integration Tests' do
       response = @api_instance_mfa.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::VerifyCodeResponse)
-      expect(response[DATA].valid).to be_a(FalseClass)
+      expect(response[DATA]).to be_instance_of(Bandwidth::VerifyCodeResponse)
+      expect(response[DATA].valid).to be_instance_of(FalseClass)
     end
   end
 
@@ -78,7 +78,7 @@ describe 'MFAApi Integration Tests' do
       expect {
         response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(400)
       }
     end
@@ -100,7 +100,7 @@ describe 'MFAApi Integration Tests' do
       expect {
         response = @api_instance_mfa.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)
       }
     end

@@ -21,9 +21,9 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
 
       expect(response[CODE]).to eq(202)
-      expect(response[DATA]).to be_a(Bandwidth::CreateLookupResponse)
+      expect(response[DATA]).to be_instance_of(Bandwidth::CreateLookupResponse)
       expect(response[DATA].request_id.length).to eq(36)
-      expect(response[DATA].status).to be_a(String)
+      expect(response[DATA].status).to be_instance_of(String)
 
       $lookup_request_id  = response[DATA].request_id
       sleep(1)
@@ -36,10 +36,10 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::LookupStatus)
+      expect(response[DATA]).to be_instance_of(Bandwidth::LookupStatus)
       expect(response[DATA].request_id).to eq($lookup_request_id)
-      expect(response[DATA].status).to be_a(String)
-      expect(response[DATA].result[0].response_code).to be_a(Integer)
+      expect(response[DATA].status).to be_instance_of(String)
+      expect(response[DATA].result[0].response_code).to be_instance_of(Integer)
       expect(response[DATA].result[0].e_164_format).to eq(BW_NUMBER)
     end
   end
@@ -54,7 +54,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       expect {
         @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body_bad)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(400)
       }
     end
@@ -65,7 +65,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       expect {
         @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, req_id_dne)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(404)
       }
     end
@@ -83,7 +83,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       expect {
         @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)
       }
     end
