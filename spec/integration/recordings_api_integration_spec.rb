@@ -51,7 +51,7 @@ describe 'RecordingsApi Integration Tests' do
         puts e.inspect
       end
 
-      expect(recording_complete).to be_a(TrueClass)
+      expect(recording_complete).to be_instance_of(TrueClass)
     end
   end
   
@@ -61,7 +61,7 @@ describe 'RecordingsApi Integration Tests' do
       response = @api_instance_recordings.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
+      expect(response[DATA][0]).to be_instance_of(Bandwidth::CallRecordingMetadata)
       expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
     end
@@ -73,11 +73,11 @@ describe 'RecordingsApi Integration Tests' do
       response = @api_instance_recordings.list_call_recordings_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
 
       expect(response[CODE]).to eq(200)
-      expect(response[DATA][0]).to be_a(Bandwidth::CallRecordingMetadata)
+      expect(response[DATA][0]).to be_instance_of(Bandwidth::CallRecordingMetadata)
       expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA][0].call_id).to eq($manteca_call_id)
-      expect(response[DATA][0].recording_id).to be_a(String)
+      expect(response[DATA][0].recording_id).to be_instance_of(String)
       expect(response[DATA][0].status).to eq('complete').or eq('partial')
       
       $recording_id = response[DATA][0].recording_id
@@ -90,7 +90,7 @@ describe 'RecordingsApi Integration Tests' do
       response = @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       
       expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_a(Bandwidth::CallRecordingMetadata)
+      expect(response[DATA]).to be_instance_of(Bandwidth::CallRecordingMetadata)
       expect(response[DATA].application_id).to eq(MANTECA_APPLICATION_ID)
       expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
       expect(response[DATA].call_id).to eq($manteca_call_id)
@@ -105,7 +105,7 @@ describe 'RecordingsApi Integration Tests' do
         response = @api_instance_recordings.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
         expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_a(String)
+        expect(response[DATA]).to be_instance_of(String)
       end
     end
   
@@ -133,7 +133,7 @@ describe 'RecordingsApi Integration Tests' do
         puts e.inspect
       end
 
-      expect(transcription_complete).to be_a(TrueClass)
+      expect(transcription_complete).to be_instance_of(TrueClass)
     end
   end
   
@@ -143,10 +143,10 @@ describe 'RecordingsApi Integration Tests' do
         response = @api_instance_recordings.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
         expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_a(Bandwidth::TranscriptionList)
-        expect(response[DATA].transcripts[0]).to be_a(Bandwidth::Transcription)
-        expect(response[DATA].transcripts[0].text).to be_a(String)
-        expect(response[DATA].transcripts[0].confidence).to be_a(Numeric)
+        expect(response[DATA]).to be_instance_of(Bandwidth::TranscriptionList)
+        expect(response[DATA].transcripts[0]).to be_instance_of(Bandwidth::Transcription)
+        expect(response[DATA].transcripts[0].text).to be_instance_of(String)
+        expect(response[DATA].transcripts[0].confidence).to be_instance_of(Float)
       end
     end
 
@@ -182,7 +182,7 @@ describe 'RecordingsApi Integration Tests' do
       expect {
         @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, dne_id, dne_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(404)
       }
     end
@@ -196,7 +196,7 @@ describe 'RecordingsApi Integration Tests' do
       expect {
         @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)
       }
     end
@@ -210,7 +210,7 @@ describe 'RecordingsApi Integration Tests' do
       expect {
         @api_instance_recordings.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       }.to raise_error { |e|
-        expect(e).to be_a(Bandwidth::ApiError)
+        expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)
       }
     end
