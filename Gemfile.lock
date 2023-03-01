@@ -4,6 +4,7 @@ PATH
     bandwidth-sdk (11.0.0)
       faraday (>= 1.0.1, < 3.0)
       faraday-multipart
+      ox (~> 2.4)
 
 GEM
   remote: https://rubygems.org/

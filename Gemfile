@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'ox', '~> 2.4', '>= 2.4.1'
-
 gemspec
 
 group :development, :test do
