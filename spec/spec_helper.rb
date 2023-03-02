@@ -72,19 +72,7 @@ RSpec.configure do |config|
       config.password = BW_PASSWORD
     end
     calls_api = Bandwidth::CallsApi.new
-    
-    begin
-      $active_calls.each do |call_id|
-        response = calls_api.get_call_state(BW_ACCOUNT_ID, call_id)
-        if !(response.state == 'disconnected')
-          calls_api.update_call(BW_ACCOUNT_ID, call_id, $complete_call_body)
-        end
-      end
-    rescue Bandwidth::ApiError => e
-      puts e.inspect
-      error_message = "Failed to terminate all calls" + $active_calls.to_s
-      raise StandardError.new error_message
-    end
+    cleanup_calls($active_calls, calls_api)
   }
   
   # rspec-expectations config goes here. You can use an alternate

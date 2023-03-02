@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'json'
-require_relative '../manteca_utils'
+require_relative '../call_utils'
 
 # Integration Tests for Bandwidth::ConferencesApi
 describe 'ConferencesApi Integration Tests' do
