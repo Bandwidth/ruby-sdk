@@ -41,8 +41,9 @@ end
 def cleanup_calls(calls, calls_api)
   attempts = 0
 
-  while (calls.length > 0 && attempts < MAX_RETRIES)
+  while (calls.length > 0 && attempts < 10)
     calls.delete_if { |call_id| call_ended(call_id, calls_api) }
+    sleep(SLEEP_TIME_S)
     attempts += 1
   end
 
