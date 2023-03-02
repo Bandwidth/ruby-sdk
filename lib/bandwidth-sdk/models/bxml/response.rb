@@ -1,38 +1,12 @@
-require 'builder'
-Dir[File.dirname(__FILE__) + '/verbs/*'].each {|file|
-  require_relative file
-}
-
-SSML_REGEX = /&lt;([a-zA-Z\/\/].*?)&gt;/
-SPEAK_SENTENCE_REGEX = /<SpeakSentence.*?>.*?<\/SpeakSentence>/
-
-module Bandwidth 
-  module Voice 
+module Bandwidth
+  module Bxml
     class Response
+      include Bandwidth::Bxml::Root
+
       # Initializer
-      # @param verbs [Array] optional list of verbs to include into response
-      def initialize(verbs = nil)
-        @verbs = verbs || []
-      end
-
-      # Return BXML representaion of this response
-      def to_bxml()
-        xml = Builder::XmlMarkup.new()
-        xml.instruct!(:xml, :version=>'1.0', :encoding=>'UTF-8')
-        xml.Response do
-          @verbs.each {|verb| verb.to_bxml(xml)}
-        end
-        xml.target!().gsub(SPEAK_SENTENCE_REGEX){|s|s.gsub(SSML_REGEX, '<\1>')}
-      end
-
-      # Add one or more verbs to this response
-      def push(*verbs)
-        @verbs.push(*verbs)
-      end
-
-      # Add a verb to this response
-      def <<(verb)
-        @verbs << verb
+      # @param nested_verbs [Array<Verb>] XML element children. Defaults to an empty array.
+      def initialize(nested_verbs = [])
+        super(tag='Response', nested_verbs)
       end
     end
   end

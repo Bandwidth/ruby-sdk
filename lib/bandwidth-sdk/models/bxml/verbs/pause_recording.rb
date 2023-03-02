@@ -1,13 +1,11 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice  
-    # The PauseRecording verb is used to pause recording in a call 
+module Bandwidth
+  module Bxml
     class PauseRecording
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.PauseRecording()
+      # Initializer
+      def initialize
+        super("PauseRecording", nil, {})
       end
     end
   end

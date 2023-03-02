@@ -1,13 +1,11 @@
-require_relative 'xml_verb'
-
-module Bandwidth 
-  module Voice  
-    # The StopGather verb is used to complete a gather
+module Bandwidth
+  module Bxml
     class StopGather
-      include XmlVerb
+      include Bandwidth::Bxml::Verb
 
-      def to_bxml(xml)
-        xml.StopGather()
+      # Initializer
+      def initialize
+        super("StopGather", nil, {})
       end
     end
   end
