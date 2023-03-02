@@ -36,12 +36,20 @@ RSpec.configure do |config|
     begin
       BW_USERNAME = ENV.fetch("BW_USERNAME")
       BW_PASSWORD = ENV.fetch("BW_PASSWORD")
+      FORBIDDEN_USERNAME = ENV.fetch("BW_USERNAME_FORBIDDEN")
+      FORBIDDEN_PASSWORD = ENV.fetch("BW_PASSWORD_FORBIDDEN")
       BW_ACCOUNT_ID = ENV.fetch("BW_ACCOUNT_ID")
       BW_VOICE_APPLICATION_ID = ENV.fetch("BW_VOICE_APPLICATION_ID")
       BW_MESSAGING_APPLICATION_ID = ENV.fetch("BW_MESSAGING_APPLICATION_ID")
       BASE_CALLBACK_URL = ENV.fetch("BASE_CALLBACK_URL")
       BW_NUMBER = ENV.fetch("BW_NUMBER")
       USER_NUMBER = ENV.fetch("USER_NUMBER")
+      MANTECA_ACTIVE_NUMBER = ENV.fetch("MANTECA_ACTIVE_NUMBER")
+      MANTECA_IDLE_NUMBER = ENV.fetch("MANTECA_IDLE_NUMBER")
+      MANTECA_BASE_URL = ENV.fetch("MANTECA_BASE_URL")
+      MANTECA_APPLICATION_ID = ENV.fetch("MANTECA_APPLICATION_ID")
+      OPERATING_SYSTEM = ENV.fetch("OPERATING_SYSTEM")
+      RUBY_VERSION = ENV.fetch("RUBY_VERSION")
     rescue
       puts "Environmental variables not found"
       exit(-1)
@@ -49,6 +57,22 @@ RSpec.configure do |config|
 
     DATA = 0    # index for response array related to the response data
     CODE = 1    # index for response array related to the status code
+    SLEEP_TIME_S = 3  # default sleep time in seconds
+    MAX_RETRIES = 40
+    $active_calls = []
+
+    $complete_call_body = Bandwidth::UpdateCall.new(
+      state: Bandwidth::CallStateEnum::COMPLETED
+    )
+  }
+
+  config.after(:suite) {
+    Bandwidth.configure do |config|
+      config.username = BW_USERNAME
+      config.password = BW_PASSWORD
+    end
+    calls_api = Bandwidth::CallsApi.new
+    cleanup_calls($active_calls, calls_api)
   }
   
   # rspec-expectations config goes here. You can use an alternate
