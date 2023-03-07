@@ -22,7 +22,6 @@ module Bandwidth
         faraday.request :gzip
         faraday.request :multipart
         faraday.request :url_encoded
-        faraday.ssl[:ca_file] = Certifi.where
         faraday.ssl[:verify] = verify
         faraday.request :retry, max: max_retries, interval: retry_interval,
                                 backoff_factor: backoff_factor,

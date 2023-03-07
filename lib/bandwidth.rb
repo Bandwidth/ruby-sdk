@@ -6,7 +6,6 @@
 require 'date'
 require 'json'
 require 'faraday'
-require 'certifi'
 require 'logging'
 
 require_relative 'bandwidth/api_helper'
