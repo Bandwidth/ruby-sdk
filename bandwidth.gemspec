@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'bandwidth-sdk'
-  s.version = '10.2.0'
+  s.version = '10.3.0'
   s.summary = 'Bandwidth'
   s.description = 'The official client SDK for Bandwidht\'s Voice, Messaging, MFA, and WebRTC APIs'
   s.authors = ['Bandwidth']
@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.add_dependency('faraday-follow_redirects', '~> 0.3')
   s.add_dependency('faraday-multipart', '~> 1.0')
   s.add_dependency('faraday-retry', '~> 1.0')
-  s.add_dependency('certifi', '~> 2018.1', '>= 2018.01.18')
   s.add_dependency('faraday-http-cache', '~> 2.2')
   s.add_dependency('builder', '~> 3.2.4')
   s.add_development_dependency('minitest', '~> 5.14', '>= 5.14.1')

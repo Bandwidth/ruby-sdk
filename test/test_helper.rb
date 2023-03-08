@@ -87,7 +87,7 @@ class TestHelper
     unless @cache.keys.include? url  
       @cache[url] = Tempfile.new('APIMatic')
       @cache[url].binmode
-      @cache[url].write(open(url, {ssl_ca_cert: Certifi.where}).read)
+      @cache[url].write(open(url).read)
     end
     return @cache[url].path
   end
