@@ -57,7 +57,14 @@ class IntegrationTest < Test::Unit::TestCase
         body.to = [USER_NUMBER]
         body.from = BW_NUMBER
         body.text = "Ruby Integration"
+        body.priority = "high"
+        body.expiration = "2091-02-01T11:29:18-05:00"
         response = @bandwidth_client.messaging_client.client.create_message(BW_ACCOUNT_ID, body)
+        assert(response.data.to == [USER_NUMBER])
+        assert(response.data.from == BW_NUMBER)
+        assert(response.data.text == "Ruby Integration")
+        assert(response.data.priority == "high")
+        assert(response.data.expiration == "2091-02-01T11:29:18-05:00")
         assert(response.data.id.length > 0, "id value not set") #validate that _some_ id was returned
     end
 
