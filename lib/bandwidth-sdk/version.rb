@@ -11,5 +11,5 @@ OpenAPI Generator version: 6.4.0
 =end
 
 module Bandwidth
-  VERSION = '11.0.0-beta.1'
+  VERSION = '11.0.0.pre.beta.1.1'
 end
