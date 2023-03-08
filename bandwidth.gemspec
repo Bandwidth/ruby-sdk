@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.add_dependency('logging', '~> 2.3')
   s.add_dependency('faraday', '>= 1.0', '< 3.0')
   s.add_dependency('faraday-follow_redirects', '~> 0.3')
-  s.add_dependency('faraday-gzip', '~> 0.1.0')
   s.add_dependency('faraday-multipart', '~> 1.0')
   s.add_dependency('faraday-retry', '~> 1.0')
   s.add_dependency('certifi', '~> 2018.1', '>= 2018.01.18')
