@@ -41,6 +41,11 @@ module Bandwidth
     # @return [PriorityEnum]
     attr_accessor :priority
 
+    # A string with the date/time value that the message will automatically expire by.
+    # This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.
+    # @return [String]
+    attr_accessor :expiration
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -51,6 +56,7 @@ module Bandwidth
       @_hash['media'] = 'media'
       @_hash['tag'] = 'tag'
       @_hash['priority'] = 'priority'
+      @_hash['expiration'] = 'expiration'
       @_hash
     end
 
@@ -61,6 +67,7 @@ module Bandwidth
         media
         tag
         priority
+        expiration
       ]
     end
 
@@ -75,7 +82,8 @@ module Bandwidth
                    text = nil,
                    media = nil,
                    tag = nil,
-                   priority = nil)
+                   priority = nil,
+                   expiration = nil)
       @application_id = application_id unless application_id == SKIP
       @to = to unless to == SKIP
       @from = from unless from == SKIP
@@ -83,6 +91,7 @@ module Bandwidth
       @media = media unless media == SKIP
       @tag = tag unless tag == SKIP
       @priority = priority unless priority == SKIP
+      @expiration = expiration unless expiration == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -97,6 +106,7 @@ module Bandwidth
       media = hash.key?('media') ? hash['media'] : SKIP
       tag = hash.key?('tag') ? hash['tag'] : SKIP
       priority = hash.key?('priority') ? hash['priority'] : SKIP
+      expiration = hash.key?('expiration') ? hash['expiration'] : SKIP
 
       # Create object from extracted values.
       MessageRequest.new(application_id,
@@ -105,7 +115,8 @@ module Bandwidth
                          text,
                          media,
                          tag,
-                         priority)
+                         priority,
+                         expiration)
     end
   end
 end

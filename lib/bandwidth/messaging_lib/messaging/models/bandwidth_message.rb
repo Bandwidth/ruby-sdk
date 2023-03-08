@@ -61,6 +61,10 @@ module Bandwidth
     # @return [String]
     attr_accessor :priority
 
+    # A string with the date/time value that the message will automatically expire by.
+    # @return [String]
+    attr_accessor :expiration
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -76,6 +80,7 @@ module Bandwidth
       @_hash['text'] = 'text'
       @_hash['tag'] = 'tag'
       @_hash['priority'] = 'priority'
+      @_hash['expiration'] = 'expiration'
       @_hash
     end
 
@@ -94,6 +99,7 @@ module Bandwidth
         text
         tag
         priority
+        expiration
       ]
     end
 
@@ -113,7 +119,8 @@ module Bandwidth
                    media = nil,
                    text = nil,
                    tag = nil,
-                   priority = nil)
+                   priority = nil,
+                   expiration = nil)
       @id = id unless id == SKIP
       @owner = owner unless owner == SKIP
       @application_id = application_id unless application_id == SKIP
@@ -126,6 +133,7 @@ module Bandwidth
       @text = text unless text == SKIP
       @tag = tag unless tag == SKIP
       @priority = priority unless priority == SKIP
+      @expiration = expiration unless expiration == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -145,6 +153,7 @@ module Bandwidth
       text = hash.key?('text') ? hash['text'] : SKIP
       tag = hash.key?('tag') ? hash['tag'] : SKIP
       priority = hash.key?('priority') ? hash['priority'] : SKIP
+      expiration = hash.key?('expiration') ? hash['expiration'] : SKIP
 
       # Create object from extracted values.
       BandwidthMessage.new(id,
@@ -158,7 +167,8 @@ module Bandwidth
                            media,
                            text,
                            tag,
-                           priority)
+                           priority,
+                           expiration)
     end
   end
 end
