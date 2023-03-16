@@ -16,6 +16,7 @@
 | **text** | **String** | The contents of the message. | [optional] |
 | **tag** | **String** | The custom string set by the user. | [optional] |
 | **priority** | [**PriorityEnum**](PriorityEnum.md) |  | [optional] |
+| **expiration** | **Time** | The expiration date-time set by the user. | [optional] |
 
 ## Example
 
@@ -34,7 +35,8 @@ instance = Bandwidth::Message.new(
   media: [&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;],
   text: Hello world,
   tag: custom tag,
-  priority: null
+  priority: null,
+  expiration: 2021-02-01T11:29:18-05:00
 )
 ```
 
