@@ -49,6 +49,9 @@ module Bandwidth
 
     attr_accessor :priority
 
+    # The expiration date-time set by the user.
+    attr_accessor :expiration
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -85,7 +88,8 @@ module Bandwidth
         :'media' => :'media',
         :'text' => :'text',
         :'tag' => :'tag',
-        :'priority' => :'priority'
+        :'priority' => :'priority',
+        :'expiration' => :'expiration'
       }
     end
 
@@ -108,7 +112,8 @@ module Bandwidth
         :'media' => :'Array<String>',
         :'text' => :'String',
         :'tag' => :'String',
-        :'priority' => :'PriorityEnum'
+        :'priority' => :'PriorityEnum',
+        :'expiration' => :'Time'
       }
     end
 
@@ -184,6 +189,10 @@ module Bandwidth
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
       end
+
+      if attributes.key?(:'expiration')
+        self.expiration = attributes[:'expiration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -227,7 +236,8 @@ module Bandwidth
           media == o.media &&
           text == o.text &&
           tag == o.tag &&
-          priority == o.priority
+          priority == o.priority &&
+          expiration == o.expiration
     end
 
     # @see the `==` method
@@ -239,7 +249,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, media, text, tag, priority].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, media, text, tag, priority, expiration].hash
     end
 
     # Builds the object from hash
