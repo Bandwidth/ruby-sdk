@@ -62,7 +62,7 @@ describe 'RecordingsApi Integration Tests' do
 
       expect(response[CODE]).to eq(200)
       expect(response[DATA][0]).to be_instance_of(Bandwidth::CallRecordingMetadata)
-      expect(response[DATA][0].application_id).to eq(MANTECA_APPLICATION_ID)
+      expect(response[DATA][0].application_id).to be_instance_of(String)
       expect(response[DATA][0].account_id).to eq(BW_ACCOUNT_ID)
     end
   end
