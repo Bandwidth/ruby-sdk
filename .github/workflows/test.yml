@@ -50,14 +50,6 @@ jobs:
           bundle install
           rake
 
-      - name: Notify Slack of Failures
-        uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: failure() && !github.event.pull_request.draft
-        with:
-          job-status: ${{ job.status }}
-          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
-          slack-channel: ${{ secrets.SLACK_CHANNEL }}
-
   test_feature:
     name: Test Feature Branch
     runs-on: ${{ matrix.os }}
@@ -85,14 +77,6 @@ jobs:
           bundle install
           rake
 
-      - name: Notify Slack of Failures
-        uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: failure() && !github.event.pull_request.draft
-        with:
-          job-status: ${{ job.status }}
-          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
-          slack-channel: ${{ secrets.SLACK_CHANNEL }}
-
   test_pr:
     name: Test PR Branch
     runs-on: ${{ matrix.os }}
@@ -118,10 +102,15 @@ jobs:
           bundle install
           rake
 
+  notify_for_failures:
+    name: Notify for Failures
+    needs: [test_main, test_feature, test_pr]
+    if: failure() && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    steps:
       - name: Notify Slack of Failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: failure() && !github.event.pull_request.draft
         with:
-          job-status: ${{ job.status }}
+          job-status: failure
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           slack-channel: ${{ secrets.SLACK_CHANNEL }}
