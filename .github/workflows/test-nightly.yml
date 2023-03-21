@@ -76,8 +76,7 @@ jobs:
 
   notify_for_failures:
     name: Notify for Failures
-    needs: [test_main, test_feature]
-    if: failure() && !github.event.pull_request.draft
+    if: failure()
     runs-on: ubuntu-latest
     steps:
       - name: Notify Slack of Failures
