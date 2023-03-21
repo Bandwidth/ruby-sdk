@@ -1,8 +1,6 @@
-name: Test
+name: Test PR
 
 on:
-  schedule:
-    - cron: "0 4 * * *"
   pull_request:
 
 concurrency:
@@ -26,10 +24,10 @@ env:
   MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
 
 jobs:
-  test_main:
-    name: Test Main Branch
+  test_pr_main:
+    name: Test PR to Main Branch
     runs-on: ${{ matrix.os }}
-    if: ${{ github.event_name == 'schedule' }}
+    if: github.base_ref == 'main'
     strategy:
       matrix:
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
@@ -37,8 +35,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: 'main'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -50,37 +46,10 @@ jobs:
           bundle install
           rake
 
-  test_feature:
-    name: Test Feature Branch
+  test_pr_feature:
+    name: Test PR to Feature Branch
     runs-on: ${{ matrix.os }}
-    if: ${{ github.event_name == 'schedule' }}
-    strategy:
-      matrix: 
-        os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
-        ruby-version: [2.7, 3.0, 3.1, 3.2]
-    env:
-      RUBY_VERSION: ${{ matrix.ruby-version }}
-      OPERATING_SYSTEM: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: 'feature/openapi-generator-sdk'
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby-version }}
-
-      - name: Install Packages and Test
-        run: |
-          bundle install
-          rake
-
-  test_pr:
-    name: Test PR Branch
-    runs-on: ${{ matrix.os }}
-    if: ${{ github.event_name == 'pull_request' }}
+    if: github.base_ref == 'feature/openapi-generator-sdk'
     strategy:
       matrix: 
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
@@ -104,7 +73,7 @@ jobs:
 
   notify_for_failures:
     name: Notify for Failures
-    needs: [test_main, test_feature, test_pr]
+    needs: [test_main, test_feature]
     if: failure() && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
