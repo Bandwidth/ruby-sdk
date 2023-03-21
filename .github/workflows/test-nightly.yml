@@ -1,4 +1,4 @@
-name: Test Main anf Feature Branch Nightly
+name: Test Main and Feature Branch Nightly
 
 on:
   schedule:
