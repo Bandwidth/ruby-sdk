@@ -1,0 +1,72 @@
+name: Test PR
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN }}
+  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN }}
+  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+
+jobs:
+  test_pr_main:
+    name: Test PR to Main Branch
+    runs-on: ${{ matrix.os }}
+    if: github.base_ref == 'main'
+    strategy:
+      matrix:
+        os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
+        ruby-version: [2.6, 2.7, 3.0]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake
+
+  test_pr_feature:
+    name: Test PR to Feature Branch
+    runs-on: ${{ matrix.os }}
+    if: github.base_ref == 'feature/openapi-generator-sdk'
+    strategy:
+      matrix: 
+        os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
+        ruby-version: [2.7, 3.0, 3.1, 3.2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+
+      - name: Install Packages and Test
+        env:
+          RUBY_VERSION: ${{ matrix.ruby-version }}
+          OPERATING_SYSTEM: ${{ matrix.os }}
+        run: |
+          bundle install
+          rake
