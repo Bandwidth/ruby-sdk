@@ -24,32 +24,9 @@ env:
   MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
 
 jobs:
-  test_pr_main:
-    name: Test PR to Main Branch
+  test_pr:
+    name: Test PR
     runs-on: ${{ matrix.os }}
-    if: github.base_ref == 'main'
-    strategy:
-      matrix:
-        os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
-        ruby-version: [2.6, 2.7, 3.0]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby-version }}
-
-      - name: Install Packages and Test
-        run: |
-          bundle install
-          rake
-
-  test_pr_feature:
-    name: Test PR to Feature Branch
-    runs-on: ${{ matrix.os }}
-    if: github.base_ref == 'feature/openapi-generator-sdk'
     strategy:
       matrix: 
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
