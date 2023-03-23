@@ -12,7 +12,7 @@ def setup_manteca(type)
   
     begin
       test_id = Net::HTTP.post(manteca_test_url, manteca_body.to_json, manteca_header)
-      return test_id.body.to_s.gsub("\"", "")
+      return test_id.body.to_s
     rescue => e
       puts e.inspect
     end
