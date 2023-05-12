@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  schemaVersion: v1.0.0
+  name: ruby-sdk
+  description: Ruby SDK for Bandwidth Voice & Messaging
+  annotations:
+    github.com/project-slug: Bandwidth/ruby-sdk
+  organization: BW
+  costCenter: UNKNOWN
+spec:
+  type: Library
+  owner: github/band-swi
+  lifecycle: production
