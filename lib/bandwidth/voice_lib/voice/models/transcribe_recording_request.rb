@@ -33,6 +33,10 @@ module Bandwidth
     # @return [Float]
     attr_accessor :callback_timeout
 
+    # TODO: Write general description for this method
+    # @return [Boolean]
+    attr_accessor :detectLanguage
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -42,6 +46,7 @@ module Bandwidth
       @_hash['password'] = 'password'
       @_hash['tag'] = 'tag'
       @_hash['callback_timeout'] = 'callbackTimeout'
+      @_hash['detectLanguage'] = 'detectLanguage'
       @_hash
     end
 
@@ -54,6 +59,7 @@ module Bandwidth
         password
         tag
         callback_timeout
+        detectlanguage
       ]
     end
 
@@ -65,6 +71,7 @@ module Bandwidth
         password
         tag
         callback_timeout
+        detectlanguage
       ]
     end
 
@@ -73,6 +80,7 @@ module Bandwidth
                    username = nil,
                    password = nil,
                    tag = nil,
+                   detectLanguage = nil,
                    callback_timeout = nil)
       @callback_url = callback_url unless callback_url == SKIP
       @callback_method = callback_method unless callback_method == SKIP
@@ -80,6 +88,7 @@ module Bandwidth
       @password = password unless password == SKIP
       @tag = tag unless tag == SKIP
       @callback_timeout = callback_timeout unless callback_timeout == SKIP
+      @detectLanguage = detectLanguage unless detectLanguage == SKIP
     end
 
     # Creates an instance of the object from a hash.
@@ -95,6 +104,8 @@ module Bandwidth
       tag = hash.key?('tag') ? hash['tag'] : SKIP
       callback_timeout =
         hash.key?('callbackTimeout') ? hash['callbackTimeout'] : SKIP
+      detectLanguage =
+        hash.key?('detectLanguage') ? hash['detectLanguage'] : SKIP
 
       # Create object from extracted values.
       TranscribeRecordingRequest.new(callback_url,
@@ -102,6 +113,7 @@ module Bandwidth
                                      username,
                                      password,
                                      tag,
+                                     detectLanguage,
                                      callback_timeout)
     end
   end

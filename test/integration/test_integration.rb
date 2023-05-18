@@ -122,7 +122,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
 
         #Get phone call information
-        sleep 1
+        sleep(5)
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
         assert_not_nil(response.data.enqueued_time, "enqueued time is nil")
@@ -151,6 +151,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
+        sleep(5)
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
     end
@@ -354,6 +355,7 @@ class IntegrationTest < Test::Unit::TestCase
             :recording_available_url => "https://available.com",
             :recording_available_method => "GET",
             :transcribe => false,
+            :detectLanguage=> true,
             :transcription_available_url => "https://transcribe.com",
             :transcription_available_method => "POST",
             :username => "user",
@@ -371,7 +373,7 @@ class IntegrationTest < Test::Unit::TestCase
 
         response = Bandwidth::Voice::Response.new()
         response.push(record)
-        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Record tag="tag" username="user" password="pass" recordCompleteUrl="https://complete.com" recordCompleteMethod="POST" recordingAvailableUrl="https://available.com" recordingAvailableMethod="GET" terminatingDigits="#" maxDuration="3" fileFormat="wav" transcribe="false" transcriptionAvailableUrl="https://transcribe.com" transcriptionAvailableMethod="POST" silenceTimeout="5" recordCompleteFallbackUrl="https://test.com" recordCompleteFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>'
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><Record tag="tag" username="user" password="pass" recordCompleteUrl="https://complete.com" recordCompleteMethod="POST" recordingAvailableUrl="https://available.com" recordingAvailableMethod="GET" terminatingDigits="#" maxDuration="3" fileFormat="wav" transcribe="false" detectLanguage="true" transcriptionAvailableUrl="https://transcribe.com" transcriptionAvailableMethod="POST" silenceTimeout="5" recordCompleteFallbackUrl="https://test.com" recordCompleteFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>'
         actual = response.to_bxml()
         assert_equal(expected, actual)
     end
