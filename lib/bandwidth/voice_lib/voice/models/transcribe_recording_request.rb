@@ -59,7 +59,8 @@ module Bandwidth
         password
         tag
         callback_timeout
-        detectlanguage
+        detect_language
+
       ]
     end
 
