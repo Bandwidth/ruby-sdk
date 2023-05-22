@@ -16,7 +16,7 @@ module Bandwidth
          'fileFormat' => file_format,
          'multiChannel' => multi_channel,
          'transcribe' => transcribe,
-         'detectLanguage' => detectLanguage,
+         'detectLanguage' => detect_Language,
          'transcriptionAvailableUrl' => transcription_available_url,
          'transcriptionAvailableMethod' => transcription_available_method
         }))
