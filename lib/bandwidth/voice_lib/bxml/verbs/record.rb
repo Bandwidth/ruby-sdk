@@ -19,7 +19,7 @@ module Bandwidth
          'maxDuration' => max_duration,
          'fileFormat' => file_format,
          'transcribe' => transcribe,
-         'detectLanguage' => detectLanguage,
+         'detectLanguage' => detect_language,
          'transcriptionAvailableUrl' => transcription_available_url,
          'transcriptionAvailableMethod' => transcription_available_method,
          'silenceTimeout' => silence_timeout,
