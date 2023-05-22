@@ -355,7 +355,7 @@ class IntegrationTest < Test::Unit::TestCase
             :recording_available_url => "https://available.com",
             :recording_available_method => "GET",
             :transcribe => false,
-            :detect_Language=> true,
+            :detect_language=> true,
             :transcription_available_url => "https://transcribe.com",
             :transcription_available_method => "POST",
             :username => "user",
