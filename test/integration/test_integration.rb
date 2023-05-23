@@ -151,7 +151,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
-        sleep(5)
+        sleep(15)
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
     end
