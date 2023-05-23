@@ -122,7 +122,7 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
 
         #Get phone call information
-        sleep(5)
+        sleep(15)
         response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
         assert(response.data.state.length > 0, "state value not set")
         assert_not_nil(response.data.enqueued_time, "enqueued time is nil")
