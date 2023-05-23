@@ -72,7 +72,6 @@ module Bandwidth
         tag
         callback_timeout
         detect_language
-
       ]
     end
 
