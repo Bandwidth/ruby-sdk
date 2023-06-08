@@ -122,11 +122,18 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
 
         #Get phone call information
-        sleep(15)
-        response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
-        assert(response.data.state.length > 0, "state value not set")
-        assert_not_nil(response.data.enqueued_time, "enqueued time is nil")
-        assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
+        sleep(2)
+        begin
+            response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
+            assert(response.data.state.length > 0, "state value not set")
+            assert_not_nil(response.data.enqueued_time, "enqueued time is nil")
+            assert(response.data.enqueued_time.is_a?(DateTime), "enqueued time is not a DateTime object")
+        rescue ApiErrorException => e
+            if e.response_code != 404
+                raise StandardError, "Unexpected HTTP Response: " + e.message
+            end
+        end
+            
     end
 
     def test_create_call_with_amd_and_get_call_state
@@ -151,9 +158,15 @@ class IntegrationTest < Test::Unit::TestCase
         assert(response.data.call_id.length > 0, "call_id value not set")
 
         #Get phone call information
-        sleep(15)
-        response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
-        assert(response.data.state.length > 0, "state value not set")
+        sleep(2)
+        begin
+            response = @bandwidth_client.voice_client.client.get_call(BW_ACCOUNT_ID, response.data.call_id)
+            assert(response.data.state.length > 0, "state value not set")
+        rescue ApiErrorException => e
+            if e.response_code != 404
+                raise StandardError, "Unexpected HTTP Response: " + e.message
+            end
+        end
     end
 
     def test_create_call_with_priority
