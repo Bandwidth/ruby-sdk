@@ -29,14 +29,14 @@ jobs:
     name: Test Main Branch Nightly
     runs-on: ${{ matrix.os }}
     strategy:
-      matrix: 
+      matrix:
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
         ruby-version: [2.7, 3.0, 3.1, 3.2]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: 'main'
+          ref: "main"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -53,7 +53,7 @@ jobs:
 
   notify_for_failures:
     name: Notify for Failures
-    needs: [test_main, test_feature]
+    needs: [test_main]
     if: failure()
     runs-on: ubuntu-latest
     steps:
