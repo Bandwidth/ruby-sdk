@@ -766,4 +766,73 @@ class IntegrationTest < Test::Unit::TestCase
 
         assert_equal(expected, actual)
     end
+
+    def test_start_transcription_bxml_verb
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartTranscription name="test_transcription" tracks="inbound" transcriptionEventUrl="https://www.test.com/event" transcriptionEventMethod="POST" username="username" password="password" destination="https://www.test.com/transcription"><CustomParam name="name1" value="value1"/></StartTranscription></Response>'
+        response = Bandwidth::Voice::Response.new()
+
+        custom_param1 = Bandwidth::Voice::CustomParam.new({
+            :name => "name1",
+            :value => "value1"
+        })
+        
+        start_transcription = Bandwidth::Voice::StartTranscription.new({
+            :name => "test_transcription",
+            :tracks => "inbound",
+            :transcriptionEventUrl => "https://www.test.com/event",
+            :transcriptionEventMethod => "POST",
+            :username => "username",
+            :password => "password",
+            :destination => "https://www.test.com/transcription",
+            :custom_params => custom_param1
+        })
+
+        response.push(start_transcription)
+        actual = response.to_bxml()
+
+        assert_equal(expected, actual)
+    end
+
+    def test_start_transcription_multiple_nested_custom_params
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StartTranscription name="test_transcription" tracks="inbound" transcriptionEventUrl="https://www.test.com/event" transcriptionEventMethod="POST" username="username" password="password" destination="https://www.test.com/transcription"><CustomParam name="name1" value="value1"/><CustomParam name="name2" value="value2"/></StartTranscription></Response>'
+        response = Bandwidth::Voice::Response.new()
+
+        custom_param1 = Bandwidth::Voice::CustomParam.new({
+            :name => "name1",
+            :value => "value1"
+        })
+
+        custom_param2 = Bandwidth::Voice::CustomParam.new({
+            :name => "name2",
+            :value => "value2"
+        })
+
+        start_transcription = Bandwidth::Voice::StartTranscription.new({
+            :destination => "https://www.test.com/transcription",
+            :name => "test_transcription",
+            :tracks => "inbound",
+            :transcriptionEventUrl => "https://www.test.com/event",
+            :transcriptionEventMethod => "POST",
+            :username => "username",
+            :password => "password",
+            :nested_verbs => [custom_param1, custom_param2]
+        })
+
+        response.push(start_transcription)
+        actual = response.to_bxml()
+
+        assert_equal(expected, actual)
+    end
+
+    def test_stop_transcription_bxml_verb
+        expected = '<?xml version="1.0" encoding="UTF-8"?><Response><StopTranscription name="test_transcription"/></Response>'
+        response = Bandwidth::Voice::Response.new()
+        stop_transcription = Bandwidth::Voice::StopTranscription.new({
+            :name => "test_transcription"
+        })
+        response.push(stop_transcription)
+        actual = response.to_bxml()
+
+        assert_equal(expected, actual)
+    end
 end
