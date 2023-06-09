@@ -29,7 +29,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
-account_id = '9900000' # String | The ID of the Bandwidth account that the user belongs to.
+account_id = '9900000' # String | Your Bandwidth Account ID.
 lookup_request = Bandwidth::LookupRequest.new({tns: ['tns_example']}) # LookupRequest | Phone number lookup request.
 
 begin
@@ -63,7 +63,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | The ID of the Bandwidth account that the user belongs to. |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **lookup_request** | [**LookupRequest**](LookupRequest.md) | Phone number lookup request. |  |
 
 ### Return type
@@ -101,7 +101,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
-account_id = '9900000' # String | The ID of the Bandwidth account that the user belongs to.
+account_id = '9900000' # String | Your Bandwidth Account ID.
 request_id = '004223a0-8b17-41b1-bf81-20732adf5590' # String | The phone number lookup request ID from Bandwidth.
 
 begin
@@ -135,7 +135,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | The ID of the Bandwidth account that the user belongs to. |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **request_id** | **String** | The phone number lookup request ID from Bandwidth. |  |
 
 ### Return type

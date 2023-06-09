@@ -113,6 +113,7 @@ opts = {
   error_code: 9902, # Integer | The error code of the message.
   from_date_time: '2022-09-14T18:20:16.000Z', # String | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
   to_date_time: '2022-09-14T18:20:16.000Z', # String | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+  campaign_id: 'CJEUMDK', # String | The campaign ID of the message.
   sort: 'sourceTn:desc', # String | The field and direction to sort by combined with a colon. Direction is either asc or desc.
   page_token: 'gdEewhcJLQRB5', # String | A base64 encoded value used for pagination of results.
   limit: 50 # Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
@@ -160,6 +161,7 @@ end
 | **error_code** | **Integer** | The error code of the message. | [optional] |
 | **from_date_time** | **String** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] |
 | **to_date_time** | **String** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] |
+| **campaign_id** | **String** | The campaign ID of the message. | [optional] |
 | **sort** | **String** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional] |
 | **page_token** | **String** | A base64 encoded value used for pagination of results. | [optional] |
 | **limit** | **Integer** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional] |

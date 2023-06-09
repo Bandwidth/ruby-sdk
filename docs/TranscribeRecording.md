@@ -10,6 +10,7 @@
 | **password** | **String** | Basic auth password. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
 | **callback_timeout** | **Float** | This is the timeout (in seconds) to use when delivering the webhook to &#x60;callbackUrl&#x60;. Can be any numeric value (including decimals) between 1 and 25. | [optional][default to 15] |
+| **detect_language** | **Boolean** | A boolean value to indicate that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish. | [optional][default to false] |
 
 ## Example
 
@@ -17,12 +18,13 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::TranscribeRecording.new(
-  callback_url: https://myServer.com/bandwidth/webhooks/transcriptionAvailable,
+  callback_url: https://myServer.example/bandwidth/webhooks/transcriptionAvailable,
   callback_method: null,
   username: mySecretUsername,
   password: mySecretPassword1!,
   tag: exampleTag,
-  callback_timeout: 5.5
+  callback_timeout: 5.5,
+  detect_language: true
 )
 ```
 

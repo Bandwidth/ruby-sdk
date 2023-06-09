@@ -31,7 +31,7 @@ instance = Bandwidth::MessageFailedCallbackMessage.new(
   direction: null,
   to: [&quot;+15552223333&quot;],
   from: +15553332222,
-  text: ,
+  text: Hello world,
   tag: custom string,
   media: [&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;],
   priority: null

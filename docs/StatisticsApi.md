@@ -28,7 +28,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::StatisticsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
 
 begin
   # Get Account Statistics
@@ -61,7 +61,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 
 ### Return type
 

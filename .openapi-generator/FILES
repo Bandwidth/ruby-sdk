@@ -51,6 +51,7 @@ docs/MFAApi.md
 docs/MachineDetectionCompleteCallback.md
 docs/MachineDetectionConfiguration.md
 docs/MachineDetectionModeEnum.md
+docs/MachineDetectionResult.md
 docs/Media.md
 docs/MediaApi.md
 docs/Message.md
@@ -156,6 +157,7 @@ lib/bandwidth-sdk/models/lookup_status_enum.rb
 lib/bandwidth-sdk/models/machine_detection_complete_callback.rb
 lib/bandwidth-sdk/models/machine_detection_configuration.rb
 lib/bandwidth-sdk/models/machine_detection_mode_enum.rb
+lib/bandwidth-sdk/models/machine_detection_result.rb
 lib/bandwidth-sdk/models/media.rb
 lib/bandwidth-sdk/models/message.rb
 lib/bandwidth-sdk/models/message_delivered_callback.rb
@@ -254,6 +256,7 @@ spec/models/lookup_status_spec.rb
 spec/models/machine_detection_complete_callback_spec.rb
 spec/models/machine_detection_configuration_spec.rb
 spec/models/machine_detection_mode_enum_spec.rb
+spec/models/machine_detection_result_spec.rb
 spec/models/media_spec.rb
 spec/models/message_delivered_callback_message_spec.rb
 spec/models/message_delivered_callback_spec.rb

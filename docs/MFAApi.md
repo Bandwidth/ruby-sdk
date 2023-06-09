@@ -30,7 +30,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::MFAApi.new
-account_id = 'account_id_example' # String | Bandwidth Account ID with Voice service enabled.
+account_id = '9900000' # String | Your Bandwidth Account ID.
 code_request = Bandwidth::CodeRequest.new({to: '+19195551234', from: '+19195554321', application_id: '66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1', message: 'Your temporary {NAME} {SCOPE} code is {CODE}', digits: 6}) # CodeRequest | MFA code request body.
 
 begin
@@ -64,7 +64,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Bandwidth Account ID with Voice service enabled. |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **code_request** | [**CodeRequest**](CodeRequest.md) | MFA code request body. |  |
 
 ### Return type
@@ -102,7 +102,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::MFAApi.new
-account_id = 'account_id_example' # String | Bandwidth Account ID with Voice service enabled.
+account_id = '9900000' # String | Your Bandwidth Account ID.
 code_request = Bandwidth::CodeRequest.new({to: '+19195551234', from: '+19195554321', application_id: '66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1', message: 'Your temporary {NAME} {SCOPE} code is {CODE}', digits: 6}) # CodeRequest | MFA code request body.
 
 begin
@@ -136,7 +136,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Bandwidth Account ID with Voice service enabled. |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **code_request** | [**CodeRequest**](CodeRequest.md) | MFA code request body. |  |
 
 ### Return type
@@ -174,7 +174,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::MFAApi.new
-account_id = 'account_id_example' # String | Bandwidth Account ID with Voice service enabled.
+account_id = '9900000' # String | Your Bandwidth Account ID.
 verify_code_request = Bandwidth::VerifyCodeRequest.new({to: '+19195551234', expiration_time_in_minutes: 3, code: '123456'}) # VerifyCodeRequest | MFA code verify request body.
 
 begin
@@ -208,7 +208,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Bandwidth Account ID with Voice service enabled. |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **verify_code_request** | [**VerifyCodeRequest**](VerifyCodeRequest.md) | MFA code verify request body. |  |
 
 ### Return type

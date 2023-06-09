@@ -33,11 +33,11 @@ instance = Bandwidth::MachineDetectionConfiguration.new(
   speech_end_threshold: 5,
   machine_speech_end_threshold: 5,
   delay_result: false,
-  callback_url: https://myServer.com/bandwidth/webhooks/machineDetectionComplete,
+  callback_url: https://myServer.example/bandwidth/webhooks/machineDetectionComplete,
   callback_method: null,
   username: mySecretUsername,
   password: mySecretPassword1!,
-  fallback_url: https://myFallbackServer.com/bandwidth/webhooks/machineDetectionComplete,
+  fallback_url: https://myFallbackServer.example/bandwidth/webhooks/machineDetectionComplete,
   fallback_method: null,
   fallback_username: mySecretUsername,
   fallback_password: mySecretPassword1!
