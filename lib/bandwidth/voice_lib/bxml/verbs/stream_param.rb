@@ -2,7 +2,7 @@ require_relative 'xml_verb'
 
 module Bandwidth 
   module Voice 
-    # The StartStream verb allows a segment of a call to be sent off to another destination for additional processing
+    # These elements define optional user specified parameters that will be sent to the destination URL when the stream is first started
     class StreamParam
       include XmlVerb
 
