@@ -32,7 +32,7 @@ require 'bandwidth-sdk'
 instance = Bandwidth::CreateCall.new(
   to: +19195551234,
   from: +19195554321,
-  uui: eyJhbGciOiJIUzI1NiJ9.WyJoaSJd.-znkjYyCkgz4djmHUPSXl9YrJ6Nix_XvmlwKGFh5ERM;encoding&#x3D;jwt,aGVsbG8gd29ybGQ&#x3D;;encoding&#x3D;base64,
+  uui: eyJhbGciOiJIUzI1NiJ9.WyJoaSJd.-znkjYyCkgz4djmHUPSXl9YrJ6Nix_XvmlwKGFh5ERM;encoding&#x3D;jwt,aGVsbG8gd29ybGQ;encoding&#x3D;base64,
   application_id: 1234-qwer-5679-tyui,
   answer_url: https://www.myCallbackServer.example/webhooks/answer,
   answer_method: null,
