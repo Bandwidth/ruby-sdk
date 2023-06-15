@@ -9,3 +9,12 @@ gemSummary: Bandwidth Ruby SDK
 gemVersion: 11.0.0
 library: faraday
 moduleName: Bandwidth
+templateDir: custom_templates
+files:
+  gemspec.mustache:
+    destinationFilename: bandwidth-sdk.gemspec
+  gem.mustache:
+    folder: lib
+    destinationFilename: bandwidth-sdk.rb
+  README.mustache:
+    destinationFilename: README.md

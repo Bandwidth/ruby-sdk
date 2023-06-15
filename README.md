@@ -1,6 +1,6 @@
 # bandwidth-sdk
 
-[![Test](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml)
+[![Tests](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml)
 
 
 | **OS** | **Ruby** |
