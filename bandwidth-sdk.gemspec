@@ -17,7 +17,7 @@ require "bandwidth-sdk/version"
 
 Gem::Specification.new do |s|
   s.name        = "bandwidth-sdk"
-  s.version     = Bandwidth::VERSION
+  s.version     = ENV.fetch("GEM_VERSION")
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Bandwidth"]
   s.email       = ["dx@bandwidth.com"]
