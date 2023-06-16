@@ -99,15 +99,15 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
   
-    # Download Recording
-    describe 'download_call_recording' do
-      it 'downloads a call recording by id' do
-        response = @api_instance_recordings.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+  # Download Recording
+  describe 'download_call_recording' do
+    it 'downloads a call recording by id' do
+      response = @api_instance_recordings.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
-        expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_instance_of(String)
-      end
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_instance_of(String)
     end
+  end
   
   # Create Transcription Request
   describe 'transcribe_call_recording' do
@@ -137,18 +137,18 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
   
-    # Get Transcription
-    describe 'get_call_transcription' do
-      it 'gets the completed call recording transcription' do
-        response = @api_instance_recordings.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+  # Get Transcription
+  describe 'get_call_transcription' do
+    it 'gets the completed call recording transcription' do
+      response = @api_instance_recordings.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
-        expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_instance_of(Bandwidth::TranscriptionList)
-        expect(response[DATA].transcripts[0]).to be_instance_of(Bandwidth::Transcription)
-        expect(response[DATA].transcripts[0].text).to be_instance_of(String)
-        expect(response[DATA].transcripts[0].confidence).to be_instance_of(Float)
-      end
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_instance_of(Bandwidth::TranscriptionList)
+      expect(response[DATA].transcripts[0]).to be_instance_of(Bandwidth::Transcription)
+      expect(response[DATA].transcripts[0].text).to be_instance_of(String)
+      expect(response[DATA].transcripts[0].confidence).to be_instance_of(Float)
     end
+  end
 
   # Delete Transcription
   describe 'delete_call_transcription' do
@@ -158,13 +158,13 @@ describe 'RecordingsApi Integration Tests' do
     end
   end
   
-    # Delete Recording Media
-    describe 'delete_recording_media' do
-      it 'deletes the completed call recording media' do
-        response = @api_instance_recordings.delete_recording_media_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
-        expect(response[CODE]).to eq(204)
-      end
+  # Delete Recording Media
+  describe 'delete_recording_media' do
+    it 'deletes the completed call recording media' do
+      response = @api_instance_recordings.delete_recording_media_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      expect(response[CODE]).to eq(204)
     end
+  end
 
   # Delete Recording
   describe 'delete_recording' do

@@ -42,9 +42,8 @@ module Bandwidth
           end
         end
 
-        return root
+        root
       end
-
     end
   end
 end

@@ -26,8 +26,8 @@ describe 'Bandwidth::Bxml::StartStream' do
     }
   }
 
-  let (:stream_param_1) { Bandwidth::Bxml::StreamParam.new({name: 'stream_param_name_1', value: 'stream_param_value_1'}) }
-  let (:stream_param_2) { Bandwidth::Bxml::StreamParam.new({name: 'stream_param_name_2', value: 'stream_param_value_2'}) }
+  let (:stream_param_1) { Bandwidth::Bxml::StreamParam.new({ name: 'stream_param_name_1', value: 'stream_param_value_1' }) }
+  let (:stream_param_2) { Bandwidth::Bxml::StreamParam.new({ name: 'stream_param_name_2', value: 'stream_param_value_2' }) }
 
   let(:instance) { Bandwidth::Bxml::StartStream.new([], initial_attributes) }
   let(:instance_nested) { Bandwidth::Bxml::StartStream.new([stream_param_1], initial_attributes) }

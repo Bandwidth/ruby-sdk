@@ -15,7 +15,7 @@ describe 'Bandwidth::Bxml::Verb' do
     end
 
     it 'tests invalid attribute' do
-      attributes = {'invalid_attribute' => 'invalid'}
+      attributes = { 'invalid_attribute' => 'invalid' }
       instance.set_attributes(attributes)
       
       expect {

@@ -245,7 +245,5 @@ module Bandwidth
         value
       end
     end
-
   end
-
 end

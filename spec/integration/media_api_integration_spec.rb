@@ -30,16 +30,16 @@ describe 'MediaApi Integration Tests' do
     end
   end
   
-    # List Media
-    describe 'list_media' do
-      it 'lists media' do
-        response = @api_instance_media.list_media_with_http_info(BW_ACCOUNT_ID)
-        expect(response[CODE]).to eq(200)
-        expect(response[DATA][0]).to be_instance_of(Bandwidth::Media)
-        expect(response[DATA][0].content).to be_instance_of(String)
-        expect(response[DATA][0].content_length).to be > 0
-      end
+  # List Media
+  describe 'list_media' do
+    it 'lists media' do
+      response = @api_instance_media.list_media_with_http_info(BW_ACCOUNT_ID)
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA][0]).to be_instance_of(Bandwidth::Media)
+      expect(response[DATA][0].content).to be_instance_of(String)
+      expect(response[DATA][0].content_length).to be > 0
     end
+  end
 
   # Get Media
   describe 'get_media' do

@@ -28,8 +28,8 @@ describe 'Bandwidth::Bxml::StartTranscription' do
     }
   }
 
-  let (:custom_param_1) { Bandwidth::Bxml::CustomParam.new({name: 'custom_param_name_1', value: 'custom_param_value_1'}) }
-  let (:custom_param_2) { Bandwidth::Bxml::CustomParam.new({name: 'custom_param_name_2', value: 'custom_param_value_2'}) }
+  let (:custom_param_1) { Bandwidth::Bxml::CustomParam.new({ name: 'custom_param_name_1', value: 'custom_param_value_1' }) }
+  let (:custom_param_2) { Bandwidth::Bxml::CustomParam.new({ name: 'custom_param_name_2', value: 'custom_param_value_2' }) }
 
   let(:instance) { Bandwidth::Bxml::StartTranscription.new([], initial_attributes) }
   let(:instance_nested) { Bandwidth::Bxml::StartTranscription.new([custom_param_1], initial_attributes) }
