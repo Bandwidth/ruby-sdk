@@ -202,3 +202,4 @@ lib/bandwidth-sdk/models/verify_code_request.rb
 lib/bandwidth-sdk/models/verify_code_response.rb
 lib/bandwidth-sdk/models/voice_api_error.rb
 lib/bandwidth-sdk/models/voice_code_response.rb
+lib/bandwidth-sdk/version.rb
