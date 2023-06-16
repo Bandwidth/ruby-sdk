@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::StreamParam
 describe 'Bandwidth::Bxml::StreamParam' do

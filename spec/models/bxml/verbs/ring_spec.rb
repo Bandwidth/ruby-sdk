@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::Ring
 describe 'Bandwidth::Bxml::Ring' do

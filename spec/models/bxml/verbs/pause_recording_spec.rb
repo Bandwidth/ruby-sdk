@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::PauseRecording
 describe 'Bandwidth::Bxml::PauseRecording' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::Redirect
 describe 'Bandwidth::Bxml::Redirect' do

@@ -10,7 +10,7 @@ OpenAPI Generator version: 6.5.0
 
 =end
 
-require 'spec_helper'
+
 
 describe Bandwidth::Configuration do
   let(:config) { Bandwidth::Configuration.new }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 require 'json'
 require_relative '../call_utils'
 

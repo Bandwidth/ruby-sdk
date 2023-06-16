@@ -10,7 +10,7 @@ OpenAPI Generator version: 6.6.0
 
 =end
 
-require 'spec_helper'
+
 require 'json'
 
 # Unit tests for Bandwidth::ConferencesApi

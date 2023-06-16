@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::SpeakSentence
 describe 'Bandwidth::Bxml::SpeakSentence' do

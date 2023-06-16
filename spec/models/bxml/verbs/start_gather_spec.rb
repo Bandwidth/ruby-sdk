@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::StartGather
 describe 'Bandwidth::Bxml::StartGather' do

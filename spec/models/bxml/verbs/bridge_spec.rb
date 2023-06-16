@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::Bridge
 describe 'Bandwidth::Bxml::Bridge' do

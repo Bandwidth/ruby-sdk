@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::CustomParam
 describe 'Bandwidth::Bxml::CustomParam' do

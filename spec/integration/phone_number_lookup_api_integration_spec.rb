@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 require 'json'
 
 # Integration Tests for Bandwidth::PhoneNumberLookupApi

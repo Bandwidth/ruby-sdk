@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::ResumeRecording
 describe 'Bandwidth::Bxml::ResumeRecording' do

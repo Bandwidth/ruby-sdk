@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::Conference
 describe 'Bandwidth::Bxml::Conference' do

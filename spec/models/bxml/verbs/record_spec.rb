@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 # Unit tests for Bandwidth::Bxml::Record
 describe 'Bandwidth::Bxml::Record' do
