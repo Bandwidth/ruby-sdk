@@ -68,8 +68,6 @@ jobs:
           ))
           echo "jira-key=$JIRA_KEY" >> $GITHUB_OUTPUT
         env:
-          JIRA_USERNAME: ${{ env.JIRA_USERNAME }}
-          JIRA_TOKEN: ${{ env.JIRA_TOKEN }}
           LANGUAGE: Ruby
           ASSIGNEE: 611c2f1740168700691bcc2b
 
