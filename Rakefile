@@ -19,6 +19,11 @@ begin
     t.pattern = './spec/integration/*_spec.rb'
   end
 
+  desc 'Run Only Client Unit Tests'
+  RSpec::Core::RakeTask.new(:client) do |t|
+    t.pattern = './spec/*_spec.rb'
+  end
+
   task default: :spec
 rescue LoadError
   # no rspec available
