@@ -3,7 +3,7 @@ describe Bandwidth::ConferenceStateEnum do
   let(:instance) { Bandwidth::ConferenceStateEnum.new }
 
   describe 'test an instance of ConferenceStateEnum' do
-    it 'should create an instance of ConferenceStateEnum' do
+    it 'creates an instance of ConferenceStateEnum' do
       expect(instance).to be_instance_of(Bandwidth::ConferenceStateEnum)
     end
 

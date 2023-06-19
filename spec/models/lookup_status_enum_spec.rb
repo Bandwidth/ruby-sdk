@@ -3,7 +3,7 @@ describe Bandwidth::LookupStatusEnum do
   let(:instance) { Bandwidth::LookupStatusEnum.new }
 
   describe 'test an instance of LookupStatusEnum' do
-    it 'should create an instance of LookupStatusEnum' do
+    it 'creates an instance of LookupStatusEnum' do
       expect(instance).to be_instance_of(Bandwidth::LookupStatusEnum)
     end
 

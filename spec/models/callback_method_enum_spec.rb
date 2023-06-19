@@ -3,7 +3,7 @@ describe Bandwidth::CallbackMethodEnum do
   let(:instance) { Bandwidth::CallbackMethodEnum.new }
 
   describe 'test an instance of CallbackMethodEnum' do
-    it 'should create an instance of CallbackMethodEnum' do
+    it 'creates an instance of CallbackMethodEnum' do
       expect(instance).to be_instance_of(Bandwidth::CallbackMethodEnum)
     end
 

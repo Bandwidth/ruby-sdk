@@ -3,7 +3,7 @@ describe Bandwidth::MessageDirectionEnum do
   let(:instance) { Bandwidth::MessageDirectionEnum.new }
 
   describe 'test an instance of MessageDirectionEnum' do
-    it 'should create an instance of MessageDirectionEnum' do
+    it 'creates an instance of MessageDirectionEnum' do
       expect(instance).to be_instance_of(Bandwidth::MessageDirectionEnum)
     end
 

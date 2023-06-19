@@ -3,7 +3,7 @@ describe Bandwidth::PriorityEnum do
   let(:instance) { Bandwidth::PriorityEnum.new }
 
   describe 'test an instance of PriorityEnum' do
-    it 'should create an instance of PriorityEnum' do
+    it 'creates an instance of PriorityEnum' do
       expect(instance).to be_instance_of(Bandwidth::PriorityEnum)
     end
 

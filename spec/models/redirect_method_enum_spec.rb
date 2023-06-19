@@ -3,7 +3,7 @@ describe Bandwidth::RedirectMethodEnum do
   let(:instance) { Bandwidth::RedirectMethodEnum.new }
 
   describe 'test an instance of RedirectMethodEnum' do
-    it 'should create an instance of RedirectMethodEnum' do
+    it 'creates an instance of RedirectMethodEnum' do
       expect(instance).to be_instance_of(Bandwidth::RedirectMethodEnum)
     end
 

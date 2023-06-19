@@ -3,7 +3,7 @@ describe Bandwidth::FileFormatEnum do
   let(:instance) { Bandwidth::FileFormatEnum.new }
 
   describe 'test an instance of FileFormatEnum' do
-    it 'should create an instance of FileFormatEnum' do
+    it 'creates an instance of FileFormatEnum' do
       expect(instance).to be_instance_of(Bandwidth::FileFormatEnum)
     end
 

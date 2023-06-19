@@ -3,7 +3,7 @@ describe Bandwidth::MachineDetectionModeEnum do
   let(:instance) { Bandwidth::MachineDetectionModeEnum.new }
 
   describe 'test an instance of MachineDetectionModeEnum' do
-    it 'should create an instance of MachineDetectionModeEnum' do
+    it 'creates an instance of MachineDetectionModeEnum' do
       expect(instance).to be_instance_of(Bandwidth::MachineDetectionModeEnum)
     end
 
