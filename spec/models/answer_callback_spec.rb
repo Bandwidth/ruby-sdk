@@ -54,6 +54,26 @@ describe Bandwidth::AnswerCallback do
     end
   end
 
+  describe 'EnumAttributeValidator' do
+    it 'validates string enum' do
+      validator = Bandwidth::AnswerCallback::EnumAttributeValidator.new(String, ['valid'])
+      expect(validator.valid?('valid')).to be true
+      expect(validator.valid?('invalid')).to be false
+    end
+
+    it 'validates integer enum' do
+      validator = Bandwidth::AnswerCallback::EnumAttributeValidator.new(Integer, [1])
+      expect(validator.valid?(1)).to be true
+      expect(validator.valid?('invalid')).to be false
+    end
+
+    it 'validates float enum' do
+      validator = Bandwidth::AnswerCallback::EnumAttributeValidator.new(Float, [1.0])
+      expect(validator.valid?(1.0)).to be true
+      expect(validator.valid?('invalid')).to be false
+    end
+  end
+
   describe '#build_from_hash' do
     it 'validates instance of AnswerCallback created by the build_from_hash method' do
       answer_callback_from_hash = Bandwidth::AnswerCallback.build_from_hash({
