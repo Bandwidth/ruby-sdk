@@ -36,9 +36,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Download Conference Recording
@@ -71,9 +71,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -110,8 +110,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
 
 begin
   # Get Conference Information
@@ -144,8 +144,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
 
 ### Return type
 
@@ -182,9 +182,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
-member_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Conference Member ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
+member_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Conference Member ID.
 
 begin
   # Get Conference Member
@@ -217,9 +217,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
-| **member_id** | **String** | Programmable Voice API Conference Member ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
+| **member_id** | **String** | Programmable Voice API Conference Member ID. |  |
 
 ### Return type
 
@@ -256,9 +256,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Get Conference Recording Information
@@ -291,9 +291,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -330,8 +330,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
 
 begin
   # Get Conference Recordings
@@ -364,8 +364,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
 
 ### Return type
 
@@ -402,7 +402,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
 opts = {
   name: 'my-custom-name', # String | Filter results by the `name` field.
   min_created_time: '2022-06-21T19:13:21Z', # String | Filter results to conferences which have a `createdTime` after or at `minCreatedTime` (in ISO8601 format).
@@ -442,7 +442,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **name** | **String** | Filter results by the &#x60;name&#x60; field. | [optional] |
 | **min_created_time** | **String** | Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). | [optional] |
 | **max_created_time** | **String** | Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). | [optional] |
@@ -484,8 +484,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
 update_conference = Bandwidth::UpdateConference.new # UpdateConference | 
 
 begin
@@ -518,8 +518,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
 | **update_conference** | [**UpdateConference**](UpdateConference.md) |  |  |
 
 ### Return type
@@ -557,8 +557,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
 body = '<?xml version="1.0" encoding="UTF-8"?>
 <Bxml>
     <StopRecording/>
@@ -594,8 +594,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
 | **body** | **String** |  |  |
 
 ### Return type
@@ -633,9 +633,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::ConferencesApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID
-member_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Conference Member ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+conference_id = 'conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9' # String | Programmable Voice API Conference ID.
+member_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Conference Member ID.
 update_conference_member = Bandwidth::UpdateConferenceMember.new # UpdateConferenceMember | 
 
 begin
@@ -668,9 +668,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **conference_id** | **String** | Programmable Voice API Conference ID |  |
-| **member_id** | **String** | Programmable Voice API Conference Member ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **conference_id** | **String** | Programmable Voice API Conference ID. |  |
+| **member_id** | **String** | Programmable Voice API Conference Member ID. |  |
 | **update_conference_member** | [**UpdateConferenceMember**](UpdateConferenceMember.md) |  |  |
 
 ### Return type

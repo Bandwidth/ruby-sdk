@@ -9,7 +9,7 @@
 | **redirect_method** | [**RedirectMethodEnum**](RedirectMethodEnum.md) |  | [optional][default to &#39;POST&#39;] |
 | **username** | **String** | Basic auth username. | [optional] |
 | **password** | **String** | Basic auth password. | [optional] |
-| **redirect_fallback_url** | **String** | A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond | [optional] |
+| **redirect_fallback_url** | **String** | A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond. | [optional] |
 | **redirect_fallback_method** | [**RedirectMethodEnum**](RedirectMethodEnum.md) |  | [optional][default to &#39;POST&#39;] |
 | **fallback_username** | **String** | Basic auth username. | [optional] |
 | **fallback_password** | **String** | Basic auth password. | [optional] |
@@ -22,11 +22,11 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::UpdateCall.new(
   state: null,
-  redirect_url: https://myServer.com/bandwidth/webhooks/redirect,
+  redirect_url: https://myServer.example/bandwidth/webhooks/redirect,
   redirect_method: null,
   username: mySecretUsername,
   password: mySecretPassword1!,
-  redirect_fallback_url: https://myFallbackServer.com/bandwidth/webhooks/redirect,
+  redirect_fallback_url: https://myFallbackServer.example/bandwidth/webhooks/redirect,
   redirect_fallback_method: null,
   fallback_username: mySecretUsername,
   fallback_password: mySecretPassword1!,

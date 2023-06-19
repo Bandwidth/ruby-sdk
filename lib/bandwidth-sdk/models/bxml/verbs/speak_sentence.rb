@@ -20,7 +20,7 @@ module Bandwidth
       # @return [String] The XML response in string format.
       def to_bxml
         bxml = Ox.dump(generate_xml)
-        return bxml.gsub(SPEAK_SENTENCE_REGEX) { |text| text.gsub(SSML_REGEX, '<\1>')}
+        bxml.gsub(SPEAK_SENTENCE_REGEX) { |text| text.gsub(SSML_REGEX, '<\1>') }
       end
     end
   end

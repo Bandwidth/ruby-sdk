@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 require 'json'
 require_relative '../call_utils'
 
@@ -134,21 +134,21 @@ describe 'ConferencesApi Integration Tests' do
     end
   end
   
-    # Get Conference Recording Information
-    describe 'get_conference_recording' do
-      it 'gets a conference recording by id' do
-        response = @api_instance_conferences.get_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
+  # Get Conference Recording Information
+  describe 'get_conference_recording' do
+    it 'gets a conference recording by id' do
+      response = @api_instance_conferences.get_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
 
-        expect(response[CODE]).to eq(200)
-        expect(response[DATA]).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
-        expect(response[DATA].conference_id).to eq($conference_id)
-        expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
-        expect(response[DATA].name).to eq($manteca_test_id)
-        expect(response[DATA].status).to eq('complete').or eq('partial')
-        expect(response[DATA].recording_id).to be_instance_of(String)
-        expect(response[DATA].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
-      end
+      expect(response[CODE]).to eq(200)
+      expect(response[DATA]).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
+      expect(response[DATA].conference_id).to eq($conference_id)
+      expect(response[DATA].account_id).to eq(BW_ACCOUNT_ID)
+      expect(response[DATA].name).to eq($manteca_test_id)
+      expect(response[DATA].status).to eq('complete').or eq('partial')
+      expect(response[DATA].recording_id).to be_instance_of(String)
+      expect(response[DATA].file_format).to eq(Bandwidth::FileFormatEnum::WAV)
     end
+  end
 
   # Download Conference Recording
   describe 'download_conference_recording test' do

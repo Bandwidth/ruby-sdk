@@ -5,15 +5,15 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **application_id** | **String** | The id of the application associated with the &#x60;from&#x60; number. |  |
-| **account_id** | **String** | The bandwidth account ID associated with the call |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **to** | **String** | Recipient of the outgoing call |  |
-| **from** | **String** | Phone number that created the outbound call |  |
-| **enqueued_time** | **Time** | Time the call was accepted into the queue | [optional] |
-| **call_url** | **String** | The URL to update call state |  |
+| **account_id** | **String** | The bandwidth account ID associated with the call. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **to** | **String** | Recipient of the outgoing call. |  |
+| **from** | **String** | Phone number that created the outbound call. |  |
+| **enqueued_time** | **Time** | The time at which the call was accepted into the queue. | [optional] |
+| **call_url** | **String** | The URL to update this call&#39;s state. |  |
 | **call_timeout** | **Float** | The timeout (in seconds) for the callee to answer the call after it starts ringing. | [optional] |
 | **callback_timeout** | **Float** | This is the timeout (in seconds) to use when delivering webhooks for the call. | [optional] |
-| **tag** | **String** | Custom tag value | [optional] |
+| **tag** | **String** | Custom tag value. | [optional] |
 | **answer_method** | [**CallbackMethodEnum**](CallbackMethodEnum.md) |  | [default to &#39;POST&#39;] |
 | **answer_url** | **String** | URL to deliver the &#x60;answer&#x60; event webhook. |  |
 | **answer_fallback_method** | [**CallbackMethodEnum**](CallbackMethodEnum.md) |  | [optional][default to &#39;POST&#39;] |
@@ -24,7 +24,7 @@
 | **password** | **String** | Basic auth password. | [optional] |
 | **fallback_username** | **String** | Basic auth username. | [optional] |
 | **fallback_password** | **String** | Basic auth password. | [optional] |
-| **priority** | **Float** | The priority of this call over other calls from your account. | [optional] |
+| **priority** | **Integer** | The priority of this call over other calls from your account. | [optional] |
 
 ## Example
 
@@ -43,11 +43,11 @@ instance = Bandwidth::CreateCallResponse.new(
   callback_timeout: 15,
   tag: My custom tag value,
   answer_method: null,
-  answer_url: https://myServer.com/bandwidth/webhooks/answer,
+  answer_url: https://myServer.example/bandwidth/webhooks/answer,
   answer_fallback_method: null,
-  answer_fallback_url: https://myFallbackServer.com/bandwidth/webhooks/answer,
+  answer_fallback_url: https://myFallbackServer.example/bandwidth/webhooks/answer,
   disconnect_method: null,
-  disconnect_url: https://myServer.com/bandwidth/webhooks/disconnect,
+  disconnect_url: https://myServer.example/bandwidth/webhooks/disconnect,
   username: mySecretUsername,
   password: mySecretPassword1!,
   fallback_username: mySecretUsername,

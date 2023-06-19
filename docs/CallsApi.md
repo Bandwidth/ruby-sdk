@@ -31,8 +31,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::CallsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+19195554321', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.com/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
+account_id = '9900000' # String | Your Bandwidth Account ID.
+create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+19195554321', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.example/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
 
 begin
   # Create Call
@@ -65,7 +65,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **create_call** | [**CreateCall**](CreateCall.md) | JSON object containing information to create an outbound call |  |
 
 ### Return type
@@ -103,8 +103,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::CallsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 
 begin
   # Get Call State Information
@@ -137,8 +137,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
 
 ### Return type
 
@@ -175,8 +175,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::CallsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 update_call = Bandwidth::UpdateCall.new # UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
 
 begin
@@ -209,8 +209,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
 | **update_call** | [**UpdateCall**](UpdateCall.md) | JSON object containing information to redirect an existing call to a new BXML document |  |
 
 ### Return type
@@ -248,8 +248,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::CallsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 body = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <Bxml>
   <SpeakSentence>This is a test sentence.</SpeakSentence>
@@ -285,8 +285,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
 | **body** | **String** |  |  |
 
 ### Return type

@@ -1,6 +1,8 @@
 # bandwidth-sdk
 
-[![Test](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test.yml)
+[![Gem Version](https://badge.fury.io/rb/bandwidth-sdk.svg)](https://badge.fury.io/rb/bandwidth-sdk)
+[![Tests](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
 
 | **OS** | **Ruby** |
@@ -77,8 +79,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::CallsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+19195554321', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.com/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
+account_id = '9900000' # String | Your Bandwidth Account ID.
+create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+19195554321', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.example/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
 
 begin
   #Create Call
@@ -178,6 +180,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::MachineDetectionCompleteCallback](docs/MachineDetectionCompleteCallback.md)
  - [Bandwidth::MachineDetectionConfiguration](docs/MachineDetectionConfiguration.md)
  - [Bandwidth::MachineDetectionModeEnum](docs/MachineDetectionModeEnum.md)
+ - [Bandwidth::MachineDetectionResult](docs/MachineDetectionResult.md)
  - [Bandwidth::Media](docs/Media.md)
  - [Bandwidth::Message](docs/Message.md)
  - [Bandwidth::MessageDeliveredCallback](docs/MessageDeliveredCallback.md)
@@ -227,6 +230,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 
+Authentication schemes defined for the API:
 ### Basic
 
 - **Type**: HTTP basic authentication

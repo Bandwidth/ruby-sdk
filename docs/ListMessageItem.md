@@ -20,6 +20,7 @@
 | **attachment_count** | **Integer** | The number of attachments the message has. | [optional] |
 | **recipient_count** | **Integer** | The number of recipients the message has. | [optional] |
 | **campaign_class** | **String** | The campaign class of the message if it has one. | [optional] |
+| **campaign_id** | **String** | The campaign ID of the message if it has one. | [optional] |
 
 ## Example
 
@@ -42,7 +43,8 @@ instance = Bandwidth::ListMessageItem.new(
   message_length: 18,
   attachment_count: 1,
   recipient_count: 1,
-  campaign_class: T
+  campaign_class: T,
+  campaign_id: CJEUMDK
 )
 ```
 

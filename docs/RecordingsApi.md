@@ -37,9 +37,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Delete Transcription
@@ -71,9 +71,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -110,9 +110,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Delete Recording
@@ -144,9 +144,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -183,9 +183,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Delete Recording Media
@@ -217,9 +217,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -256,9 +256,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Download Recording
@@ -291,9 +291,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -330,9 +330,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Get Call Recording
@@ -365,9 +365,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -404,9 +404,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 
 begin
   # Get Transcription
@@ -439,9 +439,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -478,7 +478,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
 opts = {
   to: '%2b19195551234', # String | Filter results by the `to` field.
   from: '%2b19195554321', # String | Filter results by the `from` field.
@@ -517,7 +517,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **to** | **String** | Filter results by the &#x60;to&#x60; field. | [optional] |
 | **from** | **String** | Filter results by the &#x60;from&#x60; field. | [optional] |
 | **min_start_time** | **String** | Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). | [optional] |
@@ -558,8 +558,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 
 begin
   # List Call Recordings
@@ -592,8 +592,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
 
 ### Return type
 
@@ -630,9 +630,9 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
-recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
+recording_id = 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Recording ID.
 transcribe_recording = Bandwidth::TranscribeRecording.new # TranscribeRecording | 
 
 begin
@@ -665,9 +665,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
-| **recording_id** | **String** | Programmable Voice API Recording ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
+| **recording_id** | **String** | Programmable Voice API Recording ID. |  |
 | **transcribe_recording** | [**TranscribeRecording**](TranscribeRecording.md) |  |  |
 
 ### Return type
@@ -705,8 +705,8 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::RecordingsApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID
-call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID
+account_id = '9900000' # String | Your Bandwidth Account ID.
+call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 update_call_recording = Bandwidth::UpdateCallRecording.new({state: Bandwidth::RecordingStateEnum::PAUSED}) # UpdateCallRecording | 
 
 begin
@@ -739,8 +739,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID |  |
-| **call_id** | **String** | Programmable Voice API Call ID |  |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **call_id** | **String** | Programmable Voice API Call ID. |  |
 | **update_call_recording** | [**UpdateCallRecording**](UpdateCallRecording.md) |  |  |
 
 ### Return type

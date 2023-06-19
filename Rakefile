@@ -8,12 +8,20 @@ begin
 
   desc 'Run Only Unit Tests'
   RSpec::Core::RakeTask.new(:unit) do |t|
-    t.pattern = './spec/unit/**/*_spec.rb'
+    t.pattern = './spec/api/**/*_spec.rb'
+  end
+  RSpec::Core::RakeTask.new(:unit) do |t|
+    t.pattern = './spec/models/**/*_spec.rb'
   end
 
   desc 'Run Only Integration Tests'
   RSpec::Core::RakeTask.new(:integration) do |t|
     t.pattern = './spec/integration/*_spec.rb'
+  end
+
+  desc 'Run Only Client Unit Tests'
+  RSpec::Core::RakeTask.new(:client) do |t|
+    t.pattern = './spec/*_spec.rb'
   end
 
   task default: :spec

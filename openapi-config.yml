@@ -9,3 +9,4 @@ gemSummary: Bandwidth Ruby SDK
 gemVersion: 11.0.0
 library: faraday
 moduleName: Bandwidth
+templateDir: custom_templates

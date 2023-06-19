@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param nested_verbs [Array<Verb>] XML element children. Defaults to an empty array.
       def initialize(nested_verbs = [])
-        super(tag='Bxml', nested_verbs)
+        super(tag = 'Bxml', nested_verbs)
       end
     end
   end

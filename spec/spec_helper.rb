@@ -75,7 +75,7 @@ RSpec.configure do |config|
       config.password = BW_PASSWORD
     end
     calls_api = Bandwidth::CallsApi.new
-    cleanup_calls($active_calls, calls_api)
+    # cleanup_calls($active_calls, calls_api)
   }
   
   # rspec-expectations config goes here. You can use an alternate

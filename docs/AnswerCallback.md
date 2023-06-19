@@ -17,7 +17,7 @@
 | **start_time** | **Time** | Time the call was started, in ISO 8601 format. | [optional] |
 | **answer_time** | **Time** | Time the call was answered, in ISO 8601 format. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
-| **machine_detection_result** | **String** | (optional) if machine detection was requested in sync mode, the result will be specified here. Possible values are the same as the async counterpart: Machine Detection Complete | [optional] |
+| **machine_detection_result** | [**MachineDetectionResult**](MachineDetectionResult.md) |  | [optional] |
 
 ## Example
 
