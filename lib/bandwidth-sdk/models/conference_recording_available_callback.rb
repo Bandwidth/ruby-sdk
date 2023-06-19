@@ -108,7 +108,7 @@ module Bandwidth
     def self.openapi_types
       {
         :'event_type' => :'String',
-        :'event_time' => :'String',
+        :'event_time' => :'Time',
         :'conference_id' => :'String',
         :'name' => :'String',
         :'account_id' => :'String',
