@@ -41,9 +41,10 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
 
       - name: Install Packages and Test
-        env:
-          RUBY_VERSION: ${{ matrix.ruby-version }}
-          OPERATING_SYSTEM: ${{ matrix.os }}
         run: |
           bundle install
           rake
+        env:
+          RUBY_VERSION: ${{ matrix.ruby-version }}
+          OPERATING_SYSTEM: ${{ matrix.os }}
+          GEM_VERSION: "11.0.0"
