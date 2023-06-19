@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StreamParam
 describe 'Bandwidth::Bxml::StreamParam' do
   let(:initial_attributes) {

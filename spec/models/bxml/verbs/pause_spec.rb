@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Pause
 describe 'Bandwidth::Bxml::Pause' do
   let(:initial_attributes) {

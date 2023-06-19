@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StartTranscription
 describe 'Bandwidth::Bxml::StartTranscription' do
   let(:initial_attributes) {

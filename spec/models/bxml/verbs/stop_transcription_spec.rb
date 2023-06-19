@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StopTranscription
 describe 'Bandwidth::Bxml::StopTranscription' do
   let(:initial_attributes) {

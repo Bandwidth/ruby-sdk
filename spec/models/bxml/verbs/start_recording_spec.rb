@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StartRecording
 describe 'Bandwidth::Bxml::StartRecording' do
   let(:initial_attributes) {

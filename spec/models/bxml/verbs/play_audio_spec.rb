@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::PlayAudio
 describe 'Bandwidth::Bxml::PlayAudio' do
   let(:initial_attributes) {

@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Bxml
 describe 'Bandwidth::Bxml::Bxml' do
   let(:instance) { Bandwidth::Bxml::Bxml.new }

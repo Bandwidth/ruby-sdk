@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Verb
 describe 'Bandwidth::Bxml::Verb' do
   let(:instance) { Class.new.include(Bandwidth::Bxml::Verb).new('Test') }

@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StopGather
 describe 'Bandwidth::Bxml::StopGather' do
   let(:instance) { Bandwidth::Bxml::StopGather.new }

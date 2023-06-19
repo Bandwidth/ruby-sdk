@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Ring
 describe 'Bandwidth::Bxml::Ring' do
   let(:initial_attributes) {

@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Record
 describe 'Bandwidth::Bxml::Record' do
   let(:initial_attributes) {

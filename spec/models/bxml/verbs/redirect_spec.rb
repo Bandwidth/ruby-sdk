@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Redirect
 describe 'Bandwidth::Bxml::Redirect' do
   let(:initial_attributes) {
