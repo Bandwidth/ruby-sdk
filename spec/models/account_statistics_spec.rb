@@ -1,3 +1,4 @@
+# Unit tests for Bandwidth::AccountStatistics
 describe Bandwidth::AccountStatistics do
   let(:account_statistics_default) { Bandwidth::AccountStatistics.new }
   let(:account_statistics_values) { Bandwidth::AccountStatistics.new({ current_call_queue_size: 10, max_call_queue_size: 100 }) }
