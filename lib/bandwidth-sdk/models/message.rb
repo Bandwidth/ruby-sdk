@@ -104,7 +104,7 @@ module Bandwidth
         :'id' => :'String',
         :'owner' => :'String',
         :'application_id' => :'String',
-        :'time' => :'String',
+        :'time' => :'Time',
         :'segment_count' => :'Integer',
         :'direction' => :'MessageDirectionEnum',
         :'to' => :'Array<String>',
