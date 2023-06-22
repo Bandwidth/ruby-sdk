@@ -15,7 +15,6 @@ module Bandwidth
         @content = content
         @nested_verbs = nested_verbs
         @attributes = attributes
-        @attribute_map = []
       end
 
       # Generate an XML element for the verb
@@ -32,7 +31,7 @@ module Bandwidth
           end
         end
 
-        if !@attributes.empty?
+        if !@attributes.empty? && !@attribute_map.nil?
           @attributes.each do |key, value|
             if @attribute_map.include? key.to_sym
               root[@attribute_map[key.to_sym]] = value
