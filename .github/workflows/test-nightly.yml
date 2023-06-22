@@ -70,6 +70,7 @@ jobs:
         env:
           RUBY_VERSION: ${{ matrix.ruby-version }}
           OPERATING_SYSTEM: ${{ matrix.os }}
+          GEM_VERSION: "11.0.0"
         run: |
           bundle install
           rake
