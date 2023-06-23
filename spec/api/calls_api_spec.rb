@@ -1,5 +1,3 @@
-require 'json'
-
 # Unit tests for Bandwidth::CallsApi
 describe 'CallsApi' do
   before(:all) do
