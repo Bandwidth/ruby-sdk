@@ -282,6 +282,6 @@ describe Bandwidth::ApiClient do
         expect(e.code).to eq(403)
       }
     end
-  end if false
+  end if false #(`if false` skips this entire block)
 
 end
