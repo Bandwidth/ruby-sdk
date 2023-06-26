@@ -10,13 +10,33 @@ describe 'CallsApi' do
 
     # call info
     @call_id = 'c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce'
+    @enqueued_time = '2023-06-23T18:43:51.248Z'
+    @call_url = "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{@call_id}"
+    @call_timeout = 30.0
+    @callback_timeout = 15.0
+    @answer_method = Bandwidth::CallbackMethodEnum::POST
+    @answer_url = BASE_CALLBACK_URL + "/callbacks/answer"
+    @answer_fallback_method = Bandwidth::CallbackMethodEnum::POST
+    @disconnect_method = Bandwidth::CallbackMethodEnum::GET
+    @disconnect_url = BASE_CALLBACK_URL + "/callbacks/disconnect"
+    @priority = 5
+    @direction = Bandwidth::CallDirectionEnum::OUTBOUND
+    @state = 'disconnected'
+    @stir_shaken = {}
+    @start_time = '2023-06-23T19:11:06.049Z'
+    @end_time = '2023-06-23T19:11:06.175Z'
+    @disconnect_cause = 'rejected'
+    @error_message = 'Destination not found'
+    @error_id = '779941c4-6482-461d-b370-177b4ad0b5a7'
+    @last_update = '2023-06-23T19:11:06.175Z'
+    @tag = 'test tag'
 
     # stubs
-    @create_call_body_stub = "{\"applicationId\":\"c78d4926-46f8-4426-a9b1-af52aa723823\",\"accountId\":\"9901159\",\"callId\":\"c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce\",\"to\":\"+19195556059\",\"from\":\"+19192300340\",\"enqueuedTime\":\"2023-06-23T18:43:51.248Z\",\"callUrl\":\"https://voice.bandwidth.com/api/v2/accounts/9901159/calls/c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce\",\"callTimeout\":30.0,\"callbackTimeout\":15.0,\"answerMethod\":\"POST\",\"answerUrl\":\"https://localhost:3000/callbacks/answer\",\"answerFallbackMethod\":\"POST\",\"disconnectMethod\":\"GET\",\"disconnectUrl\":\"https://localhost:3000/callbacks/disconnect\",\"priority\":5}"
-    @create_call_headers_stub = {"content-type":"application/json"}
+    @create_call_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{@enqueued_time}\",\"callUrl\":\"#{@call_url}\",\"callTimeout\":#{@call_timeout},\"callbackTimeout\":#{@callback_timeout},\"tag\":\"#{@tag}\",\"answerMethod\":\"#{@answer_method}\",\"answerUrl\":\"#{@answer_url}\",\"answerFallbackMethod\":\"#{@answer_fallback_method}\",\"disconnectMethod\":\"#{@disconnect_method}\",\"disconnectUrl\":\"#{@disconnect_url}\",\"priority\":#{@priority}}"
+    @create_call_headers_stub = {"content-type": "application/json"}
     @create_call_bad_request_stub = "{\"type\":\"validation\",\"description\":\"Invalid to: must be a valid SIP URI or an E164 TN\"}"
-    @get_call_state_body_stub = "{\"applicationId\":\"c78d4926-46f8-4426-a9b1-af52aa723823\",\"accountId\":\"9901159\",\"callId\":\"c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce\",\"to\":\"+19195556059\",\"from\":\"+19192300340\",\"direction\":\"outbound\",\"state\":\"disconnected\",\"stirShaken\":{},\"enqueuedTime\":\"2023-06-23T19:11:06.048Z\",\"startTime\":\"2023-06-23T19:11:06.049Z\",\"endTime\":\"2023-06-23T19:11:06.175Z\",\"disconnectCause\":\"rejected\",\"errorMessage\":\"Destination not found\",\"errorId\":\"779941c4-6482-461d-b370-177b4ad0b5a7\",\"lastUpdate\":\"2023-06-23T19:11:06.175Z\"}"
-    @get_call_state_headers_stub = {"content-type":"application/json"}
+    @get_call_state_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{@direction}\",\"state\":\"#{@state}\",\"stirShaken\":#{@stir_shaken},\"enqueuedTime\":\"#{@enqueued_time}\",\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"disconnectCause\":\"#{@disconnect_cause}\",\"errorMessage\":\"#{@error_message}\",\"errorId\":\"#{@error_id}\",\"lastUpdate\":\"#{@last_update}\"}"
+    @get_call_state_headers_stub = {"content-type": "application/json"}
     @get_call_state_not_found_stub = "{\"type\":\"validation\",\"description\":\"Call does-not-exist was not found.\"}"
     @get_call_state_unauthorized_stub = "{\"type\":\"authentication-error\",\"description\":\"The credentials provided were invalid\"}"
     @get_call_state_forbidden_stub = "{\"type\":\"authorization-error\",\"description\":\"Access is denied\"}"
@@ -50,13 +70,14 @@ describe 'CallsApi' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: USER_NUMBER,
         from: BW_NUMBER,
-        answer_url: BASE_CALLBACK_URL + "/callbacks/answer",
-        answer_method: "POST",
-        disconnect_url: BASE_CALLBACK_URL + "/callbacks/disconnect",
-        disconnect_method: "GET",
+        answer_url: @answer_url,
+        answer_method: @answer_method,
+        disconnect_url: @disconnect_url,
+        disconnect_method: @disconnect_method,
         machine_detection: amd_config,
-        call_timeout: 30.0,
-        callback_timeout: 15.0
+        call_timeout: @call_timeout,
+        callback_timeout: @callback_timeout,
+        tag: @tag
       )
 
       data, status_code, headers = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
@@ -64,18 +85,23 @@ describe 'CallsApi' do
       expect(status_code).to eq(201)
       expect(headers.transform_keys(&:to_sym)).to eq(@create_call_headers_stub)
       expect(data).to be_instance_of(Bandwidth::CreateCallResponse)
-      expect(data.call_id).to eq(@call_id)
-      expect(data.account_id).to eq(BW_ACCOUNT_ID)
       expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(data.account_id).to eq(BW_ACCOUNT_ID)
+      expect(data.call_id).to eq(@call_id)
       expect(data.to).to eq(USER_NUMBER)
       expect(data.from).to eq(BW_NUMBER)
-      expect(data.call_timeout).to eq(30.0)
-      expect(data.callback_timeout).to eq(15.0)
-      expect(data.enqueued_time).to be_instance_of(Time)
-      expect(data.answer_method).to eq(Bandwidth::CallbackMethodEnum::POST)
-      expect(data.disconnect_method).to eq("GET")
-      expect(data.answer_url).to eq(BASE_CALLBACK_URL + "/callbacks/answer")
-      expect(data.disconnect_url).to eq(BASE_CALLBACK_URL + "/callbacks/disconnect")
+      expect(data.enqueued_time).to eq(Time.parse(@enqueued_time))
+      expect(data.call_url).to eq(@call_url)
+      expect(data.call_timeout).to eq(@call_timeout)
+      expect(data.callback_timeout).to eq(@callback_timeout)
+      expect(data.tag).to eq(@tag)
+      expect(data.answer_method).to eq(@answer_method)
+      expect(data.answer_url).to eq(@answer_url)
+      expect(data.answer_fallback_method).to eq(@answer_fallback_method)
+      expect(data.answer_fallback_url).to eq(@answer_fallback_url)
+      expect(data.disconnect_method).to eq(@disconnect_method)
+      expect(data.disconnect_url).to eq(@disconnect_url)
+      expect(data.priority).to eq(@priority)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
@@ -106,13 +132,21 @@ describe 'CallsApi' do
       expect(status_code).to eq(200)
       expect(headers.transform_keys(&:to_sym)).to eq(@get_call_state_headers_stub)
       expect(data).to be_instance_of(Bandwidth::CallState)
-      expect(data.call_id).to eq(@call_id)
-      expect(data.account_id).to eq(BW_ACCOUNT_ID)
       expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
-      expect(data.start_time).to be_instance_of(Time)
-      expect(data.last_update).to be_instance_of(Time)
-      expect(data.state).to be_instance_of(String)
-      expect(data.direction).to eq(Bandwidth::CallDirectionEnum::OUTBOUND)
+      expect(data.account_id).to eq(BW_ACCOUNT_ID)
+      expect(data.call_id).to eq(@call_id)
+      expect(data.to).to eq(USER_NUMBER)
+      expect(data.from).to eq(BW_NUMBER)
+      expect(data.direction).to eq(@direction)
+      expect(data.stir_shaken).to eq(@stir_shaken)
+      expect(data.state).to eq(@state)
+      expect(data.enqueued_time).to eq(Time.parse(@enqueued_time))
+      expect(data.start_time).to eq(Time.parse(@start_time))
+      expect(data.end_time).to eq(Time.parse(@end_time))
+      expect(data.disconnect_cause).to eq(@disconnect_cause)
+      expect(data.error_message).to eq(@error_message)
+      expect(data.error_id).to eq(@error_id)
+      expect(data.last_update).to eq(Time.parse(@last_update))
     end
 
     it 'causes an ArgumentError for a missing account_id' do
@@ -222,10 +256,10 @@ describe 'CallsApi' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: "+1invalid",
         from: BW_NUMBER,
-        answer_url: BASE_CALLBACK_URL + "/callbacks/answer",
-        answer_method: "POST",
-        disconnect_url: BASE_CALLBACK_URL + "/callbacks/disconnect",
-        disconnect_method: "GET"
+        answer_url: @answer_url,
+        answer_method: @answer_method,
+        disconnect_url: @disconnect_url,
+        disconnect_method: @disconnect_method
       )
 
       expect {
