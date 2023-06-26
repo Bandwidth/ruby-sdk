@@ -29,17 +29,17 @@ describe 'ConferencesApi' do
     
     # stubs
     @list_conferences_body_stub = "[{\"id\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"createdTime\":\"#{@created_time}\",\"conferenceEventUrl\":\"#{@conference_event_url}\",\"conferenceEventMethod\":\"#{@conference_event_method}\",\"tag\":\"#{@test_id}\"}]"
-    @list_conferences_headers_stub = {"content-type": "application/json"}
+    @list_conferences_headers_stub = { "content-type": "application/json" }
     @get_conference_body_stub = "{\"id\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"createdTime\":\"#{@created_time}\",\"conferenceEventUrl\":\"#{@conference_event_url}\",\"conferenceEventMethod\":\"#{@conference_event_method}\",\"tag\":\"#{@test_id}\",\"activeMembers\":#{@active_members}}"
-    @get_conference_headers_stub = {"content-type": "application/json"}
+    @get_conference_headers_stub = { "content-type": "application/json" }
     @get_conference_member_body_stub = "{\"callId\":\"#{@call_id}\",\"conferenceId\":\"#{@conference_id}\",\"memberUrl\":\"#{@member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}"
-    @get_conference_member_headers_stub = {"content-type": "application/json"}
+    @get_conference_member_headers_stub = { "content-type": "application/json" }
     @list_conference_recordings_body_stub = "[{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"recordingId\":\"#{@recording_id}\",\"duration\":\"#{@duration}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}]"
-    @list_conference_recordings_headers_stub = {"content-type": "application/json"}
+    @list_conference_recordings_headers_stub = { "content-type": "application/json" }
     @get_conference_recording_body_stub = "{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"recordingId\":\"#{@recording_id}\",\"duration\":\"#{@duration}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}"
-    @get_conference_recording_headers_stub = {"content-type": "application/json"}
+    @get_conference_recording_headers_stub = { "content-type": "application/json" }
     @download_conference_recording_body_stub = "RIFFWAVEfmtLISTINFOISFTLavf58.45.100data"
-    @download_conference_recording_headers_stub = {"content-type": "audio/vnd.wave"}
+    @download_conference_recording_headers_stub = { "content-type": "audio/vnd.wave" }
   end
   
   describe 'test an instance of ConferencesApi' do
@@ -297,7 +297,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for an invalid page_size' do
       expect {
-        @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, {page_size: 1001})
+        @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, { page_size: 1001 })
       }.to raise_error { |e|
         expect(e).to be_instance_of(ArgumentError)
       }
@@ -305,7 +305,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for an invalid page_size' do
       expect {
-        @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, {page_size: 0})
+        @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, { page_size: 0 })
       }.to raise_error { |e|
         expect(e).to be_instance_of(ArgumentError)
       }
