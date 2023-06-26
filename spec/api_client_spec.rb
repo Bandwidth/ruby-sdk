@@ -220,4 +220,68 @@ describe Bandwidth::ApiClient do
       expect(api_client.sanitize_filename('.\sun.gif')).to eq('sun.gif')
     end
   end
+
+  # HTTP 4XX Errors
+  describe 'http error' do
+    it 'causes a 400 error' do
+      stub_request(:post, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls").
+      to_return(status: 400, body: @create_call_bad_request_stub)
+
+      call_body_bad = Bandwidth::CreateCall.new(
+        application_id: BW_VOICE_APPLICATION_ID,
+        to: "+1invalid",
+        from: BW_NUMBER,
+        answer_url: @answer_url,
+        answer_method: @answer_method,
+        disconnect_url: @disconnect_url,
+        disconnect_method: @disconnect_method
+      )
+
+      expect {
+        @calls_api_instance.create_call(BW_ACCOUNT_ID, call_body_bad)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.code).to eq(400)
+      }
+    end
+
+    it 'causes a 404 error' do
+      dne_id = 'does-not-exist'
+
+      stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{dne_id}").
+      to_return(status: 404, body: @get_call_state_not_found_stub)
+
+      expect {
+        @calls_api_instance.get_call_state(BW_ACCOUNT_ID, dne_id)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.code).to eq(404)
+      }
+    end
+
+    it 'causes a 401 error' do
+      stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{@call_id}").
+      to_return(status: 401, body: @get_call_state_unauthorized_stub)
+
+      expect {
+        @calls_api_instance.get_call_state(BW_ACCOUNT_ID, @call_id)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.code).to eq(401)
+      }
+    end
+
+    it 'causes a 403 error' do
+      stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{@call_id}").
+      to_return(status: 403, body: @get_call_state_forbidden_stub)
+
+      expect {
+        @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, @call_id)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.code).to eq(403)
+      }
+    end
+  end if false
+
 end
