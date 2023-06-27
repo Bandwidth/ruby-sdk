@@ -44,7 +44,7 @@ describe 'MediaApi Integration Tests' do
   # Get Media
   describe 'get_media' do
     it 'gets uploaded binary media' do
-      response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, debug_return_type: 'String')
+      response = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name)
       expect(response[CODE]).to eq(200)
       expect(response[DATA]).to eq(@binary_media_data)
     end
