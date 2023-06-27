@@ -3,7 +3,6 @@ require 'ox'
 module Bandwidth
   module Bxml
     module Verb
-
       # Initializer
       # @param tag [String] Name of the XML element.
       # @param content [String] XML element content. Defaults to nil.
