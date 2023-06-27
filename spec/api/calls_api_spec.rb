@@ -33,14 +33,14 @@ describe 'CallsApi' do
 
     # stubs
     @create_call_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{@enqueued_time}\",\"callUrl\":\"#{@call_url}\",\"callTimeout\":#{@call_timeout},\"callbackTimeout\":#{@callback_timeout},\"tag\":\"#{@tag}\",\"answerMethod\":\"#{@answer_method}\",\"answerUrl\":\"#{@answer_url}\",\"answerFallbackMethod\":\"#{@answer_fallback_method}\",\"disconnectMethod\":\"#{@disconnect_method}\",\"disconnectUrl\":\"#{@disconnect_url}\",\"priority\":#{@priority}}"
-    @create_call_headers_stub = { "content-type": "application/json" }
+    @create_call_headers_stub = { "content-type" => "application/json" }
     @create_call_bad_request_stub = "{\"type\":\"validation\",\"description\":\"Invalid to: must be a valid SIP URI or an E164 TN\"}"
     @get_call_state_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{@direction}\",\"state\":\"#{@state}\",\"stirShaken\":#{@stir_shaken},\"enqueuedTime\":\"#{@enqueued_time}\",\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"disconnectCause\":\"#{@disconnect_cause}\",\"errorMessage\":\"#{@error_message}\",\"errorId\":\"#{@error_id}\",\"lastUpdate\":\"#{@last_update}\"}"
-    @get_call_state_headers_stub = { "content-type": "application/json" }
+    @get_call_state_headers_stub = { "content-type" => "application/json" }
     @get_call_state_not_found_stub = "{\"type\":\"validation\",\"description\":\"Call does-not-exist was not found.\"}"
     @get_call_state_unauthorized_stub = "{\"type\":\"authentication-error\",\"description\":\"The credentials provided were invalid\"}"
     @get_call_state_forbidden_stub = "{\"type\":\"authorization-error\",\"description\":\"Access is denied\"}"
-    @update_call_headers_stub = { "content-length": "0" }
+    @update_call_headers_stub = { "content-length" => "0" }
   end
 
   describe 'test an instance of CallsApi' do
@@ -83,7 +83,7 @@ describe 'CallsApi' do
       data, status_code, headers = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
 
       expect(status_code).to eq(201)
-      expect(headers.transform_keys(&:to_sym)).to eq(@create_call_headers_stub)
+      expect(headers).to eq(@create_call_headers_stub)
       expect(data).to be_instance_of(Bandwidth::CreateCallResponse)
       expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
       expect(data.account_id).to eq(BW_ACCOUNT_ID)
@@ -130,7 +130,7 @@ describe 'CallsApi' do
       data, status_code, headers = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, @call_id)
 
       expect(status_code).to eq(200)
-      expect(headers.transform_keys(&:to_sym)).to eq(@get_call_state_headers_stub)
+      expect(headers).to eq(@get_call_state_headers_stub)
       expect(data).to be_instance_of(Bandwidth::CallState)
       expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
       expect(data.account_id).to eq(BW_ACCOUNT_ID)
@@ -180,7 +180,7 @@ describe 'CallsApi' do
       data, status_code, headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, @call_id, update_call_body)
 
       expect(status_code).to eq(200)
-      expect(headers.transform_keys(&:to_sym)).to eq(@update_call_headers_stub)
+      expect(headers).to eq(@update_call_headers_stub)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
@@ -245,5 +245,5 @@ describe 'CallsApi' do
       }
     end
   end
-  
+
 end
