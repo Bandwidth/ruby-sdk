@@ -111,6 +111,9 @@ Layout/SpaceInsideParens:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
+  Exclude:
+    - lib/bandwidth-sdk/api_client.rb
+    - lib/bandwidth-sdk/configuration.rb
 
 #Check quotes inside the string interpolation.
 Style/StringLiteralsInInterpolation:
