@@ -18,22 +18,22 @@ describe 'RecordingsApi' do
     @file_format = Bandwidth::FileFormatEnum::WAV
     @status = 'complete'
     @media_url = "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{@call_id}/recordings/#{@recording_id}/media"
-    @text = "Now a recording, a long pause."
+    @text = 'Now a recording, a long pause.'
     @confidence = 0.975
     @test_id = 'test id'
 
     # stubs
-    @download_call_recording_body_stub = "RIFFFWAVEfmtLISTINFOISFTLavf58.45.100data"
-    @download_call_recording_headers_stub = { "content-type" => "audio/vnd.wave", "content-length" => "#{@download_call_recording_body_stub.length}" }
-    @get_call_recording_headers_stub = { "content-type" => "application/json" }
+    @download_call_recording_body_stub = 'RIFFFWAVEfmtLISTINFOISFTLavf58.45.100data'
+    @download_call_recording_headers_stub = { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{@download_call_recording_body_stub.length}" }
+    @get_call_recording_headers_stub = { 'content-type' => 'application/json' }
     @get_call_recording_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"recordingId\":\"#{@recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{@duration}\",\"direction\":\"#{@direction}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}"
-    @get_call_transcription_headers_stub = { "content-type" => "application/json" }
+    @get_call_transcription_headers_stub = { 'content-type' => 'application/json' }
     @get_call_transcription_body_stub = "{\"transcripts\":[{\"text\":\"#{@text}\",\"confidence\":#{@confidence}}]}"
-    @list_account_call_recordings_headers_stub = { "content-type" => "application/json" }
+    @list_account_call_recordings_headers_stub = { 'content-type' => 'application/json' }
     @list_account_call_recordings_body_stub = "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"recordingId\":\"#{@recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{@duration}\",\"direction\":\"#{@direction}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}]"
-    @list_call_recordings_headers_stub = { "content-type" => "application/json" }
+    @list_call_recordings_headers_stub = { 'content-type' => 'application/json' }
     @list_call_recordings_body_stub = "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"recordingId\":\"#{@recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{@duration}\",\"direction\":\"#{@direction}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}]"
-    @update_call_recording_state_headers_stub = { "content-length" => "0" }
+    @update_call_recording_state_headers_stub = { 'content-length' => '0' }
   end
 
   describe 'test an instance of RecordingsApi' do
@@ -367,7 +367,7 @@ describe 'RecordingsApi' do
       to_return(status: 204)
 
       transcribe_recording = Bandwidth::TranscribeRecording.new(
-        callback_url: BASE_CALLBACK_URL + "/transcriptions",
+        callback_url: BASE_CALLBACK_URL + '/transcriptions',
         tag: @test_id
       )
 

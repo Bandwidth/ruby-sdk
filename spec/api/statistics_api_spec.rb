@@ -11,7 +11,7 @@ describe 'StatisticsApi' do
     @max_call_queue_size = 7500
 
     # stubs
-    @get_statistics_headers_stub = { "content-type" => "application/json" }
+    @get_statistics_headers_stub = { 'content-type' => 'application/json' }
     @get_statistics_body_stub = "{\"currentCallQueueSize\":#{@current_call_queue_size},\"maxCallQueueSize\":#{@max_call_queue_size}}"
   end
 

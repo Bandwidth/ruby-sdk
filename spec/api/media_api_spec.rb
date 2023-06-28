@@ -13,9 +13,9 @@ describe 'MediaApi' do
     @content_url = "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/media/#{@media_name}"
 
     # stubs
-    @get_media_headers_stub = { "content-type" => "application/json" }
+    @get_media_headers_stub = { 'content-type' => 'application/json' }
     @list_media_body_stub = "[{\"contentLength\":#{@media_data.length},\"mediaName\":\"#{@media_name}\",\"content\":\"#{@content_url}\"}]"
-    @list_media_headers_stub = { "content-type" => "application/json" }
+    @list_media_headers_stub = { 'content-type' => 'application/json' }
   end
 
   describe 'test an instance of MediaApi' do

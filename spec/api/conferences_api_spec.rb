@@ -26,18 +26,18 @@ describe 'ConferencesApi' do
     @active_members = "[{\"callId\":\"#{@call_id}\",\"conferenceId\":\"#{@conference_id}\",\"memberUrl\":\"#{@member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}]"
     
     # stubs
-    @list_conferences_headers_stub = { "content-type" => "application/json" }
+    @list_conferences_headers_stub = { 'content-type' => 'application/json' }
     @list_conferences_body_stub = "[{\"id\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"createdTime\":\"#{@created_time}\",\"conferenceEventUrl\":\"#{@conference_event_url}\",\"conferenceEventMethod\":\"#{@conference_event_method}\",\"tag\":\"#{@test_id}\"}]"
-    @get_conference_headers_stub = { "content-type" => "application/json" }
+    @get_conference_headers_stub = { 'content-type' => 'application/json' }
     @get_conference_body_stub = "{\"id\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"createdTime\":\"#{@created_time}\",\"conferenceEventUrl\":\"#{@conference_event_url}\",\"conferenceEventMethod\":\"#{@conference_event_method}\",\"tag\":\"#{@test_id}\",\"activeMembers\":#{@active_members}}"
-    @get_conference_member_headers_stub = { "content-type" => "application/json" }
+    @get_conference_member_headers_stub = { 'content-type' => 'application/json' }
     @get_conference_member_body_stub = "{\"callId\":\"#{@call_id}\",\"conferenceId\":\"#{@conference_id}\",\"memberUrl\":\"#{@member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}"
-    @list_conference_recordings_headers_stub = { "content-type" => "application/json" }
+    @list_conference_recordings_headers_stub = { 'content-type' => 'application/json' }
     @list_conference_recordings_body_stub = "[{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"recordingId\":\"#{@recording_id}\",\"duration\":\"#{@duration}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}]"
-    @get_conference_recording_headers_stub = { "content-type" => "application/json" }
+    @get_conference_recording_headers_stub = { 'content-type' => 'application/json' }
     @get_conference_recording_body_stub = "{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{@conference_id}\",\"name\":\"#{@test_id}\",\"recordingId\":\"#{@recording_id}\",\"duration\":\"#{@duration}\",\"channels\":#{@channels},\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"fileFormat\":\"#{@file_format}\",\"status\":\"#{@status}\",\"mediaUrl\":\"#{@media_url}\"}"
-    @download_conference_recording_body_stub = "RIFFWAVEfmtLISTINFOISFTLavf58.45.100data"
-    @download_conference_recording_headers_stub = { "content-type" => "audio/vnd.wave", "content-length" => "#{@download_conference_recording_body_stub.length}" }
+    @download_conference_recording_body_stub = 'RIFFWAVEfmtLISTINFOISFTLavf58.45.100data'
+    @download_conference_recording_headers_stub = { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{@download_conference_recording_body_stub.length}" }
   end
   
   describe 'test an instance of ConferencesApi' do
@@ -320,14 +320,14 @@ describe 'ConferencesApi' do
 
       update_conference_body = Bandwidth::UpdateConference.new(
         status: Bandwidth::ConferenceStateEnum::ACTIVE,
-        redirect_url: MANTECA_BASE_URL + "/bxml/pause",
+        redirect_url: BASE_CALLBACK_URL + '/bxml/pause',
         redirect_method: Bandwidth::RedirectMethodEnum::POST,
-        username: "username",
-        password: "password",
-        redirect_fallback_url: MANTECA_BASE_URL + "/bxml/pause",
+        username: 'username',
+        password: 'password',
+        redirect_fallback_url: BASE_CALLBACK_URL + '/bxml/pause',
         redirect_fallback_method: Bandwidth::RedirectMethodEnum::POST,
-        fallback_username: "username",
-        fallback_password: "password"
+        fallback_username: 'username',
+        fallback_password: 'password'
       )
 
       data, status_code, headers = @conferences_api_instance.update_conference_with_http_info(BW_ACCOUNT_ID, @conference_id, update_conference_body)
@@ -365,7 +365,7 @@ describe 'ConferencesApi' do
       stub_request(:put, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/conferences/#{@conference_id}/bxml").
       to_return(status: 204)
 
-      update_bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><StartRecording/><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>"
+      update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><StartRecording/><SpeakSentence locale="en_US" gender="female" voice="susan">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>'
 
       data, status_code, headers = @conferences_api_instance.update_conference_bxml_with_http_info(BW_ACCOUNT_ID, @conference_id, update_bxml)
       expect(status_code).to eq(204)

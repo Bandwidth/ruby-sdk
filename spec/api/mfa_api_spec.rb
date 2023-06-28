@@ -14,11 +14,11 @@ describe 'MFAApi' do
 
     # stubs
     @generate_messaging_code_body_stub = "{\"messageId\": \"#{@message_id}\"}"
-    @generate_messaging_code_headers_stub = { "content-type" => "application/json", "content-length" => "#{@generate_messaging_code_body_stub.length}" }
+    @generate_messaging_code_headers_stub = { 'content-type' => 'application/json', 'content-length' => "#{@generate_messaging_code_body_stub.length}" }
     @generate_voice_code_body_stub = "{\"callId\": \"#{@call_id}\"}"
-    @generate_voice_code_headers_stub = { "content-type" => "application/json", "content-length" => "#{@generate_voice_code_body_stub.length}" }
-    @verify_code_body_stub = "{\"valid\": false}"
-    @verify_code_headers_stub = { "content-type" => "application/json", "content-length" => "#{@verify_code_body_stub.length}" }
+    @generate_voice_code_headers_stub = { 'content-type' => 'application/json', 'content-length' => "#{@generate_voice_code_body_stub.length}" }
+    @verify_code_body_stub = '{"valid": false}'
+    @verify_code_headers_stub = { 'content-type' => 'application/json', 'content-length' => "#{@verify_code_body_stub.length}" }
   end
 
   describe 'test an instance of MFAApi' do
@@ -110,10 +110,10 @@ describe 'MFAApi' do
       to_return(status: 200, headers: @verify_code_headers_stub, body: @verify_code_body_stub)
 
       req_schema = Bandwidth::VerifyCodeRequest.new(
-        to: "+1000" + rand(1...10000000).to_s,
-        scope: "2FA",
+        to: '+1000' + rand(1...10000000).to_s,
+        scope: '2FA',
         expiration_time_in_minutes: 3,
-        code: "12345"
+        code: '12345'
       )
 
       data, status_code, headers = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)

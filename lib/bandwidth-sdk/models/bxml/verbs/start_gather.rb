@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("StartGather", nil, attributes)
+        super('StartGather', nil, attributes)
         
         @attribute_map = {
           dtmf_url: 'dtmfUrl',        # [String]: URL to send the DTMF event to. May be a relative URL.

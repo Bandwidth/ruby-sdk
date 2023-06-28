@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class MachineDetectionModeEnum
-    SYNC = "sync".freeze
-    ASYNC = "async".freeze
+    SYNC = 'sync'.freeze
+    ASYNC = 'async'.freeze
 
     def self.all_vars
       @all_vars ||= [SYNC, ASYNC].freeze

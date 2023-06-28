@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("Record", nil, attributes)
+        super('Record', nil, attributes)
         
         @attribute_map = {
           record_complete_url: 'recordCompleteUrl',                         # Optional [String]: URL to send the Record Complete event to once the recording has ended. Accepts BXML, and may be a relative URL. This callback will not be sent if the recording ended due to the call hanging up. Defaults to None.

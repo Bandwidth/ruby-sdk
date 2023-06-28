@@ -5,7 +5,7 @@ module Bandwidth
 
       # Initializer
       def initialize
-        super("StopGather", nil, {})
+        super('StopGather', nil, {})
       end
     end
   end

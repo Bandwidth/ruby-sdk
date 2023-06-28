@@ -7,7 +7,7 @@ def setup_manteca(type)
     language: RUBY_VERSION,
     type: type
   }
-  manteca_test_url = URI(MANTECA_BASE_URL + "/tests")
+  manteca_test_url = URI(MANTECA_BASE_URL + '/tests')
   manteca_header = { 'Content-Type': 'application/json' }
   
   begin
@@ -18,7 +18,7 @@ def setup_manteca(type)
   end
 end
 
-def create_manteca_call(tag = "ruby", answer_path = "/bxml/pause", calls_api)
+def create_manteca_call(tag = 'ruby', answer_path = '/bxml/pause', calls_api)
   manteca_call_body = Bandwidth::CreateCall.new(
     application_id: MANTECA_APPLICATION_ID,
     to: MANTECA_IDLE_NUMBER,
@@ -33,7 +33,7 @@ def create_manteca_call(tag = "ruby", answer_path = "/bxml/pause", calls_api)
 end
 
 def get_manteca_test_status(test_id)
-  manteca_status_url = URI(MANTECA_BASE_URL + "/tests/" + test_id)
+  manteca_status_url = URI(MANTECA_BASE_URL + '/tests/' + test_id)
   response = JSON.parse(Net::HTTP.get(manteca_status_url))
   response
 end
@@ -48,7 +48,7 @@ def cleanup_calls(calls, calls_api)
   end
 
   if (calls.length > 0)
-    error_message = "Failed to terminate all calls" + calls.to_s
+    error_message = 'Failed to terminate all calls' + calls.to_s
     raise StandardError.new error_message
   end
 end

@@ -32,12 +32,12 @@ describe 'MessagesApi' do
     @next_page_url = "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/messages?messageDirection=#{@list_message_direction}&sourceTn=%2B#{BW_NUMBER[1..-1]}&pageToken=#{@next_page_token}"
 
     # stubs
-    @create_message_mms_headers_stub = { "content-type" => "application/json" }
+    @create_message_mms_headers_stub = { 'content-type' => 'application/json' }
     @create_message_mms_body_stub = "{\"id\":\"#{@mms_id}\",\"owner\":\"#{BW_NUMBER}\",\"applicationId\":\"#{BW_MESSAGING_APPLICATION_ID}\",\"time\":\"#{@time}\",\"segmentCount\":#{@segment_count},\"direction\":\"#{@direction}\",\"to\":[\"#{USER_NUMBER}\"],\"from\":\"#{BW_NUMBER}\",\"text\":\"#{@text}\",\"media\":[\"#{@media_url}\"],\"tag\":\"#{@tag}\"}"
-    @create_message_sms_headers_stub = { "content-type" => "application/json" }
+    @create_message_sms_headers_stub = { 'content-type' => 'application/json' }
     @create_message_sms_body_stub = "{\"id\":\"#{@sms_id}\",\"owner\":\"#{BW_NUMBER}\",\"applicationId\":\"#{BW_MESSAGING_APPLICATION_ID}\",\"time\":\"#{@time}\",\"segmentCount\":#{@segment_count},\"direction\":\"#{@direction}\",\"to\":[\"#{USER_NUMBER}\"],\"from\":\"#{BW_NUMBER}\",\"text\":\"#{@text}\",\"tag\":\"#{@tag}\",\"priority\":\"#{@priority}\",\"expiration\":\"#{@expiration_time}\"}"
     @list_messages_body_stub = "{\"totalCount\":#{@total_count},\"pageInfo\":{\"nextPage\":\"#{@next_page_url}\",\"nextPageToken\":\"#{@next_page_token}\"},\"messages\":[{\"messageId\":\"#{@mms_id}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"sourceTn\":\"#{BW_NUMBER}\",\"destinationTn\":\"#{USER_NUMBER}\",\"messageStatus\":\"#{@list_message_status}\",\"messageDirection\":\"#{@list_message_direction}\",\"messageType\":\"#{@list_message_type_mms}\",\"segmentCount\":#{@segment_count},\"messageLength\":#{@mms_length},\"messageSize\":#{@mms_length},\"attachmentCount\":#{@attachment_count},\"recipientCount\":#{@recipient_count},\"errorCode\":#{@mms_error_code},\"carrierName\":null,\"campaignClass\":null,\"campaignId\":null,\"receiveTime\":\"#{@time}\"},{\"messageId\":\"#{@sms_id}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"sourceTn\":\"#{BW_NUMBER}\",\"destinationTn\":\"#{USER_NUMBER}\",\"messageStatus\":\"#{@list_message_status}\",\"messageDirection\":\"#{@list_message_direction}\",\"messageType\":\"#{@list_message_type_sms}\",\"segmentCount\":#{@segment_count},\"messageLength\":#{@text.length},\"messageSize\":null,\"attachmentCount\":null,\"recipientCount\":null,\"errorCode\":#{@sms_error_code},\"carrierName\":\"#{@carrier_name}\",\"campaignClass\":null,\"campaignId\":null,\"receiveTime\":\"#{@time}\"}]}"
-    @list_messages_headers_stub = { "content-type" => "application/json", "content-length" => "#{@list_messages_body_stub.length}" }
+    @list_messages_headers_stub = { 'content-type' => 'application/json', 'content-length' => "#{@list_messages_body_stub.length}" }
   end
 
   describe 'test an instance of MessagesApi' do

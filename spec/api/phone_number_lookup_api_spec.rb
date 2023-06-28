@@ -18,9 +18,9 @@ describe 'PhoneNumberLookupApi' do
     @line_provider = 'AdHoc P2P - Bandwidth - SVR'
 
     # stubs
-    @create_lookup_headers_stub = { "content-type" => "application/json" }
+    @create_lookup_headers_stub = { 'content-type' => 'application/json' }
     @create_lookup_body_stub = "{\"requestId\":\"#{@request_id}\",\"status\":\"#{@status_in_progress}\"}"
-    @get_lookup_status_headers_stub = { "content-type" => "application/json" }
+    @get_lookup_status_headers_stub = { 'content-type' => 'application/json' }
     @get_lookup_status_body_stub = "{\"requestId\":\"#{@request_id}\",\"status\":\"#{@status_complete}\",\"result\":[{\"Response Code\":#{@response_code},\"Message\":\"#{@message}\",\"E.164 Format\":\"#{BW_NUMBER}\",\"Formatted\":\"#{@formatted}\",\"Country\":\"#{@country}\",\"Line Type\":\"#{@line_type}\",\"Line Provider\":\"#{@line_provider}\"}]}"
   end
 

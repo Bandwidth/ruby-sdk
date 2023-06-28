@@ -7,7 +7,7 @@ module Bandwidth
       # @param name [String] The name of the conference. Can contain up to 100 characters of letters, numbers, and the symbols -, _, and .
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(name, attributes = {})
-        super("Conference", name, attributes)
+        super('Conference', name, attributes)
         
         @attribute_map = {
           mute: 'mute',                                                       # Optional [Boolean]: A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak. Defaults to false.

@@ -7,7 +7,7 @@ module Bandwidth
       # @param custom_params [Array] XML element children. Defaults to an empty array. Valid nested custom params are: CustomParam. You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(custom_params = [], attributes = {})
-        super("StartTranscription", nil, custom_params, attributes)
+        super('StartTranscription', nil, custom_params, attributes)
         
         @attribute_map = {
           name: 'name',                                           # Optional [String]: A name to refer to this transcription by. Used when sending <StopTranscription>. If not provided, it will default to the generated transcription id as sent in the Real-Time Transcription Started webhook.

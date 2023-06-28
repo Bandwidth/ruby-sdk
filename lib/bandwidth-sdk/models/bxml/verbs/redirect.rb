@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("Redirect", nil, attributes)
+        super('Redirect', nil, attributes)
         
         @attribute_map = {
           redirect_url: 'redirectUrl',                        # [String]: URL to request new BXML from. A Redirect event will be sent to this endpoint. May be a relative URL. Defaults to None.

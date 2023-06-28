@@ -7,7 +7,7 @@ module Bandwidth
       # @param transfer_to [Array] XML element children. Defaults to an empty array. Valid nested transfer verbs are: PhoneNumber, SipUri.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(transfer_to = [], attributes = {})
-        super("Transfer", nil, transfer_to, attributes)
+        super('Transfer', nil, transfer_to, attributes)
         
         @attribute_map = {
           transfer_caller_id: 'transferCallerId',                               # Optional [String]: The caller ID to use when the call is transferred, if different. Must be in E.164 format (e.g. +15555555555) or be one of the following strings Restricted, Anonymous, Private, or Unavailable. Leave as default to pass along the number of the remote party. Defaults to None.

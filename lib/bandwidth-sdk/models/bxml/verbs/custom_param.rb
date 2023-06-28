@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("CustomParam", nil, attributes)
+        super('CustomParam', nil, attributes)
         
         @attribute_map = {
           name: 'name',   # [String]: The name of this parameter, up to 256 characters.

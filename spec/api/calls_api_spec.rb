@@ -13,10 +13,10 @@ describe 'CallsApi' do
     @call_timeout = 30.0
     @callback_timeout = 15.0
     @answer_method = Bandwidth::CallbackMethodEnum::POST
-    @answer_url = BASE_CALLBACK_URL + "/callbacks/answer"
+    @answer_url = BASE_CALLBACK_URL + '/callbacks/answer'
     @answer_fallback_method = Bandwidth::CallbackMethodEnum::POST
     @disconnect_method = Bandwidth::CallbackMethodEnum::GET
-    @disconnect_url = BASE_CALLBACK_URL + "/callbacks/disconnect"
+    @disconnect_url = BASE_CALLBACK_URL + '/callbacks/disconnect'
     @priority = 5
     @direction = Bandwidth::CallDirectionEnum::OUTBOUND
     @state = 'disconnected'
@@ -30,15 +30,15 @@ describe 'CallsApi' do
     @tag = 'test tag'
 
     # stubs
-    @create_call_headers_stub = { "content-type" => "application/json" }
+    @create_call_headers_stub = { 'content-type' => 'application/json' }
     @create_call_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{@enqueued_time}\",\"callUrl\":\"#{@call_url}\",\"callTimeout\":#{@call_timeout},\"callbackTimeout\":#{@callback_timeout},\"tag\":\"#{@tag}\",\"answerMethod\":\"#{@answer_method}\",\"answerUrl\":\"#{@answer_url}\",\"answerFallbackMethod\":\"#{@answer_fallback_method}\",\"disconnectMethod\":\"#{@disconnect_method}\",\"disconnectUrl\":\"#{@disconnect_url}\",\"priority\":#{@priority}}"
-    @create_call_bad_request_stub = "{\"type\":\"validation\",\"description\":\"Invalid to: must be a valid SIP URI or an E164 TN\"}"
-    @get_call_state_headers_stub = { "content-type" => "application/json" }
+    @create_call_bad_request_stub = '{"type":"validation","description":"Invalid to: must be a valid SIP URI or an E164 TN"}'
+    @get_call_state_headers_stub = { 'content-type' => 'application/json' }
     @get_call_state_body_stub = "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{@call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{@direction}\",\"state\":\"#{@state}\",\"stirShaken\":#{@stir_shaken},\"enqueuedTime\":\"#{@enqueued_time}\",\"startTime\":\"#{@start_time}\",\"endTime\":\"#{@end_time}\",\"disconnectCause\":\"#{@disconnect_cause}\",\"errorMessage\":\"#{@error_message}\",\"errorId\":\"#{@error_id}\",\"lastUpdate\":\"#{@last_update}\"}"
-    @get_call_state_not_found_stub = "{\"type\":\"validation\",\"description\":\"Call does-not-exist was not found.\"}"
-    @get_call_state_unauthorized_stub = "{\"type\":\"authentication-error\",\"description\":\"The credentials provided were invalid\"}"
-    @get_call_state_forbidden_stub = "{\"type\":\"authorization-error\",\"description\":\"Access is denied\"}"
-    @update_call_headers_stub = { "content-length" => "0" }
+    @get_call_state_not_found_stub = '{"type":"validation","description":"Call does-not-exist was not found."}'
+    @get_call_state_unauthorized_stub = '{"type":"authentication-error","description":"The credentials provided were invalid"}'
+    @get_call_state_forbidden_stub = '{"type":"authorization-error","description":"Access is denied"}'
+    @update_call_headers_stub = { 'content-length' => '0' }
   end
 
   describe 'test an instance of CallsApi' do
@@ -54,13 +54,13 @@ describe 'CallsApi' do
       to_return(status: 201, headers: @create_call_headers_stub, body: @create_call_body_stub)
 
       amd_config = Bandwidth::MachineDetectionConfiguration.new(
-        mode: "async",
+        mode: 'async',
         detection_timeout: 5.0,
         silence_timeout: 5.0,
         speech_threshold: 5.0,
         speech_end_threshold: 5.0,
         delay_result: true,
-        callback_url: BASE_CALLBACK_URL + "/machineDetection",
+        callback_url: BASE_CALLBACK_URL + '/machineDetection',
         callback_method: Bandwidth::CallbackMethodEnum::POST
       )
 
@@ -172,7 +172,7 @@ describe 'CallsApi' do
 
       update_call_body = Bandwidth::UpdateCall.new(
         state: Bandwidth::CallStateEnum::ACTIVE,
-        redirect_url: MANTECA_BASE_URL + "/bxml/pause"
+        redirect_url: MANTECA_BASE_URL + '/bxml/pause'
       )
 
       data, status_code, headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, @call_id, update_call_body)
@@ -212,7 +212,7 @@ describe 'CallsApi' do
       stub_request(:put, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{@call_id}/bxml").
       to_return(status: 204)
 
-      update_bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is a test bxml response</SpeakSentence><Pause duration=\"3\"/></Bxml>"
+      update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>'
 
       data, status_code, headers = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, @call_id, update_bxml)
 

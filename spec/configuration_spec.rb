@@ -28,7 +28,7 @@ describe Bandwidth::Configuration do
   describe '#base_url' do
     it 'should have the default value' do
       # uncomment below to test default value of the base path
-      expect(config.base_url).to eq("")
+      expect(config.base_url).to eq('')
     end
 
     it 'should remove trailing slashes' do

@@ -33,7 +33,7 @@ describe Bandwidth::ApiClient do
       end
 
       context 'base_path' do
-        it "prepends a slash to base_path" do
+        it 'prepends a slash to base_path' do
           Bandwidth.configure { |c| c.base_path = 'v4/dog' }
           expect(Bandwidth::Configuration.default.base_path).to eq('/v4/dog')
         end
@@ -43,7 +43,7 @@ describe Bandwidth::ApiClient do
           expect(Bandwidth::Configuration.default.base_path).to eq('/v4/dog')
         end
 
-        it "ends up as a blank string if nil" do
+        it 'ends up as a blank string if nil' do
           Bandwidth.configure { |c| c.base_path = nil }
           expect(Bandwidth::Configuration.default.base_path).to eq('')
         end
@@ -87,7 +87,7 @@ describe Bandwidth::ApiClient do
   end
 
   describe '#deserialize' do
-    it "handles Array<Integer>" do
+    it 'handles Array<Integer>' do
       api_client = Bandwidth::ApiClient.new
       headers = { 'Content-Type' => 'application/json' }
       response = double('response', headers: headers, body: '[12, 34]')
@@ -115,7 +115,7 @@ describe Bandwidth::ApiClient do
     end
   end
 
-  describe "#object_to_hash" do
+  describe '#object_to_hash' do
     it 'ignores nils and includes empty arrays' do
       # uncomment below to test object_to_hash for model
       # api_client = Bandwidth::ApiClient.new
@@ -229,7 +229,7 @@ describe Bandwidth::ApiClient do
 
       call_body_bad = Bandwidth::CreateCall.new(
         application_id: BW_VOICE_APPLICATION_ID,
-        to: "+1invalid",
+        to: '+1invalid',
         from: BW_NUMBER,
         answer_url: @answer_url,
         answer_method: @answer_method,
