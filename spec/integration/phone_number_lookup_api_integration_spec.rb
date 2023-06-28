@@ -1,9 +1,7 @@
-
-require 'json'
-
 # Integration Tests for Bandwidth::PhoneNumberLookupApi
 describe 'PhoneNumberLookupApi Integration Tests' do
   before(:all) do
+    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -12,20 +10,24 @@ describe 'PhoneNumberLookupApi Integration Tests' do
     $lookup_request_id = ""
   end
 
+  after(:all) do
+    WebMock.disable_net_connect!
+  end
+
   # Create Lookup
   describe 'create_lookup' do
     it 'creates a tn lookup request' do
       tn_body = Bandwidth::LookupRequest.new(
         tns: [BW_NUMBER]
       )
-      response = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
+      data, status_code, headers = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
 
-      expect(response[CODE]).to eq(202)
-      expect(response[DATA]).to be_instance_of(Bandwidth::CreateLookupResponse)
-      expect(response[DATA].request_id.length).to eq(36)
-      expect(response[DATA].status).to be_instance_of(String)
+      expect(status_code).to eq(202)
+      expect(data).to be_instance_of(Bandwidth::CreateLookupResponse)
+      expect(data.request_id.length).to eq(36)
+      expect(data.status).to be_instance_of(String)
 
-      $lookup_request_id  = response[DATA].request_id
+      $lookup_request_id  = data.request_id
       sleep(1)
     end
   end
@@ -33,14 +35,14 @@ describe 'PhoneNumberLookupApi Integration Tests' do
   # Get Lookup Status
   describe 'get_lookup_status' do
     it 'gets lookup status' do
-      response = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
+      data, status_code, headers = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
 
-      expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_instance_of(Bandwidth::LookupStatus)
-      expect(response[DATA].request_id).to eq($lookup_request_id)
-      expect(response[DATA].status).to be_instance_of(String)
-      expect(response[DATA].result[0].response_code).to be_instance_of(Integer)
-      expect(response[DATA].result[0].e_164_format).to eq(BW_NUMBER)
+      expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Bandwidth::LookupStatus)
+      expect(data.request_id).to eq($lookup_request_id)
+      expect(data.status).to be_instance_of(String)
+      expect(data.result[0].response_code).to be_instance_of(Integer)
+      expect(data.result[0].e_164_format).to eq(BW_NUMBER)
     end
   end
 
@@ -72,8 +74,8 @@ describe 'PhoneNumberLookupApi Integration Tests' do
 
     it 'causes a 401 error' do
       Bandwidth.configure do |config|
-        config.username = 'bad_username'
-        config.password = 'bad_password'
+        config.username = UNAUTHORIZED_USERNAME
+        config.password = UNAUTHORIZED_PASSWORD
       end
 
       tn_body = Bandwidth::LookupRequest.new(
@@ -89,4 +91,4 @@ describe 'PhoneNumberLookupApi Integration Tests' do
     end
   end
 
-end if false # (`if false` skips this entire block)
+end
