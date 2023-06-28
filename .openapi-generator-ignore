@@ -6,3 +6,4 @@
 /spec/api_client_spec.rb
 Rakefile
 .gitignore
+.rubocop.yml
