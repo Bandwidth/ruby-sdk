@@ -1,6 +1,3 @@
-
-require 'json'
-
 # Integration Tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi Integration Tests' do
   before(:all) do

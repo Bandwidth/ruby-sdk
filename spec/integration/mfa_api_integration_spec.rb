@@ -1,6 +1,3 @@
-
-require 'json'
-
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
   before(:all) do
