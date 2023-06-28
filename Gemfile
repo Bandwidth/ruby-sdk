@@ -7,4 +7,5 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop', '~> 1.52.0'
   gem 'webmock', '~> 3.18.0'
+  gem 'simplecov', '~> 0.21.2'
 end
