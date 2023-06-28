@@ -1,6 +1,6 @@
 # Unit tests for Bandwidth::MessagesApi
 describe 'MessagesApi' do
-  before do
+  before(:all) do
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -145,6 +145,7 @@ describe 'MessagesApi' do
       data, status_code, headers = @messaging_api_instance.list_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
 
       expect(status_code).to eq(200)
+      expect(headers).to eq(@list_messages_headers_stub)
       expect(data).to be_instance_of(Bandwidth::MessagesList)
       expect(data.total_count).to eq(@total_count)
       expect(data.page_info.next_page).to eq(@next_page_url)
