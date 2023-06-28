@@ -12,20 +12,20 @@ OpenAPI Generator version: 6.5.0
 
 =end
 
-$:.push File.expand_path("../lib", __FILE__)
-require "bandwidth-sdk/version"
+$:.push File.expand_path('../lib', __FILE__)
+require 'bandwidth-sdk/version'
 
 Gem::Specification.new do |s|
-  s.name        = "bandwidth-sdk"
+  s.name        = 'bandwidth-sdk'
   s.version     = Bandwidth::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Bandwidth"]
-  s.email       = ["dx@bandwidth.com"]
-  s.homepage    = "https://github.com/Bandwidth/ruby-sdk"
-  s.summary     = "Bandwidth Ruby SDK"
-  s.description = "The official client SDK for Bandwidth&#39;s Voice, Messaging, MFA, and WebRTC APIs"
-  s.license     = "MIT"
-  s.required_ruby_version = ">=2.7"
+  s.authors     = ['Bandwidth']
+  s.email       = ['dx@bandwidth.com']
+  s.homepage    = 'https://github.com/Bandwidth/ruby-sdk'
+  s.summary     = 'Bandwidth Ruby SDK'
+  s.description = 'The official client SDK for Bandwidth&#39;s Voice, Messaging, MFA, and WebRTC APIs'
+  s.license     = 'MIT'
+  s.required_ruby_version = '>=2.7'
 
   s.add_runtime_dependency 'faraday', '>= 1.0.1', '< 3.0'
   s.add_runtime_dependency 'faraday-multipart'
@@ -36,5 +36,5 @@ Gem::Specification.new do |s|
   s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }
   s.test_files    = `find spec/*`.split("\n")
   s.executables   = []
-  s.require_paths = ["lib"]
+  s.require_paths = ['lib']
 end
