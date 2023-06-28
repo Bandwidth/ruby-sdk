@@ -1,4 +1,5 @@
 require_relative '../call_utils'
+
 # Integration Tests for Bandwidth::CallsApi
 describe 'CallsApi Integration Tests' do
   before(:all) do
