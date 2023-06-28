@@ -7,7 +7,7 @@ describe 'RecordingsApi' do
     end
     @recordings_api_instance = Bandwidth::RecordingsApi.new
 
-    # recordings info
+    # recording info
     @call_id = 'c-3f758f24-40c0bd9f-0a8e-4ab6-88d4-c88a2e961c7d'
     @recording_id = 'r-fbe05094-87f9b821-e110-4bfb-ac57-82b2bf2bb3d5'
     @duration = 'PT4.478S'

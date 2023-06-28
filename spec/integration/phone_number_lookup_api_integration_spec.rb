@@ -7,6 +7,8 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       config.password = BW_PASSWORD
     end
     @api_instance_tnlookup = Bandwidth::PhoneNumberLookupApi.new
+
+    # lookup info
     $lookup_request_id = ''
   end
 
