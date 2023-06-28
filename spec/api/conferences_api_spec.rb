@@ -108,8 +108,8 @@ describe 'ConferencesApi' do
       expect(data.active_members[0].call_id).to eq(@call_id)
       expect(data.active_members[0].conference_id).to eq(@conference_id)
       expect(data.active_members[0].member_url).to eq(@member_url)
-      expect(data.active_members[0].mute).to eq(false)
-      expect(data.active_members[0].hold).to eq(false)
+      expect(data.active_members[0].mute).to be false
+      expect(data.active_members[0].hold).to be false
       expect(data.active_members[0].call_ids_to_coach).to eq([])
     end
 
@@ -144,8 +144,8 @@ describe 'ConferencesApi' do
       expect(data.conference_id).to eq(@conference_id)
       expect(data.call_id).to eq(@call_id)
       expect(data.member_url).to eq(@member_url)
-      expect(data.mute).to eq(false)
-      expect(data.hold).to eq(false)
+      expect(data.mute).to be false
+      expect(data.hold).to be false
       expect(data.call_ids_to_coach).to eq([])
     end
 

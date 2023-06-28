@@ -32,7 +32,7 @@ describe Bandwidth::DeferredResult do
       })
       expect(deferred_result_from_hash).to be_instance_of(Bandwidth::DeferredResult)
       expect(deferred_result_from_hash.result).to eq({ key: 'value' })
-      expect(deferred_result_from_hash.set_or_expired).to eq(true)
+      expect(deferred_result_from_hash.set_or_expired).to be true
     end
   end
 
