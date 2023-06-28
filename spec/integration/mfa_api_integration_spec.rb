@@ -59,10 +59,10 @@ describe 'MFAApi Integration Tests' do
   describe 'verify_code' do
     it 'verifies mfa code' do
       req_schema = Bandwidth::VerifyCodeRequest.new(
-        to: "+1000" + rand(1...10000000).to_s,
-        scope: "2FA",
+        to: '+1000' + rand(1...10000000).to_s,
+        scope: '2FA',
         expiration_time_in_minutes: 3,
-        code: "12345"
+        code: '12345'
       )
 
       data, status_code, headers = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
@@ -79,7 +79,7 @@ describe 'MFAApi Integration Tests' do
       req_schema = Bandwidth::CodeRequest.new(
         to: USER_NUMBER,
         from: BW_NUMBER,
-        application_id: "not_an_application_id",
+        application_id: 'not_an_application_id',
         message: @message,
         digits: @digits
       )

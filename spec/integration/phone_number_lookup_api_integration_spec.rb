@@ -7,7 +7,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       config.password = BW_PASSWORD
     end
     @api_instance_tnlookup = Bandwidth::PhoneNumberLookupApi.new
-    $lookup_request_id = ""
+    $lookup_request_id = ''
   end
 
   after(:all) do
@@ -50,7 +50,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
   describe 'http error' do
     it 'causes a 400 error' do
       tn_body_bad = Bandwidth::LookupRequest.new(
-        tns: ["+1invalid"]
+        tns: ['+1invalid']
       )
 
       expect {
@@ -62,7 +62,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
     end
     
     it 'causes a 404 error' do
-      req_id_dne = "12345678-abcd-cdef-9876-12345678abcd"
+      req_id_dne = '12345678-abcd-cdef-9876-12345678abcd'
 
       expect {
         @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, req_id_dne)
