@@ -2,8 +2,6 @@
 describe 'ConferencesApi' do
   before(:all) do
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
       config.return_binary_data = true
       config.debugging = true
     end

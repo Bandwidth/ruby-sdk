@@ -2,8 +2,6 @@
 describe 'CallsApi' do
   before(:all) do
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
       config.debugging = true
     end
     @calls_api_instance = Bandwidth::CallsApi.new

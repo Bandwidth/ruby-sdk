@@ -2,8 +2,6 @@
 describe 'MessagesApi' do
   before(:all) do
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
       config.debugging = true
     end
     @messaging_api_instance = Bandwidth::MessagesApi.new
