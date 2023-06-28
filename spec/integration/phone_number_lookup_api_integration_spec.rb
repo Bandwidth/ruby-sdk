@@ -41,6 +41,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       expect(data).to be_instance_of(Bandwidth::LookupStatus)
       expect(data.request_id).to eq($lookup_request_id)
       expect(data.status).to be_instance_of(String)
+      expect(data.result).to be_instance_of(Array)
       expect(data.result[0].response_code).to be_instance_of(Integer)
       expect(data.result[0].e_164_format).to eq(BW_NUMBER)
     end

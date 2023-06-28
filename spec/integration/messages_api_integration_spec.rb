@@ -85,6 +85,7 @@ describe 'MessagesApi Integration Tests' do
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::MessagesList)
+      expect(data.messages).to be_instance_of(Array)
       expect(data.messages[0]).to be_instance_of(Bandwidth::ListMessageItem)
       expect(data.messages[0].account_id).to eq(BW_ACCOUNT_ID)
       expect(data.messages[0].message_direction).to eq(@list_message_direction)

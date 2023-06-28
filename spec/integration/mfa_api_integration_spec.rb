@@ -69,7 +69,7 @@ describe 'MFAApi Integration Tests' do
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::VerifyCodeResponse)
-      expect(data.valid).to be_instance_of(FalseClass)
+      expect(data.valid).to be false
     end
   end
 

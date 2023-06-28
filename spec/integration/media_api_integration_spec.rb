@@ -42,6 +42,7 @@ describe 'MediaApi Integration Tests' do
     it 'lists media' do
       data, status_code, headers = @api_instance_media.list_media_with_http_info(BW_ACCOUNT_ID)
       expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::Media)
       expect(data[0].content).to be_instance_of(String)
       expect(data[0].content_length).to be > 0
