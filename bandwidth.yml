@@ -1281,6 +1281,7 @@ components:
           example: 9902
         receiveTime:
           type: string
+          format: date-time
           description: The ISO 8601 datetime of the message.
           example: 2020-04-07T14:03:07.000Z
         carrierName:

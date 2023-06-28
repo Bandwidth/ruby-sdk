@@ -125,7 +125,7 @@ module Bandwidth
         :'message_type' => :'MessageTypeEnum',
         :'segment_count' => :'Integer',
         :'error_code' => :'Integer',
-        :'receive_time' => :'String',
+        :'receive_time' => :'Time',
         :'carrier_name' => :'String',
         :'message_size' => :'Integer',
         :'message_length' => :'Integer',

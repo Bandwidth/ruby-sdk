@@ -13,7 +13,7 @@
 | **message_type** | [**MessageTypeEnum**](MessageTypeEnum.md) |  | [optional] |
 | **segment_count** | **Integer** | The number of segments the message was sent as. | [optional] |
 | **error_code** | **Integer** | The numeric error code of the message. | [optional] |
-| **receive_time** | **String** | The ISO 8601 datetime of the message. | [optional] |
+| **receive_time** | **Time** | The ISO 8601 datetime of the message. | [optional] |
 | **carrier_name** | **String** | The name of the carrier. Not currently supported for MMS coming soon. | [optional] |
 | **message_size** | **Integer** | The size of the message including message content and headers. | [optional] |
 | **message_length** | **Integer** | The length of the message content. | [optional] |
@@ -37,7 +37,7 @@ instance = Bandwidth::ListMessageItem.new(
   message_type: null,
   segment_count: 1,
   error_code: 9902,
-  receive_time: 2020-04-07T14:03:07.000Z,
+  receive_time: 2020-04-07T14:03:07Z,
   carrier_name: other,
   message_size: 27,
   message_length: 18,
