@@ -92,6 +92,7 @@ describe 'MediaApi' do
 
       expect(status_code).to eq(200)
       expect(headers).to eq(@list_media_headers_stub)
+      expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::Media)
       expect(data[0].content_length).to eq(@media_data.length)
       expect(data[0].media_name).to eq(@media_name)

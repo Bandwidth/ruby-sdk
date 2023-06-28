@@ -149,6 +149,7 @@ describe 'MessagesApi' do
       expect(data.page_info.next_page).to eq(@next_page_url)
       expect(data.page_info.next_page_token).to eq(@next_page_token)
       expect(data.messages.length).to eq(@total_count)
+      expect(data.messages).to be_a(Array)
       expect(data.messages[0]).to be_instance_of(Bandwidth::ListMessageItem)
       expect(data.messages[0].message_id).to eq(@mms_id)
       expect(data.messages[0].account_id).to eq(BW_ACCOUNT_ID)

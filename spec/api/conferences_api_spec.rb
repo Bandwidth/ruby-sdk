@@ -231,6 +231,7 @@ describe 'ConferencesApi' do
 
       expect(status_code).to eq(200)
       expect(headers).to eq(@list_conference_recordings_headers_stub)
+      expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
       expect(data[0].account_id).to eq(BW_ACCOUNT_ID)
       expect(data[0].conference_id).to eq(@conference_id)
@@ -276,6 +277,7 @@ describe 'ConferencesApi' do
 
       expect(status_code).to eq(200)
       expect(headers).to eq(@list_conferences_headers_stub)
+      expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::Conference)
       expect(data[0].id).to eq(@conference_id)
       expect(data[0].name).to eq(@test_id)

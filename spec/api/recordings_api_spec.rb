@@ -250,6 +250,7 @@ describe 'RecordingsApi' do
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::TranscriptionList)
+      expect(data.transcripts).to be_instance_of(Array)
       expect(data.transcripts[0]).to be_instance_of(Bandwidth::Transcription)
       expect(data.transcripts[0].text).to eq(@text)
       expect(data.transcripts[0].confidence).to eq(@confidence)
@@ -289,6 +290,7 @@ describe 'RecordingsApi' do
       data, status_code, headers = @recordings_api_instance.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::CallRecordingMetadata)
       expect(data[0].application_id).to eq(BW_VOICE_APPLICATION_ID)
       expect(data[0].account_id).to eq(BW_ACCOUNT_ID)
@@ -324,6 +326,7 @@ describe 'RecordingsApi' do
       data, status_code, headers = @recordings_api_instance.list_call_recordings_with_http_info(BW_ACCOUNT_ID, @call_id)
 
       expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Array)
       expect(data[0].application_id).to eq(BW_VOICE_APPLICATION_ID)
       expect(data[0].account_id).to eq(BW_ACCOUNT_ID)
       expect(data[0].call_id).to eq(@call_id)
