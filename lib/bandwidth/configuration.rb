@@ -29,7 +29,7 @@ module Bandwidth
   class Configuration
     # The attribute readers for properties.
     attr_reader :http_client, :timeout, :max_retries, :retry_interval, :backoff_factor,
-                :retry_statuses, :retry_methods, :environment, :base_url,
+                :retry_statuses, :retry_methods, :request_debug_log, :environment, :base_url,
                 :messaging_basic_auth_user_name, :messaging_basic_auth_password,
                 :multi_factor_auth_basic_auth_user_name, :multi_factor_auth_basic_auth_password,
                 :phone_number_lookup_basic_auth_user_name, :phone_number_lookup_basic_auth_password,
@@ -44,6 +44,7 @@ module Bandwidth
                    backoff_factor: 2,
                    retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
                    retry_methods: %i[get put get put],
+                   request_debug_log: false,
                    environment: Environment::PRODUCTION,
                    base_url: 'https://www.example.com',
                    messaging_basic_auth_user_name: 'TODO: Replace',
@@ -74,6 +75,9 @@ module Bandwidth
 
       # A list of HTTP methods to retry
       @retry_methods = retry_methods
+
+      # A flag to enable/disable request debug logging
+      @request_debug_log = request_debug_log
 
       # Current API environment
       @environment = String(environment)
@@ -117,6 +121,7 @@ module Bandwidth
 
     def clone_with(timeout: nil, max_retries: nil, retry_interval: nil,
                    backoff_factor: nil, retry_statuses: nil, retry_methods: nil,
+                   request_debug_log: nil,
                    environment: nil, base_url: nil,
                    messaging_basic_auth_user_name: nil,
                    messaging_basic_auth_password: nil,
@@ -134,6 +139,7 @@ module Bandwidth
       backoff_factor ||= self.backoff_factor
       retry_statuses ||= self.retry_statuses
       retry_methods ||= self.retry_methods
+      request_debug_log ||= self.request_debug_log
       environment ||= self.environment
       base_url ||= self.base_url
       messaging_basic_auth_user_name ||= self.messaging_basic_auth_user_name
@@ -151,6 +157,7 @@ module Bandwidth
         timeout: timeout, max_retries: max_retries,
         retry_interval: retry_interval, backoff_factor: backoff_factor,
         retry_statuses: retry_statuses, retry_methods: retry_methods,
+        request_debug_log: request_debug_log,
         environment: environment, base_url: base_url,
         messaging_basic_auth_user_name: messaging_basic_auth_user_name,
         messaging_basic_auth_password: messaging_basic_auth_password,
@@ -170,7 +177,8 @@ module Bandwidth
                         retry_interval: retry_interval,
                         backoff_factor: backoff_factor,
                         retry_statuses: retry_statuses,
-                        retry_methods: retry_methods)
+                        retry_methods: retry_methods,
+                        request_debug_log: request_debug_log)
     end
 
     # All the environments the SDK can run in.

@@ -14,6 +14,7 @@ module Bandwidth
     # The constructor.
     def initialize(timeout:, max_retries:, retry_interval:,
                    backoff_factor:, retry_statuses:, retry_methods:,
+                   request_debug_log: false,
                    cache: false, verify: true)
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
@@ -25,7 +26,14 @@ module Bandwidth
                                 backoff_factor: backoff_factor,
                                 retry_statuses: retry_statuses,
                                 methods: retry_methods
+
+        # this should only be used for debug purposes because it includes all headers including authorization
+        if request_debug_log
+          faraday.response :logger, nil, { headers: true, bodies: true, errors: true }
+        end
+
         faraday.adapter Faraday.default_adapter
+
         faraday.options[:params_encoder] = Faraday::FlatParamsEncoder
         faraday.options[:timeout] = timeout if timeout.positive?
       end
