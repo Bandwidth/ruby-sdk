@@ -113,6 +113,22 @@ describe 'MessagesApi' do
       expect(data.priority).to eq(@priority)
       expect(data.expiration).to eq(Time.parse(@expiration_time))
     end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        resp = @messaging_api_instance.create_message(nil, {})
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(ArgumentError)
+      }
+    end
+
+    it 'causes an ArgumentError for a missing message_request' do
+      expect {
+        @messaging_api_instance.create_message(BW_ACCOUNT_ID, nil)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(ArgumentError)
+      }
+    end
   end
 
   # List Messages
@@ -170,6 +186,14 @@ describe 'MessagesApi' do
       expect(data.messages[1].recipient_count).to eq(nil)
       expect(data.messages[1].campaign_class).to eq(nil)
       expect(data.messages[1].campaign_id).to eq(nil)
+    end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        resp = @messaging_api_instance.list_messages(nil)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(ArgumentError)
+      }
     end
   end
 
