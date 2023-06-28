@@ -250,8 +250,8 @@ module Bandwidth
     def server_settings
       [
         {
-          url: '',
-          description: 'No description provided',
+          url: "",
+          description: "No description provided",
         }
       ]
     end
@@ -260,212 +260,212 @@ module Bandwidth
       {
         "CallsApi.create_call": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "CallsApi.get_call_state": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "CallsApi.update_call": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "CallsApi.update_call_bxml": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.download_conference_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.get_conference": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.get_conference_member": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.get_conference_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.list_conference_recordings": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.list_conferences": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.update_conference": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.update_conference_bxml": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "ConferencesApi.update_conference_member": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MFAApi.generate_messaging_code": [
           {
-          url: 'https://mfa.bandwidth.com/api/v1',
-          description: 'Production',
+          url: "https://mfa.bandwidth.com/api/v1",
+          description: "Production",
           }
         ],
         "MFAApi.generate_voice_code": [
           {
-          url: 'https://mfa.bandwidth.com/api/v1',
-          description: 'Production',
+          url: "https://mfa.bandwidth.com/api/v1",
+          description: "Production",
           }
         ],
         "MFAApi.verify_code": [
           {
-          url: 'https://mfa.bandwidth.com/api/v1',
-          description: 'Production',
+          url: "https://mfa.bandwidth.com/api/v1",
+          description: "Production",
           }
         ],
         "MediaApi.delete_media": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MediaApi.get_media": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MediaApi.list_media": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MediaApi.upload_media": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MessagesApi.create_message": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "MessagesApi.list_messages": [
           {
-          url: 'https://messaging.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "PhoneNumberLookupApi.create_lookup": [
           {
-          url: 'https://numbers.bandwidth.com/api/v1',
-          description: 'Production',
+          url: "https://numbers.bandwidth.com/api/v1",
+          description: "Production",
           }
         ],
         "PhoneNumberLookupApi.get_lookup_status": [
           {
-          url: 'https://numbers.bandwidth.com/api/v1',
-          description: 'Production',
+          url: "https://numbers.bandwidth.com/api/v1",
+          description: "Production",
           }
         ],
         "RecordingsApi.delete_call_transcription": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.delete_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.delete_recording_media": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.download_call_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.get_call_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.get_call_transcription": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.list_account_call_recordings": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.list_call_recordings": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.transcribe_call_recording": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "RecordingsApi.update_call_recording_state": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
         "StatisticsApi.get_statistics": [
           {
-          url: 'https://voice.bandwidth.com/api/v2',
-          description: 'Production',
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
           }
         ],
       }
@@ -492,13 +492,13 @@ module Bandwidth
       server[:variables].each do |name, variable|
         if variables.key?(name)
           if (!server[:variables][name].key?(:enum_values) || server[:variables][name][:enum_values].include?(variables[name]))
-            url.gsub! '{' + name.to_s + '}', variables[name]
+            url.gsub! "{" + name.to_s + "}", variables[name]
           else
             fail ArgumentError, "The variable `#{name}` in the server URL has invalid value #{variables[name]}. Must be #{server[:variables][name][:enum_values]}."
           end
         else
           # use default value
-          url.gsub! '{' + name.to_s + '}', server[:variables][name][:default_value]
+          url.gsub! "{" + name.to_s + "}", server[:variables][name][:default_value]
         end
       end
 
