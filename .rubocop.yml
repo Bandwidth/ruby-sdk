@@ -112,6 +112,11 @@ Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
 
+#Check quotes inside the string interpolation.
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
 # Detect hard tabs, no hard tabs.
 Layout/IndentationStyle:
   Enabled: true
