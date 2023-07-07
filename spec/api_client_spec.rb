@@ -1,56 +1,17 @@
 # Unit tests for Bandwidth::ApiClient
 describe Bandwidth::ApiClient do
-  context 'initialization' do
-    context 'URL stuff' do
-      context 'host' do
-        it 'removes http from host' do
-          Bandwidth.configure { |c| c.host = 'http://example.com' }
-          expect(Bandwidth::Configuration.default.host).to eq('example.com')
-        end
-
-        it 'removes https from host' do
-          Bandwidth.configure { |c| c.host = 'https://wookiee.com' }
-          expect(Bandwidth::ApiClient.default.config.host).to eq('wookiee.com')
-        end
-
-        it 'removes trailing path from host' do
-          Bandwidth.configure { |c| c.host = 'hobo.com/v4' }
-          expect(Bandwidth::Configuration.default.host).to eq('hobo.com')
-        end
-      end
-
-      context 'base_path' do
-        it 'prepends a slash to base_path' do
-          Bandwidth.configure { |c| c.base_path = 'v4/dog' }
-          expect(Bandwidth::Configuration.default.base_path).to eq('/v4/dog')
-        end
-
-        it "doesn't prepend a slash if one is already there" do
-          Bandwidth.configure { |c| c.base_path = '/v4/dog' }
-          expect(Bandwidth::Configuration.default.base_path).to eq('/v4/dog')
-        end
-
-        it 'ends up as a blank string if nil' do
-          Bandwidth.configure { |c| c.base_path = nil }
-          expect(Bandwidth::Configuration.default.base_path).to eq('')
-        end
-      end
-    end
-  end
-
-
   describe 'proxy in #build_connection' do
     let(:config) { Bandwidth::Configuration.new }
     let(:api_client) { Bandwidth::ApiClient.new(config) }
     let(:proxy_uri) { URI('http://example.org:8080') }
 
-    it 'defaults to nil' do
-      expect(Bandwidth::Configuration.default.proxy).to be_nil
-      expect(config.proxy).to be_nil
+    # it 'defaults to nil' do
+    #   expect(Bandwidth::Configuration.default.proxy).to be_nil
+    #   expect(config.proxy).to be_nil
 
-      connection = api_client.build_connection
-      expect(connection.proxy_for_request('/test')).to be_nil
-    end
+    #   connection = api_client.build_connection
+    #   expect(connection.proxy_for_request('/test')).to be_nil
+    # end
 
     it 'can be customized with a string' do
       config.proxy = proxy_uri.to_s

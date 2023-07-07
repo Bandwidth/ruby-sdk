@@ -10,8 +10,8 @@ describe Bandwidth::Configuration do
     @token = 'abcd1234'
     @server = [
       {
-        url: "https://voice.bandwidth.com/api/{enum_var}/{default_var}",
-        description: "Production",
+        url: 'https://voice.bandwidth.com/api/{enum_var}/{default_var}',
+        description: 'Production',
         variables: {
           enum_var: {
             enum_values: ['v1', 'v2', 'v3'],
@@ -116,7 +116,7 @@ describe Bandwidth::Configuration do
 
   describe '#server_url' do
     it 'returns URL with enum variable substitued' do
-      expect(config.server_url(0, {enum_var: 'v3'}, @server)).to eq('https://voice.bandwidth.com/api/v3/default_value')
+      expect(config.server_url(0, { enum_var: 'v3' }, @server)).to eq('https://voice.bandwidth.com/api/v3/default_value')
     end
 
     it 'causes an ArgumentError by passing an invalid index' do
@@ -129,7 +129,7 @@ describe Bandwidth::Configuration do
 
     it 'causes an ArgumentError by passing an invalid value to an enum variable' do
       expect {
-        config.server_url(0, {enum_var: 'v4'}, @server)
+        config.server_url(0, { enum_var: 'v4' }, @server)
       }.to raise_error { |e|
         expect(e).to be_instance_of(ArgumentError)
       }
@@ -154,12 +154,12 @@ describe Bandwidth::Configuration do
 
     it '#request' do
       config.request(:retry, max: 3, methods: [:get, :post], retry_statuses: [503])
-      expect(config.instance_variable_get('@middlewares')[:request]).to eq([[:retry, [{:max=>3, :methods=>[:get, :post], :retry_statuses=>[503]}], nil]])
+      expect(config.instance_variable_get('@middlewares')[:request]).to eq([[:retry, [{ :max => 3, :methods => [:get, :post], :retry_statuses => [503] }], nil]])
     end
 
     it '#response' do
       config.response(:logger, nil, { bodies: true, log_level: :debug })
-      expect(config.instance_variable_get('@middlewares')[:response]).to eq([[:logger, [nil, {:bodies=>true, :log_level=>:debug}], nil]])
+      expect(config.instance_variable_get('@middlewares')[:response]).to eq([[:logger, [nil, { :bodies => true, :log_level => :debug }], nil]])
     end
 
     it 'causes an ArgumentError by passing an invalid middleware operation' do
