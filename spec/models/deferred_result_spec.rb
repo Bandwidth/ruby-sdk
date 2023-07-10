@@ -10,17 +10,13 @@ describe Bandwidth::DeferredResult do
     it 'causes an ArgumentError by passing an Array to the initialize method' do
       expect {
         Bandwidth::DeferredResult.new([])
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError by passing an invalid attribute to the initialize method' do
       expect {
         Bandwidth::DeferredResult.new({ invalid: true })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

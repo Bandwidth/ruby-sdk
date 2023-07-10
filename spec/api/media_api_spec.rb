@@ -38,17 +38,13 @@ describe 'MediaApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @media_api_instance.delete_media(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing media_id' do
       expect {
         @media_api_instance.delete_media(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -68,17 +64,13 @@ describe 'MediaApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @media_api_instance.get_media(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing media_id' do
       expect {
         @media_api_instance.get_media(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -102,9 +94,7 @@ describe 'MediaApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @media_api_instance.list_media(nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -121,25 +111,19 @@ describe 'MediaApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @media_api_instance.upload_media(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing media_id' do
       expect {
         @media_api_instance.upload_media(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing body' do
       expect {
         @media_api_instance.upload_media(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

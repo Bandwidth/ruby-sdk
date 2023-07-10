@@ -51,17 +51,13 @@ describe 'MFAApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @mfa_api_instance.generate_messaging_code(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing code_request' do
       expect {
         @mfa_api_instance.generate_messaging_code(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -89,17 +85,13 @@ describe 'MFAApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @mfa_api_instance.generate_voice_code(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing code_request' do
       expect {
         @mfa_api_instance.generate_voice_code(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -126,17 +118,13 @@ describe 'MFAApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @mfa_api_instance.verify_code(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing cvarify_ode_request' do
       expect {
         @mfa_api_instance.verify_code(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

@@ -105,17 +105,13 @@ describe 'CallsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @calls_api_instance.create_call(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing create_call' do
       expect {
         @calls_api_instance.create_call(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -150,17 +146,13 @@ describe 'CallsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @calls_api_instance.get_call_state(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @calls_api_instance.get_call_state(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -184,25 +176,19 @@ describe 'CallsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @calls_api_instance.update_call(nil, '', {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @calls_api_instance.update_call(BW_ACCOUNT_ID, nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing update_call' do
       expect {
         @calls_api_instance.update_call(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -222,25 +208,19 @@ describe 'CallsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @calls_api_instance.update_call_bxml(nil, '', {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @calls_api_instance.update_call_bxml(BW_ACCOUNT_ID, nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing body' do
       expect {
         @calls_api_instance.update_call_bxml(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

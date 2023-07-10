@@ -115,17 +115,13 @@ describe 'MessagesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @messaging_api_instance.create_message(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing message_request' do
       expect {
         @messaging_api_instance.create_message(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -191,9 +187,7 @@ describe 'MessagesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @messaging_api_instance.list_messages(nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

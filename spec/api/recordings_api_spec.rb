@@ -56,25 +56,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.delete_call_transcription(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.delete_call_transcription(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.delete_call_transcription(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -92,25 +86,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.delete_recording(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.delete_recording(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.delete_recording(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -128,25 +116,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.delete_recording_media(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.delete_recording_media(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.delete_recording_media(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -166,25 +148,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.download_call_recording(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.download_call_recording(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.download_call_recording(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -218,25 +194,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.get_call_recording(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.get_call_recording(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.get_call_recording(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -259,25 +229,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.get_call_transcription(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.get_call_transcription(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.get_call_transcription(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -311,9 +275,7 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.list_account_call_recordings(nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -346,17 +308,13 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.list_call_recordings(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.list_call_recordings(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -379,33 +337,25 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.transcribe_call_recording(nil, '', '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.transcribe_call_recording(BW_ACCOUNT_ID, nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @recordings_api_instance.transcribe_call_recording(BW_ACCOUNT_ID, '', nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing transcribe_recording' do
       expect {
         @recordings_api_instance.transcribe_call_recording(BW_ACCOUNT_ID, '', '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -427,25 +377,19 @@ describe 'RecordingsApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @recordings_api_instance.update_call_recording_state(nil, '', {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
         @recordings_api_instance.update_call_recording_state(BW_ACCOUNT_ID, nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing update_call_recording' do
       expect {
         @recordings_api_instance.update_call_recording_state(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

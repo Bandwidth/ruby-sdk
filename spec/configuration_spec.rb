@@ -122,17 +122,13 @@ describe Bandwidth::Configuration do
     it 'causes an ArgumentError by passing an invalid index' do
       expect {
         config.server_url(100)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError by passing an invalid value to an enum variable' do
       expect {
         config.server_url(0, { enum_var: 'v4' }, @server)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -165,9 +161,7 @@ describe Bandwidth::Configuration do
     it 'causes an ArgumentError by passing an invalid middleware operation' do
       expect {
         config.set_faraday_middleware(:invalid_operation, Faraday::Request::UrlEncoded)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

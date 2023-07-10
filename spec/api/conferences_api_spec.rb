@@ -62,25 +62,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.download_conference_recording(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.download_conference_recording(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @conferences_api_instance.download_conference_recording(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -114,17 +108,13 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.get_conference(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.get_conference(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
   
@@ -150,25 +140,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.get_conference_member(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.get_conference_member(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing member_id' do
       expect {
         @conferences_api_instance.get_conference_member(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -199,25 +183,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.get_conference_recording(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.get_conference_recording(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
         @conferences_api_instance.get_conference_recording(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -249,17 +227,13 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.list_conference_recordings(nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.list_conference_recordings(BW_ACCOUNT_ID, nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -290,25 +264,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.list_conferences(nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for an invalid page_size' do
       expect {
         @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, { page_size: 1001 })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for an invalid page_size' do
       expect {
         @conferences_api_instance.list_conferences(BW_ACCOUNT_ID, { page_size: 0 })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -337,25 +305,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.update_conference(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.update_conference(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing update_conference' do
       expect {
         @conferences_api_instance.update_conference(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
   
@@ -374,25 +336,19 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.update_conference_bxml(nil, '', '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.update_conference_bxml(BW_ACCOUNT_ID, nil, '')
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing body' do
       expect {
         @conferences_api_instance.update_conference_bxml(BW_ACCOUNT_ID, '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
@@ -413,33 +369,25 @@ describe 'ConferencesApi' do
     it 'causes an ArgumentError for a missing account_id' do
       expect {
         resp = @conferences_api_instance.update_conference_member(nil, '', '', {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing conference_id' do
       expect {
         @conferences_api_instance.update_conference_member(BW_ACCOUNT_ID, nil, '', {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing member_id' do
       expect {
         @conferences_api_instance.update_conference_member(BW_ACCOUNT_ID, '', nil, {})
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing update_conference_member' do
       expect {
         @conferences_api_instance.update_conference_member(BW_ACCOUNT_ID, '', '', nil)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 

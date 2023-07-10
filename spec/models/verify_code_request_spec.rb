@@ -12,17 +12,13 @@ describe Bandwidth::VerifyCodeRequest do
     it 'causes an ArgumentError by passing an Array to the initialize method' do
       expect {
         Bandwidth::VerifyCodeRequest.new([])
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError by passing an invalid attribute to the initialize method' do
       expect {
         Bandwidth::VerifyCodeRequest.new({ invalid: true })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-      }
+      }.to raise_error(ArgumentError)
     end
   end
 
