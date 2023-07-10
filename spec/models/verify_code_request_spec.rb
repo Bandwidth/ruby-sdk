@@ -84,63 +84,39 @@ describe Bandwidth::VerifyCodeRequest do
     it '#to=' do
       expect {
         Bandwidth::VerifyCodeRequest.new({ to: nil })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('to cannot be nil')
-      }
+      }.to raise_error(ArgumentError, 'to cannot be nil')
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ to: 'invalid' })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('invalid value for "to", must conform to the pattern (?-mix:^\+[1-9]\d{1,14}$).')
-      }
+      }.to raise_error(ArgumentError, 'invalid value for "to", must conform to the pattern (?-mix:^\+[1-9]\d{1,14}$).')
     end
 
     it '#expiration_time_in_minutes=' do
       expect {
         Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: nil })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('expiration_time_in_minutes cannot be nil')
-      }
+      }.to raise_error(ArgumentError, 'expiration_time_in_minutes cannot be nil')
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: 16 })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('invalid value for "expiration_time_in_minutes", must be smaller than or equal to 15.')
-      }
+      }.to raise_error(ArgumentError, 'invalid value for "expiration_time_in_minutes", must be smaller than or equal to 15.')
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: 0 })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('invalid value for "expiration_time_in_minutes", must be greater than or equal to 1.')
-      }
+      }.to raise_error(ArgumentError, 'invalid value for "expiration_time_in_minutes", must be greater than or equal to 1.')
     end
 
     it '#code=' do
       expect {
         Bandwidth::VerifyCodeRequest.new({ code: nil })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('code cannot be nil')
-      }
+      }.to raise_error(ArgumentError, 'code cannot be nil')
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ code: '123456789' })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('invalid value for "code", the character length must be smaller than or equal to 8.')
-      }
+      }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 8.')
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ code: '123' })
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(ArgumentError)
-        expect(e.message).to eq('invalid value for "code", the character length must be great than or equal to 4.')
-      }
+      }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be great than or equal to 4.')
     end
   end
 end
