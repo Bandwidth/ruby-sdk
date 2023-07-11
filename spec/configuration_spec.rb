@@ -4,37 +4,34 @@ require 'uri'
 describe Bandwidth::Configuration do
   let(:config) { Bandwidth::Configuration.new }
   let(:faraday_connection) { Faraday::Connection.new }
-
-  before(:all) do
-    @uri = URI.parse(BASE_CALLBACK_URL + '/path')
-    @token = 'abcd1234'
-    @server = [
-      {
-        url: 'https://voice.bandwidth.com/api/{enum_var}/{default_var}',
-        description: 'Production',
-        variables: {
-          enum_var: {
-            enum_values: ['v1', 'v2', 'v3'],
-            default_value: 'v2'
-          },
-          default_var: {
-            default_value: 'default_value'
-          }
+  let(:uri ) { URI.parse(BASE_CALLBACK_URL + '/path') }
+  let(:token ) { 'abcd1234' }
+  let(:server ) { [
+    {
+      url: 'https://voice.bandwidth.com/api/{enum_var}/{default_var}',
+      description: 'Production',
+      variables: {
+        enum_var: {
+          enum_values: ['v1', 'v2', 'v3'],
+          default_value: 'v2'
+        },
+        default_var: {
+          default_value: 'default_value'
         }
       }
-    ]
-  end
+    }
+  ] }
 
   describe '#configure' do
     it 'configures a Configuration instance using a a block' do
       config.configure do |c|
-        c.scheme = @uri.scheme
-        c.host = @uri.host
-        c.base_path = @uri.path
+        c.scheme = uri.scheme
+        c.host = uri.host
+        c.base_path = uri.path
       end
-      expect(config.scheme).to eq(@uri.scheme)
-      expect(config.host).to eq(@uri.host)
-      expect(config.base_path).to eq(@uri.path)
+      expect(config.scheme).to eq(uri.scheme)
+      expect(config.host).to eq(uri.host)
+      expect(config.base_path).to eq(uri.path)
     end
   end
 
@@ -73,26 +70,26 @@ describe Bandwidth::Configuration do
 
   describe '#api_key_with_prefix' do
     it 'gets API key without prefix' do
-      config.api_key['Authorization'] = @token
-      expect(config.api_key_with_prefix('Authorization')).to eq(@token)
+      config.api_key['Authorization'] = token
+      expect(config.api_key_with_prefix('Authorization')).to eq(token)
     end
 
     it 'gets API key wit prefix' do
       config.api_key_prefix['Authorization'] = 'Token'
-      config.api_key['Authorization'] = @token
-      expect(config.api_key_with_prefix('Authorization')).to eq("Token #{@token}")
+      config.api_key['Authorization'] = token
+      expect(config.api_key_with_prefix('Authorization')).to eq("Token #{token}")
     end
   end
 
   describe '#access_token_with_refresh' do
     it 'gets the static access_token when no access_token_getter is defined' do
-      config.access_token = @token
-      expect(config.access_token_with_refresh).to eq(@token)
+      config.access_token = token
+      expect(config.access_token_with_refresh).to eq(token)
     end
 
     it 'gets access_token using access_token_getter' do
-      config.access_token_getter = proc { @token }
-      expect(config.access_token_with_refresh).to eq(@token)
+      config.access_token_getter = proc { token }
+      expect(config.access_token_with_refresh).to eq(token)
     end
   end
 
@@ -116,7 +113,7 @@ describe Bandwidth::Configuration do
 
   describe '#server_url' do
     it 'returns URL with enum variable substitued' do
-      expect(config.server_url(0, { enum_var: 'v3' }, @server)).to eq('https://voice.bandwidth.com/api/v3/default_value')
+      expect(config.server_url(0, { enum_var: 'v3' }, server)).to eq('https://voice.bandwidth.com/api/v3/default_value')
     end
 
     it 'causes an ArgumentError by passing an invalid index' do
@@ -127,7 +124,7 @@ describe Bandwidth::Configuration do
 
     it 'causes an ArgumentError by passing an invalid value to an enum variable' do
       expect {
-        config.server_url(0, { enum_var: 'v4' }, @server)
+        config.server_url(0, { enum_var: 'v4' }, server)
       }.to raise_error(ArgumentError)
     end
   end
