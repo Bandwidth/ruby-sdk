@@ -8,11 +8,14 @@ describe Bandwidth::ApiClient do
   let(:media_data) { '123456' }
   let(:media_headers) {{ 'content-type' => 'text/plain' }}
   let(:json_headers) {{ 'content-type' => 'application/json' }}
+  let(:multipart_headers) {{ 'Content-Type' => 'multipart/form-data' }}
+  let(:form_encoded_headers) {{ 'Content-Type' => 'application/x-www-form-urlencoded' }}
+  let(:error_data) { '{"error": true}' }
 
   describe '#call_api' do
     it 'calls api and returns a tempfile with name from content-disposition header' do
       stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
-      to_return(status: 200, body: media_data, headers: media_headers)
+      to_return(status: 200, headers: media_headers, body: media_data)
 
       opts = {
         operation: :"MediaApi.get_media",
@@ -25,14 +28,14 @@ describe Bandwidth::ApiClient do
       }
       data, status_code, headers = api_client.call_api(:GET, 'path', opts)
 
-      expect(data).to be_a(Tempfile)
       expect(status_code).to eq(200)
       expect(headers).to eq(media_headers)
+      expect(data).to be_a(Tempfile)
     end
 
     it 'calls api and returns a tempfile' do
       stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
-      to_return(status: 200, body: media_data, headers: named_media_headers)
+      to_return(status: 200, headers: named_media_headers, body: media_data)
 
       opts = {
         operation: :"MediaApi.get_media",
@@ -45,14 +48,14 @@ describe Bandwidth::ApiClient do
       }
       data, status_code, headers = api_client.call_api(:GET, 'path', opts)
 
-      expect(data).to be_a(Tempfile)
       expect(status_code).to eq(200)
       expect(headers).to eq(named_media_headers)
+      expect(data).to be_a(Tempfile)
     end
 
     it 'calls api and returns binary data' do
       stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
-      to_return(status: 200, body: media_data, headers: media_headers)
+      to_return(status: 200, headers: media_headers, body: media_data)
 
       api_client.config.return_binary_data = true
       api_client.config.debugging = true
@@ -68,14 +71,14 @@ describe Bandwidth::ApiClient do
       }
       data, status_code, headers = api_client.call_api(:GET, 'path', opts)
 
-      expect(data).to eq(media_data)
       expect(status_code).to eq(200)
       expect(headers).to eq(media_headers)
+      expect(data).to eq(media_data)
     end
 
     it 'calls api and returns a hash' do
       stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
-      to_return(status: 200, body: '{"id": 1}', headers: json_headers)
+      to_return(status: 200, headers: json_headers, body: '{"id": 1}')
 
       opts = {
         operation: :"MessagesApi.list_messages",
@@ -88,12 +91,12 @@ describe Bandwidth::ApiClient do
       }
       data, status_code, headers = api_client.call_api(:GET, 'path', opts)
 
-      expect(data).to eq({ id: 1 })
       expect(status_code).to eq(200)
       expect(headers).to eq(json_headers)
+      expect(data).to eq({ id: 1 })
     end
 
-    it 'calls api and returns nothing' do
+    it 'posts data and returns nothing' do
       stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
       to_return(status: 204)
 
@@ -110,8 +113,105 @@ describe Bandwidth::ApiClient do
       }
       data, status_code, headers = api_client.call_api(:POST, 'path', opts)
 
-      expect(data).to be nil
       expect(status_code).to eq(204)
+      expect(data).to be nil
+    end
+
+    it 'posts multipart/form-data and returns nothing' do
+      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      to_return(status: 204)
+
+      opts = {
+        operation: :"MediaApi.upload_media",
+        header_params: multipart_headers,
+        query_params: {},
+        form_params: { file: Tempfile.new('filename'), array: [1,2,3], string: '123' },
+        body: nil,
+        auth_names: ['Basic'],
+        return_type: nil
+      }
+      data, status_code, headers = api_client.call_api(:POST, 'path', opts)
+
+      expect(status_code).to eq(204)
+      expect(data).to be nil
+    end
+
+    it 'calls api and handles HTTP error' do
+      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      to_return(status: 400, headers: json_headers, body: error_data)
+
+      opts = {
+        operation: :"MediaApi.upload_media",
+        header_params: {},
+        query_params: {},
+        form_params: {},
+        body: { id: 1 },
+        auth_names: ['Basic'],
+        return_type: nil
+      }
+      
+      expect {
+        api_client.call_api(:POST, 'path', opts)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.code).to eq(400)
+        expect(e.response_headers).to eq(json_headers)
+        expect(e.response_body).to eq('{"error": true}')
+      }
+    end
+
+    it 'calls api and handles timeout error' do
+      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      to_raise(Faraday::TimeoutError)
+
+      opts = {
+        operation: :"MediaApi.upload_media",
+        header_params: {},
+        query_params: {},
+        form_params: {},
+        body: { id: 1 },
+        auth_names: ['Basic'],
+        return_type: nil
+      }
+      
+      expect {
+        api_client.call_api(:POST, 'path', opts)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.message).to eq('Connection timed out')
+      }
+    end
+
+    it 'calls api and handles connection error' do
+      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      to_raise(Faraday::ConnectionFailed)
+
+      opts = {
+        operation: :"MediaApi.upload_media",
+        header_params: {},
+        query_params: {},
+        form_params: {},
+        body: { id: 1 },
+        auth_names: ['Basic'],
+        return_type: nil
+      }
+      
+      expect {
+        api_client.call_api(:POST, 'path', opts)
+      }.to raise_error { |e|
+        expect(e).to be_instance_of(Bandwidth::ApiError)
+        expect(e.message).to eq('Connection failed')
+      }
+    end
+  end
+
+  describe '#build_request_body' do
+    it 'builds application/x-www-form-urlencoded' do
+      expect(api_client_default.build_request_body(form_encoded_headers, {id: 1}, nil)).to eq('id=1')
+    end
+
+    it 'builds empty body' do
+      expect(api_client_default.build_request_body({}, {}, nil)).to be nil
     end
   end
 
