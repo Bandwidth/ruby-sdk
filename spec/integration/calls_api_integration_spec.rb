@@ -2,6 +2,17 @@ require_relative '../call_utils'
 
 # Integration Tests for Bandwidth::CallsApi
 describe 'CallsApi Integration Tests' do
+  # call info
+  let(:answer_method ) { Bandwidth::CallbackMethodEnum::POST }
+  let(:answer_url ) { BASE_CALLBACK_URL + '/callbacks/answer' }
+  let(:answer_fallback_method ) { Bandwidth::CallbackMethodEnum::POST }
+  let(:disconnect_method ) { Bandwidth::CallbackMethodEnum::GET }
+  let(:disconnect_url ) { BASE_CALLBACK_URL + '/callbacks/disconnect' }
+  let(:priority ) { 5 }
+  let(:direction ) { Bandwidth::CallDirectionEnum::OUTBOUND }
+  let(:call_timeout ) { 30.0 }
+  let(:callback_timeout ) { 15.0 }
+  
   before(:all) do
     WebMock.allow_net_connect!
     Bandwidth.configure do |config|
@@ -10,17 +21,8 @@ describe 'CallsApi Integration Tests' do
     end
     @calls_api_instance = Bandwidth::CallsApi.new
     
-    # call info
+    # call id
     $call_info_id = ''
-    @answer_method = Bandwidth::CallbackMethodEnum::POST
-    @answer_url = BASE_CALLBACK_URL + '/callbacks/answer'
-    @answer_fallback_method = Bandwidth::CallbackMethodEnum::POST
-    @disconnect_method = Bandwidth::CallbackMethodEnum::GET
-    @disconnect_url = BASE_CALLBACK_URL + '/callbacks/disconnect'
-    @priority = 5
-    @direction = Bandwidth::CallDirectionEnum::OUTBOUND
-    @call_timeout = 30.0
-    @callback_timeout = 15.0
   end
 
   after(:all) do
@@ -45,13 +47,13 @@ describe 'CallsApi Integration Tests' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: USER_NUMBER,
         from: BW_NUMBER,
-        answer_url: @answer_url,
-        answer_method: @answer_method,
-        disconnect_url: @disconnect_url,
-        disconnect_method: @disconnect_method,
+        answer_url: answer_url,
+        answer_method: answer_method,
+        disconnect_url: disconnect_url,
+        disconnect_method: disconnect_method,
         machine_detection: amd_config,
-        call_timeout: @call_timeout,
-        callback_timeout: @callback_timeout
+        call_timeout: call_timeout,
+        callback_timeout: callback_timeout
       )
 
       data, status_code, headers = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
@@ -63,14 +65,14 @@ describe 'CallsApi Integration Tests' do
       expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
       expect(data.to).to eq(USER_NUMBER)
       expect(data.from).to eq(BW_NUMBER)
-      expect(data.call_timeout).to eq(@call_timeout)
-      expect(data.callback_timeout).to eq(@callback_timeout)
+      expect(data.call_timeout).to eq(call_timeout)
+      expect(data.callback_timeout).to eq(callback_timeout)
       expect(data.enqueued_time).to be_instance_of(Time)
-      expect(data.answer_method).to eq(@answer_method)
-      expect(data.answer_fallback_method).to eq(@answer_fallback_method)
-      expect(data.disconnect_method).to eq(@disconnect_method)
-      expect(data.answer_url).to eq(@answer_url)
-      expect(data.disconnect_url).to eq(@disconnect_url)
+      expect(data.answer_method).to eq(answer_method)
+      expect(data.answer_fallback_method).to eq(answer_fallback_method)
+      expect(data.disconnect_method).to eq(disconnect_method)
+      expect(data.answer_url).to eq(answer_url)
+      expect(data.disconnect_url).to eq(disconnect_url)
 
       $call_info_id = data.call_id
       $active_calls.append($call_info_id)
@@ -92,7 +94,7 @@ describe 'CallsApi Integration Tests' do
         expect(data.start_time).to be_instance_of(Time)
         expect(data.last_update).to be_instance_of(Time)
         expect(data.state).to be_instance_of(String)
-        expect(data.direction).to eq(@direction)
+        expect(data.direction).to eq(direction)
       rescue Bandwidth::ApiError => e
         if e.code != 404
           raise e
@@ -144,10 +146,10 @@ describe 'CallsApi Integration Tests' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: '+1invalid',
         from: BW_NUMBER,
-        answer_url: @answer_url,
-        answer_method: @answer_method,
-        disconnect_url: @disconnect_url,
-        disconnect_method: @disconnect_method
+        answer_url: answer_url,
+        answer_method: answer_method,
+        disconnect_url: disconnect_url,
+        disconnect_method: disconnect_method
       )
 
       expect {

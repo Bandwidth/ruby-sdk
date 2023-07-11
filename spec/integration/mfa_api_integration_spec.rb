@@ -1,5 +1,9 @@
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
+  # mfa info
+  let(:message ) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }
+  let(:digits ) { 6 }
+  
   before(:all) do
     WebMock.allow_net_connect!
     Bandwidth.configure do |config|
@@ -7,10 +11,6 @@ describe 'MFAApi Integration Tests' do
       config.password = BW_PASSWORD
     end
     @mfa_api_instance = Bandwidth::MFAApi.new
-
-    # mfa info
-    @message = 'Your temporary {NAME} {SCOPE} code is: {CODE}'
-    @digits = 6
   end
 
   after(:all) do
@@ -24,8 +24,8 @@ describe 'MFAApi Integration Tests' do
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
-        message: @message,
-        digits: @digits
+        message: message,
+        digits: digits
       )
 
       data, status_code, headers = @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
@@ -43,8 +43,8 @@ describe 'MFAApi Integration Tests' do
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_VOICE_APPLICATION_ID,
-        message: @message,
-        digits: @digits
+        message: message,
+        digits: digits
       )
 
       data, status_code, headers = @mfa_api_instance.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
@@ -80,8 +80,8 @@ describe 'MFAApi Integration Tests' do
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: 'not_an_application_id',
-        message: @message,
-        digits: @digits
+        message: message,
+        digits: digits
       )
 
       expect {
@@ -102,8 +102,8 @@ describe 'MFAApi Integration Tests' do
         to: USER_NUMBER,
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
-        message: @message,
-        digits: @digits
+        message: message,
+        digits: digits
       )
       
       expect {

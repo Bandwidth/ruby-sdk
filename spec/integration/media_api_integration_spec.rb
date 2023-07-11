@@ -1,8 +1,10 @@
-
-require 'json'
-
 # Integration Tests for Bandwidth::MediaApi
 describe 'MediaApi Integration Tests' do
+  # media info
+  let(:binary_media_data ) { '123456' }
+  let(:media_file_data ) { File.open('spec/fixtures/ruby_cat.jpeg').read }
+  let(:media_file_md5 ) { Digest::MD5.hexdigest(media_file_data) }
+  
   before(:all) do
     WebMock.allow_net_connect!
     Bandwidth.configure do |config|
@@ -11,13 +13,10 @@ describe 'MediaApi Integration Tests' do
       config.return_binary_data = true
     end
     @api_instance_media = Bandwidth::MediaApi.new
-    
-    # media info
+
+    # media names
     @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid
-    @binary_media_data = '123456'
     @media_file_name = 'ruby_media_file' + SecureRandom.uuid
-    @media_file_data = File.open('spec/fixtures/ruby_cat.jpeg').read
-    @media_file_md5 = Digest::MD5.hexdigest(@media_file_data)
   end
 
   after(:all) do
@@ -27,12 +26,12 @@ describe 'MediaApi Integration Tests' do
   # Upload Media
   describe 'upload_media' do
     it 'uploads binary media' do
-      data, status_code, headers = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, @binary_media_data)
+      data, status_code, headers = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, binary_media_data)
       expect(status_code).to eq(204)
     end
 
     it 'uploads media file' do
-      data, status_code, headers = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @media_file_name, @media_file_data)
+      data, status_code, headers = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @media_file_name, media_file_data)
       expect(status_code).to eq(204)
     end
   end
@@ -54,7 +53,7 @@ describe 'MediaApi Integration Tests' do
     it 'gets uploaded binary media' do
       data, status_code, headers = @api_instance_media.get_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name)
       expect(status_code).to eq(200)
-      expect(data).to eq(@binary_media_data)
+      expect(data).to eq(binary_media_data)
     end
 
     it 'gets uploaded media file' do
@@ -62,7 +61,7 @@ describe 'MediaApi Integration Tests' do
       response_md5 = Digest::MD5.hexdigest(data)
 
       expect(status_code).to eq(200)
-      expect(response_md5).to eq(@media_file_md5)
+      expect(response_md5).to eq(media_file_md5)
     end
   end
 
