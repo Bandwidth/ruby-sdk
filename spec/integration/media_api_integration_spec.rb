@@ -89,5 +89,4 @@ describe 'MediaApi Integration Tests' do
       }
     end
   end
-
 end

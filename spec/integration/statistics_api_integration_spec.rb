@@ -55,5 +55,4 @@ describe 'StatisticsApi Integration Tests' do
       }
     end
   end
-
 end

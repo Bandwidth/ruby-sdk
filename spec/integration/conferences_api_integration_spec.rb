@@ -166,5 +166,4 @@ describe 'ConferencesApi Integration Tests' do
       expect(data).to be_instance_of(String)
     end
   end
-
 end

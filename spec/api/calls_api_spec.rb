@@ -225,5 +225,4 @@ describe 'CallsApi' do
       }.to raise_error(ArgumentError)
     end
   end
-
 end

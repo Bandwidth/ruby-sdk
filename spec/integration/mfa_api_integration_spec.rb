@@ -114,5 +114,4 @@ describe 'MFAApi Integration Tests' do
       }
     end
   end
-
 end

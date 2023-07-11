@@ -126,5 +126,4 @@ describe 'MediaApi' do
       }.to raise_error(ArgumentError)
     end
   end
-
 end

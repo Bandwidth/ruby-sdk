@@ -40,6 +40,9 @@ Layout/EmptyLinesAroundMethodBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: true
 
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
 Layout/FirstArgumentIndentation:
   Enabled: true
 
