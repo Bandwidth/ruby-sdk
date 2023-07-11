@@ -1,4 +1,4 @@
-require 'URI'
+require 'uri'
 
 # Unit tests for Bandwidth::Configuration
 describe Bandwidth::Configuration do
