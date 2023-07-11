@@ -32,9 +32,9 @@ describe Bandwidth::Configuration do
         c.host = @uri.host
         c.base_path = @uri.path
       end
-      expect(config.scheme).to eq('https')
-      expect(config.host).to eq('localhost')
-      expect(config.base_path).to eq('/path')
+      expect(config.scheme).to eq(@uri.scheme)
+      expect(config.host).to eq(@uri.host)
+      expect(config.base_path).to eq(@uri.path)
     end
   end
 
