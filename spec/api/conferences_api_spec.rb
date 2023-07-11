@@ -1,36 +1,36 @@
 # Unit tests for Bandwidth::ConferencesApi
 describe 'ConferencesApi' do
   # conference info
-  let(:test_id ) { 'ruby-3.1.3_macOS_conference_1687791527' }
-  let(:conference_id ) { 'conf-3f758f24-6711b6d2-0d44-495d-afc8-2555c3ce5f4f' }
-  let(:created_time ) { '2023-06-26T14:58:49.471Z' }
-  let(:conference_event_url ) { 'https://amazonaws.com/prod/conferenceEvents' }
-  let(:conference_event_method ) { 'POST' }
-  let(:call_id ) { 'c-3f758f24-cd77b08f-97c2-4311-965a-a1ac8ed8f340' }
-  let(:recording_id ) { 'r-fbe05094-7bf4b314-91fe-4bdd-a39b-500cdc873d3a' }
-  let(:start_time ) { '2023-06-26T14:58:51.195Z' }
-  let(:end_time ) { '2023-06-26T14:58:57.502Z' }
-  let(:duration ) { 'PT6.3S' }
-  let(:channels ) { 1 }
-  let(:file_format ) { Bandwidth::FileFormatEnum::WAV }
-  let(:status ) { 'complete' }
-  let(:member_url ) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/conferences/#{conference_id}/members/#{call_id}" }
-  let(:media_url ) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/conferences/#{conference_id}/recordings/#{recording_id}/media" }
-  let(:active_members ) { "[{\"callId\":\"#{call_id}\",\"conferenceId\":\"#{conference_id}\",\"memberUrl\":\"#{member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}]" }
+  let(:test_id) { 'ruby-3.1.3_macOS_conference_1687791527' }
+  let(:conference_id) { 'conf-3f758f24-6711b6d2-0d44-495d-afc8-2555c3ce5f4f' }
+  let(:created_time) { '2023-06-26T14:58:49.471Z' }
+  let(:conference_event_url) { 'https://amazonaws.com/prod/conferenceEvents' }
+  let(:conference_event_method) { 'POST' }
+  let(:call_id) { 'c-3f758f24-cd77b08f-97c2-4311-965a-a1ac8ed8f340' }
+  let(:recording_id) { 'r-fbe05094-7bf4b314-91fe-4bdd-a39b-500cdc873d3a' }
+  let(:start_time) { '2023-06-26T14:58:51.195Z' }
+  let(:end_time) { '2023-06-26T14:58:57.502Z' }
+  let(:duration) { 'PT6.3S' }
+  let(:channels) { 1 }
+  let(:file_format) { Bandwidth::FileFormatEnum::WAV }
+  let(:status) { 'complete' }
+  let(:member_url) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/conferences/#{conference_id}/members/#{call_id}" }
+  let(:media_url) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/conferences/#{conference_id}/recordings/#{recording_id}/media" }
+  let(:active_members) { "[{\"callId\":\"#{call_id}\",\"conferenceId\":\"#{conference_id}\",\"memberUrl\":\"#{member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}]" }
   
   # stubs
-  let(:list_conferences_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:list_conferences_body_stub ) { "[{\"id\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"createdTime\":\"#{created_time}\",\"conferenceEventUrl\":\"#{conference_event_url}\",\"conferenceEventMethod\":\"#{conference_event_method}\",\"tag\":\"#{test_id}\"}]" }
-  let(:get_conference_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_conference_body_stub ) { "{\"id\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"createdTime\":\"#{created_time}\",\"conferenceEventUrl\":\"#{conference_event_url}\",\"conferenceEventMethod\":\"#{conference_event_method}\",\"tag\":\"#{test_id}\",\"activeMembers\":#{active_members}}" }
-  let(:get_conference_member_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_conference_member_body_stub ) { "{\"callId\":\"#{call_id}\",\"conferenceId\":\"#{conference_id}\",\"memberUrl\":\"#{member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}" }
-  let(:list_conference_recordings_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:list_conference_recordings_body_stub ) { "[{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"recordingId\":\"#{recording_id}\",\"duration\":\"#{duration}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
-  let(:get_conference_recording_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_conference_recording_body_stub ) { "{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"recordingId\":\"#{recording_id}\",\"duration\":\"#{duration}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}" }
-  let(:download_conference_recording_body_stub ) { 'RIFFWAVEfmtLISTINFOISFTLavf58.45.100data' }
-  let(:download_conference_recording_headers_stub ) { { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{download_conference_recording_body_stub.length}" } }
+  let(:list_conferences_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:list_conferences_body_stub) { "[{\"id\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"createdTime\":\"#{created_time}\",\"conferenceEventUrl\":\"#{conference_event_url}\",\"conferenceEventMethod\":\"#{conference_event_method}\",\"tag\":\"#{test_id}\"}]" }
+  let(:get_conference_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_conference_body_stub) { "{\"id\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"createdTime\":\"#{created_time}\",\"conferenceEventUrl\":\"#{conference_event_url}\",\"conferenceEventMethod\":\"#{conference_event_method}\",\"tag\":\"#{test_id}\",\"activeMembers\":#{active_members}}" }
+  let(:get_conference_member_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_conference_member_body_stub) { "{\"callId\":\"#{call_id}\",\"conferenceId\":\"#{conference_id}\",\"memberUrl\":\"#{member_url}\",\"mute\":false,\"hold\":false,\"callIdsToCoach\":[]}" }
+  let(:list_conference_recordings_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:list_conference_recordings_body_stub) { "[{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"recordingId\":\"#{recording_id}\",\"duration\":\"#{duration}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
+  let(:get_conference_recording_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_conference_recording_body_stub) { "{\"accountId\":\"#{BW_ACCOUNT_ID}\",\"conferenceId\":\"#{conference_id}\",\"name\":\"#{test_id}\",\"recordingId\":\"#{recording_id}\",\"duration\":\"#{duration}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}" }
+  let(:download_conference_recording_body_stub) { 'RIFFWAVEfmtLISTINFOISFTLavf58.45.100data' }
+  let(:download_conference_recording_headers_stub) { { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{download_conference_recording_body_stub.length}" } }
   
   before(:all) do
     Bandwidth.configure do |config|

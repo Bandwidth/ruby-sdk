@@ -1,9 +1,9 @@
 # Integration Tests for Bandwidth::MediaApi
 describe 'MediaApi Integration Tests' do
   # media info
-  let(:binary_media_data ) { '123456' }
-  let(:media_file_data ) { File.open('spec/fixtures/ruby_cat.jpeg').read }
-  let(:media_file_md5 ) { Digest::MD5.hexdigest(media_file_data) }
+  let(:binary_media_data) { '123456' }
+  let(:media_file_data) { File.open('spec/fixtures/ruby_cat.jpeg').read }
+  let(:media_file_md5) { Digest::MD5.hexdigest(media_file_data) }
   
   before(:all) do
     WebMock.allow_net_connect!

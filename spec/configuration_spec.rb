@@ -4,9 +4,9 @@ require 'uri'
 describe Bandwidth::Configuration do
   let(:config) { Bandwidth::Configuration.new }
   let(:faraday_connection) { Faraday::Connection.new }
-  let(:uri ) { URI.parse(BASE_CALLBACK_URL + '/path') }
-  let(:token ) { 'abcd1234' }
-  let(:server ) { [
+  let(:uri) { URI.parse(BASE_CALLBACK_URL + '/path') }
+  let(:token) { 'abcd1234' }
+  let(:server) { [
     {
       url: 'https://voice.bandwidth.com/api/{enum_var}/{default_var}',
       description: 'Production',

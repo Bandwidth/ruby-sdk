@@ -1,39 +1,39 @@
 # Unit tests for Bandwidth::CallsApi
 describe 'CallsApi' do
   # call info
-  let(:call_id ) { 'c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce' }
-  let(:enqueued_time ) { '2023-06-23T18:43:51.248Z' }
-  let(:call_url ) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}" }
-  let(:call_timeout ) { 30.0 }
-  let(:callback_timeout ) { 15.0 }
-  let(:answer_method ) { Bandwidth::CallbackMethodEnum::POST }
-  let(:answer_url ) { BASE_CALLBACK_URL + '/callbacks/answer' }
-  let(:answer_fallback_url ) { BASE_CALLBACK_URL + '/callbacks/answer' }
-  let(:answer_fallback_method ) { Bandwidth::CallbackMethodEnum::POST }
-  let(:disconnect_method ) { Bandwidth::CallbackMethodEnum::GET }
-  let(:disconnect_url ) { BASE_CALLBACK_URL + '/callbacks/disconnect' }
-  let(:priority ) { 5 }
-  let(:direction ) { Bandwidth::CallDirectionEnum::OUTBOUND }
-  let(:state ) { 'disconnected' }
-  let(:stir_shaken ) { {} }
-  let(:start_time ) { '2023-06-23T19:11:06.049Z' }
-  let(:end_time ) { '2023-06-23T19:11:06.175Z' }
-  let(:disconnect_cause ) { 'rejected' }
-  let(:error_message ) { 'Destination not found' }
-  let(:error_id ) { '779941c4-6482-461d-b370-177b4ad0b5a7' }
-  let(:last_update ) { '2023-06-23T19:11:06.175Z' }
-  let(:tag ) { 'test tag' }
+  let(:call_id) { 'c-15ac29a2-006c67ad-060f-4b98-b148-b753d6e5e2ce' }
+  let(:enqueued_time) { '2023-06-23T18:43:51.248Z' }
+  let(:call_url) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}" }
+  let(:call_timeout) { 30.0 }
+  let(:callback_timeout) { 15.0 }
+  let(:answer_method) { Bandwidth::CallbackMethodEnum::POST }
+  let(:answer_url) { BASE_CALLBACK_URL + '/callbacks/answer' }
+  let(:answer_fallback_url) { BASE_CALLBACK_URL + '/callbacks/answer' }
+  let(:answer_fallback_method) { Bandwidth::CallbackMethodEnum::POST }
+  let(:disconnect_method) { Bandwidth::CallbackMethodEnum::GET }
+  let(:disconnect_url) { BASE_CALLBACK_URL + '/callbacks/disconnect' }
+  let(:priority) { 5 }
+  let(:direction) { Bandwidth::CallDirectionEnum::OUTBOUND }
+  let(:state) { 'disconnected' }
+  let(:stir_shaken) { {} }
+  let(:start_time) { '2023-06-23T19:11:06.049Z' }
+  let(:end_time) { '2023-06-23T19:11:06.175Z' }
+  let(:disconnect_cause) { 'rejected' }
+  let(:error_message) { 'Destination not found' }
+  let(:error_id) { '779941c4-6482-461d-b370-177b4ad0b5a7' }
+  let(:last_update) { '2023-06-23T19:11:06.175Z' }
+  let(:tag) { 'test tag' }
 
   # stubs
-  let(:create_call_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:create_call_body_stub ) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{enqueued_time}\",\"callUrl\":\"#{call_url}\",\"callTimeout\":#{call_timeout},\"callbackTimeout\":#{callback_timeout},\"tag\":\"#{tag}\",\"answerMethod\":\"#{answer_method}\",\"answerUrl\":\"#{answer_url}\",\"answerFallbackUrl\":\"#{answer_fallback_url}\",\"answerFallbackMethod\":\"#{answer_fallback_method}\",\"disconnectMethod\":\"#{disconnect_method}\",\"disconnectUrl\":\"#{disconnect_url}\",\"priority\":#{priority}}" }
-  let(:create_call_bad_request_stub ) { '{"type":"validation","description":"Invalid to: must be a valid SIP URI or an E164 TN"}' }
-  let(:get_call_state_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_call_state_body_stub ) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{direction}\",\"state\":\"#{state}\",\"stirShaken\":#{stir_shaken},\"enqueuedTime\":\"#{enqueued_time}\",\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"disconnectCause\":\"#{disconnect_cause}\",\"errorMessage\":\"#{error_message}\",\"errorId\":\"#{error_id}\",\"lastUpdate\":\"#{last_update}\"}" }
-  let(:get_call_state_not_found_stub ) { '{"type":"validation","description":"Call does-not-exist was not found."}' }
-  let(:get_call_state_unauthorized_stub ) { '{"type":"authentication-error","description":"The credentials provided were invalid"}' }
-  let(:get_call_state_forbidden_stub ) { '{"type":"authorization-error","description":"Access is denied"}' }
-  let(:update_call_headers_stub ) { { 'content-length' => '0' } }
+  let(:create_call_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:create_call_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{enqueued_time}\",\"callUrl\":\"#{call_url}\",\"callTimeout\":#{call_timeout},\"callbackTimeout\":#{callback_timeout},\"tag\":\"#{tag}\",\"answerMethod\":\"#{answer_method}\",\"answerUrl\":\"#{answer_url}\",\"answerFallbackUrl\":\"#{answer_fallback_url}\",\"answerFallbackMethod\":\"#{answer_fallback_method}\",\"disconnectMethod\":\"#{disconnect_method}\",\"disconnectUrl\":\"#{disconnect_url}\",\"priority\":#{priority}}" }
+  let(:create_call_bad_request_stub) { '{"type":"validation","description":"Invalid to: must be a valid SIP URI or an E164 TN"}' }
+  let(:get_call_state_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_call_state_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{direction}\",\"state\":\"#{state}\",\"stirShaken\":#{stir_shaken},\"enqueuedTime\":\"#{enqueued_time}\",\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"disconnectCause\":\"#{disconnect_cause}\",\"errorMessage\":\"#{error_message}\",\"errorId\":\"#{error_id}\",\"lastUpdate\":\"#{last_update}\"}" }
+  let(:get_call_state_not_found_stub) { '{"type":"validation","description":"Call does-not-exist was not found."}' }
+  let(:get_call_state_unauthorized_stub) { '{"type":"authentication-error","description":"The credentials provided were invalid"}' }
+  let(:get_call_state_forbidden_stub) { '{"type":"authorization-error","description":"Access is denied"}' }
+  let(:update_call_headers_stub) { { 'content-length' => '0' } }
   
   before(:all) do
     Bandwidth.configure do |config|

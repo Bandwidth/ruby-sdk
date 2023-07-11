@@ -1,14 +1,14 @@
 # Unit tests for Bandwidth::MediaApi
 describe 'MediaApi' do
   # media info
-  let(:media_name ) { 'ruby_binary_media' + SecureRandom.uuid }
-  let(:media_data ) { '123456' }
-  let(:content_url ) { "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/media/#{media_name}" }
+  let(:media_name) { 'ruby_binary_media' + SecureRandom.uuid }
+  let(:media_data) { '123456' }
+  let(:content_url) { "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/media/#{media_name}" }
 
   # stubs
-  let(:get_media_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:list_media_body_stub ) { "[{\"contentLength\":#{media_data.length},\"mediaName\":\"#{media_name}\",\"content\":\"#{content_url}\"}]" }
-  let(:list_media_headers_stub ) { { 'content-type' => 'application/json' } }
+  let(:get_media_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:list_media_body_stub) { "[{\"contentLength\":#{media_data.length},\"mediaName\":\"#{media_name}\",\"content\":\"#{content_url}\"}]" }
+  let(:list_media_headers_stub) { { 'content-type' => 'application/json' } }
   
   before(:all) do
     Bandwidth.configure do |config|

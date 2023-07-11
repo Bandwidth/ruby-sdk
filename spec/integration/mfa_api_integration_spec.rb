@@ -1,8 +1,8 @@
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
   # mfa info
-  let(:message ) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }
-  let(:digits ) { 6 }
+  let(:message) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }
+  let(:digits) { 6 }
   
   before(:all) do
     WebMock.allow_net_connect!

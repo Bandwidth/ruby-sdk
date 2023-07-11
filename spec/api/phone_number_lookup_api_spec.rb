@@ -1,21 +1,21 @@
 # Unit tests for Bandwidth::PhoneNumberLookupApi
 describe 'PhoneNumberLookupApi' do
   # lookup info
-  let(:request_id ) { '21e6d818-eaa9-4ca9-b1d8-d6085f5c79d4' }
-  let(:status_in_progress ) { Bandwidth::LookupStatusEnum::IN_PROGRESS }
-  let(:status_complete ) { Bandwidth::LookupStatusEnum::COMPLETE }
-  let(:response_code ) { 0 }
-  let(:message ) { 'NOERROR' }
-  let(:formatted ) { "(#{BW_NUMBER[2..4]}) #{BW_NUMBER[5..7]}-#{BW_NUMBER[7..-1]}" }
-  let(:country ) { 'US' }
-  let(:line_type ) { 'Mobile' }
-  let(:line_provider ) { 'AdHoc P2P - Bandwidth - SVR' }
+  let(:request_id) { '21e6d818-eaa9-4ca9-b1d8-d6085f5c79d4' }
+  let(:status_in_progress) { Bandwidth::LookupStatusEnum::IN_PROGRESS }
+  let(:status_complete) { Bandwidth::LookupStatusEnum::COMPLETE }
+  let(:response_code) { 0 }
+  let(:message) { 'NOERROR' }
+  let(:formatted) { "(#{BW_NUMBER[2..4]}) #{BW_NUMBER[5..7]}-#{BW_NUMBER[7..-1]}" }
+  let(:country) { 'US' }
+  let(:line_type) { 'Mobile' }
+  let(:line_provider) { 'AdHoc P2P - Bandwidth - SVR' }
 
   # stubs
-  let(:create_lookup_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:create_lookup_body_stub ) { "{\"requestId\":\"#{request_id}\",\"status\":\"#{status_in_progress}\"}" }
-  let(:get_lookup_status_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_lookup_status_body_stub ) { "{\"requestId\":\"#{request_id}\",\"status\":\"#{status_complete}\",\"result\":[{\"Response Code\":#{response_code},\"Message\":\"#{message}\",\"E.164 Format\":\"#{BW_NUMBER}\",\"Formatted\":\"#{formatted}\",\"Country\":\"#{country}\",\"Line Type\":\"#{line_type}\",\"Line Provider\":\"#{line_provider}\"}]}" }
+  let(:create_lookup_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:create_lookup_body_stub) { "{\"requestId\":\"#{request_id}\",\"status\":\"#{status_in_progress}\"}" }
+  let(:get_lookup_status_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_lookup_status_body_stub) { "{\"requestId\":\"#{request_id}\",\"status\":\"#{status_complete}\",\"result\":[{\"Response Code\":#{response_code},\"Message\":\"#{message}\",\"E.164 Format\":\"#{BW_NUMBER}\",\"Formatted\":\"#{formatted}\",\"Country\":\"#{country}\",\"Line Type\":\"#{line_type}\",\"Line Provider\":\"#{line_provider}\"}]}" }
   
   before(:all) do
     Bandwidth.configure do |config|

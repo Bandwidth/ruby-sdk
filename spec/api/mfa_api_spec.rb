@@ -1,18 +1,18 @@
 # Unit tests for Bandwidth::MFAApi
 describe 'MFAApi' do
   # mfa info
-  let(:message ) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }
-  let(:message_id ) { '1687965513364hx26ky4mpkll3m5a' }
-  let(:call_id ) { 'c-28bba681-cffc7d67-904e-42c8-85c5-b5589ea583b4' }
-  let(:digits ) { 6 }
+  let(:message) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }
+  let(:message_id) { '1687965513364hx26ky4mpkll3m5a' }
+  let(:call_id) { 'c-28bba681-cffc7d67-904e-42c8-85c5-b5589ea583b4' }
+  let(:digits) { 6 }
 
   # stubs
-  let(:generate_messaging_code_body_stub ) { "{\"messageId\": \"#{message_id}\"}" }
-  let(:generate_messaging_code_headers_stub ) { { 'content-type' => 'application/json', 'content-length' => "#{generate_messaging_code_body_stub.length}" } }
-  let(:generate_voice_code_body_stub ) { "{\"callId\": \"#{call_id}\"}" }
-  let(:generate_voice_code_headers_stub ) { { 'content-type' => 'application/json', 'content-length' => "#{generate_voice_code_body_stub.length}" } }
-  let(:verify_code_body_stub ) { '{"valid": false}' }
-  let(:verify_code_headers_stub ) { { 'content-type' => 'application/json', 'content-length' => "#{verify_code_body_stub.length}" } }
+  let(:generate_messaging_code_body_stub) { "{\"messageId\": \"#{message_id}\"}" }
+  let(:generate_messaging_code_headers_stub) { { 'content-type' => 'application/json', 'content-length' => "#{generate_messaging_code_body_stub.length}" } }
+  let(:generate_voice_code_body_stub) { "{\"callId\": \"#{call_id}\"}" }
+  let(:generate_voice_code_headers_stub) { { 'content-type' => 'application/json', 'content-length' => "#{generate_voice_code_body_stub.length}" } }
+  let(:verify_code_body_stub) { '{"valid": false}' }
+  let(:verify_code_headers_stub) { { 'content-type' => 'application/json', 'content-length' => "#{verify_code_body_stub.length}" } }
   
   before(:all) do
     Bandwidth.configure do |config|

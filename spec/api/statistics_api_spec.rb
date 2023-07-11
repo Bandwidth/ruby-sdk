@@ -1,12 +1,12 @@
 # Unit tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi' do
   # statistics info
-  let(:current_call_queue_size ) { 0 }
-  let(:max_call_queue_size ) { 7500 }
+  let(:current_call_queue_size) { 0 }
+  let(:max_call_queue_size) { 7500 }
 
   # stubs
-  let(:get_statistics_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_statistics_body_stub ) { "{\"currentCallQueueSize\":#{current_call_queue_size},\"maxCallQueueSize\":#{max_call_queue_size}}" }
+  let(:get_statistics_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_statistics_body_stub) { "{\"currentCallQueueSize\":#{current_call_queue_size},\"maxCallQueueSize\":#{max_call_queue_size}}" }
   
   before(:all) do
     Bandwidth.configure do |config|

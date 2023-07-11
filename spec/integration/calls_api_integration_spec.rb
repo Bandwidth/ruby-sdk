@@ -3,15 +3,15 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::CallsApi
 describe 'CallsApi Integration Tests' do
   # call info
-  let(:answer_method ) { Bandwidth::CallbackMethodEnum::POST }
-  let(:answer_url ) { BASE_CALLBACK_URL + '/callbacks/answer' }
-  let(:answer_fallback_method ) { Bandwidth::CallbackMethodEnum::POST }
-  let(:disconnect_method ) { Bandwidth::CallbackMethodEnum::GET }
-  let(:disconnect_url ) { BASE_CALLBACK_URL + '/callbacks/disconnect' }
-  let(:priority ) { 5 }
-  let(:direction ) { Bandwidth::CallDirectionEnum::OUTBOUND }
-  let(:call_timeout ) { 30.0 }
-  let(:callback_timeout ) { 15.0 }
+  let(:answer_method) { Bandwidth::CallbackMethodEnum::POST }
+  let(:answer_url) { BASE_CALLBACK_URL + '/callbacks/answer' }
+  let(:answer_fallback_method) { Bandwidth::CallbackMethodEnum::POST }
+  let(:disconnect_method) { Bandwidth::CallbackMethodEnum::GET }
+  let(:disconnect_url) { BASE_CALLBACK_URL + '/callbacks/disconnect' }
+  let(:priority) { 5 }
+  let(:direction) { Bandwidth::CallDirectionEnum::OUTBOUND }
+  let(:call_timeout) { 30.0 }
+  let(:callback_timeout) { 15.0 }
   
   before(:all) do
     WebMock.allow_net_connect!

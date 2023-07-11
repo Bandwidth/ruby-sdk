@@ -1,32 +1,32 @@
 # Unit tests for Bandwidth::RecordingsApi
 describe 'RecordingsApi' do
   # recording info
-  let(:call_id ) { 'c-3f758f24-40c0bd9f-0a8e-4ab6-88d4-c88a2e961c7d' }
-  let(:recording_id ) { 'r-fbe05094-87f9b821-e110-4bfb-ac57-82b2bf2bb3d5' }
-  let(:duration ) { 'PT4.478S' }
-  let(:direction ) { Bandwidth::CallDirectionEnum::OUTBOUND }
-  let(:channels ) { 1 }
-  let(:start_time ) { '2023-06-26T14:58:51.195Z' }
-  let(:end_time ) { '2023-06-26T14:58:57.502Z' }
-  let(:file_format ) { Bandwidth::FileFormatEnum::WAV }
-  let(:status ) { 'complete' }
-  let(:media_url ) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/media" }
-  let(:text ) { 'Now a recording, a long pause.' }
-  let(:confidence ) { 0.975 }
-  let(:test_id ) { 'test id' }
+  let(:call_id) { 'c-3f758f24-40c0bd9f-0a8e-4ab6-88d4-c88a2e961c7d' }
+  let(:recording_id) { 'r-fbe05094-87f9b821-e110-4bfb-ac57-82b2bf2bb3d5' }
+  let(:duration) { 'PT4.478S' }
+  let(:direction) { Bandwidth::CallDirectionEnum::OUTBOUND }
+  let(:channels) { 1 }
+  let(:start_time) { '2023-06-26T14:58:51.195Z' }
+  let(:end_time) { '2023-06-26T14:58:57.502Z' }
+  let(:file_format) { Bandwidth::FileFormatEnum::WAV }
+  let(:status) { 'complete' }
+  let(:media_url) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/media" }
+  let(:text) { 'Now a recording, a long pause.' }
+  let(:confidence) { 0.975 }
+  let(:test_id) { 'test id' }
 
   # stubs
-  let(:download_call_recording_body_stub ) { 'RIFFFWAVEfmtLISTINFOISFTLavf58.45.100data' }
-  let(:download_call_recording_headers_stub ) { { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{download_call_recording_body_stub.length}" } }
-  let(:get_call_recording_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_call_recording_body_stub ) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}" }
-  let(:get_call_transcription_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:get_call_transcription_body_stub ) { "{\"transcripts\":[{\"text\":\"#{text}\",\"confidence\":#{confidence}}]}" }
-  let(:list_account_call_recordings_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:list_account_call_recordings_body_stub ) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
-  let(:list_call_recordings_headers_stub ) { { 'content-type' => 'application/json' } }
-  let(:list_call_recordings_body_stub ) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
-  let(:update_call_recording_state_headers_stub ) { { 'content-length' => '0' } }
+  let(:download_call_recording_body_stub) { 'RIFFFWAVEfmtLISTINFOISFTLavf58.45.100data' }
+  let(:download_call_recording_headers_stub) { { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{download_call_recording_body_stub.length}" } }
+  let(:get_call_recording_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_call_recording_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}" }
+  let(:get_call_transcription_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_call_transcription_body_stub) { "{\"transcripts\":[{\"text\":\"#{text}\",\"confidence\":#{confidence}}]}" }
+  let(:list_account_call_recordings_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:list_account_call_recordings_body_stub) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
+  let(:list_call_recordings_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:list_call_recordings_body_stub) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
+  let(:update_call_recording_state_headers_stub) { { 'content-length' => '0' } }
   
   before(:all) do
     Bandwidth.configure do |config|

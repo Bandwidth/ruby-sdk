@@ -4,17 +4,17 @@ describe Bandwidth::ApiClient do
   let(:config) { Bandwidth::Configuration.new }
   let(:faraday_connection) { Faraday::Connection.new }
   let(:api_client) { Bandwidth::ApiClient.new(config) }
-  let(:named_media_headers) {{ 'content-disposition' => 'filename=test', 'content-type' => 'text/plain' }}
+  let(:named_media_headers) { { 'content-disposition' => 'filename=test', 'content-type' => 'text/plain' } }
   let(:media_data) { '123456' }
-  let(:media_headers) {{ 'content-type' => 'text/plain' }}
-  let(:json_headers) {{ 'content-type' => 'application/json' }}
-  let(:multipart_headers) {{ 'Content-Type' => 'multipart/form-data' }}
-  let(:form_encoded_headers) {{ 'Content-Type' => 'application/x-www-form-urlencoded' }}
+  let(:media_headers) { { 'content-type' => 'text/plain' } }
+  let(:json_headers) { { 'content-type' => 'application/json' } }
+  let(:multipart_headers) { { 'Content-Type' => 'multipart/form-data' } }
+  let(:form_encoded_headers) { { 'Content-Type' => 'application/x-www-form-urlencoded' } }
   let(:error_data) { '{"error": true}' }
 
   describe '#call_api' do
     it 'calls api and returns a tempfile with name from content-disposition header' do
-      stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 200, headers: media_headers, body: media_data)
 
       opts = {
@@ -34,7 +34,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and returns a tempfile' do
-      stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 200, headers: named_media_headers, body: media_data)
 
       opts = {
@@ -54,7 +54,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and returns binary data' do
-      stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 200, headers: media_headers, body: media_data)
 
       api_client.config.return_binary_data = true
@@ -77,7 +77,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and returns a hash' do
-      stub_request(:get, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 200, headers: json_headers, body: '{"id": 1}')
 
       opts = {
@@ -97,7 +97,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'posts data and returns nothing' do
-      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 204)
 
       api_client.config.debugging = true
@@ -118,14 +118,14 @@ describe Bandwidth::ApiClient do
     end
 
     it 'posts multipart/form-data and returns nothing' do
-      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 204)
 
       opts = {
         operation: :"MediaApi.upload_media",
         header_params: multipart_headers,
         query_params: {},
-        form_params: { file: Tempfile.new('filename'), array: [1,2,3], string: '123' },
+        form_params: { file: Tempfile.new('filename'), array: [1, 2, 3], string: '123' },
         body: nil,
         auth_names: ['Basic'],
         return_type: nil
@@ -137,7 +137,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and handles HTTP error' do
-      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
       to_return(status: 400, headers: json_headers, body: error_data)
 
       opts = {
@@ -161,7 +161,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and handles timeout error' do
-      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
       to_raise(Faraday::TimeoutError)
 
       opts = {
@@ -183,7 +183,7 @@ describe Bandwidth::ApiClient do
     end
 
     it 'calls api and handles connection error' do
-      stub_request(:post, "https://messaging.bandwidth.com/api/v2/path").
+      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
       to_raise(Faraday::ConnectionFailed)
 
       opts = {
@@ -207,7 +207,7 @@ describe Bandwidth::ApiClient do
 
   describe '#build_request_body' do
     it 'builds application/x-www-form-urlencoded' do
-      expect(api_client_default.build_request_body(form_encoded_headers, {id: 1}, nil)).to eq('id=1')
+      expect(api_client_default.build_request_body(form_encoded_headers, { id: 1 }, nil)).to eq('id=1')
     end
 
     it 'builds empty body' do
@@ -267,7 +267,7 @@ describe Bandwidth::ApiClient do
       expect(api_client_default.convert_to_type('2022-06-16', 'Date')).to eq(Date.parse('2022-06-16'))
       expect(api_client_default.convert_to_type({ id: 1 }, 'Object')).to eq({ id: 1 })
       expect(api_client_default.convert_to_type([[12, 34], [56]], 'Array<Array<Integer>>')).to eq([[12, 34], [56]])
-      expect(api_client_default.convert_to_type({"id": "test"}, 'Hash<String, String>')).to eq({ id: 'test' })
+      expect(api_client_default.convert_to_type({ "id": 'test' }, 'Hash<String, String>')).to eq({ id: 'test' })
       expect(api_client_default.convert_to_type({ set_or_expired: true }, 'DeferredResult')).to be_instance_of(Bandwidth::DeferredResult)
     end
   end

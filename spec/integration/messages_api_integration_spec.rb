@@ -1,13 +1,13 @@
 # Integration Tests for Bandwidth::MessagesApi
 describe 'MessagesApi Integration Tests' do
   # message info
-  let(:mms_text ) { 'ruby sdk test MMS' }
-  let(:sms_text ) { 'ruby sdk test SMS' }
-  let(:mms_tag ) { 'ruby sdk test MMS tag' }
-  let(:sms_tag ) { 'ruby sdk test SMS tag' }
-  let(:media_url ) { 'https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg' }
-  let(:priority ) { Bandwidth::PriorityEnum::HIGH }
-  let(:list_message_direction ) { Bandwidth::ListMessageDirectionEnum::OUTBOUND }
+  let(:mms_text) { 'ruby sdk test MMS' }
+  let(:sms_text) { 'ruby sdk test SMS' }
+  let(:mms_tag) { 'ruby sdk test MMS tag' }
+  let(:sms_tag) { 'ruby sdk test SMS tag' }
+  let(:media_url) { 'https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg' }
+  let(:priority) { Bandwidth::PriorityEnum::HIGH }
+  let(:list_message_direction) { Bandwidth::ListMessageDirectionEnum::OUTBOUND }
   
   before(:all) do
     WebMock.allow_net_connect!
