@@ -116,7 +116,8 @@ opts = {
   campaign_id: 'CJEUMDK', # String | The campaign ID of the message.
   sort: 'sourceTn:desc', # String | The field and direction to sort by combined with a colon. Direction is either asc or desc.
   page_token: 'gdEewhcJLQRB5', # String | A base64 encoded value used for pagination of results.
-  limit: 50 # Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+  limit: 50, # Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+  limit_total_count: true # Boolean | When set to true, the response's totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
 }
 
 begin
@@ -165,6 +166,7 @@ end
 | **sort** | **String** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional] |
 | **page_token** | **String** | A base64 encoded value used for pagination of results. | [optional] |
 | **limit** | **Integer** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional] |
+| **limit_total_count** | **Boolean** | When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. | [optional] |
 
 ### Return type
 

@@ -17,7 +17,7 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::ConferenceCreatedCallback.new(
   event_type: bridgeComplete,
-  event_time: null,
+  event_time: 2022-06-17T22:19:40.375Z,
   conference_id: conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9,
   name: my-conference-name,
   tag: exampleTag

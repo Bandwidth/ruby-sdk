@@ -15,7 +15,7 @@ require 'time'
 
 module Bandwidth
   class MessagesList
-    # Total number of messages matched by the search.
+    # The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000.
     attr_accessor :total_count
 
     attr_accessor :page_info
