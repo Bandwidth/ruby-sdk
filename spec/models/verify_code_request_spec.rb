@@ -22,6 +22,18 @@ describe Bandwidth::VerifyCodeRequest do
     end
   end
 
+  describe '#acceptable_attributes' do
+    it 'expects acceptable JSON attributes to be those in the attribute map' do
+      expect(Bandwidth::VerifyCodeRequest.acceptable_attributes).to eq(Bandwidth::VerifyCodeRequest.attribute_map.values)
+    end
+  end
+
+  describe '#openapi_nullable' do
+    it 'expects nullable attributes to be an empty set' do
+      expect(Bandwidth::VerifyCodeRequest.openapi_nullable).to eq(Set.new([]))
+    end
+  end
+
   describe '#build_from_hash' do
     it 'validates instance of VerifyCodeRequest created by the build_from_hash method' do
       verify_code_request_from_hash = Bandwidth::VerifyCodeRequest.build_from_hash({
@@ -93,29 +105,29 @@ describe Bandwidth::VerifyCodeRequest do
 
     it '#expiration_time_in_minutes=' do
       expect {
-        Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: nil })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: nil })
       }.to raise_error(ArgumentError, 'expiration_time_in_minutes cannot be nil')
 
       expect {
-        Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: 16 })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 16 })
       }.to raise_error(ArgumentError, 'invalid value for "expiration_time_in_minutes", must be smaller than or equal to 15.')
 
       expect {
-        Bandwidth::VerifyCodeRequest.new({ expiration_time_in_minutes: 0 })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 0 })
       }.to raise_error(ArgumentError, 'invalid value for "expiration_time_in_minutes", must be greater than or equal to 1.')
     end
 
     it '#code=' do
       expect {
-        Bandwidth::VerifyCodeRequest.new({ code: nil })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 1, code: nil })
       }.to raise_error(ArgumentError, 'code cannot be nil')
 
       expect {
-        Bandwidth::VerifyCodeRequest.new({ code: '123456789' })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 1, code: '123456789' })
       }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 8.')
 
       expect {
-        Bandwidth::VerifyCodeRequest.new({ code: '123' })
+        Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 1, code: '123' })
       }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be great than or equal to 4.')
     end
   end

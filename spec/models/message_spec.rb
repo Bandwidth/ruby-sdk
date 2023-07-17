@@ -31,6 +31,12 @@ describe Bandwidth::Message do
     end
   end
 
+  describe '#acceptable_attributes' do
+    it 'expects acceptable JSON attributes to be those in the attribute map' do
+      expect(Bandwidth::Message.acceptable_attributes).to eq(Bandwidth::Message.attribute_map.values)
+    end
+  end
+
   describe 'EnumAttributeValidator' do
     it 'validates string enum' do
       validator = Bandwidth::Message::EnumAttributeValidator.new(String, ['valid'])

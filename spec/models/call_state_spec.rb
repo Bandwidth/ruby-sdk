@@ -40,6 +40,12 @@ describe Bandwidth::CallState do
     end
   end
 
+  describe '#acceptable_attributes' do
+    it 'expects acceptable JSON attributes to be those in the attribute map' do
+      expect(Bandwidth::CallState.acceptable_attributes).to eq(Bandwidth::CallState.attribute_map.values)
+    end
+  end
+
   describe 'EnumAttributeValidator' do
     it 'validates string enum' do
       validator = Bandwidth::CallState::EnumAttributeValidator.new(String, ['valid'])

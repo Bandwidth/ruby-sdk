@@ -20,6 +20,18 @@ describe Bandwidth::DeferredResult do
     end
   end
 
+  describe '#acceptable_attributes' do
+    it 'expects acceptable JSON attributes to be those in the attribute map' do
+      expect(Bandwidth::DeferredResult.acceptable_attributes).to eq(Bandwidth::DeferredResult.attribute_map.values)
+    end
+  end
+
+  describe '#openapi_nullable' do
+    it 'expects nullable attributes to be an empty set' do
+      expect(Bandwidth::DeferredResult.openapi_nullable).to eq(Set.new([]))
+    end
+  end
+
   describe '#build_from_hash' do
     it 'validates instance of DeferredResult created by the build_from_hash method' do
       deferred_result_from_hash = Bandwidth::DeferredResult.build_from_hash({
