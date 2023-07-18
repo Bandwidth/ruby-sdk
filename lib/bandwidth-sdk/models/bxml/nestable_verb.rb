@@ -2,9 +2,7 @@ require 'ox'
 
 module Bandwidth
   module Bxml
-    module NestableVerb
-      include Bandwidth::Bxml::Verb
-
+    class NestableVerb < Bandwidth::Bxml::Verb
       # Initializer
       # @param tag [String] Name of the XML element.
       # @param content [String] XML element content. Defaults to nil.

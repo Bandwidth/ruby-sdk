@@ -5,7 +5,7 @@ module Bandwidth
     SPEAK_SENTENCE_REGEX = /<SpeakSentence.*?>(.*?)<\/SpeakSentence>/
     SSML_REGEX = /&lt;([a-zA-Z\/\/].*?)&gt;/
 
-    module Root
+    class Root
       # Initializer
       # @param tag [String] Name of the XML element.
       # @param nested_verbs [Array<Verb>] XML element children. Defaults to an empty array.

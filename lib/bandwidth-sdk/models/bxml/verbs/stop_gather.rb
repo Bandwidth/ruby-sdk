@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class StopGather
-      include Bandwidth::Bxml::Verb
-
+    class StopGather < Bandwidth::Bxml::Verb
       # Initializer
       def initialize
         super('StopGather', nil, {})

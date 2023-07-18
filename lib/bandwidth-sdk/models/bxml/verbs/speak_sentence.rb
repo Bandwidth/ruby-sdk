@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class SpeakSentence
-      include Bandwidth::Bxml::Verb
-
+    class SpeakSentence < Bandwidth::Bxml::Verb
       # Initializer
       # @param text [String] The text to speak. Cannot be blank. Can be a mixture of plain text and SSML tags.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

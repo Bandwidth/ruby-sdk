@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class StopRecording
-      include Bandwidth::Bxml::Verb
-
+    class StopRecording < Bandwidth::Bxml::Verb
       # Initializer
       def initialize
         super('StopRecording', nil, {})

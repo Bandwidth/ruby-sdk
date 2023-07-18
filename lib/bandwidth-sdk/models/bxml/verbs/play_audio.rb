@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class PlayAudio
-      include Bandwidth::Bxml::Verb
-
+    class PlayAudio < Bandwidth::Bxml::Verb
       # Initializer
       # @param audio_uri [String] The URL of the audio file to play. May be a relative URL.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

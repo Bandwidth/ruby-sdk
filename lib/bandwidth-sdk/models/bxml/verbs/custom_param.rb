@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class CustomParam
-      include Bandwidth::Bxml::Verb
-
+    class CustomParam < Bandwidth::Bxml::Verb
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})

@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class Transfer
-      include Bandwidth::Bxml::NestableVerb
-
+    class Transfer < Bandwidth::Bxml::NestableVerb
       # Initializer
       # @param transfer_to [Array] XML element children. Defaults to an empty array. Valid nested transfer verbs are: PhoneNumber, SipUri.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

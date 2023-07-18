@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class StartStream
-      include Bandwidth::Bxml::NestableVerb
-
+    class StartStream < Bandwidth::Bxml::NestableVerb
       # Initializer
       # @param stream_params [Array] XML element children. Defaults to an empty array. Valid nested stream params are: StreamParam. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

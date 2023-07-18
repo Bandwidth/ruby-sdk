@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class Response
-      include Bandwidth::Bxml::Root
-
+    class Response < Bandwidth::Bxml::Root
       # Initializer
       # @param nested_verbs [Array<Verb>] XML element children. Defaults to an empty array.
       def initialize(nested_verbs = [])

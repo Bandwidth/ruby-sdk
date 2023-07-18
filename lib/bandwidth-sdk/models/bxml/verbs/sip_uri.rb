@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class SipUri
-      include Bandwidth::Bxml::Verb
-
+    class SipUri < Bandwidth::Bxml::Verb
       # Initializer
       # @param uri [String] A SIP URI to transfer the call to (e.g. sip:user@server.com)
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
