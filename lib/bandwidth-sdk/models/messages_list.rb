@@ -15,7 +15,7 @@ require 'time'
 
 module Bandwidth
   class MessagesList
-    # Total number of messages matched by the search.
+    # The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000.
     attr_accessor :total_count
 
     attr_accessor :page_info
@@ -55,7 +55,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::MessagesList` initialize method"
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessagesList` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key

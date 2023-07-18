@@ -7,7 +7,7 @@ module Bandwidth
       # @param stream_params [Array] XML element children. Defaults to an empty array. Valid nested stream params are: StreamParam. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(stream_params = [], attributes = {})
-        super("StartStream", nil, stream_params, attributes)
+        super('StartStream', nil, stream_params, attributes)
         
         @attribute_map = {
           name: 'name',                             # Optional [String]: A name to refer to this stream by. Used when sending <StopStream>. If not provided, it will default to the generated stream id as sent in the Media Stream Started webhook.

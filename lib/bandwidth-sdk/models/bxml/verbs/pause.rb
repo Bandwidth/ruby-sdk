@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("Pause", nil, attributes)
+        super('Pause', nil, attributes)
         
         @attribute_map = {
           duration: 'duration', # Optional [Number]: The time in seconds to pause. Default value is 1.

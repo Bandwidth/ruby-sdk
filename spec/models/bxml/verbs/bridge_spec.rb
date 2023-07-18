@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Bridge
 describe 'Bandwidth::Bxml::Bridge' do
   let(:initial_attributes) {

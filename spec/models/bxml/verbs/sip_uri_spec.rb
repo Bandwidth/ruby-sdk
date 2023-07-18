@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::SipUri
 describe 'Bandwidth::Bxml::SipUri' do
   let(:initial_attributes) {

@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Forward
 describe 'Bandwidth::Bxml::Forward' do
   let(:initial_attributes) {

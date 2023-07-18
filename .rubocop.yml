@@ -40,6 +40,9 @@ Layout/EmptyLinesAroundMethodBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: true
 
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
 Layout/FirstArgumentIndentation:
   Enabled: true
 
@@ -108,9 +111,17 @@ Layout/SpaceInsideParens:
   Enabled: true
 
 # Check quotes usage according to lint rule below.
-#Style/StringLiterals:
-#  Enabled: true
-#  EnforcedStyle: single_quotes
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+  Exclude:
+    - lib/bandwidth-sdk/api_client.rb
+    - lib/bandwidth-sdk/configuration.rb
+
+#Check quotes inside the string interpolation.
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
 
 # Detect hard tabs, no hard tabs.
 Layout/IndentationStyle:

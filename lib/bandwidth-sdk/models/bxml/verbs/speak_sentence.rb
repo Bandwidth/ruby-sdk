@@ -7,7 +7,7 @@ module Bandwidth
       # @param text [String] The text to speak. Cannot be blank. Can be a mixture of plain text and SSML tags.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(text, attributes = {})
-        super("SpeakSentence", text, attributes)
+        super('SpeakSentence', text, attributes)
         
         @attribute_map = {
           voice: 'voice',   # Optional [String]: Selects the voice of the speaker. If the voice attribute is present, gender and locale are ignored. You can find a list of supported voices here: https://dev.bandwidth.com/docs/voice/bxml/speakSentence/#supported-voices

@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::PhoneNumber
 describe 'Bandwidth::Bxml::PhoneNumber' do
   let(:initial_attributes) {

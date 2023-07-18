@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::NestableVerb
 describe 'Bandwidth::Bxml::NestableVerb' do
   let(:instance) { Class.new.include(Bandwidth::Bxml::NestableVerb).new('Test') }

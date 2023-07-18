@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("StartRecording", nil, attributes)
+        super('StartRecording', nil, attributes)
         
         @attribute_map = {
           recording_available_url: 'recordingAvailableUrl',               # Optional [String]: URL to send the Recording Available event to once it has been processed. Does not accept BXML. May be a relative URL. Defaults to None.

@@ -125,7 +125,7 @@ module Bandwidth
         :'message_type' => :'MessageTypeEnum',
         :'segment_count' => :'Integer',
         :'error_code' => :'Integer',
-        :'receive_time' => :'String',
+        :'receive_time' => :'Time',
         :'carrier_name' => :'String',
         :'message_size' => :'Integer',
         :'message_length' => :'Integer',
@@ -152,7 +152,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::ListMessageItem` initialize method"
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::ListMessageItem` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key

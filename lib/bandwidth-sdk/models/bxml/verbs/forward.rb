@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("Forward", nil, attributes)
+        super('Forward', nil, attributes)
         
         @attribute_map = {
           to: 'to',                                   # [String]: The phone number destination of the call.

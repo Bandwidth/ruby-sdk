@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::SendDtmf
 describe 'Bandwidth::Bxml::SendDtmf' do
   let(:initial_attributes) {

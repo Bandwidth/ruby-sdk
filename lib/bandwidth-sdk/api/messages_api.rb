@@ -111,6 +111,7 @@ module Bandwidth
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+    # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
     # @return [MessagesList]
     def list_messages(account_id, opts = {})
       data, _status_code, _headers = list_messages_with_http_info(account_id, opts)
@@ -135,6 +136,7 @@ module Bandwidth
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+    # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
     # @return [Array<(MessagesList, Integer, Hash)>] MessagesList data, response status code and response headers
     def list_messages_with_http_info(account_id, opts = {})
       if @api_client.config.debugging
@@ -163,6 +165,7 @@ module Bandwidth
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
       query_params[:'pageToken'] = opts[:'page_token'] if !opts[:'page_token'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'limitTotalCount'] = opts[:'limit_total_count'] if !opts[:'limit_total_count'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

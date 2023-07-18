@@ -5,7 +5,7 @@ module Bandwidth
 
       # Initializer
       def initialize
-        super("Hangup", nil, {})
+        super('Hangup', nil, {})
       end
     end
   end

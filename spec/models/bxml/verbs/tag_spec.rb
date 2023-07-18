@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Tag
 describe 'Bandwidth::Bxml::Tag' do
   let(:instance) { Bandwidth::Bxml::Tag.new('test_tag') }

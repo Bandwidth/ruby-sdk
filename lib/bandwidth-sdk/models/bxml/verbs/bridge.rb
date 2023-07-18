@@ -7,7 +7,7 @@ module Bandwidth
       # @param target_call [String] The callId of the call to be bridged.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(target_call, attributes = {})
-        super("Bridge", target_call, attributes)
+        super('Bridge', target_call, attributes)
         
         @attribute_map = {
           bridge_complete_url: 'bridgeCompleteUrl',                                     # Optional [String]: URL to send the Bridge Complete event to and request new BXML. If this attribute is specified, then Verbs following the <Bridge> verb will be ignored and the BXML returned in this webhook is executed on the call. If this attribute is not specified then no webhook will be sent, and execution of the verbs following the <Bridge> verb continues. May be a relative URL. Defaults to None.

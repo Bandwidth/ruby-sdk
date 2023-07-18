@@ -11,7 +11,6 @@ module Bandwidth
         @tag = tag
         @content = content
         @attributes = attributes
-        @attribute_map = []
       end
 
       # Set XML attributes for the verb
@@ -28,7 +27,7 @@ module Bandwidth
           root << @content
         end
 
-        if !@attributes.empty?
+        if !@attributes.empty? && !@attribute_map.nil?
           @attributes.each do |key, value|
             if @attribute_map.include? key.to_sym
               root[@attribute_map[key.to_sym]] = value

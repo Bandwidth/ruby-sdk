@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StartStream
 describe 'Bandwidth::Bxml::StartStream' do
   let(:initial_attributes) {

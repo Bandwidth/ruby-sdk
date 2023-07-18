@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::StopStream
 describe 'Bandwidth::Bxml::StopStream' do
   let(:initial_attributes) {

@@ -1,25 +1,27 @@
-
-require 'json'
-
 # Integration Tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi Integration Tests' do
   before(:all) do
+    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    @api_instance_statistics = Bandwidth::StatisticsApi.new
+    @statistics_api_instance = Bandwidth::StatisticsApi.new
+  end
+
+  after(:all) do
+    WebMock.disable_net_connect!
   end
 
   # Get Account Statistics
   describe 'get_statistics' do
     it 'gets account statistics' do
-      response = @api_instance_statistics.get_statistics_with_http_info(BW_ACCOUNT_ID)
+      data, status_code, headers = @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
 
-      expect(response[CODE]).to eq(200)
-      expect(response[DATA]).to be_instance_of(Bandwidth::AccountStatistics)
-      expect(response[DATA].current_call_queue_size).to be_instance_of(Integer)
-      expect(response[DATA].max_call_queue_size).to eq(7500)
+      expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Bandwidth::AccountStatistics)
+      expect(data.current_call_queue_size).to be_instance_of(Integer)
+      expect(data.max_call_queue_size).to eq(7500)
     end
   end
 
@@ -27,12 +29,12 @@ describe 'StatisticsApi Integration Tests' do
   describe 'http error' do
     it 'causes a 401 error' do
       Bandwidth.configure do |config|
-        config.username = 'bad_username'
-        config.password = 'bad_password'
+        config.username = UNAUTHORIZED_USERNAME
+        config.password = UNAUTHORIZED_PASSWORD
       end
 
       expect {
-        @api_instance_statistics.get_statistics_with_http_info(BW_ACCOUNT_ID)
+        @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)
@@ -46,12 +48,11 @@ describe 'StatisticsApi Integration Tests' do
       end
 
       expect {
-        @api_instance_statistics.get_statistics_with_http_info(BW_ACCOUNT_ID)
+        @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)
       }
     end
   end
-
 end

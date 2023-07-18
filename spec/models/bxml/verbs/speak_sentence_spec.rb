@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::SpeakSentence
 describe 'Bandwidth::Bxml::SpeakSentence' do
   let(:initial_attributes) {

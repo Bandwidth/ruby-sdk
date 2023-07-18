@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::Verb
 describe 'Bandwidth::Bxml::Verb' do
   let(:instance) { Class.new.include(Bandwidth::Bxml::Verb).new('Test') }
@@ -12,17 +10,6 @@ describe 'Bandwidth::Bxml::Verb' do
     it 'tests the to_bxml method of the Verb instance' do
       expected = "\n<Test/>\n"
       expect(instance.to_bxml).to eq(expected)
-    end
-
-    it 'tests invalid attribute' do
-      attributes = { 'invalid_attribute' => 'invalid' }
-      instance.set_attributes(attributes)
-      
-      expect {
-        instance.generate_xml
-      }.to raise_error { |e|
-        expect(e).to be_a(NoMethodError)
-      }
     end
   end
 end

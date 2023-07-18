@@ -6,7 +6,7 @@ module Bandwidth
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})
-        super("Ring", nil, attributes)
+        super('Ring', nil, attributes)
         
         @attribute_map = {
           duration: 'duration',       # Optional [Number]: How many seconds to play ringing on the call. Default value is 5. Range: decimal values between 0.1 - 86400.

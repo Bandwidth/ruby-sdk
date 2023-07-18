@@ -7,7 +7,7 @@ module Bandwidth
       # @param audio_verbs [Array] XML element children. Defaults to an empty array. Valid nested audio verbs are: SpeakSentence, PlayAudio.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(audio_verbs = [], attributes = {})
-        super("Gather", nil, audio_verbs, attributes)
+        super('Gather', nil, audio_verbs, attributes)
 
         @attribute_map = {
           gather_url: 'gatherUrl',                        # Optional [String]: URL to send Gather event to and request new BXML. May be a relative URL.

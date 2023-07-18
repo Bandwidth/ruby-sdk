@@ -1,5 +1,3 @@
-
-
 # Unit tests for Bandwidth::Bxml::PauseRecording
 describe 'Bandwidth::Bxml::PauseRecording' do
   let(:instance) { Bandwidth::Bxml::PauseRecording.new }

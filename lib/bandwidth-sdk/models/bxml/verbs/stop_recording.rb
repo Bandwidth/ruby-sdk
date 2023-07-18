@@ -5,7 +5,7 @@ module Bandwidth
 
       # Initializer
       def initialize
-        super("StopRecording", nil, {})
+        super('StopRecording', nil, {})
       end
     end
   end
