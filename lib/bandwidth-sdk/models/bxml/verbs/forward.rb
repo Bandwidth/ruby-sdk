@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class Forward
-      include Bandwidth::Bxml::Verb
-
+    class Forward < Bandwidth::Bxml::Verb
       # Initializer
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(attributes = {})

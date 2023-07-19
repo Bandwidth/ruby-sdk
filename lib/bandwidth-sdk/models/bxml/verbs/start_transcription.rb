@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class StartTranscription
-      include Bandwidth::Bxml::NestableVerb
-
+    class StartTranscription < Bandwidth::Bxml::NestableVerb
       # Initializer
       # @param custom_params [Array] XML element children. Defaults to an empty array. Valid nested custom params are: CustomParam. You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.

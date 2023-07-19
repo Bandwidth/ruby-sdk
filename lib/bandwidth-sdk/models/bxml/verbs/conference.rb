@@ -1,8 +1,6 @@
 module Bandwidth
   module Bxml
-    class Conference
-      include Bandwidth::Bxml::Verb
-
+    class Conference < Bandwidth::Bxml::Verb
       # Initializer
       # @param name [String] The name of the conference. Can contain up to 100 characters of letters, numbers, and the symbols -, _, and .
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
