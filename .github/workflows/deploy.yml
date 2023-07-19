@@ -58,12 +58,10 @@ jobs:
       - name: Deploy to Rubygems
         run: |
           mkdir ~/.gem
-          echo "---\n:rubygems_api_key: $RUBYGEMS_API_KEY" > ~/.gem/credentials
+          echo "---\n:rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}\n" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
           gem build *.gemspec
           gem push *.gem -k rubygems
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
 
       - uses: Bandwidth/build-notify-slack-action@v1.0.0
         if: always()
