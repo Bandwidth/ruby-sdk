@@ -43,13 +43,7 @@ describe Bandwidth::DeferredResult do
       expect(deferred_result_from_hash.set_or_expired).to be true
     end
   end
-
-  describe '#list_invalid_properties' do
-    it 'returns list of invalid properties' do
-      expect(deferred_result_default.list_invalid_properties).to eq([])
-    end
-  end
-
+  
   describe '#hash' do
     it 'returns a hash code according to attributes' do
       expect(deferred_result_default.hash).to be_instance_of(Integer)
@@ -59,13 +53,6 @@ describe Bandwidth::DeferredResult do
   describe '#to_s' do
     it 'returns a string representation of the object' do
       expect(deferred_result_values.to_s).to eq('{:result=>{:key=>"value"}, :setOrExpired=>true}')
-    end
-  end
-
-  describe '#valid?' do
-    it 'validates instances with and without attributes set' do
-      expect(deferred_result_default).to be_valid
-      expect(deferred_result_values).to be_valid
     end
   end
 

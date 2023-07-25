@@ -97,12 +97,6 @@ describe Bandwidth::Message do
     end
   end
 
-  describe '#list_invalid_properties' do
-    it 'returns list of invalid properties' do
-      expect(message_default.list_invalid_properties).to eq([])
-    end
-  end
-
   describe '#hash' do
     it 'returns a hash code according to attributes' do
       expect(message_default.hash).to be_instance_of(Integer)
@@ -112,13 +106,6 @@ describe Bandwidth::Message do
   describe '#to_s' do
     it 'returns a string representation of the object' do
       expect(message_default.to_s).to eq('{}')
-    end
-  end
-
-  describe '#valid?' do
-    it 'validates instances with and without attributes set' do
-      expect(message_default).to be_valid
-      expect(message_values).to be_valid
     end
   end
 

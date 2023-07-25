@@ -63,7 +63,7 @@ describe Bandwidth::Configuration do
     end
 
     it 'should have the default value' do
-      expect(config.base_url).to eq("http://localhost")
+      expect(config.base_url).to eq('http://localhost')
     end
 
     it 'returns default value when invalid operation is passed' do
