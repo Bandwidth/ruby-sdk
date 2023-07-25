@@ -53,18 +53,30 @@ describe Bandwidth::Configuration do
   end
 
   describe '#base_url' do
-    it 'Returns default base URL when server_index is nil' do
-      config.server_index = nil
-      expect(config.base_url).to eq('http://localhost')
-    end
-
-    it 'returns empty string when invalid operation is passed' do
-      expect(config.base_url('invalid_operation')).to eq('')
+    it 'returns default value when invalid operation is passed' do
+      expect(config.base_url('invalid_operation')).to eq('http://localhost')
     end
 
     it 'returns proper base URL when server index is set' do
       operation, server = config.operation_server_settings.first
       expect(config.base_url(operation)).to eq(server[0][:url])
+    end
+
+    it 'should have the default value' do
+      expect(config.base_url).to eq("http://localhost")
+    end
+
+    it 'returns default value when invalid operation is passed' do
+      expect(config.base_url('invalid_operation')).to eq('http://localhost')
+    end
+
+    it 'throws argument error when attempting to use a server index that is out of bounds' do
+      config.server_operation_index = {
+        :'MediaApi.upload_media' => 10
+      }
+      expect {
+        config.base_url(:'MediaApi.upload_media')
+      }.to raise_error(ArgumentError, 'Invalid index 10 when selecting the server. Must not be nil and must be less than 1')
     end
   end
 
