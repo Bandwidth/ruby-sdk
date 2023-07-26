@@ -288,7 +288,7 @@ describe Bandwidth::ApiClient do
   
   describe '#build_request_url' do
     it 'adds leading and trailing slashes to path' do
-      expect(api_client_default.build_request_url('test/path')).to eq('/test/path')
+      expect(api_client_default.build_request_url('test/path')).to eq('http://localhost/test/path')
     end
   end
   

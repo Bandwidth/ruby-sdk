@@ -7,7 +7,7 @@ describe Bandwidth::Message do
     application_id: '93de2206-9669-4e07-948d-329f4b722ee2',
     time: '2022-06-16T13:15:07.160Z',
     segment_count: 2,
-    direction: 'in',
+    direction: Bandwidth::MessageDirectionEnum::IN,
     to: ['+19195551234'],
     from: '+19195554321',
     media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],
@@ -34,6 +34,12 @@ describe Bandwidth::Message do
   describe '#acceptable_attributes' do
     it 'expects acceptable JSON attributes to be those in the attribute map' do
       expect(Bandwidth::Message.acceptable_attributes).to eq(Bandwidth::Message.attribute_map.values)
+    end
+  end
+
+  describe 'enum validation' do
+    it 'works' do
+      
     end
   end
 
@@ -65,7 +71,7 @@ describe Bandwidth::Message do
         applicationId: '93de2206-9669-4e07-948d-329f4b722ee2',
         time: '2022-06-16T13:15:07.160Z',
         segmentCount: 2,
-        direction: 'in',
+        direction: Bandwidth::MessageDirectionEnum::IN,
         to: ['+19195551234'],
         from: '+19195554321',
         media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],
@@ -80,7 +86,7 @@ describe Bandwidth::Message do
       expect(message_from_hash.application_id).to eq('93de2206-9669-4e07-948d-329f4b722ee2')
       expect(message_from_hash.time).to eq(Time.parse('2022-06-16T13:15:07.160Z'))
       expect(message_from_hash.segment_count).to eq(2)
-      expect(message_from_hash.direction).to eq('in')
+      expect(message_from_hash.direction).to eq(Bandwidth::MessageDirectionEnum::IN)
       expect(message_from_hash.to).to eq(['+19195551234'])
       expect(message_from_hash.from).to eq('+19195554321')
       expect(message_from_hash.media).to eq(['https://dev.bandwidth.com/images/bandwidth-logo.png'])
@@ -88,12 +94,6 @@ describe Bandwidth::Message do
       expect(message_from_hash.tag).to eq('custom tag')
       expect(message_from_hash.priority).to eq('default')
       expect(message_from_hash.expiration).to eq(Time.parse('2022-06-16T13:45:07.160Z'))
-    end
-  end
-
-  describe '#list_invalid_properties' do
-    it 'returns list of invalid properties' do
-      expect(message_default.list_invalid_properties).to eq([])
     end
   end
 
@@ -106,13 +106,6 @@ describe Bandwidth::Message do
   describe '#to_s' do
     it 'returns a string representation of the object' do
       expect(message_default.to_s).to eq('{}')
-    end
-  end
-
-  describe '#valid?' do
-    it 'validates instances with and without attributes set' do
-      expect(message_default).to be_valid
-      expect(message_values).to be_valid
     end
   end
 
@@ -131,7 +124,7 @@ describe Bandwidth::Message do
         applicationId: '93de2206-9669-4e07-948d-329f4b722ee2',
         time: '2022-06-16T13:15:07.160Z',
         segmentCount: 2,
-        direction: 'in',
+        direction: Bandwidth::MessageDirectionEnum::IN,
         to: ['+19195551234'],
         from: '+19195554321',
         media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],

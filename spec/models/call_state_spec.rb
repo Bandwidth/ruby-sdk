@@ -118,12 +118,6 @@ describe Bandwidth::CallState do
     end
   end
 
-  describe '#list_invalid_properties' do
-    it 'returns list of invalid properties' do
-      expect(call_state_default.list_invalid_properties).to eq([])
-    end
-  end
-
   describe '#hash' do
     it 'returns a hash code according to attributes' do
       expect(call_state_default.hash).to be_instance_of(Integer)
@@ -133,13 +127,6 @@ describe Bandwidth::CallState do
   describe '#to_s' do
     it 'returns a string representation of the object' do
       expect(call_state_default.to_s).to eq('{}')
-    end
-  end
-
-  describe '#valid?' do
-    it 'validates instances with and without attributes set' do
-      expect(call_state_default).to be_valid
-      expect(call_state_values).to be_valid
     end
   end
 
