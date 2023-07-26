@@ -78,7 +78,7 @@ jobs:
         with:
           branch-name: ${{ steps.jira.outputs.jira-key }}
           token: ${{ env.DX_GITHUB_TOKEN }}
-          openapi-generator-version: 6.5.0
+          openapi-generator-version: 7.0.0
           language: ruby
           config: ./openapi-config.yml
 
