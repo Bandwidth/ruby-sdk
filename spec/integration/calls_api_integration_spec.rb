@@ -3,6 +3,7 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::CallsApi
 describe 'CallsApi Integration Tests' do
   # call info
+  let(:display_name) { 'Ruby SDK' }
   let(:answer_method) { Bandwidth::CallbackMethodEnum::POST }
   let(:answer_url) { BASE_CALLBACK_URL + '/callbacks/answer' }
   let(:answer_fallback_method) { Bandwidth::CallbackMethodEnum::POST }
@@ -47,6 +48,7 @@ describe 'CallsApi Integration Tests' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: USER_NUMBER,
         from: BW_NUMBER,
+        display_name: display_name,
         answer_url: answer_url,
         answer_method: answer_method,
         disconnect_url: disconnect_url,
