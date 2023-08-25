@@ -40,6 +40,8 @@ paths:
           $ref: '#/components/responses/messagingForbiddenError'
         '404':
           $ref: '#/components/responses/messagingNotFoundError'
+        '406':
+          $ref: '#/components/responses/messagingNotAcceptableError'
         '415':
           $ref: '#/components/responses/messagingInvalidMediaTypeError'
         '429':
@@ -70,6 +72,8 @@ paths:
           $ref: '#/components/responses/messagingForbiddenError'
         '404':
           $ref: '#/components/responses/messagingNotFoundError'
+        '406':
+          $ref: '#/components/responses/messagingNotAcceptableError'
         '415':
           $ref: '#/components/responses/messagingInvalidMediaTypeError'
         '429':
@@ -110,6 +114,8 @@ paths:
           $ref: '#/components/responses/messagingForbiddenError'
         '404':
           $ref: '#/components/responses/messagingNotFoundError'
+        '406':
+          $ref: '#/components/responses/messagingNotAcceptableError'
         '415':
           $ref: '#/components/responses/messagingInvalidMediaTypeError'
         '429':
@@ -141,6 +147,8 @@ paths:
           $ref: '#/components/responses/messagingForbiddenError'
         '404':
           $ref: '#/components/responses/messagingNotFoundError'
+        '406':
+          $ref: '#/components/responses/messagingNotAcceptableError'
         '415':
           $ref: '#/components/responses/messagingInvalidMediaTypeError'
         '429':
@@ -212,6 +220,8 @@ paths:
           $ref: '#/components/responses/messagingForbiddenError'
         '404':
           $ref: '#/components/responses/messagingNotFoundError'
+        '406':
+          $ref: '#/components/responses/messagingNotAcceptableError'
         '415':
           $ref: '#/components/responses/messagingInvalidMediaTypeError'
         '429':
@@ -1994,6 +2004,16 @@ components:
 
             strings: `Restricted`, `Anonymous`, `Private`, or `Unavailable`).
           example: '+19195554321'
+        displayName:
+          nullable: true
+          type: string
+          description: >-
+            The caller display name to use when the call is created. 
+
+            May not exceed 256 characters nor contain control characters such as
+            new lines.
+          maxLength: 256
+          example: John Doe
         uui:
           nullable: true
           type: string
@@ -4399,6 +4419,12 @@ components:
               $ref: '#/components/schemas/media'
     messagingBadRequestError:
       description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/messagingRequestError'
+    messagingNotAcceptableError:
+      description: Not Acceptable
       content:
         application/json:
           schema:
