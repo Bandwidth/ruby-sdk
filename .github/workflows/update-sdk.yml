@@ -51,9 +51,6 @@ jobs:
               },
               "summary": "[$LANGUAGE] Update SDK for New Spec Version",
               "description": "Prepare the $LANGUAGE SDK for release based on the latest spec changes.",
-              "assignee": {
-                "id": "$ASSIGNEE"
-              },
               "issuetype": {
                 "name": "Story"
               },
@@ -69,7 +66,6 @@ jobs:
           echo "jira-key=$JIRA_KEY" >> $GITHUB_OUTPUT
         env:
           LANGUAGE: Ruby
-          ASSIGNEE: 611c2f1740168700691bcc2b
 
       - name: Build SDK
         id: build
