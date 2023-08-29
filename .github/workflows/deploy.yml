@@ -50,6 +50,9 @@ jobs:
         with:
           ruby-version: "3.0"
 
+      - name: Update Gem Version
+        run: sed -i "s/VERSION = '.*'/VERSION = '$GEM_VERSION'/g" lib/bandwidth-sdk/version.rb
+
       - name: Install Packages and Test
         run: |
           bundle install
