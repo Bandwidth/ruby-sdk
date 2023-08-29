@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy SDK to Rubygems # TODO: Decide on putting env vars in vault after we decide on mocking integration tests
+    name: Deploy SDK to Rubygems
     runs-on: ubuntu-latest
     env:
       BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
