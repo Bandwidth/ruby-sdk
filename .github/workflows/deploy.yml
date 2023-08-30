@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy SDK to Rubygems # TODO: Decide on putting env vars in vault after we decide on mocking integration tests
+    name: Deploy SDK to Rubygems
     runs-on: ubuntu-latest
     env:
       BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -36,7 +36,7 @@ jobs:
           if [[ $RELEASE_VERSION =~ $re ]]; then
             echo "GEM_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
           else
-            echo "Tag does not match expected regex pattern for beta releases (v$re)"
+            echo "Tag does not match expected semver regex pattern (v$re)"
             echo $RELEASE_VERSION
             echo 'Please update your tag to match the expected regex pattern'
             exit 1
@@ -49,6 +49,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.0"
+
+      - name: Update Gem Version
+        run: sed -i "s/VERSION = '.*'/VERSION = '$GEM_VERSION'/g" lib/bandwidth-sdk/version.rb
 
       - name: Install Packages and Test
         run: |
