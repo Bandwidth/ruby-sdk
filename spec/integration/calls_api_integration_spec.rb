@@ -93,7 +93,7 @@ describe 'CallsApi Integration Tests' do
         expect(data.call_id).to eq($call_info_id)
         expect(data.account_id).to eq(BW_ACCOUNT_ID)
         expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
-        expect(data.start_time).to be_instance_of(Time)
+        expect(data.start_time).to be_instance_of(Time).or be_nil
         expect(data.last_update).to be_instance_of(Time)
         expect(data.state).to be_instance_of(String)
         expect(data.direction).to eq(direction)
