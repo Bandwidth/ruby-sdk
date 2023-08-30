@@ -84,8 +84,6 @@ jobs:
           git add .
           git commit -m "Clean SDK using Rubocop"
           git push origin ${{ steps.jira.outputs.jira-key }}
-        env:
-          GEM_VERSION: "11.0.0"
 
       - name: Open Pull Request
         if: steps.build.outputs.changes
