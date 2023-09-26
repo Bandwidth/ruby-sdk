@@ -1,13 +1,30 @@
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'bundler/gem_tasks'
 
-require "bundler/gem_tasks"
-require 'rake/testtask'
+begin
+  require 'rspec/core/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.test_files = FileList['test/**/test_*.rb', 'spec/**/*_spec.rb']
-  t.warning = false
+  desc 'Run All Tests'
+  RSpec::Core::RakeTask.new(:spec)
+
+  desc 'Run Only Unit Tests'
+  RSpec::Core::RakeTask.new(:unit) do |t|
+    t.pattern = './spec/api/**/*_spec.rb'
+  end
+  RSpec::Core::RakeTask.new(:unit) do |t|
+    t.pattern = './spec/models/**/*_spec.rb'
+  end
+
+  desc 'Run Only Integration Tests'
+  RSpec::Core::RakeTask.new(:integration) do |t|
+    t.pattern = './spec/integration/*_spec.rb'
+  end
+
+  desc 'Run Only Client Unit Tests'
+  RSpec::Core::RakeTask.new(:client) do |t|
+    t.pattern = './spec/*_spec.rb'
+  end
+
+  task default: :spec
+rescue LoadError
+  # no rspec available
 end
-
-task :default => :test

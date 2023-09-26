@@ -1,0 +1,99 @@
+=begin
+{{> api_info}}
+=end
+
+# Common files
+require '{{gemName}}/api_client'
+require '{{gemName}}/api_error'
+require '{{gemName}}/version'
+require '{{gemName}}/configuration'
+
+# Models
+{{^useAutoload}}
+{{#models}}
+{{#model}}
+{{^parent}}
+require '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/parent}}
+{{/model}}
+{{/models}}
+{{#models}}
+{{#model}}
+{{#parent}}
+require '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/parent}}
+{{/model}}
+{{/models}}
+{{/useAutoload}}
+{{#useAutoload}}
+{{#models}}
+{{#model}}
+{{moduleName}}.autoload :{{classname}}, '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/model}}
+{{/models}}
+{{/useAutoload}}
+
+# BXML
+require 'bandwidth-sdk/models/bxml/root'
+require 'bandwidth-sdk/models/bxml/bxml'
+require 'bandwidth-sdk/models/bxml/response'
+require 'bandwidth-sdk/models/bxml/verb'
+require 'bandwidth-sdk/models/bxml/nestable_verb'
+require 'bandwidth-sdk/models/bxml/verbs/bridge'
+require 'bandwidth-sdk/models/bxml/verbs/conference'
+require 'bandwidth-sdk/models/bxml/verbs/custom_param'
+require 'bandwidth-sdk/models/bxml/verbs/forward'
+require 'bandwidth-sdk/models/bxml/verbs/gather'
+require 'bandwidth-sdk/models/bxml/verbs/hangup'
+require 'bandwidth-sdk/models/bxml/verbs/pause_recording'
+require 'bandwidth-sdk/models/bxml/verbs/pause'
+require 'bandwidth-sdk/models/bxml/verbs/phone_number'
+require 'bandwidth-sdk/models/bxml/verbs/play_audio'
+require 'bandwidth-sdk/models/bxml/verbs/record'
+require 'bandwidth-sdk/models/bxml/verbs/redirect'
+require 'bandwidth-sdk/models/bxml/verbs/resume_recording'
+require 'bandwidth-sdk/models/bxml/verbs/ring'
+require 'bandwidth-sdk/models/bxml/verbs/send_dtmf'
+require 'bandwidth-sdk/models/bxml/verbs/sip_uri'
+require 'bandwidth-sdk/models/bxml/verbs/speak_sentence'
+require 'bandwidth-sdk/models/bxml/verbs/start_gather'
+require 'bandwidth-sdk/models/bxml/verbs/start_recording'
+require 'bandwidth-sdk/models/bxml/verbs/start_stream'
+require 'bandwidth-sdk/models/bxml/verbs/start_transcription'
+require 'bandwidth-sdk/models/bxml/verbs/stop_gather'
+require 'bandwidth-sdk/models/bxml/verbs/stop_recording'
+require 'bandwidth-sdk/models/bxml/verbs/stop_stream'
+require 'bandwidth-sdk/models/bxml/verbs/stop_transcription'
+require 'bandwidth-sdk/models/bxml/verbs/stream_param'
+require 'bandwidth-sdk/models/bxml/verbs/tag'
+require 'bandwidth-sdk/models/bxml/verbs/transfer'
+
+# APIs
+{{#apiInfo}}
+{{#apis}}
+{{^useAutoload}}
+require '{{importPath}}'
+{{/useAutoload}}
+{{#useAutoload}}
+{{moduleName}}.autoload :{{classname}}, '{{importPath}}'
+{{/useAutoload}}
+{{/apis}}
+{{/apiInfo}}
+
+module {{moduleName}}
+  class << self
+    # Customize default settings for the SDK using block.
+    #   {{moduleName}}.configure do |config|
+    #     config.username = "xxx"
+    #     config.password = "xxx"
+    #   end
+    # If no block given, return the default Configuration object.
+    def configure
+      if block_given?
+        yield(Configuration.default)
+      else
+        Configuration.default
+      end
+    end
+  end
+end
