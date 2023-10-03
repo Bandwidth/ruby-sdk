@@ -61,7 +61,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -162,6 +162,98 @@ module Bandwidth
       return data, status_code, headers
     end
 
+    # Get Calls
+    # Returns a max of 10000 calls, sorted by `createdTime` from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than `pageSize`, a `Link` header (with format `<{url}>; rel=\"next\"`) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :to Filter results by the &#x60;to&#x60; field.
+    # @option opts [String] :from Filter results by the &#x60;from&#x60; field.
+    # @option opts [String] :min_start_time Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format).
+    # @option opts [String] :max_start_time Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format).
+    # @option opts [String] :disconnect_cause Filter results to calls with specified call Disconnect Cause.
+    # @option opts [Integer] :page_size Specifies the max number of calls that will be returned. (default to 1000)
+    # @option opts [String] :page_token Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description.
+    # @return [Array<CallState>]
+    def list_calls(account_id, opts = {})
+      data, _status_code, _headers = list_calls_with_http_info(account_id, opts)
+      data
+    end
+
+    # Get Calls
+    # Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :to Filter results by the &#x60;to&#x60; field.
+    # @option opts [String] :from Filter results by the &#x60;from&#x60; field.
+    # @option opts [String] :min_start_time Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format).
+    # @option opts [String] :max_start_time Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format).
+    # @option opts [String] :disconnect_cause Filter results to calls with specified call Disconnect Cause.
+    # @option opts [Integer] :page_size Specifies the max number of calls that will be returned. (default to 1000)
+    # @option opts [String] :page_token Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description.
+    # @return [Array<(Array<CallState>, Integer, Hash)>] Array<CallState> data, response status code and response headers
+    def list_calls_with_http_info(account_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CallsApi.list_calls ...'
+      end
+      # verify the required parameter 'account_id' is set
+      if @api_client.config.client_side_validation && account_id.nil?
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling CallsApi.list_calls"
+      end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 10000
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CallsApi.list_calls, must be smaller than or equal to 10000.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CallsApi.list_calls, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/accounts/{accountId}/calls'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
+      query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
+      query_params[:'minStartTime'] = opts[:'min_start_time'] if !opts[:'min_start_time'].nil?
+      query_params[:'maxStartTime'] = opts[:'max_start_time'] if !opts[:'max_start_time'].nil?
+      query_params[:'disconnectCause'] = opts[:'disconnect_cause'] if !opts[:'disconnect_cause'].nil?
+      query_params[:'pageSize'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+      query_params[:'pageToken'] = opts[:'page_token'] if !opts[:'page_token'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Array<CallState>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Basic']
+
+      new_options = opts.merge(
+        :operation => :"CallsApi.list_calls",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CallsApi#list_calls\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Update Call
     # Interrupts and redirects a call to a different URL that should return a BXML document.
     # @param account_id [String] Your Bandwidth Account ID.
@@ -210,7 +302,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -290,7 +382,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
