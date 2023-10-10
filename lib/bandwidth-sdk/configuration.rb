@@ -226,8 +226,8 @@ module Bandwidth
 
     # Gets access_token using access_token_getter or uses the static access_token
     def access_token_with_refresh
-      return access_token if access_token_getter.nil?
-      access_token_getter.call
+        return access_token if access_token_getter.nil?
+        access_token_getter.call
     end
 
     # Gets Basic Auth token string
@@ -267,6 +267,12 @@ module Bandwidth
           }
         ],
         "CallsApi.get_call_state": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "CallsApi.list_calls": [
           {
           url: "https://voice.bandwidth.com/api/v2",
           description: "Production",

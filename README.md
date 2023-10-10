@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Bandwidth::CallsApi* | [**create_call**](docs/CallsApi.md#create_call) | **POST** /accounts/{accountId}/calls | Create Call
 *Bandwidth::CallsApi* | [**get_call_state**](docs/CallsApi.md#get_call_state) | **GET** /accounts/{accountId}/calls/{callId} | Get Call State Information
+*Bandwidth::CallsApi* | [**list_calls**](docs/CallsApi.md#list_calls) | **GET** /accounts/{accountId}/calls | Get Calls
 *Bandwidth::CallsApi* | [**update_call**](docs/CallsApi.md#update_call) | **POST** /accounts/{accountId}/calls/{callId} | Update Call
 *Bandwidth::CallsApi* | [**update_call_bxml**](docs/CallsApi.md#update_call_bxml) | **PUT** /accounts/{accountId}/calls/{callId}/bxml | Update Call BXML
 *Bandwidth::ConferencesApi* | [**download_conference_recording**](docs/ConferencesApi.md#download_conference_recording) | **GET** /accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media | Download Conference Recording
