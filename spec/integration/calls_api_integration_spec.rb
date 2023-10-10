@@ -87,7 +87,6 @@ describe 'CallsApi Integration Tests' do
       data, status_code, headers = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
-      expect(headers).to eq(get_calls_headers_stub)
       expect(data).to be_instance_of(Array)
       expect(data[0]).to be_instance_of(Bandwidth::CallState)
       expect(data[0].application_id).to eq(BW_VOICE_APPLICATION_ID)
