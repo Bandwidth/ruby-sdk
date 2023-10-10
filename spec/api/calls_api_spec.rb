@@ -29,6 +29,8 @@ describe 'CallsApi' do
   let(:create_call_headers_stub) { { 'content-type' => 'application/json' } }
   let(:create_call_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"enqueuedTime\":\"#{enqueued_time}\",\"callUrl\":\"#{call_url}\",\"callTimeout\":#{call_timeout},\"callbackTimeout\":#{callback_timeout},\"tag\":\"#{tag}\",\"answerMethod\":\"#{answer_method}\",\"answerUrl\":\"#{answer_url}\",\"answerFallbackUrl\":\"#{answer_fallback_url}\",\"answerFallbackMethod\":\"#{answer_fallback_method}\",\"disconnectMethod\":\"#{disconnect_method}\",\"disconnectUrl\":\"#{disconnect_url}\",\"priority\":#{priority}}" }
   let(:create_call_bad_request_stub) { '{"type":"validation","description":"Invalid to: must be a valid SIP URI or an E164 TN"}' }
+  let(:get_calls_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_calls_body_stub) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{direction}\",\"state\":\"#{state}\",\"stirShaken\":#{stir_shaken},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"disconnectCause\":\"#{disconnect_cause}\",\"errorMessage\":\"#{error_message}\",\"errorId\":\"#{error_id}\",\"lastUpdate\":\"#{last_update}\"}]" }
   let(:get_call_state_headers_stub) { { 'content-type' => 'application/json' } }
   let(:get_call_state_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"direction\":\"#{direction}\",\"state\":\"#{state}\",\"stirShaken\":#{stir_shaken},\"enqueuedTime\":\"#{enqueued_time}\",\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"disconnectCause\":\"#{disconnect_cause}\",\"errorMessage\":\"#{error_message}\",\"errorId\":\"#{error_id}\",\"lastUpdate\":\"#{last_update}\"}" }
   let(:get_call_state_not_found_stub) { '{"type":"validation","description":"Call does-not-exist was not found."}' }
@@ -116,6 +118,35 @@ describe 'CallsApi' do
       expect {
         @calls_api_instance.create_call(BW_ACCOUNT_ID, nil)
       }.to raise_error(ArgumentError)
+    end
+  end
+
+  # Get Calls
+  describe '#list_calls' do
+    it 'gets a list of calls' do
+      stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls").
+      to_return(status: 200, headers: get_calls_headers_stub, body: get_calls_body_stub)
+
+      data, status_code, headers = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
+
+      expect(status_code).to eq(200)
+      expect(headers).to eq(get_calls_headers_stub)
+      expect(data).to be_instance_of(Array)
+      expect(data[0]).to be_instance_of(Bandwidth::CallState)
+      expect(data[0].application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(data[0].account_id).to eq(BW_ACCOUNT_ID)
+      expect(data[0].call_id).to eq(call_id)
+      expect(data[0].to).to eq(USER_NUMBER)
+      expect(data[0].from).to eq(BW_NUMBER)
+      expect(data[0].direction).to eq(direction)
+      expect(data[0].stir_shaken).to eq(stir_shaken)
+      expect(data[0].state).to eq(state)
+      expect(data[0].start_time).to eq(Time.parse(start_time))
+      expect(data[0].end_time).to eq(Time.parse(end_time))
+      expect(data[0].disconnect_cause).to eq(disconnect_cause)
+      expect(data[0].error_message).to eq(error_message)
+      expect(data[0].error_id).to eq(error_id)
+      expect(data[0].last_update).to eq(Time.parse(last_update))
     end
   end
 
