@@ -272,6 +272,12 @@ module Bandwidth
           description: "Production",
           }
         ],
+        "CallsApi.list_calls": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
         "CallsApi.update_call": [
           {
           url: "https://voice.bandwidth.com/api/v2",

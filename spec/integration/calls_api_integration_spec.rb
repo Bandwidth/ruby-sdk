@@ -81,6 +81,19 @@ describe 'CallsApi Integration Tests' do
     end
   end
 
+  # Get Calls
+  describe '#list_calls' do
+    it 'gets a list of calls' do
+      data, status_code, headers = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
+
+      expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Array)
+      expect(data[0]).to be_instance_of(Bandwidth::CallState)
+      expect(data[0].application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(data[0].account_id).to eq(BW_ACCOUNT_ID)
+    end
+  end
+
   # Get Call State Information
   describe 'get_call_state' do
     it 'gets the call state' do
