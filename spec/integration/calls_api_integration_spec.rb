@@ -97,24 +97,18 @@ describe 'CallsApi Integration Tests' do
   # Get Call State Information
   describe 'get_call_state' do
     it 'gets the call state' do
-      begin
-        sleep(SLEEP_TIME_S)
-        data, status_code, headers = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
-  
-        expect(status_code).to eq(200)
-        expect(data).to be_instance_of(Bandwidth::CallState)
-        expect(data.call_id).to eq($call_info_id)
-        expect(data.account_id).to eq(BW_ACCOUNT_ID)
-        expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
-        expect(data.start_time).to be_instance_of(Time).or be_nil
-        expect(data.last_update).to be_instance_of(Time)
-        expect(data.state).to be_instance_of(String)
-        expect(data.direction).to eq(direction)
-      rescue Bandwidth::ApiError => e
-        if e.code != 404
-          raise e
-        end
-      end
+      sleep(40) # wait 40s for voice API to update call status
+      data, status_code, headers = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+
+      expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Bandwidth::CallState)
+      expect(data.call_id).to eq($call_info_id)
+      expect(data.account_id).to eq(BW_ACCOUNT_ID)
+      expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(data.start_time).to be_instance_of(Time).or be_nil
+      expect(data.last_update).to be_instance_of(Time)
+      expect(data.state).to be_instance_of(String)
+      expect(data.direction).to eq(direction)
     end
   end
 
