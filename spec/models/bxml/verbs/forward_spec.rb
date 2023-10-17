@@ -5,7 +5,7 @@ describe 'Bandwidth::Bxml::Forward' do
       to: '+19195551234',
       from: '+19195554321',
       call_timeout: 5,
-      diversion_treatment: 'propogate',
+      diversion_treatment: 'propagate',
       diversion_reason: 'user-busy',
       uui: '93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt'
     }
@@ -31,7 +31,7 @@ describe 'Bandwidth::Bxml::Forward' do
     end
 
     it 'tests the to_bxml method of the Forward instance' do
-      expected = "\n<Forward to=\"+19195551234\" from=\"+19195554321\" callTimeout=\"5\" diversionTreatment=\"propogate\" diversionReason=\"user-busy\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\"/>\n"
+      expected = "\n<Forward to=\"+19195551234\" from=\"+19195554321\" callTimeout=\"5\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
