@@ -21,7 +21,7 @@ module Bandwidth
           max_digits: 'maxDigits',                        # Optional [Number]: Max number of digits to collect. Default value is 50. Range: decimal values between 1 - 50.
           inter_digit_timeout: 'interDigitTimeout',       # Optional [Number]: Time (in seconds) allowed between digit presses before automatically terminating the Gather. Default value is 5. Range: decimal values between 1 - 60.
           first_digit_timeout: 'firstDigitTimeout',       # Optional [Number]: Time (in seconds) to pause after any audio from nested <SpeakSentence> or <PlayAudio> verb is played (in seconds) before terminating the Gather. Default value is 5. Range: decimal values between 0 - 60.
-          repeat_count: 'repeatCount',                    # Optional [Number]: The number of times the audio prompt should be played if no digits are pressed. For example, if this value is 3, the nested audio clip will be played a maximum of three times. The delay between repetitions will be equal to first_digit_timeout. Default value is 1. repeat_count * number of verbs must not be greater than 20.
+          repeat_count: 'repeatCount',                    # Optional [Number]: The number of times the audio prompt should be played if no digits are pressed. For example, if this value is 3, the nested audio clip will be played a maximum of three times. The delay between repetitions will be equal to first_digit_timeout. Default value is 1. repeatCount * number of verbs must not be greater than 20.
         }
       end
 
