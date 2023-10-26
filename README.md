@@ -12,7 +12,7 @@
 | Ubuntu 20.04 | 2.7, 3.0, 3.1, 3.2 |
 | Ubuntu 22.04 | 2.7, 3.0, 3.1, 3.2 |
 
-Bandwidth - the Ruby gem for the Bandwidth SDK
+Bandwidth - the Ruby gem for the Bandwidth SDK.
 
 ### Generated with the command:
 `openapi-generator generate -g ruby -i bandwidth.yml -c openapi-config.yml -o ./`
