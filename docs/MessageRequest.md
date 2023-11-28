@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **application_id** | **String** | The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard. |  |
 | **to** | **Array&lt;String&gt;** | The phone number(s) the message should be sent to in E164 format. |  |
-| **from** | **String** | One of your telephone numbers the message should come from in E164 format. |  |
+| **from** | **String** | Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. |  |
 | **text** | **String** | The contents of the text message. Must be 2048 characters or less. | [optional] |
 | **media** | **Array&lt;String&gt;** | A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. | [optional] |
 | **tag** | **String** | A custom string that will be included in callback events of the message. Max 1024 characters. | [optional] |

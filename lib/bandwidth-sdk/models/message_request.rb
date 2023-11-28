@@ -21,7 +21,7 @@ module Bandwidth
     # The phone number(s) the message should be sent to in E164 format.
     attr_accessor :to
 
-    # One of your telephone numbers the message should come from in E164 format.
+    # Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter.
     attr_accessor :from
 
     # The contents of the text message. Must be 2048 characters or less.
@@ -103,7 +103,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageRequest` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::MessageRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -354,5 +354,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end
