@@ -275,7 +275,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json', 'application/ogg', 'application/pdf', 'application/rtf', 'application/zip', 'application/x-tar', 'application/xml', 'application/gzip', 'application/x-bzip2', 'application/x-gzip', 'application/smil', 'application/javascript', 'audio/mp4', 'audio/mpeg', 'audio/ogg', 'audio/flac', 'audio/webm', 'audio/wav', 'audio/amr', 'audio/3gpp', 'image/bmp', 'image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/svg+xml', 'image/tiff', 'image/webp', 'image/x-icon', 'text/css', 'text/csv', 'text/calendar', 'text/plain', 'text/javascript', 'text/vcard', 'text/vnd.wap.wml', 'text/xml', 'video/avi', 'video/mp4', 'video/mpeg', 'video/ogg', 'video/quicktime', 'video/webm', 'video/x-ms-wmv'])
       if !content_type.nil?
-          header_params['Content-Type'] = content_type
+        header_params['Content-Type'] = content_type
       end
       header_params[:'Content-Type'] = opts[:'content_type'] if !opts[:'content_type'].nil?
       header_params[:'Cache-Control'] = opts[:'cache_control'] if !opts[:'cache_control'].nil?
