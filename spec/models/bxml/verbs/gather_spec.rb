@@ -42,7 +42,7 @@ describe 'Bandwidth::Bxml::Gather' do
   let (:speak_sentence) { Bandwidth::Bxml::SpeakSentence.new('<lang xml:lang="es-MX">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis>') }
 
   let(:instance) { Bandwidth::Bxml::Gather.new([], initial_attributes) }
-  let(:instance_nested) { Bandwidth::Bxml::Gather.new([play_audio], initial_attributes) }
+  let(:instance_nested) { Bandwidth::Bxml::Gather.new(play_audio, initial_attributes) }
 
   describe 'test an instance of Gather' do
     it 'validates instance of Gather' do
@@ -75,11 +75,11 @@ describe 'Bandwidth::Bxml::Gather' do
 
     it 'tests the add_verb method of the nested Gather instance' do
       expected_single = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n</Gather>\n"
-      instance_nested.add_audio_verb(speak_sentence)
+      instance_nested.add_audio_verbs(speak_sentence)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
       expected_multiple = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n</Gather>\n"
-      instance_nested.add_audio_verb([speak_sentence, play_audio])
+      instance_nested.add_audio_verbs([speak_sentence, play_audio])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end

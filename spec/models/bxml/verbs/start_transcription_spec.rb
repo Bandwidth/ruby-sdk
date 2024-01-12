@@ -30,7 +30,7 @@ describe 'Bandwidth::Bxml::StartTranscription' do
   let (:custom_param_2) { Bandwidth::Bxml::CustomParam.new({ name: 'custom_param_name_2', value: 'custom_param_value_2' }) }
 
   let(:instance) { Bandwidth::Bxml::StartTranscription.new([], initial_attributes) }
-  let(:instance_nested) { Bandwidth::Bxml::StartTranscription.new([custom_param_1], initial_attributes) }
+  let(:instance_nested) { Bandwidth::Bxml::StartTranscription.new(custom_param_1, initial_attributes) }
 
   describe 'test an instance of StartTranscription' do
     it 'validates instance of StartTranscription' do
@@ -63,11 +63,11 @@ describe 'Bandwidth::Bxml::StartTranscription' do
 
     it 'tests the add_custom_param method of the nested StartTranscription instance' do
       expected_single = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
-      instance_nested.add_custom_param(custom_param_2)
+      instance_nested.add_custom_params(custom_param_2)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
       expected_multiple = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
-      instance_nested.add_custom_param([custom_param_2, custom_param_2])
+      instance_nested.add_custom_params([custom_param_2, custom_param_2])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end

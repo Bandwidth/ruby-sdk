@@ -6,12 +6,12 @@ module Bandwidth
       # Initializer
       # @param tag [String] Name of the XML element.
       # @param content [String] XML element content. Defaults to nil.
-      # @param nested_verbs [Array] XML element children. Defaults to an empty array.
+      # @param nested_verbs [Verb] or [Array<Verb>] XML element children. Defaults to an empty array.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(tag, content = nil, nested_verbs = [], attributes = {})
         @tag = tag
         @content = content
-        @nested_verbs = nested_verbs
+        @nested_verbs = Array(nested_verbs)
         @attributes = attributes
       end
 
