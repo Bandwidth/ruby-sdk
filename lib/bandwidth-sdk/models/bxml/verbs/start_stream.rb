@@ -23,6 +23,12 @@ module Bandwidth
       def add_stream_params(stream_params)
         @nested_verbs.push(*stream_params)
       end
+
+      extend Gem::Deprecate
+      def add_stream_param(stream_params)
+        add_stream_params(stream_params)
+      end
+      deprecate(:add_stream_param, 'add_stream_params', 2024, 7)
     end
   end
 end

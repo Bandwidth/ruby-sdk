@@ -24,6 +24,12 @@ module Bandwidth
       def add_custom_params(custom_params)
         @nested_verbs.push(*custom_params)
       end
+
+      extend Gem::Deprecate
+      def add_custom_param(custom_params)
+        add_custom_params(custom_params)
+      end
+      deprecate(:add_custom_param, 'add_custom_params', 2024, 7)
     end
   end
 end

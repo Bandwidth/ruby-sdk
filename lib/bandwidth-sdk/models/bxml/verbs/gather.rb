@@ -37,6 +37,12 @@ module Bandwidth
       def add_audio_verbs(audio_verbs)
         @nested_verbs.push(*audio_verbs)
       end
+
+      extend Gem::Deprecate
+      def add_audio_verb(audio_verbs)
+        add_audio_verbs(audio_verbs)
+      end
+      deprecate(:add_audio_verb, 'add_audio_verbs', 2024, 7)
     end
   end
 end
