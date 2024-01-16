@@ -2,7 +2,7 @@ module Bandwidth
   module Bxml
     class StartTranscription < Bandwidth::Bxml::NestableVerb
       # Initializer
-      # @param custom_params [Array] XML element children. Defaults to an empty array. Valid nested custom params are: CustomParam. You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag.
+      # @param custom_params [Verb] or [Array<Verb>] XML element children. Defaults to an empty array. Valid nested custom params are: CustomParam. You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(custom_params = [], attributes = {})
         super('StartTranscription', nil, custom_params, attributes)
@@ -19,11 +19,17 @@ module Bandwidth
         }
       end
 
-      # Add custom param/s to the nested verbs array
+      # Add custom param or params to the nested verbs array
       # @param custom_params [CustomParam] or [Array<CustomParam>] Verb or verbs to add to the array.
-      def add_custom_param(custom_params)
+      def add_custom_params(custom_params)
         @nested_verbs.push(*custom_params)
       end
+
+      extend Gem::Deprecate
+      def add_custom_param(custom_params)
+        add_custom_params(custom_params)
+      end
+      deprecate(:add_custom_param, 'add_custom_params', 2024, 7)
     end
   end
 end

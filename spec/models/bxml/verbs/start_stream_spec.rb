@@ -28,7 +28,7 @@ describe 'Bandwidth::Bxml::StartStream' do
   let (:stream_param_2) { Bandwidth::Bxml::StreamParam.new({ name: 'stream_param_name_2', value: 'stream_param_value_2' }) }
 
   let(:instance) { Bandwidth::Bxml::StartStream.new([], initial_attributes) }
-  let(:instance_nested) { Bandwidth::Bxml::StartStream.new([stream_param_1], initial_attributes) }
+  let(:instance_nested) { Bandwidth::Bxml::StartStream.new(stream_param_1, initial_attributes) }
 
   describe 'test an instance of StartStream' do
     it 'validates instance of StartStream' do
@@ -61,11 +61,11 @@ describe 'Bandwidth::Bxml::StartStream' do
 
     it 'tests the add_stream_param method of the nested StartStream instance' do
       expected_single = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
-      instance_nested.add_stream_param(stream_param_2)
+      instance_nested.add_stream_params(stream_param_2)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
       expected_multiple = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
-      instance_nested.add_stream_param([stream_param_2, stream_param_2])
+      instance_nested.add_stream_params([stream_param_2, stream_param_2])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end

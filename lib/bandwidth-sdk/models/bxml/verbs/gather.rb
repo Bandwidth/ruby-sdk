@@ -2,7 +2,7 @@ module Bandwidth
   module Bxml
     class Gather < Bandwidth::Bxml::NestableVerb
       # Initializer
-      # @param audio_verbs [Array] XML element children. Defaults to an empty array. Valid nested audio verbs are: SpeakSentence, PlayAudio.
+      # @param audio_verbs [Verb] or [Array<Verb>] XML element children. Defaults to an empty array. Valid nested audio verbs are: SpeakSentence, PlayAudio.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(audio_verbs = [], attributes = {})
         super('Gather', nil, audio_verbs, attributes)
@@ -32,11 +32,17 @@ module Bandwidth
         bxml.gsub(SPEAK_SENTENCE_REGEX) { |text| text.gsub(SSML_REGEX, '<\1>') }
       end
 
-      # Add audio verb/s to the nested verbs array
-      # @param audio_verbs [SpeakSentence] || [PlayAudio] or [Array<SpeakSentence || PlayAudio>] Verb or verbs to add to the array.
-      def add_audio_verb(audio_verbs)
+      # Add audio verb or verbs to the nested verbs array
+      # @param audio_verbs [SpeakSentence] or [PlayAudio] or [Array<SpeakSentence || PlayAudio>] Verb or verbs to add to the array.
+      def add_audio_verbs(audio_verbs)
         @nested_verbs.push(*audio_verbs)
       end
+
+      extend Gem::Deprecate
+      def add_audio_verb(audio_verbs)
+        add_audio_verbs(audio_verbs)
+      end
+      deprecate(:add_audio_verb, 'add_audio_verbs', 2024, 7)
     end
   end
 end

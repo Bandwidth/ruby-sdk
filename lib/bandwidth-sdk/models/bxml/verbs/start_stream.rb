@@ -2,7 +2,7 @@ module Bandwidth
   module Bxml
     class StartStream < Bandwidth::Bxml::NestableVerb
       # Initializer
-      # @param stream_params [Array] XML element children. Defaults to an empty array. Valid nested stream params are: StreamParam. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag.
+      # @param stream_params [Verb] or [Array<Verb>] XML element children. Defaults to an empty array. Valid nested stream params are: StreamParam. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(stream_params = [], attributes = {})
         super('StartStream', nil, stream_params, attributes)
@@ -18,11 +18,17 @@ module Bandwidth
         }
       end
 
-      # Add stream param/s to the nested verbs array
+      # Add stream param or params to the nested verbs array
       # @param stream_params [StreamParam] or [Array<StreamParam>] Verb or verbs to add to the array.
-      def add_stream_param(stream_params)
+      def add_stream_params(stream_params)
         @nested_verbs.push(*stream_params)
       end
+
+      extend Gem::Deprecate
+      def add_stream_param(stream_params)
+        add_stream_params(stream_params)
+      end
+      deprecate(:add_stream_param, 'add_stream_params', 2024, 7)
     end
   end
 end

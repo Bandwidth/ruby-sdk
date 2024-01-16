@@ -2,7 +2,7 @@ module Bandwidth
   module Bxml
     class Transfer < Bandwidth::Bxml::NestableVerb
       # Initializer
-      # @param transfer_to [Array] XML element children. Defaults to an empty array. Valid nested transfer verbs are: PhoneNumber, SipUri.
+      # @param transfer_to [Verb] or [Array<Verb>] XML element children. Defaults to an empty array. Valid nested transfer verbs are: PhoneNumber, SipUri.
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(transfer_to = [], attributes = {})
         super('Transfer', nil, transfer_to, attributes)
@@ -24,11 +24,17 @@ module Bandwidth
         }
       end
 
-      # Add transfer recipient/s to the nested verbs array
-      # @param recipients [PhoneNumber] || [SipUri] or [Array<PhoneNumber || SipUri>] Verb or verbs to add to the array.
-      def add_transfer_recipient(recipients)
+      # Add transfer recipient or recipients to the nested verbs array
+      # @param recipients [PhoneNumber] or [SipUri] or [Array<PhoneNumber || SipUri>] Verb or verbs to add to the array.
+      def add_transfer_recipients(recipients)
         @nested_verbs.push(*recipients)
       end
+
+      extend Gem::Deprecate
+      def add_transfer_recipient(recipients)
+        add_transfer_recipients(recipients)
+      end
+      deprecate(:add_transfer_recipient, 'add_transfer_recipients', 2024, 7)
     end
   end
 end

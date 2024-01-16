@@ -8,10 +8,10 @@ module Bandwidth
     class Root
       # Initializer
       # @param tag [String] Name of the XML element.
-      # @param nested_verbs [Array<Verb>] XML element children. Defaults to an empty array.
+      # @param nested_verbs [Verb] or [Array<Verb>] XML element children. Defaults to an empty array.
       def initialize(tag, nested_verbs = [])
         @tag = tag
-        @nested_verbs = nested_verbs
+        @nested_verbs = Array(nested_verbs)
       end
 
       # Generate an XML element for the BXML response
@@ -30,11 +30,17 @@ module Bandwidth
         xml
       end
 
-      # Add a verb to the nested verbs array
+      # Add a verb or verbs to the nested verbs array
       # @param *nested_verbs [Verb] or [Array<Verb>] Verb or verbs to add to the array.
-      def add_verb(nested_verbs)
+      def add_verbs(nested_verbs)
         @nested_verbs.push(*nested_verbs)
       end
+
+      extend Gem::Deprecate
+      def add_verb(nested_verbs)
+        add_verbs(nested_verbs)
+      end
+      deprecate(:add_verb, 'add_verbs', 2024, 7)
 
       # Return BXML representaion of this response
       # @return [String] The XML response in string format.

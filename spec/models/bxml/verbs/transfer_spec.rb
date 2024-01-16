@@ -40,7 +40,7 @@ describe 'Bandwidth::Bxml::Transfer' do
   let(:sip_uri) { Bandwidth::Bxml::SipUri.new('sip:1-999-123-4567@voip-provider.example.net') }
 
   let(:instance) { Bandwidth::Bxml::Transfer.new([], initial_attributes) }
-  let(:instance_nested) { Bandwidth::Bxml::Transfer.new([phone_number], initial_attributes) }
+  let(:instance_nested) { Bandwidth::Bxml::Transfer.new(phone_number, initial_attributes) }
 
   describe 'test an instance of Transfer' do
     it 'validates instance of Transfer' do
@@ -73,11 +73,11 @@ describe 'Bandwidth::Bxml::Transfer' do
 
     it 'tests the add_verb method of the nested Transfer instance' do
       expected_single = "\n<Transfer transferCallerId=\"+19195551234\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n</Transfer>\n"
-      instance_nested.add_transfer_recipient(sip_uri)
+      instance_nested.add_transfer_recipients(sip_uri)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
       expected_multiple = "\n<Transfer transferCallerId=\"+19195551234\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
-      instance_nested.add_transfer_recipient([sip_uri, phone_number])
+      instance_nested.add_transfer_recipients([sip_uri, phone_number])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
   end
