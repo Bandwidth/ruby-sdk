@@ -84,7 +84,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::CallTranscription` initialize method"
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CallTranscription` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -132,9 +132,9 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      detected_language_validator = EnumAttributeValidator.new('String', ["en-US", "es-US", "fr-FR"])
+      detected_language_validator = EnumAttributeValidator.new('String', ['en-US', 'es-US', 'fr-FR'])
       return false unless detected_language_validator.valid?(@detected_language)
-      track_validator = EnumAttributeValidator.new('String', ["inbound", "outbound"])
+      track_validator = EnumAttributeValidator.new('String', ['inbound', 'outbound'])
       return false unless track_validator.valid?(@track)
       return false if !@confidence.nil? && @confidence > 1
       return false if !@confidence.nil? && @confidence < 0
@@ -144,7 +144,7 @@ module Bandwidth
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] detected_language Object to be assigned
     def detected_language=(detected_language)
-      validator = EnumAttributeValidator.new('String', ["en-US", "es-US", "fr-FR"])
+      validator = EnumAttributeValidator.new('String', ['en-US', 'es-US', 'fr-FR'])
       unless validator.valid?(detected_language)
         fail ArgumentError, "invalid value for \"detected_language\", must be one of #{validator.allowable_values}."
       end
@@ -154,7 +154,7 @@ module Bandwidth
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] track Object to be assigned
     def track=(track)
-      validator = EnumAttributeValidator.new('String', ["inbound", "outbound"])
+      validator = EnumAttributeValidator.new('String', ['inbound', 'outbound'])
       unless validator.valid?(track)
         fail ArgumentError, "invalid value for \"track\", must be one of #{validator.allowable_values}."
       end
@@ -313,7 +313,5 @@ module Bandwidth
         value
       end
     end
-
   end
-
 end
