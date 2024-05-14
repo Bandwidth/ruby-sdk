@@ -226,8 +226,8 @@ module Bandwidth
 
     # Gets access_token using access_token_getter or uses the static access_token
     def access_token_with_refresh
-      return access_token if access_token_getter.nil?
-      access_token_getter.call
+        return access_token if access_token_getter.nil?
+        access_token_getter.call
     end
 
     # Gets Basic Auth token string
@@ -410,12 +410,6 @@ module Bandwidth
           description: "Production",
           }
         ],
-        "RecordingsApi.delete_call_transcription": [
-          {
-          url: "https://voice.bandwidth.com/api/v2",
-          description: "Production",
-          }
-        ],
         "RecordingsApi.delete_recording": [
           {
           url: "https://voice.bandwidth.com/api/v2",
@@ -423,6 +417,12 @@ module Bandwidth
           }
         ],
         "RecordingsApi.delete_recording_media": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "RecordingsApi.delete_recording_transcription": [
           {
           url: "https://voice.bandwidth.com/api/v2",
           description: "Production",
@@ -440,7 +440,7 @@ module Bandwidth
           description: "Production",
           }
         ],
-        "RecordingsApi.get_call_transcription": [
+        "RecordingsApi.get_recording_transcription": [
           {
           url: "https://voice.bandwidth.com/api/v2",
           description: "Production",
@@ -471,6 +471,24 @@ module Bandwidth
           }
         ],
         "StatisticsApi.get_statistics": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TranscriptionsApi.delete_real_time_transcription": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TranscriptionsApi.get_real_time_transcription": [
+          {
+          url: "https://voice.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TranscriptionsApi.list_real_time_transcriptions": [
           {
           url: "https://voice.bandwidth.com/api/v2",
           description: "Production",

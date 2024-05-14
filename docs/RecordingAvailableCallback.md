@@ -21,7 +21,7 @@
 | **end_time** | **Time** | The time that the recording ended in ISO-8601 format | [optional] |
 | **duration** | **String** | The duration of the recording in ISO-8601 format | [optional] |
 | **file_format** | [**FileFormatEnum**](FileFormatEnum.md) |  | [optional] |
-| **channels** | **String** | The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values. | [optional] |
+| **channels** | **Integer** | Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
 | **status** | **String** | The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values. | [optional] |
 | **transfer_caller_id** | **String** | The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable. | [optional] |
@@ -50,7 +50,7 @@ instance = Bandwidth::RecordingAvailableCallback.new(
   end_time: 2022-06-17T22:20Z,
   duration: PT13.67S,
   file_format: null,
-  channels: completed,
+  channels: 1,
   tag: exampleTag,
   status: completed,
   transfer_caller_id: +15555555555,

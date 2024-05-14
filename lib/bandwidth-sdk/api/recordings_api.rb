@@ -19,81 +19,6 @@ module Bandwidth
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Delete Transcription
-    # Deletes the specified recording's transcription.  Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param call_id [String] Programmable Voice API Call ID.
-    # @param recording_id [String] Programmable Voice API Recording ID.
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def delete_call_transcription(account_id, call_id, recording_id, opts = {})
-      delete_call_transcription_with_http_info(account_id, call_id, recording_id, opts)
-      nil
-    end
-
-    # Delete Transcription
-    # Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param call_id [String] Programmable Voice API Call ID.
-    # @param recording_id [String] Programmable Voice API Recording ID.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def delete_call_transcription_with_http_info(account_id, call_id, recording_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: RecordingsApi.delete_call_transcription ...'
-      end
-      # verify the required parameter 'account_id' is set
-      if @api_client.config.client_side_validation && account_id.nil?
-        fail ArgumentError, "Missing the required parameter 'account_id' when calling RecordingsApi.delete_call_transcription"
-      end
-      # verify the required parameter 'call_id' is set
-      if @api_client.config.client_side_validation && call_id.nil?
-        fail ArgumentError, "Missing the required parameter 'call_id' when calling RecordingsApi.delete_call_transcription"
-      end
-      # verify the required parameter 'recording_id' is set
-      if @api_client.config.client_side_validation && recording_id.nil?
-        fail ArgumentError, "Missing the required parameter 'recording_id' when calling RecordingsApi.delete_call_transcription"
-      end
-      # resource path
-      local_var_path = '/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'callId' + '}', CGI.escape(call_id.to_s)).sub('{' + 'recordingId' + '}', CGI.escape(recording_id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type]
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
-
-      new_options = opts.merge(
-        :operation => :"RecordingsApi.delete_call_transcription",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: RecordingsApi#delete_call_transcription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Delete Recording
     # Delete the recording information, media and transcription.  Note: After the deletion is requested and a `204` is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
     # @param account_id [String] Your Bandwidth Account ID.
@@ -240,6 +165,81 @@ module Bandwidth
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: RecordingsApi#delete_recording_media\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Transcription
+    # Deletes the specified recording's transcription.  Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param call_id [String] Programmable Voice API Call ID.
+    # @param recording_id [String] Programmable Voice API Recording ID.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_recording_transcription(account_id, call_id, recording_id, opts = {})
+      delete_recording_transcription_with_http_info(account_id, call_id, recording_id, opts)
+      nil
+    end
+
+    # Delete Transcription
+    # Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param call_id [String] Programmable Voice API Call ID.
+    # @param recording_id [String] Programmable Voice API Recording ID.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_recording_transcription_with_http_info(account_id, call_id, recording_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: RecordingsApi.delete_recording_transcription ...'
+      end
+      # verify the required parameter 'account_id' is set
+      if @api_client.config.client_side_validation && account_id.nil?
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling RecordingsApi.delete_recording_transcription"
+      end
+      # verify the required parameter 'call_id' is set
+      if @api_client.config.client_side_validation && call_id.nil?
+        fail ArgumentError, "Missing the required parameter 'call_id' when calling RecordingsApi.delete_recording_transcription"
+      end
+      # verify the required parameter 'recording_id' is set
+      if @api_client.config.client_side_validation && recording_id.nil?
+        fail ArgumentError, "Missing the required parameter 'recording_id' when calling RecordingsApi.delete_recording_transcription"
+      end
+      # resource path
+      local_var_path = '/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'callId' + '}', CGI.escape(call_id.to_s)).sub('{' + 'recordingId' + '}', CGI.escape(recording_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Basic']
+
+      new_options = opts.merge(
+        :operation => :"RecordingsApi.delete_recording_transcription",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: RecordingsApi#delete_recording_transcription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -395,39 +395,39 @@ module Bandwidth
     end
 
     # Get Transcription
-    # Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [`<PlayAudio>`](/docs/voice/bxml/playAudio) and [`<SpeakSentence>`](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [`<Transfer>`](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+    # Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [`<PlayAudio>`](/docs/voice/bxml/playAudio) and [`<SpeakSentence>`](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [`<Transfer>`](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
     # @param recording_id [String] Programmable Voice API Recording ID.
     # @param [Hash] opts the optional parameters
-    # @return [TranscriptionList]
-    def get_call_transcription(account_id, call_id, recording_id, opts = {})
-      data, _status_code, _headers = get_call_transcription_with_http_info(account_id, call_id, recording_id, opts)
+    # @return [RecordingTranscriptions]
+    def get_recording_transcription(account_id, call_id, recording_id, opts = {})
+      data, _status_code, _headers = get_recording_transcription_with_http_info(account_id, call_id, recording_id, opts)
       data
     end
 
     # Get Transcription
-    # Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+    # Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
     # @param recording_id [String] Programmable Voice API Recording ID.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TranscriptionList, Integer, Hash)>] TranscriptionList data, response status code and response headers
-    def get_call_transcription_with_http_info(account_id, call_id, recording_id, opts = {})
+    # @return [Array<(RecordingTranscriptions, Integer, Hash)>] RecordingTranscriptions data, response status code and response headers
+    def get_recording_transcription_with_http_info(account_id, call_id, recording_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: RecordingsApi.get_call_transcription ...'
+        @api_client.config.logger.debug 'Calling API: RecordingsApi.get_recording_transcription ...'
       end
       # verify the required parameter 'account_id' is set
       if @api_client.config.client_side_validation && account_id.nil?
-        fail ArgumentError, "Missing the required parameter 'account_id' when calling RecordingsApi.get_call_transcription"
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling RecordingsApi.get_recording_transcription"
       end
       # verify the required parameter 'call_id' is set
       if @api_client.config.client_side_validation && call_id.nil?
-        fail ArgumentError, "Missing the required parameter 'call_id' when calling RecordingsApi.get_call_transcription"
+        fail ArgumentError, "Missing the required parameter 'call_id' when calling RecordingsApi.get_recording_transcription"
       end
       # verify the required parameter 'recording_id' is set
       if @api_client.config.client_side_validation && recording_id.nil?
-        fail ArgumentError, "Missing the required parameter 'recording_id' when calling RecordingsApi.get_call_transcription"
+        fail ArgumentError, "Missing the required parameter 'recording_id' when calling RecordingsApi.get_recording_transcription"
       end
       # resource path
       local_var_path = '/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'callId' + '}', CGI.escape(call_id.to_s)).sub('{' + 'recordingId' + '}', CGI.escape(recording_id.to_s))
@@ -447,13 +447,13 @@ module Bandwidth
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'TranscriptionList'
+      return_type = opts[:debug_return_type] || 'RecordingTranscriptions'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
-        :operation => :"RecordingsApi.get_call_transcription",
+        :operation => :"RecordingsApi.get_recording_transcription",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -464,7 +464,7 @@ module Bandwidth
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: RecordingsApi#get_call_transcription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: RecordingsApi#get_recording_transcription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -667,7 +667,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -747,7 +747,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters

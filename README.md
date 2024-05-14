@@ -132,17 +132,20 @@ Class | Method | HTTP request | Description
 *Bandwidth::MessagesApi* | [**list_messages**](docs/MessagesApi.md#list_messages) | **GET** /users/{accountId}/messages | List Messages
 *Bandwidth::PhoneNumberLookupApi* | [**create_lookup**](docs/PhoneNumberLookupApi.md#create_lookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup
 *Bandwidth::PhoneNumberLookupApi* | [**get_lookup_status**](docs/PhoneNumberLookupApi.md#get_lookup_status) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status
-*Bandwidth::RecordingsApi* | [**delete_call_transcription**](docs/RecordingsApi.md#delete_call_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription
 *Bandwidth::RecordingsApi* | [**delete_recording**](docs/RecordingsApi.md#delete_recording) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Delete Recording
 *Bandwidth::RecordingsApi* | [**delete_recording_media**](docs/RecordingsApi.md#delete_recording_media) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Delete Recording Media
+*Bandwidth::RecordingsApi* | [**delete_recording_transcription**](docs/RecordingsApi.md#delete_recording_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription
 *Bandwidth::RecordingsApi* | [**download_call_recording**](docs/RecordingsApi.md#download_call_recording) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Download Recording
 *Bandwidth::RecordingsApi* | [**get_call_recording**](docs/RecordingsApi.md#get_call_recording) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Get Call Recording
-*Bandwidth::RecordingsApi* | [**get_call_transcription**](docs/RecordingsApi.md#get_call_transcription) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Get Transcription
+*Bandwidth::RecordingsApi* | [**get_recording_transcription**](docs/RecordingsApi.md#get_recording_transcription) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Get Transcription
 *Bandwidth::RecordingsApi* | [**list_account_call_recordings**](docs/RecordingsApi.md#list_account_call_recordings) | **GET** /accounts/{accountId}/recordings | Get Call Recordings
 *Bandwidth::RecordingsApi* | [**list_call_recordings**](docs/RecordingsApi.md#list_call_recordings) | **GET** /accounts/{accountId}/calls/{callId}/recordings | List Call Recordings
 *Bandwidth::RecordingsApi* | [**transcribe_call_recording**](docs/RecordingsApi.md#transcribe_call_recording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request
 *Bandwidth::RecordingsApi* | [**update_call_recording_state**](docs/RecordingsApi.md#update_call_recording_state) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording
 *Bandwidth::StatisticsApi* | [**get_statistics**](docs/StatisticsApi.md#get_statistics) | **GET** /accounts/{accountId}/statistics | Get Account Statistics
+*Bandwidth::TranscriptionsApi* | [**delete_real_time_transcription**](docs/TranscriptionsApi.md#delete_real_time_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription
+*Bandwidth::TranscriptionsApi* | [**get_real_time_transcription**](docs/TranscriptionsApi.md#get_real_time_transcription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription
+*Bandwidth::TranscriptionsApi* | [**list_real_time_transcriptions**](docs/TranscriptionsApi.md#list_real_time_transcriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription
 
 
 ## Documentation for Models
@@ -155,6 +158,9 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CallRecordingMetadata](docs/CallRecordingMetadata.md)
  - [Bandwidth::CallState](docs/CallState.md)
  - [Bandwidth::CallStateEnum](docs/CallStateEnum.md)
+ - [Bandwidth::CallTranscription](docs/CallTranscription.md)
+ - [Bandwidth::CallTranscriptionMetadata](docs/CallTranscriptionMetadata.md)
+ - [Bandwidth::CallTranscriptionResponse](docs/CallTranscriptionResponse.md)
  - [Bandwidth::CallbackMethodEnum](docs/CallbackMethodEnum.md)
  - [Bandwidth::CodeRequest](docs/CodeRequest.md)
  - [Bandwidth::Conference](docs/Conference.md)
@@ -214,6 +220,8 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Bandwidth::RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Bandwidth::RecordingStateEnum](docs/RecordingStateEnum.md)
+ - [Bandwidth::RecordingTranscriptionMetadata](docs/RecordingTranscriptionMetadata.md)
+ - [Bandwidth::RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
  - [Bandwidth::StirShaken](docs/StirShaken.md)
@@ -222,8 +230,6 @@ Class | Method | HTTP request | Description
  - [Bandwidth::TranscribeRecording](docs/TranscribeRecording.md)
  - [Bandwidth::Transcription](docs/Transcription.md)
  - [Bandwidth::TranscriptionAvailableCallback](docs/TranscriptionAvailableCallback.md)
- - [Bandwidth::TranscriptionList](docs/TranscriptionList.md)
- - [Bandwidth::TranscriptionMetadata](docs/TranscriptionMetadata.md)
  - [Bandwidth::TransferAnswerCallback](docs/TransferAnswerCallback.md)
  - [Bandwidth::TransferCompleteCallback](docs/TransferCompleteCallback.md)
  - [Bandwidth::TransferDisconnectCallback](docs/TransferDisconnectCallback.md)
