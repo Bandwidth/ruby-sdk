@@ -50,7 +50,7 @@ describe 'PhoneNumberLookupApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @phone_number_lookup_api_instance.create_lookup(nil, {})
+        @phone_number_lookup_api_instance.create_lookup(nil, {})
       }.to raise_error(ArgumentError)
     end
 
@@ -87,7 +87,7 @@ describe 'PhoneNumberLookupApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @phone_number_lookup_api_instance.get_lookup_status(nil, '')
+        @phone_number_lookup_api_instance.get_lookup_status(nil, '')
       }.to raise_error(ArgumentError)
     end
 

@@ -30,14 +30,14 @@ describe 'MediaApi' do
       stub_request(:delete, "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/media/#{media_name}").
       to_return(status: 204)
 
-      data, status_code, headers = @media_api_instance.delete_media_with_http_info(BW_ACCOUNT_ID, media_name)
+      _data, status_code = @media_api_instance.delete_media_with_http_info(BW_ACCOUNT_ID, media_name)
 
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @media_api_instance.delete_media(nil, '')
+        @media_api_instance.delete_media(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -63,7 +63,7 @@ describe 'MediaApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @media_api_instance.get_media(nil, '')
+        @media_api_instance.get_media(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -93,7 +93,7 @@ describe 'MediaApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @media_api_instance.list_media(nil)
+        @media_api_instance.list_media(nil)
       }.to raise_error(ArgumentError)
     end
   end
@@ -104,13 +104,13 @@ describe 'MediaApi' do
       stub_request(:put, "https://messaging.bandwidth.com/api/v2/users/#{BW_ACCOUNT_ID}/media/#{media_name}").
       to_return(status: 204)
 
-      data, status_code, headers = @media_api_instance.upload_media_with_http_info(BW_ACCOUNT_ID, media_name, media_data)
+      _data, status_code = @media_api_instance.upload_media_with_http_info(BW_ACCOUNT_ID, media_name, media_data)
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @media_api_instance.upload_media(nil, '', '')
+        @media_api_instance.upload_media(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 

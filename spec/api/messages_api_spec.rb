@@ -114,7 +114,7 @@ describe 'MessagesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @messaging_api_instance.create_message(nil, {})
+        @messaging_api_instance.create_message(nil, {})
       }.to raise_error(ArgumentError)
     end
 
@@ -186,7 +186,7 @@ describe 'MessagesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @messaging_api_instance.list_messages(nil)
+        @messaging_api_instance.list_messages(nil)
       }.to raise_error(ArgumentError)
     end
   end

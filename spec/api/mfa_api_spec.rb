@@ -41,7 +41,7 @@ describe 'MFAApi' do
         digits: digits
       )
 
-      data, status_code, headers = @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::MessagingCodeResponse)
@@ -50,7 +50,7 @@ describe 'MFAApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @mfa_api_instance.generate_messaging_code(nil, {})
+        @mfa_api_instance.generate_messaging_code(nil, {})
       }.to raise_error(ArgumentError)
     end
 
@@ -75,7 +75,7 @@ describe 'MFAApi' do
         digits: digits
       )
 
-      data, status_code, headers = @mfa_api_instance.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::VoiceCodeResponse)
@@ -84,7 +84,7 @@ describe 'MFAApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @mfa_api_instance.generate_voice_code(nil, {})
+        @mfa_api_instance.generate_voice_code(nil, {})
       }.to raise_error(ArgumentError)
     end
 
@@ -108,7 +108,7 @@ describe 'MFAApi' do
         code: '12345'
       )
 
-      data, status_code, headers = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::VerifyCodeResponse)
@@ -117,7 +117,7 @@ describe 'MFAApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @mfa_api_instance.verify_code(nil, {})
+        @mfa_api_instance.verify_code(nil, {})
       }.to raise_error(ArgumentError)
     end
 
