@@ -20,8 +20,8 @@ describe 'RecordingsApi' do
   let(:download_call_recording_headers_stub) { { 'content-type' => 'audio/vnd.wave', 'content-length' => "#{download_call_recording_body_stub.length}" } }
   let(:get_call_recording_headers_stub) { { 'content-type' => 'application/json' } }
   let(:get_call_recording_body_stub) { "{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}" }
-  let(:get_call_transcription_headers_stub) { { 'content-type' => 'application/json' } }
-  let(:get_call_transcription_body_stub) { "{\"transcripts\":[{\"text\":\"#{text}\",\"confidence\":#{confidence}}]}" }
+  let(:get_recording_transcription_headers_stub) { { 'content-type' => 'application/json' } }
+  let(:get_recording_transcription_body_stub) { "{\"transcripts\":[{\"text\":\"#{text}\",\"confidence\":#{confidence}}]}" }
   let(:list_account_call_recordings_headers_stub) { { 'content-type' => 'application/json' } }
   let(:list_account_call_recordings_body_stub) { "[{\"applicationId\":\"#{BW_VOICE_APPLICATION_ID}\",\"accountId\":\"#{BW_ACCOUNT_ID}\",\"callId\":\"#{call_id}\",\"recordingId\":\"#{recording_id}\",\"to\":\"#{USER_NUMBER}\",\"from\":\"#{BW_NUMBER}\",\"duration\":\"#{duration}\",\"direction\":\"#{direction}\",\"channels\":#{channels},\"startTime\":\"#{start_time}\",\"endTime\":\"#{end_time}\",\"fileFormat\":\"#{file_format}\",\"status\":\"#{status}\",\"mediaUrl\":\"#{media_url}\"}]" }
   let(:list_call_recordings_headers_stub) { { 'content-type' => 'application/json' } }
@@ -43,31 +43,31 @@ describe 'RecordingsApi' do
   end
 
   # Delete Transcription
-  describe 'delete_call_transcription' do
+  describe 'delete_recording_transcription' do
     it 'deletes the completed call recording transcription' do
       stub_request(:delete, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/transcription").
       to_return(status: 204)
 
-      data, status_code, headers = @recordings_api_instance.delete_call_transcription_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_transcription_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
 
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.delete_call_transcription(nil, '', '')
+        @recordings_api_instance.delete_recording_transcription(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
-        @recordings_api_instance.delete_call_transcription(BW_ACCOUNT_ID, nil, '')
+        @recordings_api_instance.delete_recording_transcription(BW_ACCOUNT_ID, nil, '')
       }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
-        @recordings_api_instance.delete_call_transcription(BW_ACCOUNT_ID, '', nil)
+        @recordings_api_instance.delete_recording_transcription(BW_ACCOUNT_ID, '', nil)
       }.to raise_error(ArgumentError)
     end
   end
@@ -78,14 +78,14 @@ describe 'RecordingsApi' do
       stub_request(:delete, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}").
       to_return(status: 204)
 
-      data, status_code, headers = @recordings_api_instance.delete_recording_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
 
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.delete_recording(nil, '', '')
+        @recordings_api_instance.delete_recording(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -108,14 +108,14 @@ describe 'RecordingsApi' do
       stub_request(:delete, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/media").
       to_return(status: 204)
 
-      data, status_code, headers = @recordings_api_instance.delete_recording_media_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_media_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
 
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.delete_recording_media(nil, '', '')
+        @recordings_api_instance.delete_recording_media(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -147,7 +147,7 @@ describe 'RecordingsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.download_call_recording(nil, '', '')
+        @recordings_api_instance.download_call_recording(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -193,7 +193,7 @@ describe 'RecordingsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.get_call_recording(nil, '', '')
+        @recordings_api_instance.get_call_recording(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -211,15 +211,15 @@ describe 'RecordingsApi' do
   end
 
   # Get Transcription
-  describe 'get_call_transcription' do
+  describe 'get_recording_transcription' do
     it 'gets the completed call recording transcription' do
       stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/transcription").
-      to_return(status: 200, headers: get_call_transcription_headers_stub, body: get_call_transcription_body_stub)
+      to_return(status: 200, headers: get_recording_transcription_headers_stub, body: get_recording_transcription_body_stub)
 
-      data, status_code, headers = @recordings_api_instance.get_call_transcription_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
+      data, status_code = @recordings_api_instance.get_recording_transcription_with_http_info(BW_ACCOUNT_ID, call_id, recording_id)
 
       expect(status_code).to eq(200)
-      expect(data).to be_instance_of(Bandwidth::TranscriptionList)
+      expect(data).to be_instance_of(Bandwidth::RecordingTranscriptions)
       expect(data.transcripts).to be_instance_of(Array)
       expect(data.transcripts[0]).to be_instance_of(Bandwidth::Transcription)
       expect(data.transcripts[0].text).to eq(text)
@@ -228,19 +228,19 @@ describe 'RecordingsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.get_call_transcription(nil, '', '')
+        @recordings_api_instance.get_recording_transcription(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing call_id' do
       expect {
-        @recordings_api_instance.get_call_transcription(BW_ACCOUNT_ID, nil, '')
+        @recordings_api_instance.get_recording_transcription(BW_ACCOUNT_ID, nil, '')
       }.to raise_error(ArgumentError)
     end
 
     it 'causes an ArgumentError for a missing recording_id' do
       expect {
-        @recordings_api_instance.get_call_transcription(BW_ACCOUNT_ID, '', nil)
+        @recordings_api_instance.get_recording_transcription(BW_ACCOUNT_ID, '', nil)
       }.to raise_error(ArgumentError)
     end
   end
@@ -251,7 +251,7 @@ describe 'RecordingsApi' do
       stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/recordings").
       to_return(status: 200, headers: list_account_call_recordings_headers_stub, body: list_account_call_recordings_body_stub)
 
-      data, status_code, headers = @recordings_api_instance.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @recordings_api_instance.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -274,7 +274,7 @@ describe 'RecordingsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.list_account_call_recordings(nil)
+        @recordings_api_instance.list_account_call_recordings(nil)
       }.to raise_error(ArgumentError)
     end
   end
@@ -285,7 +285,7 @@ describe 'RecordingsApi' do
       stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings").
       to_return(status: 200, headers: list_call_recordings_headers_stub, body: list_call_recordings_body_stub)
 
-      data, status_code, headers = @recordings_api_instance.list_call_recordings_with_http_info(BW_ACCOUNT_ID, call_id)
+      data, status_code = @recordings_api_instance.list_call_recordings_with_http_info(BW_ACCOUNT_ID, call_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -307,7 +307,7 @@ describe 'RecordingsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.list_call_recordings(nil, '')
+        @recordings_api_instance.list_call_recordings(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -329,14 +329,14 @@ describe 'RecordingsApi' do
         tag: test_id
       )
 
-      data, status_code, headers = @recordings_api_instance.transcribe_call_recording_with_http_info(BW_ACCOUNT_ID, call_id, recording_id, transcribe_recording)
+      _data, status_code = @recordings_api_instance.transcribe_call_recording_with_http_info(BW_ACCOUNT_ID, call_id, recording_id, transcribe_recording)
 
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.transcribe_call_recording(nil, '', '', '')
+        @recordings_api_instance.transcribe_call_recording(nil, '', '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -369,14 +369,14 @@ describe 'RecordingsApi' do
         state: Bandwidth::RecordingStateEnum::PAUSED
       )
 
-      data, status_code, headers = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, call_id, pause_recording)
+      _data, status_code = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, call_id, pause_recording)
 
       expect(status_code).to eq(200)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @recordings_api_instance.update_call_recording_state(nil, '', {})
+        @recordings_api_instance.update_call_recording_state(nil, '', {})
       }.to raise_error(ArgumentError)
     end
 
