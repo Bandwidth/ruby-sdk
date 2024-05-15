@@ -34,14 +34,14 @@ describe 'RecordingsApi Integration Tests' do
       )
 
       sleep(SLEEP_TIME_S * 2)
-      pause_data, pause_status_code, pause_headers = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, pause_recording)
+      _pause_data, pause_status_code = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, pause_recording)
       expect(pause_status_code).to eq(200)
 
       sleep(SLEEP_TIME_S)
-      record_data, record_status_code, record_headers = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, start_recording)
+      _record_data, record_status_code = @recordings_api_instance.update_call_recording_state_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, start_recording)
       expect(record_status_code).to eq(200)
 
-      complete_data, complete_status_code, complete_headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $complete_call_body)
+      _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $complete_call_body)
       expect(complete_status_code).to eq(200)
 
       retries = 0
@@ -63,7 +63,7 @@ describe 'RecordingsApi Integration Tests' do
   # Get Call Recordings
   describe 'list_account_call_recordings' do
     it 'lists account call recordings' do
-      data, status_code, headers = @recordings_api_instance.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @recordings_api_instance.list_account_call_recordings_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -76,7 +76,7 @@ describe 'RecordingsApi Integration Tests' do
   # List Call Recordings
   describe 'list_call_recordings' do
     it 'lists all recordings for a single call' do
-      data, status_code, headers = @recordings_api_instance.list_call_recordings_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
+      data, status_code = @recordings_api_instance.list_call_recordings_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -94,7 +94,7 @@ describe 'RecordingsApi Integration Tests' do
   # Get Call Recording
   describe 'get_call_recording' do
     it 'gets a call recording by id' do
-      data, status_code, headers = @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      data, status_code = @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::CallRecordingMetadata)
@@ -109,7 +109,7 @@ describe 'RecordingsApi Integration Tests' do
   # Download Recording
   describe 'download_call_recording' do
     it 'downloads a call recording by id' do
-      data, status_code, headers = @recordings_api_instance.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      data, status_code = @recordings_api_instance.download_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(String)
@@ -124,7 +124,7 @@ describe 'RecordingsApi Integration Tests' do
         tag: $manteca_test_id
       )
 
-      data, status_code, headers = @recordings_api_instance.transcribe_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id, transcribe_recording)
+      _data, status_code = @recordings_api_instance.transcribe_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id, transcribe_recording)
       expect(status_code).to eq(204)
 
       retries = 0
@@ -147,7 +147,7 @@ describe 'RecordingsApi Integration Tests' do
   # Get Transcription
   describe 'get_call_transcription' do
     it 'gets the completed call recording transcription' do
-      data, status_code, headers = @recordings_api_instance.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      data, status_code = @recordings_api_instance.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::TranscriptionList)
@@ -161,7 +161,7 @@ describe 'RecordingsApi Integration Tests' do
   # Delete Transcription
   describe 'delete_call_transcription' do
     it 'deletes the completed call recording transcription' do
-      data, status_code, headers = @recordings_api_instance.delete_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      _data, status_code = @recordings_api_instance.delete_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       expect(status_code).to eq(204)
     end
   end
@@ -169,7 +169,7 @@ describe 'RecordingsApi Integration Tests' do
   # Delete Recording Media
   describe 'delete_recording_media' do
     it 'deletes the completed call recording media' do
-      data, status_code, headers = @recordings_api_instance.delete_recording_media_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_media_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       expect(status_code).to eq(204)
     end
   end
@@ -177,7 +177,7 @@ describe 'RecordingsApi Integration Tests' do
   # Delete Recording
   describe 'delete_recording' do
     it 'deletes the completed call recording data' do
-      data, status_code, headers = @recordings_api_instance.delete_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       expect(status_code).to eq(204)
     end
   end

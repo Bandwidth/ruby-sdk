@@ -22,7 +22,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
       tn_body = Bandwidth::LookupRequest.new(
         tns: [BW_NUMBER]
       )
-      data, status_code, headers = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
+      data, status_code = @api_instance_tnlookup.create_lookup_with_http_info(BW_ACCOUNT_ID, tn_body)
 
       expect(status_code).to eq(202)
       expect(data).to be_instance_of(Bandwidth::CreateLookupResponse)
@@ -37,7 +37,7 @@ describe 'PhoneNumberLookupApi Integration Tests' do
   # Get Lookup Status
   describe 'get_lookup_status' do
     it 'gets lookup status' do
-      data, status_code, headers = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
+      data, status_code = @api_instance_tnlookup.get_lookup_status_with_http_info(BW_ACCOUNT_ID, $lookup_request_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::LookupStatus)

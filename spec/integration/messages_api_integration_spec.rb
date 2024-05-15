@@ -37,7 +37,7 @@ describe 'MessagesApi Integration Tests' do
         tag: mms_tag
       )
 
-      data, status_code, headers = @messaging_api_instance.create_message_with_http_info(BW_ACCOUNT_ID, message_request)
+      data, status_code = @messaging_api_instance.create_message_with_http_info(BW_ACCOUNT_ID, message_request)
 
       expect(status_code).to eq(202)
       expect(data).to be_instance_of(Bandwidth::Message)
@@ -61,7 +61,7 @@ describe 'MessagesApi Integration Tests' do
         expiration: @expiration_time
       )
   
-      data, status_code, headers = @messaging_api_instance.create_message_with_http_info(BW_ACCOUNT_ID, message_request)
+      data, status_code = @messaging_api_instance.create_message_with_http_info(BW_ACCOUNT_ID, message_request)
   
       expect(status_code).to eq(202)
       expect(data).to be_instance_of(Bandwidth::Message)
@@ -83,7 +83,7 @@ describe 'MessagesApi Integration Tests' do
         source_tn: BW_NUMBER,
         message_direction: list_message_direction
       }
-      data, status_code, headers = @messaging_api_instance.list_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
+      data, status_code = @messaging_api_instance.list_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::MessagesList)

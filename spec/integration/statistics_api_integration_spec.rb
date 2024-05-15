@@ -16,7 +16,7 @@ describe 'StatisticsApi Integration Tests' do
   # Get Account Statistics
   describe 'get_statistics' do
     it 'gets account statistics' do
-      data, status_code, headers = @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::AccountStatistics)

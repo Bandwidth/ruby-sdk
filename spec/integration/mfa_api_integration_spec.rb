@@ -28,7 +28,7 @@ describe 'MFAApi Integration Tests' do
         digits: digits
       )
 
-      data, status_code, headers = @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::MessagingCodeResponse)
@@ -47,7 +47,7 @@ describe 'MFAApi Integration Tests' do
         digits: digits
       )
 
-      data, status_code, headers = @mfa_api_instance.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.generate_voice_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::VoiceCodeResponse)
@@ -65,7 +65,7 @@ describe 'MFAApi Integration Tests' do
         code: '12345'
       )
 
-      data, status_code, headers = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+      data, status_code = @mfa_api_instance.verify_code_with_http_info(BW_ACCOUNT_ID, req_schema)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::VerifyCodeResponse)
