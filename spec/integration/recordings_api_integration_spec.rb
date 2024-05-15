@@ -118,7 +118,7 @@ describe 'RecordingsApi Integration Tests' do
   
   # Create Transcription Request
   describe 'transcribe_call_recording' do
-    it 'creates a transcription request' do
+    it 'creates a recording transcription request' do
       transcribe_recording = Bandwidth::TranscribeRecording.new(
         callback_url: MANTECA_BASE_URL + '/transcriptions',
         tag: $manteca_test_id
