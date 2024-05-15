@@ -42,7 +42,7 @@ describe 'RecordingsApi' do
     end
   end
 
-  # Delete Transcription
+  # Delete Recording Transcription
   describe 'delete_recording_transcription' do
     it 'deletes the completed call recording transcription' do
       stub_request(:delete, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/transcription").
@@ -210,7 +210,7 @@ describe 'RecordingsApi' do
     end
   end
 
-  # Get Transcription
+  # Get Recording Transcription
   describe 'get_recording_transcription' do
     it 'gets the completed call recording transcription' do
       stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}/recordings/#{recording_id}/transcription").
