@@ -44,6 +44,7 @@ describe 'TranscriptionsApi Integration Tests' do
   # List Call Transcriptions
   describe 'list_call_transcriptions' do
     it 'lists call transcriptions' do
+      sleep(SLEEP_TIME_S)
       data, status_code, _headers = @transcriptions_api_instance.list_real_time_transcriptions_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
       
       expect(status_code).to eq(200)
@@ -58,6 +59,7 @@ describe 'TranscriptionsApi Integration Tests' do
   # Get Call Transcription
   describe 'get_call_transcription' do
     it 'gets the specified call transcription' do
+      sleep(SLEEP_TIME_S)
       data, status_code, _headers = @transcriptions_api_instance.get_real_time_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $transcription_id)
       
       expect(status_code).to eq(200)
