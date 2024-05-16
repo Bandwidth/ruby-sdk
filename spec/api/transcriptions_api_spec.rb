@@ -17,7 +17,6 @@ describe 'TranscriptionsApi' do
 
   before(:all) do
     Bandwidth.configure do |config|
-      config.return_binary_data = true
       config.debugging = true
     end
     @transcriptions_api_instance = Bandwidth::TranscriptionsApi.new

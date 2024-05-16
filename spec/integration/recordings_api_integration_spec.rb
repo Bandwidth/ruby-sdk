@@ -147,10 +147,10 @@ describe 'RecordingsApi Integration Tests' do
   # Get Transcription
   describe 'get_call_transcription' do
     it 'gets the completed call recording transcription' do
-      data, status_code = @recordings_api_instance.get_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      data, status_code = @recordings_api_instance.get_recording_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
 
       expect(status_code).to eq(200)
-      expect(data).to be_instance_of(Bandwidth::TranscriptionList)
+      expect(data).to be_instance_of(Bandwidth::RecordingTranscriptions)
       expect(data.transcripts).to be_instance_of(Array)
       expect(data.transcripts[0]).to be_instance_of(Bandwidth::Transcription)
       expect(data.transcripts[0].text).to be_instance_of(String)
@@ -161,7 +161,7 @@ describe 'RecordingsApi Integration Tests' do
   # Delete Transcription
   describe 'delete_call_transcription' do
     it 'deletes the completed call recording transcription' do
-      _data, status_code = @recordings_api_instance.delete_call_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
+      _data, status_code = @recordings_api_instance.delete_recording_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
       expect(status_code).to eq(204)
     end
   end
