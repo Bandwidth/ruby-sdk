@@ -41,10 +41,10 @@ describe 'TranscriptionsApi Integration Tests' do
     end
   end
 
-  # List Call Transcriptions
-  describe 'list_call_transcriptions' do
+  # List Real Time Call Transcriptions
+  describe 'list_real_time_transcriptions' do
     it 'lists call transcriptions' do
-      sleep(SLEEP_TIME_S * 20)
+      sleep(SLEEP_TIME_S)
       data, status_code, _headers = @transcriptions_api_instance.list_real_time_transcriptions_with_http_info(BW_ACCOUNT_ID, $manteca_call_id)
       
       expect(status_code).to eq(200)
@@ -56,8 +56,8 @@ describe 'TranscriptionsApi Integration Tests' do
     end
   end
 
-  # Get Call Transcription
-  describe 'get_call_transcription' do
+  # Get Real Time Call Transcription
+  describe 'get_real_time_transcription' do
     it 'gets the specified call transcription' do
       data, status_code, _headers = @transcriptions_api_instance.get_real_time_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $transcription_id)
       
@@ -70,6 +70,15 @@ describe 'TranscriptionsApi Integration Tests' do
       expect(data.tracks[0]).to be_instance_of(Bandwidth::CallTranscription)
       expect(data.tracks[0].track).to eq('inbound')
       expect(data.tracks[0].confidence).to be_instance_of(Float)
+    end
+  end
+
+  # Delete Real Time Call Transcription
+  describe 'delete_real_time_transcription' do
+    it 'deletes the specified call transcription' do
+      _data, status_code = @transcriptions_api_instance.delete_real_time_transcription_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $transcription_id)
+
+      expect(status_code).to eq(200) # This is a bug in the API, it should return 204. VAPI-1863 should fix this.
     end
   end
 end
