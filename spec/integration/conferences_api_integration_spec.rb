@@ -31,7 +31,7 @@ describe 'ConferencesApi Integration Tests' do
       }
 
       sleep(SLEEP_TIME_S)
-      data, status_code, headers = @conferences_api_instance.list_conferences_with_http_info(BW_ACCOUNT_ID, conference_opts)
+      data, status_code = @conferences_api_instance.list_conferences_with_http_info(BW_ACCOUNT_ID, conference_opts)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -44,7 +44,7 @@ describe 'ConferencesApi Integration Tests' do
   # Get Conference Information
   describe 'get_conference' do
     it 'get a conference by id' do
-      data, status_code, headers = @conferences_api_instance.get_conference_with_http_info(BW_ACCOUNT_ID, $conference_id)
+      data, status_code = @conferences_api_instance.get_conference_with_http_info(BW_ACCOUNT_ID, $conference_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::Conference)
@@ -57,7 +57,7 @@ describe 'ConferencesApi Integration Tests' do
   # Get Conference Member
   describe 'get_conference_member' do
     it 'gets a conference member by call id' do
-      data, status_code, headers = @conferences_api_instance.get_conference_member_with_http_info(BW_ACCOUNT_ID, $conference_id, $manteca_call_id)
+      data, status_code = @conferences_api_instance.get_conference_member_with_http_info(BW_ACCOUNT_ID, $conference_id, $manteca_call_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::ConferenceMember)
@@ -73,7 +73,7 @@ describe 'ConferencesApi Integration Tests' do
         mute: false
       )
 
-      data, status_code, headers = @conferences_api_instance.update_conference_member_with_http_info(BW_ACCOUNT_ID, $conference_id, $manteca_call_id, update_conference_member)
+      _data, status_code = @conferences_api_instance.update_conference_member_with_http_info(BW_ACCOUNT_ID, $conference_id, $manteca_call_id, update_conference_member)
       expect(status_code).to eq(204)
     end
   end
@@ -93,7 +93,7 @@ describe 'ConferencesApi Integration Tests' do
         fallback_password: 'password'
       )
 
-      data, status_code, headers = @conferences_api_instance.update_conference_with_http_info(BW_ACCOUNT_ID, $conference_id, update_conference_body)
+      _data, status_code = @conferences_api_instance.update_conference_with_http_info(BW_ACCOUNT_ID, $conference_id, update_conference_body)
       expect(status_code).to eq(204)
     end
   end
@@ -103,7 +103,7 @@ describe 'ConferencesApi Integration Tests' do
     it 'updates a conference using bxml' do
       update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><StartRecording/><SpeakSentence locale="en_US" gender="female" voice="susan">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>'
 
-      data, status_code, headers = @conferences_api_instance.update_conference_bxml_with_http_info(BW_ACCOUNT_ID, $conference_id, update_bxml)
+      _data, status_code = @conferences_api_instance.update_conference_bxml_with_http_info(BW_ACCOUNT_ID, $conference_id, update_bxml)
       expect(status_code).to eq(204)
 
       retries = 0
@@ -125,7 +125,7 @@ describe 'ConferencesApi Integration Tests' do
   # Get Conference Recordings
   describe 'list_conference_recordings' do
     it 'lists recordings for a conference' do
-      data, status_code, headers = @conferences_api_instance.list_conference_recordings_with_http_info(BW_ACCOUNT_ID, $conference_id)
+      data, status_code = @conferences_api_instance.list_conference_recordings_with_http_info(BW_ACCOUNT_ID, $conference_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -144,7 +144,7 @@ describe 'ConferencesApi Integration Tests' do
   # Get Conference Recording Information
   describe 'get_conference_recording' do
     it 'gets a conference recording by id' do
-      data, status_code, headers = @conferences_api_instance.get_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
+      data, status_code = @conferences_api_instance.get_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::ConferenceRecordingMetadata)
@@ -160,7 +160,7 @@ describe 'ConferencesApi Integration Tests' do
   # Download Conference Recording
   describe 'download_conference_recording test' do
     it 'should work' do
-      data, status_code, headers = @conferences_api_instance.download_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
+      data, status_code = @conferences_api_instance.download_conference_recording_with_http_info(BW_ACCOUNT_ID, $conference_id, $recording_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(String)

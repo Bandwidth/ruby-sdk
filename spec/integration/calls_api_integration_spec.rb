@@ -58,7 +58,7 @@ describe 'CallsApi Integration Tests' do
         callback_timeout: callback_timeout
       )
 
-      data, status_code, headers = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
+      data, status_code = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)
 
       expect(status_code).to eq(201)
       expect(data).to be_instance_of(Bandwidth::CreateCallResponse)
@@ -84,7 +84,7 @@ describe 'CallsApi Integration Tests' do
   # Get Calls
   describe '#list_calls' do
     it 'gets a list of calls' do
-      data, status_code, headers = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -98,7 +98,7 @@ describe 'CallsApi Integration Tests' do
   describe 'get_call_state' do
     it 'gets the call state' do
       sleep(40) # wait 40s for voice API to update call status
-      data, status_code, headers = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+      data, status_code = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::CallState)
@@ -123,11 +123,11 @@ describe 'CallsApi Integration Tests' do
       update_call_id = create_manteca_call(@calls_api_instance)
       sleep(SLEEP_TIME_S)
       
-      update_data, update_status_code, update_headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
+      _update_data, update_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
       expect(update_status_code).to eq(200)
       sleep(SLEEP_TIME_S)
       
-      complete_data, complete_status_code, complete_headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
+      _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
       expect(complete_status_code).to eq(200)
     end
   end
@@ -139,11 +139,11 @@ describe 'CallsApi Integration Tests' do
       sleep(SLEEP_TIME_S)
 
       update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>'
-      update_data, update_status_code, update_headers = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_bxml)
+      _update_data, update_status_code = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_bxml)
       expect(update_status_code).to eq(204)
       sleep(SLEEP_TIME_S)
       
-      complete_data, complete_status_code, complete_headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
+      _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
       expect(complete_status_code).to eq(200)
     end
   end

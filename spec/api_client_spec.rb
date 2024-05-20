@@ -111,7 +111,7 @@ describe Bandwidth::ApiClient do
         auth_names: ['Basic'],
         return_type: nil
       }
-      data, status_code, headers = api_client.call_api(:POST, 'path', opts)
+      data, status_code = api_client.call_api(:POST, 'path', opts)
 
       expect(status_code).to eq(204)
       expect(data).to be nil
@@ -130,7 +130,7 @@ describe Bandwidth::ApiClient do
         auth_names: ['Basic'],
         return_type: nil
       }
-      data, status_code, headers = api_client.call_api(:POST, 'path', opts)
+      data, status_code = api_client.call_api(:POST, 'path', opts)
 
       expect(status_code).to eq(204)
       expect(data).to be nil

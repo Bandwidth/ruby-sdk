@@ -38,7 +38,7 @@ describe 'StatisticsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @statistics_api_instance.get_statistics(nil)
+        @statistics_api_instance.get_statistics(nil)
       }.to raise_error(ArgumentError)
     end
   end

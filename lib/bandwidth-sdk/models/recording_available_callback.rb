@@ -65,7 +65,7 @@ module Bandwidth
 
     attr_accessor :file_format
 
-    # The current status of the process. For recording, current possible values are 'processing', 'partial', 'complete', 'deleted', and 'error'. For transcriptions, current possible values are 'none', 'processing', 'available', 'error', 'timeout', 'file-size-too-big', and 'file-size-too-small'. Additional states may be added in the future, so your application must be tolerant of unknown values.
+    # Always `1` for conference recordings; multi-channel recordings are not supported on conferences.
     attr_accessor :channels
 
     # (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
@@ -155,7 +155,7 @@ module Bandwidth
         :'end_time' => :'Time',
         :'duration' => :'String',
         :'file_format' => :'FileFormatEnum',
-        :'channels' => :'String',
+        :'channels' => :'Integer',
         :'tag' => :'String',
         :'status' => :'String',
         :'transfer_caller_id' => :'String',

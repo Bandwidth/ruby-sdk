@@ -61,7 +61,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.download_conference_recording(nil, '', '')
+        @conferences_api_instance.download_conference_recording(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -107,7 +107,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.get_conference(nil, '')
+        @conferences_api_instance.get_conference(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -139,7 +139,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.get_conference_member(nil, '', '')
+        @conferences_api_instance.get_conference_member(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -182,7 +182,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.get_conference_recording(nil, '', '')
+        @conferences_api_instance.get_conference_recording(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -226,7 +226,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.list_conference_recordings(nil, '')
+        @conferences_api_instance.list_conference_recordings(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -263,7 +263,7 @@ describe 'ConferencesApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.list_conferences(nil, {})
+        @conferences_api_instance.list_conferences(nil, {})
       }.to raise_error(ArgumentError)
     end
 
@@ -298,13 +298,13 @@ describe 'ConferencesApi' do
         fallback_password: 'password'
       )
 
-      data, status_code, headers = @conferences_api_instance.update_conference_with_http_info(BW_ACCOUNT_ID, conference_id, update_conference_body)
+      _data, status_code = @conferences_api_instance.update_conference_with_http_info(BW_ACCOUNT_ID, conference_id, update_conference_body)
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.update_conference(nil, '', '')
+        @conferences_api_instance.update_conference(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -329,13 +329,13 @@ describe 'ConferencesApi' do
 
       update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><StartRecording/><SpeakSentence locale="en_US" gender="female" voice="susan">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>'
 
-      data, status_code, headers = @conferences_api_instance.update_conference_bxml_with_http_info(BW_ACCOUNT_ID, conference_id, update_bxml)
+      _data, status_code = @conferences_api_instance.update_conference_bxml_with_http_info(BW_ACCOUNT_ID, conference_id, update_bxml)
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.update_conference_bxml(nil, '', '')
+        @conferences_api_instance.update_conference_bxml(nil, '', '')
       }.to raise_error(ArgumentError)
     end
 
@@ -362,13 +362,13 @@ describe 'ConferencesApi' do
         mute: false
       )
 
-      data, status_code, headers = @conferences_api_instance.update_conference_member_with_http_info(BW_ACCOUNT_ID, conference_id, call_id, update_conference_member)
+      _data, status_code = @conferences_api_instance.update_conference_member_with_http_info(BW_ACCOUNT_ID, conference_id, call_id, update_conference_member)
       expect(status_code).to eq(204)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @conferences_api_instance.update_conference_member(nil, '', '', {})
+        @conferences_api_instance.update_conference_member(nil, '', '', {})
       }.to raise_error(ArgumentError)
     end
 

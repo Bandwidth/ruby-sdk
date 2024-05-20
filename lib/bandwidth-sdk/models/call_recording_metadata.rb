@@ -137,7 +137,7 @@ module Bandwidth
         :'file_format' => :'FileFormatEnum',
         :'status' => :'String',
         :'media_url' => :'String',
-        :'transcription' => :'TranscriptionMetadata'
+        :'transcription' => :'RecordingTranscriptionMetadata'
       }
     end
 

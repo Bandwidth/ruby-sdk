@@ -180,7 +180,7 @@ describe 'CallsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @calls_api_instance.get_call_state(nil, '')
+        @calls_api_instance.get_call_state(nil, '')
       }.to raise_error(ArgumentError)
     end
 
@@ -202,7 +202,7 @@ describe 'CallsApi' do
         redirect_url: MANTECA_BASE_URL + '/bxml/pause'
       )
 
-      data, status_code, headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, call_id, update_call_body)
+      _data, status_code, headers = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, call_id, update_call_body)
 
       expect(status_code).to eq(200)
       expect(headers).to eq(update_call_headers_stub)
@@ -210,7 +210,7 @@ describe 'CallsApi' do
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
-        resp = @calls_api_instance.update_call(nil, '', {})
+        @calls_api_instance.update_call(nil, '', {})
       }.to raise_error(ArgumentError)
     end
 
@@ -235,7 +235,7 @@ describe 'CallsApi' do
 
       update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>'
 
-      data, status_code, headers = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, call_id, update_bxml)
+      _data, status_code = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, call_id, update_bxml)
 
       expect(status_code).to eq(204)
     end

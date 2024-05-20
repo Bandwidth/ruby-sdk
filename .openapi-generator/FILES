@@ -12,6 +12,9 @@ docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
 docs/CallState.md
 docs/CallStateEnum.md
+docs/CallTranscription.md
+docs/CallTranscriptionMetadata.md
+docs/CallTranscriptionResponse.md
 docs/CallbackMethodEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
@@ -77,6 +80,8 @@ docs/PriorityEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
+docs/RecordingTranscriptionMetadata.md
+docs/RecordingTranscriptions.md
 docs/RecordingsApi.md
 docs/RedirectCallback.md
 docs/RedirectMethodEnum.md
@@ -87,8 +92,7 @@ docs/TnLookupRequestError.md
 docs/TranscribeRecording.md
 docs/Transcription.md
 docs/TranscriptionAvailableCallback.md
-docs/TranscriptionList.md
-docs/TranscriptionMetadata.md
+docs/TranscriptionsApi.md
 docs/TransferAnswerCallback.md
 docs/TransferCompleteCallback.md
 docs/TransferDisconnectCallback.md
@@ -110,6 +114,7 @@ lib/bandwidth-sdk/api/mfa_api.rb
 lib/bandwidth-sdk/api/phone_number_lookup_api.rb
 lib/bandwidth-sdk/api/recordings_api.rb
 lib/bandwidth-sdk/api/statistics_api.rb
+lib/bandwidth-sdk/api/transcriptions_api.rb
 lib/bandwidth-sdk/api_client.rb
 lib/bandwidth-sdk/api_error.rb
 lib/bandwidth-sdk/configuration.rb
@@ -121,6 +126,9 @@ lib/bandwidth-sdk/models/call_direction_enum.rb
 lib/bandwidth-sdk/models/call_recording_metadata.rb
 lib/bandwidth-sdk/models/call_state.rb
 lib/bandwidth-sdk/models/call_state_enum.rb
+lib/bandwidth-sdk/models/call_transcription.rb
+lib/bandwidth-sdk/models/call_transcription_metadata.rb
+lib/bandwidth-sdk/models/call_transcription_response.rb
 lib/bandwidth-sdk/models/callback_method_enum.rb
 lib/bandwidth-sdk/models/code_request.rb
 lib/bandwidth-sdk/models/conference.rb
@@ -180,6 +188,8 @@ lib/bandwidth-sdk/models/priority_enum.rb
 lib/bandwidth-sdk/models/recording_available_callback.rb
 lib/bandwidth-sdk/models/recording_complete_callback.rb
 lib/bandwidth-sdk/models/recording_state_enum.rb
+lib/bandwidth-sdk/models/recording_transcription_metadata.rb
+lib/bandwidth-sdk/models/recording_transcriptions.rb
 lib/bandwidth-sdk/models/redirect_callback.rb
 lib/bandwidth-sdk/models/redirect_method_enum.rb
 lib/bandwidth-sdk/models/stir_shaken.rb
@@ -188,8 +198,6 @@ lib/bandwidth-sdk/models/tn_lookup_request_error.rb
 lib/bandwidth-sdk/models/transcribe_recording.rb
 lib/bandwidth-sdk/models/transcription.rb
 lib/bandwidth-sdk/models/transcription_available_callback.rb
-lib/bandwidth-sdk/models/transcription_list.rb
-lib/bandwidth-sdk/models/transcription_metadata.rb
 lib/bandwidth-sdk/models/transfer_answer_callback.rb
 lib/bandwidth-sdk/models/transfer_complete_callback.rb
 lib/bandwidth-sdk/models/transfer_disconnect_callback.rb
