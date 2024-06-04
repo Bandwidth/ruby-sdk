@@ -18,10 +18,13 @@ module Bandwidth
     # The destination to call (must be an E.164 formatted number (e.g. `+15555551212`) or a SIP URI (e.g. `sip:user@server.example`)).
     attr_accessor :to
 
-    # A Bandwidth phone number on your account the call should come from (must be in E.164 format, like `+15555551212`, or be one of the following strings: `Restricted`, `Anonymous`, `Private`, or `Unavailable`).
+    # A Bandwidth phone number on your account the call should come from (must be in E.164 format, like `+15555551212`) even if `privacy` is set to true.
     attr_accessor :from
 
-    # The caller display name to use when the call is created.  May not exceed 256 characters nor contain control characters such as new lines.
+    # Hide the calling number. The `displayName` field can be used to customize the displayed name.
+    attr_accessor :privacy
+
+    # The caller display name to use when the call is created.  May not exceed 256 characters nor contain control characters such as new lines. If `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.
     attr_accessor :display_name
 
     # A comma-separated list of 'User-To-User' headers to be sent in the INVITE when calling a SIP URI. Each value must end with an 'encoding' parameter as described in <a href='https://tools.ietf.org/html/rfc7433'>RFC 7433</a>. Only 'jwt' and 'base64' encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.
@@ -98,6 +101,7 @@ module Bandwidth
       {
         :'to' => :'to',
         :'from' => :'from',
+        :'privacy' => :'privacy',
         :'display_name' => :'displayName',
         :'uui' => :'uui',
         :'application_id' => :'applicationId',
@@ -129,6 +133,7 @@ module Bandwidth
       {
         :'to' => :'String',
         :'from' => :'String',
+        :'privacy' => :'Boolean',
         :'display_name' => :'String',
         :'uui' => :'String',
         :'application_id' => :'String',
@@ -153,6 +158,7 @@ module Bandwidth
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'privacy',
         :'display_name',
         :'uui',
         :'answer_method',
@@ -175,7 +181,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CreateCall` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::CreateCall` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -196,6 +202,10 @@ module Bandwidth
         self.from = attributes[:'from']
       else
         self.from = nil
+      end
+
+      if attributes.key?(:'privacy')
+        self.privacy = attributes[:'privacy']
       end
 
       if attributes.key?(:'display_name')
@@ -540,6 +550,7 @@ module Bandwidth
       self.class == o.class &&
           to == o.to &&
           from == o.from &&
+          privacy == o.privacy &&
           display_name == o.display_name &&
           uui == o.uui &&
           application_id == o.application_id &&
@@ -569,7 +580,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [to, from, display_name, uui, application_id, answer_url, answer_method, username, password, answer_fallback_url, answer_fallback_method, fallback_username, fallback_password, disconnect_url, disconnect_method, call_timeout, callback_timeout, machine_detection, priority, tag].hash
+      [to, from, privacy, display_name, uui, application_id, answer_url, answer_method, username, password, answer_fallback_url, answer_fallback_method, fallback_username, fallback_password, disconnect_url, disconnect_method, call_timeout, callback_timeout, machine_detection, priority, tag].hash
     end
 
     # Builds the object from hash
@@ -683,5 +694,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end

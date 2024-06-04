@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # The machine detection request used to perform <a href='/docs/voice/guides/machineDetection'>machine detection</a> on the call.
+  # The machine detection request used to perform <a href='/docs/voice/guides/machineDetection'>machine detection</a> on the call. Currently, there is an issue where decimal values are not getting processed correctly. Please use whole number values. We are working to resolve this issue. Please contact Bandwidth Support if you need more information.
   class MachineDetectionConfiguration
     attr_accessor :mode
 
@@ -151,7 +151,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MachineDetectionConfiguration` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::MachineDetectionConfiguration` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -489,5 +489,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end

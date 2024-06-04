@@ -89,7 +89,7 @@ end
 
 api_instance = Bandwidth::CallsApi.new
 account_id = '9900000' # String | Your Bandwidth Account ID.
-create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+19195554321', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.example/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
+create_call = Bandwidth::CreateCall.new({to: '+19195551234', from: '+15555551212', application_id: '1234-qwer-5679-tyui', answer_url: 'https://www.myCallbackServer.example/webhooks/answer'}) # CreateCall | JSON object containing information to create an outbound call
 
 begin
   #Create Call
