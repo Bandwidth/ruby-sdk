@@ -28,7 +28,7 @@ module Bandwidth
     # The user-specified name of the conference that was recorded
     attr_accessor :name
 
-    # The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.
+    # The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555).
     attr_accessor :from
 
     # The phone number that received the call, in E.164 format (e.g. +15555555555).

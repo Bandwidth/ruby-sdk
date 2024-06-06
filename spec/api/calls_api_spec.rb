@@ -6,6 +6,7 @@ describe 'CallsApi' do
   let(:call_url) { "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/calls/#{call_id}" }
   let(:call_timeout) { 30.0 }
   let(:callback_timeout) { 15.0 }
+  let(:privacy) { false }
   let(:display_name) { 'Ruby SDK' }
   let(:answer_method) { Bandwidth::CallbackMethodEnum::POST }
   let(:answer_url) { BASE_CALLBACK_URL + '/callbacks/answer' }
@@ -72,6 +73,7 @@ describe 'CallsApi' do
         application_id: BW_VOICE_APPLICATION_ID,
         to: USER_NUMBER,
         from: BW_NUMBER,
+        privacy: privacy,
         display_name: display_name,
         answer_url: answer_url,
         answer_fallback_url: answer_fallback_url,

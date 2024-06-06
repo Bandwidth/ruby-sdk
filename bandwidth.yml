@@ -2152,11 +2152,16 @@ components:
           description: >-
             A Bandwidth phone number on your account the call should come
 
-            from (must be in E.164 format, like `+15555551212`, or be one of the
-            following
-
-            strings: `Restricted`, `Anonymous`, `Private`, or `Unavailable`).
-          example: '+19195554321'
+            from (must be in E.164 format, like `+15555551212`) even if
+            `privacy` is set to true.
+          example: '+15555551212'
+        privacy:
+          nullable: true
+          type: boolean
+          description: >-
+            Hide the calling number. The `displayName` field can be used to
+            customize the displayed name.
+          example: false
         displayName:
           nullable: true
           type: string
@@ -2165,6 +2170,9 @@ components:
 
             May not exceed 256 characters nor contain control characters such as
             new lines.
+
+            If `privacy` is true, only the following values are valid:
+            `Restricted`, `Anonymous`, `Private`, or `Unavailable`.
           maxLength: 256
           example: John Doe
         uui:
@@ -3023,7 +3031,10 @@ components:
       description: >-
         The machine detection request used to perform <a
         href='/docs/voice/guides/machineDetection'>machine detection</a> on the
-        call.
+        call. Currently, there is an issue where decimal values are not getting
+        processed correctly. Please use whole number values. We are working to
+        resolve this issue. Please contact Bandwidth Support if you need more
+        information.
       properties:
         mode:
           $ref: '#/components/schemas/machineDetectionModeEnum'
@@ -4142,9 +4153,8 @@ components:
     from:
       type: string
       description: >-
-        The provided identifier of the caller: can be a phone number in E.164
-        format (e.g. +15555555555) or one of Private, Restricted, Unavailable,
-        or Anonymous.
+        The provided identifier of the caller. Must be a phone number in E.164
+        format (e.g. +15555555555).
       example: '+15555555555'
     conferenceId:
       type: string
@@ -4223,8 +4233,7 @@ components:
       type: string
       description: >-
         The phone number used as the from field of the B-leg call, in E.164
-        format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or
-        Unavailable.
+        format (e.g. +15555555555).
       example: '+15555555555'
     transferTo:
       type: string
