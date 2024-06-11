@@ -1,52 +1,52 @@
 name: Test PR
 
 on:
-    pull_request:
-        branches:
-            - main
+  pull_request:
+    branches:
+        - main
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.head_ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 env:
-    BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
-    BW_USERNAME: ${{ secrets.BW_USERNAME }}
-    BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
-    BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN }}
-    BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN }}
-    BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
-    BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
-    BW_NUMBER: ${{ secrets.BW_NUMBER }}
-    USER_NUMBER: ${{ secrets.USER_NUMBER }}
-    BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-    MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
-    MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
-    MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
-    MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN }}
+  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN }}
+  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
 
 jobs:
-    test_pr:
-        name: Test PR
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
-                ruby-version: [2.7, 3.0, 3.1, 3.2, 3.3]
-            fail-fast: false
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  test_pr:
+    name: Test PR
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+          os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
+          ruby-version: [2.7, 3.0, 3.1, 3.2, 3.3]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Set up Ruby
-              uses: ruby/setup-ruby@v1
-              with:
-                  ruby-version: ${{ matrix.ruby-version }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
 
-            - name: Install Packages and Test
-              run: |
-                  bundle install
-                  rake
-              env:
-                  RUBY_VERSION: ${{ matrix.ruby-version }}
-                  OPERATING_SYSTEM: ${{ matrix.os }}
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake unit
+        env:
+          RUBY_VERSION: ${{ matrix.ruby-version }}
+          OPERATING_SYSTEM: ${{ matrix.os }}
