@@ -1,7 +1,7 @@
 # Test Coverage Configuration
 require 'simplecov'
 SimpleCov.start do
-  add_filter 'spec/integration'
+  add_filter 'spec/smoke'
   add_filter 'spec/call_utils.rb'
   add_filter do |source_file|
     if !source_file.filename.include? 'bandwidth-sdk/models' then
@@ -89,7 +89,7 @@ RSpec.configure do |config|
       config.password = BW_PASSWORD
     end
     calls_api = Bandwidth::CallsApi.new
-    # cleanup_calls($active_calls, calls_api) # left out due to voice API issues
+    cleanup_calls($active_calls, calls_api)
   }
   
   # rspec-expectations config goes here. You can use an alternate

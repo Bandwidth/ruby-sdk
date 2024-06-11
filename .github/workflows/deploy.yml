@@ -56,7 +56,7 @@ jobs:
       - name: Install Packages and Test
         run: |
           bundle install
-          rake
+          rake unit
 
       - name: Deploy to Rubygems
         run: |
