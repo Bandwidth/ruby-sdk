@@ -34,7 +34,7 @@ instance = Bandwidth::CallState.new(
   call_id: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85,
   parent_call_id: c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85,
   to: +19195551234,
-  from: 19195554321,
+  from: +19195554321,
   direction: null,
   state: disconnected,
   stir_shaken: {&quot;verstat&quot;:&quot;TN-Verification-Passed&quot;,&quot;attestationIndicator&quot;:&quot;A&quot;,&quot;originatingId&quot;:&quot;abc123&quot;},

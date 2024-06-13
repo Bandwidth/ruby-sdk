@@ -28,7 +28,7 @@ require 'bandwidth-sdk'
 instance = Bandwidth::TransferAnswerCallback.new(
   event_type: bridgeComplete,
   event_time: 2022-06-17T22:19:40.375Z,
-  account_id: 920012,
+  account_id: 9900000,
   application_id: 04e88489-df02-4e34-a0ee-27a91849555f,
   from: +15555555555,
   to: +15555555555,
@@ -40,7 +40,7 @@ instance = Bandwidth::TransferAnswerCallback.new(
   answer_time: 2022-06-17T22:20Z,
   tag: exampleTag,
   transfer_caller_id: +15555555555,
-  transfer_to: +15555555555)
+  transfer_to: +15555555555
 )
 ```
 

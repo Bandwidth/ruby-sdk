@@ -22,7 +22,7 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::ConferenceRecordingMetadata.new(
-  account_id: 920012,
+  account_id: 9900000,
   conference_id: conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9,
   name: my-conference-name,
   recording_id: r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833,

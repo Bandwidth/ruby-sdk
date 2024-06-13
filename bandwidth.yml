@@ -1173,7 +1173,7 @@ paths:
         [startTranscription](/docs/voice/bxml/startTranscription).
 
 
-        Note: After the deletion is requested and a `204` is returned, the
+        Note: After the deletion is requested and a `200` is returned, the
         transcription will not be accessible anymore. However, it is not deleted
         immediately. This deletion process, while transparent and irreversible,
         can take an additional 24 to 48 hours.
@@ -1183,7 +1183,7 @@ paths:
         - $ref: '#/components/parameters/callId'
         - $ref: '#/components/parameters/transcriptionId'
       responses:
-        '204':
+        '200':
           $ref: '#/components/responses/deleteCallTranscriptionResponse'
         '400':
           $ref: '#/components/responses/voiceBadRequestError'
@@ -2496,7 +2496,7 @@ components:
           description: >-
             The phone number that made the call, in E.164 format (e.g.
             +15555555555).
-          example: '19195554321'
+          example: '+19195554321'
         direction:
           $ref: '#/components/schemas/callDirectionEnum'
         state:
@@ -4139,7 +4139,7 @@ components:
     accountId:
       type: string
       description: The user account associated with the call.
-      example: '920012'
+      example: '9900000'
     applicationId:
       type: string
       description: The id of the application associated with the call.
@@ -4240,7 +4240,7 @@ components:
       description: >-
         The phone number used as the to field of the B-leg call, in E.164 format
         (e.g. +15555555555).
-      example: +15555555555)
+      example: '+15555555555'
     mediaUrl:
       nullable: true
       type: string
@@ -4451,7 +4451,7 @@ components:
         messageId:
           type: string
           description: Messaging API Message ID.
-          example: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
+          example: 1589228074636lm4k2je7j7jklbn2
     verifyCodeRequest:
       type: object
       properties:
@@ -5787,6 +5787,7 @@ components:
         answerMethod: POST
         answerUrl: https://myServer.example/bandwidth/webhooks/answer
         answerFallbackMethod: POST
+        answerFallbackUrl: https://myServer.example/bandwidth/webhooks/answerFallback
         disconnectMethod: POST
         disconnectUrl: https://myServer.example/bandwidth/webhooks/disconnect
         username: mySecretUsername

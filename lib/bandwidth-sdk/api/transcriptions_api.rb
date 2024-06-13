@@ -20,7 +20,7 @@ module Bandwidth
       @api_client = api_client
     end
     # Delete a specific transcription
-    # Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+    # Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
     # @param transcription_id [String] Programmable Voice API Transcription ID.
@@ -32,7 +32,7 @@ module Bandwidth
     end
 
     # Delete a specific transcription
-    # Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+    # Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
     # @param transcription_id [String] Programmable Voice API Transcription ID.

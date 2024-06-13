@@ -30,14 +30,14 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::CallRecordingMetadata.new(
   application_id: 04e88489-df02-4e34-a0ee-27a91849555f,
-  account_id: 920012,
+  account_id: 9900000,
   call_id: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85,
   parent_call_id: c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d,
   recording_id: r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833,
   to: +15555555555,
   from: +15555555555,
   transfer_caller_id: +15555555555,
-  transfer_to: +15555555555),
+  transfer_to: +15555555555,
   duration: PT13.67S,
   direction: null,
   channels: 1,

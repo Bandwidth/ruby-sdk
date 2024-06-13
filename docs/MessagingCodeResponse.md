@@ -12,7 +12,7 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::MessagingCodeResponse.new(
-  message_id: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
+  message_id: 1589228074636lm4k2je7j7jklbn2
 )
 ```
 
