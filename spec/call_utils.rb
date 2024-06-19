@@ -54,7 +54,6 @@ def cleanup_calls(calls, calls_api)
 end
 
 def call_ended(call_id, calls_api)
-  WebMock.allow_net_connect!
   begin
     response = calls_api.get_call_state(BW_ACCOUNT_ID, call_id)
   rescue Bandwidth::ApiError
@@ -70,7 +69,6 @@ def call_ended(call_id, calls_api)
   else
     return true
   end
-  WebMock.disable_net_connect!
 
   false
 end

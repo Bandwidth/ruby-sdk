@@ -89,7 +89,9 @@ RSpec.configure do |config|
       config.password = BW_PASSWORD
     end
     calls_api = Bandwidth::CallsApi.new
+    WebMock.allow_net_connect!
     cleanup_calls($active_calls, calls_api)
+    WebMock.disable_net_connect!
   }
   
   # rspec-expectations config goes here. You can use an alternate
