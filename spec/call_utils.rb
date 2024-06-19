@@ -39,18 +39,20 @@ def get_manteca_test_status(test_id)
 end
 
 def cleanup_calls(calls, calls_api)
+  WebMock.allow_net_connect!
   attempts = 0
-
+  
   while (calls.length > 0 && attempts < 10)
     calls.delete_if { |call_id| call_ended(call_id, calls_api) }
     sleep(SLEEP_TIME_S)
     attempts += 1
   end
-
+  
   if (calls.length > 0)
     error_message = 'Failed to terminate all calls' + calls.to_s
     raise StandardError.new error_message
   end
+  WebMock.disable_net_connect!
 end
 
 def call_ended(call_id, calls_api)
