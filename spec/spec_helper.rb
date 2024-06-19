@@ -88,6 +88,7 @@ RSpec.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
+    puts 'here'
     calls_api = Bandwidth::CallsApi.new
     WebMock.allow_net_connect!
     cleanup_calls($active_calls, calls_api)
