@@ -369,8 +369,8 @@ describe Bandwidth::ApiClient do
       expect(api_client_default.build_collection_param(param, :tsv)).to eq("aa\tbb\tcc")
       expect(api_client_default.build_collection_param(param, :pipes)).to eq('aa|bb|cc')
       expect(api_client_default.build_collection_param(param, :multi)).to eq(['aa', 'bb', 'cc'])
-      expect { 
-        api_client_default.build_collection_param(param, :INVALID) 
+      expect {
+        api_client_default.build_collection_param(param, :INVALID)
       }.to raise_error(RuntimeError, 'unknown collection format: :INVALID')
     end
   end

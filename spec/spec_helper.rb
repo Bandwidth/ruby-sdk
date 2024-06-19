@@ -9,7 +9,7 @@ SimpleCov.start do
     else
       !(['/models/call_state_enum.rb',
         '/models/call_state.rb',
-        '/models/deferred_result.rb', 
+        '/models/deferred_result.rb',
         '/models/message.rb',
         '/models/verify_code_request.rb'
       ].any? { |name| source_file.filename.include?(name) })
@@ -89,7 +89,9 @@ RSpec.configure do |config|
       config.password = BW_PASSWORD
     end
     calls_api = Bandwidth::CallsApi.new
+    WebMock.allow_net_connect!
     cleanup_calls($active_calls, calls_api)
+    WebMock.disable_net_connect!
   }
   
   # rspec-expectations config goes here. You can use an alternate
