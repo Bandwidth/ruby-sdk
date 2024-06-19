@@ -66,7 +66,6 @@ RSpec.configure do |config|
       MANTECA_BASE_URL = ENV.fetch('MANTECA_BASE_URL')
       MANTECA_APPLICATION_ID = ENV.fetch('MANTECA_APPLICATION_ID')
       OPERATING_SYSTEM = ENV.fetch('OPERATING_SYSTEM')
-      puts 'weewoo'
       RUBY_VERSION = ENV.fetch('RUBY_VERSION')
     rescue
       puts 'Environmental variables not found'
@@ -89,7 +88,6 @@ RSpec.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    puts 'here'
     calls_api = Bandwidth::CallsApi.new
     WebMock.allow_net_connect!
     cleanup_calls($active_calls, calls_api)
