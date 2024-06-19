@@ -40,13 +40,13 @@ end
 
 def cleanup_calls(calls, calls_api)
   attempts = 0
-  
+
   while (calls.length > 0 && attempts < 10)
     calls.delete_if { |call_id| call_ended(call_id, calls_api) }
     sleep(SLEEP_TIME_S)
     attempts += 1
   end
-  
+
   if (calls.length > 0)
     error_message = 'Failed to terminate all calls' + calls.to_s
     raise StandardError.new error_message
@@ -59,7 +59,7 @@ def call_ended(call_id, calls_api)
   rescue Bandwidth::ApiError
     return false
   end
-  
+
   if !(response.state == 'disconnected')
     begin
       calls_api.update_call(BW_ACCOUNT_ID, call_id, $complete_call_body)
