@@ -66,6 +66,7 @@ RSpec.configure do |config|
       MANTECA_BASE_URL = ENV.fetch('MANTECA_BASE_URL')
       MANTECA_APPLICATION_ID = ENV.fetch('MANTECA_APPLICATION_ID')
       OPERATING_SYSTEM = ENV.fetch('OPERATING_SYSTEM')
+      puts 'weewoo'
       RUBY_VERSION = ENV.fetch('RUBY_VERSION')
     rescue
       puts 'Environmental variables not found'
