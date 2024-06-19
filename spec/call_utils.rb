@@ -39,7 +39,6 @@ def get_manteca_test_status(test_id)
 end
 
 def cleanup_calls(calls, calls_api)
-  WebMock.allow_net_connect!
   attempts = 0
   
   while (calls.length > 0 && attempts < 10)
@@ -52,16 +51,16 @@ def cleanup_calls(calls, calls_api)
     error_message = 'Failed to terminate all calls' + calls.to_s
     raise StandardError.new error_message
   end
-  WebMock.disable_net_connect!
 end
 
 def call_ended(call_id, calls_api)
+  WebMock.allow_net_connect!
   begin
     response = calls_api.get_call_state(BW_ACCOUNT_ID, call_id)
   rescue Bandwidth::ApiError
     return false
   end
-
+  
   if !(response.state == 'disconnected')
     begin
       calls_api.update_call(BW_ACCOUNT_ID, call_id, $complete_call_body)
@@ -71,6 +70,7 @@ def call_ended(call_id, calls_api)
   else
     return true
   end
+  WebMock.disable_net_connect!
 
   false
 end
