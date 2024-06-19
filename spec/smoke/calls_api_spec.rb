@@ -116,7 +116,7 @@ describe 'CallsApi Integration Tests' do
 
   # Update Call
   describe 'update_call' do
-    it 'creates and updates a call' do    
+    it 'creates and updates a call' do
       update_call_body = Bandwidth::UpdateCall.new(
         state: Bandwidth::CallStateEnum::ACTIVE,
         redirect_url: MANTECA_BASE_URL + '/bxml/pause'

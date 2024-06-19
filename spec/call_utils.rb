@@ -1,4 +1,4 @@
-# Helper functions for voice calls 
+# Helper functions for voice calls
 # These are reused in multiple tests
 
 def setup_manteca(type)
