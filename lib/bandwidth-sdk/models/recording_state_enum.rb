@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class RecordingStateEnum
-    PAUSED = "paused".freeze
-    RECORDING = "recording".freeze
+    PAUSED = 'paused'.freeze
+    RECORDING = 'recording'.freeze
 
     def self.all_vars
       @all_vars ||= [PAUSED, RECORDING].freeze
