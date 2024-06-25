@@ -15,10 +15,10 @@ require 'time'
 
 module Bandwidth
   class LookupStatusEnum
-    IN_PROGRESS = 'IN_PROGRESS'.freeze
-    COMPLETE = 'COMPLETE'.freeze
-    PARTIAL_COMPLETE = 'PARTIAL_COMPLETE'.freeze
-    FAILED = 'FAILED'.freeze
+    IN_PROGRESS = "IN_PROGRESS".freeze
+    COMPLETE = "COMPLETE".freeze
+    PARTIAL_COMPLETE = "PARTIAL_COMPLETE".freeze
+    FAILED = "FAILED".freeze
 
     def self.all_vars
       @all_vars ||= [IN_PROGRESS, COMPLETE, PARTIAL_COMPLETE, FAILED].freeze

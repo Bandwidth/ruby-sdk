@@ -15,14 +15,14 @@ require 'time'
 
 module Bandwidth
   class MessageStatusEnum
-    RECEIVED = 'RECEIVED'.freeze
-    QUEUED = 'QUEUED'.freeze
-    SENDING = 'SENDING'.freeze
-    SENT = 'SENT'.freeze
-    FAILED = 'FAILED'.freeze
-    DELIVERED = 'DELIVERED'.freeze
-    ACCEPTED = 'ACCEPTED'.freeze
-    UNDELIVERED = 'UNDELIVERED'.freeze
+    RECEIVED = "RECEIVED".freeze
+    QUEUED = "QUEUED".freeze
+    SENDING = "SENDING".freeze
+    SENT = "SENT".freeze
+    FAILED = "FAILED".freeze
+    DELIVERED = "DELIVERED".freeze
+    ACCEPTED = "ACCEPTED".freeze
+    UNDELIVERED = "UNDELIVERED".freeze
 
     def self.all_vars
       @all_vars ||= [RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED, ACCEPTED, UNDELIVERED].freeze
