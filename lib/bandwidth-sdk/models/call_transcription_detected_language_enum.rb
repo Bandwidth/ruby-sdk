@@ -14,14 +14,13 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class LookupStatusEnum
-    IN_PROGRESS = "IN_PROGRESS".freeze
-    COMPLETE = "COMPLETE".freeze
-    PARTIAL_COMPLETE = "PARTIAL_COMPLETE".freeze
-    FAILED = "FAILED".freeze
+  class CallTranscriptionDetectedLanguageEnum
+    EN_US = "en-US".freeze
+    ES_US = "es-US".freeze
+    FR_FR = "fr-FR".freeze
 
     def self.all_vars
-      @all_vars ||= [IN_PROGRESS, COMPLETE, PARTIAL_COMPLETE, FAILED].freeze
+      @all_vars ||= [EN_US, ES_US, FR_FR].freeze
     end
 
     # Builds the enum from string
@@ -35,8 +34,8 @@ module Bandwidth
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if LookupStatusEnum.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #LookupStatusEnum"
+      return value if CallTranscriptionDetectedLanguageEnum.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #CallTranscriptionDetectedLanguageEnum"
     end
   end
 end

@@ -154,7 +154,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::DisconnectCallback` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::DisconnectCallback` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -396,5 +396,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end

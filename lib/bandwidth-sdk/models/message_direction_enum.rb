@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class MessageDirectionEnum
-    IN = 'in'.freeze
-    OUT = 'out'.freeze
+    IN = "in".freeze
+    OUT = "out".freeze
 
     def self.all_vars
       @all_vars ||= [IN, OUT].freeze
