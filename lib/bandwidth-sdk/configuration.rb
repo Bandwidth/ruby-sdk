@@ -611,6 +611,5 @@ module Bandwidth
         end
       end
     end
-
   end
 end
