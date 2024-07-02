@@ -1,7 +1,6 @@
 # Integration Tests for Bandwidth::PhoneNumberLookupApi
 describe 'PhoneNumberLookupApi Integration Tests' do
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -10,10 +9,6 @@ describe 'PhoneNumberLookupApi Integration Tests' do
 
     # lookup info
     $lookup_request_id = ''
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
 
   # Create Lookup

@@ -10,7 +10,6 @@ describe 'MessagesApi Integration Tests' do
   let(:list_message_direction) { Bandwidth::ListMessageDirectionEnum::OUTBOUND }
   
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -19,10 +18,6 @@ describe 'MessagesApi Integration Tests' do
 
     # expiration time
     @expiration_time = (Time.now + 60).round.to_datetime.rfc3339
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
 
   # Create Message

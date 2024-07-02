@@ -16,7 +16,6 @@ describe 'CallsApi Integration Tests' do
   let(:callback_timeout) { 15.0 }
   
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -25,10 +24,6 @@ describe 'CallsApi Integration Tests' do
     
     # call id
     $call_info_id = ''
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
 
   # Create Call

@@ -6,7 +6,6 @@ describe 'MediaApi Integration Tests' do
   let(:media_file_md5) { Digest::MD5.hexdigest(media_file_data) }
   
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -17,10 +16,6 @@ describe 'MediaApi Integration Tests' do
     # media names
     @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid
     @media_file_name = 'ruby_media_file' + SecureRandom.uuid
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
 
   # Upload Media
