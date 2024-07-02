@@ -36,12 +36,6 @@ module Bandwidth
         @nested_verbs.push(*nested_verbs)
       end
 
-      extend Gem::Deprecate
-      def add_verb(nested_verbs)
-        add_verbs(nested_verbs)
-      end
-      deprecate(:add_verb, 'add_verbs', 2024, 7)
-
       # Return BXML representaion of this response
       # @return [String] The XML response in string format.
       def to_bxml
