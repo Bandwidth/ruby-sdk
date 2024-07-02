@@ -51,3 +51,4 @@ jobs:
         env:
           RUBY_VERSION: ${{ matrix.ruby-version }}
           OPERATING_SYSTEM: ${{ matrix.os }}
+        shell: bash
