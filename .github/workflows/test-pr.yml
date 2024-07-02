@@ -46,8 +46,8 @@ jobs:
       - name: Install Packages and Test
         run: |
           npm install -g @stoplight/prism-cli
+          bundle install
           prism mock ./bandwidth.yml \
-          & bundle install \
           & rake --tasks \
           & rake unit
         env:
