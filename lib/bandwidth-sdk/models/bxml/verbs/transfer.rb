@@ -30,12 +30,6 @@ module Bandwidth
       def add_transfer_recipients(recipients)
         @nested_verbs.push(*recipients)
       end
-
-      extend Gem::Deprecate
-      def add_transfer_recipient(recipients)
-        add_transfer_recipients(recipients)
-      end
-      deprecate(:add_transfer_recipient, 'add_transfer_recipients', 2024, 7)
     end
   end
 end
