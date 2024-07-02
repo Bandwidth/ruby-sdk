@@ -47,9 +47,8 @@ jobs:
         run: |
           npm install -g @stoplight/prism-cli
           bundle install
-          prism mock ./bandwidth.yml \
-          && rake --tasks \
-          && rake unit
+          (prism mock ./bandwidth.yml)
+          rake unit
         env:
           RUBY_VERSION: ${{ matrix.ruby-version }}
           OPERATING_SYSTEM: ${{ matrix.os }}
