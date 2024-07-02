@@ -3,7 +3,6 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::RecordingsApi
 describe 'RecordingsApi Integration Tests' do
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -16,10 +15,6 @@ describe 'RecordingsApi Integration Tests' do
     $manteca_test_id = setup_manteca('CALL')
     $manteca_call_id = create_manteca_call($manteca_test_id, '/bxml/startLongRecording', @calls_api_instance)
     $recording_id = ''
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
  
   # Update Recording

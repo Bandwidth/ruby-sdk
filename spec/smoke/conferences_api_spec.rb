@@ -3,7 +3,6 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::ConferencesApi
 describe 'ConferencesApi Integration Tests' do
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
@@ -17,10 +16,6 @@ describe 'ConferencesApi Integration Tests' do
     $manteca_call_id = create_manteca_call($manteca_test_id, '/bxml/joinConferencePause', @calls_api_instance)
     $conference_id = ''
     $recording_id = ''
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
   
   # Get Conferences
