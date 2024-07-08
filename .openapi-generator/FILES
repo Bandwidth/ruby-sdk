@@ -13,8 +13,10 @@ docs/CallRecordingMetadata.md
 docs/CallState.md
 docs/CallStateEnum.md
 docs/CallTranscription.md
+docs/CallTranscriptionDetectedLanguageEnum.md
 docs/CallTranscriptionMetadata.md
 docs/CallTranscriptionResponse.md
+docs/CallTranscriptionTrackEnum.md
 docs/CallbackMethodEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
@@ -127,8 +129,10 @@ lib/bandwidth-sdk/models/call_recording_metadata.rb
 lib/bandwidth-sdk/models/call_state.rb
 lib/bandwidth-sdk/models/call_state_enum.rb
 lib/bandwidth-sdk/models/call_transcription.rb
+lib/bandwidth-sdk/models/call_transcription_detected_language_enum.rb
 lib/bandwidth-sdk/models/call_transcription_metadata.rb
 lib/bandwidth-sdk/models/call_transcription_response.rb
+lib/bandwidth-sdk/models/call_transcription_track_enum.rb
 lib/bandwidth-sdk/models/callback_method_enum.rb
 lib/bandwidth-sdk/models/code_request.rb
 lib/bandwidth-sdk/models/conference.rb

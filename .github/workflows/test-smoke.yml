@@ -49,6 +49,7 @@ jobs:
         env:
           RUBY_VERSION: 3.2
           OPERATING_SYSTEM: ubuntu
+        shell: bash
 
   notify_for_failures:
     name: Notify for Failures

@@ -1,16 +1,11 @@
 # Integration Tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi Integration Tests' do
   before(:all) do
-    WebMock.allow_net_connect!
     Bandwidth.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
     @statistics_api_instance = Bandwidth::StatisticsApi.new
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
   end
 
   # Get Account Statistics

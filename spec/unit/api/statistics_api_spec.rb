@@ -1,16 +1,12 @@
 # Unit tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi' do
-  # statistics info
-  let(:current_call_queue_size) { 0 }
-  let(:max_call_queue_size) { 7500 }
-
-  # stubs
-  let(:get_statistics_headers_stub) { { 'content-type' => 'application/json' } }
-  let(:get_statistics_body_stub) { "{\"currentCallQueueSize\":#{current_call_queue_size},\"maxCallQueueSize\":#{max_call_queue_size}}" }
-  
   before(:all) do
     Bandwidth.configure do |config|
       config.debugging = true
+      config.username = BW_USERNAME
+      config.password = BW_PASSWORD
+      config.ignore_operation_servers = true
+      config.host = '127.0.0.1:4010'
     end
     @statistics_api_instance = Bandwidth::StatisticsApi.new
   end
@@ -24,16 +20,12 @@ describe 'StatisticsApi' do
   # Get Account Statistics
   describe 'get_statistics' do
     it 'gets account statistics' do
-      stub_request(:get, "https://voice.bandwidth.com/api/v2/accounts/#{BW_ACCOUNT_ID}/statistics").
-      to_return(status: 200, headers: get_statistics_headers_stub, body: get_statistics_body_stub)
-
-      data, status_code, headers = @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
 
       expect(status_code).to eq(200)
-      expect(headers).to eq(get_statistics_headers_stub)
       expect(data).to be_instance_of(Bandwidth::AccountStatistics)
-      expect(data.current_call_queue_size).to eq(current_call_queue_size)
-      expect(data.max_call_queue_size).to eq(max_call_queue_size)
+      expect(data.current_call_queue_size).to be_instance_of(Integer)
+      expect(data.max_call_queue_size).to be_instance_of(Integer)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
