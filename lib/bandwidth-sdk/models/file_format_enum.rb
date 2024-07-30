@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class FileFormatEnum
-    MP3 = 'mp3'.freeze
-    WAV = 'wav'.freeze
+    MP3 = "mp3".freeze
+    WAV = "wav".freeze
 
     def self.all_vars
       @all_vars ||= [MP3, WAV].freeze

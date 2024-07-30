@@ -15,9 +15,9 @@ require 'time'
 
 module Bandwidth
   class CallTranscriptionDetectedLanguageEnum
-    EN_US = 'en-US'.freeze
-    ES_US = 'es-US'.freeze
-    FR_FR = 'fr-FR'.freeze
+    EN_US = "en-US".freeze
+    ES_US = "es-US".freeze
+    FR_FR = "fr-FR".freeze
 
     def self.all_vars
       @all_vars ||= [EN_US, ES_US, FR_FR].freeze

@@ -18,6 +18,9 @@ module Bandwidth
     # The programmable voice API transcription ID.
     attr_accessor :transcription_id
 
+    # The programmable voice API transcription name. This name could be provided by the user when creating the transcription.
+    attr_accessor :transcription_name
+
     # A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
     attr_accessor :transcription_url
 
@@ -25,6 +28,7 @@ module Bandwidth
     def self.attribute_map
       {
         :'transcription_id' => :'transcriptionId',
+        :'transcription_name' => :'transcriptionName',
         :'transcription_url' => :'transcriptionUrl'
       }
     end
@@ -38,6 +42,7 @@ module Bandwidth
     def self.openapi_types
       {
         :'transcription_id' => :'String',
+        :'transcription_name' => :'String',
         :'transcription_url' => :'String'
       }
     end
@@ -52,7 +57,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CallTranscriptionMetadata` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::CallTranscriptionMetadata` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -65,6 +70,10 @@ module Bandwidth
 
       if attributes.key?(:'transcription_id')
         self.transcription_id = attributes[:'transcription_id']
+      end
+
+      if attributes.key?(:'transcription_name')
+        self.transcription_name = attributes[:'transcription_name']
       end
 
       if attributes.key?(:'transcription_url')
@@ -93,6 +102,7 @@ module Bandwidth
       return true if self.equal?(o)
       self.class == o.class &&
           transcription_id == o.transcription_id &&
+          transcription_name == o.transcription_name &&
           transcription_url == o.transcription_url
     end
 
@@ -105,7 +115,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [transcription_id, transcription_url].hash
+      [transcription_id, transcription_name, transcription_url].hash
     end
 
     # Builds the object from hash
@@ -219,5 +229,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end

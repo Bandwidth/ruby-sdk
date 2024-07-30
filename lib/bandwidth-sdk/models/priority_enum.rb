@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class PriorityEnum
-    DEFAULT = 'default'.freeze
-    HIGH = 'high'.freeze
+    DEFAULT = "default".freeze
+    HIGH = "high".freeze
 
     def self.all_vars
       @all_vars ||= [DEFAULT, HIGH].freeze

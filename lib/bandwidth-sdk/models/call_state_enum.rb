@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class CallStateEnum
-    ACTIVE = 'active'.freeze
-    COMPLETED = 'completed'.freeze
+    ACTIVE = "active".freeze
+    COMPLETED = "completed".freeze
 
     def self.all_vars
       @all_vars ||= [ACTIVE, COMPLETED].freeze
