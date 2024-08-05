@@ -57,7 +57,7 @@ jobs:
         run: |
           npm install -g @stoplight/prism-cli
           bundle install
-          prism mock ./bandwidth.yml & (sleep 2; rake unit)
+          prism mock ./bandwidth.yml & (sleep 3; rake unit)
         shell: bash
 
       - name: Deploy to Rubygems

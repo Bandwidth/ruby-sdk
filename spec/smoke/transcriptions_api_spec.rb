@@ -47,6 +47,7 @@ describe 'TranscriptionsApi Integration Tests' do
       expect(data[0]).to be_instance_of(Bandwidth::CallTranscriptionMetadata)
       expect(data[0].transcription_id).to be_instance_of(String)
       expect(data[0].transcription_url).to be_instance_of(String)
+      expect(data[0].transcription_name).to be_instance_of(String)
       $transcription_id = data[0].transcription_id
     end
   end
