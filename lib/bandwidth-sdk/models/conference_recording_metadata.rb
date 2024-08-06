@@ -47,6 +47,9 @@ module Bandwidth
     # The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded.
     attr_accessor :media_url
 
+    # A name to identify this recording.
+    attr_accessor :recording_name
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -82,7 +85,8 @@ module Bandwidth
         :'end_time' => :'endTime',
         :'file_format' => :'fileFormat',
         :'status' => :'status',
-        :'media_url' => :'mediaUrl'
+        :'media_url' => :'mediaUrl',
+        :'recording_name' => :'recordingName'
       }
     end
 
@@ -104,14 +108,15 @@ module Bandwidth
         :'end_time' => :'Time',
         :'file_format' => :'FileFormatEnum',
         :'status' => :'String',
-        :'media_url' => :'String'
+        :'media_url' => :'String',
+        :'recording_name' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'media_url'
+        :'media_url',
       ])
     end
 
@@ -119,7 +124,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::ConferenceRecordingMetadata` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::ConferenceRecordingMetadata` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -173,6 +178,10 @@ module Bandwidth
       if attributes.key?(:'media_url')
         self.media_url = attributes[:'media_url']
       end
+
+      if attributes.key?(:'recording_name')
+        self.recording_name = attributes[:'recording_name']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -205,7 +214,8 @@ module Bandwidth
           end_time == o.end_time &&
           file_format == o.file_format &&
           status == o.status &&
-          media_url == o.media_url
+          media_url == o.media_url &&
+          recording_name == o.recording_name
     end
 
     # @see the `==` method
@@ -217,7 +227,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [account_id, conference_id, name, recording_id, duration, channels, start_time, end_time, file_format, status, media_url].hash
+      [account_id, conference_id, name, recording_id, duration, channels, start_time, end_time, file_format, status, media_url, recording_name].hash
     end
 
     # Builds the object from hash
@@ -331,5 +341,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end

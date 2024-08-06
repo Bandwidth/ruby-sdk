@@ -66,6 +66,9 @@ module Bandwidth
 
     attr_accessor :transcription
 
+    # A name to identify this recording.
+    attr_accessor :recording_name
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -108,7 +111,8 @@ module Bandwidth
         :'file_format' => :'fileFormat',
         :'status' => :'status',
         :'media_url' => :'mediaUrl',
-        :'transcription' => :'transcription'
+        :'transcription' => :'transcription',
+        :'recording_name' => :'recordingName'
       }
     end
 
@@ -137,7 +141,8 @@ module Bandwidth
         :'file_format' => :'FileFormatEnum',
         :'status' => :'String',
         :'media_url' => :'String',
-        :'transcription' => :'RecordingTranscriptionMetadata'
+        :'transcription' => :'RecordingTranscriptionMetadata',
+        :'recording_name' => :'String'
       }
     end
 
@@ -145,7 +150,7 @@ module Bandwidth
     def self.openapi_nullable
       Set.new([
         :'media_url',
-        :'transcription'
+        :'transcription',
       ])
     end
 
@@ -153,7 +158,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CallRecordingMetadata` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::CallRecordingMetadata` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -235,6 +240,10 @@ module Bandwidth
       if attributes.key?(:'transcription')
         self.transcription = attributes[:'transcription']
       end
+
+      if attributes.key?(:'recording_name')
+        self.recording_name = attributes[:'recording_name']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -274,7 +283,8 @@ module Bandwidth
           file_format == o.file_format &&
           status == o.status &&
           media_url == o.media_url &&
-          transcription == o.transcription
+          transcription == o.transcription &&
+          recording_name == o.recording_name
     end
 
     # @see the `==` method
@@ -286,7 +296,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_id, account_id, call_id, parent_call_id, recording_id, to, from, transfer_caller_id, transfer_to, duration, direction, channels, start_time, end_time, file_format, status, media_url, transcription].hash
+      [application_id, account_id, call_id, parent_call_id, recording_id, to, from, transfer_caller_id, transfer_to, duration, direction, channels, start_time, end_time, file_format, status, media_url, transcription, recording_name].hash
     end
 
     # Builds the object from hash
@@ -400,5 +410,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end
