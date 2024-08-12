@@ -22,6 +22,7 @@
 | **status** | **String** | The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values. | [optional] |
 | **media_url** | **String** | The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded. | [optional] |
 | **transcription** | [**RecordingTranscriptionMetadata**](RecordingTranscriptionMetadata.md) |  | [optional] |
+| **recording_name** | **String** | A name to identify this recording. | [optional] |
 
 ## Example
 
@@ -46,7 +47,8 @@ instance = Bandwidth::CallRecordingMetadata.new(
   file_format: null,
   status: completed,
   media_url: https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media,
-  transcription: null
+  transcription: null,
+  recording_name: my-recording-name
 )
 ```
 
