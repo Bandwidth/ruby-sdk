@@ -10,6 +10,7 @@ describe 'MediaApi' do
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
       config.ignore_operation_servers = true
+      config.return_binary_data = true
       config.host = '127.0.0.1:4010'
     end
     @media_api_instance = Bandwidth::MediaApi.new
@@ -49,8 +50,8 @@ describe 'MediaApi' do
         BW_ACCOUNT_ID, media_name, { header_params: { 'Accept' => 'application/octet-stream' } })
 
       expect(status_code).to eq(200)
-      # expect(data).to be_instance_of(String)
-    end if false # skip due to Accept header issue
+      expect(data).to be_instance_of(String)
+    end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {

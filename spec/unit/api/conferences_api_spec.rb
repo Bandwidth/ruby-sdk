@@ -10,6 +10,7 @@ describe 'ConferencesApi' do
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
       config.ignore_operation_servers = true
+      config.return_binary_data = true
       config.host = '127.0.0.1:4010'
     end
     @conferences_api_instance = Bandwidth::ConferencesApi.new
@@ -28,8 +29,8 @@ describe 'ConferencesApi' do
         BW_ACCOUNT_ID, conference_id, recording_id, { header_params: { 'Accept' => 'audio/vnd.wave' } })
 
       expect(status_code).to eq(200)
-      # expect(data).to be_instance_of(String)
-    end if false # skip for now due to an issue with setting the Accept header
+      expect(data).to be_instance_of(String)
+    end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {

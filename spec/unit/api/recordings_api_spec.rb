@@ -109,8 +109,8 @@ describe 'RecordingsApi' do
         BW_ACCOUNT_ID, call_id, recording_id, { header_params: { 'Accept' => 'audio/vnd.wave' } })
 
       expect(status_code).to eq(200)
-      # expect(data).to be_instance_of(String)
-    end if false # skip due to Accept header issue
+      expect(data).to be_instance_of(String)
+    end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
