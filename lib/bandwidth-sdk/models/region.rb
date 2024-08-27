@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class Region
-    US = "US".freeze
-    EU = "EU".freeze
+    US = 'US'.freeze
+    EU = 'EU'.freeze
 
     def self.all_vars
       @all_vars ||= [US, EU].freeze
