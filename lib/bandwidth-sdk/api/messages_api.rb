@@ -61,7 +61,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -112,6 +112,7 @@ module Bandwidth
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
     # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
+    # @option opts [Region] :region The region to search in. One of US or EU. (default to 'US')
     # @return [MessagesList]
     def list_messages(account_id, opts = {})
       data, _status_code, _headers = list_messages_with_http_info(account_id, opts)
@@ -137,6 +138,7 @@ module Bandwidth
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
     # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
+    # @option opts [Region] :region The region to search in. One of US or EU. (default to 'US')
     # @return [Array<(MessagesList, Integer, Hash)>] MessagesList data, response status code and response headers
     def list_messages_with_http_info(account_id, opts = {})
       if @api_client.config.debugging
@@ -166,6 +168,7 @@ module Bandwidth
       query_params[:'pageToken'] = opts[:'page_token'] if !opts[:'page_token'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'limitTotalCount'] = opts[:'limit_total_count'] if !opts[:'limit_total_count'].nil?
+      query_params[:'region'] = opts[:'region'] if !opts[:'region'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

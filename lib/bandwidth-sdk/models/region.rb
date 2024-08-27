@@ -14,12 +14,12 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class PriorityEnum
-    DEFAULT = "default".freeze
-    HIGH = "high".freeze
+  class Region
+    US = "US".freeze
+    EU = "EU".freeze
 
     def self.all_vars
-      @all_vars ||= [DEFAULT, HIGH].freeze
+      @all_vars ||= [US, EU].freeze
     end
 
     # Builds the enum from string
@@ -33,8 +33,8 @@ module Bandwidth
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if PriorityEnum.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #PriorityEnum"
+      return value if Region.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #Region"
     end
   end
 end

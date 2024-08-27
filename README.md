@@ -226,6 +226,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
+ - [Bandwidth::Region](docs/Region.md)
  - [Bandwidth::StirShaken](docs/StirShaken.md)
  - [Bandwidth::Tag](docs/Tag.md)
  - [Bandwidth::TnLookupRequestError](docs/TnLookupRequestError.md)

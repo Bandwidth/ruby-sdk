@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class MessageTypeEnum
-    SMS = 'sms'.freeze
-    MMS = 'mms'.freeze
+    SMS = "sms".freeze
+    MMS = "mms".freeze
 
     def self.all_vars
       @all_vars ||= [SMS, MMS].freeze

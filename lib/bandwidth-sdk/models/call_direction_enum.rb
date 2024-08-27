@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class CallDirectionEnum
-    INBOUND = 'inbound'.freeze
-    OUTBOUND = 'outbound'.freeze
+    INBOUND = "inbound".freeze
+    OUTBOUND = "outbound".freeze
 
     def self.all_vars
       @all_vars ||= [INBOUND, OUTBOUND].freeze

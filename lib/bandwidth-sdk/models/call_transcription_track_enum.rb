@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class CallTranscriptionTrackEnum
-    INBOUND = 'inbound'.freeze
-    OUTBOUND = 'outbound'.freeze
+    INBOUND = "inbound".freeze
+    OUTBOUND = "outbound".freeze
 
     def self.all_vars
       @all_vars ||= [INBOUND, OUTBOUND].freeze
