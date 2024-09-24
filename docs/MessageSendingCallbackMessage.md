@@ -15,7 +15,7 @@
 | **text** | **String** |  |  |
 | **tag** | **String** |  | [optional] |
 | **media** | **Array&lt;String&gt;** |  |  |
-| **priority** | [**PriorityEnum**](PriorityEnum.md) |  |  |
+| **priority** | [**PriorityEnum**](PriorityEnum.md) |  | [optional] |
 
 ## Example
 

@@ -113,7 +113,7 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageFailedCallbackMessage` initialize method'
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Bandwidth::MessageFailedCallbackMessage` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -194,8 +194,6 @@ module Bandwidth
 
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
-      else
-        self.priority = nil
       end
     end
 
@@ -244,10 +242,6 @@ module Bandwidth
         invalid_properties.push('invalid value for "tag", tag cannot be nil.')
       end
 
-      if @priority.nil?
-        invalid_properties.push('invalid value for "priority", priority cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -265,7 +259,6 @@ module Bandwidth
       return false if @from.nil?
       return false if @text.nil?
       return false if @tag.nil?
-      return false if @priority.nil?
       true
     end
 
@@ -421,5 +414,7 @@ module Bandwidth
         value
       end
     end
+
   end
+
 end
