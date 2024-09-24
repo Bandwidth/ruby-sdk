@@ -194,8 +194,6 @@ module Bandwidth
 
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
-      else
-        self.priority = nil
       end
     end
 
@@ -244,10 +242,6 @@ module Bandwidth
         invalid_properties.push('invalid value for "media", media cannot be nil.')
       end
 
-      if @priority.nil?
-        invalid_properties.push('invalid value for "priority", priority cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -265,7 +259,6 @@ module Bandwidth
       return false if @from.nil?
       return false if @text.nil?
       return false if @media.nil?
-      return false if @priority.nil?
       true
     end
 
