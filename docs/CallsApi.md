@@ -264,7 +264,7 @@ end
 api_instance = Bandwidth::CallsApi.new
 account_id = '9900000' # String | Your Bandwidth Account ID.
 call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
-update_call = Bandwidth::UpdateCall.new # UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
+update_call = Bandwidth::UpdateCall.new # UpdateCall | JSON or BXML object containing information to redirect an existing call to a new BXML document
 
 begin
   # Update Call
@@ -298,7 +298,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **account_id** | **String** | Your Bandwidth Account ID. |  |
 | **call_id** | **String** | Programmable Voice API Call ID. |  |
-| **update_call** | [**UpdateCall**](UpdateCall.md) | JSON object containing information to redirect an existing call to a new BXML document |  |
+| **update_call** | [**UpdateCall**](UpdateCall.md) | JSON or BXML object containing information to redirect an existing call to a new BXML document |  |
 
 ### Return type
 
@@ -310,7 +310,7 @@ nil (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/xml
 - **Accept**: application/json
 
 

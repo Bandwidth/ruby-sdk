@@ -61,7 +61,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -258,7 +258,7 @@ module Bandwidth
     # Interrupts and redirects a call to a different URL that should return a BXML document.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
-    # @param update_call [UpdateCall] JSON object containing information to redirect an existing call to a new BXML document
+    # @param update_call [UpdateCall] JSON or BXML object containing information to redirect an existing call to a new BXML document
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def update_call(account_id, call_id, update_call, opts = {})
@@ -270,7 +270,7 @@ module Bandwidth
     # Interrupts and redirects a call to a different URL that should return a BXML document.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param call_id [String] Programmable Voice API Call ID.
-    # @param update_call [UpdateCall] JSON object containing information to redirect an existing call to a new BXML document
+    # @param update_call [UpdateCall] JSON or BXML object containing information to redirect an existing call to a new BXML document
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def update_call_with_http_info(account_id, call_id, update_call, opts = {})
@@ -300,9 +300,9 @@ module Bandwidth
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
       # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
+      content_type = @api_client.select_header_content_type(['application/json', 'application/xml'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
@@ -382,7 +382,7 @@ module Bandwidth
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
 
       # form parameters
