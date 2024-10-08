@@ -15,8 +15,8 @@ require 'time'
 
 module Bandwidth
   class CallbackMethodEnum
-    GET = "GET".freeze
-    POST = "POST".freeze
+    GET = 'GET'.freeze
+    POST = 'POST'.freeze
 
     def self.all_vars
       @all_vars ||= [GET, POST].freeze
