@@ -14,19 +14,29 @@ describe 'MediaApi Integration Tests' do
     @api_instance_media = Bandwidth::MediaApi.new
 
     # media names
-    @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid
-    @media_file_name = 'ruby_media_file' + SecureRandom.uuid
+    @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid + '.txt'
+    @media_file_name = 'ruby_media_file' + SecureRandom.uuid + '.jpeg'
   end
 
   # Upload Media
   describe 'upload_media' do
     it 'uploads binary media' do
-      _data, status_code = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @binary_media_name, binary_media_data)
+      _data, status_code = @api_instance_media.upload_media_with_http_info(
+        BW_ACCOUNT_ID,
+        @binary_media_name,
+        binary_media_data,
+        { content_type: 'text/plain' }
+      )
       expect(status_code).to eq(204)
     end
 
     it 'uploads media file' do
-      _data, status_code = @api_instance_media.upload_media_with_http_info(BW_ACCOUNT_ID, @media_file_name, media_file_data)
+      _data, status_code = @api_instance_media.upload_media_with_http_info(
+        BW_ACCOUNT_ID,
+        @media_file_name,
+        media_file_data,
+        { content_type: 'image/jpeg' }
+      )
       expect(status_code).to eq(204)
     end
   end
