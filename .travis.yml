@@ -8,4 +8,4 @@ script:
   - bundle install --path vendor/bundle
   - bundle exec rspec
   - gem build bandwidth-sdk.gemspec
-  - gem install ./bandwidth-sdk-11.0.0.gem
+  - gem install ./bandwidth-sdk-1.0.0-dev.gem
