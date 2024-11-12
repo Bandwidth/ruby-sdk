@@ -11,5 +11,5 @@ Generator version: 7.8.0
 =end
 
 module Bandwidth
-  VERSION = '11.0.0'
+  VERSION = '1.0.0-dev'
 end
