@@ -14,29 +14,32 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MessageRequest
-    # The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
+  # Message payload schema within a MessageCallback
+  class MessageCallbackMessage
+    attr_accessor :id
+
+    attr_accessor :owner
+
     attr_accessor :application_id
 
-    # The phone number(s) the message should be sent to in E164 format.
+    attr_accessor :time
+
+    attr_accessor :segment_count
+
+    attr_accessor :direction
+
     attr_accessor :to
 
-    # Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter. 
     attr_accessor :from
 
-    # The contents of the text message. Must be 2048 characters or less.
     attr_accessor :text
 
-    # A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. 
-    attr_accessor :media
-
-    # A custom string that will be included in callback events of the message. Max 1024 characters.
     attr_accessor :tag
 
-    attr_accessor :priority
+    # Optional media, applicable only for mms
+    attr_accessor :media
 
-    # A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS. 
-    attr_accessor :expiration
+    attr_accessor :priority
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -63,14 +66,18 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'id' => :'id',
+        :'owner' => :'owner',
         :'application_id' => :'applicationId',
+        :'time' => :'time',
+        :'segment_count' => :'segmentCount',
+        :'direction' => :'direction',
         :'to' => :'to',
         :'from' => :'from',
         :'text' => :'text',
-        :'media' => :'media',
         :'tag' => :'tag',
-        :'priority' => :'priority',
-        :'expiration' => :'expiration'
+        :'media' => :'media',
+        :'priority' => :'priority'
       }
     end
 
@@ -82,20 +89,25 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'id' => :'String',
+        :'owner' => :'String',
         :'application_id' => :'String',
+        :'time' => :'Time',
+        :'segment_count' => :'Integer',
+        :'direction' => :'MessageDirectionEnum',
         :'to' => :'Array<String>',
         :'from' => :'String',
         :'text' => :'String',
-        :'media' => :'Array<String>',
         :'tag' => :'String',
-        :'priority' => :'PriorityEnum',
-        :'expiration' => :'Time'
+        :'media' => :'Array<String>',
+        :'priority' => :'PriorityEnum'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'media',
       ])
     end
 
@@ -103,21 +115,51 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageRequest` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageCallbackMessage` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageCallbackMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      else
+        self.id = nil
+      end
+
+      if attributes.key?(:'owner')
+        self.owner = attributes[:'owner']
+      else
+        self.owner = nil
+      end
 
       if attributes.key?(:'application_id')
         self.application_id = attributes[:'application_id']
       else
         self.application_id = nil
+      end
+
+      if attributes.key?(:'time')
+        self.time = attributes[:'time']
+      else
+        self.time = nil
+      end
+
+      if attributes.key?(:'segment_count')
+        self.segment_count = attributes[:'segment_count']
+      else
+        self.segment_count = nil
+      end
+
+      if attributes.key?(:'direction')
+        self.direction = attributes[:'direction']
+      else
+        self.direction = nil
       end
 
       if attributes.key?(:'to')
@@ -136,6 +178,12 @@ module Bandwidth
 
       if attributes.key?(:'text')
         self.text = attributes[:'text']
+      else
+        self.text = nil
+      end
+
+      if attributes.key?(:'tag')
+        self.tag = attributes[:'tag']
       end
 
       if attributes.key?(:'media')
@@ -144,16 +192,8 @@ module Bandwidth
         end
       end
 
-      if attributes.key?(:'tag')
-        self.tag = attributes[:'tag']
-      end
-
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
-      end
-
-      if attributes.key?(:'expiration')
-        self.expiration = attributes[:'expiration']
       end
     end
 
@@ -162,8 +202,28 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @owner.nil?
+        invalid_properties.push('invalid value for "owner", owner cannot be nil.')
+      end
+
       if @application_id.nil?
         invalid_properties.push('invalid value for "application_id", application_id cannot be nil.')
+      end
+
+      if @time.nil?
+        invalid_properties.push('invalid value for "time", time cannot be nil.')
+      end
+
+      if @segment_count.nil?
+        invalid_properties.push('invalid value for "segment_count", segment_count cannot be nil.')
+      end
+
+      if @direction.nil?
+        invalid_properties.push('invalid value for "direction", direction cannot be nil.')
       end
 
       if @to.nil?
@@ -174,8 +234,8 @@ module Bandwidth
         invalid_properties.push('invalid value for "from", from cannot be nil.')
       end
 
-      if !@text.nil? && @text.to_s.length > 2048
-        invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 2048.')
+      if @text.nil?
+        invalid_properties.push('invalid value for "text", text cannot be nil.')
       end
 
       invalid_properties
@@ -185,10 +245,15 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @id.nil?
+      return false if @owner.nil?
       return false if @application_id.nil?
+      return false if @time.nil?
+      return false if @segment_count.nil?
+      return false if @direction.nil?
       return false if @to.nil?
       return false if @from.nil?
-      return false if !@text.nil? && @text.to_s.length > 2048
+      return false if @text.nil?
       true
     end
 
@@ -202,33 +267,23 @@ module Bandwidth
       @to = to
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] text Value to be assigned
-    def text=(text)
-      if text.nil?
-        fail ArgumentError, 'text cannot be nil'
-      end
-
-      if text.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "text", the character length must be smaller than or equal to 2048.'
-      end
-
-      @text = text
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          id == o.id &&
+          owner == o.owner &&
           application_id == o.application_id &&
+          time == o.time &&
+          segment_count == o.segment_count &&
+          direction == o.direction &&
           to == o.to &&
           from == o.from &&
           text == o.text &&
-          media == o.media &&
           tag == o.tag &&
-          priority == o.priority &&
-          expiration == o.expiration
+          media == o.media &&
+          priority == o.priority
     end
 
     # @see the `==` method
@@ -240,7 +295,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_id, to, from, text, media, tag, priority, expiration].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority].hash
     end
 
     # Builds the object from hash

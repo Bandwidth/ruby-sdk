@@ -253,7 +253,7 @@ media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media ID to retri
 body = File.new('/path/to/some/file') # File | 
 opts = {
   content_type: 'audio/wav', # String | The media type of the entity-body.
-  cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+  cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. 
 }
 
 begin
@@ -290,7 +290,7 @@ end
 | **media_id** | **String** | Media ID to retrieve. |  |
 | **body** | **File** |  |  |
 | **content_type** | **String** | The media type of the entity-body. | [optional] |
-| **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional] |
+| **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  | [optional] |
 
 ### Return type
 
@@ -302,6 +302,6 @@ nil (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/ogg, application/pdf, application/rtf, application/zip, application/x-tar, application/xml, application/gzip, application/x-bzip2, application/x-gzip, application/smil, application/javascript, audio/mp4, audio/mpeg, audio/ogg, audio/flac, audio/webm, audio/wav, audio/amr, audio/3gpp, image/bmp, image/gif, image/jpeg, image/pjpeg, image/png, image/svg+xml, image/tiff, image/webp, image/x-icon, text/css, text/csv, text/calendar, text/plain, text/javascript, text/vcard, text/vnd.wap.wml, text/xml, video/avi, video/mp4, video/mpeg, video/ogg, video/quicktime, video/webm, video/x-ms-wmv
+- **Content-Type**: application/json, application/ogg, application/pdf, application/rtf, application/zip, application/x-tar, application/xml, application/gzip, application/x-bzip2, application/x-gzip, application/smil, application/javascript, audio/mp4, audio/mpeg, audio/ogg, audio/flac, audio/webm, audio/wav, audio/amr, audio/3gpp, image/bmp, image/gif, image/heic, image/heif, image/jpeg, image/pjpeg, image/png, image/svg+xml, image/tiff, image/webp, image/x-icon, text/css, text/csv, text/calendar, text/html, text/plain, text/javascript, text/vcard, text/vnd.wap.wml, text/xml, video/avi, video/mp4, video/mpeg, video/ogg, video/quicktime, video/webm, video/x-ms-wmv, video/x-flv
 - **Accept**: application/json
 
