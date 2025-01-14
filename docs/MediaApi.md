@@ -253,7 +253,7 @@ media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media ID to retri
 body = File.new('/path/to/some/file') # File | 
 opts = {
   content_type: 'audio/wav', # String | The media type of the entity-body.
-  cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. 
+  cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
 }
 
 begin
@@ -290,7 +290,7 @@ end
 | **media_id** | **String** | Media ID to retrieve. |  |
 | **body** | **File** |  |  |
 | **content_type** | **String** | The media type of the entity-body. | [optional] |
-| **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  | [optional] |
+| **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional] |
 
 ### Return type
 
