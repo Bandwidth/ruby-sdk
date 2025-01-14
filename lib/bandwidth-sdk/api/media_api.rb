@@ -230,7 +230,7 @@ module Bandwidth
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.
-    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. 
+    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
     # @return [nil]
     def upload_media(account_id, media_id, body, opts = {})
       upload_media_with_http_info(account_id, media_id, body, opts)
@@ -244,7 +244,7 @@ module Bandwidth
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.
-    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. 
+    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def upload_media_with_http_info(account_id, media_id, body, opts = {})
       if @api_client.config.debugging

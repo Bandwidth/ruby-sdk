@@ -97,20 +97,20 @@ module Bandwidth
     # Returns a list of messages based on query parameters.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. 
-    # @option opts [String] :source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). 
-    # @option opts [String] :destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). 
-    # @option opts [MessageStatusEnum] :message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. 
+    # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
+    # @option opts [String] :source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).
+    # @option opts [String] :destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).
+    # @option opts [MessageStatusEnum] :message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
     # @option opts [ListMessageDirectionEnum] :message_direction The direction of the message. One of INBOUND OUTBOUND.
-    # @option opts [String] :carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). 
+    # @option opts [String] :carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T).
     # @option opts [MessageTypeEnum] :message_type The type of message. Either sms or mms.
     # @option opts [Integer] :error_code The error code of the message.
-    # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. 
-    # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. 
+    # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+    # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :campaign_id The campaign ID of the message.
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
-    # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. 
+    # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
     # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
     # @return [MessagesList]
     def list_messages(account_id, opts = {})
@@ -122,20 +122,20 @@ module Bandwidth
     # Returns a list of messages based on query parameters.
     # @param account_id [String] Your Bandwidth Account ID.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. 
-    # @option opts [String] :source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). 
-    # @option opts [String] :destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). 
-    # @option opts [MessageStatusEnum] :message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. 
+    # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
+    # @option opts [String] :source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).
+    # @option opts [String] :destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).
+    # @option opts [MessageStatusEnum] :message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
     # @option opts [ListMessageDirectionEnum] :message_direction The direction of the message. One of INBOUND OUTBOUND.
-    # @option opts [String] :carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). 
+    # @option opts [String] :carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T).
     # @option opts [MessageTypeEnum] :message_type The type of message. Either sms or mms.
     # @option opts [Integer] :error_code The error code of the message.
-    # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. 
-    # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. 
+    # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+    # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :campaign_id The campaign ID of the message.
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
-    # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. 
+    # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
     # @option opts [Boolean] :limit_total_count When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
     # @return [Array<(MessagesList, Integer, Hash)>] MessagesList data, response status code and response headers
     def list_messages_with_http_info(account_id, opts = {})
