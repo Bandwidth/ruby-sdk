@@ -27,7 +27,7 @@ instance = Bandwidth::Message.new(
   id: 1589228074636lm4k2je7j7jklbn2,
   owner: +15554443333,
   application_id: 93de2206-9669-4e07-948d-329f4b722ee2,
-  time: 2022-09-14T18:20:16Z,
+  time: 2024-12-02T20:15:57.278Z,
   segment_count: 2,
   direction: null,
   to: [&quot;+15552223333&quot;],

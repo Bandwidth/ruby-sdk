@@ -14,19 +14,43 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # Message Failed Callback
-  class MessageFailedCallback
+  # Message Callback Schema
+  class MessageCallback
     attr_accessor :time
 
     attr_accessor :type
 
     attr_accessor :to
 
+    # A detailed description of the event described by the callback.
     attr_accessor :description
 
     attr_accessor :message
 
+    # Optional error code, applicable only when type is `message-failed`.
     attr_accessor :error_code
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,10 +73,10 @@ module Bandwidth
     def self.openapi_types
       {
         :'time' => :'Time',
-        :'type' => :'String',
+        :'type' => :'CallbackTypeEnum',
         :'to' => :'String',
         :'description' => :'String',
-        :'message' => :'MessageFailedCallbackMessage',
+        :'message' => :'MessageCallbackMessage',
         :'error_code' => :'Integer'
       }
     end
@@ -60,6 +84,7 @@ module Bandwidth
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'error_code'
       ])
     end
 
@@ -67,13 +92,13 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageFailedCallback` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageCallback` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageFailedCallback`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageCallback`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -110,8 +135,6 @@ module Bandwidth
 
       if attributes.key?(:'error_code')
         self.error_code = attributes[:'error_code']
-      else
-        self.error_code = nil
       end
     end
 
@@ -140,10 +163,6 @@ module Bandwidth
         invalid_properties.push('invalid value for "message", message cannot be nil.')
       end
 
-      if @error_code.nil?
-        invalid_properties.push('invalid value for "error_code", error_code cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -156,7 +175,6 @@ module Bandwidth
       return false if @to.nil?
       return false if @description.nil?
       return false if @message.nil?
-      return false if @error_code.nil?
       true
     end
 

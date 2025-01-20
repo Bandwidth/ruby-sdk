@@ -48,7 +48,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.0"
+          ruby-version: 3.3
 
       - name: Update Gem Version
         run: sed -i "s/VERSION = '.*'/VERSION = '$GEM_VERSION'/g" lib/bandwidth-sdk/version.rb

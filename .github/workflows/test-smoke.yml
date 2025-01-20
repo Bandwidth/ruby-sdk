@@ -40,14 +40,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: 3.3
 
       - name: Install Packages and Test
         run: |
           bundle install
           rake smoke
         env:
-          RUBY_VERSION: 3.2
+          RUBY_VERSION: 3.3
           OPERATING_SYSTEM: ubuntu
         shell: bash
 

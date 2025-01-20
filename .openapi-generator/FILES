@@ -18,6 +18,7 @@ docs/CallTranscriptionMetadata.md
 docs/CallTranscriptionResponse.md
 docs/CallTranscriptionTrackEnum.md
 docs/CallbackMethodEnum.md
+docs/CallbackTypeEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
 docs/Conference.md
@@ -42,8 +43,6 @@ docs/DtmfCallback.md
 docs/FieldError.md
 docs/FileFormatEnum.md
 docs/GatherCallback.md
-docs/InboundMessageCallback.md
-docs/InboundMessageCallbackMessage.md
 docs/InitiateCallback.md
 docs/ListMessageDirectionEnum.md
 docs/ListMessageItem.md
@@ -59,14 +58,10 @@ docs/MachineDetectionResult.md
 docs/Media.md
 docs/MediaApi.md
 docs/Message.md
-docs/MessageDeliveredCallback.md
-docs/MessageDeliveredCallbackMessage.md
+docs/MessageCallback.md
+docs/MessageCallbackMessage.md
 docs/MessageDirectionEnum.md
-docs/MessageFailedCallback.md
-docs/MessageFailedCallbackMessage.md
 docs/MessageRequest.md
-docs/MessageSendingCallback.md
-docs/MessageSendingCallbackMessage.md
 docs/MessageStatusEnum.md
 docs/MessageTypeEnum.md
 docs/MessagesApi.md
@@ -134,6 +129,7 @@ lib/bandwidth-sdk/models/call_transcription_metadata.rb
 lib/bandwidth-sdk/models/call_transcription_response.rb
 lib/bandwidth-sdk/models/call_transcription_track_enum.rb
 lib/bandwidth-sdk/models/callback_method_enum.rb
+lib/bandwidth-sdk/models/callback_type_enum.rb
 lib/bandwidth-sdk/models/code_request.rb
 lib/bandwidth-sdk/models/conference.rb
 lib/bandwidth-sdk/models/conference_completed_callback.rb
@@ -156,8 +152,6 @@ lib/bandwidth-sdk/models/dtmf_callback.rb
 lib/bandwidth-sdk/models/field_error.rb
 lib/bandwidth-sdk/models/file_format_enum.rb
 lib/bandwidth-sdk/models/gather_callback.rb
-lib/bandwidth-sdk/models/inbound_message_callback.rb
-lib/bandwidth-sdk/models/inbound_message_callback_message.rb
 lib/bandwidth-sdk/models/initiate_callback.rb
 lib/bandwidth-sdk/models/list_message_direction_enum.rb
 lib/bandwidth-sdk/models/list_message_item.rb
@@ -171,14 +165,10 @@ lib/bandwidth-sdk/models/machine_detection_mode_enum.rb
 lib/bandwidth-sdk/models/machine_detection_result.rb
 lib/bandwidth-sdk/models/media.rb
 lib/bandwidth-sdk/models/message.rb
-lib/bandwidth-sdk/models/message_delivered_callback.rb
-lib/bandwidth-sdk/models/message_delivered_callback_message.rb
+lib/bandwidth-sdk/models/message_callback.rb
+lib/bandwidth-sdk/models/message_callback_message.rb
 lib/bandwidth-sdk/models/message_direction_enum.rb
-lib/bandwidth-sdk/models/message_failed_callback.rb
-lib/bandwidth-sdk/models/message_failed_callback_message.rb
 lib/bandwidth-sdk/models/message_request.rb
-lib/bandwidth-sdk/models/message_sending_callback.rb
-lib/bandwidth-sdk/models/message_sending_callback_message.rb
 lib/bandwidth-sdk/models/message_status_enum.rb
 lib/bandwidth-sdk/models/message_type_enum.rb
 lib/bandwidth-sdk/models/messages_list.rb
