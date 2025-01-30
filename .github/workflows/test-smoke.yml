@@ -84,7 +84,7 @@ jobs:
 
   notify_for_failures:
     name: Notify for Failures
-    needs: [test_main]
+    needs: [test_main, test_main_up]
     if: failure()
     runs-on: ubuntu-latest
     steps:
