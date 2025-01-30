@@ -1,0 +1,21 @@
+name: Smoke Test
+description: Runs Smoke Tests
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3
+
+    - name: Install Packages and Test
+      run: |
+        bundle install
+        rake smoke
+      env:
+        RUBY_VERSION: 3.3
+        OPERATING_SYSTEM: ubuntu
+      shell: bash
