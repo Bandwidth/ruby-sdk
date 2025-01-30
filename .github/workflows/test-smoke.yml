@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - "spec/smoke/*"
+      - ".github/workflows/test-smoke.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
