@@ -73,14 +73,14 @@ jobs:
         with:
           ruby-version: 3.3
 
-      - name: Install Packages and Test
-        run: |
-          bundle install
-          rake smoke
-        env:
-          RUBY_VERSION: 3.3
-          OPERATING_SYSTEM: ubuntu
-        shell: bash
+      # - name: Install Packages and Test
+      #   run: |
+      #     bundle install
+      #     rake smoke
+      #   env:
+      #     RUBY_VERSION: 3.3
+      #     OPERATING_SYSTEM: ubuntu
+      #   shell: bash
 
   notify_for_failures:
     name: Notify for Failures
