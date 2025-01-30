@@ -9,7 +9,6 @@ on:
     paths:
       - "spec/smoke/*"
       - ".github/workflows/test-smoke.yml"
-      - ".github/actions/smoke-test/*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
@@ -37,8 +36,22 @@ jobs:
       BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
       BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
     steps:
-      - name: Smoke Test
-        uses: ./.github/actions/smoke-test
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake smoke
+        env:
+          RUBY_VERSION: 3.3
+          OPERATING_SYSTEM: ubuntu
+        shell: bash
 
   test_main_up:
     name: Smoke Test UP Account
@@ -49,8 +62,22 @@ jobs:
       BW_VOICE_APPLICATION_ID: ${{ secrets.BW_UP_VOICE_APPLICATION_ID }}
       BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_UP_MESSAGING_APPLICATION_ID }}
     steps:
-      - name: Smoke Test
-        uses: ./.github/actions/smoke-test
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake smoke
+        env:
+          RUBY_VERSION: 3.3
+          OPERATING_SYSTEM: ubuntu
+        shell: bash
 
   notify_for_failures:
     name: Notify for Failures
