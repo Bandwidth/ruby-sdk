@@ -14,14 +14,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
   BW_USERNAME: ${{ secrets.BW_USERNAME }}
   BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
   BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN }}
   BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN }}
-  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
-  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
-  BW_NUMBER: ${{ secrets.BW_NUMBER }}
   USER_NUMBER: ${{ secrets.USER_NUMBER }}
   BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
   MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
@@ -33,6 +29,37 @@ jobs:
   test_main:
     name: Smoke Test
     runs-on: ubuntu-latest
+    env:
+      BW_NUMBER: ${{ secrets.BW_NUMBER }}
+      BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake smoke
+        env:
+          RUBY_VERSION: 3.3
+          OPERATING_SYSTEM: ubuntu
+        shell: bash
+
+  test_main_up:
+    name: Smoke Test UP Account
+    runs-on: ubuntu-latest
+    env:
+      BW_NUMBER: ${{ secrets.BW_UP_NUMBER }}
+      BW_ACCOUNT_ID: ${{ secrets.BW_UP_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_UP_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_UP_MESSAGING_APPLICATION_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
