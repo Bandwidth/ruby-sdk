@@ -3,7 +3,7 @@ name: Test PR
 on:
   pull_request:
     branches:
-        - main
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
@@ -26,7 +26,7 @@ env:
   MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
 
 jobs:
-  test_pr:
+  test:
     name: Test PR
     runs-on: ${{ matrix.os }}
     strategy:

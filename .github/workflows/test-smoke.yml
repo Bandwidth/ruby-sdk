@@ -1,11 +1,9 @@
-name: Smoke Test
+name: Smoke Tests
 
 on:
   schedule:
     - cron: "0 4 * * *"
   pull_request:
-    branches:
-      - main
     paths:
       - "spec/smoke/*"
       - ".github/workflows/test-smoke.yml"
@@ -24,7 +22,7 @@ env:
   MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
 
 jobs:
-  test_main:
+  test:
     name: Smoke Test
     runs-on: ubuntu-latest
     env:
@@ -53,7 +51,7 @@ jobs:
           OPERATING_SYSTEM: ubuntu
         shell: bash
 
-  test_main_up:
+  test_up:
     name: Smoke Test UP Account
     runs-on: ubuntu-latest
     env:
@@ -73,18 +71,18 @@ jobs:
         with:
           ruby-version: 3.3
 
-      # - name: Install Packages and Test
-      #   run: |
-      #     bundle install
-      #     rake smoke
-      #   env:
-      #     RUBY_VERSION: 3.3
-      #     OPERATING_SYSTEM: ubuntu
-      #   shell: bash
+      - name: Install Packages and Test
+        run: |
+          bundle install
+          rake smoke
+        env:
+          RUBY_VERSION: 3.3
+          OPERATING_SYSTEM: ubuntu
+        shell: bash
 
   notify_for_failures:
     name: Notify for Failures
-    needs: [test_main, test_main_up]
+    needs: [test, test_up]
     if: failure()
     runs-on: ubuntu-latest
     steps:
