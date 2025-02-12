@@ -5,12 +5,12 @@
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
 
-| **OS** | **Ruby** |
-|:---:|:---:|
-| Windows 2019 | 2.7, 3.0, 3.1, 3.2, 3.3 |
-| Windows 2022 | 2.7, 3.0, 3.1, 3.2, 3.3 |
-| Ubuntu 20.04 | 2.7, 3.0, 3.1, 3.2, 3.3 |
-| Ubuntu 22.04 | 2.7, 3.0, 3.1, 3.2, 3.3 |
+|    **OS**    |      **Ruby**      |
+|:------------:|:------------------:|
+| Windows 2019 | 3.0, 3.1, 3.2, 3.3 |
+| Windows 2022 | 3.0, 3.1, 3.2, 3.3 |
+| Ubuntu 22.04 | 3.0, 3.1, 3.2, 3.3 |
+| Ubuntu 24.04 | 3.0, 3.1, 3.2, 3.3 |
 
 Bandwidth - the Ruby gem for the Bandwidth SDK
 
