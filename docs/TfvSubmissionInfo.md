@@ -1,0 +1,34 @@
+# Bandwidth::TfvSubmissionInfo
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **business_address** | [**Address**](Address.md) |  | [optional] |
+| **business_contact** | [**Contact**](Contact.md) |  | [optional] |
+| **message_volume** | **Integer** | Estimated monthly volume of messages from the toll-free number. | [optional] |
+| **use_case** | **String** | The category of the use case. | [optional] |
+| **use_case_summary** | **String** | A general idea of the use case and customer. | [optional] |
+| **production_message_content** | **String** | Example of message content. | [optional] |
+| **opt_in_workflow** | [**OptInWorkflow**](OptInWorkflow.md) |  | [optional] |
+| **additional_information** | **String** | Any additional information. | [optional] |
+| **isv_reseller** | **String** | ISV name. | [optional] |
+
+## Example
+
+```ruby
+require 'bandwidth-sdk'
+
+instance = Bandwidth::TfvSubmissionInfo.new(
+  business_address: null,
+  business_contact: null,
+  message_volume: 10000,
+  use_case: 2FA,
+  use_case_summary: Text summarizing the use case for the toll-free number,
+  production_message_content: Production message content,
+  opt_in_workflow: null,
+  additional_information: Any additional information,
+  isv_reseller: Test ISV
+)
+```
+

@@ -143,6 +143,14 @@ Class | Method | HTTP request | Description
 *Bandwidth::RecordingsApi* | [**transcribe_call_recording**](docs/RecordingsApi.md#transcribe_call_recording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request
 *Bandwidth::RecordingsApi* | [**update_call_recording_state**](docs/RecordingsApi.md#update_call_recording_state) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording
 *Bandwidth::StatisticsApi* | [**get_statistics**](docs/StatisticsApi.md#get_statistics) | **GET** /accounts/{accountId}/statistics | Get Account Statistics
+*Bandwidth::TollFreeVerificationApi* | [**create_webhook_subscription**](docs/TollFreeVerificationApi.md#create_webhook_subscription) | **POST** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | Create Webhook Subscription
+*Bandwidth::TollFreeVerificationApi* | [**delete_webhook_subscription**](docs/TollFreeVerificationApi.md#delete_webhook_subscription) | **DELETE** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Delete Webhook Subscription
+*Bandwidth::TollFreeVerificationApi* | [**get_toll_free_verification_status**](docs/TollFreeVerificationApi.md#get_toll_free_verification_status) | **GET** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Get Toll-Free Verification Status
+*Bandwidth::TollFreeVerificationApi* | [**list_toll_free_use_cases**](docs/TollFreeVerificationApi.md#list_toll_free_use_cases) | **GET** /tollFreeVerification/useCases | List Toll-Free Use Cases
+*Bandwidth::TollFreeVerificationApi* | [**list_webhook_subscriptions**](docs/TollFreeVerificationApi.md#list_webhook_subscriptions) | **GET** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | List Webhook Subscriptions
+*Bandwidth::TollFreeVerificationApi* | [**request_toll_free_verification**](docs/TollFreeVerificationApi.md#request_toll_free_verification) | **POST** /accounts/{accountId}/tollFreeVerification | Request Toll-Free Verification
+*Bandwidth::TollFreeVerificationApi* | [**update_toll_free_verification_request**](docs/TollFreeVerificationApi.md#update_toll_free_verification_request) | **PUT** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Update Toll-Free Verification Request
+*Bandwidth::TollFreeVerificationApi* | [**update_webhook_subscription**](docs/TollFreeVerificationApi.md#update_webhook_subscription) | **PUT** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Update Webhook Subscription
 *Bandwidth::TranscriptionsApi* | [**delete_real_time_transcription**](docs/TranscriptionsApi.md#delete_real_time_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription
 *Bandwidth::TranscriptionsApi* | [**get_real_time_transcription**](docs/TranscriptionsApi.md#get_real_time_transcription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription
 *Bandwidth::TranscriptionsApi* | [**list_real_time_transcriptions**](docs/TranscriptionsApi.md#list_real_time_transcriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription
@@ -151,6 +159,8 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Bandwidth::AccountStatistics](docs/AccountStatistics.md)
+ - [Bandwidth::AdditionalDenialReason](docs/AdditionalDenialReason.md)
+ - [Bandwidth::Address](docs/Address.md)
  - [Bandwidth::AnswerCallback](docs/AnswerCallback.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
@@ -176,6 +186,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::ConferenceRecordingMetadata](docs/ConferenceRecordingMetadata.md)
  - [Bandwidth::ConferenceRedirectCallback](docs/ConferenceRedirectCallback.md)
  - [Bandwidth::ConferenceStateEnum](docs/ConferenceStateEnum.md)
+ - [Bandwidth::Contact](docs/Contact.md)
  - [Bandwidth::CreateCall](docs/CreateCall.md)
  - [Bandwidth::CreateCallResponse](docs/CreateCallResponse.md)
  - [Bandwidth::CreateLookupResponse](docs/CreateLookupResponse.md)
@@ -184,10 +195,13 @@ Class | Method | HTTP request | Description
  - [Bandwidth::DisconnectCallback](docs/DisconnectCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
  - [Bandwidth::DtmfCallback](docs/DtmfCallback.md)
+ - [Bandwidth::Error](docs/Error.md)
+ - [Bandwidth::FailureWebhook](docs/FailureWebhook.md)
  - [Bandwidth::FieldError](docs/FieldError.md)
  - [Bandwidth::FileFormatEnum](docs/FileFormatEnum.md)
  - [Bandwidth::GatherCallback](docs/GatherCallback.md)
  - [Bandwidth::InitiateCallback](docs/InitiateCallback.md)
+ - [Bandwidth::LinksObject](docs/LinksObject.md)
  - [Bandwidth::ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Bandwidth::ListMessageItem](docs/ListMessageItem.md)
  - [Bandwidth::LookupRequest](docs/LookupRequest.md)
@@ -212,6 +226,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::MfaForbiddenRequestError](docs/MfaForbiddenRequestError.md)
  - [Bandwidth::MfaRequestError](docs/MfaRequestError.md)
  - [Bandwidth::MfaUnauthorizedRequestError](docs/MfaUnauthorizedRequestError.md)
+ - [Bandwidth::OptInWorkflow](docs/OptInWorkflow.md)
  - [Bandwidth::PageInfo](docs/PageInfo.md)
  - [Bandwidth::PriorityEnum](docs/PriorityEnum.md)
  - [Bandwidth::RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
@@ -223,6 +238,14 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
  - [Bandwidth::StirShaken](docs/StirShaken.md)
  - [Bandwidth::Tag](docs/Tag.md)
+ - [Bandwidth::TelephoneNumber](docs/TelephoneNumber.md)
+ - [Bandwidth::TfvBasicAuthentication](docs/TfvBasicAuthentication.md)
+ - [Bandwidth::TfvCallbackStatusEnum](docs/TfvCallbackStatusEnum.md)
+ - [Bandwidth::TfvError](docs/TfvError.md)
+ - [Bandwidth::TfvStatus](docs/TfvStatus.md)
+ - [Bandwidth::TfvStatusEnum](docs/TfvStatusEnum.md)
+ - [Bandwidth::TfvSubmissionInfo](docs/TfvSubmissionInfo.md)
+ - [Bandwidth::TfvSubmissionWrapper](docs/TfvSubmissionWrapper.md)
  - [Bandwidth::TnLookupRequestError](docs/TnLookupRequestError.md)
  - [Bandwidth::TranscribeRecording](docs/TranscribeRecording.md)
  - [Bandwidth::Transcription](docs/Transcription.md)
@@ -234,10 +257,19 @@ Class | Method | HTTP request | Description
  - [Bandwidth::UpdateCallRecording](docs/UpdateCallRecording.md)
  - [Bandwidth::UpdateConference](docs/UpdateConference.md)
  - [Bandwidth::UpdateConferenceMember](docs/UpdateConferenceMember.md)
+ - [Bandwidth::VerificationDenialWebhook](docs/VerificationDenialWebhook.md)
+ - [Bandwidth::VerificationRequest](docs/VerificationRequest.md)
+ - [Bandwidth::VerificationUpdateRequest](docs/VerificationUpdateRequest.md)
+ - [Bandwidth::VerificationWebhook](docs/VerificationWebhook.md)
  - [Bandwidth::VerifyCodeRequest](docs/VerifyCodeRequest.md)
  - [Bandwidth::VerifyCodeResponse](docs/VerifyCodeResponse.md)
  - [Bandwidth::VoiceApiError](docs/VoiceApiError.md)
  - [Bandwidth::VoiceCodeResponse](docs/VoiceCodeResponse.md)
+ - [Bandwidth::WebhookSubscription](docs/WebhookSubscription.md)
+ - [Bandwidth::WebhookSubscriptionBasicAuthentication](docs/WebhookSubscriptionBasicAuthentication.md)
+ - [Bandwidth::WebhookSubscriptionRequestSchema](docs/WebhookSubscriptionRequestSchema.md)
+ - [Bandwidth::WebhookSubscriptionTypeEnum](docs/WebhookSubscriptionTypeEnum.md)
+ - [Bandwidth::WebhookSubscriptionsListBody](docs/WebhookSubscriptionsListBody.md)
 
 
 ## Documentation for Authorization
