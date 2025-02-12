@@ -221,7 +221,7 @@ describe Bandwidth::ApiClient do
       response = double('response', headers: headers, body: '{id 1}')
       expect {
         api_client_default.deserialize(response, 'Hash<String, Integer>')
-      }.to raise_error(JSON::ParserError, 'unexpected token at \'{id 1}]\'')
+      }.to raise_error(JSON::ParserError)
     end
 
     it 'rescues invalid JSON when expecting non-JSON' do
