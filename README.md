@@ -4,6 +4,7 @@
 [![Tests](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml/badge.svg)](https://github.com/Bandwidth/ruby-sdk/actions/workflows/test-nightly.yml)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
+test
 
 | **OS** | **Ruby** |
 |:---:|:---:|
