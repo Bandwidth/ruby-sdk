@@ -45,8 +45,10 @@ jobs:
 
       - name: Install Packages and Test
         run: |
+          gem list
           npm install -g @stoplight/prism-cli
           bundle install
+          gem list
           prism mock ./bandwidth.yml & (sleep 3; rake unit)
         env:
           RUBY_VERSION: ${{ matrix.ruby-version }}
