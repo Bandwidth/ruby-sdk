@@ -17,7 +17,7 @@ SimpleCov.start do
   end
   add_group 'Models', 'lib/bandwidth-sdk/models/'
   add_group 'APIs', 'lib/bandwidth-sdk/api/'
-  add_group 'Client', ['api_client.rb', 'api_error.rb', 'configuration.rb', 'bandwidth-sdk.rb']
+  add_group 'Client', ['api_client.rb', 'api_error.rb', 'configuration.rb', 'version.rb', 'bandwidth-sdk.rb']
   add_group 'Tests', 'spec'
 end
 

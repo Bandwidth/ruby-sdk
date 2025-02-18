@@ -6,7 +6,7 @@ gemLicense: MIT
 gemName: bandwidth-sdk
 gemRequiredRubyVersion: '>=2.7'
 gemSummary: Bandwidth Ruby SDK
-gemVersion: 11.0.0
+gemVersion: 1.0.0
 library: faraday
 moduleName: Bandwidth
 templateDir: custom_templates

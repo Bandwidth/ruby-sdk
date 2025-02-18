@@ -105,7 +105,7 @@ describe 'MFAApi' do
       }.to raise_error(ArgumentError)
     end
 
-    it 'causes an ArgumentError for a missing cvarify_ode_request' do
+    it 'causes an ArgumentError for a missing verify_code_request' do
       expect {
         @mfa_api_instance.verify_code(BW_ACCOUNT_ID, nil)
       }.to raise_error(ArgumentError)

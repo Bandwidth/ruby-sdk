@@ -486,6 +486,54 @@ module Bandwidth
           description: "Production",
           }
         ],
+        "TollFreeVerificationApi.create_webhook_subscription": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.delete_webhook_subscription": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.get_toll_free_verification_status": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.list_toll_free_use_cases": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.list_webhook_subscriptions": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.request_toll_free_verification": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.update_toll_free_verification_request": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
+        "TollFreeVerificationApi.update_webhook_subscription": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
         "TranscriptionsApi.delete_real_time_transcription": [
           {
           url: "https://voice.bandwidth.com/api/v2",
