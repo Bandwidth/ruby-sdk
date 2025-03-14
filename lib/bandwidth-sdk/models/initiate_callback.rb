@@ -49,6 +49,9 @@ module Bandwidth
 
     attr_accessor :stir_shaken
 
+    # The value of the `User-To-User` header to send within the initial `INVITE`. Must include the encoding parameter as specified in RFC 7433. Only `base64`, `jwt` and `hex` encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.
+    attr_accessor :uui
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -85,7 +88,8 @@ module Bandwidth
         :'call_url' => :'callUrl',
         :'start_time' => :'startTime',
         :'diversion' => :'diversion',
-        :'stir_shaken' => :'stirShaken'
+        :'stir_shaken' => :'stirShaken',
+        :'uui' => :'uui'
       }
     end
 
@@ -108,7 +112,8 @@ module Bandwidth
         :'call_url' => :'String',
         :'start_time' => :'Time',
         :'diversion' => :'Diversion',
-        :'stir_shaken' => :'StirShaken'
+        :'stir_shaken' => :'StirShaken',
+        :'uui' => :'String'
       }
     end
 
@@ -180,6 +185,10 @@ module Bandwidth
       if attributes.key?(:'stir_shaken')
         self.stir_shaken = attributes[:'stir_shaken']
       end
+
+      if attributes.key?(:'uui')
+        self.uui = attributes[:'uui']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -187,6 +196,10 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if !@uui.nil? && @uui.to_s.length > 256
+        invalid_properties.push('invalid value for "uui", the character length must be smaller than or equal to 256.')
+      end
+
       invalid_properties
     end
 
@@ -194,7 +207,22 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@uui.nil? && @uui.to_s.length > 256
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] uui Value to be assigned
+    def uui=(uui)
+      if uui.nil?
+        fail ArgumentError, 'uui cannot be nil'
+      end
+
+      if uui.to_s.length > 256
+        fail ArgumentError, 'invalid value for "uui", the character length must be smaller than or equal to 256.'
+      end
+
+      @uui = uui
     end
 
     # Checks equality by comparing each attribute.
@@ -213,7 +241,8 @@ module Bandwidth
           call_url == o.call_url &&
           start_time == o.start_time &&
           diversion == o.diversion &&
-          stir_shaken == o.stir_shaken
+          stir_shaken == o.stir_shaken &&
+          uui == o.uui
     end
 
     # @see the `==` method
@@ -225,7 +254,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, diversion, stir_shaken].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, diversion, stir_shaken, uui].hash
     end
 
     # Builds the object from hash
