@@ -3,6 +3,7 @@ describe 'Bandwidth::Bxml::StartStream' do
   let(:initial_attributes) {
     {
       name: 'initial_name',
+      mode: 'unidirectional',
       tracks: 'inbound',
       destination: 'https://initial.com',
       stream_event_url: 'https://initial.com',
@@ -15,6 +16,7 @@ describe 'Bandwidth::Bxml::StartStream' do
   let(:new_attributes) {
     {
       name: 'new_name',
+      mode: 'bidirectional',
       tracks: 'outbound',
       destination: 'https://new.com',
       stream_event_url: 'https://new.com',
@@ -37,13 +39,13 @@ describe 'Bandwidth::Bxml::StartStream' do
     end
 
     it 'tests the to_bxml method of the StartStream instance' do
-      expected = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\"/>\n"
+      expected = "\n<StartStream name=\"initial_name\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the StartStream instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<StartStream name=\"new_name\" tracks=\"outbound\" destination=\"https://new.com\" streamEventUrl=\"https://new.com\" streamEventMethod=\"GET\" username=\"new_username\" password=\"new_password\"/>\n"
+      expected = "\n<StartStream name=\"new_name\" mode=\"bidirectional\" tracks=\"outbound\" destination=\"https://new.com\" streamEventUrl=\"https://new.com\" streamEventMethod=\"GET\" username=\"new_username\" password=\"new_password\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
@@ -55,16 +57,16 @@ describe 'Bandwidth::Bxml::StartStream' do
     end
 
     it 'tests the to_bxml method of the nested StartStream instance' do
-      expected = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n</StartStream>\n"
+      expected = "\n<StartStream name=\"initial_name\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n</StartStream>\n"
       expect(instance_nested.to_bxml).to eq(expected)
     end
 
     it 'tests the add_stream_param method of the nested StartStream instance' do
-      expected_single = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
+      expected_single = "\n<StartStream name=\"initial_name\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
       instance_nested.add_stream_params(stream_param_2)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
-      expected_multiple = "\n<StartStream name=\"initial_name\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
+      expected_multiple = "\n<StartStream name=\"initial_name\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"https://initial.com\" streamEventUrl=\"https://initial.com\" streamEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\">\n  <StreamParam name=\"stream_param_name_1\" value=\"stream_param_value_1\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n  <StreamParam name=\"stream_param_name_2\" value=\"stream_param_value_2\"/>\n</StartStream>\n"
       instance_nested.add_stream_params([stream_param_2, stream_param_2])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end

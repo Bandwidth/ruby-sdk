@@ -9,6 +9,7 @@ module Bandwidth
         
         @attribute_map = {
           name: 'name',                             # Optional [String]: A name to refer to this stream by. Used when sending <StopStream>. If not provided, it will default to the generated stream id as sent in the Media Stream Started webhook.
+          mode: 'mode',                             # Optional [String]: The mode to use for the stream. unidirectional or bidirectional. Specifies whether the audio being streamed over the WebSocket is bidirectional (the service can both read and write audio over the WebSocket) or unidirectional (one-way, read-only). Default is unidirectional.
           tracks: 'tracks',                         # Optional [String]: The part of the call to send a stream from. inbound, outbound or both. Default is inbound.
           destination: 'destination',               # Optional [String]: A websocket URI to send the stream to. The audio from the specified tracks will be sent via websocket to this URL as base64-encoded PCMU/G711 audio.
           stream_event_url: 'streamEventUrl',       # Optional [String]: URL to send the associated Webhook events to during this stream's lifetime. Does not accept BXML. May be a relative URL.
