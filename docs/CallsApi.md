@@ -184,7 +184,7 @@ opts = {
   max_start_time: '2022-06-21T19:13:21Z', # String | Filter results to calls which have a `startTime` before or including `maxStartTime` (in ISO8601 format).
   disconnect_cause: 'hangup', # String | Filter results to calls with specified call Disconnect Cause.
   page_size: 500, # Integer | Specifies the max number of calls that will be returned.
-  page_token: 'page_token_example' # String | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description.
+  page_token: 'eyJwYWdlVG9rZW4iOiJ0b2tlbiJ9' # String | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description.
 }
 
 begin

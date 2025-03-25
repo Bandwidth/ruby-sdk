@@ -388,7 +388,7 @@ end
 
 api_instance = Bandwidth::TollFreeVerificationApi.new
 account_id = '9900000' # String | Your Bandwidth Account ID.
-verification_request = Bandwidth::VerificationRequest.new({business_address: Bandwidth::Address.new({name: 'Bandwidth Inc.', addr1: '2230 Bandmate Way', city: 'Raleigh', state: 'NC', zip: '27606', url: 'https://www.example.com/path/to/resource'}), business_contact: Bandwidth::Contact.new({first_name: 'John', last_name: 'Doe', email: 'foo@bar.com', phone_number: '+19192654500'}), message_volume: 10000, phone_numbers: ['+18005555555'], use_case: '2FA', use_case_summary: 'use_case_summary_example', production_message_content: 'production_message_content_example', opt_in_workflow: Bandwidth::OptInWorkflow.new({description: 'Opt In Flow', image_urls: ['https://www.example.com/path/to/resource']})}) # VerificationRequest | Request for verification of a toll-free phone number.
+verification_request = Bandwidth::VerificationRequest.new({business_address: Bandwidth::Address.new({name: 'Bandwidth Inc.', addr1: '2230 Bandmate Way', city: 'Raleigh', state: 'NC', zip: '27606', url: 'https://www.example.com/path/to/resource'}), business_contact: Bandwidth::Contact.new({first_name: 'John', last_name: 'Doe', email: 'foo@bar.com', phone_number: '+19192654500'}), message_volume: 10000, phone_numbers: ['+18005555555'], use_case: '2FA', use_case_summary: 'Text summarizing the use case for the toll-free number', production_message_content: 'Production message content', opt_in_workflow: Bandwidth::OptInWorkflow.new({description: 'Opt In Flow', image_urls: ['https://www.example.com/path/to/resource']})}) # VerificationRequest | Request for verification of a toll-free phone number.
 
 begin
   # Request Toll-Free Verification

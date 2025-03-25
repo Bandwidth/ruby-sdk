@@ -408,7 +408,7 @@ opts = {
   min_created_time: '2022-06-21T19:13:21Z', # String | Filter results to conferences which have a `createdTime` after or at `minCreatedTime` (in ISO8601 format).
   max_created_time: '2022-06-21T19:13:21Z', # String | Filter results to conferences which have a `createdTime` before or at `maxCreatedTime` (in ISO8601 format).
   page_size: 500, # Integer | Specifies the max number of conferences that will be returned.
-  page_token: 'page_token_example' # String | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description.
+  page_token: 'eyJwYWdlVG9rZW4iOiJ0b2tlbiJ9' # String | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description.
 }
 
 begin

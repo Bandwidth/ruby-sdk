@@ -20,7 +20,7 @@ require 'bandwidth-sdk'
 instance = Bandwidth::Address.new(
   name: Bandwidth Inc.,
   addr1: 2230 Bandmate Way,
-  addr2: null,
+  addr2: 2230 Bandmate Way,
   city: Raleigh,
   state: NC,
   zip: 27606,
