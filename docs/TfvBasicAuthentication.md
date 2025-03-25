@@ -13,8 +13,8 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::TfvBasicAuthentication.new(
-  username: null,
-  password: null
+  username: username,
+  password: password
 )
 ```
 

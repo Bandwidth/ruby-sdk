@@ -27,7 +27,7 @@ instance = Bandwidth::TfvSubmissionInfo.new(
   use_case_summary: Text summarizing the use case for the toll-free number,
   production_message_content: Production message content,
   opt_in_workflow: null,
-  additional_information: Any additional information,
+  additional_information: null,
   isv_reseller: Test ISV
 )
 ```

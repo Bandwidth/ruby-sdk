@@ -217,8 +217,8 @@ module Bandwidth
         invalid_properties.push('invalid value for "use_case_summary", the character length must be smaller than or equal to 500.')
       end
 
-      if @use_case_summary.to_s.length < 1
-        invalid_properties.push('invalid value for "use_case_summary", the character length must be great than or equal to 1.')
+      if @use_case_summary.to_s.length < 0
+        invalid_properties.push('invalid value for "use_case_summary", the character length must be great than or equal to 0.')
       end
 
       if @production_message_content.nil?
@@ -229,8 +229,8 @@ module Bandwidth
         invalid_properties.push('invalid value for "production_message_content", the character length must be smaller than or equal to 500.')
       end
 
-      if @production_message_content.to_s.length < 1
-        invalid_properties.push('invalid value for "production_message_content", the character length must be great than or equal to 1.')
+      if @production_message_content.to_s.length < 0
+        invalid_properties.push('invalid value for "production_message_content", the character length must be great than or equal to 0.')
       end
 
       if @opt_in_workflow.nil?
@@ -273,10 +273,10 @@ module Bandwidth
       return false if @use_case.to_s.length < 0
       return false if @use_case_summary.nil?
       return false if @use_case_summary.to_s.length > 500
-      return false if @use_case_summary.to_s.length < 1
+      return false if @use_case_summary.to_s.length < 0
       return false if @production_message_content.nil?
       return false if @production_message_content.to_s.length > 500
-      return false if @production_message_content.to_s.length < 1
+      return false if @production_message_content.to_s.length < 0
       return false if @opt_in_workflow.nil?
       return false if !@additional_information.nil? && @additional_information.to_s.length > 500
       return false if !@additional_information.nil? && @additional_information.to_s.length < 0
@@ -350,8 +350,8 @@ module Bandwidth
         fail ArgumentError, 'invalid value for "use_case_summary", the character length must be smaller than or equal to 500.'
       end
 
-      if use_case_summary.to_s.length < 1
-        fail ArgumentError, 'invalid value for "use_case_summary", the character length must be great than or equal to 1.'
+      if use_case_summary.to_s.length < 0
+        fail ArgumentError, 'invalid value for "use_case_summary", the character length must be great than or equal to 0.'
       end
 
       @use_case_summary = use_case_summary
@@ -368,8 +368,8 @@ module Bandwidth
         fail ArgumentError, 'invalid value for "production_message_content", the character length must be smaller than or equal to 500.'
       end
 
-      if production_message_content.to_s.length < 1
-        fail ArgumentError, 'invalid value for "production_message_content", the character length must be great than or equal to 1.'
+      if production_message_content.to_s.length < 0
+        fail ArgumentError, 'invalid value for "production_message_content", the character length must be great than or equal to 0.'
       end
 
       @production_message_content = production_message_content

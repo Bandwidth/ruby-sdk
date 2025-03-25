@@ -26,10 +26,10 @@ instance = Bandwidth::VerificationRequest.new(
   message_volume: 10000,
   phone_numbers: null,
   use_case: 2FA,
-  use_case_summary: null,
-  production_message_content: null,
+  use_case_summary: Text summarizing the use case for the toll-free number,
+  production_message_content: Production message content,
   opt_in_workflow: null,
-  additional_information: null,
+  additional_information: Any additional information,
   isv_reseller: Test ISV
 )
 ```
