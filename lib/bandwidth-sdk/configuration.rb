@@ -408,6 +408,12 @@ module Bandwidth
           description: "Production",
           }
         ],
+        "MultiChannelApi.create_multi_channel_message": [
+          {
+          url: "https://messaging.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
         "PhoneNumberLookupApi.create_lookup": [
           {
           url: "https://numbers.bandwidth.com/api/v1",
