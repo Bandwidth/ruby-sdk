@@ -39,6 +39,15 @@ module Bandwidth
     # ISV name.
     attr_accessor :isv_reseller
 
+    # The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)
+    attr_accessor :privacy_policy_url
+
+    # The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)
+    attr_accessor :terms_and_conditions_url
+
+    # The company 'Doing Business As'. (Not Available Until 5/28/2025)
+    attr_accessor :business_dba
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -50,7 +59,10 @@ module Bandwidth
         :'production_message_content' => :'productionMessageContent',
         :'opt_in_workflow' => :'optInWorkflow',
         :'additional_information' => :'additionalInformation',
-        :'isv_reseller' => :'isvReseller'
+        :'isv_reseller' => :'isvReseller',
+        :'privacy_policy_url' => :'privacyPolicyUrl',
+        :'terms_and_conditions_url' => :'termsAndConditionsUrl',
+        :'business_dba' => :'businessDBA'
       }
     end
 
@@ -70,7 +82,10 @@ module Bandwidth
         :'production_message_content' => :'String',
         :'opt_in_workflow' => :'OptInWorkflow',
         :'additional_information' => :'String',
-        :'isv_reseller' => :'String'
+        :'isv_reseller' => :'String',
+        :'privacy_policy_url' => :'String',
+        :'terms_and_conditions_url' => :'String',
+        :'business_dba' => :'String'
       }
     end
 
@@ -78,7 +93,7 @@ module Bandwidth
     def self.openapi_nullable
       Set.new([
         :'additional_information',
-        :'isv_reseller'
+        :'isv_reseller',
       ])
     end
 
@@ -131,6 +146,18 @@ module Bandwidth
 
       if attributes.key?(:'isv_reseller')
         self.isv_reseller = attributes[:'isv_reseller']
+      end
+
+      if attributes.key?(:'privacy_policy_url')
+        self.privacy_policy_url = attributes[:'privacy_policy_url']
+      end
+
+      if attributes.key?(:'terms_and_conditions_url')
+        self.terms_and_conditions_url = attributes[:'terms_and_conditions_url']
+      end
+
+      if attributes.key?(:'business_dba')
+        self.business_dba = attributes[:'business_dba']
       end
     end
 
@@ -322,7 +349,10 @@ module Bandwidth
           production_message_content == o.production_message_content &&
           opt_in_workflow == o.opt_in_workflow &&
           additional_information == o.additional_information &&
-          isv_reseller == o.isv_reseller
+          isv_reseller == o.isv_reseller &&
+          privacy_policy_url == o.privacy_policy_url &&
+          terms_and_conditions_url == o.terms_and_conditions_url &&
+          business_dba == o.business_dba
     end
 
     # @see the `==` method
@@ -334,7 +364,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller].hash
+      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba].hash
     end
 
     # Builds the object from hash

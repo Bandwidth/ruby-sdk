@@ -13,6 +13,9 @@
 | **opt_in_workflow** | [**OptInWorkflow**](OptInWorkflow.md) |  |  |
 | **additional_information** | **String** | Any additional information. | [optional] |
 | **isv_reseller** | **String** | ISV name. | [optional] |
+| **privacy_policy_url** | **String** | The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025) | [optional] |
+| **terms_and_conditions_url** | **String** | The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025) | [optional] |
+| **business_dba** | **String** | The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025) | [optional] |
 
 ## Example
 
@@ -27,8 +30,11 @@ instance = Bandwidth::VerificationUpdateRequest.new(
   use_case_summary: Text summarizing the use case for the toll-free number,
   production_message_content: Production message content,
   opt_in_workflow: null,
-  additional_information: null,
-  isv_reseller: Test ISV
+  additional_information: Any additional information,
+  isv_reseller: Test ISV,
+  privacy_policy_url: http://your-company.com/privacyPolicyUrl.pdf,
+  terms_and_conditions_url: http://your-company.com/termsAndConditionsUrl.pdf,
+  business_dba: SecondCompany Name
 )
 ```
 

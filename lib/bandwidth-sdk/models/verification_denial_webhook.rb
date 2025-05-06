@@ -38,6 +38,12 @@ module Bandwidth
 
     attr_accessor :status
 
+    # Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    attr_accessor :blocked
+
+    # The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    attr_accessor :blocked_reason
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -48,7 +54,9 @@ module Bandwidth
         :'internal_ticket_number' => :'internalTicketNumber',
         :'phone_number' => :'phoneNumber',
         :'resubmit_allowed' => :'resubmitAllowed',
-        :'status' => :'status'
+        :'status' => :'status',
+        :'blocked' => :'blocked',
+        :'blocked_reason' => :'blockedReason'
       }
     end
 
@@ -67,7 +75,9 @@ module Bandwidth
         :'internal_ticket_number' => :'String',
         :'phone_number' => :'String',
         :'resubmit_allowed' => :'Boolean',
-        :'status' => :'String'
+        :'status' => :'String',
+        :'blocked' => :'Boolean',
+        :'blocked_reason' => :'String'
       }
     end
 
@@ -126,6 +136,14 @@ module Bandwidth
         self.status = attributes[:'status']
       else
         self.status = 'UNVERIFIED'
+      end
+
+      if attributes.key?(:'blocked')
+        self.blocked = attributes[:'blocked']
+      end
+
+      if attributes.key?(:'blocked_reason')
+        self.blocked_reason = attributes[:'blocked_reason']
       end
     end
 
@@ -195,7 +213,9 @@ module Bandwidth
           internal_ticket_number == o.internal_ticket_number &&
           phone_number == o.phone_number &&
           resubmit_allowed == o.resubmit_allowed &&
-          status == o.status
+          status == o.status &&
+          blocked == o.blocked &&
+          blocked_reason == o.blocked_reason
     end
 
     # @see the `==` method
@@ -207,7 +227,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [account_id, additional_denial_reasons, decline_reason_description, denial_status_code, internal_ticket_number, phone_number, resubmit_allowed, status].hash
+      [account_id, additional_denial_reasons, decline_reason_description, denial_status_code, internal_ticket_number, phone_number, resubmit_allowed, status, blocked, blocked_reason].hash
     end
 
     # Builds the object from hash

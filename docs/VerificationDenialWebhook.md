@@ -12,6 +12,8 @@
 | **phone_number** | **String** | Toll-free telephone number in E.164 format. | [optional] |
 | **resubmit_allowed** | **Boolean** | Whether a Toll-Free Verification request qualifies for resubmission via PUT. | [optional] |
 | **status** | **String** |  | [optional][default to &#39;UNVERIFIED&#39;] |
+| **blocked** | **Boolean** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] |
+| **blocked_reason** | **String** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] |
 
 ## Example
 
@@ -26,7 +28,9 @@ instance = Bandwidth::VerificationDenialWebhook.new(
   internal_ticket_number: acde070d-8c4c-4f0d-9d8a-162843c10333,
   phone_number: +18005555555,
   resubmit_allowed: true,
-  status: UNVERIFIED
+  status: UNVERIFIED,
+  blocked: true,
+  blocked_reason: Toll-free number was used to send spam messages
 )
 ```
 

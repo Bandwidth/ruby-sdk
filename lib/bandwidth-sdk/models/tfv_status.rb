@@ -37,6 +37,12 @@ module Bandwidth
 
     attr_accessor :submission
 
+    # Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    attr_accessor :blocked
+
+    # The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    attr_accessor :blocked_reason
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -69,7 +75,9 @@ module Bandwidth
         :'resubmit_allowed' => :'resubmitAllowed',
         :'created_date_time' => :'createdDateTime',
         :'modified_date_time' => :'modifiedDateTime',
-        :'submission' => :'submission'
+        :'submission' => :'submission',
+        :'blocked' => :'blocked',
+        :'blocked_reason' => :'blockedReason'
       }
     end
 
@@ -88,7 +96,9 @@ module Bandwidth
         :'resubmit_allowed' => :'Boolean',
         :'created_date_time' => :'Time',
         :'modified_date_time' => :'Time',
-        :'submission' => :'TfvSubmissionInfo'
+        :'submission' => :'TfvSubmissionInfo',
+        :'blocked' => :'Boolean',
+        :'blocked_reason' => :'String'
       }
     end
 
@@ -143,6 +153,14 @@ module Bandwidth
 
       if attributes.key?(:'submission')
         self.submission = attributes[:'submission']
+      end
+
+      if attributes.key?(:'blocked')
+        self.blocked = attributes[:'blocked']
+      end
+
+      if attributes.key?(:'blocked_reason')
+        self.blocked_reason = attributes[:'blocked_reason']
       end
     end
 
@@ -212,7 +230,9 @@ module Bandwidth
           resubmit_allowed == o.resubmit_allowed &&
           created_date_time == o.created_date_time &&
           modified_date_time == o.modified_date_time &&
-          submission == o.submission
+          submission == o.submission &&
+          blocked == o.blocked &&
+          blocked_reason == o.blocked_reason
     end
 
     # @see the `==` method
@@ -224,7 +244,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, status, internal_ticket_number, decline_reason_description, resubmit_allowed, created_date_time, modified_date_time, submission].hash
+      [phone_number, status, internal_ticket_number, decline_reason_description, resubmit_allowed, created_date_time, modified_date_time, submission, blocked, blocked_reason].hash
     end
 
     # Builds the object from hash
