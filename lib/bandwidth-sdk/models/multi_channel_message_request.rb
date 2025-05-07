@@ -14,21 +14,13 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MessageRequest
-    # The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
-    attr_accessor :application_id
-
-    # The phone number(s) the message should be sent to in E164 format.
+  # Multi-Channel Message Request
+  class MultiChannelMessageRequest
+    # The phone number the message should be sent to in E164 format.
     attr_accessor :to
 
-    # Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter.
-    attr_accessor :from
-
-    # The contents of the text message. Must be 2048 characters or less.
-    attr_accessor :text
-
-    # A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
-    attr_accessor :media
+    # A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
+    attr_accessor :channel_list
 
     # A custom string that will be included in callback events of the message. Max 1024 characters.
     attr_accessor :tag
@@ -63,11 +55,8 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'application_id' => :'applicationId',
         :'to' => :'to',
-        :'from' => :'from',
-        :'text' => :'text',
-        :'media' => :'media',
+        :'channel_list' => :'channelList',
         :'tag' => :'tag',
         :'priority' => :'priority',
         :'expiration' => :'expiration'
@@ -82,11 +71,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'application_id' => :'String',
-        :'to' => :'Array<String>',
-        :'from' => :'String',
-        :'text' => :'String',
-        :'media' => :'Array<String>',
+        :'to' => :'String',
+        :'channel_list' => :'Array<MultiChannelChannelListObject>',
         :'tag' => :'String',
         :'priority' => :'PriorityEnum',
         :'expiration' => :'Time'
@@ -103,45 +89,29 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageRequest` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageRequest` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'application_id')
-        self.application_id = attributes[:'application_id']
-      else
-        self.application_id = nil
-      end
-
       if attributes.key?(:'to')
-        if (value = attributes[:'to']).is_a?(Array)
-          self.to = value
-        end
+        self.to = attributes[:'to']
       else
         self.to = nil
       end
 
-      if attributes.key?(:'from')
-        self.from = attributes[:'from']
-      else
-        self.from = nil
-      end
-
-      if attributes.key?(:'text')
-        self.text = attributes[:'text']
-      end
-
-      if attributes.key?(:'media')
-        if (value = attributes[:'media']).is_a?(Array)
-          self.media = value
+      if attributes.key?(:'channel_list')
+        if (value = attributes[:'channel_list']).is_a?(Array)
+          self.channel_list = value
         end
+      else
+        self.channel_list = nil
       end
 
       if attributes.key?(:'tag')
@@ -162,20 +132,16 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @application_id.nil?
-        invalid_properties.push('invalid value for "application_id", application_id cannot be nil.')
-      end
-
       if @to.nil?
         invalid_properties.push('invalid value for "to", to cannot be nil.')
       end
 
-      if @from.nil?
-        invalid_properties.push('invalid value for "from", from cannot be nil.')
+      if @channel_list.nil?
+        invalid_properties.push('invalid value for "channel_list", channel_list cannot be nil.')
       end
 
-      if !@text.nil? && @text.to_s.length > 2048
-        invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 2048.')
+      if @channel_list.length > 4
+        invalid_properties.push('invalid value for "channel_list", number of items must be less than or equal to 4.')
       end
 
       invalid_properties
@@ -185,35 +151,24 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @application_id.nil?
       return false if @to.nil?
-      return false if @from.nil?
-      return false if !@text.nil? && @text.to_s.length > 2048
+      return false if @channel_list.nil?
+      return false if @channel_list.length > 4
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] to Value to be assigned
-    def to=(to)
-      if to.nil?
-        fail ArgumentError, 'to cannot be nil'
+    # @param [Object] channel_list Value to be assigned
+    def channel_list=(channel_list)
+      if channel_list.nil?
+        fail ArgumentError, 'channel_list cannot be nil'
       end
 
-      @to = to
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] text Value to be assigned
-    def text=(text)
-      if text.nil?
-        fail ArgumentError, 'text cannot be nil'
+      if channel_list.length > 4
+        fail ArgumentError, 'invalid value for "channel_list", number of items must be less than or equal to 4.'
       end
 
-      if text.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "text", the character length must be smaller than or equal to 2048.'
-      end
-
-      @text = text
+      @channel_list = channel_list
     end
 
     # Checks equality by comparing each attribute.
@@ -221,11 +176,8 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          application_id == o.application_id &&
           to == o.to &&
-          from == o.from &&
-          text == o.text &&
-          media == o.media &&
+          channel_list == o.channel_list &&
           tag == o.tag &&
           priority == o.priority &&
           expiration == o.expiration
@@ -240,7 +192,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_id, to, from, text, media, tag, priority, expiration].hash
+      [to, channel_list, tag, priority, expiration].hash
     end
 
     # Builds the object from hash
