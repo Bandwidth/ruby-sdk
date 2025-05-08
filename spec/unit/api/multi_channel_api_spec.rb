@@ -25,13 +25,10 @@ describe 'MultiChannelApi' do
       message_body = Bandwidth::MultiChannelChannelListObject.new(
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
-        channel: Bandwidth::MultiChannelMessageChannelEnum::MMS,
+        channel: Bandwidth::MultiChannelMessageChannelEnum::SMS,
         content: Bandwidth::SmsMessageContent.new(
           text: 'Hello, this is a test message.',
         )
-        # content: Bandwidth::MultiChannelChannelListObjectContent.build(
-        #   text: 'Hello, this is a test message.',
-        # )
       )
       multi_channel_message_request = Bandwidth::MultiChannelMessageRequest.new(
         to: USER_NUMBER,

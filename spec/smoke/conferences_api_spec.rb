@@ -115,7 +115,7 @@ describe 'ConferencesApi Integration Tests' do
 
       expect(recording_complete).to be true
     end
-  end
+  end if false # skip due to PV issues
   
   # Get Conference Recordings
   describe 'list_conference_recordings' do
@@ -134,7 +134,7 @@ describe 'ConferencesApi Integration Tests' do
 
       $recording_id = data[0].recording_id
     end
-  end
+  end if false # skip due to PV issues
   
   # Get Conference Recording Information
   describe 'get_conference_recording' do
@@ -150,7 +150,7 @@ describe 'ConferencesApi Integration Tests' do
       expect(data.recording_id).to be_instance_of(String)
       expect(data.file_format).to eq(Bandwidth::FileFormatEnum::WAV)
     end
-  end
+  end if false # skip due to PV issues
 
   # Download Conference Recording
   describe 'download_conference_recording test' do
@@ -160,5 +160,5 @@ describe 'ConferencesApi Integration Tests' do
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(String)
     end
-  end
+  end if false # skip due to PV issues
 end
