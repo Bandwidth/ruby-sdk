@@ -17,7 +17,7 @@ describe 'MultiChannelApi' do
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
         channel: Bandwidth::MultiChannelMessageChannelEnum::RBM,
-        content: Bandwidth::MmsMessageContent.new(
+        content: Bandwidth::RbmMessageContentText.new(
           text: 'Hello, this is a test message.',
         )
       )
