@@ -19,6 +19,7 @@ module Bandwidth
           fallback_username: 'fallbackUsername',                            # Optional [String]: The username to send in the HTTP request to transferAnswerFallbackUrl. Defaults to None.
           fallback_password: 'fallbackPassword',                            # Optional [String]: The password to send in the HTTP request to transferAnswerFallbackUrl. Defaults to None.
           tag: 'tag',                                                       # Optional [String]: A custom string that will be sent with these and all future callbacks unless overwritten by a future tag attribute or cleared. May be cleared by setting tag="" Max length 256 characters. Defaults to None.
+          uui: 'uui',                                                       # Optional [String]: The value of the User-To-User header to send within the initial INVITE. Must include the encoding parameter as specified in RFC 7433. Only base64, jwt and hex encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.
         }
       end
     end

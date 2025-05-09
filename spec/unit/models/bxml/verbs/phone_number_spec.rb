@@ -12,7 +12,8 @@ describe 'Bandwidth::Bxml::PhoneNumber' do
       password: 'initial_password',
       fallback_username: 'initial_fallback_username',
       fallback_password: 'initial_fallback_password',
-      tag: 'initial_tag'
+      tag: 'initial_tag',
+      uui: 'initial_uui'
     }
   }
 
@@ -28,7 +29,8 @@ describe 'Bandwidth::Bxml::PhoneNumber' do
       password: 'new_password',
       fallback_username: 'new_fallback_username',
       fallback_password: 'new_fallback_password',
-      tag: 'new_tag'
+      tag: 'new_tag',
+      uui: 'new_uui'
     }
   }
 
@@ -41,13 +43,13 @@ describe 'Bandwidth::Bxml::PhoneNumber' do
     end
 
     it 'tests the to_bxml method of the PhoneNumber instance' do
-      expected = "\n<PhoneNumber transferAnswerUrl=\"https://initial.com\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://initial.com\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://initial.com\" transferDisconnectMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\">+19195551234</PhoneNumber>\n"
+      expected = "\n<PhoneNumber transferAnswerUrl=\"https://initial.com\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://initial.com\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://initial.com\" transferDisconnectMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" uui=\"initial_uui\">+19195551234</PhoneNumber>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the PhoneNumber instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<PhoneNumber transferAnswerUrl=\"https://new.com\" transferAnswerMethod=\"GET\" transferAnswerFallbackUrl=\"https://new.com\" transferAnswerFallbackMethod=\"GET\" transferDisconnectUrl=\"https://new.com\" transferDisconnectMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\">+19195551234</PhoneNumber>\n"
+      expected = "\n<PhoneNumber transferAnswerUrl=\"https://new.com\" transferAnswerMethod=\"GET\" transferAnswerFallbackUrl=\"https://new.com\" transferAnswerFallbackMethod=\"GET\" transferDisconnectUrl=\"https://new.com\" transferDisconnectMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" uui=\"new_uui\">+19195551234</PhoneNumber>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
