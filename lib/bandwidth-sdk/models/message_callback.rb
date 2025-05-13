@@ -30,6 +30,9 @@ module Bandwidth
     # Optional error code, applicable only when type is `message-failed`.
     attr_accessor :error_code
 
+    # The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to.
+    attr_accessor :carrier_name
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -60,7 +63,8 @@ module Bandwidth
         :'to' => :'to',
         :'description' => :'description',
         :'message' => :'message',
-        :'error_code' => :'errorCode'
+        :'error_code' => :'errorCode',
+        :'carrier_name' => :'carrierName'
       }
     end
 
@@ -77,14 +81,16 @@ module Bandwidth
         :'to' => :'String',
         :'description' => :'String',
         :'message' => :'MessageCallbackMessage',
-        :'error_code' => :'Integer'
+        :'error_code' => :'Integer',
+        :'carrier_name' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'error_code'
+        :'error_code',
+        :'carrier_name'
       ])
     end
 
@@ -135,6 +141,10 @@ module Bandwidth
 
       if attributes.key?(:'error_code')
         self.error_code = attributes[:'error_code']
+      end
+
+      if attributes.key?(:'carrier_name')
+        self.carrier_name = attributes[:'carrier_name']
       end
     end
 
@@ -188,7 +198,8 @@ module Bandwidth
           to == o.to &&
           description == o.description &&
           message == o.message &&
-          error_code == o.error_code
+          error_code == o.error_code &&
+          carrier_name == o.carrier_name
     end
 
     # @see the `==` method
@@ -200,7 +211,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [time, type, to, description, message, error_code].hash
+      [time, type, to, description, message, error_code, carrier_name].hash
     end
 
     # Builds the object from hash

@@ -18,11 +18,9 @@ module Bandwidth
     VERIFIED = 'VERIFIED'.freeze
     UNVERIFIED = 'UNVERIFIED'.freeze
     PENDING = 'PENDING'.freeze
-    PARTIALLY_VERIFIED = 'PARTIALLY_VERIFIED'.freeze
-    INVALID_STATUS = 'INVALID_STATUS'.freeze
 
     def self.all_vars
-      @all_vars ||= [VERIFIED, UNVERIFIED, PENDING, PARTIALLY_VERIFIED, INVALID_STATUS].freeze
+      @all_vars ||= [VERIFIED, UNVERIFIED, PENDING].freeze
     end
 
     # Builds the enum from string
