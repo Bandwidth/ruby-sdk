@@ -32,9 +32,9 @@ instance = Bandwidth::TfvSubmissionInfo.new(
   opt_in_workflow: null,
   additional_information: Any additional information,
   isv_reseller: Test ISV,
-  privacy_policy_url: http://your-company.com/privacyPolicyUrl.pdf,
-  terms_and_conditions_url: http://your-company.com/termsAndConditionsUrl.pdf,
-  business_dba: SecondCompany Name
+  privacy_policy_url: http://your-company.com/privacyPolicy,
+  terms_and_conditions_url: http://your-company.com/termsAndConditions,
+  business_dba: Another Company Name Inc.
 )
 ```
 

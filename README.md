@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::AdditionalDenialReason](docs/AdditionalDenialReason.md)
  - [Bandwidth::Address](docs/Address.md)
  - [Bandwidth::AnswerCallback](docs/AnswerCallback.md)
+ - [Bandwidth::BlockedWebhook](docs/BlockedWebhook.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
  - [Bandwidth::CallDirectionEnum](docs/CallDirectionEnum.md)

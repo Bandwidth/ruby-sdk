@@ -62,7 +62,7 @@ module Bandwidth
         :'isv_reseller' => :'isvReseller',
         :'privacy_policy_url' => :'privacyPolicyUrl',
         :'terms_and_conditions_url' => :'termsAndConditionsUrl',
-        :'business_dba' => :'businessDBA'
+        :'business_dba' => :'businessDba'
       }
     end
 
