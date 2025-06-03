@@ -38,10 +38,10 @@ module Bandwidth
 
     attr_accessor :status
 
-    # Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    # Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.
     attr_accessor :blocked
 
-    # The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+    # The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.
     attr_accessor :blocked_reason
 
     # Attribute mapping from ruby-style variable name to JSON key.
