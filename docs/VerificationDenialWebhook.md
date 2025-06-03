@@ -12,8 +12,8 @@
 | **phone_number** | **String** | Toll-free telephone number in E.164 format. | [optional] |
 | **resubmit_allowed** | **Boolean** | Whether a Toll-Free Verification request qualifies for resubmission via PUT. | [optional] |
 | **status** | **String** |  | [optional][default to &#39;UNVERIFIED&#39;] |
-| **blocked** | **Boolean** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] |
-| **blocked_reason** | **String** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] |
+| **blocked** | **Boolean** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] |
+| **blocked_reason** | **String** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] |
 
 ## Example
 
