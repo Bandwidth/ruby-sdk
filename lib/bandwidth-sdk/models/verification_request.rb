@@ -41,13 +41,13 @@ module Bandwidth
     # ISV name.
     attr_accessor :isv_reseller
 
-    # The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)
+    # The Toll-Free Verification request privacy policy URL.
     attr_accessor :privacy_policy_url
 
-    # The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)
+    # The Toll-Free Verification request terms and conditions policy URL.
     attr_accessor :terms_and_conditions_url
 
-    # The company 'Doing Business As'. (Not Available Until 5/28/2025)
+    # The company 'Doing Business As'.
     attr_accessor :business_dba
 
     # Attribute mapping from ruby-style variable name to JSON key.
