@@ -33,8 +33,7 @@ describe 'MultiChannelApi' do
 
       expect(status_code).to eq(202)
       expect(data).to be_instance_of(Bandwidth::CreateMultiChannelMessageResponse)
-    end
+  end if false # skip while still in beta
 
-    
   end
 end
