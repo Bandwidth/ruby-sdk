@@ -25,7 +25,7 @@ module Bandwidth
     attr_accessor :error_code
 
     # A description of the error that was encountered.
-    attr_accessor :error_description
+    attr_accessor :error_message
 
     # Details of the errors that were encountered when processing the request.
     attr_accessor :errors
@@ -39,7 +39,7 @@ module Bandwidth
         :'account_id' => :'accountId',
         :'phone_number' => :'phoneNumber',
         :'error_code' => :'errorCode',
-        :'error_description' => :'errorDescription',
+        :'error_message' => :'errorMessage',
         :'errors' => :'errors',
         :'internal_ticket_number' => :'internalTicketNumber'
       }
@@ -56,7 +56,7 @@ module Bandwidth
         :'account_id' => :'String',
         :'phone_number' => :'String',
         :'error_code' => :'String',
-        :'error_description' => :'String',
+        :'error_message' => :'String',
         :'errors' => :'Array<String>',
         :'internal_ticket_number' => :'String'
       }
@@ -95,8 +95,8 @@ module Bandwidth
         self.error_code = attributes[:'error_code']
       end
 
-      if attributes.key?(:'error_description')
-        self.error_description = attributes[:'error_description']
+      if attributes.key?(:'error_message')
+        self.error_message = attributes[:'error_message']
       end
 
       if attributes.key?(:'errors')
@@ -172,7 +172,7 @@ module Bandwidth
           account_id == o.account_id &&
           phone_number == o.phone_number &&
           error_code == o.error_code &&
-          error_description == o.error_description &&
+          error_message == o.error_message &&
           errors == o.errors &&
           internal_ticket_number == o.internal_ticket_number
     end
@@ -186,7 +186,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [account_id, phone_number, error_code, error_description, errors, internal_ticket_number].hash
+      [account_id, phone_number, error_code, error_message, errors, internal_ticket_number].hash
     end
 
     # Builds the object from hash
