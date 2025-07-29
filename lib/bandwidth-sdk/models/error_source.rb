@@ -14,82 +14,27 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class Message
-    # The id of the message.
-    attr_accessor :id
+  # Specifies relevant sources of the error, if any.
+  class ErrorSource
+    # The relevant URI query parameter causing the error
+    attr_accessor :parameter
 
-    # The Bandwidth phone number associated with the message.
-    attr_accessor :owner
+    # The request body field that led to the error
+    attr_accessor :field
 
-    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
-    attr_accessor :application_id
+    # The header field that contributed to the error
+    attr_accessor :header
 
-    # The datetime stamp of the message in ISO 8601
-    attr_accessor :time
-
-    # The number of segments the user's message is broken into before sending over carrier networks.
-    attr_accessor :segment_count
-
-    attr_accessor :direction
-
-    # The phone number recipients of the message.
-    attr_accessor :to
-
-    # The phone number the message was sent from.
-    attr_accessor :from
-
-    # The list of media URLs sent in the message. Including a `filename` field in the `Content-Disposition` header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
-    attr_accessor :media
-
-    # The contents of the message.
-    attr_accessor :text
-
-    # A custom string that will be included in callback events of the message. Max 1024 characters.
-    attr_accessor :tag
-
-    attr_accessor :priority
-
-    # A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
-    attr_accessor :expiration
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # A resource ID or path linked to the error
+    attr_accessor :reference
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'owner' => :'owner',
-        :'application_id' => :'applicationId',
-        :'time' => :'time',
-        :'segment_count' => :'segmentCount',
-        :'direction' => :'direction',
-        :'to' => :'to',
-        :'from' => :'from',
-        :'media' => :'media',
-        :'text' => :'text',
-        :'tag' => :'tag',
-        :'priority' => :'priority',
-        :'expiration' => :'expiration'
+        :'parameter' => :'parameter',
+        :'field' => :'field',
+        :'header' => :'header',
+        :'reference' => :'reference'
       }
     end
 
@@ -101,19 +46,10 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'owner' => :'String',
-        :'application_id' => :'String',
-        :'time' => :'Time',
-        :'segment_count' => :'Integer',
-        :'direction' => :'MessageDirectionEnum',
-        :'to' => :'Array<String>',
-        :'from' => :'String',
-        :'media' => :'Array<String>',
-        :'text' => :'String',
-        :'tag' => :'String',
-        :'priority' => :'PriorityEnum',
-        :'expiration' => :'Time'
+        :'parameter' => :'String',
+        :'field' => :'String',
+        :'header' => :'String',
+        :'reference' => :'String'
       }
     end
 
@@ -127,71 +63,31 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::Message` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::ErrorSource` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::Message`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::ErrorSource`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'parameter')
+        self.parameter = attributes[:'parameter']
       end
 
-      if attributes.key?(:'owner')
-        self.owner = attributes[:'owner']
+      if attributes.key?(:'field')
+        self.field = attributes[:'field']
       end
 
-      if attributes.key?(:'application_id')
-        self.application_id = attributes[:'application_id']
+      if attributes.key?(:'header')
+        self.header = attributes[:'header']
       end
 
-      if attributes.key?(:'time')
-        self.time = attributes[:'time']
-      end
-
-      if attributes.key?(:'segment_count')
-        self.segment_count = attributes[:'segment_count']
-      end
-
-      if attributes.key?(:'direction')
-        self.direction = attributes[:'direction']
-      end
-
-      if attributes.key?(:'to')
-        if (value = attributes[:'to']).is_a?(Array)
-          self.to = value
-        end
-      end
-
-      if attributes.key?(:'from')
-        self.from = attributes[:'from']
-      end
-
-      if attributes.key?(:'media')
-        if (value = attributes[:'media']).is_a?(Array)
-          self.media = value
-        end
-      end
-
-      if attributes.key?(:'text')
-        self.text = attributes[:'text']
-      end
-
-      if attributes.key?(:'tag')
-        self.tag = attributes[:'tag']
-      end
-
-      if attributes.key?(:'priority')
-        self.priority = attributes[:'priority']
-      end
-
-      if attributes.key?(:'expiration')
-        self.expiration = attributes[:'expiration']
+      if attributes.key?(:'reference')
+        self.reference = attributes[:'reference']
       end
     end
 
@@ -210,44 +106,15 @@ module Bandwidth
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] to Value to be assigned
-    def to=(to)
-      if to.nil?
-        fail ArgumentError, 'to cannot be nil'
-      end
-
-      @to = to
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] media Value to be assigned
-    def media=(media)
-      if media.nil?
-        fail ArgumentError, 'media cannot be nil'
-      end
-
-      @media = media
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          owner == o.owner &&
-          application_id == o.application_id &&
-          time == o.time &&
-          segment_count == o.segment_count &&
-          direction == o.direction &&
-          to == o.to &&
-          from == o.from &&
-          media == o.media &&
-          text == o.text &&
-          tag == o.tag &&
-          priority == o.priority &&
-          expiration == o.expiration
+          parameter == o.parameter &&
+          field == o.field &&
+          header == o.header &&
+          reference == o.reference
     end
 
     # @see the `==` method
@@ -259,7 +126,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, media, text, tag, priority, expiration].hash
+      [parameter, field, header, reference].hash
     end
 
     # Builds the object from hash

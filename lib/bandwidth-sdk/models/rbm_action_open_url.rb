@@ -21,7 +21,7 @@ module Bandwidth
     attr_accessor :text
 
     # Base64 payload the customer receives when the reply is clicked.
-    attr_accessor :post_back_data
+    attr_accessor :postback_data
 
     # The URL to open in browser.
     attr_accessor :url
@@ -53,7 +53,7 @@ module Bandwidth
       {
         :'type' => :'type',
         :'text' => :'text',
-        :'post_back_data' => :'postBackData',
+        :'postback_data' => :'postbackData',
         :'url' => :'url'
       }
     end
@@ -68,7 +68,7 @@ module Bandwidth
       {
         :'type' => :'RbmActionTypeEnum',
         :'text' => :'String',
-        :'post_back_data' => :'String',
+        :'postback_data' => :'String',
         :'url' => :'String'
       }
     end
@@ -113,10 +113,10 @@ module Bandwidth
         self.text = nil
       end
 
-      if attributes.key?(:'post_back_data')
-        self.post_back_data = attributes[:'post_back_data']
+      if attributes.key?(:'postback_data')
+        self.postback_data = attributes[:'postback_data']
       else
-        self.post_back_data = nil
+        self.postback_data = nil
       end
 
       if attributes.key?(:'url')
@@ -143,12 +143,12 @@ module Bandwidth
         invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 25.')
       end
 
-      if @post_back_data.nil?
-        invalid_properties.push('invalid value for "post_back_data", post_back_data cannot be nil.')
+      if @postback_data.nil?
+        invalid_properties.push('invalid value for "postback_data", postback_data cannot be nil.')
       end
 
-      if @post_back_data.to_s.length > 2048
-        invalid_properties.push('invalid value for "post_back_data", the character length must be smaller than or equal to 2048.')
+      if @postback_data.to_s.length > 2048
+        invalid_properties.push('invalid value for "postback_data", the character length must be smaller than or equal to 2048.')
       end
 
       if @url.nil?
@@ -169,8 +169,8 @@ module Bandwidth
       return false if @type.nil?
       return false if @text.nil?
       return false if @text.to_s.length > 25
-      return false if @post_back_data.nil?
-      return false if @post_back_data.to_s.length > 2048
+      return false if @postback_data.nil?
+      return false if @postback_data.to_s.length > 2048
       return false if @url.nil?
       return false if @url.to_s.length > 2048
       true
@@ -191,17 +191,17 @@ module Bandwidth
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] post_back_data Value to be assigned
-    def post_back_data=(post_back_data)
-      if post_back_data.nil?
-        fail ArgumentError, 'post_back_data cannot be nil'
+    # @param [Object] postback_data Value to be assigned
+    def postback_data=(postback_data)
+      if postback_data.nil?
+        fail ArgumentError, 'postback_data cannot be nil'
       end
 
-      if post_back_data.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "post_back_data", the character length must be smaller than or equal to 2048.'
+      if postback_data.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "postback_data", the character length must be smaller than or equal to 2048.'
       end
 
-      @post_back_data = post_back_data
+      @postback_data = postback_data
     end
 
     # Custom attribute writer method with validation
@@ -225,7 +225,7 @@ module Bandwidth
       self.class == o.class &&
           type == o.type &&
           text == o.text &&
-          post_back_data == o.post_back_data &&
+          postback_data == o.postback_data &&
           url == o.url
     end
 
@@ -238,7 +238,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, text, post_back_data, url].hash
+      [type, text, postback_data, url].hash
     end
 
     # Builds the object from hash

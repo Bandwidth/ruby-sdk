@@ -39,7 +39,7 @@ module Bandwidth
     def self.openapi_types
       {
         :'links' => :'Array<Link>',
-        :'data' => :'MultiChannelMessageData',
+        :'data' => :'MultiChannelMessageResponseData',
         :'errors' => :'Array<ErrorObject>'
       }
     end

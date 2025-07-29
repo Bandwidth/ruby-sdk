@@ -498,6 +498,12 @@ module Bandwidth
           description: "Production",
           }
         ],
+        "TollFreeVerificationApi.delete_verification_request": [
+          {
+          url: "https://api.bandwidth.com/api/v2",
+          description: "Production",
+          }
+        ],
         "TollFreeVerificationApi.delete_webhook_subscription": [
           {
           url: "https://api.bandwidth.com/api/v2",

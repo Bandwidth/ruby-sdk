@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_webhook_subscription**](TollFreeVerificationApi.md#create_webhook_subscription) | **POST** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | Create Webhook Subscription |
+| [**delete_verification_request**](TollFreeVerificationApi.md#delete_verification_request) | **DELETE** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Delete a Toll-Free Verification Submission |
 | [**delete_webhook_subscription**](TollFreeVerificationApi.md#delete_webhook_subscription) | **DELETE** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Delete Webhook Subscription |
 | [**get_toll_free_verification_status**](TollFreeVerificationApi.md#get_toll_free_verification_status) | **GET** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Get Toll-Free Verification Status |
 | [**list_toll_free_use_cases**](TollFreeVerificationApi.md#list_toll_free_use_cases) | **GET** /tollFreeVerification/useCases | List Toll-Free Use Cases |
@@ -83,6 +84,77 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## delete_verification_request
+
+> delete_verification_request(account_id, phone_number)
+
+Delete a Toll-Free Verification Submission
+
+Delete a toll-free verification submission for a toll-free number.
+
+### Examples
+
+```ruby
+require 'time'
+require 'bandwidth-sdk'
+# setup authorization
+Bandwidth.configure do |config|
+  # Configure HTTP basic authorization: Basic
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = Bandwidth::TollFreeVerificationApi.new
+account_id = '9900000' # String | Your Bandwidth Account ID.
+phone_number = '+18885555555' # String | Valid Toll-Free telephone number in E.164 format.
+
+begin
+  # Delete a Toll-Free Verification Submission
+  api_instance.delete_verification_request(account_id, phone_number)
+rescue Bandwidth::ApiError => e
+  puts "Error when calling TollFreeVerificationApi->delete_verification_request: #{e}"
+end
+```
+
+#### Using the delete_verification_request_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_verification_request_with_http_info(account_id, phone_number)
+
+```ruby
+begin
+  # Delete a Toll-Free Verification Submission
+  data, status_code, headers = api_instance.delete_verification_request_with_http_info(account_id, phone_number)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue Bandwidth::ApiError => e
+  puts "Error when calling TollFreeVerificationApi->delete_verification_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **phone_number** | **String** | Valid Toll-Free telephone number in E.164 format. |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 

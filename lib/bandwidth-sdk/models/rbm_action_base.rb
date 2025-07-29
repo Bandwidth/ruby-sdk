@@ -21,7 +21,7 @@ module Bandwidth
     attr_accessor :text
 
     # Base64 payload the customer receives when the reply is clicked.
-    attr_accessor :post_back_data
+    attr_accessor :postback_data
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -50,7 +50,7 @@ module Bandwidth
       {
         :'type' => :'type',
         :'text' => :'text',
-        :'post_back_data' => :'postBackData'
+        :'postback_data' => :'postbackData'
       }
     end
 
@@ -64,7 +64,7 @@ module Bandwidth
       {
         :'type' => :'RbmActionTypeEnum',
         :'text' => :'String',
-        :'post_back_data' => :'String'
+        :'postback_data' => :'String'
       }
     end
 
@@ -101,10 +101,10 @@ module Bandwidth
         self.text = nil
       end
 
-      if attributes.key?(:'post_back_data')
-        self.post_back_data = attributes[:'post_back_data']
+      if attributes.key?(:'postback_data')
+        self.postback_data = attributes[:'postback_data']
       else
-        self.post_back_data = nil
+        self.postback_data = nil
       end
     end
 
@@ -125,12 +125,12 @@ module Bandwidth
         invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 25.')
       end
 
-      if @post_back_data.nil?
-        invalid_properties.push('invalid value for "post_back_data", post_back_data cannot be nil.')
+      if @postback_data.nil?
+        invalid_properties.push('invalid value for "postback_data", postback_data cannot be nil.')
       end
 
-      if @post_back_data.to_s.length > 2048
-        invalid_properties.push('invalid value for "post_back_data", the character length must be smaller than or equal to 2048.')
+      if @postback_data.to_s.length > 2048
+        invalid_properties.push('invalid value for "postback_data", the character length must be smaller than or equal to 2048.')
       end
 
       invalid_properties
@@ -143,8 +143,8 @@ module Bandwidth
       return false if @type.nil?
       return false if @text.nil?
       return false if @text.to_s.length > 25
-      return false if @post_back_data.nil?
-      return false if @post_back_data.to_s.length > 2048
+      return false if @postback_data.nil?
+      return false if @postback_data.to_s.length > 2048
       true
     end
 
@@ -163,17 +163,17 @@ module Bandwidth
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] post_back_data Value to be assigned
-    def post_back_data=(post_back_data)
-      if post_back_data.nil?
-        fail ArgumentError, 'post_back_data cannot be nil'
+    # @param [Object] postback_data Value to be assigned
+    def postback_data=(postback_data)
+      if postback_data.nil?
+        fail ArgumentError, 'postback_data cannot be nil'
       end
 
-      if post_back_data.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "post_back_data", the character length must be smaller than or equal to 2048.'
+      if postback_data.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "postback_data", the character length must be smaller than or equal to 2048.'
       end
 
-      @post_back_data = post_back_data
+      @postback_data = postback_data
     end
 
     # Checks equality by comparing each attribute.
@@ -183,7 +183,7 @@ module Bandwidth
       self.class == o.class &&
           type == o.type &&
           text == o.text &&
-          post_back_data == o.post_back_data
+          postback_data == o.postback_data
     end
 
     # @see the `==` method
@@ -195,7 +195,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, text, post_back_data].hash
+      [type, text, postback_data].hash
     end
 
     # Builds the object from hash

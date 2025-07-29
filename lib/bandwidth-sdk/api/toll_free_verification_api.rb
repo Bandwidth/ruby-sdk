@@ -93,6 +93,88 @@ module Bandwidth
       return data, status_code, headers
     end
 
+    # Delete a Toll-Free Verification Submission
+    # Delete a toll-free verification submission for a toll-free number.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param phone_number [String] Valid Toll-Free telephone number in E.164 format.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_verification_request(account_id, phone_number, opts = {})
+      delete_verification_request_with_http_info(account_id, phone_number, opts)
+      nil
+    end
+
+    # Delete a Toll-Free Verification Submission
+    # Delete a toll-free verification submission for a toll-free number.
+    # @param account_id [String] Your Bandwidth Account ID.
+    # @param phone_number [String] Valid Toll-Free telephone number in E.164 format.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_verification_request_with_http_info(account_id, phone_number, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TollFreeVerificationApi.delete_verification_request ...'
+      end
+      # verify the required parameter 'account_id' is set
+      if @api_client.config.client_side_validation && account_id.nil?
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling TollFreeVerificationApi.delete_verification_request"
+      end
+      # verify the required parameter 'phone_number' is set
+      if @api_client.config.client_side_validation && phone_number.nil?
+        fail ArgumentError, "Missing the required parameter 'phone_number' when calling TollFreeVerificationApi.delete_verification_request"
+      end
+      if @api_client.config.client_side_validation && phone_number.to_s.length > 12
+        fail ArgumentError, 'invalid value for "phone_number" when calling TollFreeVerificationApi.delete_verification_request, the character length must be smaller than or equal to 12.'
+      end
+
+      if @api_client.config.client_side_validation && phone_number.to_s.length < 12
+        fail ArgumentError, 'invalid value for "phone_number" when calling TollFreeVerificationApi.delete_verification_request, the character length must be great than or equal to 12.'
+      end
+
+      pattern = Regexp.new(/^\+1(800|833|844|855|866|877|888)[2-9]\d{6}$/)
+      if @api_client.config.client_side_validation && phone_number !~ pattern
+        fail ArgumentError, "invalid value for 'phone_number' when calling TollFreeVerificationApi.delete_verification_request, must conform to the pattern #{pattern}."
+      end
+
+      # resource path
+      local_var_path = '/accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'phoneNumber' + '}', CGI.escape(phone_number.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Basic']
+
+      new_options = opts.merge(
+        :operation => :"TollFreeVerificationApi.delete_verification_request",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TollFreeVerificationApi#delete_verification_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Delete Webhook Subscription
     # Delete a webhook subscription by ID.
     # @param account_id [String] Your Bandwidth Account ID.

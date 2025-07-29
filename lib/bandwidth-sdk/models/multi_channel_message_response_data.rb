@@ -14,26 +14,29 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelActionCalendarEvent
-    attr_accessor :type
+  # The data returned in a multichannel message response.
+  class MultiChannelMessageResponseData
+    # The ID of the message.
+    attr_accessor :message_id
 
-    # Displayed text for user to click
-    attr_accessor :text
+    # The time the message was received by the Bandwidth API.
+    attr_accessor :time
 
-    # Base64 payload the customer receives when the reply is clicked.
-    attr_accessor :postback_data
+    attr_accessor :direction
 
-    # The title of the event.
-    attr_accessor :title
+    # The destination phone number(s) of the message, in E164 format.
+    attr_accessor :to
 
-    # The start time of the event.
-    attr_accessor :start_time
+    # A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
+    attr_accessor :channel_list
 
-    # The end time of the event.
-    attr_accessor :end_time
+    # A custom string that will be included in callback events of the message. Max 1024 characters.
+    attr_accessor :tag
 
-    # The description of the event.
-    attr_accessor :description
+    attr_accessor :priority
+
+    # A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
+    attr_accessor :expiration
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -60,13 +63,14 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'text' => :'text',
-        :'postback_data' => :'postbackData',
-        :'title' => :'title',
-        :'start_time' => :'startTime',
-        :'end_time' => :'endTime',
-        :'description' => :'description'
+        :'message_id' => :'messageId',
+        :'time' => :'time',
+        :'direction' => :'direction',
+        :'to' => :'to',
+        :'channel_list' => :'channelList',
+        :'tag' => :'tag',
+        :'priority' => :'priority',
+        :'expiration' => :'expiration'
       }
     end
 
@@ -78,13 +82,14 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'RbmActionTypeEnum',
-        :'text' => :'String',
-        :'postback_data' => :'String',
-        :'title' => :'String',
-        :'start_time' => :'Time',
-        :'end_time' => :'Time',
-        :'description' => :'String'
+        :'message_id' => :'String',
+        :'time' => :'Time',
+        :'direction' => :'MessageDirectionEnum',
+        :'to' => :'Array<String>',
+        :'channel_list' => :'Array<MultiChannelMessageResponseDataChannelListInner>',
+        :'tag' => :'String',
+        :'priority' => :'PriorityEnum',
+        :'expiration' => :'Time'
       }
     end
 
@@ -94,66 +99,65 @@ module Bandwidth
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'RbmActionBase'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelActionCalendarEvent` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageResponseData` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelActionCalendarEvent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageResponseData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'message_id')
+        self.message_id = attributes[:'message_id']
       else
-        self.type = nil
+        self.message_id = nil
       end
 
-      if attributes.key?(:'text')
-        self.text = attributes[:'text']
+      if attributes.key?(:'time')
+        self.time = attributes[:'time']
       else
-        self.text = nil
+        self.time = nil
       end
 
-      if attributes.key?(:'postback_data')
-        self.postback_data = attributes[:'postback_data']
+      if attributes.key?(:'direction')
+        self.direction = attributes[:'direction']
       else
-        self.postback_data = nil
+        self.direction = nil
       end
 
-      if attributes.key?(:'title')
-        self.title = attributes[:'title']
+      if attributes.key?(:'to')
+        if (value = attributes[:'to']).is_a?(Array)
+          self.to = value
+        end
       else
-        self.title = nil
+        self.to = nil
       end
 
-      if attributes.key?(:'start_time')
-        self.start_time = attributes[:'start_time']
+      if attributes.key?(:'channel_list')
+        if (value = attributes[:'channel_list']).is_a?(Array)
+          self.channel_list = value
+        end
       else
-        self.start_time = nil
+        self.channel_list = nil
       end
 
-      if attributes.key?(:'end_time')
-        self.end_time = attributes[:'end_time']
-      else
-        self.end_time = nil
+      if attributes.key?(:'tag')
+        self.tag = attributes[:'tag']
       end
 
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.key?(:'priority')
+        self.priority = attributes[:'priority']
+      end
+
+      if attributes.key?(:'expiration')
+        self.expiration = attributes[:'expiration']
       end
     end
 
@@ -162,44 +166,28 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if @message_id.nil?
+        invalid_properties.push('invalid value for "message_id", message_id cannot be nil.')
       end
 
-      if @text.nil?
-        invalid_properties.push('invalid value for "text", text cannot be nil.')
+      if @time.nil?
+        invalid_properties.push('invalid value for "time", time cannot be nil.')
       end
 
-      if @text.to_s.length > 25
-        invalid_properties.push('invalid value for "text", the character length must be smaller than or equal to 25.')
+      if @direction.nil?
+        invalid_properties.push('invalid value for "direction", direction cannot be nil.')
       end
 
-      if @postback_data.nil?
-        invalid_properties.push('invalid value for "postback_data", postback_data cannot be nil.')
+      if @to.nil?
+        invalid_properties.push('invalid value for "to", to cannot be nil.')
       end
 
-      if @postback_data.to_s.length > 2048
-        invalid_properties.push('invalid value for "postback_data", the character length must be smaller than or equal to 2048.')
+      if @channel_list.nil?
+        invalid_properties.push('invalid value for "channel_list", channel_list cannot be nil.')
       end
 
-      if @title.nil?
-        invalid_properties.push('invalid value for "title", title cannot be nil.')
-      end
-
-      if @title.to_s.length > 100
-        invalid_properties.push('invalid value for "title", the character length must be smaller than or equal to 100.')
-      end
-
-      if @start_time.nil?
-        invalid_properties.push('invalid value for "start_time", start_time cannot be nil.')
-      end
-
-      if @end_time.nil?
-        invalid_properties.push('invalid value for "end_time", end_time cannot be nil.')
-      end
-
-      if !@description.nil? && @description.to_s.length > 500
-        invalid_properties.push('invalid value for "description", the character length must be smaller than or equal to 500.')
+      if @channel_list.length > 4
+        invalid_properties.push('invalid value for "channel_list", number of items must be less than or equal to 4.')
       end
 
       invalid_properties
@@ -209,73 +197,37 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @type.nil?
-      return false if @text.nil?
-      return false if @text.to_s.length > 25
-      return false if @postback_data.nil?
-      return false if @postback_data.to_s.length > 2048
-      return false if @title.nil?
-      return false if @title.to_s.length > 100
-      return false if @start_time.nil?
-      return false if @end_time.nil?
-      return false if !@description.nil? && @description.to_s.length > 500
+      return false if @message_id.nil?
+      return false if @time.nil?
+      return false if @direction.nil?
+      return false if @to.nil?
+      return false if @channel_list.nil?
+      return false if @channel_list.length > 4
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] text Value to be assigned
-    def text=(text)
-      if text.nil?
-        fail ArgumentError, 'text cannot be nil'
+    # @param [Object] to Value to be assigned
+    def to=(to)
+      if to.nil?
+        fail ArgumentError, 'to cannot be nil'
       end
 
-      if text.to_s.length > 25
-        fail ArgumentError, 'invalid value for "text", the character length must be smaller than or equal to 25.'
-      end
-
-      @text = text
+      @to = to
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] postback_data Value to be assigned
-    def postback_data=(postback_data)
-      if postback_data.nil?
-        fail ArgumentError, 'postback_data cannot be nil'
+    # @param [Object] channel_list Value to be assigned
+    def channel_list=(channel_list)
+      if channel_list.nil?
+        fail ArgumentError, 'channel_list cannot be nil'
       end
 
-      if postback_data.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "postback_data", the character length must be smaller than or equal to 2048.'
+      if channel_list.length > 4
+        fail ArgumentError, 'invalid value for "channel_list", number of items must be less than or equal to 4.'
       end
 
-      @postback_data = postback_data
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] title Value to be assigned
-    def title=(title)
-      if title.nil?
-        fail ArgumentError, 'title cannot be nil'
-      end
-
-      if title.to_s.length > 100
-        fail ArgumentError, 'invalid value for "title", the character length must be smaller than or equal to 100.'
-      end
-
-      @title = title
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] description Value to be assigned
-    def description=(description)
-      if description.nil?
-        fail ArgumentError, 'description cannot be nil'
-      end
-
-      if description.to_s.length > 500
-        fail ArgumentError, 'invalid value for "description", the character length must be smaller than or equal to 500.'
-      end
-
-      @description = description
+      @channel_list = channel_list
     end
 
     # Checks equality by comparing each attribute.
@@ -283,13 +235,14 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          text == o.text &&
-          postback_data == o.postback_data &&
-          title == o.title &&
-          start_time == o.start_time &&
-          end_time == o.end_time &&
-          description == o.description
+          message_id == o.message_id &&
+          time == o.time &&
+          direction == o.direction &&
+          to == o.to &&
+          channel_list == o.channel_list &&
+          tag == o.tag &&
+          priority == o.priority &&
+          expiration == o.expiration
     end
 
     # @see the `==` method
@@ -301,7 +254,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, text, postback_data, title, start_time, end_time, description].hash
+      [message_id, time, direction, to, channel_list, tag, priority, expiration].hash
     end
 
     # Builds the object from hash

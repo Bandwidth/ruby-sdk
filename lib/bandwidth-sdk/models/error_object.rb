@@ -15,15 +15,20 @@ require 'time'
 
 module Bandwidth
   class ErrorObject
-    attr_accessor :code
+    # A concise summary of the error used for categorization.
+    attr_accessor :type
 
-    attr_accessor :message
+    # A detailed explanation of the error.
+    attr_accessor :description
+
+    attr_accessor :source
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'code' => :'code',
-        :'message' => :'message'
+        :'type' => :'type',
+        :'description' => :'description',
+        :'source' => :'source'
       }
     end
 
@@ -35,8 +40,9 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'code' => :'String',
-        :'message' => :'String'
+        :'type' => :'String',
+        :'description' => :'String',
+        :'source' => :'ErrorSource'
       }
     end
 
@@ -61,12 +67,22 @@ module Bandwidth
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
+      else
+        self.type = nil
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
+      else
+        self.description = nil
+      end
+
+      if attributes.key?(:'source')
+        self.source = attributes[:'source']
+      else
+        self.source = nil
       end
     end
 
@@ -75,6 +91,18 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
+      end
+
+      if @source.nil?
+        invalid_properties.push('invalid value for "source", source cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -82,6 +110,9 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @type.nil?
+      return false if @description.nil?
+      return false if @source.nil?
       true
     end
 
@@ -90,8 +121,9 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          code == o.code &&
-          message == o.message
+          type == o.type &&
+          description == o.description &&
+          source == o.source
     end
 
     # @see the `==` method
@@ -103,7 +135,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, message].hash
+      [type, description, source].hash
     end
 
     # Builds the object from hash

@@ -14,17 +14,17 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class Message
-    # The id of the message.
+  # Message payload schema within a callback
+  class StatusCallbackMessage
+    # A unique identifier of the message.
     attr_accessor :id
 
-    # The Bandwidth phone number associated with the message.
+    # The Bandwidth phone number or alphanumeric identifier associated with the message.
     attr_accessor :owner
 
     # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
     attr_accessor :application_id
 
-    # The datetime stamp of the message in ISO 8601
     attr_accessor :time
 
     # The number of segments the user's message is broken into before sending over carrier networks.
@@ -35,22 +35,20 @@ module Bandwidth
     # The phone number recipients of the message.
     attr_accessor :to
 
-    # The phone number the message was sent from.
+    # The Bandwidth phone number or alphanumeric identifier the message was sent from.
     attr_accessor :from
 
-    # The list of media URLs sent in the message. Including a `filename` field in the `Content-Disposition` header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
-    attr_accessor :media
-
-    # The contents of the message.
     attr_accessor :text
 
     # A custom string that will be included in callback events of the message. Max 1024 characters.
     attr_accessor :tag
 
+    # Optional media, not applicable for sms
+    attr_accessor :media
+
     attr_accessor :priority
 
-    # A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
-    attr_accessor :expiration
+    attr_accessor :channel
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -85,11 +83,11 @@ module Bandwidth
         :'direction' => :'direction',
         :'to' => :'to',
         :'from' => :'from',
-        :'media' => :'media',
         :'text' => :'text',
         :'tag' => :'tag',
+        :'media' => :'media',
         :'priority' => :'priority',
-        :'expiration' => :'expiration'
+        :'channel' => :'channel'
       }
     end
 
@@ -109,11 +107,11 @@ module Bandwidth
         :'direction' => :'MessageDirectionEnum',
         :'to' => :'Array<String>',
         :'from' => :'String',
-        :'media' => :'Array<String>',
         :'text' => :'String',
         :'tag' => :'String',
+        :'media' => :'Array<String>',
         :'priority' => :'PriorityEnum',
-        :'expiration' => :'Time'
+        :'channel' => :'MultiChannelMessageChannelEnum'
       }
     end
 
@@ -127,55 +125,65 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::Message` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::StatusCallbackMessage` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::Message`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::StatusCallbackMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
+      else
+        self.id = nil
       end
 
       if attributes.key?(:'owner')
         self.owner = attributes[:'owner']
+      else
+        self.owner = nil
       end
 
       if attributes.key?(:'application_id')
         self.application_id = attributes[:'application_id']
+      else
+        self.application_id = nil
       end
 
       if attributes.key?(:'time')
         self.time = attributes[:'time']
+      else
+        self.time = nil
       end
 
       if attributes.key?(:'segment_count')
         self.segment_count = attributes[:'segment_count']
+      else
+        self.segment_count = nil
       end
 
       if attributes.key?(:'direction')
         self.direction = attributes[:'direction']
+      else
+        self.direction = nil
       end
 
       if attributes.key?(:'to')
         if (value = attributes[:'to']).is_a?(Array)
           self.to = value
         end
+      else
+        self.to = nil
       end
 
       if attributes.key?(:'from')
         self.from = attributes[:'from']
-      end
-
-      if attributes.key?(:'media')
-        if (value = attributes[:'media']).is_a?(Array)
-          self.media = value
-        end
+      else
+        self.from = nil
       end
 
       if attributes.key?(:'text')
@@ -186,12 +194,18 @@ module Bandwidth
         self.tag = attributes[:'tag']
       end
 
+      if attributes.key?(:'media')
+        if (value = attributes[:'media']).is_a?(Array)
+          self.media = value
+        end
+      end
+
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
       end
 
-      if attributes.key?(:'expiration')
-        self.expiration = attributes[:'expiration']
+      if attributes.key?(:'channel')
+        self.channel = attributes[:'channel']
       end
     end
 
@@ -200,6 +214,38 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @owner.nil?
+        invalid_properties.push('invalid value for "owner", owner cannot be nil.')
+      end
+
+      if @application_id.nil?
+        invalid_properties.push('invalid value for "application_id", application_id cannot be nil.')
+      end
+
+      if @time.nil?
+        invalid_properties.push('invalid value for "time", time cannot be nil.')
+      end
+
+      if @segment_count.nil?
+        invalid_properties.push('invalid value for "segment_count", segment_count cannot be nil.')
+      end
+
+      if @direction.nil?
+        invalid_properties.push('invalid value for "direction", direction cannot be nil.')
+      end
+
+      if @to.nil?
+        invalid_properties.push('invalid value for "to", to cannot be nil.')
+      end
+
+      if @from.nil?
+        invalid_properties.push('invalid value for "from", from cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -207,6 +253,14 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @id.nil?
+      return false if @owner.nil?
+      return false if @application_id.nil?
+      return false if @time.nil?
+      return false if @segment_count.nil?
+      return false if @direction.nil?
+      return false if @to.nil?
+      return false if @from.nil?
       true
     end
 
@@ -218,16 +272,6 @@ module Bandwidth
       end
 
       @to = to
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] media Value to be assigned
-    def media=(media)
-      if media.nil?
-        fail ArgumentError, 'media cannot be nil'
-      end
-
-      @media = media
     end
 
     # Checks equality by comparing each attribute.
@@ -243,11 +287,11 @@ module Bandwidth
           direction == o.direction &&
           to == o.to &&
           from == o.from &&
-          media == o.media &&
           text == o.text &&
           tag == o.tag &&
+          media == o.media &&
           priority == o.priority &&
-          expiration == o.expiration
+          channel == o.channel
     end
 
     # @see the `==` method
@@ -259,7 +303,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, media, text, tag, priority, expiration].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel].hash
     end
 
     # Builds the object from hash
