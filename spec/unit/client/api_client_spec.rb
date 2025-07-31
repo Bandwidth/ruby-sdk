@@ -268,7 +268,7 @@ describe Bandwidth::ApiClient do
       expect(api_client_default.convert_to_type({ id: 1 }, 'Object')).to eq({ id: 1 })
       expect(api_client_default.convert_to_type([[12, 34], [56]], 'Array<Array<Integer>>')).to eq([[12, 34], [56]])
       expect(api_client_default.convert_to_type({ "id": 'test' }, 'Hash<String, String>')).to eq({ id: 'test' })
-      expect(api_client_default.convert_to_type({ set_or_expired: true }, 'DeferredResult')).to be_instance_of(Bandwidth::DeferredResult)
+      expect(api_client_default.convert_to_type({ valid: true }, 'VerifyCodeResponse')).to be_instance_of(Bandwidth::VerifyCodeResponse)
     end
   end
 
@@ -353,10 +353,10 @@ describe Bandwidth::ApiClient do
     end
 
     it 'returns hash when object can be converted to hash' do
-      model = Bandwidth::DeferredResult.new({
-        set_or_expired: true
+      model = Bandwidth::VerifyCodeResponse.new({
+        valid: true
       })
-      expected = { setOrExpired: true }
+      expected = { valid: true }
       expect(api_client_default.object_to_hash(model)).to eq(expected)
     end
   end
