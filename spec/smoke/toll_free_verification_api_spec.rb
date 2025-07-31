@@ -29,7 +29,7 @@ describe 'TollFreeVerificationApi' do
     end
   end
 
-    # Delete a Toll-Free Verification Submission
+  # Delete a Toll-Free Verification Submission
   describe 'delete_verification_request' do
     it 'deletes a toll free verification submission' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
