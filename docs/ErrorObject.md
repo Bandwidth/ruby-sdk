@@ -4,8 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **code** | **String** |  | [optional] |
-| **message** | **String** |  | [optional] |
+| **type** | **String** | A concise summary of the error used for categorization. |  |
+| **description** | **String** | A detailed explanation of the error. |  |
+| **source** | [**ErrorSource**](ErrorSource.md) |  |  |
 
 ## Example
 
@@ -13,8 +14,9 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::ErrorObject.new(
-  code: null,
-  message: null
+  type: null,
+  description: null,
+  source: null
 )
 ```
 

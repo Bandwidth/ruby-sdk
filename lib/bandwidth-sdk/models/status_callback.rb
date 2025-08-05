@@ -14,27 +14,28 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelMessageCallbackData
-    # The ID of the message.
-    attr_accessor :message_id
+  # Represents a status callback for an outbound MT SMS or MMS or RBM message.
+  class StatusCallback
+    attr_accessor :time
 
-    attr_accessor :status
+    # Represents the time at which the message was read, for `message-read` callbacks.
+    attr_accessor :event_time
 
-    attr_accessor :direction
+    attr_accessor :type
 
-    # The sender ID of the message. This could be an alphanumeric sender ID.
-    attr_accessor :from
-
-    # The phone number the message should be sent to in E164 format.
+    # The destination phone number the message was sent to. For status callbacks, this the the Bandwidth user's client phone number.
     attr_accessor :to
 
-    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
-    attr_accessor :application_id
+    # A detailed description of the event described by the callback.
+    attr_accessor :description
 
-    attr_accessor :channel
+    attr_accessor :message
 
-    # A custom string that will be included in callback events of the message. Max 1024 characters.
-    attr_accessor :tag
+    # Optional error code, applicable only when type is `message-failed`.
+    attr_accessor :error_code
+
+    # The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.
+    attr_accessor :carrier_name
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -61,14 +62,14 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'message_id' => :'messageId',
-        :'status' => :'status',
-        :'direction' => :'direction',
-        :'from' => :'from',
+        :'time' => :'time',
+        :'event_time' => :'eventTime',
+        :'type' => :'type',
         :'to' => :'to',
-        :'application_id' => :'applicationId',
-        :'channel' => :'channel',
-        :'tag' => :'tag'
+        :'description' => :'description',
+        :'message' => :'message',
+        :'error_code' => :'errorCode',
+        :'carrier_name' => :'carrierName'
       }
     end
 
@@ -80,14 +81,14 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'message_id' => :'String',
-        :'status' => :'MultiChannelStatusEnum',
-        :'direction' => :'MultiChannelMessageDirectionEnum',
-        :'from' => :'String',
+        :'time' => :'Time',
+        :'event_time' => :'Time',
+        :'type' => :'StatusCallbackTypeEnum',
         :'to' => :'String',
-        :'application_id' => :'String',
-        :'channel' => :'MultiChannelMessageChannelEnum',
-        :'tag' => :'String'
+        :'description' => :'String',
+        :'message' => :'StatusCallbackMessage',
+        :'error_code' => :'Integer',
+        :'carrier_name' => :'String'
       }
     end
 
@@ -101,47 +102,57 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageCallbackData` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::StatusCallback` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageCallbackData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::StatusCallback`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'message_id')
-        self.message_id = attributes[:'message_id']
+      if attributes.key?(:'time')
+        self.time = attributes[:'time']
+      else
+        self.time = nil
       end
 
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.key?(:'event_time')
+        self.event_time = attributes[:'event_time']
       end
 
-      if attributes.key?(:'direction')
-        self.direction = attributes[:'direction']
-      end
-
-      if attributes.key?(:'from')
-        self.from = attributes[:'from']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
+      else
+        self.type = nil
       end
 
       if attributes.key?(:'to')
         self.to = attributes[:'to']
+      else
+        self.to = nil
       end
 
-      if attributes.key?(:'application_id')
-        self.application_id = attributes[:'application_id']
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
+      else
+        self.description = nil
       end
 
-      if attributes.key?(:'channel')
-        self.channel = attributes[:'channel']
+      if attributes.key?(:'message')
+        self.message = attributes[:'message']
+      else
+        self.message = nil
       end
 
-      if attributes.key?(:'tag')
-        self.tag = attributes[:'tag']
+      if attributes.key?(:'error_code')
+        self.error_code = attributes[:'error_code']
+      end
+
+      if attributes.key?(:'carrier_name')
+        self.carrier_name = attributes[:'carrier_name']
       end
     end
 
@@ -150,6 +161,26 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @time.nil?
+        invalid_properties.push('invalid value for "time", time cannot be nil.')
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
+      if @to.nil?
+        invalid_properties.push('invalid value for "to", to cannot be nil.')
+      end
+
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
+      end
+
+      if @message.nil?
+        invalid_properties.push('invalid value for "message", message cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -157,6 +188,11 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @time.nil?
+      return false if @type.nil?
+      return false if @to.nil?
+      return false if @description.nil?
+      return false if @message.nil?
       true
     end
 
@@ -165,14 +201,14 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          message_id == o.message_id &&
-          status == o.status &&
-          direction == o.direction &&
-          from == o.from &&
+          time == o.time &&
+          event_time == o.event_time &&
+          type == o.type &&
           to == o.to &&
-          application_id == o.application_id &&
-          channel == o.channel &&
-          tag == o.tag
+          description == o.description &&
+          message == o.message &&
+          error_code == o.error_code &&
+          carrier_name == o.carrier_name
     end
 
     # @see the `==` method
@@ -184,7 +220,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message_id, status, direction, from, to, application_id, channel, tag].hash
+      [time, event_time, type, to, description, message, error_code, carrier_name].hash
     end
 
     # Builds the object from hash

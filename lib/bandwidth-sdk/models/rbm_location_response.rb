@@ -14,65 +14,18 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelMessageData
-    # The ID of the message.
-    attr_accessor :message_id
+  class RbmLocationResponse
+    # The latitude of the client's location.
+    attr_accessor :latitude
 
-    attr_accessor :status
-
-    # The time the message was received by the Bandwidth API.
-    attr_accessor :time
-
-    attr_accessor :direction
-
-    # The sender ID of the message. This could be an alphanumeric sender ID.
-    attr_accessor :from
-
-    # The phone number the message should be sent to in E164 format.
-    attr_accessor :to
-
-    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
-    attr_accessor :application_id
-
-    attr_accessor :channel
-
-    # A custom string that will be included in callback events of the message. Max 1024 characters.
-    attr_accessor :tag
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # The longitude of the client's location.
+    attr_accessor :longitude
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'message_id' => :'messageId',
-        :'status' => :'status',
-        :'time' => :'time',
-        :'direction' => :'direction',
-        :'from' => :'from',
-        :'to' => :'to',
-        :'application_id' => :'applicationId',
-        :'channel' => :'channel',
-        :'tag' => :'tag'
+        :'latitude' => :'latitude',
+        :'longitude' => :'longitude'
       }
     end
 
@@ -84,15 +37,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'message_id' => :'String',
-        :'status' => :'MultiChannelStatusEnum',
-        :'time' => :'Time',
-        :'direction' => :'MultiChannelMessageDirectionEnum',
-        :'from' => :'String',
-        :'to' => :'String',
-        :'application_id' => :'String',
-        :'channel' => :'MultiChannelMessageChannelEnum',
-        :'tag' => :'String'
+        :'latitude' => :'Float',
+        :'longitude' => :'Float'
       }
     end
 
@@ -106,51 +52,23 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageData` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::RbmLocationResponse` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::RbmLocationResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'message_id')
-        self.message_id = attributes[:'message_id']
+      if attributes.key?(:'latitude')
+        self.latitude = attributes[:'latitude']
       end
 
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.key?(:'time')
-        self.time = attributes[:'time']
-      end
-
-      if attributes.key?(:'direction')
-        self.direction = attributes[:'direction']
-      end
-
-      if attributes.key?(:'from')
-        self.from = attributes[:'from']
-      end
-
-      if attributes.key?(:'to')
-        self.to = attributes[:'to']
-      end
-
-      if attributes.key?(:'application_id')
-        self.application_id = attributes[:'application_id']
-      end
-
-      if attributes.key?(:'channel')
-        self.channel = attributes[:'channel']
-      end
-
-      if attributes.key?(:'tag')
-        self.tag = attributes[:'tag']
+      if attributes.key?(:'longitude')
+        self.longitude = attributes[:'longitude']
       end
     end
 
@@ -174,15 +92,8 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          message_id == o.message_id &&
-          status == o.status &&
-          time == o.time &&
-          direction == o.direction &&
-          from == o.from &&
-          to == o.to &&
-          application_id == o.application_id &&
-          channel == o.channel &&
-          tag == o.tag
+          latitude == o.latitude &&
+          longitude == o.longitude
     end
 
     # @see the `==` method
@@ -194,7 +105,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message_id, status, time, direction, from, to, application_id, channel, tag].hash
+      [latitude, longitude].hash
     end
 
     # Builds the object from hash

@@ -1,4 +1,4 @@
-# Bandwidth::MultiChannelStatusEnum
+# Bandwidth::InboundCallbackTypeEnum
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'bandwidth-sdk'
 
-instance = Bandwidth::MultiChannelStatusEnum.new()
+instance = Bandwidth::InboundCallbackTypeEnum.new()
 ```
 

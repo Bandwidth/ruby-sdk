@@ -29,6 +29,13 @@ describe 'TollFreeVerificationApi' do
     end
   end
 
+  # Delete a Toll-Free Verification Submission
+  describe 'delete_verification_request' do
+    it 'deletes a toll free verification submission' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
   # List Toll-Free Use Cases
   describe 'list_toll_free_use_cases test' do
     it 'lists toll free use cases' do

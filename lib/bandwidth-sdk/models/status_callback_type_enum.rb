@@ -14,12 +14,14 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelMessageDirectionEnum
-    INBOUND = 'INBOUND'.freeze
-    OUTBOUND = 'OUTBOUND'.freeze
+  class StatusCallbackTypeEnum
+    SENDING = 'message-sending'.freeze
+    DELIVERED = 'message-delivered'.freeze
+    FAILED = 'message-failed'.freeze
+    READ = 'message-read'.freeze
 
     def self.all_vars
-      @all_vars ||= [INBOUND, OUTBOUND].freeze
+      @all_vars ||= [SENDING, DELIVERED, FAILED, READ].freeze
     end
 
     # Builds the enum from string
@@ -33,8 +35,8 @@ module Bandwidth
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if MultiChannelMessageDirectionEnum.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #MultiChannelMessageDirectionEnum"
+      return value if StatusCallbackTypeEnum.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #StatusCallbackTypeEnum"
     end
   end
 end

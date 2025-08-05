@@ -14,32 +14,41 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # Message payload schema within a MessageCallback
-  class MessageCallbackMessage
+  # Message payload schema within a callback
+  class StatusCallbackMessage
+    # A unique identifier of the message.
     attr_accessor :id
 
+    # The Bandwidth phone number or alphanumeric identifier associated with the message.
     attr_accessor :owner
 
+    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
     attr_accessor :application_id
 
     attr_accessor :time
 
+    # The number of segments the user's message is broken into before sending over carrier networks.
     attr_accessor :segment_count
 
     attr_accessor :direction
 
+    # The phone number recipients of the message.
     attr_accessor :to
 
+    # The Bandwidth phone number or alphanumeric identifier the message was sent from.
     attr_accessor :from
 
     attr_accessor :text
 
+    # A custom string that will be included in callback events of the message. Max 1024 characters.
     attr_accessor :tag
 
-    # Optional media, applicable only for mms
+    # Optional media, not applicable for sms
     attr_accessor :media
 
     attr_accessor :priority
+
+    attr_accessor :channel
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -77,7 +86,8 @@ module Bandwidth
         :'text' => :'text',
         :'tag' => :'tag',
         :'media' => :'media',
-        :'priority' => :'priority'
+        :'priority' => :'priority',
+        :'channel' => :'channel'
       }
     end
 
@@ -100,14 +110,14 @@ module Bandwidth
         :'text' => :'String',
         :'tag' => :'String',
         :'media' => :'Array<String>',
-        :'priority' => :'PriorityEnum'
+        :'priority' => :'PriorityEnum',
+        :'channel' => :'MultiChannelMessageChannelEnum'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'media',
       ])
     end
 
@@ -115,13 +125,13 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageCallbackMessage` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::StatusCallbackMessage` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageCallbackMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::StatusCallbackMessage`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -178,8 +188,6 @@ module Bandwidth
 
       if attributes.key?(:'text')
         self.text = attributes[:'text']
-      else
-        self.text = nil
       end
 
       if attributes.key?(:'tag')
@@ -194,6 +202,10 @@ module Bandwidth
 
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
+      end
+
+      if attributes.key?(:'channel')
+        self.channel = attributes[:'channel']
       end
     end
 
@@ -234,10 +246,6 @@ module Bandwidth
         invalid_properties.push('invalid value for "from", from cannot be nil.')
       end
 
-      if @text.nil?
-        invalid_properties.push('invalid value for "text", text cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -253,7 +261,6 @@ module Bandwidth
       return false if @direction.nil?
       return false if @to.nil?
       return false if @from.nil?
-      return false if @text.nil?
       true
     end
 
@@ -283,7 +290,8 @@ module Bandwidth
           text == o.text &&
           tag == o.tag &&
           media == o.media &&
-          priority == o.priority
+          priority == o.priority &&
+          channel == o.channel
     end
 
     # @see the `==` method
@@ -295,7 +303,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel].hash
     end
 
     # Builds the object from hash

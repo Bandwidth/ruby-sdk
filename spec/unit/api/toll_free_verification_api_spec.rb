@@ -136,6 +136,14 @@ describe 'TollFreeVerificationApi' do
     end
   end
 
+  # Delete a Toll-Free Verification Submission
+  describe 'delete_verification_request' do
+    it 'deletes a toll free verification submission' do
+      _data, status_code = @tfv_api_instance.delete_verification_request_with_http_info(BW_ACCOUNT_ID, tf_phone_number)
+      expect(status_code).to eq(204)
+    end
+  end
+
   # List Toll-Free Use Cases
   describe 'list_toll_free_use_cases test' do
     it 'lists toll free use cases' do

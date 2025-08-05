@@ -33,7 +33,7 @@ module Bandwidth
 
     attr_accessor :message_type
 
-    # The number of segments the message was sent as.
+    # The number of segments the user's message is broken into before sending over carrier networks.
     attr_accessor :segment_count
 
     # The numeric error code of the message.

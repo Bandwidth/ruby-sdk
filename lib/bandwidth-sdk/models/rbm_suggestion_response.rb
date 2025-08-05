@@ -14,49 +14,18 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelCallbackData
-    # The time of the callback event.
-    attr_accessor :time
+  class RbmSuggestionResponse
+    # The text associated with the suggestion response.
+    attr_accessor :text
 
-    attr_accessor :type
-
-    # The phone number the message should be sent to in E164 format.
-    attr_accessor :to
-
-    attr_accessor :description
-
-    attr_accessor :message
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # Base64 payload the customer receives when the reply is clicked.
+    attr_accessor :postback_data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'time' => :'time',
-        :'type' => :'type',
-        :'to' => :'to',
-        :'description' => :'description',
-        :'message' => :'message'
+        :'text' => :'text',
+        :'postback_data' => :'postbackData'
       }
     end
 
@@ -68,11 +37,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'time' => :'Time',
-        :'type' => :'MultiChannelStatusEnum',
-        :'to' => :'String',
-        :'description' => :'String',
-        :'message' => :'MultiChannelMessageCallbackData'
+        :'text' => :'String',
+        :'postback_data' => :'String'
       }
     end
 
@@ -86,35 +52,23 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelCallbackData` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::RbmSuggestionResponse` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelCallbackData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::RbmSuggestionResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'time')
-        self.time = attributes[:'time']
+      if attributes.key?(:'text')
+        self.text = attributes[:'text']
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'to')
-        self.to = attributes[:'to']
-      end
-
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'postback_data')
+        self.postback_data = attributes[:'postback_data']
       end
     end
 
@@ -123,6 +77,10 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if !@postback_data.nil? && @postback_data.to_s.length > 2048
+        invalid_properties.push('invalid value for "postback_data", the character length must be smaller than or equal to 2048.')
+      end
+
       invalid_properties
     end
 
@@ -130,7 +88,22 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@postback_data.nil? && @postback_data.to_s.length > 2048
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postback_data Value to be assigned
+    def postback_data=(postback_data)
+      if postback_data.nil?
+        fail ArgumentError, 'postback_data cannot be nil'
+      end
+
+      if postback_data.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "postback_data", the character length must be smaller than or equal to 2048.'
+      end
+
+      @postback_data = postback_data
     end
 
     # Checks equality by comparing each attribute.
@@ -138,11 +111,8 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          time == o.time &&
-          type == o.type &&
-          to == o.to &&
-          description == o.description &&
-          message == o.message
+          text == o.text &&
+          postback_data == o.postback_data
     end
 
     # @see the `==` method
@@ -154,7 +124,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [time, type, to, description, message].hash
+      [text, postback_data].hash
     end
 
     # Builds the object from hash

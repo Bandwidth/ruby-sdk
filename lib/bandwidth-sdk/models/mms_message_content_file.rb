@@ -14,16 +14,14 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class Tag
-    attr_accessor :key
-
-    attr_accessor :value
+  class MmsMessageContentFile
+    # The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.
+    attr_accessor :file_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'key' => :'key',
-        :'value' => :'value'
+        :'file_url' => :'fileUrl'
       }
     end
 
@@ -35,8 +33,7 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'key' => :'String',
-        :'value' => :'String'
+        :'file_url' => :'String'
       }
     end
 
@@ -50,23 +47,21 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::Tag` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MmsMessageContentFile` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::Tag`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MmsMessageContentFile`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'key')
-        self.key = attributes[:'key']
-      end
-
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
+      if attributes.key?(:'file_url')
+        self.file_url = attributes[:'file_url']
+      else
+        self.file_url = nil
       end
     end
 
@@ -75,6 +70,14 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @file_url.nil?
+        invalid_properties.push('invalid value for "file_url", file_url cannot be nil.')
+      end
+
+      if @file_url.to_s.length > 1000
+        invalid_properties.push('invalid value for "file_url", the character length must be smaller than or equal to 1000.')
+      end
+
       invalid_properties
     end
 
@@ -82,7 +85,23 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @file_url.nil?
+      return false if @file_url.to_s.length > 1000
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] file_url Value to be assigned
+    def file_url=(file_url)
+      if file_url.nil?
+        fail ArgumentError, 'file_url cannot be nil'
+      end
+
+      if file_url.to_s.length > 1000
+        fail ArgumentError, 'invalid value for "file_url", the character length must be smaller than or equal to 1000.'
+      end
+
+      @file_url = file_url
     end
 
     # Checks equality by comparing each attribute.
@@ -90,8 +109,7 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          key == o.key &&
-          value == o.value
+          file_url == o.file_url
     end
 
     # @see the `==` method
@@ -103,7 +121,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [key, value].hash
+      [file_url].hash
     end
 
     # Builds the object from hash

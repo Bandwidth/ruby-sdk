@@ -14,24 +14,19 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # Message Callback Schema
-  class MessageCallback
-    attr_accessor :time
+  class MultiChannelMessageResponseDataChannelListInner
+    # The sender ID of the message. This could be an alphanumeric sender ID.
+    attr_accessor :from
 
-    attr_accessor :type
+    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
+    attr_accessor :application_id
 
-    attr_accessor :to
+    attr_accessor :channel
 
-    # A detailed description of the event described by the callback.
-    attr_accessor :description
+    attr_accessor :content
 
-    attr_accessor :message
-
-    # Optional error code, applicable only when type is `message-failed`.
-    attr_accessor :error_code
-
-    # The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to.
-    attr_accessor :carrier_name
+    # The Bandwidth senderId associated with the message. Identical to 'from'.
+    attr_accessor :owner
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -58,13 +53,11 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'time' => :'time',
-        :'type' => :'type',
-        :'to' => :'to',
-        :'description' => :'description',
-        :'message' => :'message',
-        :'error_code' => :'errorCode',
-        :'carrier_name' => :'carrierName'
+        :'from' => :'from',
+        :'application_id' => :'applicationId',
+        :'channel' => :'channel',
+        :'content' => :'content',
+        :'owner' => :'owner'
       }
     end
 
@@ -76,75 +69,70 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'time' => :'Time',
-        :'type' => :'CallbackTypeEnum',
-        :'to' => :'String',
-        :'description' => :'String',
-        :'message' => :'MessageCallbackMessage',
-        :'error_code' => :'Integer',
-        :'carrier_name' => :'String'
+        :'from' => :'String',
+        :'application_id' => :'String',
+        :'channel' => :'MultiChannelMessageChannelEnum',
+        :'content' => :'MultiChannelChannelListObjectContent',
+        :'owner' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'error_code',
-        :'carrier_name'
       ])
+    end
+
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'MultiChannelChannelListObject'
+      ]
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MessageCallback` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageResponseDataChannelListInner` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MessageCallback`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageResponseDataChannelListInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'time')
-        self.time = attributes[:'time']
+      if attributes.key?(:'from')
+        self.from = attributes[:'from']
       else
-        self.time = nil
+        self.from = nil
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'application_id')
+        self.application_id = attributes[:'application_id']
       else
-        self.type = nil
+        self.application_id = nil
       end
 
-      if attributes.key?(:'to')
-        self.to = attributes[:'to']
+      if attributes.key?(:'channel')
+        self.channel = attributes[:'channel']
       else
-        self.to = nil
+        self.channel = nil
       end
 
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.key?(:'content')
+        self.content = attributes[:'content']
       else
-        self.description = nil
+        self.content = nil
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'owner')
+        self.owner = attributes[:'owner']
       else
-        self.message = nil
-      end
-
-      if attributes.key?(:'error_code')
-        self.error_code = attributes[:'error_code']
-      end
-
-      if attributes.key?(:'carrier_name')
-        self.carrier_name = attributes[:'carrier_name']
+        self.owner = nil
       end
     end
 
@@ -153,24 +141,24 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @time.nil?
-        invalid_properties.push('invalid value for "time", time cannot be nil.')
+      if @from.nil?
+        invalid_properties.push('invalid value for "from", from cannot be nil.')
       end
 
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if @application_id.nil?
+        invalid_properties.push('invalid value for "application_id", application_id cannot be nil.')
       end
 
-      if @to.nil?
-        invalid_properties.push('invalid value for "to", to cannot be nil.')
+      if @channel.nil?
+        invalid_properties.push('invalid value for "channel", channel cannot be nil.')
       end
 
-      if @description.nil?
-        invalid_properties.push('invalid value for "description", description cannot be nil.')
+      if @content.nil?
+        invalid_properties.push('invalid value for "content", content cannot be nil.')
       end
 
-      if @message.nil?
-        invalid_properties.push('invalid value for "message", message cannot be nil.')
+      if @owner.nil?
+        invalid_properties.push('invalid value for "owner", owner cannot be nil.')
       end
 
       invalid_properties
@@ -180,11 +168,11 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @time.nil?
-      return false if @type.nil?
-      return false if @to.nil?
-      return false if @description.nil?
-      return false if @message.nil?
+      return false if @from.nil?
+      return false if @application_id.nil?
+      return false if @channel.nil?
+      return false if @content.nil?
+      return false if @owner.nil?
       true
     end
 
@@ -193,13 +181,11 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          time == o.time &&
-          type == o.type &&
-          to == o.to &&
-          description == o.description &&
-          message == o.message &&
-          error_code == o.error_code &&
-          carrier_name == o.carrier_name
+          from == o.from &&
+          application_id == o.application_id &&
+          channel == o.channel &&
+          content == o.content &&
+          owner == o.owner
     end
 
     # @see the `==` method
@@ -211,7 +197,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [time, type, to, description, message, error_code, carrier_name].hash
+      [from, application_id, channel, content, owner].hash
     end
 
     # Builds the object from hash

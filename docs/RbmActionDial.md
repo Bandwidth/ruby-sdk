@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **type** | [**RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |  |
 | **text** | **String** | Displayed text for user to click |  |
-| **post_back_data** | **String** | Base64 payload the customer receives when the reply is clicked. |  |
+| **postback_data** | **String** | Base64 payload the customer receives when the reply is clicked. |  |
 | **phone_number** | **String** | The phone number to dial. Must be E164 format. |  |
 
 ## Example
@@ -17,7 +17,7 @@ require 'bandwidth-sdk'
 instance = Bandwidth::RbmActionDial.new(
   type: null,
   text: Hello world,
-  post_back_data: U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;,
+  postback_data: U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;,
   phone_number: +15552223333
 )
 ```

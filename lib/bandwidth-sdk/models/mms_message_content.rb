@@ -18,7 +18,6 @@ module Bandwidth
     # The contents of the text message. Must be 2048 characters or less.
     attr_accessor :text
 
-    # A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
     attr_accessor :media
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -38,7 +37,7 @@ module Bandwidth
     def self.openapi_types
       {
         :'text' => :'String',
-        :'media' => :'Array<String>'
+        :'media' => :'Array<MmsMessageContentFile>'
       }
     end
 

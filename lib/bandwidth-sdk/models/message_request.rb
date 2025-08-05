@@ -15,7 +15,7 @@ require 'time'
 
 module Bandwidth
   class MessageRequest
-    # The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
+    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
     attr_accessor :application_id
 
     # The phone number(s) the message should be sent to in E164 format.
