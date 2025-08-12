@@ -249,6 +249,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::OptInWorkflow](docs/OptInWorkflow.md)
  - [Bandwidth::PageInfo](docs/PageInfo.md)
  - [Bandwidth::PriorityEnum](docs/PriorityEnum.md)
+ - [Bandwidth::ProductTypeEnum](docs/ProductTypeEnum.md)
  - [Bandwidth::RbmActionBase](docs/RbmActionBase.md)
  - [Bandwidth::RbmActionDial](docs/RbmActionDial.md)
  - [Bandwidth::RbmActionOpenUrl](docs/RbmActionOpenUrl.md)

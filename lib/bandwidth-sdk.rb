@@ -106,6 +106,7 @@ require 'bandwidth-sdk/models/multi_channel_message_response_data_channel_list_i
 require 'bandwidth-sdk/models/opt_in_workflow'
 require 'bandwidth-sdk/models/page_info'
 require 'bandwidth-sdk/models/priority_enum'
+require 'bandwidth-sdk/models/product_type_enum'
 require 'bandwidth-sdk/models/rbm_action_base'
 require 'bandwidth-sdk/models/rbm_action_dial'
 require 'bandwidth-sdk/models/rbm_action_open_url'
