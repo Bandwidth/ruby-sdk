@@ -19,11 +19,14 @@ module Bandwidth
 
     attr_accessor :image_urls
 
+    attr_accessor :confirmation_response
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'description' => :'description',
-        :'image_urls' => :'imageUrls'
+        :'image_urls' => :'imageUrls',
+        :'confirmation_response' => :'confirmationResponse'
       }
     end
 
@@ -36,13 +39,15 @@ module Bandwidth
     def self.openapi_types
       {
         :'description' => :'String',
-        :'image_urls' => :'Array<String>'
+        :'image_urls' => :'Array<String>',
+        :'confirmation_response' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'confirmation_response'
       ])
     end
 
@@ -74,6 +79,10 @@ module Bandwidth
       else
         self.image_urls = nil
       end
+
+      if attributes.key?(:'confirmation_response')
+        self.confirmation_response = attributes[:'confirmation_response']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,6 +106,14 @@ module Bandwidth
         invalid_properties.push('invalid value for "image_urls", image_urls cannot be nil.')
       end
 
+      if !@confirmation_response.nil? && @confirmation_response.to_s.length > 500
+        invalid_properties.push('invalid value for "confirmation_response", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@confirmation_response.nil? && @confirmation_response.to_s.length < 0
+        invalid_properties.push('invalid value for "confirmation_response", the character length must be great than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -108,6 +125,8 @@ module Bandwidth
       return false if @description.to_s.length > 500
       return false if @description.to_s.length < 1
       return false if @image_urls.nil?
+      return false if !@confirmation_response.nil? && @confirmation_response.to_s.length > 500
+      return false if !@confirmation_response.nil? && @confirmation_response.to_s.length < 0
       true
     end
 
@@ -129,13 +148,28 @@ module Bandwidth
       @description = description
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] confirmation_response Value to be assigned
+    def confirmation_response=(confirmation_response)
+      if !confirmation_response.nil? && confirmation_response.to_s.length > 500
+        fail ArgumentError, 'invalid value for "confirmation_response", the character length must be smaller than or equal to 500.'
+      end
+
+      if !confirmation_response.nil? && confirmation_response.to_s.length < 0
+        fail ArgumentError, 'invalid value for "confirmation_response", the character length must be great than or equal to 0.'
+      end
+
+      @confirmation_response = confirmation_response
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           description == o.description &&
-          image_urls == o.image_urls
+          image_urls == o.image_urls &&
+          confirmation_response == o.confirmation_response
     end
 
     # @see the `==` method
@@ -147,7 +181,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [description, image_urls].hash
+      [description, image_urls, confirmation_response].hash
     end
 
     # Builds the object from hash

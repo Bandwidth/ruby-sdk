@@ -108,6 +108,18 @@ module Bandwidth
     # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :campaign_id The campaign ID of the message.
+    # @option opts [Integer] :from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Boolean] :bw_queued A boolean value indicating whether the message is queued in the Bandwidth network.
+    # @option opts [ProductTypeEnum] :product Messaging product associated with the message.
+    # @option opts [String] :location Location Id associated with the message.
+    # @option opts [Boolean] :carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Integer] :from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [String] :calling_number_country_a3 Calling number country in A3 format.
+    # @option opts [String] :called_number_country_a3 Called number country in A3 format.
+    # @option opts [Integer] :from_segment_count Segment count (start range).
+    # @option opts [Integer] :to_segment_count Segment count (end range).
+    # @option opts [Integer] :from_message_size Message size (start range).
+    # @option opts [Integer] :to_message_size Message size (end range).
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
@@ -133,6 +145,18 @@ module Bandwidth
     # @option opts [String] :from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
     # @option opts [String] :campaign_id The campaign ID of the message.
+    # @option opts [Integer] :from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Boolean] :bw_queued A boolean value indicating whether the message is queued in the Bandwidth network.
+    # @option opts [ProductTypeEnum] :product Messaging product associated with the message.
+    # @option opts [String] :location Location Id associated with the message.
+    # @option opts [Boolean] :carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Integer] :from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [String] :calling_number_country_a3 Calling number country in A3 format.
+    # @option opts [String] :called_number_country_a3 Called number country in A3 format.
+    # @option opts [Integer] :from_segment_count Segment count (start range).
+    # @option opts [Integer] :to_segment_count Segment count (end range).
+    # @option opts [Integer] :from_message_size Message size (start range).
+    # @option opts [Integer] :to_message_size Message size (end range).
     # @option opts [String] :sort The field and direction to sort by combined with a colon. Direction is either asc or desc.
     # @option opts [String] :page_token A base64 encoded value used for pagination of results.
     # @option opts [Integer] :limit The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
@@ -162,6 +186,18 @@ module Bandwidth
       query_params[:'fromDateTime'] = opts[:'from_date_time'] if !opts[:'from_date_time'].nil?
       query_params[:'toDateTime'] = opts[:'to_date_time'] if !opts[:'to_date_time'].nil?
       query_params[:'campaignId'] = opts[:'campaign_id'] if !opts[:'campaign_id'].nil?
+      query_params[:'fromBwLatency'] = opts[:'from_bw_latency'] if !opts[:'from_bw_latency'].nil?
+      query_params[:'bwQueued'] = opts[:'bw_queued'] if !opts[:'bw_queued'].nil?
+      query_params[:'product'] = opts[:'product'] if !opts[:'product'].nil?
+      query_params[:'location'] = opts[:'location'] if !opts[:'location'].nil?
+      query_params[:'carrierQueued'] = opts[:'carrier_queued'] if !opts[:'carrier_queued'].nil?
+      query_params[:'fromCarrierLatency'] = opts[:'from_carrier_latency'] if !opts[:'from_carrier_latency'].nil?
+      query_params[:'callingNumberCountryA3'] = opts[:'calling_number_country_a3'] if !opts[:'calling_number_country_a3'].nil?
+      query_params[:'calledNumberCountryA3'] = opts[:'called_number_country_a3'] if !opts[:'called_number_country_a3'].nil?
+      query_params[:'fromSegmentCount'] = opts[:'from_segment_count'] if !opts[:'from_segment_count'].nil?
+      query_params[:'toSegmentCount'] = opts[:'to_segment_count'] if !opts[:'to_segment_count'].nil?
+      query_params[:'fromMessageSize'] = opts[:'from_message_size'] if !opts[:'from_message_size'].nil?
+      query_params[:'toMessageSize'] = opts[:'to_message_size'] if !opts[:'to_message_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
       query_params[:'pageToken'] = opts[:'page_token'] if !opts[:'page_token'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?

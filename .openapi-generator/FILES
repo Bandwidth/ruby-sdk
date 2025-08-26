@@ -11,6 +11,8 @@ docs/AnswerCallback.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
+docs/BusinessEntityTypeEnum.md
+docs/BusinessRegistrationTypeEnum.md
 docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
 docs/CallState.md
@@ -100,6 +102,7 @@ docs/OptInWorkflow.md
 docs/PageInfo.md
 docs/PhoneNumberLookupApi.md
 docs/PriorityEnum.md
+docs/ProductTypeEnum.md
 docs/RbmActionBase.md
 docs/RbmActionDial.md
 docs/RbmActionOpenUrl.md
@@ -189,6 +192,8 @@ lib/bandwidth-sdk/models/answer_callback.rb
 lib/bandwidth-sdk/models/blocked_webhook.rb
 lib/bandwidth-sdk/models/bridge_complete_callback.rb
 lib/bandwidth-sdk/models/bridge_target_complete_callback.rb
+lib/bandwidth-sdk/models/business_entity_type_enum.rb
+lib/bandwidth-sdk/models/business_registration_type_enum.rb
 lib/bandwidth-sdk/models/call_direction_enum.rb
 lib/bandwidth-sdk/models/call_recording_metadata.rb
 lib/bandwidth-sdk/models/call_state.rb
@@ -271,6 +276,7 @@ lib/bandwidth-sdk/models/multi_channel_message_response_data_channel_list_inner.
 lib/bandwidth-sdk/models/opt_in_workflow.rb
 lib/bandwidth-sdk/models/page_info.rb
 lib/bandwidth-sdk/models/priority_enum.rb
+lib/bandwidth-sdk/models/product_type_enum.rb
 lib/bandwidth-sdk/models/rbm_action_base.rb
 lib/bandwidth-sdk/models/rbm_action_dial.rb
 lib/bandwidth-sdk/models/rbm_action_open_url.rb

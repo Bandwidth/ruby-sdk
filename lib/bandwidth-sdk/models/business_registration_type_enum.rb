@@ -14,13 +14,12 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MessageTypeEnum
-    SMS = 'sms'.freeze
-    MMS = 'mms'.freeze
-    RCS = 'rcs'.freeze
+  class BusinessRegistrationTypeEnum
+    EIN = 'EIN'.freeze
+    CBN = 'CBN'.freeze
 
     def self.all_vars
-      @all_vars ||= [SMS, MMS, RCS].freeze
+      @all_vars ||= [EIN, CBN].freeze
     end
 
     # Builds the enum from string
@@ -34,8 +33,8 @@ module Bandwidth
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if MessageTypeEnum.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #MessageTypeEnum"
+      return value if BusinessRegistrationTypeEnum.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #BusinessRegistrationTypeEnum"
     end
   end
 end

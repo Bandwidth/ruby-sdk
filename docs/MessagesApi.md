@@ -114,6 +114,18 @@ opts = {
   from_date_time: '2022-09-14T18:20:16.000Z', # String | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
   to_date_time: '2022-09-14T18:20:16.000Z', # String | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
   campaign_id: 'CJEUMDK', # String | The campaign ID of the message.
+  from_bw_latency: 5, # Integer | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+  bw_queued: true, # Boolean | A boolean value indicating whether the message is queued in the Bandwidth network.
+  product: Bandwidth::ProductTypeEnum::LOCAL_A2_P, # ProductTypeEnum | Messaging product associated with the message.
+  location: '123ABC', # String | Location Id associated with the message.
+  carrier_queued: true, # Boolean | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+  from_carrier_latency: 50, # Integer | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+  calling_number_country_a3: 'USA', # String | Calling number country in A3 format.
+  called_number_country_a3: 'USA', # String | Called number country in A3 format.
+  from_segment_count: 1, # Integer | Segment count (start range).
+  to_segment_count: 3, # Integer | Segment count (end range).
+  from_message_size: 100, # Integer | Message size (start range).
+  to_message_size: 120, # Integer | Message size (end range).
   sort: 'sourceTn:desc', # String | The field and direction to sort by combined with a colon. Direction is either asc or desc.
   page_token: 'gdEewhcJLQRB5', # String | A base64 encoded value used for pagination of results.
   limit: 50, # Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
@@ -163,6 +175,18 @@ end
 | **from_date_time** | **String** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] |
 | **to_date_time** | **String** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] |
 | **campaign_id** | **String** | The campaign ID of the message. | [optional] |
+| **from_bw_latency** | **Integer** | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. | [optional] |
+| **bw_queued** | **Boolean** | A boolean value indicating whether the message is queued in the Bandwidth network. | [optional] |
+| **product** | [**ProductTypeEnum**](.md) | Messaging product associated with the message. | [optional] |
+| **location** | **String** | Location Id associated with the message. | [optional] |
+| **carrier_queued** | **Boolean** | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional] |
+| **from_carrier_latency** | **Integer** | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional] |
+| **calling_number_country_a3** | **String** | Calling number country in A3 format. | [optional] |
+| **called_number_country_a3** | **String** | Called number country in A3 format. | [optional] |
+| **from_segment_count** | **Integer** | Segment count (start range). | [optional] |
+| **to_segment_count** | **Integer** | Segment count (end range). | [optional] |
+| **from_message_size** | **Integer** | Message size (start range). | [optional] |
+| **to_message_size** | **Integer** | Message size (end range). | [optional] |
 | **sort** | **String** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional] |
 | **page_token** | **String** | A base64 encoded value used for pagination of results. | [optional] |
 | **limit** | **Integer** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional] |
