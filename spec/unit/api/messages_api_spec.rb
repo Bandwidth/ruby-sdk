@@ -75,6 +75,7 @@ describe 'MessagesApi' do
       expect(data.page_info.prev_page_token).to be_instance_of(String)
       expect(data.page_info.next_page_token).to be_instance_of(String)
       expect(data.messages).to be_instance_of(Array)
+      expect(data.messages[0]).to be_instance_of(Bandwidth::ListMessageItem)
       expect(data.messages[0].message_id.length).to eq(29)
       expect(data.messages[0].account_id.length).to eq(7)
       expect(data.messages[0].source_tn.length).to eq(12)
@@ -92,6 +93,11 @@ describe 'MessagesApi' do
       expect(data.messages[0].recipient_count).to be_instance_of(Integer)
       expect(data.messages[0].campaign_class).to be_instance_of(String)
       expect(data.messages[0].campaign_id).to be_instance_of(String)
+      expect(data.messages[0].bw_latency).to be_instance_of(Integer)
+      expect(data.messages[0].calling_number_country_a3).to be_instance_of(String)
+      expect(data.messages[0].called_number_country_a3).to be_instance_of(String)
+      expect(data.messages[0].product).to be_one_of(Bandwidth::ProductTypeEnum.all_vars)
+      expect(data.messages[0].location).to be_instance_of(String)
     end
 
     it 'causes an ArgumentError for a missing account_id' do
