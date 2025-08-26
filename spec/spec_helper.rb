@@ -9,9 +9,10 @@ SimpleCov.start do
     else
       !(['/models/call_state_enum.rb',
         '/models/call_state.rb',
-        '/models/deferred_result.rb',
+        '/models/tfv_error.rb',
         '/models/message.rb',
-        '/models/verify_code_request.rb'
+        '/models/verify_code_request.rb',
+        '/models/verify_code_response.rb'
       ].any? { |name| source_file.filename.include?(name) })
     end
   end
