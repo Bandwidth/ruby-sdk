@@ -7,7 +7,8 @@ module Bandwidth
         super('StopStream', nil, attributes)
         
         @attribute_map = {
-          name: 'name' # [String]: The name of the stream to stop. This is either the user selected name when sending the <StartStream> verb, or the system generated name returned in the Media Stream Started webhook if <StartStream> was sent with no name attribute.
+          name: 'name', # [String]: The name of the stream to stop. This is either the user selected name when sending the <StartStream> verb, or the system generated name returned in the Media Stream Started webhook if <StartStream> was sent with no name attribute.
+          wait: 'wait'  # Optional [Boolean]: If true, the BXML interpreter will wait for the stream to stop before processing the next verb.
         }
       end
     end

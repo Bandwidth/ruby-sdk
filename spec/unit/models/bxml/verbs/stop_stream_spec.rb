@@ -2,13 +2,15 @@
 describe 'Bandwidth::Bxml::StopStream' do
   let(:initial_attributes) {
     {
-      name: 'initial_name'
+      name: 'initial_name',
+      wait: true
     }
   }
 
   let(:new_attributes) {
     {
-      name: 'new_name'
+      name: 'new_name',
+      wait: false
     }
   }
 
@@ -21,13 +23,13 @@ describe 'Bandwidth::Bxml::StopStream' do
     end
 
     it 'tests the to_bxml method of the StopStream instance' do
-      expected = "\n<StopStream name=\"initial_name\"/>\n"
+      expected = "\n<StopStream name=\"initial_name\" wait=\"true\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the StopStream instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<StopStream name=\"new_name\"/>\n"
+      expected = "\n<StopStream name=\"new_name\" wait=\"false\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
