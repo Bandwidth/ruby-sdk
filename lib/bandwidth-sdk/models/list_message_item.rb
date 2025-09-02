@@ -66,6 +66,9 @@ module Bandwidth
     # The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
     attr_accessor :bw_latency
 
+    # The carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    attr_accessor :carrier_latency
+
     # The A3 country code of the calling number.
     attr_accessor :calling_number_country_a3
 
@@ -121,6 +124,7 @@ module Bandwidth
         :'campaign_class' => :'campaignClass',
         :'campaign_id' => :'campaignId',
         :'bw_latency' => :'bwLatency',
+        :'carrier_latency' => :'carrierLatency',
         :'calling_number_country_a3' => :'callingNumberCountryA3',
         :'called_number_country_a3' => :'calledNumberCountryA3',
         :'product' => :'product',
@@ -154,6 +158,7 @@ module Bandwidth
         :'campaign_class' => :'String',
         :'campaign_id' => :'String',
         :'bw_latency' => :'Integer',
+        :'carrier_latency' => :'Integer',
         :'calling_number_country_a3' => :'String',
         :'called_number_country_a3' => :'String',
         :'product' => :'String',
@@ -171,6 +176,7 @@ module Bandwidth
         :'campaign_class',
         :'campaign_id',
         :'bw_latency',
+        :'carrier_latency',
         :'calling_number_country_a3',
         :'called_number_country_a3',
         :'product',
@@ -265,6 +271,10 @@ module Bandwidth
         self.bw_latency = attributes[:'bw_latency']
       end
 
+      if attributes.key?(:'carrier_latency')
+        self.carrier_latency = attributes[:'carrier_latency']
+      end
+
       if attributes.key?(:'calling_number_country_a3')
         self.calling_number_country_a3 = attributes[:'calling_number_country_a3']
       end
@@ -320,6 +330,7 @@ module Bandwidth
           campaign_class == o.campaign_class &&
           campaign_id == o.campaign_id &&
           bw_latency == o.bw_latency &&
+          carrier_latency == o.carrier_latency &&
           calling_number_country_a3 == o.calling_number_country_a3 &&
           called_number_country_a3 == o.called_number_country_a3 &&
           product == o.product &&
@@ -335,7 +346,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message_id, account_id, source_tn, destination_tn, message_status, message_direction, message_type, segment_count, error_code, receive_time, carrier_name, message_size, message_length, attachment_count, recipient_count, campaign_class, campaign_id, bw_latency, calling_number_country_a3, called_number_country_a3, product, location].hash
+      [message_id, account_id, source_tn, destination_tn, message_status, message_direction, message_type, segment_count, error_code, receive_time, carrier_name, message_size, message_length, attachment_count, recipient_count, campaign_class, campaign_id, bw_latency, carrier_latency, calling_number_country_a3, called_number_country_a3, product, location].hash
     end
 
     # Builds the object from hash

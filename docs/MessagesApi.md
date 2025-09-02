@@ -118,6 +118,8 @@ opts = {
   bw_queued: true, # Boolean | A boolean value indicating whether the message is queued in the Bandwidth network.
   product: Bandwidth::ProductTypeEnum::LOCAL_A2_P, # ProductTypeEnum | Messaging product associated with the message.
   location: '123ABC', # String | Location Id associated with the message.
+  carrier_queued: true, # Boolean | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+  from_carrier_latency: 50, # Integer | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
   calling_number_country_a3: 'USA', # String | Calling number country in A3 format.
   called_number_country_a3: 'USA', # String | Called number country in A3 format.
   from_segment_count: 1, # Integer | Segment count (start range).
@@ -177,6 +179,8 @@ end
 | **bw_queued** | **Boolean** | A boolean value indicating whether the message is queued in the Bandwidth network. | [optional] |
 | **product** | [**ProductTypeEnum**](.md) | Messaging product associated with the message. | [optional] |
 | **location** | **String** | Location Id associated with the message. | [optional] |
+| **carrier_queued** | **Boolean** | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional] |
+| **from_carrier_latency** | **Integer** | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional] |
 | **calling_number_country_a3** | **String** | Calling number country in A3 format. | [optional] |
 | **called_number_country_a3** | **String** | Called number country in A3 format. | [optional] |
 | **from_segment_count** | **Integer** | Segment count (start range). | [optional] |

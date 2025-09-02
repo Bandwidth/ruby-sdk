@@ -48,6 +48,41 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
+    # US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for `businessRegistrationType` and `businessEntityType`. Available starting October 1st, 2025.
+    attr_accessor :business_registration_number
+
+    attr_accessor :business_registration_type
+
+    attr_accessor :business_entity_type
+
+    # A message that gets sent to users requesting help.
+    attr_accessor :help_message_response
+
+    # Indicates whether the content is age-gated.
+    attr_accessor :age_gated_content
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -62,7 +97,12 @@ module Bandwidth
         :'isv_reseller' => :'isvReseller',
         :'privacy_policy_url' => :'privacyPolicyUrl',
         :'terms_and_conditions_url' => :'termsAndConditionsUrl',
-        :'business_dba' => :'businessDba'
+        :'business_dba' => :'businessDba',
+        :'business_registration_number' => :'businessRegistrationNumber',
+        :'business_registration_type' => :'businessRegistrationType',
+        :'business_entity_type' => :'businessEntityType',
+        :'help_message_response' => :'helpMessageResponse',
+        :'age_gated_content' => :'ageGatedContent'
       }
     end
 
@@ -85,7 +125,12 @@ module Bandwidth
         :'isv_reseller' => :'String',
         :'privacy_policy_url' => :'String',
         :'terms_and_conditions_url' => :'String',
-        :'business_dba' => :'String'
+        :'business_dba' => :'String',
+        :'business_registration_number' => :'String',
+        :'business_registration_type' => :'BusinessRegistrationTypeEnum',
+        :'business_entity_type' => :'BusinessEntityTypeEnum',
+        :'help_message_response' => :'String',
+        :'age_gated_content' => :'Boolean'
       }
     end
 
@@ -94,6 +139,10 @@ module Bandwidth
       Set.new([
         :'additional_information',
         :'isv_reseller',
+        :'business_registration_number',
+        :'business_registration_type',
+        :'business_entity_type',
+        :'help_message_response',
       ])
     end
 
@@ -172,6 +221,26 @@ module Bandwidth
 
       if attributes.key?(:'business_dba')
         self.business_dba = attributes[:'business_dba']
+      end
+
+      if attributes.key?(:'business_registration_number')
+        self.business_registration_number = attributes[:'business_registration_number']
+      end
+
+      if attributes.key?(:'business_registration_type')
+        self.business_registration_type = attributes[:'business_registration_type']
+      end
+
+      if attributes.key?(:'business_entity_type')
+        self.business_entity_type = attributes[:'business_entity_type']
+      end
+
+      if attributes.key?(:'help_message_response')
+        self.help_message_response = attributes[:'help_message_response']
+      end
+
+      if attributes.key?(:'age_gated_content')
+        self.age_gated_content = attributes[:'age_gated_content']
       end
     end
 
@@ -256,6 +325,14 @@ module Bandwidth
         invalid_properties.push('invalid value for "isv_reseller", the character length must be great than or equal to 0.')
       end
 
+      if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
+        invalid_properties.push('invalid value for "business_registration_number", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@help_message_response.nil? && @help_message_response.to_s.length > 500
+        invalid_properties.push('invalid value for "help_message_response", the character length must be smaller than or equal to 500.')
+      end
+
       invalid_properties
     end
 
@@ -282,6 +359,8 @@ module Bandwidth
       return false if !@additional_information.nil? && @additional_information.to_s.length < 0
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length > 500
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length < 0
+      return false if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
+      return false if !@help_message_response.nil? && @help_message_response.to_s.length > 500
       true
     end
 
@@ -385,6 +464,26 @@ module Bandwidth
       @isv_reseller = isv_reseller
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] business_registration_number Value to be assigned
+    def business_registration_number=(business_registration_number)
+      if !business_registration_number.nil? && business_registration_number.to_s.length > 500
+        fail ArgumentError, 'invalid value for "business_registration_number", the character length must be smaller than or equal to 500.'
+      end
+
+      @business_registration_number = business_registration_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] help_message_response Value to be assigned
+    def help_message_response=(help_message_response)
+      if !help_message_response.nil? && help_message_response.to_s.length > 500
+        fail ArgumentError, 'invalid value for "help_message_response", the character length must be smaller than or equal to 500.'
+      end
+
+      @help_message_response = help_message_response
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -401,7 +500,12 @@ module Bandwidth
           isv_reseller == o.isv_reseller &&
           privacy_policy_url == o.privacy_policy_url &&
           terms_and_conditions_url == o.terms_and_conditions_url &&
-          business_dba == o.business_dba
+          business_dba == o.business_dba &&
+          business_registration_number == o.business_registration_number &&
+          business_registration_type == o.business_registration_type &&
+          business_entity_type == o.business_entity_type &&
+          help_message_response == o.help_message_response &&
+          age_gated_content == o.age_gated_content
     end
 
     # @see the `==` method
@@ -413,7 +517,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba].hash
+      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, help_message_response, age_gated_content].hash
     end
 
     # Builds the object from hash

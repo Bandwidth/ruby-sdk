@@ -167,6 +167,8 @@ Class | Method | HTTP request | Description
  - [Bandwidth::BlockedWebhook](docs/BlockedWebhook.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
+ - [Bandwidth::BusinessEntityTypeEnum](docs/BusinessEntityTypeEnum.md)
+ - [Bandwidth::BusinessRegistrationTypeEnum](docs/BusinessRegistrationTypeEnum.md)
  - [Bandwidth::CallDirectionEnum](docs/CallDirectionEnum.md)
  - [Bandwidth::CallRecordingMetadata](docs/CallRecordingMetadata.md)
  - [Bandwidth::CallState](docs/CallState.md)

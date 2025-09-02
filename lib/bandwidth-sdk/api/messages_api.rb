@@ -112,6 +112,8 @@ module Bandwidth
     # @option opts [Boolean] :bw_queued A boolean value indicating whether the message is queued in the Bandwidth network.
     # @option opts [ProductTypeEnum] :product Messaging product associated with the message.
     # @option opts [String] :location Location Id associated with the message.
+    # @option opts [Boolean] :carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Integer] :from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
     # @option opts [String] :calling_number_country_a3 Calling number country in A3 format.
     # @option opts [String] :called_number_country_a3 Called number country in A3 format.
     # @option opts [Integer] :from_segment_count Segment count (start range).
@@ -147,6 +149,8 @@ module Bandwidth
     # @option opts [Boolean] :bw_queued A boolean value indicating whether the message is queued in the Bandwidth network.
     # @option opts [ProductTypeEnum] :product Messaging product associated with the message.
     # @option opts [String] :location Location Id associated with the message.
+    # @option opts [Boolean] :carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+    # @option opts [Integer] :from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
     # @option opts [String] :calling_number_country_a3 Calling number country in A3 format.
     # @option opts [String] :called_number_country_a3 Called number country in A3 format.
     # @option opts [Integer] :from_segment_count Segment count (start range).
@@ -186,6 +190,8 @@ module Bandwidth
       query_params[:'bwQueued'] = opts[:'bw_queued'] if !opts[:'bw_queued'].nil?
       query_params[:'product'] = opts[:'product'] if !opts[:'product'].nil?
       query_params[:'location'] = opts[:'location'] if !opts[:'location'].nil?
+      query_params[:'carrierQueued'] = opts[:'carrier_queued'] if !opts[:'carrier_queued'].nil?
+      query_params[:'fromCarrierLatency'] = opts[:'from_carrier_latency'] if !opts[:'from_carrier_latency'].nil?
       query_params[:'callingNumberCountryA3'] = opts[:'calling_number_country_a3'] if !opts[:'calling_number_country_a3'].nil?
       query_params[:'calledNumberCountryA3'] = opts[:'called_number_country_a3'] if !opts[:'called_number_country_a3'].nil?
       query_params[:'fromSegmentCount'] = opts[:'from_segment_count'] if !opts[:'from_segment_count'].nil?
