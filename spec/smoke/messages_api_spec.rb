@@ -76,7 +76,8 @@ describe 'MessagesApi Integration Tests' do
     it 'lists messages' do
       get_opts = {
         source_tn: BW_NUMBER,
-        message_direction: list_message_direction
+        message_direction: list_message_direction,
+        calling_number_country_a3: 'USA'
       }
       data, status_code = @messaging_api_instance.list_messages_with_http_info(BW_ACCOUNT_ID, get_opts)
 
