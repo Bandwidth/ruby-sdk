@@ -63,6 +63,21 @@ module Bandwidth
     # The campaign ID of the message if it has one.
     attr_accessor :campaign_id
 
+    # The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+    attr_accessor :bw_latency
+
+    # The A3 country code of the calling number.
+    attr_accessor :calling_number_country_a3
+
+    # The A3 country code of the called number.
+    attr_accessor :called_number_country_a3
+
+    # The messaging product associated with the message.
+    attr_accessor :product
+
+    # The location ID associated with this message.
+    attr_accessor :location
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -104,7 +119,12 @@ module Bandwidth
         :'attachment_count' => :'attachmentCount',
         :'recipient_count' => :'recipientCount',
         :'campaign_class' => :'campaignClass',
-        :'campaign_id' => :'campaignId'
+        :'campaign_id' => :'campaignId',
+        :'bw_latency' => :'bwLatency',
+        :'calling_number_country_a3' => :'callingNumberCountryA3',
+        :'called_number_country_a3' => :'calledNumberCountryA3',
+        :'product' => :'product',
+        :'location' => :'location'
       }
     end
 
@@ -132,7 +152,12 @@ module Bandwidth
         :'attachment_count' => :'Integer',
         :'recipient_count' => :'Integer',
         :'campaign_class' => :'String',
-        :'campaign_id' => :'String'
+        :'campaign_id' => :'String',
+        :'bw_latency' => :'Integer',
+        :'calling_number_country_a3' => :'String',
+        :'called_number_country_a3' => :'String',
+        :'product' => :'String',
+        :'location' => :'String'
       }
     end
 
@@ -144,7 +169,12 @@ module Bandwidth
         :'attachment_count',
         :'recipient_count',
         :'campaign_class',
-        :'campaign_id'
+        :'campaign_id',
+        :'bw_latency',
+        :'calling_number_country_a3',
+        :'called_number_country_a3',
+        :'product',
+        :'location'
       ])
     end
 
@@ -230,6 +260,26 @@ module Bandwidth
       if attributes.key?(:'campaign_id')
         self.campaign_id = attributes[:'campaign_id']
       end
+
+      if attributes.key?(:'bw_latency')
+        self.bw_latency = attributes[:'bw_latency']
+      end
+
+      if attributes.key?(:'calling_number_country_a3')
+        self.calling_number_country_a3 = attributes[:'calling_number_country_a3']
+      end
+
+      if attributes.key?(:'called_number_country_a3')
+        self.called_number_country_a3 = attributes[:'called_number_country_a3']
+      end
+
+      if attributes.key?(:'product')
+        self.product = attributes[:'product']
+      end
+
+      if attributes.key?(:'location')
+        self.location = attributes[:'location']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -268,7 +318,12 @@ module Bandwidth
           attachment_count == o.attachment_count &&
           recipient_count == o.recipient_count &&
           campaign_class == o.campaign_class &&
-          campaign_id == o.campaign_id
+          campaign_id == o.campaign_id &&
+          bw_latency == o.bw_latency &&
+          calling_number_country_a3 == o.calling_number_country_a3 &&
+          called_number_country_a3 == o.called_number_country_a3 &&
+          product == o.product &&
+          location == o.location
     end
 
     # @see the `==` method
@@ -280,7 +335,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message_id, account_id, source_tn, destination_tn, message_status, message_direction, message_type, segment_count, error_code, receive_time, carrier_name, message_size, message_length, attachment_count, recipient_count, campaign_class, campaign_id].hash
+      [message_id, account_id, source_tn, destination_tn, message_status, message_direction, message_type, segment_count, error_code, receive_time, carrier_name, message_size, message_length, attachment_count, recipient_count, campaign_class, campaign_id, bw_latency, calling_number_country_a3, called_number_country_a3, product, location].hash
     end
 
     # Builds the object from hash

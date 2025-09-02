@@ -21,6 +21,11 @@
 | **recipient_count** | **Integer** | The number of recipients the message has. | [optional] |
 | **campaign_class** | **String** | The campaign class of the message if it has one. | [optional] |
 | **campaign_id** | **String** | The campaign ID of the message if it has one. | [optional] |
+| **bw_latency** | **Integer** | The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. | [optional] |
+| **calling_number_country_a3** | **String** | The A3 country code of the calling number. | [optional] |
+| **called_number_country_a3** | **String** | The A3 country code of the called number. | [optional] |
+| **product** | **String** | The messaging product associated with the message. | [optional] |
+| **location** | **String** | The location ID associated with this message. | [optional] |
 
 ## Example
 
@@ -44,7 +49,12 @@ instance = Bandwidth::ListMessageItem.new(
   attachment_count: 1,
   recipient_count: 1,
   campaign_class: T,
-  campaign_id: CJEUMDK
+  campaign_id: CJEUMDK,
+  bw_latency: 20,
+  calling_number_country_a3: USA,
+  called_number_country_a3: USA,
+  product: P2P,
+  location: 123ID
 )
 ```
 
