@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **message_id** | **String** | The ID of the message. |  |
+| **id** | **String** | The ID of the message. |  |
 | **time** | **Time** | The time the message was received by the Bandwidth API. |  |
 | **direction** | [**MessageDirectionEnum**](MessageDirectionEnum.md) |  |  |
 | **to** | **Array&lt;String&gt;** | The destination phone number(s) of the message, in E164 format. |  |
@@ -19,7 +19,7 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::MultiChannelMessageResponseData.new(
-  message_id: 1589228074636lm4k2je7j7jklbn2,
+  id: 1589228074636lm4k2je7j7jklbn2,
   time: 2025-01-01T18:20:16Z,
   direction: null,
   to: [&quot;+15554443333&quot;],

@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **transcription_id** | **String** | The programmable voice API transcription ID. | [optional] |
 | **transcription_name** | **String** | The programmable voice API transcription name. This name could be provided by the user when creating the transcription. | [optional] |
-| **transcription_url** | **String** | A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint. | [optional] |
+| **transcription_url** | **String** | A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint. | [optional] |
 
 ## Example
 

@@ -17,7 +17,7 @@ module Bandwidth
   # The data returned in a multichannel message response.
   class MultiChannelMessageResponseData
     # The ID of the message.
-    attr_accessor :message_id
+    attr_accessor :id
 
     # The time the message was received by the Bandwidth API.
     attr_accessor :time
@@ -63,7 +63,7 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'message_id' => :'messageId',
+        :'id' => :'id',
         :'time' => :'time',
         :'direction' => :'direction',
         :'to' => :'to',
@@ -82,7 +82,7 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'message_id' => :'String',
+        :'id' => :'String',
         :'time' => :'Time',
         :'direction' => :'MessageDirectionEnum',
         :'to' => :'Array<String>',
@@ -114,10 +114,10 @@ module Bandwidth
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'message_id')
-        self.message_id = attributes[:'message_id']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       else
-        self.message_id = nil
+        self.id = nil
       end
 
       if attributes.key?(:'time')
@@ -166,8 +166,8 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @message_id.nil?
-        invalid_properties.push('invalid value for "message_id", message_id cannot be nil.')
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
       if @time.nil?
@@ -197,7 +197,7 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @message_id.nil?
+      return false if @id.nil?
       return false if @time.nil?
       return false if @direction.nil?
       return false if @to.nil?
@@ -235,7 +235,7 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          message_id == o.message_id &&
+          id == o.id &&
           time == o.time &&
           direction == o.direction &&
           to == o.to &&
@@ -254,7 +254,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message_id, time, direction, to, channel_list, tag, priority, expiration].hash
+      [id, time, direction, to, channel_list, tag, priority, expiration].hash
     end
 
     # Builds the object from hash
