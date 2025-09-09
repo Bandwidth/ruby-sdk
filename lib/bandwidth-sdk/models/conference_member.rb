@@ -21,7 +21,7 @@ module Bandwidth
     # The unique, Bandwidth-generated ID of the conference that was recorded
     attr_accessor :conference_id
 
-    # A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member's [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember) endpoint.
+    # A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member's [Get Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/updateConferenceMember) endpoint.
     attr_accessor :member_url
 
     # Whether or not this member is currently muted. Members who are muted are still able to hear other participants.  If used in a PUT request, updates this member's mute status. Has no effect if omitted.

@@ -21,7 +21,7 @@ module Bandwidth
     # The programmable voice API transcription name. This name could be provided by the user when creating the transcription.
     attr_accessor :transcription_name
 
-    # A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
+    # A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint.
     attr_accessor :transcription_url
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**delete_real_time_transcription**](TranscriptionsApi.md#delete_real_time_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription |
-| [**get_real_time_transcription**](TranscriptionsApi.md#get_real_time_transcription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription |
-| [**list_real_time_transcriptions**](TranscriptionsApi.md#list_real_time_transcriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription |
+| [**delete_real_time_transcription**](TranscriptionsApi.md#delete_real_time_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete Real-time Transcription |
+| [**get_real_time_transcription**](TranscriptionsApi.md#get_real_time_transcription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Get Real-time Transcription |
+| [**list_real_time_transcriptions**](TranscriptionsApi.md#list_real_time_transcriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | List Real-time Transcriptions |
 
 
 ## delete_real_time_transcription
 
 > delete_real_time_transcription(account_id, call_id, transcription_id)
 
-Delete a specific transcription
+Delete Real-time Transcription
 
 Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
 
@@ -35,7 +35,7 @@ call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programma
 transcription_id = 't-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Transcription ID.
 
 begin
-  # Delete a specific transcription
+  # Delete Real-time Transcription
   api_instance.delete_real_time_transcription(account_id, call_id, transcription_id)
 rescue Bandwidth::ApiError => e
   puts "Error when calling TranscriptionsApi->delete_real_time_transcription: #{e}"
@@ -50,7 +50,7 @@ This returns an Array which contains the response data (`nil` in this case), sta
 
 ```ruby
 begin
-  # Delete a specific transcription
+  # Delete Real-time Transcription
   data, status_code, headers = api_instance.delete_real_time_transcription_with_http_info(account_id, call_id, transcription_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -86,7 +86,7 @@ nil (empty response body)
 
 > <CallTranscriptionResponse> get_real_time_transcription(account_id, call_id, transcription_id)
 
-Retrieve a specific transcription
+Get Real-time Transcription
 
 Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
 
@@ -108,7 +108,7 @@ call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programma
 transcription_id = 't-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Transcription ID.
 
 begin
-  # Retrieve a specific transcription
+  # Get Real-time Transcription
   result = api_instance.get_real_time_transcription(account_id, call_id, transcription_id)
   p result
 rescue Bandwidth::ApiError => e
@@ -124,7 +124,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Retrieve a specific transcription
+  # Get Real-time Transcription
   data, status_code, headers = api_instance.get_real_time_transcription_with_http_info(account_id, call_id, transcription_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -160,9 +160,9 @@ end
 
 > <Array<CallTranscriptionMetadata>> list_real_time_transcriptions(account_id, call_id)
 
-Enumerate transcriptions made with StartTranscription
+List Real-time Transcriptions
 
-Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
 
 ### Examples
 
@@ -181,7 +181,7 @@ account_id = '9900000' # String | Your Bandwidth Account ID.
 call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # String | Programmable Voice API Call ID.
 
 begin
-  # Enumerate transcriptions made with StartTranscription
+  # List Real-time Transcriptions
   result = api_instance.list_real_time_transcriptions(account_id, call_id)
   p result
 rescue Bandwidth::ApiError => e
@@ -197,7 +197,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Enumerate transcriptions made with StartTranscription
+  # List Real-time Transcriptions
   data, status_code, headers = api_instance.list_real_time_transcriptions_with_http_info(account_id, call_id)
   p status_code # => 2xx
   p headers # => { ... }
