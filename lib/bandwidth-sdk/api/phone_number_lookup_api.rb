@@ -26,6 +26,7 @@ module Bandwidth
     # @param [Hash] opts the optional parameters
     # @return [CreateLookupResponse]
     def create_lookup(account_id, lookup_request, opts = {})
+      warn '[DEPRECATION NOTICE] `create_lookup` is deprecated.'
       data, _status_code, _headers = create_lookup_with_http_info(account_id, lookup_request, opts)
       data
     end
@@ -37,6 +38,7 @@ module Bandwidth
     # @param [Hash] opts the optional parameters
     # @return [Array<(CreateLookupResponse, Integer, Hash)>] CreateLookupResponse data, response status code and response headers
     def create_lookup_with_http_info(account_id, lookup_request, opts = {})
+      warn '[DEPRECATION NOTICE] `create_lookup_with_http_info` is deprecated.'
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.create_lookup ...'
       end
@@ -100,6 +102,7 @@ module Bandwidth
     # @param [Hash] opts the optional parameters
     # @return [LookupStatus]
     def get_lookup_status(account_id, request_id, opts = {})
+      warn '[DEPRECATION NOTICE] `get_lookup_status` is deprecated.'
       data, _status_code, _headers = get_lookup_status_with_http_info(account_id, request_id, opts)
       data
     end
@@ -111,6 +114,7 @@ module Bandwidth
     # @param [Hash] opts the optional parameters
     # @return [Array<(LookupStatus, Integer, Hash)>] LookupStatus data, response status code and response headers
     def get_lookup_status_with_http_info(account_id, request_id, opts = {})
+      warn '[DEPRECATION NOTICE] `get_lookup_status_with_http_info` is deprecated.'
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.get_lookup_status ...'
       end
