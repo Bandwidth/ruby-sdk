@@ -255,13 +255,6 @@ module Bandwidth
             key: 'Authorization',
             value: basic_auth_token
           },
-        'OAuth2' =>
-          {
-            type: 'oauth2',
-            in: 'header',
-            key: 'Authorization',
-            value: "Bearer #{access_token_with_refresh}"
-          },
       }
     end
 

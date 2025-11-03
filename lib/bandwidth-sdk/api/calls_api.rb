@@ -74,7 +74,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CreateCallResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"CallsApi.create_call",
@@ -143,7 +143,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CallState'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"CallsApi.get_call_state",
@@ -235,7 +235,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<CallState>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"CallsApi.list_calls",
@@ -315,7 +315,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"CallsApi.update_call",
@@ -395,7 +395,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"CallsApi.update_call_bxml",

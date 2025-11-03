@@ -69,7 +69,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"MediaApi.delete_media",
@@ -138,7 +138,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"MediaApi.get_media",
@@ -204,7 +204,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<Media>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"MediaApi.list_media",
@@ -290,7 +290,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"MediaApi.upload_media",

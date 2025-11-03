@@ -74,7 +74,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'WebhookSubscription'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.create_webhook_subscription",
@@ -156,7 +156,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.delete_verification_request",
@@ -225,7 +225,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.delete_webhook_subscription",
@@ -307,7 +307,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'TfvStatus'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.get_toll_free_verification_status",
@@ -364,7 +364,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<String>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.list_toll_free_use_cases",
@@ -427,7 +427,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'WebhookSubscriptionsListBody'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.list_webhook_subscriptions",
@@ -501,7 +501,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.request_toll_free_verification",
@@ -594,7 +594,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.update_toll_free_verification_request",
@@ -674,7 +674,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'WebhookSubscription'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"TollFreeVerificationApi.update_webhook_subscription",

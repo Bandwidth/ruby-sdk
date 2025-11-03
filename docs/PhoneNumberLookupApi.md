@@ -27,9 +27,6 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
-
-  # Configure OAuth2 access token for authorization: OAuth2
-  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
@@ -76,7 +73,7 @@ end
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -102,9 +99,6 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
-
-  # Configure OAuth2 access token for authorization: OAuth2
-  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
@@ -151,7 +145,7 @@ end
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -177,9 +171,6 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
-
-  # Configure OAuth2 access token for authorization: OAuth2
-  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
@@ -226,7 +217,7 @@ end
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 

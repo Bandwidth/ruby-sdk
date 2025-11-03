@@ -63,7 +63,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'AccountStatistics'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"StatisticsApi.get_statistics",

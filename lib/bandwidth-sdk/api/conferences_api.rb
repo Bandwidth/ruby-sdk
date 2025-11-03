@@ -75,7 +75,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.download_conference_recording",
@@ -144,7 +144,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Conference'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.get_conference",
@@ -219,7 +219,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'ConferenceMember'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.get_conference_member",
@@ -294,7 +294,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'ConferenceRecordingMetadata'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.get_conference_recording",
@@ -363,7 +363,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<ConferenceRecordingMetadata>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.list_conference_recordings",
@@ -449,7 +449,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<Conference>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.list_conferences",
@@ -529,7 +529,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.update_conference",
@@ -609,7 +609,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.update_conference_bxml",
@@ -695,7 +695,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['Basic']
 
       new_options = opts.merge(
         :operation => :"ConferencesApi.update_conference_member",
