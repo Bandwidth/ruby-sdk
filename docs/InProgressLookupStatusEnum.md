@@ -1,4 +1,4 @@
-# Bandwidth::LookupStatusEnum
+# Bandwidth::InProgressLookupStatusEnum
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'bandwidth-sdk'
 
-instance = Bandwidth::LookupStatusEnum.new()
+instance = Bandwidth::InProgressLookupStatusEnum.new()
 ```
 

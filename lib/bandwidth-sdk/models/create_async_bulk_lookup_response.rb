@@ -14,40 +14,20 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # The request has been accepted for processing but not yet finished and in a terminal state (COMPLETE, PARTIAL_COMPLETE, or FAILED).
-  class CreateLookupResponse
-    # The phone number lookup request ID from Bandwidth.
-    attr_accessor :request_id
+  class CreateAsyncBulkLookupResponse
+    # Links for pagination (if applicable)
+    attr_accessor :links
 
-    attr_accessor :status
+    attr_accessor :data
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :errors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'request_id' => :'requestId',
-        :'status' => :'status'
+        :'links' => :'links',
+        :'data' => :'data',
+        :'errors' => :'errors'
       }
     end
 
@@ -59,8 +39,9 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'request_id' => :'String',
-        :'status' => :'LookupStatusEnum'
+        :'links' => :'Array<LinkSchema>',
+        :'data' => :'CreateAsyncBulkLookupResponseData',
+        :'errors' => :'Array<LookupErrorSchema>'
       }
     end
 
@@ -74,23 +55,31 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CreateLookupResponse` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CreateAsyncBulkLookupResponse` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::CreateLookupResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::CreateAsyncBulkLookupResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'request_id')
-        self.request_id = attributes[:'request_id']
+      if attributes.key?(:'links')
+        if (value = attributes[:'links']).is_a?(Array)
+          self.links = value
+        end
       end
 
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
+      end
+
+      if attributes.key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
+        end
       end
     end
 
@@ -114,8 +103,9 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          request_id == o.request_id &&
-          status == o.status
+          links == o.links &&
+          data == o.data &&
+          errors == o.errors
     end
 
     # @see the `==` method
@@ -127,7 +117,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [request_id, status].hash
+      [links, data, errors].hash
     end
 
     # Builds the object from hash

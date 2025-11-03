@@ -85,6 +85,13 @@ Bandwidth.configure do |config|
   config.password = 'YOUR_PASSWORD'
   # Configure faraday connection
   config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
+
+  # Configure OAuth2 access token for authorization: OAuth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+  # Configure a proc to get access tokens in lieu of the static access_token configuration
+  config.access_token_getter = -> { 'YOUR TOKEN GETTER PROC' } 
+  # Configure faraday connection
+  config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
 end
 
 api_instance = Bandwidth::CallsApi.new
@@ -131,8 +138,9 @@ Class | Method | HTTP request | Description
 *Bandwidth::MessagesApi* | [**create_message**](docs/MessagesApi.md#create_message) | **POST** /users/{accountId}/messages | Create Message
 *Bandwidth::MessagesApi* | [**list_messages**](docs/MessagesApi.md#list_messages) | **GET** /users/{accountId}/messages | List Messages
 *Bandwidth::MultiChannelApi* | [**create_multi_channel_message**](docs/MultiChannelApi.md#create_multi_channel_message) | **POST** /users/{accountId}/messages/multiChannel | Create Multi-Channel Message
-*Bandwidth::PhoneNumberLookupApi* | [**create_lookup**](docs/PhoneNumberLookupApi.md#create_lookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup
-*Bandwidth::PhoneNumberLookupApi* | [**get_lookup_status**](docs/PhoneNumberLookupApi.md#get_lookup_status) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status
+*Bandwidth::PhoneNumberLookupApi* | [**create_async_bulk_lookup**](docs/PhoneNumberLookupApi.md#create_async_bulk_lookup) | **POST** /accounts/{accountId}/phoneNumberLookup/bulk | Create Asynchronous Bulk Number Lookup
+*Bandwidth::PhoneNumberLookupApi* | [**create_sync_lookup**](docs/PhoneNumberLookupApi.md#create_sync_lookup) | **POST** /accounts/{accountId}/phoneNumberLookup | Create Synchronous Number Lookup
+*Bandwidth::PhoneNumberLookupApi* | [**get_async_bulk_lookup**](docs/PhoneNumberLookupApi.md#get_async_bulk_lookup) | **GET** /accounts/{accountId}/phoneNumberLookup/bulk/{requestId} | Get Asynchronous Bulk Number Lookup
 *Bandwidth::RecordingsApi* | [**delete_recording**](docs/RecordingsApi.md#delete_recording) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Delete Recording
 *Bandwidth::RecordingsApi* | [**delete_recording_media**](docs/RecordingsApi.md#delete_recording_media) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Delete Recording Media
 *Bandwidth::RecordingsApi* | [**delete_recording_transcription**](docs/RecordingsApi.md#delete_recording_transcription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription
@@ -164,6 +172,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::AdditionalDenialReason](docs/AdditionalDenialReason.md)
  - [Bandwidth::Address](docs/Address.md)
  - [Bandwidth::AnswerCallback](docs/AnswerCallback.md)
+ - [Bandwidth::AsyncLookupRequest](docs/AsyncLookupRequest.md)
  - [Bandwidth::BlockedWebhook](docs/BlockedWebhook.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
@@ -182,6 +191,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CallbackMethodEnum](docs/CallbackMethodEnum.md)
  - [Bandwidth::CardWidthEnum](docs/CardWidthEnum.md)
  - [Bandwidth::CodeRequest](docs/CodeRequest.md)
+ - [Bandwidth::CompletedLookupStatusEnum](docs/CompletedLookupStatusEnum.md)
  - [Bandwidth::Conference](docs/Conference.md)
  - [Bandwidth::ConferenceCompletedCallback](docs/ConferenceCompletedCallback.md)
  - [Bandwidth::ConferenceCreatedCallback](docs/ConferenceCreatedCallback.md)
@@ -193,11 +203,15 @@ Class | Method | HTTP request | Description
  - [Bandwidth::ConferenceRedirectCallback](docs/ConferenceRedirectCallback.md)
  - [Bandwidth::ConferenceStateEnum](docs/ConferenceStateEnum.md)
  - [Bandwidth::Contact](docs/Contact.md)
+ - [Bandwidth::CreateAsyncBulkLookupResponse](docs/CreateAsyncBulkLookupResponse.md)
+ - [Bandwidth::CreateAsyncBulkLookupResponseData](docs/CreateAsyncBulkLookupResponseData.md)
  - [Bandwidth::CreateCall](docs/CreateCall.md)
  - [Bandwidth::CreateCallResponse](docs/CreateCallResponse.md)
- - [Bandwidth::CreateLookupResponse](docs/CreateLookupResponse.md)
  - [Bandwidth::CreateMessageRequestError](docs/CreateMessageRequestError.md)
  - [Bandwidth::CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
+ - [Bandwidth::CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
+ - [Bandwidth::CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Bandwidth::DeactivationEventEnum](docs/DeactivationEventEnum.md)
  - [Bandwidth::DisconnectCallback](docs/DisconnectCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
  - [Bandwidth::DtmfCallback](docs/DtmfCallback.md)
@@ -208,18 +222,24 @@ Class | Method | HTTP request | Description
  - [Bandwidth::FieldError](docs/FieldError.md)
  - [Bandwidth::FileFormatEnum](docs/FileFormatEnum.md)
  - [Bandwidth::GatherCallback](docs/GatherCallback.md)
+ - [Bandwidth::GetAsyncBulkLookupResponse](docs/GetAsyncBulkLookupResponse.md)
+ - [Bandwidth::GetAsyncBulkLookupResponseData](docs/GetAsyncBulkLookupResponseData.md)
+ - [Bandwidth::InProgressLookupStatusEnum](docs/InProgressLookupStatusEnum.md)
  - [Bandwidth::InboundCallback](docs/InboundCallback.md)
  - [Bandwidth::InboundCallbackMessage](docs/InboundCallbackMessage.md)
  - [Bandwidth::InboundCallbackTypeEnum](docs/InboundCallbackTypeEnum.md)
  - [Bandwidth::InitiateCallback](docs/InitiateCallback.md)
+ - [Bandwidth::LatestMessageDeliveryStatusEnum](docs/LatestMessageDeliveryStatusEnum.md)
+ - [Bandwidth::LineTypeEnum](docs/LineTypeEnum.md)
  - [Bandwidth::Link](docs/Link.md)
+ - [Bandwidth::LinkSchema](docs/LinkSchema.md)
  - [Bandwidth::LinksObject](docs/LinksObject.md)
  - [Bandwidth::ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Bandwidth::ListMessageItem](docs/ListMessageItem.md)
- - [Bandwidth::LookupRequest](docs/LookupRequest.md)
+ - [Bandwidth::LookupErrorResponse](docs/LookupErrorResponse.md)
+ - [Bandwidth::LookupErrorSchema](docs/LookupErrorSchema.md)
+ - [Bandwidth::LookupErrorSchemaMeta](docs/LookupErrorSchemaMeta.md)
  - [Bandwidth::LookupResult](docs/LookupResult.md)
- - [Bandwidth::LookupStatus](docs/LookupStatus.md)
- - [Bandwidth::LookupStatusEnum](docs/LookupStatusEnum.md)
  - [Bandwidth::MachineDetectionCompleteCallback](docs/MachineDetectionCompleteCallback.md)
  - [Bandwidth::MachineDetectionConfiguration](docs/MachineDetectionConfiguration.md)
  - [Bandwidth::MachineDetectionModeEnum](docs/MachineDetectionModeEnum.md)
@@ -281,6 +301,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::StatusCallbackMessage](docs/StatusCallbackMessage.md)
  - [Bandwidth::StatusCallbackTypeEnum](docs/StatusCallbackTypeEnum.md)
  - [Bandwidth::StirShaken](docs/StirShaken.md)
+ - [Bandwidth::SyncLookupRequest](docs/SyncLookupRequest.md)
  - [Bandwidth::TelephoneNumber](docs/TelephoneNumber.md)
  - [Bandwidth::TfvBasicAuthentication](docs/TfvBasicAuthentication.md)
  - [Bandwidth::TfvCallbackStatusEnum](docs/TfvCallbackStatusEnum.md)
@@ -290,7 +311,6 @@ Class | Method | HTTP request | Description
  - [Bandwidth::TfvSubmissionInfo](docs/TfvSubmissionInfo.md)
  - [Bandwidth::TfvSubmissionWrapper](docs/TfvSubmissionWrapper.md)
  - [Bandwidth::ThumbnailAlignmentEnum](docs/ThumbnailAlignmentEnum.md)
- - [Bandwidth::TnLookupRequestError](docs/TnLookupRequestError.md)
  - [Bandwidth::TranscribeRecording](docs/TranscribeRecording.md)
  - [Bandwidth::Transcription](docs/Transcription.md)
  - [Bandwidth::TranscriptionAvailableCallback](docs/TranscriptionAvailableCallback.md)
@@ -323,4 +343,12 @@ Authentication schemes defined for the API:
 ### Basic
 
 - **Type**: HTTP basic authentication
+
+### OAuth2
+
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: N/A
 

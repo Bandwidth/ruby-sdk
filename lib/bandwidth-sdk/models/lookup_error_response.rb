@@ -14,48 +14,20 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # If requestId exists, the result for that request is returned. See the Examples for details on the various responses that you can receive. Generally, if you see a Response Code of 0 in a result for a TN, information will be available for it.  Any other Response Code will indicate no information was available for the TN.
-  class LookupStatus
-    # The requestId.
-    attr_accessor :request_id
+  class LookupErrorResponse
+    attr_accessor :links
 
-    attr_accessor :status
+    # The phone number lookup response data
+    attr_accessor :data
 
-    # The carrier information results for the specified telephone number.
-    attr_accessor :result
-
-    # The telephone numbers whose lookup failed.
-    attr_accessor :failed_telephone_numbers
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :errors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'request_id' => :'requestId',
-        :'status' => :'status',
-        :'result' => :'result',
-        :'failed_telephone_numbers' => :'failedTelephoneNumbers'
+        :'links' => :'links',
+        :'data' => :'data',
+        :'errors' => :'errors'
       }
     end
 
@@ -67,10 +39,9 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'request_id' => :'String',
-        :'status' => :'LookupStatusEnum',
-        :'result' => :'Array<LookupResult>',
-        :'failed_telephone_numbers' => :'Array<String>'
+        :'links' => :'Array<LinkSchema>',
+        :'data' => :'Object',
+        :'errors' => :'Array<LookupErrorSchema>'
       }
     end
 
@@ -84,34 +55,30 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::LookupStatus` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::LookupErrorResponse` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::LookupStatus`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::LookupErrorResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'request_id')
-        self.request_id = attributes[:'request_id']
-      end
-
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.key?(:'result')
-        if (value = attributes[:'result']).is_a?(Array)
-          self.result = value
+      if attributes.key?(:'links')
+        if (value = attributes[:'links']).is_a?(Array)
+          self.links = value
         end
       end
 
-      if attributes.key?(:'failed_telephone_numbers')
-        if (value = attributes[:'failed_telephone_numbers']).is_a?(Array)
-          self.failed_telephone_numbers = value
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
+      end
+
+      if attributes.key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
         end
       end
     end
@@ -136,10 +103,9 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          request_id == o.request_id &&
-          status == o.status &&
-          result == o.result &&
-          failed_telephone_numbers == o.failed_telephone_numbers
+          links == o.links &&
+          data == o.data &&
+          errors == o.errors
     end
 
     # @see the `==` method
@@ -151,7 +117,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [request_id, status, result, failed_telephone_numbers].hash
+      [links, data, errors].hash
     end
 
     # Builds the object from hash

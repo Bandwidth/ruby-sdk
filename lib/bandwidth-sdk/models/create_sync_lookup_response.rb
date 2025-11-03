@@ -14,14 +14,19 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class TnLookupRequestError
-    # A description of what validation error occurred.
-    attr_accessor :message
+  class CreateSyncLookupResponse
+    attr_accessor :links
+
+    attr_accessor :data
+
+    attr_accessor :errors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'message' => :'message'
+        :'links' => :'links',
+        :'data' => :'data',
+        :'errors' => :'errors'
       }
     end
 
@@ -33,7 +38,9 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'message' => :'String'
+        :'links' => :'Array<LinkSchema>',
+        :'data' => :'CreateSyncLookupResponseData',
+        :'errors' => :'Array<LookupErrorSchema>'
       }
     end
 
@@ -47,19 +54,31 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::TnLookupRequestError` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CreateSyncLookupResponse` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::TnLookupRequestError`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::CreateSyncLookupResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'links')
+        if (value = attributes[:'links']).is_a?(Array)
+          self.links = value
+        end
+      end
+
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
+      end
+
+      if attributes.key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
+        end
       end
     end
 
@@ -83,7 +102,9 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          message == o.message
+          links == o.links &&
+          data == o.data &&
+          errors == o.errors
     end
 
     # @see the `==` method
@@ -95,7 +116,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message].hash
+      [links, data, errors].hash
     end
 
     # Builds the object from hash

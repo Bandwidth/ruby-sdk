@@ -75,7 +75,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.delete_recording",
@@ -150,7 +150,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.delete_recording_media",
@@ -225,7 +225,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.delete_recording_transcription",
@@ -300,7 +300,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.download_call_recording",
@@ -375,7 +375,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CallRecordingMetadata'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.get_call_recording",
@@ -450,7 +450,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'RecordingTranscriptions'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.get_recording_transcription",
@@ -525,7 +525,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<CallRecordingMetadata>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.list_account_call_recordings",
@@ -594,7 +594,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<CallRecordingMetadata>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.list_call_recordings",
@@ -680,7 +680,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.transcribe_call_recording",
@@ -760,7 +760,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"RecordingsApi.update_call_recording_state",

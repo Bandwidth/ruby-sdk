@@ -19,39 +19,37 @@ module Bandwidth
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Create Lookup
-    # Create a Phone Number Lookup Request.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param lookup_request [LookupRequest] Phone number lookup request.
+    # Create Asynchronous Bulk Number Lookup
+    # Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
+    # @param account_id [String] 
+    # @param async_lookup_request [AsyncLookupRequest] Asynchronous bulk phone number lookup request.
     # @param [Hash] opts the optional parameters
-    # @return [CreateLookupResponse]
-    def create_lookup(account_id, lookup_request, opts = {})
-      warn '[DEPRECATION NOTICE] `create_lookup` is deprecated.'
-      data, _status_code, _headers = create_lookup_with_http_info(account_id, lookup_request, opts)
+    # @return [CreateAsyncBulkLookupResponse]
+    def create_async_bulk_lookup(account_id, async_lookup_request, opts = {})
+      data, _status_code, _headers = create_async_bulk_lookup_with_http_info(account_id, async_lookup_request, opts)
       data
     end
 
-    # Create Lookup
-    # Create a Phone Number Lookup Request.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param lookup_request [LookupRequest] Phone number lookup request.
+    # Create Asynchronous Bulk Number Lookup
+    # Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
+    # @param account_id [String] 
+    # @param async_lookup_request [AsyncLookupRequest] Asynchronous bulk phone number lookup request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(CreateLookupResponse, Integer, Hash)>] CreateLookupResponse data, response status code and response headers
-    def create_lookup_with_http_info(account_id, lookup_request, opts = {})
-      warn '[DEPRECATION NOTICE] `create_lookup_with_http_info` is deprecated.'
+    # @return [Array<(CreateAsyncBulkLookupResponse, Integer, Hash)>] CreateAsyncBulkLookupResponse data, response status code and response headers
+    def create_async_bulk_lookup_with_http_info(account_id, async_lookup_request, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.create_lookup ...'
+        @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.create_async_bulk_lookup ...'
       end
       # verify the required parameter 'account_id' is set
       if @api_client.config.client_side_validation && account_id.nil?
-        fail ArgumentError, "Missing the required parameter 'account_id' when calling PhoneNumberLookupApi.create_lookup"
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling PhoneNumberLookupApi.create_async_bulk_lookup"
       end
-      # verify the required parameter 'lookup_request' is set
-      if @api_client.config.client_side_validation && lookup_request.nil?
-        fail ArgumentError, "Missing the required parameter 'lookup_request' when calling PhoneNumberLookupApi.create_lookup"
+      # verify the required parameter 'async_lookup_request' is set
+      if @api_client.config.client_side_validation && async_lookup_request.nil?
+        fail ArgumentError, "Missing the required parameter 'async_lookup_request' when calling PhoneNumberLookupApi.create_async_bulk_lookup"
       end
       # resource path
-      local_var_path = '/accounts/{accountId}/tnlookup'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s))
+      local_var_path = '/accounts/{accountId}/phoneNumberLookup/bulk'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -70,16 +68,16 @@ module Bandwidth
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(lookup_request)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(async_lookup_request)
 
       # return_type
-      return_type = opts[:debug_return_type] || 'CreateLookupResponse'
+      return_type = opts[:debug_return_type] || 'CreateAsyncBulkLookupResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
-        :operation => :"PhoneNumberLookupApi.create_lookup",
+        :operation => :"PhoneNumberLookupApi.create_async_bulk_lookup",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -90,44 +88,116 @@ module Bandwidth
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PhoneNumberLookupApi#create_lookup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: PhoneNumberLookupApi#create_async_bulk_lookup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get Lookup Request Status
-    # Get an existing Phone Number Lookup Request.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param request_id [String] The phone number lookup request ID from Bandwidth.
+    # Create Synchronous Number Lookup
+    # Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
+    # @param account_id [String] 
+    # @param sync_lookup_request [SyncLookupRequest] Synchronous phone number lookup request.
     # @param [Hash] opts the optional parameters
-    # @return [LookupStatus]
-    def get_lookup_status(account_id, request_id, opts = {})
-      warn '[DEPRECATION NOTICE] `get_lookup_status` is deprecated.'
-      data, _status_code, _headers = get_lookup_status_with_http_info(account_id, request_id, opts)
+    # @return [CreateSyncLookupResponse]
+    def create_sync_lookup(account_id, sync_lookup_request, opts = {})
+      data, _status_code, _headers = create_sync_lookup_with_http_info(account_id, sync_lookup_request, opts)
       data
     end
 
-    # Get Lookup Request Status
-    # Get an existing Phone Number Lookup Request.
-    # @param account_id [String] Your Bandwidth Account ID.
-    # @param request_id [String] The phone number lookup request ID from Bandwidth.
+    # Create Synchronous Number Lookup
+    # Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
+    # @param account_id [String] 
+    # @param sync_lookup_request [SyncLookupRequest] Synchronous phone number lookup request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LookupStatus, Integer, Hash)>] LookupStatus data, response status code and response headers
-    def get_lookup_status_with_http_info(account_id, request_id, opts = {})
-      warn '[DEPRECATION NOTICE] `get_lookup_status_with_http_info` is deprecated.'
+    # @return [Array<(CreateSyncLookupResponse, Integer, Hash)>] CreateSyncLookupResponse data, response status code and response headers
+    def create_sync_lookup_with_http_info(account_id, sync_lookup_request, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.get_lookup_status ...'
+        @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.create_sync_lookup ...'
       end
       # verify the required parameter 'account_id' is set
       if @api_client.config.client_side_validation && account_id.nil?
-        fail ArgumentError, "Missing the required parameter 'account_id' when calling PhoneNumberLookupApi.get_lookup_status"
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling PhoneNumberLookupApi.create_sync_lookup"
+      end
+      # verify the required parameter 'sync_lookup_request' is set
+      if @api_client.config.client_side_validation && sync_lookup_request.nil?
+        fail ArgumentError, "Missing the required parameter 'sync_lookup_request' when calling PhoneNumberLookupApi.create_sync_lookup"
+      end
+      # resource path
+      local_var_path = '/accounts/{accountId}/phoneNumberLookup'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(sync_lookup_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CreateSyncLookupResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+
+      new_options = opts.merge(
+        :operation => :"PhoneNumberLookupApi.create_sync_lookup",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PhoneNumberLookupApi#create_sync_lookup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Asynchronous Bulk Number Lookup
+    # Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+    # @param account_id [String] 
+    # @param request_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [GetAsyncBulkLookupResponse]
+    def get_async_bulk_lookup(account_id, request_id, opts = {})
+      data, _status_code, _headers = get_async_bulk_lookup_with_http_info(account_id, request_id, opts)
+      data
+    end
+
+    # Get Asynchronous Bulk Number Lookup
+    # Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+    # @param account_id [String] 
+    # @param request_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(GetAsyncBulkLookupResponse, Integer, Hash)>] GetAsyncBulkLookupResponse data, response status code and response headers
+    def get_async_bulk_lookup_with_http_info(account_id, request_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PhoneNumberLookupApi.get_async_bulk_lookup ...'
+      end
+      # verify the required parameter 'account_id' is set
+      if @api_client.config.client_side_validation && account_id.nil?
+        fail ArgumentError, "Missing the required parameter 'account_id' when calling PhoneNumberLookupApi.get_async_bulk_lookup"
       end
       # verify the required parameter 'request_id' is set
       if @api_client.config.client_side_validation && request_id.nil?
-        fail ArgumentError, "Missing the required parameter 'request_id' when calling PhoneNumberLookupApi.get_lookup_status"
+        fail ArgumentError, "Missing the required parameter 'request_id' when calling PhoneNumberLookupApi.get_async_bulk_lookup"
       end
       # resource path
-      local_var_path = '/accounts/{accountId}/tnlookup/{requestId}'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'requestId' + '}', CGI.escape(request_id.to_s))
+      local_var_path = '/accounts/{accountId}/phoneNumberLookup/bulk/{requestId}'.sub('{' + 'accountId' + '}', CGI.escape(account_id.to_s)).sub('{' + 'requestId' + '}', CGI.escape(request_id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -144,13 +214,13 @@ module Bandwidth
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LookupStatus'
+      return_type = opts[:debug_return_type] || 'GetAsyncBulkLookupResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
-        :operation => :"PhoneNumberLookupApi.get_lookup_status",
+        :operation => :"PhoneNumberLookupApi.get_async_bulk_lookup",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -161,7 +231,7 @@ module Bandwidth
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PhoneNumberLookupApi#get_lookup_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: PhoneNumberLookupApi#get_async_bulk_lookup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

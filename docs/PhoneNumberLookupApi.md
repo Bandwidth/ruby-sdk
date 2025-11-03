@@ -4,17 +4,18 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**create_lookup**](PhoneNumberLookupApi.md#create_lookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup |
-| [**get_lookup_status**](PhoneNumberLookupApi.md#get_lookup_status) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status |
+| [**create_async_bulk_lookup**](PhoneNumberLookupApi.md#create_async_bulk_lookup) | **POST** /accounts/{accountId}/phoneNumberLookup/bulk | Create Asynchronous Bulk Number Lookup |
+| [**create_sync_lookup**](PhoneNumberLookupApi.md#create_sync_lookup) | **POST** /accounts/{accountId}/phoneNumberLookup | Create Synchronous Number Lookup |
+| [**get_async_bulk_lookup**](PhoneNumberLookupApi.md#get_async_bulk_lookup) | **GET** /accounts/{accountId}/phoneNumberLookup/bulk/{requestId} | Get Asynchronous Bulk Number Lookup |
 
 
-## create_lookup
+## create_async_bulk_lookup
 
-> <CreateLookupResponse> create_lookup(account_id, lookup_request)
+> <CreateAsyncBulkLookupResponse> create_async_bulk_lookup(account_id, async_lookup_request)
 
-Create Lookup
+Create Asynchronous Bulk Number Lookup
 
-Create a Phone Number Lookup Request.
+Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
 
 ### Examples
 
@@ -26,36 +27,39 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
+
+  # Configure OAuth2 access token for authorization: OAuth2
+  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID.
-lookup_request = Bandwidth::LookupRequest.new({tns: ['tns_example']}) # LookupRequest | Phone number lookup request.
+account_id = '9900000' # String | 
+async_lookup_request = Bandwidth::AsyncLookupRequest.new({phone_numbers: ['phone_numbers_example']}) # AsyncLookupRequest | Asynchronous bulk phone number lookup request.
 
 begin
-  # Create Lookup
-  result = api_instance.create_lookup(account_id, lookup_request)
+  # Create Asynchronous Bulk Number Lookup
+  result = api_instance.create_async_bulk_lookup(account_id, async_lookup_request)
   p result
 rescue Bandwidth::ApiError => e
-  puts "Error when calling PhoneNumberLookupApi->create_lookup: #{e}"
+  puts "Error when calling PhoneNumberLookupApi->create_async_bulk_lookup: #{e}"
 end
 ```
 
-#### Using the create_lookup_with_http_info variant
+#### Using the create_async_bulk_lookup_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CreateLookupResponse>, Integer, Hash)> create_lookup_with_http_info(account_id, lookup_request)
+> <Array(<CreateAsyncBulkLookupResponse>, Integer, Hash)> create_async_bulk_lookup_with_http_info(account_id, async_lookup_request)
 
 ```ruby
 begin
-  # Create Lookup
-  data, status_code, headers = api_instance.create_lookup_with_http_info(account_id, lookup_request)
+  # Create Asynchronous Bulk Number Lookup
+  data, status_code, headers = api_instance.create_async_bulk_lookup_with_http_info(account_id, async_lookup_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <CreateLookupResponse>
+  p data # => <CreateAsyncBulkLookupResponse>
 rescue Bandwidth::ApiError => e
-  puts "Error when calling PhoneNumberLookupApi->create_lookup_with_http_info: #{e}"
+  puts "Error when calling PhoneNumberLookupApi->create_async_bulk_lookup_with_http_info: #{e}"
 end
 ```
 
@@ -63,16 +67,16 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID. |  |
-| **lookup_request** | [**LookupRequest**](LookupRequest.md) | Phone number lookup request. |  |
+| **account_id** | **String** |  |  |
+| **async_lookup_request** | [**AsyncLookupRequest**](AsyncLookupRequest.md) | Asynchronous bulk phone number lookup request. |  |
 
 ### Return type
 
-[**CreateLookupResponse**](CreateLookupResponse.md)
+[**CreateAsyncBulkLookupResponse**](CreateAsyncBulkLookupResponse.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -80,13 +84,13 @@ end
 - **Accept**: application/json
 
 
-## get_lookup_status
+## create_sync_lookup
 
-> <LookupStatus> get_lookup_status(account_id, request_id)
+> <CreateSyncLookupResponse> create_sync_lookup(account_id, sync_lookup_request)
 
-Get Lookup Request Status
+Create Synchronous Number Lookup
 
-Get an existing Phone Number Lookup Request.
+Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
 
 ### Examples
 
@@ -98,36 +102,39 @@ Bandwidth.configure do |config|
   # Configure HTTP basic authorization: Basic
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
+
+  # Configure OAuth2 access token for authorization: OAuth2
+  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Bandwidth::PhoneNumberLookupApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID.
-request_id = '004223a0-8b17-41b1-bf81-20732adf5590' # String | The phone number lookup request ID from Bandwidth.
+account_id = '9900000' # String | 
+sync_lookup_request = Bandwidth::SyncLookupRequest.new({phone_numbers: ['phone_numbers_example']}) # SyncLookupRequest | Synchronous phone number lookup request.
 
 begin
-  # Get Lookup Request Status
-  result = api_instance.get_lookup_status(account_id, request_id)
+  # Create Synchronous Number Lookup
+  result = api_instance.create_sync_lookup(account_id, sync_lookup_request)
   p result
 rescue Bandwidth::ApiError => e
-  puts "Error when calling PhoneNumberLookupApi->get_lookup_status: #{e}"
+  puts "Error when calling PhoneNumberLookupApi->create_sync_lookup: #{e}"
 end
 ```
 
-#### Using the get_lookup_status_with_http_info variant
+#### Using the create_sync_lookup_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LookupStatus>, Integer, Hash)> get_lookup_status_with_http_info(account_id, request_id)
+> <Array(<CreateSyncLookupResponse>, Integer, Hash)> create_sync_lookup_with_http_info(account_id, sync_lookup_request)
 
 ```ruby
 begin
-  # Get Lookup Request Status
-  data, status_code, headers = api_instance.get_lookup_status_with_http_info(account_id, request_id)
+  # Create Synchronous Number Lookup
+  data, status_code, headers = api_instance.create_sync_lookup_with_http_info(account_id, sync_lookup_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LookupStatus>
+  p data # => <CreateSyncLookupResponse>
 rescue Bandwidth::ApiError => e
-  puts "Error when calling PhoneNumberLookupApi->get_lookup_status_with_http_info: #{e}"
+  puts "Error when calling PhoneNumberLookupApi->create_sync_lookup_with_http_info: #{e}"
 end
 ```
 
@@ -135,16 +142,91 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID. |  |
-| **request_id** | **String** | The phone number lookup request ID from Bandwidth. |  |
+| **account_id** | **String** |  |  |
+| **sync_lookup_request** | [**SyncLookupRequest**](SyncLookupRequest.md) | Synchronous phone number lookup request. |  |
 
 ### Return type
 
-[**LookupStatus**](LookupStatus.md)
+[**CreateSyncLookupResponse**](CreateSyncLookupResponse.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## get_async_bulk_lookup
+
+> <GetAsyncBulkLookupResponse> get_async_bulk_lookup(account_id, request_id)
+
+Get Asynchronous Bulk Number Lookup
+
+Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+
+### Examples
+
+```ruby
+require 'time'
+require 'bandwidth-sdk'
+# setup authorization
+Bandwidth.configure do |config|
+  # Configure HTTP basic authorization: Basic
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+
+  # Configure OAuth2 access token for authorization: OAuth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = Bandwidth::PhoneNumberLookupApi.new
+account_id = '9900000' # String | 
+request_id = '004223a0-8b17-41b1-bf81-20732adf5590' # String | 
+
+begin
+  # Get Asynchronous Bulk Number Lookup
+  result = api_instance.get_async_bulk_lookup(account_id, request_id)
+  p result
+rescue Bandwidth::ApiError => e
+  puts "Error when calling PhoneNumberLookupApi->get_async_bulk_lookup: #{e}"
+end
+```
+
+#### Using the get_async_bulk_lookup_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetAsyncBulkLookupResponse>, Integer, Hash)> get_async_bulk_lookup_with_http_info(account_id, request_id)
+
+```ruby
+begin
+  # Get Asynchronous Bulk Number Lookup
+  data, status_code, headers = api_instance.get_async_bulk_lookup_with_http_info(account_id, request_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetAsyncBulkLookupResponse>
+rescue Bandwidth::ApiError => e
+  puts "Error when calling PhoneNumberLookupApi->get_async_bulk_lookup_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **account_id** | **String** |  |  |
+| **request_id** | **String** |  |  |
+
+### Return type
+
+[**GetAsyncBulkLookupResponse**](GetAsyncBulkLookupResponse.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

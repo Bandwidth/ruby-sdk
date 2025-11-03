@@ -14,37 +14,12 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # Carrier information results for the specified telephone number.
-  class LookupResult
-    # The telephone number in E.164 format.
-    attr_accessor :phone_number
+  # The phone number lookup response data
+  class CreateAsyncBulkLookupResponseData
+    # The phone number lookup request ID from Bandwidth.
+    attr_accessor :request_id
 
-    attr_accessor :line_type
-
-    # The messaging service provider of the telephone number.
-    attr_accessor :messaging_provider
-
-    # The voice service provider of the telephone number.
-    attr_accessor :voice_provider
-
-    # The country code of the telephone number in ISO 3166-1 alpha-3 format.
-    attr_accessor :country_code_a3
-
-    # [DNI-Only](#section/DNI-Only). The carrier that reported a deactivation event for this phone number. 
-    attr_accessor :deactivation_reporter
-
-    # [DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event.
-    attr_accessor :deactivation_date
-
-    attr_accessor :deactivation_event
-
-    attr_accessor :latest_message_delivery_status
-
-    # [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.  Think of this as the \"start time\" for that status. Value resets every time the `latestMessageDeliveryStatus` changes.
-    attr_accessor :initial_message_delivery_status_date
-
-    # [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is. Value resets every time the `latestMessageDeliveryStatus` changes.
-    attr_accessor :latest_message_delivery_status_date
+    attr_accessor :status
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -71,17 +46,8 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'phone_number' => :'phoneNumber',
-        :'line_type' => :'lineType',
-        :'messaging_provider' => :'messagingProvider',
-        :'voice_provider' => :'voiceProvider',
-        :'country_code_a3' => :'countryCodeA3',
-        :'deactivation_reporter' => :'deactivationReporter',
-        :'deactivation_date' => :'deactivationDate',
-        :'deactivation_event' => :'deactivationEvent',
-        :'latest_message_delivery_status' => :'latestMessageDeliveryStatus',
-        :'initial_message_delivery_status_date' => :'initialMessageDeliveryStatusDate',
-        :'latest_message_delivery_status_date' => :'latestMessageDeliveryStatusDate'
+        :'request_id' => :'requestId',
+        :'status' => :'status'
       }
     end
 
@@ -93,17 +59,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'phone_number' => :'String',
-        :'line_type' => :'LineTypeEnum',
-        :'messaging_provider' => :'String',
-        :'voice_provider' => :'String',
-        :'country_code_a3' => :'String',
-        :'deactivation_reporter' => :'String',
-        :'deactivation_date' => :'String',
-        :'deactivation_event' => :'DeactivationEventEnum',
-        :'latest_message_delivery_status' => :'LatestMessageDeliveryStatusEnum',
-        :'initial_message_delivery_status_date' => :'Date',
-        :'latest_message_delivery_status_date' => :'Date'
+        :'request_id' => :'String',
+        :'status' => :'InProgressLookupStatusEnum'
       }
     end
 
@@ -117,59 +74,23 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::LookupResult` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CreateAsyncBulkLookupResponseData` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::LookupResult`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::CreateAsyncBulkLookupResponseData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'phone_number')
-        self.phone_number = attributes[:'phone_number']
+      if attributes.key?(:'request_id')
+        self.request_id = attributes[:'request_id']
       end
 
-      if attributes.key?(:'line_type')
-        self.line_type = attributes[:'line_type']
-      end
-
-      if attributes.key?(:'messaging_provider')
-        self.messaging_provider = attributes[:'messaging_provider']
-      end
-
-      if attributes.key?(:'voice_provider')
-        self.voice_provider = attributes[:'voice_provider']
-      end
-
-      if attributes.key?(:'country_code_a3')
-        self.country_code_a3 = attributes[:'country_code_a3']
-      end
-
-      if attributes.key?(:'deactivation_reporter')
-        self.deactivation_reporter = attributes[:'deactivation_reporter']
-      end
-
-      if attributes.key?(:'deactivation_date')
-        self.deactivation_date = attributes[:'deactivation_date']
-      end
-
-      if attributes.key?(:'deactivation_event')
-        self.deactivation_event = attributes[:'deactivation_event']
-      end
-
-      if attributes.key?(:'latest_message_delivery_status')
-        self.latest_message_delivery_status = attributes[:'latest_message_delivery_status']
-      end
-
-      if attributes.key?(:'initial_message_delivery_status_date')
-        self.initial_message_delivery_status_date = attributes[:'initial_message_delivery_status_date']
-      end
-
-      if attributes.key?(:'latest_message_delivery_status_date')
-        self.latest_message_delivery_status_date = attributes[:'latest_message_delivery_status_date']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
     end
 
@@ -193,17 +114,8 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          phone_number == o.phone_number &&
-          line_type == o.line_type &&
-          messaging_provider == o.messaging_provider &&
-          voice_provider == o.voice_provider &&
-          country_code_a3 == o.country_code_a3 &&
-          deactivation_reporter == o.deactivation_reporter &&
-          deactivation_date == o.deactivation_date &&
-          deactivation_event == o.deactivation_event &&
-          latest_message_delivery_status == o.latest_message_delivery_status &&
-          initial_message_delivery_status_date == o.initial_message_delivery_status_date &&
-          latest_message_delivery_status_date == o.latest_message_delivery_status_date
+          request_id == o.request_id &&
+          status == o.status
     end
 
     # @see the `==` method
@@ -215,7 +127,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, line_type, messaging_provider, voice_provider, country_code_a3, deactivation_reporter, deactivation_date, deactivation_event, latest_message_delivery_status, initial_message_delivery_status_date, latest_message_delivery_status_date].hash
+      [request_id, status].hash
     end
 
     # Builds the object from hash

@@ -75,7 +75,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"TranscriptionsApi.delete_real_time_transcription",
@@ -150,7 +150,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CallTranscriptionResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"TranscriptionsApi.get_real_time_transcription",
@@ -219,7 +219,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Array<CallTranscriptionMetadata>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"TranscriptionsApi.list_real_time_transcriptions",
