@@ -35,7 +35,7 @@ jobs:
       MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
