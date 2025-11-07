@@ -1,4 +1,4 @@
-# Unit tests for Bandwidth::MultiChannelApi
+# Integration tests for Bandwidth::MultiChannelApi
 describe 'MultiChannelApi' do
   before(:all) do
     Bandwidth.configure do |config|

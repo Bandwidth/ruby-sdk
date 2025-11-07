@@ -14,14 +14,44 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # Create phone number lookup request.
-  class LookupRequest
-    attr_accessor :tns
+  # The phone number lookup response data
+  class GetAsyncBulkLookupResponseData
+    # The phone number lookup request ID from Bandwidth.
+    attr_accessor :request_id
+
+    attr_accessor :status
+
+    # The carrier information results for the specified telephone number.
+    attr_accessor :results
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'tns' => :'tns'
+        :'request_id' => :'requestId',
+        :'status' => :'status',
+        :'results' => :'results'
       }
     end
 
@@ -33,7 +63,9 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'tns' => :'Array<String>'
+        :'request_id' => :'String',
+        :'status' => :'InProgressLookupStatusEnum',
+        :'results' => :'Array<LookupResult>'
       }
     end
 
@@ -47,23 +79,29 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::LookupRequest` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::GetAsyncBulkLookupResponseData` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::LookupRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::GetAsyncBulkLookupResponseData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'tns')
-        if (value = attributes[:'tns']).is_a?(Array)
-          self.tns = value
+      if attributes.key?(:'request_id')
+        self.request_id = attributes[:'request_id']
+      end
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.key?(:'results')
+        if (value = attributes[:'results']).is_a?(Array)
+          self.results = value
         end
-      else
-        self.tns = nil
       end
     end
 
@@ -72,10 +110,6 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @tns.nil?
-        invalid_properties.push('invalid value for "tns", tns cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -83,7 +117,6 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @tns.nil?
       true
     end
 
@@ -92,7 +125,9 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          tns == o.tns
+          request_id == o.request_id &&
+          status == o.status &&
+          results == o.results
     end
 
     # @see the `==` method
@@ -104,7 +139,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [tns].hash
+      [request_id, status, results].hash
     end
 
     # Builds the object from hash

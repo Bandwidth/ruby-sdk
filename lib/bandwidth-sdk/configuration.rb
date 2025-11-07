@@ -414,15 +414,21 @@ module Bandwidth
           description: "Production",
           }
         ],
-        "PhoneNumberLookupApi.create_lookup": [
+        "PhoneNumberLookupApi.create_async_bulk_lookup": [
           {
-          url: "https://numbers.bandwidth.com/api/v1",
+          url: "https://api.bandwidth.com/v2",
           description: "Production",
           }
         ],
-        "PhoneNumberLookupApi.get_lookup_status": [
+        "PhoneNumberLookupApi.create_sync_lookup": [
           {
-          url: "https://numbers.bandwidth.com/api/v1",
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
+        "PhoneNumberLookupApi.get_async_bulk_lookup": [
+          {
+          url: "https://api.bandwidth.com/v2",
           description: "Production",
           }
         ],
