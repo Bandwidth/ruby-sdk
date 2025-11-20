@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class MultiChannelMessageResponseDataChannelListInner
+  class MultiChannelChannelListRBMResponseObject
     # The sender ID of the message. This could be an alphanumeric sender ID.
     attr_accessor :from
 
@@ -72,7 +72,7 @@ module Bandwidth
         :'from' => :'String',
         :'application_id' => :'String',
         :'channel' => :'MultiChannelMessageChannelEnum',
-        :'content' => :'MultiChannelChannelListObjectContent',
+        :'content' => :'MultiChannelChannelListRBMObjectAllOfContent',
         :'owner' => :'String'
       }
     end
@@ -86,7 +86,8 @@ module Bandwidth
     # List of class defined in allOf (OpenAPI v3)
     def self.openapi_all_of
       [
-      :'MultiChannelChannelListObject'
+      :'MultiChannelChannelListOwnerObject',
+      :'MultiChannelChannelListRBMObject'
       ]
     end
 
@@ -94,13 +95,13 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelMessageResponseDataChannelListInner` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::MultiChannelChannelListRBMResponseObject` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelMessageResponseDataChannelListInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::MultiChannelChannelListRBMResponseObject`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }

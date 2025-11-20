@@ -1,4 +1,4 @@
-# Bandwidth::MultiChannelChannelListObjectContent
+# Bandwidth::MultiChannelChannelListRBMObjectAllOfContent
 
 ## Class instance methods
 
@@ -11,14 +11,12 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'bandwidth-sdk'
 
-Bandwidth::MultiChannelChannelListObjectContent.openapi_one_of
+Bandwidth::MultiChannelChannelListRBMObjectAllOfContent.openapi_one_of
 # =>
 # [
-#   :'MmsMessageContent',
 #   :'RbmMessageContentRichCard',
 #   :'RbmMessageContentText',
-#   :'RbmMessageMedia',
-#   :'SmsMessageContent'
+#   :'RbmMessageMedia'
 # ]
 ```
 
@@ -31,10 +29,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'bandwidth-sdk'
 
-Bandwidth::MultiChannelChannelListObjectContent.build(data)
-# => #<MmsMessageContent:0x00007fdd4aab02a0>
+Bandwidth::MultiChannelChannelListRBMObjectAllOfContent.build(data)
+# => #<RbmMessageContentRichCard:0x00007fdd4aab02a0>
 
-Bandwidth::MultiChannelChannelListObjectContent.build(data_that_doesnt_match)
+Bandwidth::MultiChannelChannelListRBMObjectAllOfContent.build(data_that_doesnt_match)
 # => nil
 ```
 
@@ -46,10 +44,8 @@ Bandwidth::MultiChannelChannelListObjectContent.build(data_that_doesnt_match)
 
 #### Return type
 
-- `MmsMessageContent`
 - `RbmMessageContentRichCard`
 - `RbmMessageContentText`
 - `RbmMessageMedia`
-- `SmsMessageContent`
 - `nil` (if no type matches)
 

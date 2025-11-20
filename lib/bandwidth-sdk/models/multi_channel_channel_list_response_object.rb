@@ -14,16 +14,14 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  module MultiChannelAction
+  module MultiChannelChannelListResponseObject
     class << self
       # List of class defined in anyOf (OpenAPI v3)
       def openapi_any_of
         [
-          :'MultiChannelActionCalendarEvent',
-          :'RbmActionBase',
-          :'RbmActionDial',
-          :'RbmActionOpenUrl',
-          :'RbmActionViewLocation'
+          :'MultiChannelChannelListMMSResponseObject',
+          :'MultiChannelChannelListRBMResponseObject',
+          :'MultiChannelChannelListSMSResponseObject'
         ]
       end
 

@@ -1,89 +1,40 @@
 # Bandwidth::MultiChannelAction
 
-## Class instance methods
+## Properties
 
-### `openapi_one_of`
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **type** | [**RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |  |
+| **text** | **String** | Displayed text for user to click |  |
+| **postback_data** | **String** | Base64 payload the customer receives when the reply is clicked. |  |
+| **phone_number** | **String** | The phone number to dial. Must be E164 format. |  |
+| **latitude** | **Float** | The latitude of the location. |  |
+| **longitude** | **Float** | The longitude of the location. |  |
+| **label** | **String** | The label of the location. | [optional] |
+| **title** | **String** | The title of the event. |  |
+| **start_time** | **Time** | The start time of the event. |  |
+| **end_time** | **Time** | The end time of the event. |  |
+| **description** | **String** | The description of the event. | [optional] |
+| **url** | **String** | The URL to open in browser. |  |
 
-Returns the list of classes defined in oneOf.
-
-#### Example
-
-```ruby
-require 'bandwidth-sdk'
-
-Bandwidth::MultiChannelAction.openapi_one_of
-# =>
-# [
-#   :'MultiChannelActionCalendarEvent',
-#   :'RbmActionBase',
-#   :'RbmActionDial',
-#   :'RbmActionOpenUrl',
-#   :'RbmActionViewLocation'
-# ]
-```
-
-### `openapi_discriminator_name`
-
-Returns the discriminator's property name.
-
-#### Example
+## Example
 
 ```ruby
 require 'bandwidth-sdk'
 
-Bandwidth::MultiChannelAction.openapi_discriminator_name
-# => :'type'
+instance = Bandwidth::MultiChannelAction.new(
+  type: null,
+  text: Hello world,
+  postback_data: U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;,
+  phone_number: +15552223333,
+  latitude: 37.7749,
+  longitude: -122.4194,
+  label: San Francisco,
+  title: Meeting with John,
+  start_time: 2022-09-14T18:20:16Z,
+  end_time: 2022-09-14T18:20:16Z,
+  description: Discuss the new project,
+  url: https://dev.bandwidth.com
+)
 ```
-
-### `openapi_discriminator_name`
-
-Returns the discriminator's mapping.
-
-#### Example
-
-```ruby
-require 'bandwidth-sdk'
-
-Bandwidth::MultiChannelAction.openapi_discriminator_mapping
-# =>
-# {
-#   :'CREATE_CALENDAR_EVENT' => :'MultiChannelActionCalendarEvent',
-#   :'DIAL_PHONE' => :'RbmActionDial',
-#   :'OPEN_URL' => :'RbmActionOpenUrl',
-#   :'REPLY' => :'RbmActionBase',
-#   :'REQUEST_LOCATION' => :'RbmActionBase',
-#   :'SHOW_LOCATION' => :'RbmActionViewLocation'
-# }
-```
-
-### build
-
-Find the appropriate object from the `openapi_one_of` list and casts the data into it.
-
-#### Example
-
-```ruby
-require 'bandwidth-sdk'
-
-Bandwidth::MultiChannelAction.build(data)
-# => #<MultiChannelActionCalendarEvent:0x00007fdd4aab02a0>
-
-Bandwidth::MultiChannelAction.build(data_that_doesnt_match)
-# => nil
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| **data** | **Mixed** | data to be matched against the list of oneOf items |
-
-#### Return type
-
-- `MultiChannelActionCalendarEvent`
-- `RbmActionBase`
-- `RbmActionDial`
-- `RbmActionOpenUrl`
-- `RbmActionViewLocation`
-- `nil` (if no type matches)
 

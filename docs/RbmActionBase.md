@@ -16,7 +16,7 @@ require 'bandwidth-sdk'
 instance = Bandwidth::RbmActionBase.new(
   type: null,
   text: Hello world,
-  postback_data: [B@1d33e72e
+  postback_data: [B@7d5d77a6
 )
 ```
 
