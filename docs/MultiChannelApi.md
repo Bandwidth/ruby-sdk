@@ -29,7 +29,7 @@ end
 
 api_instance = Bandwidth::MultiChannelApi.new
 account_id = '9900000' # String | Your Bandwidth Account ID.
-multi_channel_message_request = Bandwidth::MultiChannelMessageRequest.new({to: '+15552223333', channel_list: [Bandwidth::MultiChannelChannelListObject.new({from: 'BandwidthRBM', application_id: '93de2206-9669-4e07-948d-329f4b722ee2', channel: Bandwidth::MultiChannelMessageChannelEnum::RBM, content: Bandwidth::MmsMessageContent.new})]}) # MultiChannelMessageRequest | 
+multi_channel_message_request = Bandwidth::MultiChannelMessageRequest.new({to: '+15552223333', channel_list: [Bandwidth::MultiChannelChannelListRequestObject.new({from: 'BandwidthRBM', application_id: '93de2206-9669-4e07-948d-329f4b722ee2', channel: Bandwidth::MultiChannelMessageChannelEnum::RBM, content: Bandwidth::MmsMessageContent.new})]}) # MultiChannelMessageRequest | 
 
 begin
   # Create Multi-Channel Message

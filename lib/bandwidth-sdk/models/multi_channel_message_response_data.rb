@@ -86,7 +86,7 @@ module Bandwidth
         :'time' => :'Time',
         :'direction' => :'MessageDirectionEnum',
         :'to' => :'Array<String>',
-        :'channel_list' => :'Array<MultiChannelMessageResponseDataChannelListInner>',
+        :'channel_list' => :'Array<MultiChannelChannelListResponseObject>',
         :'tag' => :'String',
         :'priority' => :'PriorityEnum',
         :'expiration' => :'Time'

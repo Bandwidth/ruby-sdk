@@ -22,7 +22,7 @@ describe 'MultiChannelApi' do
   # Create Multi-Channel Message
   describe 'create_multi_channel_message' do
     it 'creates a multi channel message' do
-      message_body = Bandwidth::MultiChannelChannelListObject.new(
+      message_body = Bandwidth::MultiChannelChannelListSMSObject.new(
         from: BW_NUMBER,
         application_id: BW_MESSAGING_APPLICATION_ID,
         channel: Bandwidth::MultiChannelMessageChannelEnum::SMS,
@@ -30,6 +30,7 @@ describe 'MultiChannelApi' do
           text: 'Hello, this is a test message.',
         )
       )
+      
       multi_channel_message_request = Bandwidth::MultiChannelMessageRequest.new(
         to: USER_NUMBER,
         channel_list: [message_body],
@@ -42,7 +43,17 @@ describe 'MultiChannelApi' do
 
       expect(status_code).to eq(202)
       expect(data).to be_instance_of(Bandwidth::CreateMultiChannelMessageResponse)
-    end if false # skip because prism can't handle a oneOf with differing required fields
+      expect(data.links).to be_instance_of(Array)
+      expect(data.data).to be_instance_of(Bandwidth::MultiChannelMessageResponseData)
+      expect(data.data.id).to be_instance_of(String)
+      expect(data.data.time).to be_instance_of(Time)
+      expect(data.data.direction).to be_one_of(Bandwidth::MessageDirectionEnum.all_vars)
+      expect(data.data.to).to be_instance_of(Array)
+      expect(data.data.tag).to be_instance_of(String)
+      expect(data.data.priority).to be_one_of(Bandwidth::PriorityEnum.all_vars)
+      expect(data.data.expiration).to be_instance_of(Time)
+      expect(data.data.channel_list).to be_instance_of(Array)
+    end
 
     it 'causes an ArgumentError for a missing account_id' do
       expect {
