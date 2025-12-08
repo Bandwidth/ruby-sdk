@@ -322,9 +322,13 @@ module Bandwidth
           data.each { |k, v| hash[k] = convert_to_type(v, sub_type) }
         end
       else
-        # models (e.g. Pet) or oneOf
+        # models (e.g. Pet) or oneOf/anyOf
         klass = Bandwidth.const_get(return_type)
-        klass.respond_to?(:openapi_one_of) ? klass.build(data) : klass.build_from_hash(data)
+        if klass.respond_to?(:openapi_one_of) || klass.respond_to?(:openapi_any_of)
+          klass.build(data)
+        else
+          klass.build_from_hash(data)
+        end
       end
     end
 
@@ -352,9 +356,10 @@ module Bandwidth
       Array(auth_names).each do |auth_name|
         auth_setting = @config.auth_settings[auth_name]
         next unless auth_setting
+        puts auth_setting
         case auth_setting[:in]
-        when 'header' then header_params[auth_setting[:key]] = auth_setting[:value]
-        when 'query'  then query_params[auth_setting[:key]] = auth_setting[:value]
+        when 'header' then header_params[auth_setting[:key]] = auth_setting[:value] unless auth_setting[:value].nil?
+        when 'query'  then query_params[auth_setting[:key]] = auth_setting[:value] unless auth_setting[:value].nil?
         else fail ArgumentError, 'Authentication token must be in `query` or `header`'
         end
       end

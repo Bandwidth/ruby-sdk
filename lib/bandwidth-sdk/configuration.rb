@@ -59,6 +59,16 @@ module Bandwidth
     # @return [String]
     attr_accessor :password
 
+    # Defines the client ID used with OAuth2.
+    # 
+    # @return [String]
+    attr_accessor :client_id
+
+    # Defines the client secret used with OAuth2.
+    # 
+    # @return [String]
+    attr_accessor :client_secret
+
     # Defines the access token (Bearer) used with OAuth2.
     attr_accessor :access_token
 
@@ -182,6 +192,31 @@ module Bandwidth
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+      @access_token_expires_at = nil
+      @access_token_getter = Proc.new {
+        access_token_valid = @access_token && @access_token_expires_at > Time.now + 60
+        next @access_token if access_token_valid
+
+        puts "Refreshing access token..." if @debugging
+        # obtain new access token using client credentials
+        token_url = 'https://api.bandwidth.com/api/v1/oauth2/token'
+        auth_header = 'Basic ' + ["#{@client_id}:#{@client_secret}"].pack('m').delete("\r\n")
+        conn = Faraday.new(url: token_url) do |faraday|
+          faraday.request :url_encoded
+          faraday.adapter Faraday.default_adapter
+        end
+        response = conn.post do |req|
+          req.headers['Authorization'] = auth_header
+          req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          req.body = 'grant_type=client_credentials'
+        end
+        if response.status != 200
+          raise "Failed to obtain access token: #{response.status} #{response.body}"
+        end
+        body = JSON.parse(response.body)
+        @access_token = body['access_token']
+        @access_token_expires_at = Time.now + body['expires_in']
+      }
 
       yield(self) if block_given?
     end
@@ -237,6 +272,7 @@ module Bandwidth
     # Gets access_token using access_token_getter or uses the static access_token
     def access_token_with_refresh
       return access_token if access_token_getter.nil?
+      return unless @client_id && @client_secret
       access_token_getter.call
     end
 
@@ -244,6 +280,12 @@ module Bandwidth
     def basic_auth_token
       'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
     end
+
+    # Gets Bearer auth token string
+    def oauth_bearer_token
+      "Bearer #{access_token_with_refresh}" unless access_token_with_refresh.nil?
+    end
+
 
     # Returns Auth Settings hash for api client.
     def auth_settings
@@ -260,7 +302,7 @@ module Bandwidth
             type: 'oauth2',
             in: 'header',
             key: 'Authorization',
-            value: "Bearer #{access_token_with_refresh}"
+            value: oauth_bearer_token
           },
       }
     end
