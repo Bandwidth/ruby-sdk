@@ -204,6 +204,7 @@ lib/bandwidth-sdk/api/toll_free_verification_api.rb
 lib/bandwidth-sdk/api/transcriptions_api.rb
 lib/bandwidth-sdk/api_client.rb
 lib/bandwidth-sdk/api_error.rb
+lib/bandwidth-sdk/api_model_base.rb
 lib/bandwidth-sdk/configuration.rb
 lib/bandwidth-sdk/models/account_statistics.rb
 lib/bandwidth-sdk/models/additional_denial_reason.rb
