@@ -192,9 +192,9 @@ module Bandwidth
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
-      @access_token_expires_at = nil
+      @access_token_expiration = nil
       @access_token_getter = Proc.new {
-        access_token_valid = @access_token && (@access_token_expires_at.nil? || @access_token_expires_at > Time.now + 60)
+        access_token_valid = @access_token && (@access_token_expiration.nil? || @access_token_expiration > Time.now + 60)
         next @access_token if access_token_valid
         next unless @client_id && @client_secret
 
@@ -216,7 +216,7 @@ module Bandwidth
         end
         body = JSON.parse(response.body)
         @access_token = body['access_token']
-        @access_token_expires_at = Time.now + body['expires_in']
+        @access_token_expiration = Time.now + body['expires_in']
       }
 
       yield(self) if block_given?
