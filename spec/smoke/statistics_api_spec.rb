@@ -44,8 +44,8 @@ describe 'StatisticsApi Integration Tests' do
     it 'causes a 403 error' do
       config = Bandwidth::Configuration.new
       config.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
+        config.username = FORBIDDEN_USERNAME
+        config.password = FORBIDDEN_USERNAME
       end
       client = Bandwidth::ApiClient.new(config)
       forbidden_instance = Bandwidth::StatisticsApi.new(client)
