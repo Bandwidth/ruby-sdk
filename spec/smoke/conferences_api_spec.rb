@@ -3,13 +3,15 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::ConferencesApi
 describe 'ConferencesApi Integration Tests' do
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.client_id = BW_CLIENT_ID
       config.client_secret = BW_CLIENT_SECRET
       config.return_binary_data = true
     end
-    @conferences_api_instance = Bandwidth::ConferencesApi.new
-    @calls_api_instance = Bandwidth::CallsApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @conferences_api_instance = Bandwidth::ConferencesApi.new(client)
+    @calls_api_instance = Bandwidth::CallsApi.new(client)
 
     # conference info
     $manteca_test_id = setup_manteca('conference')

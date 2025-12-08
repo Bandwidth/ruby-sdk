@@ -3,13 +3,15 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::RecordingsApi
 describe 'RecordingsApi Integration Tests' do
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.client_id = BW_CLIENT_ID
       config.client_secret = BW_CLIENT_SECRET
       config.return_binary_data = true
     end
-    @recordings_api_instance = Bandwidth::RecordingsApi.new
-    @calls_api_instance = Bandwidth::CallsApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @recordings_api_instance = Bandwidth::RecordingsApi.new(client)
+    @calls_api_instance = Bandwidth::CallsApi.new(client)
 
     # recording info
     $manteca_test_id = setup_manteca('CALL')
