@@ -4,8 +4,8 @@ describe 'PhoneNumberLookupApi' do
 
   before(:all) do
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
     @api_instance = Bandwidth::PhoneNumberLookupApi.new
   end

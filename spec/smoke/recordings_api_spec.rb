@@ -4,8 +4,8 @@ require_relative '../call_utils'
 describe 'RecordingsApi Integration Tests' do
   before(:all) do
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
       config.return_binary_data = true
     end
     @recordings_api_instance = Bandwidth::RecordingsApi.new
