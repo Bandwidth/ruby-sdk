@@ -120,7 +120,7 @@ describe Bandwidth::VerifyCodeRequest do
 
       expect {
         Bandwidth::VerifyCodeRequest.new({ to: '+19195551234', expiration_time_in_minutes: 1, code: '123' })
-      }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be great than or equal to 4.')
+      }.to raise_error(ArgumentError, 'invalid value for "code", the character length must be greater than or equal to 4.')
     end
   end
 end
