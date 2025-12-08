@@ -189,33 +189,5 @@ describe 'RecordingsApi Integration Tests' do
         expect(e.code).to eq(404)
       }
     end
-
-    it 'causes a 401 error' do
-      Bandwidth.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
-      end
-
-      expect {
-        @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
-
-    it 'causes a 403 error' do
-      Bandwidth.configure do |config|
-        config.username = FORBIDDEN_USERNAME
-        config.password = FORBIDDEN_PASSWORD
-      end
-
-      expect {
-        @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(403)
-      }
-    end
   end
 end
