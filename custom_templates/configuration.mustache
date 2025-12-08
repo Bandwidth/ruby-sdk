@@ -182,7 +182,7 @@ module {{moduleName}}
 
         puts "Refreshing access token..." if @debugging
         # obtain new access token using client credentials
-        token_url = 'https://api.bandwidth.com/api/v1/oauth2/token'
+        token_url = '{{tokenUrl}}'
         auth_header = 'Basic ' + ["#{@client_id}:#{@client_secret}"].pack('m').delete("\r\n")
         conn = Faraday.new(url: token_url) do |faraday|
           faraday.request :url_encoded
