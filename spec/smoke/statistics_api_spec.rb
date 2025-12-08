@@ -45,7 +45,7 @@ describe 'StatisticsApi Integration Tests' do
       config = Bandwidth::Configuration.new
       config.configure do |config|
         config.username = FORBIDDEN_USERNAME
-        config.password = FORBIDDEN_USERNAME
+        config.password = FORBIDDEN_PASSWORD
       end
       client = Bandwidth::ApiClient.new(config)
       forbidden_instance = Bandwidth::StatisticsApi.new(client)
