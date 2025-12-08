@@ -194,8 +194,9 @@ module Bandwidth
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
       @access_token_expires_at = nil
       @access_token_getter = Proc.new {
-        access_token_valid = @access_token && @access_token_expires_at > Time.now + 60
+        access_token_valid = @access_token && (@access_token_expires_at.nil? || @access_token_expires_at > Time.now + 60)
         next @access_token if access_token_valid
+        next unless @client_id && @client_secret
 
         puts "Refreshing access token..." if @debugging
         # obtain new access token using client credentials
@@ -272,7 +273,6 @@ module Bandwidth
     # Gets access_token using access_token_getter or uses the static access_token
     def access_token_with_refresh
       return access_token if access_token_getter.nil?
-      return unless @client_id && @client_secret
       access_token_getter.call
     end
 
