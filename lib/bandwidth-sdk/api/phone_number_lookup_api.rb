@@ -74,7 +74,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CreateAsyncBulkLookupResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"PhoneNumberLookupApi.create_async_bulk_lookup",
@@ -148,7 +148,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CreateSyncLookupResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"PhoneNumberLookupApi.create_sync_lookup",
@@ -217,7 +217,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'GetAsyncBulkLookupResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"PhoneNumberLookupApi.get_async_bulk_lookup",

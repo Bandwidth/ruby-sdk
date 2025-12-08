@@ -74,7 +74,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'Message'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"MessagesApi.create_message",
@@ -218,7 +218,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'MessagesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic']
+      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
 
       new_options = opts.merge(
         :operation => :"MessagesApi.list_messages",
