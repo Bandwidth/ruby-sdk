@@ -51,6 +51,8 @@ RSpec.configure do |config|
     begin
       BW_USERNAME = ENV.fetch('BW_USERNAME')
       BW_PASSWORD = ENV.fetch('BW_PASSWORD')
+      BW_CLIENT_ID = ENV.fetch('BW_CLIENT_ID')
+      BW_CLIENT_SECRET = ENV.fetch('BW_CLIENT_SECRET')
       FORBIDDEN_USERNAME = ENV.fetch('BW_USERNAME_FORBIDDEN')
       FORBIDDEN_PASSWORD = ENV.fetch('BW_PASSWORD_FORBIDDEN')
       BW_ACCOUNT_ID = ENV.fetch('BW_ACCOUNT_ID')
