@@ -85,6 +85,16 @@ Bandwidth.configure do |config|
   config.password = 'YOUR_PASSWORD'
   # Configure faraday connection
   config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
+
+  # Configure OAuth2 access token for authorization: OAuth2
+  config.access_token = 'YOUR_ACCESS TOKEN'
+  # Or use your client ID and client secret to obtain an access token
+  config.client_id = 'YOUR_CLIENT_ID'
+  config.client_secret = 'YOUR_CLIENT_SECRET'
+  # Configure a proc to get access tokens in lieu of the static access_token configuration
+  config.access_token_getter = -> { 'YOUR TOKEN GETTER PROC' } 
+  # Configure faraday connection
+  config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
 end
 
 api_instance = Bandwidth::CallsApi.new
@@ -344,4 +354,12 @@ Authentication schemes defined for the API:
 ### Basic
 
 - **Type**: HTTP basic authentication
+
+### OAuth2
+
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: N/A
 

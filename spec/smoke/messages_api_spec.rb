@@ -10,11 +10,13 @@ describe 'MessagesApi Integration Tests' do
   let(:list_message_direction) { Bandwidth::ListMessageDirectionEnum::OUTBOUND }
   
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    @messaging_api_instance = Bandwidth::MessagesApi.new()
+    client = Bandwidth::ApiClient.new(config)
+    @messaging_api_instance = Bandwidth::MessagesApi.new(client)
 
     # expiration time
     @expiration_time = (Time.now + 60).round.to_datetime.rfc3339
@@ -110,10 +112,13 @@ describe 'MessagesApi Integration Tests' do
     end
 
     it 'causes a 401 error' do
-      Bandwidth.configure do |config|
+      config = Bandwidth::Configuration.new
+      config.configure do |config|
         config.username = UNAUTHORIZED_USERNAME
         config.password = UNAUTHORIZED_PASSWORD
       end
+      client = Bandwidth::ApiClient.new(config)
+      unauthorized_instance = Bandwidth::MessagesApi.new(client)
 
       body = Bandwidth::MessageRequest.new(
         application_id: BW_MESSAGING_APPLICATION_ID,
@@ -123,7 +128,7 @@ describe 'MessagesApi Integration Tests' do
       )
       
       expect {
-        @messaging_api_instance.create_message_with_http_info(BW_ACCOUNT_ID, body)
+        unauthorized_instance.create_message_with_http_info(BW_ACCOUNT_ID, body)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)

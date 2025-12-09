@@ -3,11 +3,13 @@ describe 'PhoneNumberLookupApi' do
   let(:phone_numbers) { [BW_NUMBER, USER_NUMBER] }
 
   before(:all) do
-    Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
-    @api_instance = Bandwidth::PhoneNumberLookupApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @api_instance = Bandwidth::PhoneNumberLookupApi.new(client)
   end
   describe 'test an instance of PhoneNumberLookupApi' do
     it 'should create an instance of PhoneNumberLookupApi' do

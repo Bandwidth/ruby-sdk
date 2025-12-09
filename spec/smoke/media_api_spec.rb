@@ -6,12 +6,14 @@ describe 'MediaApi Integration Tests' do
   let(:media_file_md5) { Digest::MD5.hexdigest(media_file_data) }
   
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
       config.return_binary_data = true
     end
-    @api_instance_media = Bandwidth::MediaApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @api_instance_media = Bandwidth::MediaApi.new(client)
 
     # media names
     @binary_media_name = 'ruby_binary_media' + SecureRandom.uuid + '.txt'

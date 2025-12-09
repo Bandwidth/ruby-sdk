@@ -1,11 +1,13 @@
 # Integration tests for Bandwidth::MultiChannelApi
 describe 'MultiChannelApi' do
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    @multi_channel_api_instance = Bandwidth::MultiChannelApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @multi_channel_api_instance = Bandwidth::MultiChannelApi.new(client)
 
     @expiration_time = (Time.now + 60).round.to_datetime.rfc3339
   end

@@ -5,11 +5,13 @@ describe 'MFAApi Integration Tests' do
   let(:digits) { 6 }
   
   before(:all) do
-    Bandwidth.configure do |config|
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
       config.username = BW_USERNAME
       config.password = BW_PASSWORD
     end
-    @mfa_api_instance = Bandwidth::MFAApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @mfa_api_instance = Bandwidth::MFAApi.new(client)
   end
 
   # Messaging Authentication Code
@@ -88,10 +90,13 @@ describe 'MFAApi Integration Tests' do
     end
 
     it 'causes a 403 error' do
-      Bandwidth.configure do |config|
+      config = Bandwidth::Configuration.new
+      config.configure do |config|
         config.username = UNAUTHORIZED_USERNAME
         config.password = UNAUTHORIZED_PASSWORD
       end
+      client = Bandwidth::ApiClient.new(config)
+      forbidden_instance = Bandwidth::MFAApi.new(client)
 
       req_schema = Bandwidth::CodeRequest.new(
         to: USER_NUMBER,
@@ -102,7 +107,7 @@ describe 'MFAApi Integration Tests' do
       )
       
       expect {
-        @mfa_api_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
+        forbidden_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)

@@ -1,11 +1,13 @@
 # Integration tests for Bandwidth::TollFreeVerificationApi
 describe 'TollFreeVerificationApi' do
   before(:all) do
-    Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
-    @tfv_api_instance = Bandwidth::TollFreeVerificationApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @tfv_api_instance = Bandwidth::TollFreeVerificationApi.new(client)
   end
 
   # Create Webhook Subscription

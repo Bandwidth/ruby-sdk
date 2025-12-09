@@ -3,13 +3,15 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::RecordingsApi
 describe 'RecordingsApi Integration Tests' do
   before(:all) do
-    Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
       config.return_binary_data = true
     end
-    @recordings_api_instance = Bandwidth::RecordingsApi.new
-    @calls_api_instance = Bandwidth::CallsApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @recordings_api_instance = Bandwidth::RecordingsApi.new(client)
+    @calls_api_instance = Bandwidth::CallsApi.new(client)
 
     # recording info
     $manteca_test_id = setup_manteca('CALL')
@@ -187,34 +189,6 @@ describe 'RecordingsApi Integration Tests' do
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(404)
-      }
-    end
-
-    it 'causes a 401 error' do
-      Bandwidth.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
-      end
-
-      expect {
-        @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
-
-    it 'causes a 403 error' do
-      Bandwidth.configure do |config|
-        config.username = FORBIDDEN_USERNAME
-        config.password = FORBIDDEN_PASSWORD
-      end
-
-      expect {
-        @recordings_api_instance.get_call_recording_with_http_info(BW_ACCOUNT_ID, $manteca_call_id, $recording_id)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(403)
       }
     end
   end

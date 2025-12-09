@@ -3,12 +3,14 @@ require_relative '../call_utils'
 # Integration Tests for Bandwidth::TranscriptionsApi
 describe 'TranscriptionsApi Integration Tests' do
   before(:all) do
-    Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
-    @transcriptions_api_instance = Bandwidth::TranscriptionsApi.new
-    @calls_api_instance = Bandwidth::CallsApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @transcriptions_api_instance = Bandwidth::TranscriptionsApi.new(client)
+    @calls_api_instance = Bandwidth::CallsApi.new(client)
 
     # transcription info
     $manteca_test_id = setup_manteca('CALL')

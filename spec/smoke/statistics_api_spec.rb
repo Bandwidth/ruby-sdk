@@ -1,11 +1,13 @@
 # Integration Tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi Integration Tests' do
   before(:all) do
-    Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+    config = Bandwidth::Configuration.new
+    config.configure do |config|
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
-    @statistics_api_instance = Bandwidth::StatisticsApi.new
+    client = Bandwidth::ApiClient.new(config)
+    @statistics_api_instance = Bandwidth::StatisticsApi.new(client)
   end
 
   # Get Account Statistics
@@ -23,13 +25,16 @@ describe 'StatisticsApi Integration Tests' do
   # HTTP 4XX Errors
   describe 'http error' do
     it 'causes a 401 error' do
-      Bandwidth.configure do |config|
+      config = Bandwidth::Configuration.new
+      config.configure do |config|
         config.username = UNAUTHORIZED_USERNAME
         config.password = UNAUTHORIZED_PASSWORD
       end
+      client = Bandwidth::ApiClient.new(config)
+      unauthorized_instance = Bandwidth::StatisticsApi.new(client)
 
       expect {
-        @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
+        unauthorized_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(401)
@@ -37,13 +42,16 @@ describe 'StatisticsApi Integration Tests' do
     end
 
     it 'causes a 403 error' do
-      Bandwidth.configure do |config|
+      config = Bandwidth::Configuration.new
+      config.configure do |config|
         config.username = FORBIDDEN_USERNAME
         config.password = FORBIDDEN_PASSWORD
       end
+      client = Bandwidth::ApiClient.new(config)
+      forbidden_instance = Bandwidth::StatisticsApi.new(client)
 
       expect {
-        @statistics_api_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
+        forbidden_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(403)
