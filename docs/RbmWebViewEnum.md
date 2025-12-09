@@ -1,4 +1,4 @@
-# Bandwidth::RbmVebViewEnum
+# Bandwidth::RbmWebViewEnum
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'bandwidth-sdk'
 
-instance = Bandwidth::RbmVebViewEnum.new()
+instance = Bandwidth::RbmWebViewEnum.new()
 ```
 

@@ -300,7 +300,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RbmOpenUrlEnum](docs/RbmOpenUrlEnum.md)
  - [Bandwidth::RbmStandaloneCard](docs/RbmStandaloneCard.md)
  - [Bandwidth::RbmSuggestionResponse](docs/RbmSuggestionResponse.md)
- - [Bandwidth::RbmVebViewEnum](docs/RbmVebViewEnum.md)
+ - [Bandwidth::RbmWebViewEnum](docs/RbmWebViewEnum.md)
  - [Bandwidth::RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Bandwidth::RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Bandwidth::RecordingStateEnum](docs/RecordingStateEnum.md)

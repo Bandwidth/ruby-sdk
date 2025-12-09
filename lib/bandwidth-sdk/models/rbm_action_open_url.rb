@@ -82,7 +82,7 @@ module Bandwidth
         :'postback_data' => :'String',
         :'url' => :'String',
         :'application' => :'RbmOpenUrlEnum',
-        :'webview_view_mode' => :'RbmVebViewEnum'
+        :'webview_view_mode' => :'RbmWebViewEnum'
       }
     end
 

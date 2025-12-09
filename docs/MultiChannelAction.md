@@ -17,7 +17,7 @@
 | **description** | **String** | The description of the event. | [optional] |
 | **url** | **String** | The URL to open in browser. |  |
 | **application** | [**RbmOpenUrlEnum**](RbmOpenUrlEnum.md) |  | [optional] |
-| **webview_view_mode** | [**RbmVebViewEnum**](RbmVebViewEnum.md) |  | [optional] |
+| **webview_view_mode** | [**RbmWebViewEnum**](RbmWebViewEnum.md) |  | [optional] |
 
 ## Example
 
