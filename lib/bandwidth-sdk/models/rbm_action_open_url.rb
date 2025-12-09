@@ -26,6 +26,10 @@ module Bandwidth
     # The URL to open in browser.
     attr_accessor :url
 
+    attr_accessor :application
+
+    attr_accessor :webview_view_mode
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -54,7 +58,9 @@ module Bandwidth
         :'type' => :'type',
         :'text' => :'text',
         :'postback_data' => :'postbackData',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'application' => :'application',
+        :'webview_view_mode' => :'webviewViewMode'
       }
     end
 
@@ -74,7 +80,9 @@ module Bandwidth
         :'type' => :'RbmActionTypeEnum',
         :'text' => :'String',
         :'postback_data' => :'String',
-        :'url' => :'String'
+        :'url' => :'String',
+        :'application' => :'RbmOpenUrlEnum',
+        :'webview_view_mode' => :'RbmVebViewEnum'
       }
     end
 
@@ -129,6 +137,14 @@ module Bandwidth
         self.url = attributes[:'url']
       else
         self.url = nil
+      end
+
+      if attributes.key?(:'application')
+        self.application = attributes[:'application']
+      end
+
+      if attributes.key?(:'webview_view_mode')
+        self.webview_view_mode = attributes[:'webview_view_mode']
       end
     end
 
@@ -242,7 +258,9 @@ module Bandwidth
           type == o.type &&
           text == o.text &&
           postback_data == o.postback_data &&
-          url == o.url
+          url == o.url &&
+          application == o.application &&
+          webview_view_mode == o.webview_view_mode
     end
 
     # @see the `==` method
@@ -254,7 +272,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, text, postback_data, url].hash
+      [type, text, postback_data, url, application, webview_view_mode].hash
     end
 
     # Builds the object from hash
