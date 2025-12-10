@@ -137,8 +137,10 @@ docs/RbmMessageContentFile.md
 docs/RbmMessageContentRichCard.md
 docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
+docs/RbmOpenUrlEnum.md
 docs/RbmStandaloneCard.md
 docs/RbmSuggestionResponse.md
+docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
@@ -332,8 +334,10 @@ lib/bandwidth-sdk/models/rbm_message_content_file.rb
 lib/bandwidth-sdk/models/rbm_message_content_rich_card.rb
 lib/bandwidth-sdk/models/rbm_message_content_text.rb
 lib/bandwidth-sdk/models/rbm_message_media.rb
+lib/bandwidth-sdk/models/rbm_open_url_enum.rb
 lib/bandwidth-sdk/models/rbm_standalone_card.rb
 lib/bandwidth-sdk/models/rbm_suggestion_response.rb
+lib/bandwidth-sdk/models/rbm_web_view_enum.rb
 lib/bandwidth-sdk/models/recording_available_callback.rb
 lib/bandwidth-sdk/models/recording_complete_callback.rb
 lib/bandwidth-sdk/models/recording_state_enum.rb

@@ -16,6 +16,8 @@
 | **end_time** | **Time** | The end time of the event. |  |
 | **description** | **String** | The description of the event. | [optional] |
 | **url** | **String** | The URL to open in browser. |  |
+| **application** | [**RbmOpenUrlEnum**](RbmOpenUrlEnum.md) |  | [optional] |
+| **webview_view_mode** | [**RbmWebViewEnum**](RbmWebViewEnum.md) |  | [optional] |
 
 ## Example
 
@@ -34,7 +36,9 @@ instance = Bandwidth::MultiChannelAction.new(
   start_time: 2022-09-14T18:20:16Z,
   end_time: 2022-09-14T18:20:16Z,
   description: Discuss the new project,
-  url: https://dev.bandwidth.com
+  url: https://dev.bandwidth.com,
+  application: null,
+  webview_view_mode: null
 )
 ```
 
