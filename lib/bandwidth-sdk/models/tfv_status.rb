@@ -43,6 +43,9 @@ module Bandwidth
     # The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.
     attr_accessor :blocked_reason
 
+    # The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.
+    attr_accessor :cv_token
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -77,7 +80,8 @@ module Bandwidth
         :'modified_date_time' => :'modifiedDateTime',
         :'submission' => :'submission',
         :'blocked' => :'blocked',
-        :'blocked_reason' => :'blockedReason'
+        :'blocked_reason' => :'blockedReason',
+        :'cv_token' => :'cvToken'
       }
     end
 
@@ -103,13 +107,15 @@ module Bandwidth
         :'modified_date_time' => :'Time',
         :'submission' => :'TfvSubmissionInfo',
         :'blocked' => :'Boolean',
-        :'blocked_reason' => :'String'
+        :'blocked_reason' => :'String',
+        :'cv_token' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'cv_token'
       ])
     end
 
@@ -168,6 +174,10 @@ module Bandwidth
       if attributes.key?(:'blocked_reason')
         self.blocked_reason = attributes[:'blocked_reason']
       end
+
+      if attributes.key?(:'cv_token')
+        self.cv_token = attributes[:'cv_token']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -188,6 +198,14 @@ module Bandwidth
         invalid_properties.push("invalid value for \"phone_number\", must conform to the pattern #{pattern}.")
       end
 
+      if !@cv_token.nil? && @cv_token.to_s.length > 500
+        invalid_properties.push('invalid value for "cv_token", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@cv_token.nil? && @cv_token.to_s.length < 0
+        invalid_properties.push('invalid value for "cv_token", the character length must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -198,6 +216,8 @@ module Bandwidth
       return false if !@phone_number.nil? && @phone_number.to_s.length > 12
       return false if !@phone_number.nil? && @phone_number.to_s.length < 12
       return false if !@phone_number.nil? && @phone_number !~ Regexp.new(/^\+1(800|833|844|855|866|877|888)[2-9]\d{6}$/)
+      return false if !@cv_token.nil? && @cv_token.to_s.length > 500
+      return false if !@cv_token.nil? && @cv_token.to_s.length < 0
       true
     end
 
@@ -224,6 +244,20 @@ module Bandwidth
       @phone_number = phone_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] cv_token Value to be assigned
+    def cv_token=(cv_token)
+      if !cv_token.nil? && cv_token.to_s.length > 500
+        fail ArgumentError, 'invalid value for "cv_token", the character length must be smaller than or equal to 500.'
+      end
+
+      if !cv_token.nil? && cv_token.to_s.length < 0
+        fail ArgumentError, 'invalid value for "cv_token", the character length must be greater than or equal to 0.'
+      end
+
+      @cv_token = cv_token
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -238,7 +272,8 @@ module Bandwidth
           modified_date_time == o.modified_date_time &&
           submission == o.submission &&
           blocked == o.blocked &&
-          blocked_reason == o.blocked_reason
+          blocked_reason == o.blocked_reason &&
+          cv_token == o.cv_token
     end
 
     # @see the `==` method
@@ -250,7 +285,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, status, internal_ticket_number, decline_reason_description, resubmit_allowed, created_date_time, modified_date_time, submission, blocked, blocked_reason].hash
+      [phone_number, status, internal_ticket_number, decline_reason_description, resubmit_allowed, created_date_time, modified_date_time, submission, blocked, blocked_reason, cv_token].hash
     end
 
     # Builds the object from hash

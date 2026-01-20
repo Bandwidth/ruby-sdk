@@ -14,17 +14,16 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class RbmMessageMedia < ApiModelBase
-    attr_accessor :media
+  class CustomTooManyRequestsError < ApiModelBase
+    attr_accessor :type
 
-    # An array of suggested actions for the recipient.
-    attr_accessor :suggestions
+    attr_accessor :description
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'media' => :'media',
-        :'suggestions' => :'suggestions'
+        :'type' => :'type',
+        :'description' => :'description'
       }
     end
 
@@ -41,8 +40,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'media' => :'Array<RbmMessageContentFile>',
-        :'suggestions' => :'Array<MultiChannelAction>'
+        :'type' => :'String',
+        :'description' => :'String'
       }
     end
 
@@ -56,30 +55,28 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::RbmMessageMedia` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::CustomTooManyRequestsError` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::RbmMessageMedia`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::CustomTooManyRequestsError`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'media')
-        if (value = attributes[:'media']).is_a?(Array)
-          self.media = value
-        end
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       else
-        self.media = nil
+        self.type = nil
       end
 
-      if attributes.key?(:'suggestions')
-        if (value = attributes[:'suggestions']).is_a?(Array)
-          self.suggestions = value
-        end
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
+      else
+        self.description = nil
       end
     end
 
@@ -88,12 +85,12 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @media.nil?
-        invalid_properties.push('invalid value for "media", media cannot be nil.')
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if !@suggestions.nil? && @suggestions.length > 11
-        invalid_properties.push('invalid value for "suggestions", number of items must be less than or equal to 11.')
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
       end
 
       invalid_properties
@@ -103,33 +100,29 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @media.nil?
-      return false if !@suggestions.nil? && @suggestions.length > 11
+      return false if @type.nil?
+      return false if @description.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] media Value to be assigned
-    def media=(media)
-      if media.nil?
-        fail ArgumentError, 'media cannot be nil'
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      if type.nil?
+        fail ArgumentError, 'type cannot be nil'
       end
 
-      @media = media
+      @type = type
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] suggestions Value to be assigned
-    def suggestions=(suggestions)
-      if suggestions.nil?
-        fail ArgumentError, 'suggestions cannot be nil'
+    # @param [Object] description Value to be assigned
+    def description=(description)
+      if description.nil?
+        fail ArgumentError, 'description cannot be nil'
       end
 
-      if suggestions.length > 11
-        fail ArgumentError, 'invalid value for "suggestions", number of items must be less than or equal to 11.'
-      end
-
-      @suggestions = suggestions
+      @description = description
     end
 
     # Checks equality by comparing each attribute.
@@ -137,8 +130,8 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          media == o.media &&
-          suggestions == o.suggestions
+          type == o.type &&
+          description == o.description
     end
 
     # @see the `==` method
@@ -150,7 +143,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [media, suggestions].hash
+      [type, description].hash
     end
 
     # Builds the object from hash

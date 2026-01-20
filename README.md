@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
  - [Bandwidth::CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
  - [Bandwidth::CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Bandwidth::CustomTooManyRequestsError](docs/CustomTooManyRequestsError.md)
  - [Bandwidth::DeactivationEventEnum](docs/DeactivationEventEnum.md)
  - [Bandwidth::DisconnectCallback](docs/DisconnectCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
