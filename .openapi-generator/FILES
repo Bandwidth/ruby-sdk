@@ -49,7 +49,6 @@ docs/CreateMessageRequestError.md
 docs/CreateMultiChannelMessageResponse.md
 docs/CreateSyncLookupResponse.md
 docs/CreateSyncLookupResponseData.md
-docs/CustomTooManyRequestsError.md
 docs/DeactivationEventEnum.md
 docs/DisconnectCallback.md
 docs/Diversion.md
@@ -252,7 +251,6 @@ lib/bandwidth-sdk/models/create_message_request_error.rb
 lib/bandwidth-sdk/models/create_multi_channel_message_response.rb
 lib/bandwidth-sdk/models/create_sync_lookup_response.rb
 lib/bandwidth-sdk/models/create_sync_lookup_response_data.rb
-lib/bandwidth-sdk/models/custom_too_many_requests_error.rb
 lib/bandwidth-sdk/models/deactivation_event_enum.rb
 lib/bandwidth-sdk/models/disconnect_callback.rb
 lib/bandwidth-sdk/models/diversion.rb
