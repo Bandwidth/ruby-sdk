@@ -14,6 +14,7 @@
 | **submission** | [**TfvSubmissionInfo**](TfvSubmissionInfo.md) |  | [optional] |
 | **blocked** | **Boolean** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] |
 | **blocked_reason** | **String** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] |
+| **cv_token** | **String** | The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected. | [optional] |
 
 ## Example
 
@@ -30,7 +31,8 @@ instance = Bandwidth::TfvStatus.new(
   modified_date_time: 2021-06-08T06:45:13Z,
   submission: null,
   blocked: true,
-  blocked_reason: Toll-free number was used to send spam messages
+  blocked_reason: Toll-free number was used to send spam messages,
+  cv_token: cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw
 )
 ```
 

@@ -41,7 +41,7 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'media' => :'RbmMessageContentFile',
+        :'media' => :'Array<RbmMessageContentFile>',
         :'suggestions' => :'Array<MultiChannelAction>'
       }
     end
@@ -69,7 +69,9 @@ module Bandwidth
       }
 
       if attributes.key?(:'media')
-        self.media = attributes[:'media']
+        if (value = attributes[:'media']).is_a?(Array)
+          self.media = value
+        end
       else
         self.media = nil
       end

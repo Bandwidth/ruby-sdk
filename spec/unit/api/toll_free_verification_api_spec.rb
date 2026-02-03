@@ -121,6 +121,10 @@ describe 'TollFreeVerificationApi' do
       expect(data.resubmit_allowed).to be_one_of([true, false])
       expect(data.created_date_time).to be_instance_of(Time)
       expect(data.modified_date_time).to be_instance_of(Time)
+      expect(data.submission).to be_instance_of(Bandwidth::TfvSubmissionInfo)
+      expect(data.blocked).to be_one_of([true, false])
+      expect(data.blocked_reason).to be_instance_of(String)
+      expect(data.cv_token).to be_instance_of(String)
     end
 
     it 'causes an ArgumentError for a missing account_id' do

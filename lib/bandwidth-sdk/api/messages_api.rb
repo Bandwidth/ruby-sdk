@@ -94,7 +94,7 @@ module Bandwidth
     end
 
     # List Messages
-    # Returns a list of messages based on query parameters.
+    # Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a `Retry-After` header. 
     # @param account_id [String] Your Bandwidth Account ID.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
@@ -131,7 +131,7 @@ module Bandwidth
     end
 
     # List Messages
-    # Returns a list of messages based on query parameters.
+    # Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
     # @param account_id [String] Your Bandwidth Account ID.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
