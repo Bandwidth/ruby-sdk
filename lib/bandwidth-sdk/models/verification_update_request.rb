@@ -61,6 +61,9 @@ module Bandwidth
     # Indicates whether the content is age-gated.
     attr_accessor :age_gated_content
 
+    # The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.
+    attr_accessor :cv_token
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -102,7 +105,8 @@ module Bandwidth
         :'business_registration_type' => :'businessRegistrationType',
         :'business_entity_type' => :'businessEntityType',
         :'help_message_response' => :'helpMessageResponse',
-        :'age_gated_content' => :'ageGatedContent'
+        :'age_gated_content' => :'ageGatedContent',
+        :'cv_token' => :'cvToken'
       }
     end
 
@@ -135,7 +139,8 @@ module Bandwidth
         :'business_registration_type' => :'BusinessRegistrationTypeEnum',
         :'business_entity_type' => :'BusinessEntityTypeEnum',
         :'help_message_response' => :'String',
-        :'age_gated_content' => :'Boolean'
+        :'age_gated_content' => :'Boolean',
+        :'cv_token' => :'String'
       }
     end
 
@@ -148,6 +153,7 @@ module Bandwidth
         :'business_registration_type',
         :'business_entity_type',
         :'help_message_response',
+        :'cv_token'
       ])
     end
 
@@ -248,6 +254,10 @@ module Bandwidth
       if attributes.key?(:'age_gated_content')
         self.age_gated_content = attributes[:'age_gated_content']
       end
+
+      if attributes.key?(:'cv_token')
+        self.cv_token = attributes[:'cv_token']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -339,6 +349,14 @@ module Bandwidth
         invalid_properties.push('invalid value for "help_message_response", the character length must be smaller than or equal to 500.')
       end
 
+      if !@cv_token.nil? && @cv_token.to_s.length > 500
+        invalid_properties.push('invalid value for "cv_token", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@cv_token.nil? && @cv_token.to_s.length < 0
+        invalid_properties.push('invalid value for "cv_token", the character length must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -367,6 +385,8 @@ module Bandwidth
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length < 0
       return false if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
       return false if !@help_message_response.nil? && @help_message_response.to_s.length > 500
+      return false if !@cv_token.nil? && @cv_token.to_s.length > 500
+      return false if !@cv_token.nil? && @cv_token.to_s.length < 0
       true
     end
 
@@ -520,6 +540,20 @@ module Bandwidth
       @help_message_response = help_message_response
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] cv_token Value to be assigned
+    def cv_token=(cv_token)
+      if !cv_token.nil? && cv_token.to_s.length > 500
+        fail ArgumentError, 'invalid value for "cv_token", the character length must be smaller than or equal to 500.'
+      end
+
+      if !cv_token.nil? && cv_token.to_s.length < 0
+        fail ArgumentError, 'invalid value for "cv_token", the character length must be greater than or equal to 0.'
+      end
+
+      @cv_token = cv_token
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -541,7 +575,8 @@ module Bandwidth
           business_registration_type == o.business_registration_type &&
           business_entity_type == o.business_entity_type &&
           help_message_response == o.help_message_response &&
-          age_gated_content == o.age_gated_content
+          age_gated_content == o.age_gated_content &&
+          cv_token == o.cv_token
     end
 
     # @see the `==` method
@@ -553,7 +588,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, help_message_response, age_gated_content].hash
+      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, help_message_response, age_gated_content, cv_token].hash
     end
 
     # Builds the object from hash

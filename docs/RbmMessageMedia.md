@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **media** | [**RbmMessageContentFile**](RbmMessageContentFile.md) |  |  |
+| **media** | [**Array&lt;RbmMessageContentFile&gt;**](RbmMessageContentFile.md) |  |  |
 | **suggestions** | [**Array&lt;MultiChannelAction&gt;**](MultiChannelAction.md) | An array of suggested actions for the recipient. | [optional] |
 
 ## Example

@@ -31,8 +31,8 @@ instance = Bandwidth::LookupResult.new(
   deactivation_date: 2025-06-20 18:35,
   deactivation_event: null,
   latest_message_delivery_status: null,
-  initial_message_delivery_status_date: Thu Jun 19 20:00:00 EDT 2025,
-  latest_message_delivery_status_date: Fri Jun 20 20:00:00 EDT 2025
+  initial_message_delivery_status_date: Fri Jun 20 00:00:00 UTC 2025,
+  latest_message_delivery_status_date: Sat Jun 21 00:00:00 UTC 2025
 )
 ```
 
