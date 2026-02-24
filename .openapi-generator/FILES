@@ -13,6 +13,7 @@ docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
 docs/BusinessEntityTypeEnum.md
+docs/BusinessRegistrationIssuingCountryEnum.md
 docs/BusinessRegistrationTypeEnum.md
 docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
@@ -217,6 +218,7 @@ lib/bandwidth-sdk/models/blocked_webhook.rb
 lib/bandwidth-sdk/models/bridge_complete_callback.rb
 lib/bandwidth-sdk/models/bridge_target_complete_callback.rb
 lib/bandwidth-sdk/models/business_entity_type_enum.rb
+lib/bandwidth-sdk/models/business_registration_issuing_country_enum.rb
 lib/bandwidth-sdk/models/business_registration_type_enum.rb
 lib/bandwidth-sdk/models/call_direction_enum.rb
 lib/bandwidth-sdk/models/call_recording_metadata.rb

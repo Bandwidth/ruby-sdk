@@ -17,9 +17,10 @@
 | **privacy_policy_url** | **String** | The Toll-Free Verification request privacy policy URL. | [optional] |
 | **terms_and_conditions_url** | **String** | The Toll-Free Verification request terms and conditions policy URL. | [optional] |
 | **business_dba** | **String** | The company &#39;Doing Business As&#39;. | [optional] |
-| **business_registration_number** | **String** | US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025. | [optional] |
+| **business_registration_number** | **String** | Government-issued business identifying number. | [optional] |
 | **business_registration_type** | [**BusinessRegistrationTypeEnum**](BusinessRegistrationTypeEnum.md) |  | [optional] |
-| **business_entity_type** | [**BusinessEntityTypeEnum**](BusinessEntityTypeEnum.md) |  | [optional] |
+| **business_registration_issuing_country** | [**BusinessRegistrationIssuingCountryEnum**](BusinessRegistrationIssuingCountryEnum.md) |  | [optional] |
+| **business_entity_type** | [**BusinessEntityTypeEnum**](BusinessEntityTypeEnum.md) |  |  |
 | **help_message_response** | **String** | A message that gets sent to users requesting help. | [optional] |
 | **age_gated_content** | **Boolean** | Indicates whether the content is age-gated. | [optional] |
 | **cv_token** | **String** | The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection. | [optional] |
@@ -45,6 +46,7 @@ instance = Bandwidth::VerificationRequest.new(
   business_dba: Another Company Name Inc.,
   business_registration_number: 12-3456789,
   business_registration_type: null,
+  business_registration_issuing_country: null,
   business_entity_type: null,
   help_message_response: Please contact support for assistance.,
   age_gated_content: false,

@@ -17,9 +17,25 @@ module Bandwidth
   class BusinessRegistrationTypeEnum
     EIN = 'EIN'.freeze
     CBN = 'CBN'.freeze
+    NEQ = 'NEQ'.freeze
+    PROVINCIAL_NUMBER = 'PROVINCIAL_NUMBER'.freeze
+    CRN = 'CRN'.freeze
+    VAT = 'VAT'.freeze
+    ACN = 'ACN'.freeze
+    ABN = 'ABN'.freeze
+    BRN = 'BRN'.freeze
+    SIREN = 'SIREN'.freeze
+    SIRET = 'SIRET'.freeze
+    NZBN = 'NZBN'.freeze
+    UST_IDNR = 'UST_IDNR'.freeze
+    CIF = 'CIF'.freeze
+    NIF = 'NIF'.freeze
+    CNPJ = 'CNPJ'.freeze
+    UID = 'UID'.freeze
+    OTHER = 'OTHER'.freeze
 
     def self.all_vars
-      @all_vars ||= [EIN, CBN].freeze
+      @all_vars ||= [EIN, CBN, NEQ, PROVINCIAL_NUMBER, CRN, VAT, ACN, ABN, BRN, SIREN, SIRET, NZBN, UST_IDNR, CIF, NIF, CNPJ, UID, OTHER].freeze
     end
 
     # Builds the enum from string

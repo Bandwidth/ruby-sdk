@@ -48,10 +48,12 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for `businessRegistrationType` and `businessEntityType`. Available starting October 1st, 2025.
+    # Government-issued business identifying number.
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
+
+    attr_accessor :business_registration_issuing_country
 
     attr_accessor :business_entity_type
 
@@ -94,6 +96,7 @@ module Bandwidth
         :'business_dba' => :'businessDba',
         :'business_registration_number' => :'businessRegistrationNumber',
         :'business_registration_type' => :'businessRegistrationType',
+        :'business_registration_issuing_country' => :'businessRegistrationIssuingCountry',
         :'business_entity_type' => :'businessEntityType'
       }
     end
@@ -125,6 +128,7 @@ module Bandwidth
         :'business_dba' => :'String',
         :'business_registration_number' => :'String',
         :'business_registration_type' => :'BusinessRegistrationTypeEnum',
+        :'business_registration_issuing_country' => :'BusinessRegistrationIssuingCountryEnum',
         :'business_entity_type' => :'BusinessEntityTypeEnum'
       }
     end
@@ -136,7 +140,6 @@ module Bandwidth
         :'isv_reseller',
         :'business_registration_number',
         :'business_registration_type',
-        :'business_entity_type'
       ])
     end
 
@@ -210,6 +213,10 @@ module Bandwidth
 
       if attributes.key?(:'business_registration_type')
         self.business_registration_type = attributes[:'business_registration_type']
+      end
+
+      if attributes.key?(:'business_registration_issuing_country')
+        self.business_registration_issuing_country = attributes[:'business_registration_issuing_country']
       end
 
       if attributes.key?(:'business_entity_type')
@@ -426,6 +433,7 @@ module Bandwidth
           business_dba == o.business_dba &&
           business_registration_number == o.business_registration_number &&
           business_registration_type == o.business_registration_type &&
+          business_registration_issuing_country == o.business_registration_issuing_country &&
           business_entity_type == o.business_entity_type
     end
 
@@ -438,7 +446,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type].hash
+      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_registration_issuing_country, business_entity_type].hash
     end
 
     # Builds the object from hash

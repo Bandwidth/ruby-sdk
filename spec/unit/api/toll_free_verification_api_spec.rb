@@ -32,6 +32,10 @@ describe 'TollFreeVerificationApi' do
       description: 'description',
       image_urls: ['https://example.com']
     ),
+    business_entity_type: Bandwidth::BusinessEntityTypeEnum::PUBLIC_PROFIT,
+    business_registration_number: '123456789',
+    business_registration_type: Bandwidth::BusinessRegistrationTypeEnum::EIN,
+    business_registration_issuing_country: Bandwidth::BusinessRegistrationIssuingCountryEnum::USA,
     additional_information: 'additionalInformation',
     isv_reseller: 'isvReseller'
   } }
