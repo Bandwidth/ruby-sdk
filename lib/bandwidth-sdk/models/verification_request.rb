@@ -50,10 +50,12 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for `businessRegistrationType` and `businessEntityType`. Available starting October 1st, 2025.
+    # Government-issued business identifying number.
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
+
+    attr_accessor :business_registration_issuing_country
 
     attr_accessor :business_entity_type
 
@@ -106,6 +108,7 @@ module Bandwidth
         :'business_dba' => :'businessDba',
         :'business_registration_number' => :'businessRegistrationNumber',
         :'business_registration_type' => :'businessRegistrationType',
+        :'business_registration_issuing_country' => :'businessRegistrationIssuingCountry',
         :'business_entity_type' => :'businessEntityType',
         :'help_message_response' => :'helpMessageResponse',
         :'age_gated_content' => :'ageGatedContent',
@@ -141,6 +144,7 @@ module Bandwidth
         :'business_dba' => :'String',
         :'business_registration_number' => :'String',
         :'business_registration_type' => :'BusinessRegistrationTypeEnum',
+        :'business_registration_issuing_country' => :'BusinessRegistrationIssuingCountryEnum',
         :'business_entity_type' => :'BusinessEntityTypeEnum',
         :'help_message_response' => :'String',
         :'age_gated_content' => :'Boolean',
@@ -155,7 +159,6 @@ module Bandwidth
         :'isv_reseller',
         :'business_registration_number',
         :'business_registration_type',
-        :'business_entity_type',
         :'help_message_response',
         :'cv_token'
       ])
@@ -255,8 +258,14 @@ module Bandwidth
         self.business_registration_type = attributes[:'business_registration_type']
       end
 
+      if attributes.key?(:'business_registration_issuing_country')
+        self.business_registration_issuing_country = attributes[:'business_registration_issuing_country']
+      end
+
       if attributes.key?(:'business_entity_type')
         self.business_entity_type = attributes[:'business_entity_type']
+      else
+        self.business_entity_type = nil
       end
 
       if attributes.key?(:'help_message_response')
@@ -369,6 +378,10 @@ module Bandwidth
         invalid_properties.push('invalid value for "business_registration_number", the character length must be smaller than or equal to 500.')
       end
 
+      if @business_entity_type.nil?
+        invalid_properties.push('invalid value for "business_entity_type", business_entity_type cannot be nil.')
+      end
+
       if !@help_message_response.nil? && @help_message_response.to_s.length > 500
         invalid_properties.push('invalid value for "help_message_response", the character length must be smaller than or equal to 500.')
       end
@@ -411,6 +424,7 @@ module Bandwidth
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length > 500
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length < 0
       return false if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
+      return false if @business_entity_type.nil?
       return false if !@help_message_response.nil? && @help_message_response.to_s.length > 500
       return false if !@cv_token.nil? && @cv_token.to_s.length > 500
       return false if !@cv_token.nil? && @cv_token.to_s.length < 0
@@ -576,6 +590,16 @@ module Bandwidth
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] business_entity_type Value to be assigned
+    def business_entity_type=(business_entity_type)
+      if business_entity_type.nil?
+        fail ArgumentError, 'business_entity_type cannot be nil'
+      end
+
+      @business_entity_type = business_entity_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] help_message_response Value to be assigned
     def help_message_response=(help_message_response)
       if !help_message_response.nil? && help_message_response.to_s.length > 500
@@ -619,6 +643,7 @@ module Bandwidth
           business_dba == o.business_dba &&
           business_registration_number == o.business_registration_number &&
           business_registration_type == o.business_registration_type &&
+          business_registration_issuing_country == o.business_registration_issuing_country &&
           business_entity_type == o.business_entity_type &&
           help_message_response == o.help_message_response &&
           age_gated_content == o.age_gated_content &&
@@ -634,7 +659,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, phone_numbers, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, help_message_response, age_gated_content, cv_token].hash
+      [business_address, business_contact, message_volume, phone_numbers, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_registration_issuing_country, business_entity_type, help_message_response, age_gated_content, cv_token].hash
     end
 
     # Builds the object from hash

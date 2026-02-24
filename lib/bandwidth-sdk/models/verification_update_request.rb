@@ -48,12 +48,14 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for `businessRegistrationType` and `businessEntityType`. Available starting October 1st, 2025.
+    # Government-issued business identifying number.
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
 
     attr_accessor :business_entity_type
+
+    attr_accessor :business_registration_issuing_country
 
     # A message that gets sent to users requesting help.
     attr_accessor :help_message_response
@@ -104,6 +106,7 @@ module Bandwidth
         :'business_registration_number' => :'businessRegistrationNumber',
         :'business_registration_type' => :'businessRegistrationType',
         :'business_entity_type' => :'businessEntityType',
+        :'business_registration_issuing_country' => :'businessRegistrationIssuingCountry',
         :'help_message_response' => :'helpMessageResponse',
         :'age_gated_content' => :'ageGatedContent',
         :'cv_token' => :'cvToken'
@@ -138,6 +141,7 @@ module Bandwidth
         :'business_registration_number' => :'String',
         :'business_registration_type' => :'BusinessRegistrationTypeEnum',
         :'business_entity_type' => :'BusinessEntityTypeEnum',
+        :'business_registration_issuing_country' => :'BusinessRegistrationIssuingCountryEnum',
         :'help_message_response' => :'String',
         :'age_gated_content' => :'Boolean',
         :'cv_token' => :'String'
@@ -151,7 +155,6 @@ module Bandwidth
         :'isv_reseller',
         :'business_registration_number',
         :'business_registration_type',
-        :'business_entity_type',
         :'help_message_response',
         :'cv_token'
       ])
@@ -245,6 +248,10 @@ module Bandwidth
 
       if attributes.key?(:'business_entity_type')
         self.business_entity_type = attributes[:'business_entity_type']
+      end
+
+      if attributes.key?(:'business_registration_issuing_country')
+        self.business_registration_issuing_country = attributes[:'business_registration_issuing_country']
       end
 
       if attributes.key?(:'help_message_response')
@@ -574,6 +581,7 @@ module Bandwidth
           business_registration_number == o.business_registration_number &&
           business_registration_type == o.business_registration_type &&
           business_entity_type == o.business_entity_type &&
+          business_registration_issuing_country == o.business_registration_issuing_country &&
           help_message_response == o.help_message_response &&
           age_gated_content == o.age_gated_content &&
           cv_token == o.cv_token
@@ -588,7 +596,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, help_message_response, age_gated_content, cv_token].hash
+      [business_address, business_contact, message_volume, use_case, use_case_summary, production_message_content, opt_in_workflow, additional_information, isv_reseller, privacy_policy_url, terms_and_conditions_url, business_dba, business_registration_number, business_registration_type, business_entity_type, business_registration_issuing_country, help_message_response, age_gated_content, cv_token].hash
     end
 
     # Builds the object from hash
