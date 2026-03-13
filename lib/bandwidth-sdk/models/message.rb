@@ -21,7 +21,7 @@ module Bandwidth
     # The Bandwidth phone number associated with the message.
     attr_accessor :owner
 
-    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
+    # The ID of the Application your from number or senderId is associated with in the Bandwidth App.
     attr_accessor :application_id
 
     # The datetime stamp of the message in ISO 8601

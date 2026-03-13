@@ -18,7 +18,7 @@ module Bandwidth
     # The sender ID of the message. This could be an alphanumeric sender ID.
     attr_accessor :from
 
-    # The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
+    # The ID of the Application your from number or senderId is associated with in the Bandwidth App.
     attr_accessor :application_id
 
     attr_accessor :channel
