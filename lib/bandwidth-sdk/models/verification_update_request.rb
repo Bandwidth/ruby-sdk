@@ -48,7 +48,7 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # Government-issued business identifying number.
+    # Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection. 
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
@@ -348,6 +348,18 @@ module Bandwidth
         invalid_properties.push('invalid value for "isv_reseller", the character length must be greater than or equal to 0.')
       end
 
+      if !@privacy_policy_url.nil? && @privacy_policy_url.to_s.length > 500
+        invalid_properties.push('invalid value for "privacy_policy_url", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@terms_and_conditions_url.nil? && @terms_and_conditions_url.to_s.length > 500
+        invalid_properties.push('invalid value for "terms_and_conditions_url", the character length must be smaller than or equal to 500.')
+      end
+
+      if !@business_dba.nil? && @business_dba.to_s.length > 500
+        invalid_properties.push('invalid value for "business_dba", the character length must be smaller than or equal to 500.')
+      end
+
       if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
         invalid_properties.push('invalid value for "business_registration_number", the character length must be smaller than or equal to 500.')
       end
@@ -390,6 +402,9 @@ module Bandwidth
       return false if !@additional_information.nil? && @additional_information.to_s.length < 0
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length > 500
       return false if !@isv_reseller.nil? && @isv_reseller.to_s.length < 0
+      return false if !@privacy_policy_url.nil? && @privacy_policy_url.to_s.length > 500
+      return false if !@terms_and_conditions_url.nil? && @terms_and_conditions_url.to_s.length > 500
+      return false if !@business_dba.nil? && @business_dba.to_s.length > 500
       return false if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
       return false if !@help_message_response.nil? && @help_message_response.to_s.length > 500
       return false if !@cv_token.nil? && @cv_token.to_s.length > 500
@@ -525,6 +540,48 @@ module Bandwidth
       end
 
       @isv_reseller = isv_reseller
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] privacy_policy_url Value to be assigned
+    def privacy_policy_url=(privacy_policy_url)
+      if privacy_policy_url.nil?
+        fail ArgumentError, 'privacy_policy_url cannot be nil'
+      end
+
+      if privacy_policy_url.to_s.length > 500
+        fail ArgumentError, 'invalid value for "privacy_policy_url", the character length must be smaller than or equal to 500.'
+      end
+
+      @privacy_policy_url = privacy_policy_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terms_and_conditions_url Value to be assigned
+    def terms_and_conditions_url=(terms_and_conditions_url)
+      if terms_and_conditions_url.nil?
+        fail ArgumentError, 'terms_and_conditions_url cannot be nil'
+      end
+
+      if terms_and_conditions_url.to_s.length > 500
+        fail ArgumentError, 'invalid value for "terms_and_conditions_url", the character length must be smaller than or equal to 500.'
+      end
+
+      @terms_and_conditions_url = terms_and_conditions_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] business_dba Value to be assigned
+    def business_dba=(business_dba)
+      if business_dba.nil?
+        fail ArgumentError, 'business_dba cannot be nil'
+      end
+
+      if business_dba.to_s.length > 500
+        fail ArgumentError, 'invalid value for "business_dba", the character length must be smaller than or equal to 500.'
+      end
+
+      @business_dba = business_dba
     end
 
     # Custom attribute writer method with validation

@@ -15,8 +15,8 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::Media.new(
   content: null,
-  content_length: null,
-  media_name: null
+  content_length: 1024,
+  media_name: image.png
 )
 ```
 

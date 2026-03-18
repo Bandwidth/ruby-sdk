@@ -28,9 +28,13 @@ module Bandwidth
     DEU = 'DEU'.freeze
     ESP = 'ESP'.freeze
     CHE = 'CHE'.freeze
+    CYP = 'CYP'.freeze
+    IND = 'IND'.freeze
+    CHN = 'CHN'.freeze
+    BGR = 'BGR'.freeze
 
     def self.all_vars
-      @all_vars ||= [USA, CAN, HKG, GBR, IRL, BRA, NLD, AUS, FRA, NZL, DEU, ESP, CHE].freeze
+      @all_vars ||= [USA, CAN, HKG, GBR, IRL, BRA, NLD, AUS, FRA, NZL, DEU, ESP, CHE, CYP, IND, CHN, BGR].freeze
     end
 
     # Builds the enum from string
