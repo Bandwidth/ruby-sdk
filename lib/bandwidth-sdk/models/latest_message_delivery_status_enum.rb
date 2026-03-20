@@ -18,9 +18,10 @@ module Bandwidth
     ACTIVE = 'ACTIVE'.freeze
     DEACTIVATED = 'DEACTIVATED'.freeze
     UNKNOWN = 'UNKNOWN'.freeze
+    NOT_ENABLED = 'NOT_ENABLED'.freeze
 
     def self.all_vars
-      @all_vars ||= [ACTIVE, DEACTIVATED, UNKNOWN].freeze
+      @all_vars ||= [ACTIVE, DEACTIVATED, UNKNOWN, NOT_ENABLED].freeze
     end
 
     # Builds the enum from string
