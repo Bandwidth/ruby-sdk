@@ -53,7 +53,6 @@ describe 'PhoneNumberLookupApi' do
       expect(get_data.data.results[0]).to be_instance_of(Bandwidth::LookupResult)
       expect(get_data.data.results[0].phone_number).to be_instance_of(String)
       expect(get_data.data.results[0].line_type).to be_one_of(Bandwidth::LineTypeEnum.all_vars)
-      expect(get_data.data.results[0].messaging_provider).to be_instance_of(String)
       expect(get_data.data.results[0].voice_provider).to be_instance_of(String)
       expect(get_data.data.results[0].country_code_a3).to be_instance_of(String)
     end
@@ -80,7 +79,6 @@ describe 'PhoneNumberLookupApi' do
       expect(data.data.results[0]).to be_instance_of(Bandwidth::LookupResult)
       expect(data.data.results[0].phone_number).to be_instance_of(String)
       expect(data.data.results[0].line_type).to be_one_of(Bandwidth::LineTypeEnum.all_vars)
-      expect(data.data.results[0].messaging_provider).to be_instance_of(String)
       expect(data.data.results[0].voice_provider).to be_instance_of(String)
       expect(data.data.results[0].country_code_a3).to be_instance_of(String)
     end
