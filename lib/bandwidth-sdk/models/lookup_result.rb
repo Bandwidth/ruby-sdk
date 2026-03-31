@@ -43,8 +43,11 @@ module Bandwidth
     # [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.  Think of this as the \"start time\" for that status. Value resets every time the `latestMessageDeliveryStatus` changes.
     attr_accessor :initial_message_delivery_status_date
 
-    # [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is. Value resets every time the `latestMessageDeliveryStatus` changes.
+    # [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is. Value resets every time the `latestMessageDeliveryStatus` changes.
     attr_accessor :latest_message_delivery_status_date
+
+    # [RCS-Only](#section/RCS-Only). Indicates whether the phone number is capable of receiving RCS messages. Value will be null if account has RCS, but no value was returned. Absent when account does not have RCS. 
+    attr_accessor :rcs_enabled
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -81,7 +84,8 @@ module Bandwidth
         :'deactivation_event' => :'deactivationEvent',
         :'latest_message_delivery_status' => :'latestMessageDeliveryStatus',
         :'initial_message_delivery_status_date' => :'initialMessageDeliveryStatusDate',
-        :'latest_message_delivery_status_date' => :'latestMessageDeliveryStatusDate'
+        :'latest_message_delivery_status_date' => :'latestMessageDeliveryStatusDate',
+        :'rcs_enabled' => :'rcsEnabled'
       }
     end
 
@@ -108,7 +112,8 @@ module Bandwidth
         :'deactivation_event' => :'DeactivationEventEnum',
         :'latest_message_delivery_status' => :'LatestMessageDeliveryStatusEnum',
         :'initial_message_delivery_status_date' => :'Date',
-        :'latest_message_delivery_status_date' => :'Date'
+        :'latest_message_delivery_status_date' => :'Date',
+        :'rcs_enabled' => :'Boolean'
       }
     end
 
@@ -177,6 +182,10 @@ module Bandwidth
       if attributes.key?(:'latest_message_delivery_status_date')
         self.latest_message_delivery_status_date = attributes[:'latest_message_delivery_status_date']
       end
+
+      if attributes.key?(:'rcs_enabled')
+        self.rcs_enabled = attributes[:'rcs_enabled']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -209,7 +218,8 @@ module Bandwidth
           deactivation_event == o.deactivation_event &&
           latest_message_delivery_status == o.latest_message_delivery_status &&
           initial_message_delivery_status_date == o.initial_message_delivery_status_date &&
-          latest_message_delivery_status_date == o.latest_message_delivery_status_date
+          latest_message_delivery_status_date == o.latest_message_delivery_status_date &&
+          rcs_enabled == o.rcs_enabled
     end
 
     # @see the `==` method
@@ -221,7 +231,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, line_type, messaging_provider, voice_provider, country_code_a3, deactivation_reporter, deactivation_date, deactivation_event, latest_message_delivery_status, initial_message_delivery_status_date, latest_message_delivery_status_date].hash
+      [phone_number, line_type, messaging_provider, voice_provider, country_code_a3, deactivation_reporter, deactivation_date, deactivation_event, latest_message_delivery_status, initial_message_delivery_status_date, latest_message_delivery_status_date, rcs_enabled].hash
     end
 
     # Builds the object from hash

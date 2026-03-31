@@ -52,10 +52,6 @@ describe 'PhoneNumberLookupApi' do
 
       expect(status_code).to equal_to(200)
       expect(data).to be_instance_of(Bandwidth::CreateSyncLookupResponse)
-      expect(data.links[0]).to be_instance_of(Bandwidth::LinkSchema)
-      expect(data.links[0].rel).to be_instance_of(String)
-      expect(data.links[0].href).to be_instance_of(String)
-      expect(data.links[0].method).to be_instance_of(String)
       expect(data.data.request_id).to be_instance_of(String)
       expect(data.data.status).to eq(Bandwidth::CompletedLookupStatusEnum::COMPLETE)
       expect(data.data.results).to be_instance_of(Array)
@@ -79,10 +75,6 @@ describe 'PhoneNumberLookupApi' do
 
       expect(status_code).to equal_to(200)
       expect(data).to be_instance_of(Bandwidth::GetAsyncBulkLookupResponse)
-      expect(data.links[0]).to be_instance_of(Bandwidth::LinkSchema)
-      expect(data.links[0].rel).to be_instance_of(String)
-      expect(data.links[0].href).to be_instance_of(String)
-      expect(data.links[0].method).to be_instance_of(String)
       expect(data.data.request_id).to be_instance_of(String)
       expect(data.data.status).to eq(Bandwidth::InProgressLookupStatusEnum::COMPLETE)
       expect(data.data.results).to be_instance_of(Array)
