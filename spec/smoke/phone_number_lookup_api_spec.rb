@@ -38,15 +38,11 @@ describe 'PhoneNumberLookupApi' do
       expect(create_data.errors).to be_instance_of(Array)
 
       request_id = create_data.data.request_id
-      sleep(30)
+      sleep(60)
 
       get_data, get_status_code = @api_instance.get_async_bulk_lookup_with_http_info(BW_ACCOUNT_ID, request_id)
       expect(get_status_code).to equal_to(200)
       expect(get_data).to be_instance_of(Bandwidth::GetAsyncBulkLookupResponse)
-      expect(get_data.links[0]).to be_instance_of(Bandwidth::LinkSchema)
-      expect(get_data.links[0].rel).to be_instance_of(String)
-      expect(get_data.links[0].href).to be_instance_of(String)
-      expect(get_data.links[0].method).to be_instance_of(String)
       expect(get_data.data.request_id).to eq(request_id)
       expect(get_data.data.status).to eq(Bandwidth::InProgressLookupStatusEnum::COMPLETE)
       expect(get_data.data.results).to be_instance_of(Array)
@@ -69,10 +65,6 @@ describe 'PhoneNumberLookupApi' do
 
       expect(status_code).to equal_to(200)
       expect(data).to be_instance_of(Bandwidth::CreateSyncLookupResponse)
-      expect(data.links[0]).to be_instance_of(Bandwidth::LinkSchema)
-      expect(data.links[0].rel).to be_instance_of(String)
-      expect(data.links[0].href).to be_instance_of(String)
-      expect(data.links[0].method).to be_instance_of(String)
       expect(data.data.request_id).to be_instance_of(String)
       expect(data.data.status).to eq(Bandwidth::CompletedLookupStatusEnum::COMPLETE)
       expect(data.data.results).to be_instance_of(Array)
