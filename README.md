@@ -180,7 +180,6 @@ Class | Method | HTTP request | Description
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
  - [Bandwidth::BusinessEntityTypeEnum](docs/BusinessEntityTypeEnum.md)
- - [Bandwidth::BusinessRegistrationIssuingCountryEnum](docs/BusinessRegistrationIssuingCountryEnum.md)
  - [Bandwidth::BusinessRegistrationTypeEnum](docs/BusinessRegistrationTypeEnum.md)
  - [Bandwidth::CallDirectionEnum](docs/CallDirectionEnum.md)
  - [Bandwidth::CallRecordingMetadata](docs/CallRecordingMetadata.md)

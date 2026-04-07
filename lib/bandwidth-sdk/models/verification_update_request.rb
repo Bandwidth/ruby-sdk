@@ -48,13 +48,14 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection. 
+    # Government-issued business identifying number.  **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.** 
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
 
     attr_accessor :business_entity_type
 
+    # The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.  **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**  | Registration Type     | Supported Countries                | |----------------------|------------------------------------| | EIN                  | USA                                | | CBN                  | CAN                                | | NEQ                  | CAN                                | | PROVINCIAL_NUMBER    | CAN                                | | CRN                  | GBR, HKG                           | | VAT                  | GBR, IRL, BRA, NLD                 | | ACN                  | AUS                                | | ABN                  | AUS                                | | BRN                  | HKG                                | | SIREN                | FRA                                | | SIRET                | FRA                                | | NZBN                 | NZL                                | | UST_IDNR             | DEU                                | | CIF                  | ESP                                | | NIF                  | ESP                                | | CNPJ                 | BRA                                | | UID                  | CHE                                | | OTHER                | Must Provide Country Code          |
     attr_accessor :business_registration_issuing_country
 
     # A message that gets sent to users requesting help.
@@ -141,7 +142,7 @@ module Bandwidth
         :'business_registration_number' => :'String',
         :'business_registration_type' => :'BusinessRegistrationTypeEnum',
         :'business_entity_type' => :'BusinessEntityTypeEnum',
-        :'business_registration_issuing_country' => :'BusinessRegistrationIssuingCountryEnum',
+        :'business_registration_issuing_country' => :'String',
         :'help_message_response' => :'String',
         :'age_gated_content' => :'Boolean',
         :'cv_token' => :'String'
@@ -155,6 +156,7 @@ module Bandwidth
         :'isv_reseller',
         :'business_registration_number',
         :'business_registration_type',
+        :'business_registration_issuing_country',
         :'help_message_response',
         :'cv_token'
       ])
