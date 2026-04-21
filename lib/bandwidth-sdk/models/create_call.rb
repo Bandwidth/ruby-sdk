@@ -71,7 +71,7 @@ module Bandwidth
     # The priority of this call over other calls from your account. For example, if during a call your application needs to place a new call and bridge it with the current call, you might want to create the call with priority 1 so that it will be the next call picked off your queue, ahead of other less time sensitive calls. A lower value means higher priority, so a priority 1 call takes precedence over a priority 2 call.
     attr_accessor :priority
 
-    # A custom string that will be sent with all webhooks for this call unless overwritten by a future <a href='/docs/voice/bxml/tag'>`<Tag>`</a> verb or `tag` attribute on another verb, or cleared.  May be cleared by setting `tag=\"\"`  Max length 256 characters.
+    # A custom string that will be sent with all webhooks for this call unless overwritten by a future <a href='/docs/voice/bxml/tag'>`<Tag>`</a> verb or `tag` attribute on another verb, or cleared.  May be cleared by setting `tag=\"\"`  Max length 4096 characters.
     attr_accessor :tag
 
     class EnumAttributeValidator
@@ -380,8 +380,8 @@ module Bandwidth
         invalid_properties.push('invalid value for "priority", must be greater than or equal to 1.')
       end
 
-      if !@tag.nil? && @tag.to_s.length > 256
-        invalid_properties.push('invalid value for "tag", the character length must be smaller than or equal to 256.')
+      if !@tag.nil? && @tag.to_s.length > 4096
+        invalid_properties.push('invalid value for "tag", the character length must be smaller than or equal to 4096.')
       end
 
       invalid_properties
@@ -409,7 +409,7 @@ module Bandwidth
       return false if !@callback_timeout.nil? && @callback_timeout < 1
       return false if !@priority.nil? && @priority > 5
       return false if !@priority.nil? && @priority < 1
-      return false if !@tag.nil? && @tag.to_s.length > 256
+      return false if !@tag.nil? && @tag.to_s.length > 4096
       true
     end
 
@@ -572,8 +572,8 @@ module Bandwidth
     # Custom attribute writer method with validation
     # @param [Object] tag Value to be assigned
     def tag=(tag)
-      if !tag.nil? && tag.to_s.length > 256
-        fail ArgumentError, 'invalid value for "tag", the character length must be smaller than or equal to 256.'
+      if !tag.nil? && tag.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "tag", the character length must be smaller than or equal to 4096.'
       end
 
       @tag = tag
