@@ -45,7 +45,7 @@ module Bandwidth
     def self.openapi_types
       {
         :'links' => :'LinksObject',
-        :'errors' => :'Array<Error>',
+        :'errors' => :'Array<WebhookSubscriptionError>',
         :'data' => :'Array<WebhookSubscription>'
       }
     end

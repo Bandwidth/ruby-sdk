@@ -131,6 +131,11 @@ Class | Method | HTTP request | Description
 *Bandwidth::ConferencesApi* | [**update_conference**](docs/ConferencesApi.md#update_conference) | **POST** /accounts/{accountId}/conferences/{conferenceId} | Update Conference
 *Bandwidth::ConferencesApi* | [**update_conference_bxml**](docs/ConferencesApi.md#update_conference_bxml) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/bxml | Update Conference BXML
 *Bandwidth::ConferencesApi* | [**update_conference_member**](docs/ConferencesApi.md#update_conference_member) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/members/{memberId} | Update Conference Member
+*Bandwidth::EndpointsApi* | [**create_endpoint**](docs/EndpointsApi.md#create_endpoint) | **POST** /accounts/{accountId}/endpoints | Create Endpoint
+*Bandwidth::EndpointsApi* | [**delete_endpoint**](docs/EndpointsApi.md#delete_endpoint) | **DELETE** /accounts/{accountId}/endpoints/{endpointId} | Delete Endpoint
+*Bandwidth::EndpointsApi* | [**get_endpoint**](docs/EndpointsApi.md#get_endpoint) | **GET** /accounts/{accountId}/endpoints/{endpointId} | Get Endpoint
+*Bandwidth::EndpointsApi* | [**list_endpoints**](docs/EndpointsApi.md#list_endpoints) | **GET** /accounts/{accountId}/endpoints | List Endpoints
+*Bandwidth::EndpointsApi* | [**update_endpoint_bxml**](docs/EndpointsApi.md#update_endpoint_bxml) | **PUT** /accounts/{accountId}/endpoints/{endpointId}/bxml | Update Endpoint BXML
 *Bandwidth::MFAApi* | [**generate_messaging_code**](docs/MFAApi.md#generate_messaging_code) | **POST** /accounts/{accountId}/code/messaging | Messaging Authentication Code
 *Bandwidth::MFAApi* | [**generate_voice_code**](docs/MFAApi.md#generate_voice_code) | **POST** /accounts/{accountId}/code/voice | Voice Authentication Code
 *Bandwidth::MFAApi* | [**verify_code**](docs/MFAApi.md#verify_code) | **POST** /accounts/{accountId}/code/verify | Verify Authentication Code
@@ -179,6 +184,10 @@ Class | Method | HTTP request | Description
  - [Bandwidth::BlockedWebhook](docs/BlockedWebhook.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
+ - [Bandwidth::BrtcError](docs/BrtcError.md)
+ - [Bandwidth::BrtcErrorResponse](docs/BrtcErrorResponse.md)
+ - [Bandwidth::BrtcErrorSource](docs/BrtcErrorSource.md)
+ - [Bandwidth::BrtcLink](docs/BrtcLink.md)
  - [Bandwidth::BusinessEntityTypeEnum](docs/BusinessEntityTypeEnum.md)
  - [Bandwidth::BusinessRegistrationTypeEnum](docs/BusinessRegistrationTypeEnum.md)
  - [Bandwidth::CallDirectionEnum](docs/CallDirectionEnum.md)
@@ -210,15 +219,28 @@ Class | Method | HTTP request | Description
  - [Bandwidth::CreateAsyncBulkLookupResponseData](docs/CreateAsyncBulkLookupResponseData.md)
  - [Bandwidth::CreateCall](docs/CreateCall.md)
  - [Bandwidth::CreateCallResponse](docs/CreateCallResponse.md)
+ - [Bandwidth::CreateEndpointRequestBase](docs/CreateEndpointRequestBase.md)
+ - [Bandwidth::CreateEndpointResponse](docs/CreateEndpointResponse.md)
+ - [Bandwidth::CreateEndpointResponseData](docs/CreateEndpointResponseData.md)
  - [Bandwidth::CreateMessageRequestError](docs/CreateMessageRequestError.md)
  - [Bandwidth::CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
  - [Bandwidth::CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
  - [Bandwidth::CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Bandwidth::CreateWebRtcConnectionRequest](docs/CreateWebRtcConnectionRequest.md)
  - [Bandwidth::DeactivationEventEnum](docs/DeactivationEventEnum.md)
+ - [Bandwidth::Device](docs/Device.md)
+ - [Bandwidth::DeviceStatusEnum](docs/DeviceStatusEnum.md)
  - [Bandwidth::DisconnectCallback](docs/DisconnectCallback.md)
  - [Bandwidth::Diversion](docs/Diversion.md)
  - [Bandwidth::DtmfCallback](docs/DtmfCallback.md)
- - [Bandwidth::Error](docs/Error.md)
+ - [Bandwidth::Endpoint](docs/Endpoint.md)
+ - [Bandwidth::EndpointDirectionEnum](docs/EndpointDirectionEnum.md)
+ - [Bandwidth::EndpointEvent](docs/EndpointEvent.md)
+ - [Bandwidth::EndpointEventTypeEnum](docs/EndpointEventTypeEnum.md)
+ - [Bandwidth::EndpointResponse](docs/EndpointResponse.md)
+ - [Bandwidth::EndpointStatusEnum](docs/EndpointStatusEnum.md)
+ - [Bandwidth::EndpointTypeEnum](docs/EndpointTypeEnum.md)
+ - [Bandwidth::Endpoints](docs/Endpoints.md)
  - [Bandwidth::ErrorObject](docs/ErrorObject.md)
  - [Bandwidth::ErrorSource](docs/ErrorSource.md)
  - [Bandwidth::FailureWebhook](docs/FailureWebhook.md)
@@ -237,6 +259,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::Link](docs/Link.md)
  - [Bandwidth::LinkSchema](docs/LinkSchema.md)
  - [Bandwidth::LinksObject](docs/LinksObject.md)
+ - [Bandwidth::ListEndpointsResponse](docs/ListEndpointsResponse.md)
  - [Bandwidth::ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Bandwidth::ListMessageItem](docs/ListMessageItem.md)
  - [Bandwidth::LookupErrorResponse](docs/LookupErrorResponse.md)
@@ -280,6 +303,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::MultiChannelMessageRequest](docs/MultiChannelMessageRequest.md)
  - [Bandwidth::MultiChannelMessageResponseData](docs/MultiChannelMessageResponseData.md)
  - [Bandwidth::OptInWorkflow](docs/OptInWorkflow.md)
+ - [Bandwidth::Page](docs/Page.md)
  - [Bandwidth::PageInfo](docs/PageInfo.md)
  - [Bandwidth::PriorityEnum](docs/PriorityEnum.md)
  - [Bandwidth::ProductTypeEnum](docs/ProductTypeEnum.md)
@@ -308,6 +332,8 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
+ - [Bandwidth::SipConnectionMetadata](docs/SipConnectionMetadata.md)
+ - [Bandwidth::SipCredentials](docs/SipCredentials.md)
  - [Bandwidth::SmsMessageContent](docs/SmsMessageContent.md)
  - [Bandwidth::StandaloneCardOrientationEnum](docs/StandaloneCardOrientationEnum.md)
  - [Bandwidth::StatusCallback](docs/StatusCallback.md)
@@ -344,6 +370,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::VoiceCodeResponse](docs/VoiceCodeResponse.md)
  - [Bandwidth::WebhookSubscription](docs/WebhookSubscription.md)
  - [Bandwidth::WebhookSubscriptionBasicAuthentication](docs/WebhookSubscriptionBasicAuthentication.md)
+ - [Bandwidth::WebhookSubscriptionError](docs/WebhookSubscriptionError.md)
  - [Bandwidth::WebhookSubscriptionRequestSchema](docs/WebhookSubscriptionRequestSchema.md)
  - [Bandwidth::WebhookSubscriptionTypeEnum](docs/WebhookSubscriptionTypeEnum.md)
  - [Bandwidth::WebhookSubscriptionsListBody](docs/WebhookSubscriptionsListBody.md)
