@@ -30,7 +30,7 @@ module Bandwidth
     # Amount of silence (in seconds) before assuming the callee has finished speaking.
     attr_accessor :speech_end_threshold
 
-    # When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value.
+    # When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. If not provided it will default to the speechEndThreshold value.
     attr_accessor :machine_speech_end_threshold
 
     # If set to 'true' and if an answering machine is detected, the 'answering-machine' callback will be delayed until the machine is done speaking, or an end of message tone is detected, or until the 'detectionTimeout' is exceeded. If false, the 'answering-machine' result is sent immediately.
