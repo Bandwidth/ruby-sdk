@@ -2,6 +2,7 @@
 describe 'PhoneNumberLookupApi' do
   let(:phone_numbers) { [BW_NUMBER, USER_NUMBER] }
   let(:request_id) { '123e4567-e89b-12d3-a456-426614174000' }
+  let(:rcs_agent) { 'TestAgent' }
 
   before(:all) do
     Bandwidth.configure do |config|
@@ -46,6 +47,7 @@ describe 'PhoneNumberLookupApi' do
     it 'should work' do
       request = Bandwidth::SyncLookupRequest.new(
         phone_numbers: phone_numbers,
+        rcs_agent: rcs_agent,
       )
 
       data, status_code = @api_instance.create_sync_lookup_with_http_info(BW_ACCOUNT_ID, request)
