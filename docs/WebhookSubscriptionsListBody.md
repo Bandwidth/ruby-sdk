@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **links** | [**LinksObject**](LinksObject.md) |  | [optional] |
-| **errors** | [**Array&lt;Error&gt;**](Error.md) |  | [optional] |
+| **errors** | [**Array&lt;WebhookSubscriptionError&gt;**](WebhookSubscriptionError.md) |  | [optional] |
 | **data** | [**Array&lt;WebhookSubscription&gt;**](WebhookSubscription.md) |  |  |
 
 ## Example

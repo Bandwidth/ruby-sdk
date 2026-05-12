@@ -39,7 +39,7 @@ module Bandwidth
     # Basic auth password.
     attr_accessor :fallback_password
 
-    # A custom string that will be sent with this and all future callbacks unless overwritten by a future `tag` attribute or [`<Tag>`](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting `tag=\"\"`.  Max length 256 characters.  Not allowed if `state` is `completed`.
+    # A custom string that will be sent with this and all future callbacks unless overwritten by a future `tag` attribute or [`<Tag>`](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting `tag=\"\"`.  Max length 4096 characters.  Not allowed if `state` is `completed`.
     attr_accessor :tag
 
     class EnumAttributeValidator
@@ -206,8 +206,8 @@ module Bandwidth
         invalid_properties.push('invalid value for "fallback_password", the character length must be smaller than or equal to 1024.')
       end
 
-      if !@tag.nil? && @tag.to_s.length > 256
-        invalid_properties.push('invalid value for "tag", the character length must be smaller than or equal to 256.')
+      if !@tag.nil? && @tag.to_s.length > 4096
+        invalid_properties.push('invalid value for "tag", the character length must be smaller than or equal to 4096.')
       end
 
       invalid_properties
@@ -221,7 +221,7 @@ module Bandwidth
       return false if !@password.nil? && @password.to_s.length > 1024
       return false if !@fallback_username.nil? && @fallback_username.to_s.length > 1024
       return false if !@fallback_password.nil? && @fallback_password.to_s.length > 1024
-      return false if !@tag.nil? && @tag.to_s.length > 256
+      return false if !@tag.nil? && @tag.to_s.length > 4096
       true
     end
 
@@ -268,8 +268,8 @@ module Bandwidth
     # Custom attribute writer method with validation
     # @param [Object] tag Value to be assigned
     def tag=(tag)
-      if !tag.nil? && tag.to_s.length > 256
-        fail ArgumentError, 'invalid value for "tag", the character length must be smaller than or equal to 256.'
+      if !tag.nil? && tag.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "tag", the character length must be smaller than or equal to 4096.'
       end
 
       @tag = tag
