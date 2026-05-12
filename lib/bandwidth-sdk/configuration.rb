@@ -403,6 +403,36 @@ module Bandwidth
           description: "Production",
           }
         ],
+        "EndpointsApi.create_endpoint": [
+          {
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
+        "EndpointsApi.delete_endpoint": [
+          {
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
+        "EndpointsApi.get_endpoint": [
+          {
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
+        "EndpointsApi.list_endpoints": [
+          {
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
+        "EndpointsApi.update_endpoint_bxml": [
+          {
+          url: "https://api.bandwidth.com/v2",
+          description: "Production",
+          }
+        ],
         "MFAApi.generate_messaging_code": [
           {
           url: "https://mfa.bandwidth.com/api/v1",

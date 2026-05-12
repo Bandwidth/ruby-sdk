@@ -18,10 +18,14 @@ module Bandwidth
     # Telephone numbers in E.164 format.
     attr_accessor :phone_numbers
 
+    # Override the default RCS sender/agent ID used when checking RCS capabilities. When provided, this value is used as the `sender` in the RCS capability-check request instead of the account default. Must be 1–40 characters and contain only letters, digits, underscores, or hyphens.
+    attr_accessor :rcs_agent
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'phone_numbers' => :'phoneNumbers'
+        :'phone_numbers' => :'phoneNumbers',
+        :'rcs_agent' => :'rcsAgent'
       }
     end
 
@@ -38,7 +42,8 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'phone_numbers' => :'Array<String>'
+        :'phone_numbers' => :'Array<String>',
+        :'rcs_agent' => :'String'
       }
     end
 
@@ -71,6 +76,10 @@ module Bandwidth
       else
         self.phone_numbers = nil
       end
+
+      if attributes.key?(:'rcs_agent')
+        self.rcs_agent = attributes[:'rcs_agent']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -82,6 +91,11 @@ module Bandwidth
         invalid_properties.push('invalid value for "phone_numbers", phone_numbers cannot be nil.')
       end
 
+      pattern = Regexp.new(/^[A-Za-z0-9_-]{1,40}$/)
+      if !@rcs_agent.nil? && @rcs_agent !~ pattern
+        invalid_properties.push("invalid value for \"rcs_agent\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
@@ -90,6 +104,7 @@ module Bandwidth
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @phone_numbers.nil?
+      return false if !@rcs_agent.nil? && @rcs_agent !~ Regexp.new(/^[A-Za-z0-9_-]{1,40}$/)
       true
     end
 
@@ -103,12 +118,28 @@ module Bandwidth
       @phone_numbers = phone_numbers
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] rcs_agent Value to be assigned
+    def rcs_agent=(rcs_agent)
+      if rcs_agent.nil?
+        fail ArgumentError, 'rcs_agent cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[A-Za-z0-9_-]{1,40}$/)
+      if rcs_agent !~ pattern
+        fail ArgumentError, "invalid value for \"rcs_agent\", must conform to the pattern #{pattern}."
+      end
+
+      @rcs_agent = rcs_agent
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          phone_numbers == o.phone_numbers
+          phone_numbers == o.phone_numbers &&
+          rcs_agent == o.rcs_agent
     end
 
     # @see the `==` method
@@ -120,7 +151,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_numbers].hash
+      [phone_numbers, rcs_agent].hash
     end
 
     # Builds the object from hash
