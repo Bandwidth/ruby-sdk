@@ -40,6 +40,18 @@ describe 'PhoneNumberLookupApi' do
       expect(data.data.status).to eq(Bandwidth::InProgressLookupStatusEnum::IN_PROGRESS)
       expect(data.errors).to be_instance_of(Array)
     end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        @api_instance.create_async_bulk_lookup(nil, Bandwidth::AsyncLookupRequest.new(phone_numbers: phone_numbers))
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'causes an ArgumentError for a missing async_lookup_request' do
+      expect {
+        @api_instance.create_async_bulk_lookup(BW_ACCOUNT_ID, nil)
+      }.to raise_error(ArgumentError)
+    end
   end
 
   # Create Synchronous Number Lookup
@@ -52,7 +64,7 @@ describe 'PhoneNumberLookupApi' do
 
       data, status_code = @api_instance.create_sync_lookup_with_http_info(BW_ACCOUNT_ID, request)
 
-      expect(status_code).to equal_to(200)
+      expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::CreateSyncLookupResponse)
       expect(data.data.request_id).to be_instance_of(String)
       expect(data.data.status).to eq(Bandwidth::CompletedLookupStatusEnum::COMPLETE)
@@ -68,6 +80,18 @@ describe 'PhoneNumberLookupApi' do
       expect(data.data.results[0].latest_message_delivery_status_date).to be_instance_of(Date)
       expect(data.errors).to be_instance_of(Array)
     end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        @api_instance.create_sync_lookup(nil, Bandwidth::SyncLookupRequest.new(phone_numbers: phone_numbers, rcs_agent: rcs_agent))
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'causes an ArgumentError for a missing sync_lookup_request' do
+      expect {
+        @api_instance.create_sync_lookup(BW_ACCOUNT_ID, nil)
+      }.to raise_error(ArgumentError)
+    end
   end
 
   # Get Asynchronous Bulk Number Lookup
@@ -75,7 +99,7 @@ describe 'PhoneNumberLookupApi' do
     it 'should work' do
       data, status_code = @api_instance.get_async_bulk_lookup_with_http_info(BW_ACCOUNT_ID, request_id)
 
-      expect(status_code).to equal_to(200)
+      expect(status_code).to eq(200)
       expect(data).to be_instance_of(Bandwidth::GetAsyncBulkLookupResponse)
       expect(data.data.request_id).to be_instance_of(String)
       expect(data.data.status).to eq(Bandwidth::InProgressLookupStatusEnum::COMPLETE)
@@ -90,6 +114,18 @@ describe 'PhoneNumberLookupApi' do
       expect(data.data.results[0].initial_message_delivery_status_date).to be_instance_of(Date)
       expect(data.data.results[0].latest_message_delivery_status_date).to be_instance_of(Date)
       expect(data.errors).to be_instance_of(Array)
+    end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        @api_instance.get_async_bulk_lookup(nil, request_id)
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'causes an ArgumentError for a missing request_id' do
+      expect {
+        @api_instance.get_async_bulk_lookup(BW_ACCOUNT_ID, nil)
+      }.to raise_error(ArgumentError)
     end
   end
 end
