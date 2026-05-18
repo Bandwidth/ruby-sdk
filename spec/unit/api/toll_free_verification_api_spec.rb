@@ -150,6 +150,18 @@ describe 'TollFreeVerificationApi' do
       _data, status_code = @tfv_api_instance.delete_verification_request_with_http_info(BW_ACCOUNT_ID, tf_phone_number)
       expect(status_code).to eq(204)
     end
+
+    it 'causes an ArgumentError for a missing account_id' do
+      expect {
+        @tfv_api_instance.delete_verification_request(nil, tf_phone_number)
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'causes an ArgumentError for a missing phone_number' do
+      expect {
+        @tfv_api_instance.delete_verification_request(BW_ACCOUNT_ID, nil)
+      }.to raise_error(ArgumentError)
+    end
   end
 
   # List Toll-Free Use Cases
