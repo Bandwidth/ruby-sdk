@@ -113,18 +113,47 @@ describe Bandwidth::Configuration do
     end
   end
 
+  describe '#oauth_bearer_token' do
+    it 'returns the Bearer string when a static access_token is set' do
+      config.access_token = token
+      config.access_token_getter = nil
+      expect(config.oauth_bearer_token).to eq("Bearer #{token}")
+    end
+
+    it 'returns the Bearer string using access_token_getter when defined' do
+      config.access_token_getter = proc { token }
+      expect(config.oauth_bearer_token).to eq("Bearer #{token}")
+    end
+
+    it 'returns nil when no access_token is available' do
+      config.access_token = nil
+      config.access_token_getter = proc { nil }
+      expect(config.oauth_bearer_token).to be_nil
+    end
+  end
+
   describe '#auth_settings' do
-    it 'returns Auth Settings hash for api client' do
+    it 'returns Basic auth entry for api client' do
       basic_auth = config.auth_settings['Basic']
       expect(basic_auth[:type]).to eq('basic')
       expect(basic_auth[:in]).to eq('header')
       expect(basic_auth[:key]).to eq('Authorization')
       expect(basic_auth[:value]).to eq('Basic Og==')
     end
+
+    it 'returns OAuth2 auth entry for api client' do
+      config.access_token = token
+      config.access_token_getter = nil
+      oauth2 = config.auth_settings['OAuth2']
+      expect(oauth2[:type]).to eq('oauth2')
+      expect(oauth2[:in]).to eq('header')
+      expect(oauth2[:key]).to eq('Authorization')
+      expect(oauth2[:value]).to eq("Bearer #{token}")
+    end
   end
 
   describe '#server_url' do
-    it 'returns URL with enum variable substitued' do
+    it 'returns URL with enum variable substituted' do
       expect(config.server_url(0, { enum_var: 'v3' }, server)).to eq('https://voice.bandwidth.com/api/v3/default_value')
     end
 
