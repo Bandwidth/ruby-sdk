@@ -132,6 +132,64 @@ describe Bandwidth::Configuration do
     end
   end
 
+  describe 'default access_token_getter' do
+    let(:client_id) { 'test_client_id' }
+    let(:client_secret) { 'test_client_secret' }
+    let(:faraday_conn) { instance_double(Faraday::Connection) }
+    let(:success_response) { instance_double(Faraday::Response, status: 200, body: '{"access_token":"refreshed_token","expires_in":3600}') }
+    let(:error_response) { instance_double(Faraday::Response, status: 401, body: 'unauthorized') }
+
+    before do
+      allow(Faraday).to receive(:new).and_return(faraday_conn)
+    end
+
+    it 'returns the cached access_token when expiration is in the future' do
+      config.access_token = 'cached_token'
+      config.instance_variable_set(:@access_token_expiration, Time.now + 3600)
+      expect(faraday_conn).not_to receive(:post)
+      expect(config.access_token_getter.call).to eq('cached_token')
+    end
+
+    it 'returns the cached access_token when expiration has never been set' do
+      config.access_token = 'cached_token'
+      expect(faraday_conn).not_to receive(:post)
+      expect(config.access_token_getter.call).to eq('cached_token')
+    end
+
+    it 'returns nil when no cached token and no client credentials' do
+      expect(faraday_conn).not_to receive(:post)
+      expect(config.access_token_getter.call).to be_nil
+    end
+
+    it 'fetches a new token via the token endpoint when no cached token exists' do
+      config.client_id = client_id
+      config.client_secret = client_secret
+      allow(faraday_conn).to receive(:post).and_return(success_response)
+      expect(config.access_token_getter.call).to eq('refreshed_token')
+      expect(config.access_token).to eq('refreshed_token')
+      expect(config.instance_variable_get(:@access_token_expiration)).to be_a(Time)
+    end
+
+    it 'refreshes the token when the cached token is within the 60-second expiration buffer' do
+      config.client_id = client_id
+      config.client_secret = client_secret
+      config.access_token = 'expiring_soon'
+      config.instance_variable_set(:@access_token_expiration, Time.now + 30)
+      allow(faraday_conn).to receive(:post).and_return(success_response)
+      config.access_token_getter.call
+      expect(config.access_token).to eq('refreshed_token')
+    end
+
+    it 'raises when the token endpoint returns a non-200 response' do
+      config.client_id = client_id
+      config.client_secret = client_secret
+      allow(faraday_conn).to receive(:post).and_return(error_response)
+      expect {
+        config.access_token_getter.call
+      }.to raise_error(RuntimeError, /Failed to obtain access token: 401/)
+    end
+  end
+
   describe '#auth_settings' do
     it 'returns Basic auth entry for api client' do
       basic_auth = config.auth_settings['Basic']
