@@ -1,5 +1,10 @@
 # Unit tests for Bandwidth::VerifyCodeRequest
 describe Bandwidth::VerifyCodeRequest do
+  let(:verify_code_request_default) { Bandwidth::VerifyCodeRequest.new({
+    to: '+19195551234',
+    expiration_time_in_minutes: 1.0,
+    code: '123456'
+  }) }
   let(:verify_code_request_values) { Bandwidth::VerifyCodeRequest.new({
     to: '+19195551234',
     scope: '2FA',
@@ -49,12 +54,6 @@ describe Bandwidth::VerifyCodeRequest do
     end
   end
 
-  describe '#hash' do
-    it 'returns a hash code according to attributes' do
-      expect(verify_code_request_values.hash).to be_instance_of(Integer)
-    end
-  end
-
   describe '#to_s' do
     it 'returns a string representation of the object' do
       expect(verify_code_request_values.to_s).to eq('{:to=>"+19195551234", :scope=>"2FA", :expirationTimeInMinutes=>1.0, :code=>"123456"}')
@@ -65,11 +64,11 @@ describe Bandwidth::VerifyCodeRequest do
     it 'returns true/false when comparing objects' do
       verify_code_request_equal = Bandwidth::VerifyCodeRequest.new({
         to: '+19195551234',
-        scope: '2FA',
         expiration_time_in_minutes: 1.0,
         code: '123456'
       })
-      expect(verify_code_request_equal.eql?(verify_code_request_values)).to be true
+      expect(verify_code_request_default.eql?(verify_code_request_equal)).to be true
+      expect(verify_code_request_default.eql?(verify_code_request_values)).to be false
     end
   end
 

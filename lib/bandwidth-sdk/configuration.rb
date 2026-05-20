@@ -217,6 +217,7 @@ module Bandwidth
         body = JSON.parse(response.body)
         @access_token = body['access_token']
         @access_token_expiration = Time.now + body['expires_in']
+        @access_token
       }
 
       yield(self) if block_given?

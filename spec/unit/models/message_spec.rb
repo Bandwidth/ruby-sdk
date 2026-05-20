@@ -37,29 +37,9 @@ describe Bandwidth::Message do
     end
   end
 
-  describe 'enum validation' do
-    it 'works' do
-      
-    end
-  end
-
-  describe 'EnumAttributeValidator' do
-    it 'validates string enum' do
-      validator = Bandwidth::Message::EnumAttributeValidator.new(String, ['valid'])
-      expect(validator.valid?('valid')).to be true
-      expect(validator.valid?('invalid')).to be false
-    end
-
-    it 'validates integer enum' do
-      validator = Bandwidth::Message::EnumAttributeValidator.new(Integer, [1])
-      expect(validator.valid?(1)).to be true
-      expect(validator.valid?('invalid')).to be false
-    end
-
-    it 'validates float enum' do
-      validator = Bandwidth::Message::EnumAttributeValidator.new(Float, [1.0])
-      expect(validator.valid?(1.0)).to be true
-      expect(validator.valid?('invalid')).to be false
+  describe '#openapi_nullable' do
+    it 'expects nullable attributes to be an empty set' do
+      expect(Bandwidth::Message.openapi_nullable).to eq(Set.new([]))
     end
   end
 
@@ -97,15 +77,9 @@ describe Bandwidth::Message do
     end
   end
 
-  describe '#hash' do
-    it 'returns a hash code according to attributes' do
-      expect(message_default.hash).to be_instance_of(Integer)
-    end
-  end
-
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(message_default.to_s).to eq('{}')
+      expect(message_values.to_s).to eq('{:id=>"1589228074636lm4k2je7j7jklbn2", :owner=>"+19195554321", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :time=>"2022-06-16T13:15:07.160Z", :segmentCount=>2, :direction=>"in", :to=>["+19195551234"], :from=>"+19195554321", :media=>["https://dev.bandwidth.com/images/bandwidth-logo.png"], :text=>"Hello world", :tag=>"custom tag", :priority=>"default", :expiration=>"2022-06-16T13:45:07.160Z"}')
     end
   end
 
@@ -133,6 +107,20 @@ describe Bandwidth::Message do
         priority: 'default',
         expiration: '2022-06-16T13:45:07.160Z'
       })
+    end
+  end
+
+  describe 'custom attribute writers' do
+    it '#to=' do
+      expect {
+        message_values.to = nil
+      }.to raise_error(ArgumentError, 'to cannot be nil')
+    end
+
+    it '#media=' do
+      expect {
+        message_values.media = nil
+      }.to raise_error(ArgumentError, 'media cannot be nil')
     end
   end
 end

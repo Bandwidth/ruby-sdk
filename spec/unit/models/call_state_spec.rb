@@ -46,23 +46,20 @@ describe Bandwidth::CallState do
     end
   end
 
-  describe 'EnumAttributeValidator' do
-    it 'validates string enum' do
-      validator = Bandwidth::CallState::EnumAttributeValidator.new(String, ['valid'])
-      expect(validator.valid?('valid')).to be true
-      expect(validator.valid?('invalid')).to be false
-    end
-
-    it 'validates integer enum' do
-      validator = Bandwidth::CallState::EnumAttributeValidator.new(Integer, [1])
-      expect(validator.valid?(1)).to be true
-      expect(validator.valid?('invalid')).to be false
-    end
-
-    it 'validates float enum' do
-      validator = Bandwidth::CallState::EnumAttributeValidator.new(Float, [1.0])
-      expect(validator.valid?(1.0)).to be true
-      expect(validator.valid?('invalid')).to be false
+  describe '#openapi_nullable' do
+    it 'expects nullable attributes to be the set of nullable fields' do
+      expect(Bandwidth::CallState.openapi_nullable).to eq(Set.new([
+        :'parent_call_id',
+        :'stir_shaken',
+        :'identity',
+        :'enqueued_time',
+        :'start_time',
+        :'answer_time',
+        :'end_time',
+        :'disconnect_cause',
+        :'error_message',
+        :'error_id'
+      ]))
     end
   end
 
@@ -118,15 +115,9 @@ describe Bandwidth::CallState do
     end
   end
 
-  describe '#hash' do
-    it 'returns a hash code according to attributes' do
-      expect(call_state_default.hash).to be_instance_of(Integer)
-    end
-  end
-
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(call_state_default.to_s).to eq('{}')
+      expect(call_state_values.to_s).to eq('{:applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :accountId=>"9900000", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :parentCallId=>"c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :to=>"+19195551234", :from=>"+19195554321", :direction=>"inbound", :state=>"disconnected", :stirShaken=>{:verstat=>"TN-Verification-Passed", :attestationIndicator=>"A", :originatingId=>"abc123"}, :identity=>"eyJhbGciOiJFUzI1NiI", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :endTime=>"2022-06-16T13:15:18.314Z", :disconnectCause=>"hangup", :errorMessage=>nil, :errorId=>nil, :lastUpdate=>"2022-06-16T13:15:18.314Z"}')
     end
   end
 

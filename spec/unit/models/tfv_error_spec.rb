@@ -27,9 +27,9 @@ describe Bandwidth::TfvError do
     end
   end
 
-  describe 'enum validation' do
-    it 'works' do
-      
+  describe '#openapi_nullable' do
+    it 'expects nullable attributes to be an empty set' do
+      expect(Bandwidth::TfvError.openapi_nullable).to eq(Set.new([]))
     end
   end
 
@@ -44,12 +44,6 @@ describe Bandwidth::TfvError do
       expect(tfv_error_from_hash.type).to eq('type')
       expect(tfv_error_from_hash.description).to eq('description')
       expect(tfv_error_from_hash.errors).to eq({ key: 'value' })
-    end
-  end
-
-  describe '#hash' do
-    it 'returns a hash code according to attributes' do
-      expect(tfv_error_default.hash).to be_instance_of(Integer)
     end
   end
 

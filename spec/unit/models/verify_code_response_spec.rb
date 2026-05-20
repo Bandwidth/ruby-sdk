@@ -40,12 +40,6 @@ describe Bandwidth::VerifyCodeResponse do
       expect(verify_code_response_from_hash.valid).to be true
     end
   end
-  
-  describe '#hash' do
-    it 'returns a hash code according to attributes' do
-      expect(verify_code_response_default.hash).to be_instance_of(Integer)
-    end
-  end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do

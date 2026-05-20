@@ -258,7 +258,7 @@ describe Bandwidth::ApiClient do
   end
 
   describe '#convert_to_type' do
-    it 'conversts data to the given return type' do
+    it 'converts data to the given return type' do
       expect(api_client_default.convert_to_type(1, 'String')).to eq('1')
       expect(api_client_default.convert_to_type('1', 'Integer')).to eq(1)
       expect(api_client_default.convert_to_type('1', 'Float')).to eq(1.0)
