@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module Bandwidth
+  # Must contain at least one of title, description, or media to be valid.
   class RbmCardContent < ApiModelBase
     # The title of the card. Must be 200 characters or less.
     attr_accessor :title
