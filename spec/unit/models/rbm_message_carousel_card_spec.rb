@@ -11,7 +11,7 @@ describe Bandwidth::RbmMessageCarouselCard do
   }) }
   let(:rbm_message_carousel_card_default) { Bandwidth::RbmMessageCarouselCard.new({
     card_width: Bandwidth::CardWidthEnum::SMALL,
-    card_contents: [card_content]
+    card_contents: [card_content, card_content]
   }) }
   let(:rbm_message_carousel_card_values) { Bandwidth::RbmMessageCarouselCard.new({
     card_width: Bandwidth::CardWidthEnum::MEDIUM,
@@ -49,7 +49,7 @@ describe Bandwidth::RbmMessageCarouselCard do
     it 'validates instance of RbmMessageCarouselCard created by the build_from_hash method' do
       rbm_message_carousel_card_from_hash = Bandwidth::RbmMessageCarouselCard.build_from_hash({
         cardWidth: Bandwidth::CardWidthEnum::MEDIUM,
-        cardContents: [{ title: 'Card Title', description: 'Card Description' }],
+        cardContents: [{ title: 'Card Title', description: 'Card Description' }, { title: 'Card Title', description: 'Card Description' }],
         suggestions: [{ type: Bandwidth::RbmActionTypeEnum::REPLY, text: 'Yes', postbackData: 'reply_yes' }]
       })
       expect(rbm_message_carousel_card_from_hash).to be_instance_of(Bandwidth::RbmMessageCarouselCard)
@@ -69,7 +69,7 @@ describe Bandwidth::RbmMessageCarouselCard do
     it 'returns true/false when comparing objects' do
       rbm_message_carousel_card_equal = Bandwidth::RbmMessageCarouselCard.new({
         card_width: Bandwidth::CardWidthEnum::SMALL,
-        card_contents: [card_content]
+        card_contents: [card_content, card_content]
       })
       expect(rbm_message_carousel_card_default.eql?(rbm_message_carousel_card_equal)).to be true
       expect(rbm_message_carousel_card_default.eql?(rbm_message_carousel_card_values)).to be false
