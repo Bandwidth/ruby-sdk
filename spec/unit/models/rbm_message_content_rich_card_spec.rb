@@ -1,5 +1,10 @@
 # Unit tests for Bandwidth::RbmMessageContentRichCard
 describe Bandwidth::RbmMessageContentRichCard do
+  let(:card_content) { Bandwidth::RbmCardContent.new({
+    title: 'Card Title',
+    description: 'Card Description'
+  }) }
+
   describe '.openapi_one_of' do
     it 'lists the classes defined in oneOf' do
       expect(Bandwidth::RbmMessageContentRichCard.openapi_one_of).to eq([
@@ -11,7 +16,7 @@ describe Bandwidth::RbmMessageContentRichCard do
 
   describe '.build' do
     it 'routes payloads matching RbmMessageCarouselCard attributes to RbmMessageCarouselCard.build_from_hash' do
-      data = { cardWidth: 'SMALL', cardContents: [] }
+      data = { cardWidth: 'SMALL', cardContents: [card_content, card_content] }
       expect(Bandwidth::RbmMessageContentRichCard.build(data)).to be_instance_of(Bandwidth::RbmMessageCarouselCard)
     end
 
