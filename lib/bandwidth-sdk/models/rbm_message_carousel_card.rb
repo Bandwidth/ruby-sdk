@@ -132,6 +132,10 @@ module Bandwidth
         invalid_properties.push('invalid value for "card_contents", number of items must be less than or equal to 10.')
       end
 
+      if @card_contents.length < 2
+        invalid_properties.push('invalid value for "card_contents", number of items must be greater than or equal to 2.')
+      end
+
       if !@suggestions.nil? && @suggestions.length > 11
         invalid_properties.push('invalid value for "suggestions", number of items must be less than or equal to 11.')
       end
@@ -146,6 +150,7 @@ module Bandwidth
       return false if @card_width.nil?
       return false if @card_contents.nil?
       return false if @card_contents.length > 10
+      return false if @card_contents.length < 2
       return false if !@suggestions.nil? && @suggestions.length > 11
       true
     end
@@ -169,6 +174,10 @@ module Bandwidth
 
       if card_contents.length > 10
         fail ArgumentError, 'invalid value for "card_contents", number of items must be less than or equal to 10.'
+      end
+
+      if card_contents.length < 2
+        fail ArgumentError, 'invalid value for "card_contents", number of items must be greater than or equal to 2.'
       end
 
       @card_contents = card_contents
