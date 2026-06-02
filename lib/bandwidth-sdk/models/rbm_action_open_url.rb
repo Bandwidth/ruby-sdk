@@ -23,7 +23,7 @@ module Bandwidth
     # Base64 payload the customer receives when the reply is clicked.
     attr_accessor :postback_data
 
-    # The URL to open in browser.
+    # The URL to open in browser. Must use http:// or https:// scheme.
     attr_accessor :url
 
     attr_accessor :application

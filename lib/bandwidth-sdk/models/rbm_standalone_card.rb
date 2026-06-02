@@ -106,8 +106,6 @@ module Bandwidth
 
       if attributes.key?(:'thumbnail_image_alignment')
         self.thumbnail_image_alignment = attributes[:'thumbnail_image_alignment']
-      else
-        self.thumbnail_image_alignment = nil
       end
 
       if attributes.key?(:'card_content')
@@ -132,10 +130,6 @@ module Bandwidth
         invalid_properties.push('invalid value for "orientation", orientation cannot be nil.')
       end
 
-      if @thumbnail_image_alignment.nil?
-        invalid_properties.push('invalid value for "thumbnail_image_alignment", thumbnail_image_alignment cannot be nil.')
-      end
-
       if @card_content.nil?
         invalid_properties.push('invalid value for "card_content", card_content cannot be nil.')
       end
@@ -152,7 +146,6 @@ module Bandwidth
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @orientation.nil?
-      return false if @thumbnail_image_alignment.nil?
       return false if @card_content.nil?
       return false if !@suggestions.nil? && @suggestions.length > 11
       true
@@ -166,16 +159,6 @@ module Bandwidth
       end
 
       @orientation = orientation
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] thumbnail_image_alignment Value to be assigned
-    def thumbnail_image_alignment=(thumbnail_image_alignment)
-      if thumbnail_image_alignment.nil?
-        fail ArgumentError, 'thumbnail_image_alignment cannot be nil'
-      end
-
-      @thumbnail_image_alignment = thumbnail_image_alignment
     end
 
     # Custom attribute writer method with validation
