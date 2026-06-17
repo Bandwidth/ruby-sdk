@@ -6,6 +6,8 @@ describe Bandwidth::TfvStatus do
     status: Bandwidth::TfvStatusEnum::VERIFIED,
     internal_ticket_number: '8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3',
     decline_reason_description: 'The reason for declining',
+    denial_status_code: 100,
+    additional_denial_reasons: [Bandwidth::AdditionalDenialReason.new({ status_code: 100, reason: 'reason text', resubmit_allowed: true })],
     resubmit_allowed: false,
     created_date_time: '2024-01-01T00:00:00Z',
     modified_date_time: '2024-01-02T00:00:00Z',
@@ -37,7 +39,11 @@ describe Bandwidth::TfvStatus do
 
   describe '#openapi_nullable' do
     it 'expects nullable attributes to be the set of nullable fields' do
-      expect(Bandwidth::TfvStatus.openapi_nullable).to eq(Set.new([:'cv_token']))
+      expect(Bandwidth::TfvStatus.openapi_nullable).to eq(Set.new([
+        :'denial_status_code',
+        :'additional_denial_reasons',
+        :'cv_token'
+      ]))
     end
   end
 
@@ -48,6 +54,8 @@ describe Bandwidth::TfvStatus do
         status: Bandwidth::TfvStatusEnum::VERIFIED,
         internalTicketNumber: '8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3',
         declineReasonDescription: 'The reason for declining',
+        denialStatusCode: 100,
+        additionalDenialReasons: [{ statusCode: 100, reason: 'reason text', resubmitAllowed: true }],
         resubmitAllowed: false,
         createdDateTime: '2024-01-01T00:00:00Z',
         modifiedDateTime: '2024-01-02T00:00:00Z',
@@ -61,6 +69,8 @@ describe Bandwidth::TfvStatus do
       expect(tfv_status_from_hash.status).to eq(Bandwidth::TfvStatusEnum::VERIFIED)
       expect(tfv_status_from_hash.internal_ticket_number).to eq('8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3')
       expect(tfv_status_from_hash.decline_reason_description).to eq('The reason for declining')
+      expect(tfv_status_from_hash.denial_status_code).to eq(100)
+      expect(tfv_status_from_hash.additional_denial_reasons.first).to be_instance_of(Bandwidth::AdditionalDenialReason)
       expect(tfv_status_from_hash.resubmit_allowed).to eq(false)
       expect(tfv_status_from_hash.created_date_time).to eq(Time.parse('2024-01-01T00:00:00Z'))
       expect(tfv_status_from_hash.modified_date_time).to eq(Time.parse('2024-01-02T00:00:00Z'))
@@ -73,7 +83,7 @@ describe Bandwidth::TfvStatus do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_status_values.to_s).to eq('{:phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :declineReasonDescription=>"The reason for declining", :resubmitAllowed=>false, :createdDateTime=>"2024-01-01T00:00:00Z", :modifiedDateTime=>"2024-01-02T00:00:00Z", :submission=>{:businessAddress=>{:name=>"Bandwidth"}}, :blocked=>false, :blockedReason=>"The reason for blocking", :cvToken=>"cv_token_value"}')
+      expect(tfv_status_values.to_s).to eq('{:phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :declineReasonDescription=>"The reason for declining", :denialStatusCode=>100, :additionalDenialReasons=>[{:statusCode=>100, :reason=>"reason text", :resubmitAllowed=>true}], :resubmitAllowed=>false, :createdDateTime=>"2024-01-01T00:00:00Z", :modifiedDateTime=>"2024-01-02T00:00:00Z", :submission=>{:businessAddress=>{:name=>"Bandwidth"}}, :blocked=>false, :blockedReason=>"The reason for blocking", :cvToken=>"cv_token_value"}')
     end
   end
 
@@ -91,6 +101,8 @@ describe Bandwidth::TfvStatus do
         status: Bandwidth::TfvStatusEnum::VERIFIED,
         internalTicketNumber: '8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3',
         declineReasonDescription: 'The reason for declining',
+        denialStatusCode: 100,
+        additionalDenialReasons: [{ statusCode: 100, reason: 'reason text', resubmitAllowed: true }],
         resubmitAllowed: false,
         createdDateTime: '2024-01-01T00:00:00Z',
         modifiedDateTime: '2024-01-02T00:00:00Z',
