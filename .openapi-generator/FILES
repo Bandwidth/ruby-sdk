@@ -93,6 +93,7 @@ docs/LinksObject.md
 docs/ListEndpointsResponse.md
 docs/ListMessageDirectionEnum.md
 docs/ListMessageItem.md
+docs/LocationResponse.md
 docs/LookupErrorResponse.md
 docs/LookupErrorSchema.md
 docs/LookupErrorSchemaMeta.md
@@ -150,7 +151,6 @@ docs/RbmActionTypeEnum.md
 docs/RbmActionViewLocation.md
 docs/RbmCardContent.md
 docs/RbmCardContentMedia.md
-docs/RbmLocationResponse.md
 docs/RbmMediaHeightEnum.md
 docs/RbmMessageCarouselCard.md
 docs/RbmMessageContentFile.md
@@ -159,7 +159,6 @@ docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
 docs/RbmOpenUrlEnum.md
 docs/RbmStandaloneCard.md
-docs/RbmSuggestionResponse.md
 docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
@@ -178,6 +177,7 @@ docs/StatusCallback.md
 docs/StatusCallbackMessage.md
 docs/StatusCallbackTypeEnum.md
 docs/StirShaken.md
+docs/SuggestionResponse.md
 docs/SyncLookupRequest.md
 docs/TelephoneNumber.md
 docs/TfvBasicAuthentication.md
@@ -318,6 +318,7 @@ lib/bandwidth-sdk/models/links_object.rb
 lib/bandwidth-sdk/models/list_endpoints_response.rb
 lib/bandwidth-sdk/models/list_message_direction_enum.rb
 lib/bandwidth-sdk/models/list_message_item.rb
+lib/bandwidth-sdk/models/location_response.rb
 lib/bandwidth-sdk/models/lookup_error_response.rb
 lib/bandwidth-sdk/models/lookup_error_schema.rb
 lib/bandwidth-sdk/models/lookup_error_schema_meta.rb
@@ -370,7 +371,6 @@ lib/bandwidth-sdk/models/rbm_action_type_enum.rb
 lib/bandwidth-sdk/models/rbm_action_view_location.rb
 lib/bandwidth-sdk/models/rbm_card_content.rb
 lib/bandwidth-sdk/models/rbm_card_content_media.rb
-lib/bandwidth-sdk/models/rbm_location_response.rb
 lib/bandwidth-sdk/models/rbm_media_height_enum.rb
 lib/bandwidth-sdk/models/rbm_message_carousel_card.rb
 lib/bandwidth-sdk/models/rbm_message_content_file.rb
@@ -379,7 +379,6 @@ lib/bandwidth-sdk/models/rbm_message_content_text.rb
 lib/bandwidth-sdk/models/rbm_message_media.rb
 lib/bandwidth-sdk/models/rbm_open_url_enum.rb
 lib/bandwidth-sdk/models/rbm_standalone_card.rb
-lib/bandwidth-sdk/models/rbm_suggestion_response.rb
 lib/bandwidth-sdk/models/rbm_web_view_enum.rb
 lib/bandwidth-sdk/models/recording_available_callback.rb
 lib/bandwidth-sdk/models/recording_complete_callback.rb
@@ -396,6 +395,7 @@ lib/bandwidth-sdk/models/status_callback.rb
 lib/bandwidth-sdk/models/status_callback_message.rb
 lib/bandwidth-sdk/models/status_callback_type_enum.rb
 lib/bandwidth-sdk/models/stir_shaken.rb
+lib/bandwidth-sdk/models/suggestion_response.rb
 lib/bandwidth-sdk/models/sync_lookup_request.rb
 lib/bandwidth-sdk/models/telephone_number.rb
 lib/bandwidth-sdk/models/tfv_basic_authentication.rb

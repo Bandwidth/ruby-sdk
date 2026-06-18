@@ -126,8 +126,8 @@ module Bandwidth
         :'priority' => :'PriorityEnum',
         :'channel' => :'MultiChannelMessageChannelEnum',
         :'content' => :'MultiChannelMessageContent',
-        :'suggestion_response' => :'RbmSuggestionResponse',
-        :'location_response' => :'RbmLocationResponse'
+        :'suggestion_response' => :'SuggestionResponse',
+        :'location_response' => :'LocationResponse'
       }
     end
 
