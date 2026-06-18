@@ -23,10 +23,10 @@ module Bandwidth
     # Base64 payload the customer receives when the reply is clicked.
     attr_accessor :postback_data
 
-    # The latitude of the location.
+    # The latitude of the location. Must be in range [-90.000000, 90.000000].
     attr_accessor :latitude
 
-    # The longitude of the location.
+    # The longitude of the location. Must be in range [-180.000000, 180.000000].
     attr_accessor :longitude
 
     # The label of the location.

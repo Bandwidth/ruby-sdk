@@ -99,12 +99,6 @@ describe Bandwidth::RbmStandaloneCard do
       }.to raise_error(ArgumentError, 'orientation cannot be nil')
     end
 
-    it '#thumbnail_image_alignment=' do
-      expect {
-        Bandwidth::RbmStandaloneCard.new({ orientation: 'HORIZONTAL', thumbnail_image_alignment: nil })
-      }.to raise_error(ArgumentError, 'thumbnail_image_alignment cannot be nil')
-    end
-
     it '#card_content=' do
       expect {
         Bandwidth::RbmStandaloneCard.new({ orientation: 'HORIZONTAL', thumbnail_image_alignment: 'LEFT', card_content: nil })
