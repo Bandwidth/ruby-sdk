@@ -388,6 +388,8 @@ lib/bandwidth-sdk/models/recording_transcription_metadata.rb
 lib/bandwidth-sdk/models/recording_transcriptions.rb
 lib/bandwidth-sdk/models/redirect_callback.rb
 lib/bandwidth-sdk/models/redirect_method_enum.rb
+lib/bandwidth-sdk/models/refer_call_status_enum.rb
+lib/bandwidth-sdk/models/refer_complete_callback.rb
 lib/bandwidth-sdk/models/sip_connection_metadata.rb
 lib/bandwidth-sdk/models/sip_credentials.rb
 lib/bandwidth-sdk/models/sms_message_content.rb
