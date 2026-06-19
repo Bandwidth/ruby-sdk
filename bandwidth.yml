@@ -3216,6 +3216,14 @@ components:
         - failure
       description: The status of the SIP REFER request.
       example: success
+    referCompleteMethodEnum:
+      type: string
+      description: HTTP method used for referCompleteUrl callback.
+      default: POST
+      enum:
+        - GET
+        - POST
+      example: POST
     machineDetectionModeEnum:
       type: string
       default: async
@@ -5054,6 +5062,33 @@ components:
           $ref: '#/components/schemas/transferCallerId'
         transferTo:
           $ref: '#/components/schemas/transferTo'
+    sipUri:
+      type: object
+      description: SIP URI destination for Refer-To header.
+      properties:
+        sipUri:
+          type: string
+          description: SIP URI destination (e.g. sip:alice@atlanta.example.com).
+          example: sip:alice@atlanta.example.com
+      required:
+        - sipUri
+    refer:
+      type: object
+      description: Send a SIP REFER for an inbound SIP URI call.
+      properties:
+        referCompleteUrl:
+          type: string
+          description: Optional callback URL for referComplete event. Relative URL allowed.
+        referCompleteMethod:
+          $ref: '#/components/schemas/referCompleteMethodEnum'
+        tag:
+          type: string
+          description: Optional tag echoed in future callbacks. Max length 256.
+          maxLength: 256
+        sipUri:
+          $ref: '#/components/schemas/sipUri'
+      required:
+        - sipUri
     referCompleteCallback:
       type: object
       description: >-
