@@ -1,4 +1,3 @@
-Original file line number	Diff line number	Diff line change
 # Unit tests for Bandwidth::ReferCompleteCallback
 describe Bandwidth::ReferCompleteCallback do
   let(:refer_complete_callback_default) { Bandwidth::ReferCompleteCallback.new }
