@@ -16,11 +16,11 @@ require 'time'
 module Bandwidth
   class InboundCallbackTypeEnum
     MESSAGE_RECEIVED = 'message-received'.freeze
-    REQUEST_LOCATION_RESPONSE = 'request-location-response'.freeze
+    REQUESTED_LOCATION_RESPONSE = 'requested-location-response'.freeze
     SUGGESTION_RESPONSE = 'suggestion-response'.freeze
 
     def self.all_vars
-      @all_vars ||= [MESSAGE_RECEIVED, REQUEST_LOCATION_RESPONSE, SUGGESTION_RESPONSE].freeze
+      @all_vars ||= [MESSAGE_RECEIVED, REQUESTED_LOCATION_RESPONSE, SUGGESTION_RESPONSE].freeze
     end
 
     # Builds the enum from string

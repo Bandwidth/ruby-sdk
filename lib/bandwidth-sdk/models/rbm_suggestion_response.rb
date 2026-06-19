@@ -21,11 +21,15 @@ module Bandwidth
     # Base64 payload the customer receives when the reply is clicked.
     attr_accessor :postback_data
 
+    # Corresponding parent message ID (MT).
+    attr_accessor :paired_message_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'text' => :'text',
-        :'postback_data' => :'postbackData'
+        :'postback_data' => :'postbackData',
+        :'paired_message_id' => :'pairedMessageId'
       }
     end
 
@@ -43,13 +47,15 @@ module Bandwidth
     def self.openapi_types
       {
         :'text' => :'String',
-        :'postback_data' => :'String'
+        :'postback_data' => :'String',
+        :'paired_message_id' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'paired_message_id'
       ])
     end
 
@@ -75,6 +81,10 @@ module Bandwidth
 
       if attributes.key?(:'postback_data')
         self.postback_data = attributes[:'postback_data']
+      end
+
+      if attributes.key?(:'paired_message_id')
+        self.paired_message_id = attributes[:'paired_message_id']
       end
     end
 
@@ -118,7 +128,8 @@ module Bandwidth
       return true if self.equal?(o)
       self.class == o.class &&
           text == o.text &&
-          postback_data == o.postback_data
+          postback_data == o.postback_data &&
+          paired_message_id == o.paired_message_id
     end
 
     # @see the `==` method
@@ -130,7 +141,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [text, postback_data].hash
+      [text, postback_data, paired_message_id].hash
     end
 
     # Builds the object from hash
