@@ -50,7 +50,7 @@ Bandwidth::Callback.openapi_discriminator_mapping
 #   :'message-received' => :'InboundCallback',
 #   :'message-sending' => :'StatusCallback',
 #   :'message-sent' => :'StatusCallback',
-#   :'request-location-response' => :'InboundCallback',
+#   :'requested-location-response' => :'InboundCallback',
 #   :'suggestion-response' => :'InboundCallback'
 # }
 ```
