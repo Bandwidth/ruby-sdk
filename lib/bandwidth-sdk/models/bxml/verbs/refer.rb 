@@ -1,0 +1,20 @@
+module Bandwidth
+  module Bxml
+    class Refer < Bandwidth::Bxml::NestableVerb
+      def initialize(sip_uri, attributes = {})
+        super('Refer', nil, [sip_uri], attributes)
+        @attribute_map = {
+          refer_complete_url: 'referCompleteUrl',
+          refer_complete_method: 'referCompleteMethod',
+          refer_complete_fallback_url: 'referCompleteFallbackUrl',
+          refer_complete_fallback_method: 'referCompleteFallbackMethod',
+          username: 'username',
+          password: 'password',
+          fallback_username: 'fallbackUsername',
+          fallback_password: 'fallbackPassword',
+          tag: 'tag'
+        }
+      end
+    end
+  end
+end

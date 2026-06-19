@@ -436,6 +436,8 @@ lib/bandwidth-sdk/models/webhook_subscription_request_schema.rb
 lib/bandwidth-sdk/models/webhook_subscription_type_enum.rb
 lib/bandwidth-sdk/models/webhook_subscriptions_list_body.rb
 lib/bandwidth-sdk/version.rb
+spec/unit/models/refer_call_status_enum_spec.rb
+spec/unit/models/refer_complete_callback_spec.rb
 spec/unit/models/refer_complete_method_enum_spec.rb
 spec/unit/models/refer_spec.rb
 spec/unit/models/sip_uri_spec.rb

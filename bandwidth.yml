@@ -5115,18 +5115,12 @@ components:
           $ref: '#/components/schemas/callId'
         callUrl:
           $ref: '#/components/schemas/callUrl'
-        enqueuedTime:
-          $ref: '#/components/schemas/enqueuedTime'
         startTime:
           $ref: '#/components/schemas/startTime'
         answerTime:
           $ref: '#/components/schemas/answerTime'
         tag:
           $ref: '#/components/schemas/tag1'
-        referTo:
-          type: string
-          description: The SIP URI that the call was referred to.
-          example: sip:alice@atlanta.example.com
         referCallStatus:
           $ref: '#/components/schemas/referCallStatusEnum'
         referSipResponseCode:

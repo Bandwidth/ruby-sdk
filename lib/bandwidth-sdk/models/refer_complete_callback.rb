@@ -39,9 +39,6 @@ module Bandwidth
     # The URL of the call associated with the event.
     attr_accessor :call_url
 
-    # (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.
-    attr_accessor :enqueued_time
-
     # Time the call was started, in ISO 8601 format.
     attr_accessor :start_time
 
@@ -50,9 +47,6 @@ module Bandwidth
 
     # (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
     attr_accessor :tag
-
-    # The SIP URI that the call was referred to.
-    attr_accessor :refer_to
 
     attr_accessor :refer_call_status
 
@@ -96,11 +90,9 @@ module Bandwidth
         :'direction' => :'direction',
         :'call_id' => :'callId',
         :'call_url' => :'callUrl',
-        :'enqueued_time' => :'enqueuedTime',
         :'start_time' => :'startTime',
         :'answer_time' => :'answerTime',
         :'tag' => :'tag',
-        :'refer_to' => :'referTo',
         :'refer_call_status' => :'referCallStatus',
         :'refer_sip_response_code' => :'referSipResponseCode',
         :'notify_sip_response_code' => :'notifySipResponseCode'
@@ -129,11 +121,9 @@ module Bandwidth
         :'direction' => :'CallDirectionEnum',
         :'call_id' => :'String',
         :'call_url' => :'String',
-        :'enqueued_time' => :'Time',
         :'start_time' => :'Time',
         :'answer_time' => :'Time',
         :'tag' => :'String',
-        :'refer_to' => :'String',
         :'refer_call_status' => :'ReferCallStatusEnum',
         :'refer_sip_response_code' => :'Integer',
         :'notify_sip_response_code' => :'Integer'
@@ -143,7 +133,6 @@ module Bandwidth
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'enqueued_time',
         :'answer_time',
         :'tag',
         :'refer_sip_response_code',
@@ -203,10 +192,6 @@ module Bandwidth
         self.call_url = attributes[:'call_url']
       end
 
-      if attributes.key?(:'enqueued_time')
-        self.enqueued_time = attributes[:'enqueued_time']
-      end
-
       if attributes.key?(:'start_time')
         self.start_time = attributes[:'start_time']
       end
@@ -217,10 +202,6 @@ module Bandwidth
 
       if attributes.key?(:'tag')
         self.tag = attributes[:'tag']
-      end
-
-      if attributes.key?(:'refer_to')
-        self.refer_to = attributes[:'refer_to']
       end
 
       if attributes.key?(:'refer_call_status')
@@ -265,11 +246,9 @@ module Bandwidth
           direction == o.direction &&
           call_id == o.call_id &&
           call_url == o.call_url &&
-          enqueued_time == o.enqueued_time &&
           start_time == o.start_time &&
           answer_time == o.answer_time &&
           tag == o.tag &&
-          refer_to == o.refer_to &&
           refer_call_status == o.refer_call_status &&
           refer_sip_response_code == o.refer_sip_response_code &&
           notify_sip_response_code == o.notify_sip_response_code
@@ -284,7 +263,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, enqueued_time, start_time, answer_time, tag, refer_to, refer_call_status, refer_sip_response_code, notify_sip_response_code].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, answer_time, tag, refer_call_status, refer_sip_response_code, notify_sip_response_code].hash
     end
 
     # Builds the object from hash
