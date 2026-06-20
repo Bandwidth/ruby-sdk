@@ -187,5 +187,27 @@ describe Bandwidth::ReferCompleteCallback do
         referSipResponseCode: 405
       })
     end
+
+    it 'handles NOTIFY timeout (202 accepted, no NOTIFY received)' do
+      callback = Bandwidth::ReferCompleteCallback.build_from_hash({
+        eventType: 'referComplete',
+        eventTime: '2022-06-16T13:15:07.160Z',
+        accountId: '9900000',
+        applicationId: '04e88489-df02-4e34-a0ee-27a91849555f',
+        from: '+19195554321',
+        to: '+19195551234',
+        direction: 'inbound',
+        callId: 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85',
+        callUrl: 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85',
+        startTime: '2022-06-16T13:15:07.160Z',
+        answerTime: '2022-06-16T13:15:18.126Z',
+        referCallStatus: 'failure',
+        referSipResponseCode: 202
+      })
+
+      expect(callback.refer_call_status).to eq(Bandwidth::ReferCallStatusEnum::FAILURE)
+      expect(callback.refer_sip_response_code).to eq(202)
+      expect(callback.notify_sip_response_code).to be_nil
+    end
   end
 end
