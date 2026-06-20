@@ -3,7 +3,8 @@ describe Bandwidth::RbmSuggestionResponse do
   let(:rbm_suggestion_response_default) { Bandwidth::RbmSuggestionResponse.new }
   let(:rbm_suggestion_response_values) { Bandwidth::RbmSuggestionResponse.new({
     text: 'Yes',
-    postback_data: 'reply_yes'
+    postback_data: 'reply_yes',
+    paired_message_id: 'paired_message_123'
   }) }
 
   describe '#initialize' do
@@ -28,7 +29,7 @@ describe Bandwidth::RbmSuggestionResponse do
 
   describe '#openapi_nullable' do
     it 'expects nullable attributes to be an empty set' do
-      expect(Bandwidth::RbmSuggestionResponse.openapi_nullable).to eq(Set.new([]))
+      expect(Bandwidth::RbmSuggestionResponse.openapi_nullable).to eq(Set.new([:paired_message_id]))
     end
   end
 
@@ -36,17 +37,19 @@ describe Bandwidth::RbmSuggestionResponse do
     it 'validates instance of RbmSuggestionResponse created by the build_from_hash method' do
       rbm_suggestion_response_from_hash = Bandwidth::RbmSuggestionResponse.build_from_hash({
         text: 'Yes',
-        postbackData: 'reply_yes'
+        postbackData: 'reply_yes',
+        pairedMessageId: 'paired_message_123'
       })
       expect(rbm_suggestion_response_from_hash).to be_instance_of(Bandwidth::RbmSuggestionResponse)
       expect(rbm_suggestion_response_from_hash.text).to eq('Yes')
       expect(rbm_suggestion_response_from_hash.postback_data).to eq('reply_yes')
+      expect(rbm_suggestion_response_from_hash.paired_message_id).to eq('paired_message_123')
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_suggestion_response_values.to_s).to eq('{:text=>"Yes", :postbackData=>"reply_yes"}')
+      expect(rbm_suggestion_response_values.to_s).to eq('{:text=>"Yes", :postbackData=>"reply_yes", :pairedMessageId=>"paired_message_123"}')
     end
   end
 
@@ -61,7 +64,8 @@ describe Bandwidth::RbmSuggestionResponse do
     it 'returns a hash representation of the object' do
       expect(rbm_suggestion_response_values.to_body).to eq({
         text: 'Yes',
-        postbackData: 'reply_yes'
+        postbackData: 'reply_yes',
+        pairedMessageId: 'paired_message_123'
       })
     end
   end

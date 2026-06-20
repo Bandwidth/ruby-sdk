@@ -6,7 +6,7 @@ describe Bandwidth::InboundCallbackTypeEnum do
     end
 
     it 'defines REQUEST_LOCATION_RESPONSE' do
-      expect(Bandwidth::InboundCallbackTypeEnum::REQUEST_LOCATION_RESPONSE).to eq('request-location-response')
+      expect(Bandwidth::InboundCallbackTypeEnum::REQUESTED_LOCATION_RESPONSE).to eq('requested-location-response')
     end
 
     it 'defines SUGGESTION_RESPONSE' do
@@ -18,7 +18,7 @@ describe Bandwidth::InboundCallbackTypeEnum do
     it 'returns every valid enum value' do
       expect(Bandwidth::InboundCallbackTypeEnum.all_vars).to eq([
         'message-received',
-        'request-location-response',
+        'requested-location-response',
         'suggestion-response'
       ])
     end
@@ -27,7 +27,7 @@ describe Bandwidth::InboundCallbackTypeEnum do
   describe '.build_from_hash' do
     it 'returns the value when it matches a valid enum value' do
       expect(Bandwidth::InboundCallbackTypeEnum.build_from_hash('message-received')).to eq('message-received')
-      expect(Bandwidth::InboundCallbackTypeEnum.build_from_hash('request-location-response')).to eq('request-location-response')
+      expect(Bandwidth::InboundCallbackTypeEnum.build_from_hash('requested-location-response')).to eq('requested-location-response')
       expect(Bandwidth::InboundCallbackTypeEnum.build_from_hash('suggestion-response')).to eq('suggestion-response')
     end
 
