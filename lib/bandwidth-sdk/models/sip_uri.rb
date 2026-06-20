@@ -14,10 +14,10 @@ module Bandwidth
     # Nested SIP URI destination model used by <Refer>.
   class SipUri < ApiModelBase
     # SIP URI destination (e.g. sip:alice@atlanta.example.com)
-    attr_accessor :sip_uri
+    attr_accessor :uri
 
     def self.attribute_map
-      { :'sip_uri' => :'sipUri' }
+      { :'uri' => :'uri' }
     end
 
     def self.acceptable_attribute_map
@@ -29,7 +29,7 @@ module Bandwidth
     end
 
     def self.openapi_types
-      { :'sip_uri' => :'String' }
+      { :'uri' => :'String' }
     end
 
     def self.openapi_nullable
@@ -45,7 +45,7 @@ module Bandwidth
         h[k.to_sym] = v
       end
 
-      self.sip_uri = attributes[:'sip_uri'] if attributes.key?(:'sip_uri')
+      self.uri = attributes[:'uri'] if attributes.key?(:'uri')
     end
 
     def self.build_from_hash(attributes)

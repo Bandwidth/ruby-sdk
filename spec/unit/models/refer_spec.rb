@@ -1,5 +1,5 @@
 describe Bandwidth::Refer do
-  let(:sip_uri) { Bandwidth::SipUri.new(sip_uri: 'sip:alice@atlanta.example.com') }
+  let(:sip_uri) { Bandwidth::SipUri.new(uri: 'sip:alice@atlanta.example.com') }
 
   it 'initializes and serializes with valid attributes' do
     model = Bandwidth::Refer.new(
@@ -13,7 +13,7 @@ describe Bandwidth::Refer do
       referCompleteUrl: 'https://example.com/referComplete',
       referCompleteMethod: 'POST',
       tag: 'custom-tag',
-      sipUri: { sipUri: 'sip:alice@atlanta.example.com' }
+      sipUri: { uri: 'sip:alice@atlanta.example.com' }
     })
   end
 
@@ -40,10 +40,10 @@ describe Bandwidth::Refer do
       referCompleteUrl: 'https://example.com/referComplete',
       referCompleteMethod: 'GET',
       tag: 'x',
-      sipUri: { sipUri: 'sip:alice@atlanta.example.com' }
+      sipUri: { uri: 'sip:alice@atlanta.example.com' }
     })
 
     expect(model.refer_complete_method).to eq('GET')
-    expect(model.sip_uri.sip_uri).to eq('sip:alice@atlanta.example.com')
+    expect(model.sip_uri.uri).to eq('sip:alice@atlanta.example.com')
   end
 end
