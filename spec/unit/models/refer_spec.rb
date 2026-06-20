@@ -35,6 +35,12 @@ describe Bandwidth::Refer do
     }.to raise_error(ArgumentError)
   end
 
+  it 'rejects a tag exceeding 256 characters' do
+    expect {
+      Bandwidth::Refer.new(sip_uri: sip_uri, tag: 'x' * 257)
+    }.to raise_error(ArgumentError)
+  end
+
   it 'builds from hash' do
     model = Bandwidth::Refer.build_from_hash({
       referCompleteUrl: 'https://example.com/referComplete',
