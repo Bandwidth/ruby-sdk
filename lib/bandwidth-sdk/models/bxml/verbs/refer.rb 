@@ -6,12 +6,6 @@ module Bandwidth
         @attribute_map = {
           refer_complete_url: 'referCompleteUrl',
           refer_complete_method: 'referCompleteMethod',
-          refer_complete_fallback_url: 'referCompleteFallbackUrl',
-          refer_complete_fallback_method: 'referCompleteFallbackMethod',
-          username: 'username',
-          password: 'password',
-          fallback_username: 'fallbackUsername',
-          fallback_password: 'fallbackPassword',
           tag: 'tag'
         }
       end
