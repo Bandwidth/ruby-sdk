@@ -26,6 +26,12 @@ module Bandwidth
     # Explanation for why a verification request was declined.
     attr_accessor :decline_reason_description
 
+    # Reason code for denial.
+    attr_accessor :denial_status_code
+
+    # An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.
+    attr_accessor :additional_denial_reasons
+
     # Whether a Toll-Free Verification request qualifies for resubmission via PUT.
     attr_accessor :resubmit_allowed
 
@@ -75,6 +81,8 @@ module Bandwidth
         :'status' => :'status',
         :'internal_ticket_number' => :'internalTicketNumber',
         :'decline_reason_description' => :'declineReasonDescription',
+        :'denial_status_code' => :'denialStatusCode',
+        :'additional_denial_reasons' => :'additionalDenialReasons',
         :'resubmit_allowed' => :'resubmitAllowed',
         :'created_date_time' => :'createdDateTime',
         :'modified_date_time' => :'modifiedDateTime',
@@ -102,6 +110,8 @@ module Bandwidth
         :'status' => :'TfvStatusEnum',
         :'internal_ticket_number' => :'String',
         :'decline_reason_description' => :'String',
+        :'denial_status_code' => :'Integer',
+        :'additional_denial_reasons' => :'Array<AdditionalDenialReason>',
         :'resubmit_allowed' => :'Boolean',
         :'created_date_time' => :'Time',
         :'modified_date_time' => :'Time',
@@ -115,6 +125,8 @@ module Bandwidth
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'denial_status_code',
+        :'additional_denial_reasons',
         :'cv_token'
       ])
     end
@@ -149,6 +161,16 @@ module Bandwidth
 
       if attributes.key?(:'decline_reason_description')
         self.decline_reason_description = attributes[:'decline_reason_description']
+      end
+
+      if attributes.key?(:'denial_status_code')
+        self.denial_status_code = attributes[:'denial_status_code']
+      end
+
+      if attributes.key?(:'additional_denial_reasons')
+        if (value = attributes[:'additional_denial_reasons']).is_a?(Array)
+          self.additional_denial_reasons = value
+        end
       end
 
       if attributes.key?(:'resubmit_allowed')
@@ -267,6 +289,8 @@ module Bandwidth
           status == o.status &&
           internal_ticket_number == o.internal_ticket_number &&
           decline_reason_description == o.decline_reason_description &&
+          denial_status_code == o.denial_status_code &&
+          additional_denial_reasons == o.additional_denial_reasons &&
           resubmit_allowed == o.resubmit_allowed &&
           created_date_time == o.created_date_time &&
           modified_date_time == o.modified_date_time &&
@@ -285,7 +309,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, status, internal_ticket_number, decline_reason_description, resubmit_allowed, created_date_time, modified_date_time, submission, blocked, blocked_reason, cv_token].hash
+      [phone_number, status, internal_ticket_number, decline_reason_description, denial_status_code, additional_denial_reasons, resubmit_allowed, created_date_time, modified_date_time, submission, blocked, blocked_reason, cv_token].hash
     end
 
     # Builds the object from hash
