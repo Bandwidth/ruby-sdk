@@ -5072,12 +5072,12 @@ components:
       type: object
       description: SIP URI destination for Refer-To header.
       properties:
-        sipUri:
+        uri:
           type: string
           description: SIP URI destination (e.g. sip:alice@atlanta.example.com).
           example: sip:alice@atlanta.example.com
       required:
-        - sipUri
+        - uri
     refer:
       type: object
       description: Send a SIP REFER for an inbound SIP URI call.
