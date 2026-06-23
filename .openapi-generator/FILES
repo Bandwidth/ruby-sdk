@@ -164,6 +164,7 @@ docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
+docs/RecordingTranscriptionClip.md
 docs/RecordingTranscriptionMetadata.md
 docs/RecordingTranscriptions.md
 docs/RecordingsApi.md
@@ -384,6 +385,7 @@ lib/bandwidth-sdk/models/rbm_web_view_enum.rb
 lib/bandwidth-sdk/models/recording_available_callback.rb
 lib/bandwidth-sdk/models/recording_complete_callback.rb
 lib/bandwidth-sdk/models/recording_state_enum.rb
+lib/bandwidth-sdk/models/recording_transcription_clip.rb
 lib/bandwidth-sdk/models/recording_transcription_metadata.rb
 lib/bandwidth-sdk/models/recording_transcriptions.rb
 lib/bandwidth-sdk/models/redirect_callback.rb

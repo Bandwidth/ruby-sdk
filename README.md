@@ -328,6 +328,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Bandwidth::RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Bandwidth::RecordingStateEnum](docs/RecordingStateEnum.md)
+ - [Bandwidth::RecordingTranscriptionClip](docs/RecordingTranscriptionClip.md)
  - [Bandwidth::RecordingTranscriptionMetadata](docs/RecordingTranscriptionMetadata.md)
  - [Bandwidth::RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
