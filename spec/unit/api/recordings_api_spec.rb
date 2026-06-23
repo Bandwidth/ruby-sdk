@@ -191,6 +191,7 @@ describe 'RecordingsApi' do
       expect(data).to be_instance_of(Bandwidth::RecordingTranscriptions)
       expect(data.transcripts).to be_instance_of(Array)
       expect(data.transcripts[0]).to be_instance_of(Bandwidth::Transcription)
+      expect(data.transcripts[0].speaker).to be_instance_of(Integer)
       expect(data.transcripts[0].text).to be_instance_of(String)
       expect(data.transcripts[0].confidence).to be_instance_of(Float)
     end
