@@ -3220,6 +3220,21 @@ components:
         Setting the conference state to `completed` ends the conference and
         ejects all members.
       example: completed
+    referCallStatusEnum:
+      type: string
+      enum:
+        - success
+        - failure
+      description: The status of the SIP REFER request.
+      example: success
+    referCompleteMethodEnum:
+      type: string
+      description: HTTP method used for referCompleteUrl callback.
+      default: POST
+      enum:
+        - GET
+        - POST
+      example: POST
     machineDetectionModeEnum:
       type: string
       default: async
@@ -5124,6 +5139,83 @@ components:
           $ref: '#/components/schemas/transferCallerId'
         transferTo:
           $ref: '#/components/schemas/transferTo'
+    sipUri:
+      type: object
+      description: SIP URI destination for Refer-To header.
+      properties:
+        uri:
+          type: string
+          description: SIP URI destination (e.g. sip:alice@atlanta.example.com).
+          example: sip:alice@atlanta.example.com
+      required:
+        - uri
+    refer:
+      type: object
+      description: Send a SIP REFER for an inbound SIP URI call.
+      properties:
+        referCompleteUrl:
+          type: string
+          description: Optional callback URL for referComplete event. Relative URL allowed.
+        referCompleteMethod:
+          $ref: '#/components/schemas/referCompleteMethodEnum'
+        tag:
+          type: string
+          description: Optional tag echoed in future callbacks. Max length 256.
+          maxLength: 256
+        sipUri:
+          $ref: '#/components/schemas/sipUri'
+      required:
+        - sipUri
+    referCompleteCallback:
+      type: object
+      description: >-
+        This event is sent to the referCompleteUrl of the <Refer> verb when the
+        SIP REFER request has been resolved — either the remote endpoint has
+        accepted and redirected the call (success) or the REFER was rejected or
+        timed out (failure). On success the original call is terminated.
+      properties:
+        eventType:
+          $ref: '#/components/schemas/eventType'
+        eventTime:
+          $ref: '#/components/schemas/eventTime'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        applicationId:
+          $ref: '#/components/schemas/applicationId1'
+        from:
+          $ref: '#/components/schemas/from'
+        to:
+          $ref: '#/components/schemas/to'
+        direction:
+          $ref: '#/components/schemas/callDirectionEnum'
+        callId:
+          $ref: '#/components/schemas/callId'
+        callUrl:
+          $ref: '#/components/schemas/callUrl'
+        startTime:
+          $ref: '#/components/schemas/startTime'
+        answerTime:
+          $ref: '#/components/schemas/answerTime'
+        tag:
+          $ref: '#/components/schemas/tag1'
+        referCallStatus:
+          $ref: '#/components/schemas/referCallStatusEnum'
+        referSipResponseCode:
+          type: integer
+          description: >-
+            The SIP response code received in response to the REFER request.
+            Present when the status of the REFER is known (e.g. 202 Accepted or
+            405 Method Not Allowed). Absent when the REFER was not attempted.
+          example: 202
+          nullable: true
+        notifySipResponseCode:
+          type: integer
+          description: >-
+            The SIP response code received in a NOTIFY from the remote endpoint
+            after it attempted to reach the transfer target. Present only if a
+            NOTIFY was received before the 30-second timeout.
+          example: 200
+          nullable: true
     transcriptionAvailableCallback:
       type: object
       description: >-
