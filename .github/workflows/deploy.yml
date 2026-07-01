@@ -43,6 +43,8 @@ jobs:
             echo 'Please update your tag to match the expected regex pattern'
             exit 1
           fi
+        env:
+          TAG: ${{ github.event.release.tag_name }}
 
       - name: Checkout
         uses: actions/checkout@v6
