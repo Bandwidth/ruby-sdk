@@ -6,6 +6,7 @@ metadata:
   description: Ruby SDK for Bandwidth Voice & Messaging
   annotations:
     github.com/project-slug: Bandwidth/ruby-sdk
+    bandwidth.com/languages: Ruby
   organization: BW
   costCenter: UNKNOWN
 spec:
