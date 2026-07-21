@@ -66,6 +66,12 @@ module Bandwidth
     # (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
     attr_accessor :tag
 
+    # (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+    attr_accessor :sip_call_id
+
+    # (optional) The SIP status code returned by Bandwidth's SBC when it rejected an outbound call's INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.
+    attr_accessor :sip_response_code
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -107,7 +113,9 @@ module Bandwidth
         :'cause' => :'cause',
         :'error_message' => :'errorMessage',
         :'error_id' => :'errorId',
-        :'tag' => :'tag'
+        :'tag' => :'tag',
+        :'sip_call_id' => :'sipCallId',
+        :'sip_response_code' => :'sipResponseCode'
       }
     end
 
@@ -140,7 +148,9 @@ module Bandwidth
         :'cause' => :'String',
         :'error_message' => :'String',
         :'error_id' => :'String',
-        :'tag' => :'String'
+        :'tag' => :'String',
+        :'sip_call_id' => :'String',
+        :'sip_response_code' => :'Integer'
       }
     end
 
@@ -151,7 +161,7 @@ module Bandwidth
         :'answer_time',
         :'error_message',
         :'error_id',
-        :'tag'
+        :'tag',
       ])
     end
 
@@ -238,6 +248,14 @@ module Bandwidth
       if attributes.key?(:'tag')
         self.tag = attributes[:'tag']
       end
+
+      if attributes.key?(:'sip_call_id')
+        self.sip_call_id = attributes[:'sip_call_id']
+      end
+
+      if attributes.key?(:'sip_response_code')
+        self.sip_response_code = attributes[:'sip_response_code']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -276,7 +294,9 @@ module Bandwidth
           cause == o.cause &&
           error_message == o.error_message &&
           error_id == o.error_id &&
-          tag == o.tag
+          tag == o.tag &&
+          sip_call_id == o.sip_call_id &&
+          sip_response_code == o.sip_response_code
     end
 
     # @see the `==` method
@@ -288,7 +308,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, call_id, direction, call_url, enqueued_time, start_time, answer_time, end_time, cause, error_message, error_id, tag].hash
+      [event_type, event_time, account_id, application_id, from, to, call_id, direction, call_url, enqueued_time, start_time, answer_time, end_time, cause, error_message, error_id, tag, sip_call_id, sip_response_code].hash
     end
 
     # Builds the object from hash
