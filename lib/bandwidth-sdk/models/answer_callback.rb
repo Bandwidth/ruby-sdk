@@ -56,6 +56,9 @@ module Bandwidth
 
     attr_accessor :machine_detection_result
 
+    # (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+    attr_accessor :sip_call_id
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -94,7 +97,8 @@ module Bandwidth
         :'start_time' => :'startTime',
         :'answer_time' => :'answerTime',
         :'tag' => :'tag',
-        :'machine_detection_result' => :'machineDetectionResult'
+        :'machine_detection_result' => :'machineDetectionResult',
+        :'sip_call_id' => :'sipCallId'
       }
     end
 
@@ -124,7 +128,8 @@ module Bandwidth
         :'start_time' => :'Time',
         :'answer_time' => :'Time',
         :'tag' => :'String',
-        :'machine_detection_result' => :'MachineDetectionResult'
+        :'machine_detection_result' => :'MachineDetectionResult',
+        :'sip_call_id' => :'String'
       }
     end
 
@@ -134,7 +139,7 @@ module Bandwidth
         :'enqueued_time',
         :'answer_time',
         :'tag',
-        :'machine_detection_result'
+        :'machine_detection_result',
       ])
     end
 
@@ -209,6 +214,10 @@ module Bandwidth
       if attributes.key?(:'machine_detection_result')
         self.machine_detection_result = attributes[:'machine_detection_result']
       end
+
+      if attributes.key?(:'sip_call_id')
+        self.sip_call_id = attributes[:'sip_call_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -244,7 +253,8 @@ module Bandwidth
           start_time == o.start_time &&
           answer_time == o.answer_time &&
           tag == o.tag &&
-          machine_detection_result == o.machine_detection_result
+          machine_detection_result == o.machine_detection_result &&
+          sip_call_id == o.sip_call_id
     end
 
     # @see the `==` method
@@ -256,7 +266,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, enqueued_time, start_time, answer_time, tag, machine_detection_result].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, enqueued_time, start_time, answer_time, tag, machine_detection_result, sip_call_id].hash
     end
 
     # Builds the object from hash

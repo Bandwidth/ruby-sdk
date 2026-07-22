@@ -15,7 +15,8 @@ describe Bandwidth::AnswerCallback do
     start_time: '2022-06-16T13:15:07.160Z',
     answer_time: '2022-06-16T13:15:18.126Z',
     tag: 'custom tag',
-    machine_detection_result: { value: 'human', duration: 'PT5S' }
+    machine_detection_result: { value: 'human', duration: 'PT5S' },
+    sip_call_id: 'sip-call-id-12345',
   }) }
 
   describe '#initialize' do
@@ -65,7 +66,8 @@ describe Bandwidth::AnswerCallback do
         startTime: '2022-06-16T13:15:07.160Z',
         answerTime: '2022-06-16T13:15:18.126Z',
         tag: 'custom tag',
-        machineDetectionResult: { value: 'human', duration: 'PT5S' }
+        machineDetectionResult: { value: 'human', duration: 'PT5S' },
+        sipCallId: 'sip-call-id-12345'
       })
       expect(answer_callback_from_hash).to be_instance_of(Bandwidth::AnswerCallback)
       expect(answer_callback_from_hash.event_type).to eq('answer')
@@ -84,12 +86,13 @@ describe Bandwidth::AnswerCallback do
       expect(answer_callback_from_hash.machine_detection_result).to be_instance_of(Bandwidth::MachineDetectionResult)
       expect(answer_callback_from_hash.machine_detection_result.value).to eq('human')
       expect(answer_callback_from_hash.machine_detection_result.duration).to eq('PT5S')
+      expect(answer_callback_from_hash.sip_call_id).to eq('sip-call-id-12345')
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(answer_callback_values.to_s).to eq('{:eventType=>"answer", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :direction=>"inbound", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :tag=>"custom tag", :machineDetectionResult=>{:value=>"human", :duration=>"PT5S"}}')
+      expect(answer_callback_values.to_s).to eq('{:eventType=>"answer", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :direction=>"inbound", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :tag=>"custom tag", :machineDetectionResult=>{:value=>"human", :duration=>"PT5S"}, :sipCallId=>"sip-call-id-12345"}')
     end
   end
 
@@ -116,7 +119,8 @@ describe Bandwidth::AnswerCallback do
         startTime: '2022-06-16T13:15:07.160Z',
         answerTime: '2022-06-16T13:15:18.126Z',
         tag: 'custom tag',
-        machineDetectionResult: { value: 'human', duration: 'PT5S' }
+        machineDetectionResult: { value: 'human', duration: 'PT5S' },
+        sipCallId: 'sip-call-id-12345'
       })
     end
   end
