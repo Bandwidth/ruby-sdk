@@ -18,6 +18,7 @@
 | **answer_time** | **Time** | Time the call was answered, in ISO 8601 format. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
 | **machine_detection_result** | [**MachineDetectionResult**](MachineDetectionResult.md) |  | [optional] |
+| **sip_call_id** | **String** | (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists. | [optional] |
 
 ## Example
 
@@ -38,7 +39,8 @@ instance = Bandwidth::AnswerCallback.new(
   start_time: 2022-06-17T22:19:40.375Z,
   answer_time: 2022-06-17T22:20Z,
   tag: exampleTag,
-  machine_detection_result: null
+  machine_detection_result: null,
+  sip_call_id: c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com
 )
 ```
 

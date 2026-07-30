@@ -21,6 +21,8 @@
 | **error_message** | **String** | Text explaining the reason that caused the call to fail in case of errors. | [optional] |
 | **error_id** | **String** | Bandwidth&#39;s internal id that references the error event. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
+| **sip_call_id** | **String** | (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists. | [optional] |
+| **sip_response_code** | **Integer** | (optional) The SIP status code returned by Bandwidth&#39;s SBC when it rejected an outbound call&#39;s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC. | [optional] |
 
 ## Example
 
@@ -44,7 +46,9 @@ instance = Bandwidth::DisconnectCallback.new(
   cause: busy,
   error_message: Call c-2a913f94-6a486f3a-3cae-4034-bcc3-f0c9fa77ca2f is already bridged with another call,
   error_id: 4642074b-7b58-478b-96e4-3a60955c6765,
-  tag: exampleTag
+  tag: exampleTag,
+  sip_call_id: c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com,
+  sip_response_code: 486
 )
 ```
 

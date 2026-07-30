@@ -17,6 +17,8 @@
 | **diversion** | [**Diversion**](Diversion.md) |  | [optional] |
 | **stir_shaken** | [**StirShaken**](StirShaken.md) |  | [optional] |
 | **uui** | **String** | The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters. | [optional] |
+| **sip_call_id** | **String** | (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists. | [optional] |
+| **sip_headers** | **Hash&lt;String, String&gt;** | (optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. | [optional] |
 
 ## Example
 
@@ -36,7 +38,9 @@ instance = Bandwidth::InitiateCallback.new(
   start_time: 2022-06-17T22:19:40.375Z,
   diversion: null,
   stir_shaken: null,
-  uui: bXktdXVp
+  uui: bXktdXVp,
+  sip_call_id: c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com,
+  sip_headers: {&quot;x-custom-header&quot;:&quot;customer-value&quot;,&quot;x-session-id&quot;:&quot;sess-12345&quot;}
 )
 ```
 

@@ -5,6 +5,10 @@ describe Bandwidth::StatusCallbackTypeEnum do
       expect(Bandwidth::StatusCallbackTypeEnum::MESSAGE_SENDING).to eq('message-sending')
     end
 
+    it 'defines MESSAGE_SENT' do
+      expect(Bandwidth::StatusCallbackTypeEnum::MESSAGE_SENT).to eq('message-sent')
+    end
+
     it 'defines MESSAGE_DELIVERED' do
       expect(Bandwidth::StatusCallbackTypeEnum::MESSAGE_DELIVERED).to eq('message-delivered')
     end
@@ -22,6 +26,7 @@ describe Bandwidth::StatusCallbackTypeEnum do
     it 'returns every valid enum value' do
       expect(Bandwidth::StatusCallbackTypeEnum.all_vars).to eq([
         'message-sending',
+        'message-sent',
         'message-delivered',
         'message-failed',
         'message-read'
@@ -32,6 +37,7 @@ describe Bandwidth::StatusCallbackTypeEnum do
   describe '.build_from_hash' do
     it 'returns the value when it matches a valid enum value' do
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-sending')).to eq('message-sending')
+      expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-sent')).to eq('message-sent')
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-delivered')).to eq('message-delivered')
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-failed')).to eq('message-failed')
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-read')).to eq('message-read')
