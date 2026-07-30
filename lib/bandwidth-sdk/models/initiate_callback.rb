@@ -52,6 +52,12 @@ module Bandwidth
     # The value of the `User-To-User` header to send within the initial `INVITE`. Must include the encoding parameter as specified in RFC 7433. Only `base64`, `jwt` and `hex` encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.
     attr_accessor :uui
 
+    # (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+    attr_accessor :sip_call_id
+
+    # (optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth's usual camelCase JSON convention, since these are passthrough values from the caller's SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.
+    attr_accessor :sip_headers
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -89,7 +95,9 @@ module Bandwidth
         :'start_time' => :'startTime',
         :'diversion' => :'diversion',
         :'stir_shaken' => :'stirShaken',
-        :'uui' => :'uui'
+        :'uui' => :'uui',
+        :'sip_call_id' => :'sipCallId',
+        :'sip_headers' => :'sipHeaders'
       }
     end
 
@@ -118,7 +126,9 @@ module Bandwidth
         :'start_time' => :'Time',
         :'diversion' => :'Diversion',
         :'stir_shaken' => :'StirShaken',
-        :'uui' => :'String'
+        :'uui' => :'String',
+        :'sip_call_id' => :'String',
+        :'sip_headers' => :'Hash<String, String>'
       }
     end
 
@@ -195,6 +205,16 @@ module Bandwidth
       if attributes.key?(:'uui')
         self.uui = attributes[:'uui']
       end
+
+      if attributes.key?(:'sip_call_id')
+        self.sip_call_id = attributes[:'sip_call_id']
+      end
+
+      if attributes.key?(:'sip_headers')
+        if (value = attributes[:'sip_headers']).is_a?(Hash)
+          self.sip_headers = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -248,7 +268,9 @@ module Bandwidth
           start_time == o.start_time &&
           diversion == o.diversion &&
           stir_shaken == o.stir_shaken &&
-          uui == o.uui
+          uui == o.uui &&
+          sip_call_id == o.sip_call_id &&
+          sip_headers == o.sip_headers
     end
 
     # @see the `==` method
@@ -260,7 +282,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, diversion, stir_shaken, uui].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, diversion, stir_shaken, uui, sip_call_id, sip_headers].hash
     end
 
     # Builds the object from hash

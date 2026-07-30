@@ -14,17 +14,30 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  class RecordingTranscriptions < ApiModelBase
-    attr_accessor :transcripts
+  class RecordingTranscriptionClip < ApiModelBase
+    # Zero-based index identifying the speaker.
+    attr_accessor :speaker
 
-    # A list of individual speech clips with speaker, timing, and confidence information.
-    attr_accessor :clips
+    # The transcribed text of this clip.
+    attr_accessor :text
+
+    # How confident the transcription engine was in transcribing this clip (from `0.0` to `1.0`).
+    attr_accessor :confidence
+
+    # The start time of this clip within the recording, in seconds.
+    attr_accessor :start_time_seconds
+
+    # The end time of this clip within the recording, in seconds.
+    attr_accessor :end_time_seconds
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'transcripts' => :'transcripts',
-        :'clips' => :'clips'
+        :'speaker' => :'speaker',
+        :'text' => :'text',
+        :'confidence' => :'confidence',
+        :'start_time_seconds' => :'startTimeSeconds',
+        :'end_time_seconds' => :'endTimeSeconds'
       }
     end
 
@@ -41,8 +54,11 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'transcripts' => :'Array<Transcription>',
-        :'clips' => :'Array<RecordingTranscriptionClip>'
+        :'speaker' => :'Integer',
+        :'text' => :'String',
+        :'confidence' => :'Float',
+        :'start_time_seconds' => :'Float',
+        :'end_time_seconds' => :'Float'
       }
     end
 
@@ -56,28 +72,36 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::RecordingTranscriptions` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::RecordingTranscriptionClip` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::RecordingTranscriptions`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::RecordingTranscriptionClip`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'transcripts')
-        if (value = attributes[:'transcripts']).is_a?(Array)
-          self.transcripts = value
-        end
+      if attributes.key?(:'speaker')
+        self.speaker = attributes[:'speaker']
       end
 
-      if attributes.key?(:'clips')
-        if (value = attributes[:'clips']).is_a?(Array)
-          self.clips = value
-        end
+      if attributes.key?(:'text')
+        self.text = attributes[:'text']
+      end
+
+      if attributes.key?(:'confidence')
+        self.confidence = attributes[:'confidence']
+      end
+
+      if attributes.key?(:'start_time_seconds')
+        self.start_time_seconds = attributes[:'start_time_seconds']
+      end
+
+      if attributes.key?(:'end_time_seconds')
+        self.end_time_seconds = attributes[:'end_time_seconds']
       end
     end
 
@@ -86,6 +110,14 @@ module Bandwidth
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if !@confidence.nil? && @confidence > 1
+        invalid_properties.push('invalid value for "confidence", must be smaller than or equal to 1.')
+      end
+
+      if !@confidence.nil? && @confidence < 0
+        invalid_properties.push('invalid value for "confidence", must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -93,7 +125,27 @@ module Bandwidth
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@confidence.nil? && @confidence > 1
+      return false if !@confidence.nil? && @confidence < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] confidence Value to be assigned
+    def confidence=(confidence)
+      if confidence.nil?
+        fail ArgumentError, 'confidence cannot be nil'
+      end
+
+      if confidence > 1
+        fail ArgumentError, 'invalid value for "confidence", must be smaller than or equal to 1.'
+      end
+
+      if confidence < 0
+        fail ArgumentError, 'invalid value for "confidence", must be greater than or equal to 0.'
+      end
+
+      @confidence = confidence
     end
 
     # Checks equality by comparing each attribute.
@@ -101,8 +153,11 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          transcripts == o.transcripts &&
-          clips == o.clips
+          speaker == o.speaker &&
+          text == o.text &&
+          confidence == o.confidence &&
+          start_time_seconds == o.start_time_seconds &&
+          end_time_seconds == o.end_time_seconds
     end
 
     # @see the `==` method
@@ -114,7 +169,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [transcripts, clips].hash
+      [speaker, text, confidence, start_time_seconds, end_time_seconds].hash
     end
 
     # Builds the object from hash

@@ -23,7 +23,7 @@ instance = Bandwidth::StatusCallback.new(
   event_time: 2024-12-02T20:15:58.278Z,
   type: null,
   to: +15552223333,
-  description: Message delivered to carrier.,
+  description: Message delivered to handset.,
   message: null,
   error_code: 4405,
   carrier_name: AT&amp;T

@@ -15,6 +15,9 @@ require 'time'
 
 module Bandwidth
   class Transcription < ApiModelBase
+    # Zero-based index identifying the speaker.
+    attr_accessor :speaker
+
     # The transcribed text
     attr_accessor :text
 
@@ -24,6 +27,7 @@ module Bandwidth
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'speaker' => :'speaker',
         :'text' => :'text',
         :'confidence' => :'confidence'
       }
@@ -42,6 +46,7 @@ module Bandwidth
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'speaker' => :'Integer',
         :'text' => :'String',
         :'confidence' => :'Float'
       }
@@ -68,6 +73,10 @@ module Bandwidth
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'speaker')
+        self.speaker = attributes[:'speaker']
+      end
 
       if attributes.key?(:'text')
         self.text = attributes[:'text']
@@ -98,6 +107,7 @@ module Bandwidth
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          speaker == o.speaker &&
           text == o.text &&
           confidence == o.confidence
     end
@@ -111,7 +121,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [text, confidence].hash
+      [speaker, text, confidence].hash
     end
 
     # Builds the object from hash
