@@ -36,7 +36,7 @@ module Bandwidth
         @nested_verbs.push(*nested_verbs)
       end
 
-      # Return BXML representaion of this response
+      # Return BXML representation of this response
       # @return [String] The XML response in string format.
       def to_bxml
         bxml = Ox.dump(generate_xml)
