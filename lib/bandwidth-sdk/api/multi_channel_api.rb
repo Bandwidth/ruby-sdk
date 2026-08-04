@@ -21,7 +21,7 @@ module Bandwidth
     end
     # Create Multi-Channel Message
     # Endpoint for sending Multi-Channel messages.
-    # @param account_id [String] Your Bandwidth Account ID.
+    # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
     # @param multi_channel_message_request [MultiChannelMessageRequest] 
     # @param [Hash] opts the optional parameters
     # @return [CreateMultiChannelMessageResponse]
@@ -32,7 +32,7 @@ module Bandwidth
 
     # Create Multi-Channel Message
     # Endpoint for sending Multi-Channel messages.
-    # @param account_id [String] Your Bandwidth Account ID.
+    # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
     # @param multi_channel_message_request [MultiChannelMessageRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(CreateMultiChannelMessageResponse, Integer, Hash)>] CreateMultiChannelMessageResponse data, response status code and response headers
