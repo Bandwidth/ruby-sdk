@@ -37,19 +37,19 @@ jobs:
       MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.4
 
       - name: Install Packages and Test
         run: |
           bundle install
           rake smoke
         env:
-          RUBY_VERSION: 3.3
+          RUBY_VERSION: 3.4
           OPERATING_SYSTEM: ubuntu
         shell: bash
 
@@ -66,19 +66,19 @@ jobs:
       MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_UP_APPLICATION_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.4
 
       - name: Install Packages and Test
         run: |
           bundle install
           rake smoke
         env:
-          RUBY_VERSION: 3.3
+          RUBY_VERSION: 3.4
           OPERATING_SYSTEM: ubuntu
         shell: bash
 
