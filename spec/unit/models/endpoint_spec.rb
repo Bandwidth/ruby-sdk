@@ -68,7 +68,7 @@ describe Bandwidth::Endpoint do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(endpoint_values.to_s).to eq({:endpointId=>"endpoint-2", :type=>"WEBRTC", :status=>"DISCONNECTED", :creationTimestamp=>"2024-02-01T00:00:00Z", :expirationTimestamp=>"2024-02-02T00:00:00Z", :tag=>"custom tag", :devices=>[{:device_id=>"device-1", :device_name=>"Phone", :status=>"CONNECTED", :creation_timestamp=>"2024-02-01T00:00:00Z"}]}.to_s)
+      expect(endpoint_values.to_s).to eq({ :endpointId => 'endpoint-2', :type => 'WEBRTC', :status => 'DISCONNECTED', :creationTimestamp => '2024-02-01T00:00:00Z', :expirationTimestamp => '2024-02-02T00:00:00Z', :tag => 'custom tag', :devices => [{ :device_id => 'device-1', :device_name => 'Phone', :status => 'CONNECTED', :creation_timestamp => '2024-02-01T00:00:00Z' }] }.to_s)
     end
   end
 

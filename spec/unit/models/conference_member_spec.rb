@@ -58,7 +58,7 @@ describe Bandwidth::ConferenceMember do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_member_values.to_s).to eq({:callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :conferenceId=>"conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c", :memberUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-1/members/c-1", :mute=>false, :hold=>false, :callIdsToCoach=>["c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d86"]}.to_s)
+      expect(conference_member_values.to_s).to eq({ :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :conferenceId => 'conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c', :memberUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-1/members/c-1', :mute => false, :hold => false, :callIdsToCoach => ['c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d86'] }.to_s)
     end
   end
 

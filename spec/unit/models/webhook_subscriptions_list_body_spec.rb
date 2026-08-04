@@ -57,7 +57,7 @@ describe Bandwidth::WebhookSubscriptionsListBody do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(webhook_subscriptions_list_body_values.to_s).to eq({:links=>{:self=>"https://example.com/self"}, :errors=>[{:code=>400, :description=>"Invalid request"}], :data=>[{:id=>"6cf73464-0c9f-431f-bd16-3711df296b9a", :accountId=>"9900000", :callbackUrl=>nil}]}.to_s)
+      expect(webhook_subscriptions_list_body_values.to_s).to eq({ :links => { :self => 'https://example.com/self' }, :errors => [{ :code => 400, :description => 'Invalid request' }], :data => [{ :id => '6cf73464-0c9f-431f-bd16-3711df296b9a', :accountId => '9900000', :callbackUrl => nil }] }.to_s)
     end
   end
 

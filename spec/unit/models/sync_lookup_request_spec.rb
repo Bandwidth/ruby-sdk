@@ -48,7 +48,7 @@ describe Bandwidth::SyncLookupRequest do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(sync_lookup_request_values.to_s).to eq({:phoneNumbers=>["+19195551234", "+19195554321"], :rcsAgent=>"my_agent"}.to_s)
+      expect(sync_lookup_request_values.to_s).to eq({ :phoneNumbers => ['+19195551234', '+19195554321'], :rcsAgent => 'my_agent' }.to_s)
     end
   end
 

@@ -48,7 +48,7 @@ describe Bandwidth::RbmMessageContentFile do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_message_content_file_values.to_s).to eq({:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png", :thumbnailUrl=>"https://dev.bandwidth.com/images/bandwidth-logo-thumb.png"}.to_s)
+      expect(rbm_message_content_file_values.to_s).to eq({ :fileUrl => 'https://dev.bandwidth.com/images/bandwidth-logo.png', :thumbnailUrl => 'https://dev.bandwidth.com/images/bandwidth-logo-thumb.png' }.to_s)
     end
   end
 

@@ -61,7 +61,7 @@ describe Bandwidth::Diversion do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(diversion_values.to_s).to eq({:reason=>"unconditional", :privacy=>"off", :screen=>"no", :counter=>"2", :limit=>"5", :unknown=>"some-value", :origTo=>"+19195551234"}.to_s)
+      expect(diversion_values.to_s).to eq({ :reason => 'unconditional', :privacy => 'off', :screen => 'no', :counter => '2', :limit => '5', :unknown => 'some-value', :origTo => '+19195551234' }.to_s)
     end
   end
 

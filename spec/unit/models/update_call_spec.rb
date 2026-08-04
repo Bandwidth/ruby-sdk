@@ -81,7 +81,7 @@ describe Bandwidth::UpdateCall do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(update_call_values.to_s).to eq({:state=>"active", :redirectUrl=>"https://example.com/redirect", :redirectMethod=>"POST", :username=>"mySecretUsername", :password=>"mySecretPassword", :redirectFallbackUrl=>"https://example.com/fallback", :redirectFallbackMethod=>"GET", :fallbackUsername=>"fallbackUser", :fallbackPassword=>"fallbackPass", :tag=>"custom tag"}.to_s)
+      expect(update_call_values.to_s).to eq({ :state => 'active', :redirectUrl => 'https://example.com/redirect', :redirectMethod => 'POST', :username => 'mySecretUsername', :password => 'mySecretPassword', :redirectFallbackUrl => 'https://example.com/fallback', :redirectFallbackMethod => 'GET', :fallbackUsername => 'fallbackUser', :fallbackPassword => 'fallbackPass', :tag => 'custom tag' }.to_s)
     end
   end
 

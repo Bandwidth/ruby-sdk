@@ -49,7 +49,7 @@ describe Bandwidth::LinkSchema do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(link_schema_values.to_s).to eq({:href=>"https://example.com", :rel=>"self", :method=>"GET"}.to_s)
+      expect(link_schema_values.to_s).to eq({ :href => 'https://example.com', :rel => 'self', :method => 'GET' }.to_s)
     end
   end
 

@@ -58,7 +58,7 @@ describe Bandwidth::CreateEndpointRequestBase do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_endpoint_request_base_values.to_s).to eq({:type=>"WEBRTC", :direction=>"BIDIRECTIONAL", :eventCallbackUrl=>"https://example.com/event-callback", :eventFallbackUrl=>"https://example.com/event-fallback", :tag=>"custom tag"}.to_s)
+      expect(create_endpoint_request_base_values.to_s).to eq({ :type => 'WEBRTC', :direction => 'BIDIRECTIONAL', :eventCallbackUrl => 'https://example.com/event-callback', :eventFallbackUrl => 'https://example.com/event-fallback', :tag => 'custom tag' }.to_s)
     end
   end
 

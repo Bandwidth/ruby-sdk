@@ -79,7 +79,7 @@ describe Bandwidth::Message do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(message_values.to_s).to eq({:id=>"1589228074636lm4k2je7j7jklbn2", :owner=>"+19195554321", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :time=>"2022-06-16T13:15:07.160Z", :segmentCount=>2, :direction=>"in", :to=>["+19195551234"], :from=>"+19195554321", :media=>["https://dev.bandwidth.com/images/bandwidth-logo.png"], :text=>"Hello world", :tag=>"custom tag", :priority=>"default", :expiration=>"2022-06-16T13:45:07.160Z"}.to_s)
+      expect(message_values.to_s).to eq({ :id => '1589228074636lm4k2je7j7jklbn2', :owner => '+19195554321', :applicationId => '93de2206-9669-4e07-948d-329f4b722ee2', :time => '2022-06-16T13:15:07.160Z', :segmentCount => 2, :direction => 'in', :to => ['+19195551234'], :from => '+19195554321', :media => ['https://dev.bandwidth.com/images/bandwidth-logo.png'], :text => 'Hello world', :tag => 'custom tag', :priority => 'default', :expiration => '2022-06-16T13:45:07.160Z' }.to_s)
     end
   end
 

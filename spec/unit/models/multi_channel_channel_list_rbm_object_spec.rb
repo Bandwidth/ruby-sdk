@@ -58,7 +58,7 @@ describe Bandwidth::MultiChannelChannelListRBMObject do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_channel_list_rbm_object_values.to_s).to eq({:from=>"BANDWIDTH", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :channel=>"RBM", :content=>{:text=>"Hello world"}}.to_s)
+      expect(multi_channel_channel_list_rbm_object_values.to_s).to eq({ :from => 'BANDWIDTH', :applicationId => '93de2206-9669-4e07-948d-329f4b722ee2', :channel => 'RBM', :content => { :text => 'Hello world' } }.to_s)
     end
   end
 

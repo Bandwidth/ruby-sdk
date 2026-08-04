@@ -61,7 +61,7 @@ describe Bandwidth::RbmMessageCarouselCard do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_message_carousel_card_values.to_s).to eq({:cardWidth=>"MEDIUM", :cardContents=>[{:title=>"Card Title", :description=>"Card Description"}, {:title=>"Card Title", :description=>"Card Description"}], :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}.to_s)
+      expect(rbm_message_carousel_card_values.to_s).to eq({ :cardWidth => 'MEDIUM', :cardContents => [{ :title => 'Card Title', :description => 'Card Description' }, { :title => 'Card Title', :description => 'Card Description' }], :suggestions => [{ :type => 'REPLY', :text => 'Yes', :postbackData => 'reply_yes' }] }.to_s)
     end
   end
 

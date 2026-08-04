@@ -61,7 +61,7 @@ describe Bandwidth::WebhookSubscription do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(webhook_subscription_values.to_s).to eq({:id=>"6cf73464-0c9f-431f-bd16-3711df296b9a", :accountId=>"9900000", :callbackUrl=>"https://example.com/callback", :type=>"TOLLFREE_VERIFICATION_STATUS", :basicAuthentication=>{:username=>"user", :password=>"pass"}, :createdDate=>"2024-01-01T00:00:00Z", :modifiedDate=>"2024-01-02T00:00:00Z"}.to_s)
+      expect(webhook_subscription_values.to_s).to eq({ :id => '6cf73464-0c9f-431f-bd16-3711df296b9a', :accountId => '9900000', :callbackUrl => 'https://example.com/callback', :type => 'TOLLFREE_VERIFICATION_STATUS', :basicAuthentication => { :username => 'user', :password => 'pass' }, :createdDate => '2024-01-01T00:00:00Z', :modifiedDate => '2024-01-02T00:00:00Z' }.to_s)
     end
   end
 

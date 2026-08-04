@@ -52,7 +52,7 @@ describe Bandwidth::BrtcErrorSource do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(brtc_error_source_values.to_s).to eq({:parameter=>"limit", :field=>"phoneNumber", :header=>"Authorization", :reference=>"/accounts/9900000"}.to_s)
+      expect(brtc_error_source_values.to_s).to eq({ :parameter => 'limit', :field => 'phoneNumber', :header => 'Authorization', :reference => '/accounts/9900000' }.to_s)
     end
   end
 

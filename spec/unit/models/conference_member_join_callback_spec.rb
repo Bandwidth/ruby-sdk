@@ -66,7 +66,7 @@ describe Bandwidth::ConferenceMemberJoinCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_member_join_callback_values.to_s).to eq({:eventType=>"conferenceMemberJoin", :eventTime=>"2022-06-16T13:15:07.160Z", :conferenceId=>"conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :name=>"my-conference-name", :from=>"+19195554321", :to=>"+19195551234", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :tag=>"custom tag"}.to_s)
+      expect(conference_member_join_callback_values.to_s).to eq({ :eventType => 'conferenceMemberJoin', :eventTime => '2022-06-16T13:15:07.160Z', :conferenceId => 'conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :name => 'my-conference-name', :from => '+19195554321', :to => '+19195551234', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :tag => 'custom tag' }.to_s)
     end
   end
 

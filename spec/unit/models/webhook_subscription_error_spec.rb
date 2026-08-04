@@ -53,7 +53,7 @@ describe Bandwidth::WebhookSubscriptionError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(webhook_subscription_error_values.to_s).to eq({:code=>400, :description=>"Invalid request", :telephoneNumbers=>[{:telephoneNumber=>"+18005554321"}]}.to_s)
+      expect(webhook_subscription_error_values.to_s).to eq({ :code => 400, :description => 'Invalid request', :telephoneNumbers => [{ :telephoneNumber => '+18005554321' }] }.to_s)
     end
   end
 

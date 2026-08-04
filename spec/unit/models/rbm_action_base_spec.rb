@@ -53,7 +53,7 @@ describe Bandwidth::RbmActionBase do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_action_base_values.to_s).to eq({:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}.to_s)
+      expect(rbm_action_base_values.to_s).to eq({ :type => 'REPLY', :text => 'Yes', :postbackData => 'reply_yes' }.to_s)
     end
   end
 

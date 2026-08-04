@@ -43,7 +43,7 @@ describe Bandwidth::TelephoneNumber do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(telephone_number_values.to_s).to eq({:telephoneNumber=>"+19195551234"}.to_s)
+      expect(telephone_number_values.to_s).to eq({ :telephoneNumber => '+19195551234' }.to_s)
     end
   end
 

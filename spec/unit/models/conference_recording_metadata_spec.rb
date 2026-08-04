@@ -76,7 +76,7 @@ describe Bandwidth::ConferenceRecordingMetadata do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_recording_metadata_values.to_s).to eq({:accountId=>"9900000", :conferenceId=>"conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c", :name=>"weekly-stand-up", :recordingId=>"r-fbe05094-9fd2b71d-a4e6-4f43-8c3e-5b04b1d8a4b4", :duration=>"PT13.67S", :channels=>1, :startTime=>"2022-06-16T13:15:07.160Z", :endTime=>"2022-06-16T13:15:20.830Z", :fileFormat=>"wav", :status=>"complete", :mediaUrl=>"https://example.com/recording.wav", :recordingName=>"sample-recording"}.to_s)
+      expect(conference_recording_metadata_values.to_s).to eq({ :accountId => '9900000', :conferenceId => 'conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c', :name => 'weekly-stand-up', :recordingId => 'r-fbe05094-9fd2b71d-a4e6-4f43-8c3e-5b04b1d8a4b4', :duration => 'PT13.67S', :channels => 1, :startTime => '2022-06-16T13:15:07.160Z', :endTime => '2022-06-16T13:15:20.830Z', :fileFormat => 'wav', :status => 'complete', :mediaUrl => 'https://example.com/recording.wav', :recordingName => 'sample-recording' }.to_s)
     end
   end
 

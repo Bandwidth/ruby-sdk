@@ -49,7 +49,7 @@ describe Bandwidth::TfvError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_error_values.to_s).to eq({:type=>"type", :description=>"description", :errors=>{:key=>"value"}}.to_s)
+      expect(tfv_error_values.to_s).to eq({ :type => 'type', :description => 'description', :errors => { :key => 'value' } }.to_s)
     end
   end
 

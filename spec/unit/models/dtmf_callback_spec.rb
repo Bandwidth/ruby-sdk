@@ -95,7 +95,7 @@ describe Bandwidth::DtmfCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(dtmf_callback_values.to_s).to eq({:eventType=>"dtmf", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :direction=>"inbound", :digit=>"1", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :parentCallId=>"c-95ac29a2-1331029c-2cb0-4a07-b215-b22865662d99", :transferCallerId=>"+19195554321", :transferTo=>"+19195551234", :tag=>"custom tag"}.to_s)
+      expect(dtmf_callback_values.to_s).to eq({ :eventType => 'dtmf', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :direction => 'inbound', :digit => '1', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :parentCallId => 'c-95ac29a2-1331029c-2cb0-4a07-b215-b22865662d99', :transferCallerId => '+19195554321', :transferTo => '+19195551234', :tag => 'custom tag' }.to_s)
     end
   end
 

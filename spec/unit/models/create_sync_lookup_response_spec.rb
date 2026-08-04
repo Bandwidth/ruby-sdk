@@ -49,7 +49,7 @@ describe Bandwidth::CreateSyncLookupResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_sync_lookup_response_values.to_s).to eq({:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:requestId=>"00b97c1b-d8b4-4a32-ad14-7d09ce04acb6", :status=>"COMPLETE"}, :errors=>[{:code=>"E1", :description=>"bad", :type=>"validation"}]}.to_s)
+      expect(create_sync_lookup_response_values.to_s).to eq({ :links => [{ :href => 'https://example.com', :rel => 'self', :method => 'GET' }], :data => { :requestId => '00b97c1b-d8b4-4a32-ad14-7d09ce04acb6', :status => 'COMPLETE' }, :errors => [{ :code => 'E1', :description => 'bad', :type => 'validation' }] }.to_s)
     end
   end
 

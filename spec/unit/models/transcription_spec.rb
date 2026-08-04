@@ -49,7 +49,7 @@ describe Bandwidth::Transcription do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(transcription_values.to_s).to eq({:speaker=>1, :text=>"Hello World! Thank you for calling.", :confidence=>0.9}.to_s)
+      expect(transcription_values.to_s).to eq({ :speaker => 1, :text => 'Hello World! Thank you for calling.', :confidence => 0.9 }.to_s)
     end
   end
 

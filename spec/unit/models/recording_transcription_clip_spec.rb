@@ -55,7 +55,7 @@ describe Bandwidth::RecordingTranscriptionClip do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(recording_transcription_clip_values.to_s).to eq({:speaker=>0, :text=>"Hello world", :confidence=>0.9, :startTimeSeconds=>1.5, :endTimeSeconds=>3.2}.to_s)
+      expect(recording_transcription_clip_values.to_s).to eq({ :speaker => 0, :text => 'Hello world', :confidence => 0.9, :startTimeSeconds => 1.5, :endTimeSeconds => 3.2 }.to_s)
     end
   end
 

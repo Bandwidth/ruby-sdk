@@ -45,7 +45,7 @@ describe Bandwidth::SmsMessageContent do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(sms_message_content_values.to_s).to eq({:text=>"Hello world"}.to_s)
+      expect(sms_message_content_values.to_s).to eq({ :text => 'Hello world' }.to_s)
     end
   end
 

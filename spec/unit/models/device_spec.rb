@@ -56,7 +56,7 @@ describe Bandwidth::Device do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(device_values.to_s).to eq({:deviceId=>"d-abc-123", :deviceName=>"Chrome on macOS", :status=>"CONNECTED", :creationTimestamp=>"2022-06-16T13:15:07.160Z"}.to_s)
+      expect(device_values.to_s).to eq({ :deviceId => 'd-abc-123', :deviceName => 'Chrome on macOS', :status => 'CONNECTED', :creationTimestamp => '2022-06-16T13:15:07.160Z' }.to_s)
     end
   end
 

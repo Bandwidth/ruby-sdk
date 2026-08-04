@@ -89,7 +89,7 @@ describe Bandwidth::TransferAnswerCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(transfer_answer_callback_values.to_s).to eq({:eventType=>"transferAnswer", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :direction=>"outbound", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :tag=>"custom tag", :transferCallerId=>"+19195554321", :transferTo=>"+19195551234"}.to_s)
+      expect(transfer_answer_callback_values.to_s).to eq({ :eventType => 'transferAnswer', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :direction => 'outbound', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :tag => 'custom tag', :transferCallerId => '+19195554321', :transferTo => '+19195551234' }.to_s)
     end
   end
 
