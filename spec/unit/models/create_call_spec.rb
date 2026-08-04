@@ -123,7 +123,7 @@ describe Bandwidth::CreateCall do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_call_values.to_s).to eq('{:to=>"+19195551234", :from=>"+19195554321", :privacy=>false, :displayName=>"Caller Name", :uui=>"eyJ0eXAiOiJKV1Q;encoding=jwt", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :answerUrl=>"https://example.com/answer", :answerMethod=>"POST", :username=>"user", :password=>"pass", :answerFallbackUrl=>"https://example.com/answer-fallback", :answerFallbackMethod=>"POST", :fallbackUsername=>"fallback_user", :fallbackPassword=>"fallback_pass", :disconnectUrl=>"https://example.com/disconnect", :disconnectMethod=>"POST", :callTimeout=>30, :callbackTimeout=>15, :machineDetection=>{}, :priority=>5, :tag=>"custom tag"}')
+      expect(create_call_values.to_s).to eq({ :to => '+19195551234', :from => '+19195554321', :privacy => false, :displayName => 'Caller Name', :uui => 'eyJ0eXAiOiJKV1Q;encoding=jwt', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :answerUrl => 'https://example.com/answer', :answerMethod => 'POST', :username => 'user', :password => 'pass', :answerFallbackUrl => 'https://example.com/answer-fallback', :answerFallbackMethod => 'POST', :fallbackUsername => 'fallback_user', :fallbackPassword => 'fallback_pass', :disconnectUrl => 'https://example.com/disconnect', :disconnectMethod => 'POST', :callTimeout => 30, :callbackTimeout => 15, :machineDetection => {}, :priority => 5, :tag => 'custom tag' }.to_s)
     end
   end
 

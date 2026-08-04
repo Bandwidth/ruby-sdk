@@ -46,7 +46,7 @@ describe Bandwidth::RbmLocationResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_location_response_values.to_s).to eq('{:latitude=>35.7796, :longitude=>-78.6382}')
+      expect(rbm_location_response_values.to_s).to eq({ :latitude => 35.7796, :longitude => -78.6382 }.to_s)
     end
   end
 

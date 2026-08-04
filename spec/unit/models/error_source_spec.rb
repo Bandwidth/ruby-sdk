@@ -52,7 +52,7 @@ describe Bandwidth::ErrorSource do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(error_source_values.to_s).to eq('{:parameter=>"phoneNumber", :field=>"to", :header=>"X-Request-Id", :reference=>"/messages/123"}')
+      expect(error_source_values.to_s).to eq({ :parameter => 'phoneNumber', :field => 'to', :header => 'X-Request-Id', :reference => '/messages/123' }.to_s)
     end
   end
 

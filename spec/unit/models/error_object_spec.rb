@@ -55,7 +55,7 @@ describe Bandwidth::ErrorObject do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(error_object_values.to_s).to eq('{:type=>"validation", :description=>"bad input", :source=>{:field=>"phoneNumber"}}')
+      expect(error_object_values.to_s).to eq({ :type => 'validation', :description => 'bad input', :source => { :field => 'phoneNumber' } }.to_s)
     end
   end
 

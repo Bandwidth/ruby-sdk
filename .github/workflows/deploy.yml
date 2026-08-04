@@ -25,7 +25,7 @@ jobs:
       BW_NUMBER: ${{ secrets.BW_NUMBER }}
       USER_NUMBER: ${{ secrets.USER_NUMBER }}
       BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-      RUBY_VERSION: "3.0"
+      RUBY_VERSION: "4.0"
       OPERATING_SYSTEM: "ubuntu"
       MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
       MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}

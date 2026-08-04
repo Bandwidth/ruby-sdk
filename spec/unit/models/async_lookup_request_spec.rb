@@ -45,7 +45,7 @@ describe Bandwidth::AsyncLookupRequest do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(async_lookup_request_values.to_s).to eq('{:phoneNumbers=>["+19195551234", "+19195554321"]}')
+      expect(async_lookup_request_values.to_s).to eq({ :phoneNumbers => ['+19195551234', '+19195554321'] }.to_s)
     end
   end
 

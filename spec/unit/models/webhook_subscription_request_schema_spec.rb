@@ -54,7 +54,7 @@ describe Bandwidth::WebhookSubscriptionRequestSchema do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(webhook_subscription_request_schema_values.to_s).to eq('{:basicAuthentication=>{:username=>"user", :password=>"pass"}, :callbackUrl=>"https://example.com/callback", :sharedSecretKey=>"abc123abc123abc1"}')
+      expect(webhook_subscription_request_schema_values.to_s).to eq({ :basicAuthentication => { :username => 'user', :password => 'pass' }, :callbackUrl => 'https://example.com/callback', :sharedSecretKey => 'abc123abc123abc1' }.to_s)
     end
   end
 

@@ -46,7 +46,7 @@ describe Bandwidth::AccountStatistics do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(account_statistics_values.to_s).to eq('{:currentCallQueueSize=>1, :maxCallQueueSize=>100}')
+      expect(account_statistics_values.to_s).to eq({ :currentCallQueueSize => 1, :maxCallQueueSize => 100 }.to_s)
     end
   end
 

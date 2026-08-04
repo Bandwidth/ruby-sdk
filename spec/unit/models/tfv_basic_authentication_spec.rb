@@ -49,7 +49,7 @@ describe Bandwidth::TfvBasicAuthentication do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_basic_authentication_values.to_s).to eq('{:username=>"mySecretUsername", :password=>"mySecretPassword"}')
+      expect(tfv_basic_authentication_values.to_s).to eq({ :username => 'mySecretUsername', :password => 'mySecretPassword' }.to_s)
     end
   end
 

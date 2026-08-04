@@ -52,7 +52,7 @@ describe Bandwidth::CallTranscriptionResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(call_transcription_response_values.to_s).to eq('{:accountId=>"9900000", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :transcriptionId=>"t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :tracks=>[{:detectedLanguage=>"en-US", :track=>"inbound", :transcript=>"Hello", :confidence=>0.9}]}')
+      expect(call_transcription_response_values.to_s).to eq({ :accountId => '9900000', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :transcriptionId => 't-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :tracks => [{ :detectedLanguage => 'en-US', :track => 'inbound', :transcript => 'Hello', :confidence => 0.9 }] }.to_s)
     end
   end
 
