@@ -53,7 +53,7 @@ describe Bandwidth::AdditionalDenialReason do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(additional_denial_reason_values.to_s).to eq('{:statusCode=>200, :reason=>"reason text", :resubmitAllowed=>true}')
+      expect(additional_denial_reason_values.to_s).to eq({ :statusCode => 200, :reason => 'reason text', :resubmitAllowed => true }.to_s)
     end
   end
 

@@ -56,7 +56,7 @@ describe Bandwidth::VerifyCodeRequest do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(verify_code_request_values.to_s).to eq('{:to=>"+19195551234", :scope=>"2FA", :expirationTimeInMinutes=>1.0, :code=>"123456"}')
+      expect(verify_code_request_values.to_s).to eq({ :to => '+19195551234', :scope => '2FA', :expirationTimeInMinutes => 1.0, :code => '123456' }.to_s)
     end
   end
 

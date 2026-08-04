@@ -61,7 +61,7 @@ describe Bandwidth::CreateWebRtcConnectionRequest do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_web_rtc_connection_request_values.to_s).to eq('{:type=>"WEBRTC", :direction=>"BIDIRECTIONAL", :eventCallbackUrl=>"https://example.com/event-callback", :eventFallbackUrl=>"https://example.com/event-fallback", :tag=>"custom tag", :connectionMetadata=>{:sessionId=>"session-1"}}')
+      expect(create_web_rtc_connection_request_values.to_s).to eq({ :type => 'WEBRTC', :direction => 'BIDIRECTIONAL', :eventCallbackUrl => 'https://example.com/event-callback', :eventFallbackUrl => 'https://example.com/event-fallback', :tag => 'custom tag', :connectionMetadata => { :sessionId => 'session-1' } }.to_s)
     end
   end
 

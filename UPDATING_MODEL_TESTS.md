@@ -48,6 +48,7 @@ describe Bandwidth::ModelName do
 
   describe '#to_s' do
     # Use the *populated* values instance, not the empty default.
+    # Compare against a hash literal + .to_s, never a hardcoded string.
     it 'returns a string representation of the object'
   end
 
@@ -293,9 +294,23 @@ Bandwidth::VerificationRequest.build_from_hash({
 
 Apply this recursively — if the nested model itself has nested models with required attrs, fill those too. Check the nested model's setters (`def <attr>=` blocks raising `'<attr> cannot be nil'`) to know which attrs are required.
 
-### `#to_s` is sensitive to attribute order
+### `#to_s` must not assert against a hardcoded string
 
-The expected string must match the exact order of attributes as serialized by `to_hash`. Generate the expected string by running the populated instance through `to_s` in a console and pasting the result. Don't hand-craft it.
+`ApiModelBase#to_s` is `to_hash.to_s`, so its output is whatever `Hash#inspect` produces on the running Ruby — and **that format is version-dependent**. Ruby 3.4 changed it from `{:key=>"value"}` to `{key: "value"}`, which broke every spec that pasted a literal string.
+
+Compare against a **hash literal put through `.to_s`** instead. Ruby renders both sides with the same format, so the assertion holds on every supported version:
+
+```ruby
+# Wrong — passes on <= 3.3, fails on >= 3.4:
+expect(model_values.to_s).to eq('{:type=>"validation", :id=>"abc"}')
+
+# Right — version-agnostic:
+expect(model_values.to_s).to eq({:type=>"validation", :id=>"abc"}.to_s)
+```
+
+The auto-generated spec emits the hardcoded-string form, so this needs fixing on every regeneration. The fix is mechanical: strip the surrounding quotes and append `.to_s` — the text inside the quotes is already valid Ruby hash-literal source.
+
+**Attribute order still matters.** String comparison is order-sensitive (unlike the `Hash#==` in the `#to_body #to_hash` block), so the literal's key order must match `to_hash`'s serialization order. Keys are the *JSON* names from `attribute_map` (camelCase), not the snake_case attr names. Get the order by running the populated instance through `to_s` in a console — just convert the result to a hash literal rather than pasting it as a string.
 
 ### Nullable attribute symbols
 

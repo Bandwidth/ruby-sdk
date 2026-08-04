@@ -54,7 +54,7 @@ describe Bandwidth::Page do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(page_values.to_s).to eq('{:pageSize=>100, :totalElements=>250, :totalPages=>3, :pageNumber=>1}')
+      expect(page_values.to_s).to eq({ :pageSize => 100, :totalElements => 250, :totalPages => 3, :pageNumber => 1 }.to_s)
     end
   end
 

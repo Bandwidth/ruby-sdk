@@ -43,7 +43,7 @@ describe Bandwidth::MessagingCodeResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(messaging_code_response_values.to_s).to eq('{:messageId=>"1589228074636lm4k2je7j7jklbn2"}')
+      expect(messaging_code_response_values.to_s).to eq({ :messageId => '1589228074636lm4k2je7j7jklbn2' }.to_s)
     end
   end
 

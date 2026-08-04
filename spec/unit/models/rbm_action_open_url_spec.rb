@@ -63,7 +63,7 @@ describe Bandwidth::RbmActionOpenUrl do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_action_open_url_values.to_s).to eq('{:type=>"OPEN_URL", :text=>"Open URL", :postbackData=>"open_url_postback", :url=>"https://example.com", :application=>"BROWSER", :webviewViewMode=>"FULL"}')
+      expect(rbm_action_open_url_values.to_s).to eq({ :type => 'OPEN_URL', :text => 'Open URL', :postbackData => 'open_url_postback', :url => 'https://example.com', :application => 'BROWSER', :webviewViewMode => 'FULL' }.to_s)
     end
   end
 

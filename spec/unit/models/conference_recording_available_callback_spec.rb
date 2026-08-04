@@ -85,7 +85,7 @@ describe Bandwidth::ConferenceRecordingAvailableCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_recording_available_callback_values.to_s).to eq('{:eventType=>"conferenceRecordingAvailable", :eventTime=>"2022-06-16T13:15:07.160Z", :conferenceId=>"conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :name=>"my-conference-name", :accountId=>"9900000", :recordingId=>"r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :channels=>1, :startTime=>"2022-06-16T13:15:07.160Z", :endTime=>"2022-06-16T13:17:07.160Z", :duration=>"PT2M", :fileFormat=>"wav", :mediaUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/media", :tag=>"custom tag", :status=>"complete"}')
+      expect(conference_recording_available_callback_values.to_s).to eq({ :eventType => 'conferenceRecordingAvailable', :eventTime => '2022-06-16T13:15:07.160Z', :conferenceId => 'conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :name => 'my-conference-name', :accountId => '9900000', :recordingId => 'r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :channels => 1, :startTime => '2022-06-16T13:15:07.160Z', :endTime => '2022-06-16T13:17:07.160Z', :duration => 'PT2M', :fileFormat => 'wav', :mediaUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/media', :tag => 'custom tag', :status => 'complete' }.to_s)
     end
   end
 

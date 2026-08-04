@@ -58,7 +58,7 @@ describe Bandwidth::BlockedWebhook do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(blocked_webhook_values.to_s).to eq('{:accountId=>"9900000", :phoneNumber=>"+18005551234", :status=>"VERIFIED", :internalTicketNumber=>"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", :blocked=>true, :blockedReason=>"spam"}')
+      expect(blocked_webhook_values.to_s).to eq({ :accountId => '9900000', :phoneNumber => '+18005551234', :status => 'VERIFIED', :internalTicketNumber => 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', :blocked => true, :blockedReason => 'spam' }.to_s)
     end
   end
 

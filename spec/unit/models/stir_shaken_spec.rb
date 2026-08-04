@@ -49,7 +49,7 @@ describe Bandwidth::StirShaken do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(stir_shaken_values.to_s).to eq('{:verstat=>"TN-Validation-Passed", :attestationIndicator=>"A", :originatingId=>"99759086-1335-11ed-9bcf-5f7d464e91af"}')
+      expect(stir_shaken_values.to_s).to eq({ :verstat => 'TN-Validation-Passed', :attestationIndicator => 'A', :originatingId => '99759086-1335-11ed-9bcf-5f7d464e91af' }.to_s)
     end
   end
 

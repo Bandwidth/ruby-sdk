@@ -68,7 +68,7 @@ describe Bandwidth::Address do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(address_values.to_s).to eq('{:name=>"Bandwidth", :addr1=>"900 Main Campus Dr", :addr2=>"Suite 100", :city=>"Raleigh", :state=>"NC", :zip=>"27606", :url=>"https://www.bandwidth.com"}')
+      expect(address_values.to_s).to eq({ :name => 'Bandwidth', :addr1 => '900 Main Campus Dr', :addr2 => 'Suite 100', :city => 'Raleigh', :state => 'NC', :zip => '27606', :url => 'https://www.bandwidth.com' }.to_s)
     end
   end
 

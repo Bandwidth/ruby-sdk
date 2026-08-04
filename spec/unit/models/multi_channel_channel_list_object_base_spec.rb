@@ -53,7 +53,7 @@ describe Bandwidth::MultiChannelChannelListObjectBase do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_channel_list_object_base_values.to_s).to eq('{:from=>"+19195554321", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :channel=>"MMS"}')
+      expect(multi_channel_channel_list_object_base_values.to_s).to eq({ :from => '+19195554321', :applicationId => '93de2206-9669-4e07-948d-329f4b722ee2', :channel => 'MMS' }.to_s)
     end
   end
 

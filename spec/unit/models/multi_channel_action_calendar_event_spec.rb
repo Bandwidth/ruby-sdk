@@ -68,7 +68,7 @@ describe Bandwidth::MultiChannelActionCalendarEvent do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_action_calendar_event_values.to_s).to eq('{:type=>"CREATE_CALENDAR_EVENT", :text=>"Add to calendar", :postbackData=>"calendar_postback", :title=>"Bandwidth Demo", :startTime=>"2024-06-16T13:15:07.160Z", :endTime=>"2024-06-16T14:15:07.160Z", :description=>"A demo of the Bandwidth API"}')
+      expect(multi_channel_action_calendar_event_values.to_s).to eq({ :type => 'CREATE_CALENDAR_EVENT', :text => 'Add to calendar', :postbackData => 'calendar_postback', :title => 'Bandwidth Demo', :startTime => '2024-06-16T13:15:07.160Z', :endTime => '2024-06-16T14:15:07.160Z', :description => 'A demo of the Bandwidth API' }.to_s)
     end
   end
 

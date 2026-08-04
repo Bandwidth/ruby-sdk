@@ -56,7 +56,7 @@ describe Bandwidth::LookupErrorSchema do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(lookup_error_schema_values.to_s).to eq('{:code=>"404", :description=>"not found", :type=>"validation", :meta=>{:phoneNumbers=>["+19195551234"], :message=>"invalid", :code=>404}}')
+      expect(lookup_error_schema_values.to_s).to eq({ :code => '404', :description => 'not found', :type => 'validation', :meta => { :phoneNumbers => ['+19195551234'], :message => 'invalid', :code => 404 } }.to_s)
     end
   end
 

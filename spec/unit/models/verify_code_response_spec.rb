@@ -43,7 +43,7 @@ describe Bandwidth::VerifyCodeResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(verify_code_response_values.to_s).to eq('{:valid=>true}')
+      expect(verify_code_response_values.to_s).to eq({ :valid => true }.to_s)
     end
   end
 

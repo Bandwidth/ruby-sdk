@@ -51,7 +51,7 @@ describe Bandwidth::GetAsyncBulkLookupResponseData do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(get_async_bulk_lookup_response_data_values.to_s).to eq('{:requestId=>"abc-123", :status=>"COMPLETE", :results=>[{:phoneNumber=>"+19195551234"}]}')
+      expect(get_async_bulk_lookup_response_data_values.to_s).to eq({ :requestId => 'abc-123', :status => 'COMPLETE', :results => [{ :phoneNumber => '+19195551234' }] }.to_s)
     end
   end
 

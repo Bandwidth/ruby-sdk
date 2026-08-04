@@ -60,7 +60,7 @@ describe Bandwidth::EndpointResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(endpoint_response_values.to_s).to eq('{:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:endpointId=>"abc123", :type=>"WEBRTC", :status=>"CONNECTED", :creationTimestamp=>"2024-01-01T00:00:00Z", :expirationTimestamp=>"2024-01-02T00:00:00Z"}, :errors=>[{:type=>"validation", :description=>"bad input"}]}')
+      expect(endpoint_response_values.to_s).to eq({ :links => [{ :href => 'https://example.com', :rel => 'self', :method => 'GET' }], :data => { :endpointId => 'abc123', :type => 'WEBRTC', :status => 'CONNECTED', :creationTimestamp => '2024-01-01T00:00:00Z', :expirationTimestamp => '2024-01-02T00:00:00Z' }, :errors => [{ :type => 'validation', :description => 'bad input' }] }.to_s)
     end
   end
 
