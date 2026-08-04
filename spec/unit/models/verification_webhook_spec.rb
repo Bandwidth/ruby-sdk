@@ -52,7 +52,7 @@ describe Bandwidth::VerificationWebhook do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(verification_webhook_values.to_s).to eq('{:accountId=>"9900000", :phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3"}')
+      expect(verification_webhook_values.to_s).to eq({:accountId=>"9900000", :phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3"}.to_s)
     end
   end
 

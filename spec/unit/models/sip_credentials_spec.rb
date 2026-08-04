@@ -46,7 +46,7 @@ describe Bandwidth::SipCredentials do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(sip_credentials_values.to_s).to eq('{:username=>"sipUser", :password=>"sipPass"}')
+      expect(sip_credentials_values.to_s).to eq({:username=>"sipUser", :password=>"sipPass"}.to_s)
     end
   end
 

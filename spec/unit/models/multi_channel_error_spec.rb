@@ -53,7 +53,7 @@ describe Bandwidth::MultiChannelError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_error_values.to_s).to eq('{:links=>[{:rel=>"next", :href=>"https://example.com/next"}], :data=>{:someKey=>"someValue"}, :errors=>[{:type=>"invalid", :description=>"Something went wrong", :source=>{:parameter=>"foo"}}]}')
+      expect(multi_channel_error_values.to_s).to eq({:links=>[{:rel=>"next", :href=>"https://example.com/next"}], :data=>{:someKey=>"someValue"}, :errors=>[{:type=>"invalid", :description=>"Something went wrong", :source=>{:parameter=>"foo"}}]}.to_s)
     end
   end
 

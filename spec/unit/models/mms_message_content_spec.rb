@@ -48,7 +48,7 @@ describe Bandwidth::MmsMessageContent do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(mms_message_content_values.to_s).to eq('{:text=>"Hello world", :media=>[{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}]}')
+      expect(mms_message_content_values.to_s).to eq({:text=>"Hello world", :media=>[{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}]}.to_s)
     end
   end
 

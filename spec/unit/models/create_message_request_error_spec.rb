@@ -52,7 +52,7 @@ describe Bandwidth::CreateMessageRequestError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_message_request_error_values.to_s).to eq('{:type=>"request-validation", :description=>"Your request could not be processed.", :fieldErrors=>[{:fieldName=>"to", :description=>"must be present"}]}')
+      expect(create_message_request_error_values.to_s).to eq({:type=>"request-validation", :description=>"Your request could not be processed.", :fieldErrors=>[{:fieldName=>"to", :description=>"must be present"}]}.to_s)
     end
   end
 

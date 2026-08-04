@@ -57,7 +57,7 @@ describe Bandwidth::RbmActionDial do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_action_dial_values.to_s).to eq('{:type=>"DIAL_PHONE", :text=>"Call us", :postbackData=>"dial_postback", :phoneNumber=>"+19195554321"}')
+      expect(rbm_action_dial_values.to_s).to eq({:type=>"DIAL_PHONE", :text=>"Call us", :postbackData=>"dial_postback", :phoneNumber=>"+19195554321"}.to_s)
     end
   end
 

@@ -56,7 +56,7 @@ describe Bandwidth::MessagesList do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(messages_list_values.to_s).to eq('{:totalCount=>1, :pageInfo=>{:prevPage=>"https://example.com/prev", :nextPage=>"https://example.com/next", :prevPageToken=>"prev-token", :nextPageToken=>"next-token"}, :messages=>[{:messageId=>"abc-123", :messageLength=>10}]}')
+      expect(messages_list_values.to_s).to eq({:totalCount=>1, :pageInfo=>{:prevPage=>"https://example.com/prev", :nextPage=>"https://example.com/next", :prevPageToken=>"prev-token", :nextPageToken=>"next-token"}, :messages=>[{:messageId=>"abc-123", :messageLength=>10}]}.to_s)
     end
   end
 

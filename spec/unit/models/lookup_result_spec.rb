@@ -76,7 +76,7 @@ describe Bandwidth::LookupResult do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(lookup_result_values.to_s).to eq('{:phoneNumber=>"+19195551234", :lineType=>"MOBILE", :messagingProvider=>"Bandwidth", :voiceProvider=>"Bandwidth", :countryCodeA3=>"USA", :deactivationReporter=>"verizon", :deactivationDate=>"2024-01-01", :deactivationEvent=>"DEACTIVATED", :latestMessageDeliveryStatus=>"ACTIVE", :initialMessageDeliveryStatusDate=>"2024-01-01", :latestMessageDeliveryStatusDate=>"2024-01-02", :rcsEnabled=>true}')
+      expect(lookup_result_values.to_s).to eq({:phoneNumber=>"+19195551234", :lineType=>"MOBILE", :messagingProvider=>"Bandwidth", :voiceProvider=>"Bandwidth", :countryCodeA3=>"USA", :deactivationReporter=>"verizon", :deactivationDate=>"2024-01-01", :deactivationEvent=>"DEACTIVATED", :latestMessageDeliveryStatus=>"ACTIVE", :initialMessageDeliveryStatusDate=>"2024-01-01", :latestMessageDeliveryStatusDate=>"2024-01-02", :rcsEnabled=>true}.to_s)
     end
   end
 

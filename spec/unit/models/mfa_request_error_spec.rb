@@ -46,7 +46,7 @@ describe Bandwidth::MfaRequestError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(mfa_request_error_values.to_s).to eq('{:error=>"Invalid request", :requestId=>"req-abc-123"}')
+      expect(mfa_request_error_values.to_s).to eq({:error=>"Invalid request", :requestId=>"req-abc-123"}.to_s)
     end
   end
 

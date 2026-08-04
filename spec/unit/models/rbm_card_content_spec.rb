@@ -63,7 +63,7 @@ describe Bandwidth::RbmCardContent do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_card_content_values.to_s).to eq('{:title=>"Card Title", :description=>"Card Description", :media=>{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png", :height=>"MEDIUM"}, :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}')
+      expect(rbm_card_content_values.to_s).to eq({:title=>"Card Title", :description=>"Card Description", :media=>{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png", :height=>"MEDIUM"}, :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}.to_s)
     end
   end
 

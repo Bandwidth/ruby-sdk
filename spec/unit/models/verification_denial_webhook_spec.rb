@@ -73,7 +73,7 @@ describe Bandwidth::VerificationDenialWebhook do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(verification_denial_webhook_values.to_s).to eq('{:accountId=>"9900000", :additionalDenialReasons=>[{:statusCode=>100, :reason=>"reason text", :resubmitAllowed=>true}], :declineReasonDescription=>"The reason for declining", :denialStatusCode=>100, :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :phoneNumber=>"+18005554321", :resubmitAllowed=>true, :status=>"UNVERIFIED", :blocked=>false, :blockedReason=>"The reason for blocking"}')
+      expect(verification_denial_webhook_values.to_s).to eq({:accountId=>"9900000", :additionalDenialReasons=>[{:statusCode=>100, :reason=>"reason text", :resubmitAllowed=>true}], :declineReasonDescription=>"The reason for declining", :denialStatusCode=>100, :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :phoneNumber=>"+18005554321", :resubmitAllowed=>true, :status=>"UNVERIFIED", :blocked=>false, :blockedReason=>"The reason for blocking"}.to_s)
     end
   end
 

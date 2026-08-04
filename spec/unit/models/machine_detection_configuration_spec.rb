@@ -100,7 +100,7 @@ describe Bandwidth::MachineDetectionConfiguration do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(machine_detection_configuration_values.to_s).to eq('{:mode=>"sync", :detectionTimeout=>20, :silenceTimeout=>12, :speechThreshold=>8, :speechEndThreshold=>4, :machineSpeechEndThreshold=>7, :delayResult=>true, :callbackUrl=>"https://example.com/callback", :callbackMethod=>"GET", :username=>"user", :password=>"pass", :fallbackUrl=>"https://example.com/fallback", :fallbackMethod=>"GET", :fallbackUsername=>"fallback-user", :fallbackPassword=>"fallback-pass"}')
+      expect(machine_detection_configuration_values.to_s).to eq({:mode=>"sync", :detectionTimeout=>20, :silenceTimeout=>12, :speechThreshold=>8, :speechEndThreshold=>4, :machineSpeechEndThreshold=>7, :delayResult=>true, :callbackUrl=>"https://example.com/callback", :callbackMethod=>"GET", :username=>"user", :password=>"pass", :fallbackUrl=>"https://example.com/fallback", :fallbackMethod=>"GET", :fallbackUsername=>"fallback-user", :fallbackPassword=>"fallback-pass"}.to_s)
     end
   end
 

@@ -70,7 +70,7 @@ describe Bandwidth::Conference do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_values.to_s).to eq('{:id=>"conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c", :name=>"weekly-stand-up", :createdTime=>"2022-06-16T13:15:07.160Z", :completedTime=>"2022-06-16T13:45:07.160Z", :conferenceEventUrl=>"https://example.com/conference-event", :conferenceEventMethod=>"POST", :tag=>"custom tag", :activeMembers=>[{:callId=>"c-1", :conferenceId=>"conf-1"}]}')
+      expect(conference_values.to_s).to eq({:id=>"conf-fe23a767-a75a5b77-23e8-4b5b-a973-1eb967d7d75c", :name=>"weekly-stand-up", :createdTime=>"2022-06-16T13:15:07.160Z", :completedTime=>"2022-06-16T13:45:07.160Z", :conferenceEventUrl=>"https://example.com/conference-event", :conferenceEventMethod=>"POST", :tag=>"custom tag", :activeMembers=>[{:callId=>"c-1", :conferenceId=>"conf-1"}]}.to_s)
     end
   end
 

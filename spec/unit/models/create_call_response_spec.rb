@@ -124,7 +124,7 @@ describe Bandwidth::CreateCallResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_call_response_values.to_s).to eq('{:applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :accountId=>"9900000", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :to=>"+19195551234", :from=>"+19195554321", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1", :callTimeout=>30.0, :callbackTimeout=>15.0, :tag=>"custom tag", :answerMethod=>"POST", :answerUrl=>"https://example.com/answer", :answerFallbackMethod=>"POST", :answerFallbackUrl=>"https://example.com/answer-fallback", :disconnectMethod=>"POST", :disconnectUrl=>"https://example.com/disconnect", :username=>"user", :password=>"pass", :fallbackUsername=>"fallback_user", :fallbackPassword=>"fallback_pass", :priority=>5}')
+      expect(create_call_response_values.to_s).to eq({:applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :accountId=>"9900000", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :to=>"+19195551234", :from=>"+19195554321", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1", :callTimeout=>30.0, :callbackTimeout=>15.0, :tag=>"custom tag", :answerMethod=>"POST", :answerUrl=>"https://example.com/answer", :answerFallbackMethod=>"POST", :answerFallbackUrl=>"https://example.com/answer-fallback", :disconnectMethod=>"POST", :disconnectUrl=>"https://example.com/disconnect", :username=>"user", :password=>"pass", :fallbackUsername=>"fallback_user", :fallbackPassword=>"fallback_pass", :priority=>5}.to_s)
     end
   end
 

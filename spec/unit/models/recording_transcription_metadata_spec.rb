@@ -52,7 +52,7 @@ describe Bandwidth::RecordingTranscriptionMetadata do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(recording_transcription_metadata_values.to_s).to eq('{:id=>"t-3f758f24-c7a2fdac-7c2e-4d83-bf28-c7c1ed29563c", :status=>"available", :completedTime=>"2022-06-17T22:21:30Z", :url=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcriptions/t-3f758f24-c7a2fdac-7c2e-4d83-bf28-c7c1ed29563c"}')
+      expect(recording_transcription_metadata_values.to_s).to eq({:id=>"t-3f758f24-c7a2fdac-7c2e-4d83-bf28-c7c1ed29563c", :status=>"available", :completedTime=>"2022-06-17T22:21:30Z", :url=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcriptions/t-3f758f24-c7a2fdac-7c2e-4d83-bf28-c7c1ed29563c"}.to_s)
     end
   end
 

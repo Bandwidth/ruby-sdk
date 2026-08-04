@@ -58,7 +58,7 @@ describe Bandwidth::BrtcError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(brtc_error_values.to_s).to eq('{:id=>"abc-123", :type=>"validation", :description=>"bad input", :code=>"E1001", :source=>{:field=>"phoneNumber"}}')
+      expect(brtc_error_values.to_s).to eq({:id=>"abc-123", :type=>"validation", :description=>"bad input", :code=>"E1001", :source=>{:field=>"phoneNumber"}}.to_s)
     end
   end
 

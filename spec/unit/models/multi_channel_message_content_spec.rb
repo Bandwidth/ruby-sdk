@@ -47,7 +47,7 @@ describe Bandwidth::MultiChannelMessageContent do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_message_content_values.to_s).to eq('{:text=>"Hello world", :media=>{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}}')
+      expect(multi_channel_message_content_values.to_s).to eq({:text=>"Hello world", :media=>{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}}.to_s)
     end
   end
 

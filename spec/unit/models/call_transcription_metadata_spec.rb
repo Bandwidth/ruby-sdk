@@ -49,7 +49,7 @@ describe Bandwidth::CallTranscriptionMetadata do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(call_transcription_metadata_values.to_s).to eq('{:transcriptionId=>"t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :transcriptionName=>"live-transcription", :transcriptionUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1/transcriptions/t-1"}')
+      expect(call_transcription_metadata_values.to_s).to eq({:transcriptionId=>"t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :transcriptionName=>"live-transcription", :transcriptionUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1/transcriptions/t-1"}.to_s)
     end
   end
 

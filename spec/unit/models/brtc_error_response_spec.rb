@@ -52,7 +52,7 @@ describe Bandwidth::BrtcErrorResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(brtc_error_response_values.to_s).to eq('{:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:foo=>"bar"}, :errors=>[{:type=>"validation", :description=>"bad input"}]}')
+      expect(brtc_error_response_values.to_s).to eq({:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:foo=>"bar"}, :errors=>[{:type=>"validation", :description=>"bad input"}]}.to_s)
     end
   end
 

@@ -49,7 +49,7 @@ describe Bandwidth::LookupErrorResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(lookup_error_response_values.to_s).to eq('{:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:foo=>"bar"}, :errors=>[{:code=>"400", :description=>"bad request", :type=>"validation"}]}')
+      expect(lookup_error_response_values.to_s).to eq({:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:foo=>"bar"}, :errors=>[{:code=>"400", :description=>"bad request", :type=>"validation"}]}.to_s)
     end
   end
 

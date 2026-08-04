@@ -46,7 +46,7 @@ describe Bandwidth::MachineDetectionResult do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(machine_detection_result_values.to_s).to eq('{:value=>"human", :duration=>"PT5S"}')
+      expect(machine_detection_result_values.to_s).to eq({:value=>"human", :duration=>"PT5S"}.to_s)
     end
   end
 

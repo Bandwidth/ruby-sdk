@@ -94,7 +94,7 @@ describe Bandwidth::TfvSubmissionInfo do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_submission_info_values.to_s).to eq('{:businessAddress=>{:name=>"Bandwidth"}, :businessContact=>{:firstName=>"Jane"}, :messageVolume=>1000, :useCase=>"Customer notifications", :useCaseSummary=>"Send customers updates about their orders", :productionMessageContent=>"Your order has shipped", :optInWorkflow=>{:description=>"opt-in via website", :imageUrls=>["https://example.com/optin.png"]}, :additionalInformation=>"extra info", :isvReseller=>"My ISV", :privacyPolicyUrl=>"https://example.com/privacy", :termsAndConditionsUrl=>"https://example.com/terms", :businessDba=>"Bandwidth Inc", :businessRegistrationNumber=>"12-3456789", :businessRegistrationType=>"EIN", :businessRegistrationIssuingCountry=>"USA", :businessEntityType=>"PRIVATE_PROFIT"}')
+      expect(tfv_submission_info_values.to_s).to eq({:businessAddress=>{:name=>"Bandwidth"}, :businessContact=>{:firstName=>"Jane"}, :messageVolume=>1000, :useCase=>"Customer notifications", :useCaseSummary=>"Send customers updates about their orders", :productionMessageContent=>"Your order has shipped", :optInWorkflow=>{:description=>"opt-in via website", :imageUrls=>["https://example.com/optin.png"]}, :additionalInformation=>"extra info", :isvReseller=>"My ISV", :privacyPolicyUrl=>"https://example.com/privacy", :termsAndConditionsUrl=>"https://example.com/terms", :businessDba=>"Bandwidth Inc", :businessRegistrationNumber=>"12-3456789", :businessRegistrationType=>"EIN", :businessRegistrationIssuingCountry=>"USA", :businessEntityType=>"PRIVATE_PROFIT"}.to_s)
     end
   end
 

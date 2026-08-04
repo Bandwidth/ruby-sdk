@@ -43,7 +43,7 @@ describe Bandwidth::MfaUnauthorizedRequestError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(mfa_unauthorized_request_error_values.to_s).to eq('{:message=>"Unauthorized"}')
+      expect(mfa_unauthorized_request_error_values.to_s).to eq({:message=>"Unauthorized"}.to_s)
     end
   end
 

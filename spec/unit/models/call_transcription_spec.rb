@@ -52,7 +52,7 @@ describe Bandwidth::CallTranscription do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(call_transcription_values.to_s).to eq('{:detectedLanguage=>"en-US", :track=>"inbound", :transcript=>"Hello world", :confidence=>0.9}')
+      expect(call_transcription_values.to_s).to eq({:detectedLanguage=>"en-US", :track=>"inbound", :transcript=>"Hello world", :confidence=>0.9}.to_s)
     end
   end
 

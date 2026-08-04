@@ -55,7 +55,7 @@ describe Bandwidth::TfvSubmissionWrapper do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_submission_wrapper_values.to_s).to eq('{:submission=>{:businessDba=>"Bandwidth Inc"}}')
+      expect(tfv_submission_wrapper_values.to_s).to eq({:submission=>{:businessDba=>"Bandwidth Inc"}}.to_s)
     end
   end
 

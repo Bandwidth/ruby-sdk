@@ -45,7 +45,7 @@ describe Bandwidth::UpdateCallRecording do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(update_call_recording_values.to_s).to eq('{:state=>"recording"}')
+      expect(update_call_recording_values.to_s).to eq({:state=>"recording"}.to_s)
     end
   end
 

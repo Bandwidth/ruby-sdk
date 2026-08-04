@@ -56,7 +56,7 @@ describe Bandwidth::RbmMessageMedia do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_message_media_values.to_s).to eq('{:media=>[{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}], :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}')
+      expect(rbm_message_media_values.to_s).to eq({:media=>[{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png"}], :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}.to_s)
     end
   end
 

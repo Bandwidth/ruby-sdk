@@ -49,7 +49,7 @@ describe Bandwidth::WebhookSubscriptionBasicAuthentication do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(webhook_subscription_basic_authentication_values.to_s).to eq('{:username=>"mySecretUsername", :password=>"mySecretPassword"}')
+      expect(webhook_subscription_basic_authentication_values.to_s).to eq({:username=>"mySecretUsername", :password=>"mySecretPassword"}.to_s)
     end
   end
 

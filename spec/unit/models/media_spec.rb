@@ -49,7 +49,7 @@ describe Bandwidth::Media do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(media_values.to_s).to eq('{:content=>"https://example.com/media/1.jpg", :contentLength=>12345, :mediaName=>"image.jpg"}')
+      expect(media_values.to_s).to eq({:content=>"https://example.com/media/1.jpg", :contentLength=>12345, :mediaName=>"image.jpg"}.to_s)
     end
   end
 

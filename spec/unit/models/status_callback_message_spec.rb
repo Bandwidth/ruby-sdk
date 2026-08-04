@@ -88,7 +88,7 @@ describe Bandwidth::StatusCallbackMessage do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(status_callback_message_values.to_s).to eq('{:id=>"1589228074636lm4k2je7j7jklbn2", :owner=>"+19195554321", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :time=>"2022-06-16T13:15:07.160Z", :segmentCount=>2, :direction=>"out", :to=>["+19195551234"], :from=>"+19195554321", :text=>"Hello world", :tag=>"custom tag", :media=>["https://dev.bandwidth.com/images/bandwidth-logo.png"], :priority=>"default", :channel=>"SMS"}')
+      expect(status_callback_message_values.to_s).to eq({:id=>"1589228074636lm4k2je7j7jklbn2", :owner=>"+19195554321", :applicationId=>"93de2206-9669-4e07-948d-329f4b722ee2", :time=>"2022-06-16T13:15:07.160Z", :segmentCount=>2, :direction=>"out", :to=>["+19195551234"], :from=>"+19195554321", :text=>"Hello world", :tag=>"custom tag", :media=>["https://dev.bandwidth.com/images/bandwidth-logo.png"], :priority=>"default", :channel=>"SMS"}.to_s)
     end
   end
 

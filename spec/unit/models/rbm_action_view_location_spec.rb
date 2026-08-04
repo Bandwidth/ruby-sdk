@@ -64,7 +64,7 @@ describe Bandwidth::RbmActionViewLocation do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_action_view_location_values.to_s).to eq('{:type=>"SHOW_LOCATION", :text=>"View location", :postbackData=>"location_postback", :latitude=>35.7796, :longitude=>-78.6382, :label=>"Bandwidth HQ"}')
+      expect(rbm_action_view_location_values.to_s).to eq({:type=>"SHOW_LOCATION", :text=>"View location", :postbackData=>"location_postback", :latitude=>35.7796, :longitude=>-78.6382, :label=>"Bandwidth HQ"}.to_s)
     end
   end
 

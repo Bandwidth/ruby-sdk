@@ -46,7 +46,7 @@ describe Bandwidth::FieldError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(field_error_values.to_s).to eq('{:fieldName=>"to", :description=>"invalid phone number"}')
+      expect(field_error_values.to_s).to eq({:fieldName=>"to", :description=>"invalid phone number"}.to_s)
     end
   end
 

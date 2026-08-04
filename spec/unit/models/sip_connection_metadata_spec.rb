@@ -54,7 +54,7 @@ describe Bandwidth::SipConnectionMetadata do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(sip_connection_metadata_values.to_s).to eq('{:ipAddress=>"192.168.1.1", :port=>5060, :credentials=>{:username=>"sipUser", :password=>"sipPass"}, :uuiHeader=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"}')
+      expect(sip_connection_metadata_values.to_s).to eq({:ipAddress=>"192.168.1.1", :port=>5060, :credentials=>{:username=>"sipUser", :password=>"sipPass"}, :uuiHeader=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"}.to_s)
     end
   end
 

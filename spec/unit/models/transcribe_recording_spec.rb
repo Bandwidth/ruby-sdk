@@ -68,7 +68,7 @@ describe Bandwidth::TranscribeRecording do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(transcribe_recording_values.to_s).to eq('{:callbackUrl=>"https://example.com/callback", :callbackMethod=>"POST", :username=>"mySecretUsername", :password=>"mySecretPassword", :tag=>"arbitrary tag", :callbackTimeout=>5.5, :detectLanguage=>true}')
+      expect(transcribe_recording_values.to_s).to eq({:callbackUrl=>"https://example.com/callback", :callbackMethod=>"POST", :username=>"mySecretUsername", :password=>"mySecretPassword", :tag=>"arbitrary tag", :callbackTimeout=>5.5, :detectLanguage=>true}.to_s)
     end
   end
 

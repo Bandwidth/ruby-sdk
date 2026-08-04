@@ -122,7 +122,7 @@ describe Bandwidth::ListMessageItem do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(list_message_item_values.to_s).to eq('{:messageId=>"1589228074636lm4k2je7j7jklbn2", :accountId=>"9900000", :sourceTn=>"+19195554321", :destinationTn=>"+19195551234", :messageStatus=>"DELIVERED", :messageDirection=>"OUTBOUND", :messageType=>"sms", :segmentCount=>1, :errorCode=>0, :receiveTime=>"2022-06-16T13:15:07.160Z", :carrierName=>"verizon", :messageSize=>27, :messageLength=>18, :attachmentCount=>0, :recipientCount=>1, :campaignClass=>"T", :campaignId=>"CABC123", :bwLatency=>1, :carrierLatency=>2, :callingNumberCountryA3=>"USA", :calledNumberCountryA3=>"USA", :product=>"MESSAGING-V2", :location=>"loc-1"}')
+      expect(list_message_item_values.to_s).to eq({:messageId=>"1589228074636lm4k2je7j7jklbn2", :accountId=>"9900000", :sourceTn=>"+19195554321", :destinationTn=>"+19195551234", :messageStatus=>"DELIVERED", :messageDirection=>"OUTBOUND", :messageType=>"sms", :segmentCount=>1, :errorCode=>0, :receiveTime=>"2022-06-16T13:15:07.160Z", :carrierName=>"verizon", :messageSize=>27, :messageLength=>18, :attachmentCount=>0, :recipientCount=>1, :campaignClass=>"T", :campaignId=>"CABC123", :bwLatency=>1, :carrierLatency=>2, :callingNumberCountryA3=>"USA", :calledNumberCountryA3=>"USA", :product=>"MESSAGING-V2", :location=>"loc-1"}.to_s)
     end
   end
 

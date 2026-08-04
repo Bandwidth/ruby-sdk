@@ -57,7 +57,7 @@ describe Bandwidth::Contact do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(contact_values.to_s).to eq('{:firstName=>"John", :lastName=>"Doe", :email=>"john.doe@example.com", :phoneNumber=>"+19195551234"}')
+      expect(contact_values.to_s).to eq({:firstName=>"John", :lastName=>"Doe", :email=>"john.doe@example.com", :phoneNumber=>"+19195551234"}.to_s)
     end
   end
 

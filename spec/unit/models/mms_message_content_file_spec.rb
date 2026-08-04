@@ -45,7 +45,7 @@ describe Bandwidth::MmsMessageContentFile do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(mms_message_content_file_values.to_s).to eq('{:fileUrl=>"https://example.com/image.jpg"}')
+      expect(mms_message_content_file_values.to_s).to eq({:fileUrl=>"https://example.com/image.jpg"}.to_s)
     end
   end
 

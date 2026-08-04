@@ -52,7 +52,7 @@ describe Bandwidth::PageInfo do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(page_info_values.to_s).to eq('{:prevPage=>"https://example.com/prev", :nextPage=>"https://example.com/next", :prevPageToken=>"prev-token", :nextPageToken=>"next-token"}')
+      expect(page_info_values.to_s).to eq({:prevPage=>"https://example.com/prev", :nextPage=>"https://example.com/next", :prevPageToken=>"prev-token", :nextPageToken=>"next-token"}.to_s)
     end
   end
 

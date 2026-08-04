@@ -83,7 +83,7 @@ describe Bandwidth::TfvStatus do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(tfv_status_values.to_s).to eq('{:phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :declineReasonDescription=>"The reason for declining", :denialStatusCode=>100, :additionalDenialReasons=>[{:statusCode=>100, :reason=>"reason text", :resubmitAllowed=>true}], :resubmitAllowed=>false, :createdDateTime=>"2024-01-01T00:00:00Z", :modifiedDateTime=>"2024-01-02T00:00:00Z", :submission=>{:businessAddress=>{:name=>"Bandwidth"}}, :blocked=>false, :blockedReason=>"The reason for blocking", :cvToken=>"cv_token_value"}')
+      expect(tfv_status_values.to_s).to eq({:phoneNumber=>"+18005554321", :status=>"VERIFIED", :internalTicketNumber=>"8c8f33f8-0d72-43c8-8b6c-1da8f0a9e6b3", :declineReasonDescription=>"The reason for declining", :denialStatusCode=>100, :additionalDenialReasons=>[{:statusCode=>100, :reason=>"reason text", :resubmitAllowed=>true}], :resubmitAllowed=>false, :createdDateTime=>"2024-01-01T00:00:00Z", :modifiedDateTime=>"2024-01-02T00:00:00Z", :submission=>{:businessAddress=>{:name=>"Bandwidth"}}, :blocked=>false, :blockedReason=>"The reason for blocking", :cvToken=>"cv_token_value"}.to_s)
     end
   end
 

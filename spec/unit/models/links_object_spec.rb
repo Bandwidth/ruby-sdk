@@ -52,7 +52,7 @@ describe Bandwidth::LinksObject do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(links_object_values.to_s).to eq('{:first=>"https://example.com/page/1", :next=>"https://example.com/page/2", :previous=>"https://example.com/page/0", :last=>"https://example.com/page/9"}')
+      expect(links_object_values.to_s).to eq({:first=>"https://example.com/page/1", :next=>"https://example.com/page/2", :previous=>"https://example.com/page/0", :last=>"https://example.com/page/9"}.to_s)
     end
   end
 

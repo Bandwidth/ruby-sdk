@@ -46,7 +46,7 @@ describe Bandwidth::CreateMultiChannelMessageResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_multi_channel_message_response_values.to_s).to eq('{:links=>[{:rel=>"self", :href=>"https://example.com"}], :errors=>[{:type=>"validation", :description=>"bad input", :source=>{}}]}')
+      expect(create_multi_channel_message_response_values.to_s).to eq({:links=>[{:rel=>"self", :href=>"https://example.com"}], :errors=>[{:type=>"validation", :description=>"bad input", :source=>{}}]}.to_s)
     end
   end
 

@@ -88,7 +88,7 @@ describe Bandwidth::InitiateCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(initiate_callback_values.to_s).to eq('{:eventType=>"initiate", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :direction=>"inbound", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :startTime=>"2022-06-16T13:15:07.160Z", :diversion=>{:reason=>"unconditional", :privacy=>"off"}, :stirShaken=>{:verstat=>"TN-Validation-Passed", :attestationIndicator=>"A", :originatingId=>"527c7d1f-22a4-4ec1-ad19-1a4ec9466cdb"}, :uui=>"aGVsbG8sIHdvcmxkIQ==;encoding=base64", :sipCallId=>"sip-call-id-12345", :sipHeaders=>{"X-Custom-Header"=>"custom-value"}}')
+      expect(initiate_callback_values.to_s).to eq({:eventType=>"initiate", :eventTime=>"2022-06-16T13:15:07.160Z", :accountId=>"9900000", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :from=>"+19195554321", :to=>"+19195551234", :direction=>"inbound", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :callUrl=>"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :startTime=>"2022-06-16T13:15:07.160Z", :diversion=>{:reason=>"unconditional", :privacy=>"off"}, :stirShaken=>{:verstat=>"TN-Validation-Passed", :attestationIndicator=>"A", :originatingId=>"527c7d1f-22a4-4ec1-ad19-1a4ec9466cdb"}, :uui=>"aGVsbG8sIHdvcmxkIQ==;encoding=base64", :sipCallId=>"sip-call-id-12345", :sipHeaders=>{"X-Custom-Header"=>"custom-value"}}.to_s)
     end
   end
 

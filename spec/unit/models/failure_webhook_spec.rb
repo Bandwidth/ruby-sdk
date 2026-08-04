@@ -58,7 +58,7 @@ describe Bandwidth::FailureWebhook do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(failure_webhook_values.to_s).to eq('{:accountId=>"9900000", :phoneNumber=>"+18005551234", :errorCode=>"400", :errorMessage=>"bad request", :errors=>["missing field"], :internalTicketNumber=>"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"}')
+      expect(failure_webhook_values.to_s).to eq({:accountId=>"9900000", :phoneNumber=>"+18005551234", :errorCode=>"400", :errorMessage=>"bad request", :errors=>["missing field"], :internalTicketNumber=>"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"}.to_s)
     end
   end
 

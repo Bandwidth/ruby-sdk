@@ -49,7 +49,7 @@ describe Bandwidth::RbmSuggestionResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_suggestion_response_values.to_s).to eq('{:text=>"Yes", :postbackData=>"reply_yes", :pairedMessageId=>"paired_message_123"}')
+      expect(rbm_suggestion_response_values.to_s).to eq({:text=>"Yes", :postbackData=>"reply_yes", :pairedMessageId=>"paired_message_123"}.to_s)
     end
   end
 

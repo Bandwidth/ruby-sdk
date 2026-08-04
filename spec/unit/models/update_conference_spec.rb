@@ -77,7 +77,7 @@ describe Bandwidth::UpdateConference do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(update_conference_values.to_s).to eq('{:status=>"active", :redirectUrl=>"https://example.com/redirect", :redirectMethod=>"POST", :username=>"mySecretUsername", :password=>"mySecretPassword", :redirectFallbackUrl=>"https://example.com/fallback", :redirectFallbackMethod=>"GET", :fallbackUsername=>"fallbackUser", :fallbackPassword=>"fallbackPass"}')
+      expect(update_conference_values.to_s).to eq({:status=>"active", :redirectUrl=>"https://example.com/redirect", :redirectMethod=>"POST", :username=>"mySecretUsername", :password=>"mySecretPassword", :redirectFallbackUrl=>"https://example.com/fallback", :redirectFallbackMethod=>"GET", :fallbackUsername=>"fallbackUser", :fallbackPassword=>"fallbackPass"}.to_s)
     end
   end
 
