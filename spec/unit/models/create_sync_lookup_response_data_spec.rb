@@ -49,7 +49,7 @@ describe Bandwidth::CreateSyncLookupResponseData do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_sync_lookup_response_data_values.to_s).to eq('{:requestId=>"00b97c1b-d8b4-4a32-ad14-7d09ce04acb6", :status=>"COMPLETE", :results=>[{:phoneNumber=>"+19195551234"}]}')
+      expect(create_sync_lookup_response_data_values.to_s).to eq({ :requestId => '00b97c1b-d8b4-4a32-ad14-7d09ce04acb6', :status => 'COMPLETE', :results => [{ :phoneNumber => '+19195551234' }] }.to_s)
     end
   end
 

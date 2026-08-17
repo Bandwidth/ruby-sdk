@@ -45,7 +45,7 @@ describe Bandwidth::MultiChannelChannelListOwnerObject do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(multi_channel_channel_list_owner_object_values.to_s).to eq('{:owner=>"+19195554321"}')
+      expect(multi_channel_channel_list_owner_object_values.to_s).to eq({ :owner => '+19195554321' }.to_s)
     end
   end
 

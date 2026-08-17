@@ -49,7 +49,7 @@ describe Bandwidth::LookupErrorSchemaMeta do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(lookup_error_schema_meta_values.to_s).to eq('{:phoneNumbers=>["+19195551234"], :message=>"invalid phone number", :code=>400}')
+      expect(lookup_error_schema_meta_values.to_s).to eq({ :phoneNumbers => ['+19195551234'], :message => 'invalid phone number', :code => 400 }.to_s)
     end
   end
 

@@ -52,7 +52,7 @@ describe Bandwidth::OptInWorkflow do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(opt_in_workflow_values.to_s).to eq('{:description=>"A description of the opt in workflow", :imageUrls=>["https://example.com/image1.png", "https://example.com/image2.png"], :confirmationResponse=>"Thanks for opting in!"}')
+      expect(opt_in_workflow_values.to_s).to eq({ :description => 'A description of the opt in workflow', :imageUrls => ['https://example.com/image1.png', 'https://example.com/image2.png'], :confirmationResponse => 'Thanks for opting in!' }.to_s)
     end
   end
 

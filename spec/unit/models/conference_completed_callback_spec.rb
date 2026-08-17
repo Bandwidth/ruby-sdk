@@ -57,7 +57,7 @@ describe Bandwidth::ConferenceCompletedCallback do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(conference_completed_callback_values.to_s).to eq('{:eventType=>"conferenceCompleted", :eventTime=>"2022-06-16T13:15:07.160Z", :conferenceId=>"conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :name=>"my-conference-name", :tag=>"custom tag"}')
+      expect(conference_completed_callback_values.to_s).to eq({ :eventType => 'conferenceCompleted', :eventTime => '2022-06-16T13:15:07.160Z', :conferenceId => 'conf-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :name => 'my-conference-name', :tag => 'custom tag' }.to_s)
     end
   end
 

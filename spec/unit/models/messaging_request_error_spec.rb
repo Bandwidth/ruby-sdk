@@ -49,7 +49,7 @@ describe Bandwidth::MessagingRequestError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(messaging_request_error_values.to_s).to eq('{:type=>"validation", :description=>"bad input"}')
+      expect(messaging_request_error_values.to_s).to eq({ :type => 'validation', :description => 'bad input' }.to_s)
     end
   end
 

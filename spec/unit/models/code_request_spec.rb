@@ -64,7 +64,7 @@ describe Bandwidth::CodeRequest do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(code_request_values.to_s).to eq('{:to=>"+19195551234", :from=>"+19195554321", :applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :scope=>"2FA", :message=>"Your verification code is {CODE}", :digits=>8}')
+      expect(code_request_values.to_s).to eq({ :to => '+19195551234', :from => '+19195554321', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :scope => '2FA', :message => 'Your verification code is {CODE}', :digits => 8 }.to_s)
     end
   end
 

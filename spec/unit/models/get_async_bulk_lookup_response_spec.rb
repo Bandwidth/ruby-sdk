@@ -49,7 +49,7 @@ describe Bandwidth::GetAsyncBulkLookupResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(get_async_bulk_lookup_response_values.to_s).to eq('{:links=>[{:href=>"https://example.com", :rel=>"self", :method=>"GET"}], :data=>{:requestId=>"abc-123"}, :errors=>[{:code=>"400", :description=>"bad request", :type=>"validation"}]}')
+      expect(get_async_bulk_lookup_response_values.to_s).to eq({ :links => [{ :href => 'https://example.com', :rel => 'self', :method => 'GET' }], :data => { :requestId => 'abc-123' }, :errors => [{ :code => '400', :description => 'bad request', :type => 'validation' }] }.to_s)
     end
   end
 

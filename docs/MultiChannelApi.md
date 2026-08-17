@@ -31,7 +31,7 @@ Bandwidth.configure do |config|
 end
 
 api_instance = Bandwidth::MultiChannelApi.new
-account_id = '9900000' # String | Your Bandwidth Account ID.
+account_id = '9900000' # String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
 multi_channel_message_request = Bandwidth::MultiChannelMessageRequest.new({to: '+15552223333', channel_list: [Bandwidth::MultiChannelChannelListRequestObject.new({from: 'BandwidthRBM', application_id: '93de2206-9669-4e07-948d-329f4b722ee2', channel: Bandwidth::MultiChannelMessageChannelEnum::RBM, content: Bandwidth::MmsMessageContent.new})]}) # MultiChannelMessageRequest | 
 
 begin
@@ -65,7 +65,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_id** | **String** | Your Bandwidth Account ID. |  |
+| **account_id** | **String** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **multi_channel_message_request** | [**MultiChannelMessageRequest**](MultiChannelMessageRequest.md) |  |  |
 
 ### Return type

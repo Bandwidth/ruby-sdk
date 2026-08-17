@@ -117,7 +117,7 @@ describe Bandwidth::CallState do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(call_state_values.to_s).to eq('{:applicationId=>"04e88489-df02-4e34-a0ee-27a91849555f", :accountId=>"9900000", :callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :parentCallId=>"c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", :to=>"+19195551234", :from=>"+19195554321", :direction=>"inbound", :state=>"disconnected", :stirShaken=>{:verstat=>"TN-Verification-Passed", :attestationIndicator=>"A", :originatingId=>"abc123"}, :identity=>"eyJhbGciOiJFUzI1NiI", :enqueuedTime=>"2022-06-16T13:15:07.160Z", :startTime=>"2022-06-16T13:15:07.160Z", :answerTime=>"2022-06-16T13:15:18.126Z", :endTime=>"2022-06-16T13:15:18.314Z", :disconnectCause=>"hangup", :errorMessage=>nil, :errorId=>nil, :lastUpdate=>"2022-06-16T13:15:18.314Z"}')
+      expect(call_state_values.to_s).to eq({ :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :accountId => '9900000', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :parentCallId => 'c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :to => '+19195551234', :from => '+19195554321', :direction => 'inbound', :state => 'disconnected', :stirShaken => { :verstat => 'TN-Verification-Passed', :attestationIndicator => 'A', :originatingId => 'abc123' }, :identity => 'eyJhbGciOiJFUzI1NiI', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :endTime => '2022-06-16T13:15:18.314Z', :disconnectCause => 'hangup', :errorMessage => nil, :errorId => nil, :lastUpdate => '2022-06-16T13:15:18.314Z' }.to_s)
     end
   end
 

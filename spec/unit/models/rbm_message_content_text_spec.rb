@@ -53,7 +53,7 @@ describe Bandwidth::RbmMessageContentText do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_message_content_text_values.to_s).to eq('{:text=>"Hello world", :suggestions=>[{:type=>"REPLY", :text=>"Yes", :postbackData=>"reply_yes"}]}')
+      expect(rbm_message_content_text_values.to_s).to eq({ :text => 'Hello world', :suggestions => [{ :type => 'REPLY', :text => 'Yes', :postbackData => 'reply_yes' }] }.to_s)
     end
   end
 

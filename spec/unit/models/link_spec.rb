@@ -46,7 +46,7 @@ describe Bandwidth::Link do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(link_values.to_s).to eq('{:rel=>"next", :href=>"https://example.com/page/2"}')
+      expect(link_values.to_s).to eq({ :rel => 'next', :href => 'https://example.com/page/2' }.to_s)
     end
   end
 

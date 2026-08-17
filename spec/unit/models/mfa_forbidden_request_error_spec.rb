@@ -43,7 +43,7 @@ describe Bandwidth::MfaForbiddenRequestError do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(mfa_forbidden_request_error_values.to_s).to eq('{:message=>"Forbidden request"}')
+      expect(mfa_forbidden_request_error_values.to_s).to eq({ :message => 'Forbidden request' }.to_s)
     end
   end
 

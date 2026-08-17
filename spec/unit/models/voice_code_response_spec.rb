@@ -43,7 +43,7 @@ describe Bandwidth::VoiceCodeResponse do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(voice_code_response_values.to_s).to eq('{:callId=>"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"}')
+      expect(voice_code_response_values.to_s).to eq({ :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' }.to_s)
     end
   end
 

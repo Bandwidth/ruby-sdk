@@ -40,7 +40,7 @@ module Bandwidth
         root
       end
 
-      # Return BXML representaion of this element
+      # Return BXML representation of this element
       # @return [String] The XML element in string format.
       def to_bxml
         Ox.dump(generate_xml)

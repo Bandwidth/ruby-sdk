@@ -52,7 +52,7 @@ describe Bandwidth::RbmCardContentMedia do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(rbm_card_content_media_values.to_s).to eq('{:fileUrl=>"https://dev.bandwidth.com/images/bandwidth-logo.png", :thumbnailUrl=>"https://dev.bandwidth.com/images/bandwidth-logo-thumb.png", :height=>"MEDIUM"}')
+      expect(rbm_card_content_media_values.to_s).to eq({ :fileUrl => 'https://dev.bandwidth.com/images/bandwidth-logo.png', :thumbnailUrl => 'https://dev.bandwidth.com/images/bandwidth-logo-thumb.png', :height => 'MEDIUM' }.to_s)
     end
   end
 

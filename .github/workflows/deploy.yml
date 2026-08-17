@@ -9,6 +9,9 @@ jobs:
   deploy:
     name: Deploy SDK to Rubygems
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     env:
       BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
       BW_USERNAME: ${{ secrets.BW_USERNAME }}
@@ -22,7 +25,7 @@ jobs:
       BW_NUMBER: ${{ secrets.BW_NUMBER }}
       USER_NUMBER: ${{ secrets.USER_NUMBER }}
       BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-      RUBY_VERSION: "3.0"
+      RUBY_VERSION: "4.0"
       OPERATING_SYSTEM: "ubuntu"
       MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
       MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
@@ -47,12 +50,12 @@ jobs:
           TAG: ${{ github.event.release.tag_name }}
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 4.0
 
       - name: Update Gem Version
         run: sed -i "s/VERSION = '.*'/VERSION = '$GEM_VERSION'/g" lib/bandwidth-sdk/version.rb
@@ -64,12 +67,11 @@ jobs:
           prism mock ./bandwidth.yml & (sleep 3; rake unit)
         shell: bash
 
+      - name: Configure Rubygems Trusted Publishing Credentials
+        uses: rubygems/configure-rubygems-credentials@v2.1.0
+
       - name: Deploy to Rubygems
         run: |
-          mkdir ~/.gem
-          touch ~/.gem/credentials
-          chmod 0600 ~/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}\n" > ~/.gem/credentials
           gem build *.gemspec
           gem push *.gem
 
