@@ -72,6 +72,10 @@ module Bandwidth
     # Defines the access token (Bearer) used with OAuth2.
     attr_accessor :access_token
 
+    # Defines the URL used to obtain access tokens (Bearer) used with OAuth2.
+    # @return [String]
+    attr_accessor :access_token_url
+
     # Defines a Proc used to fetch or refresh access tokens (Bearer) used with OAuth2.
     # Overrides the access_token if set
     # @return [Proc]
@@ -193,6 +197,7 @@ module Bandwidth
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
       @access_token_expiration = nil
+      @access_token_url = 'https://api.bandwidth.com/api/v1/oauth2/token'
       @access_token_getter = Proc.new {
         access_token_valid = @access_token && (@access_token_expiration.nil? || @access_token_expiration > Time.now + 60)
         next @access_token if access_token_valid
@@ -200,9 +205,8 @@ module Bandwidth
 
         puts "Refreshing access token..." if @debugging
         # obtain new access token using client credentials
-        token_url = 'https://api.bandwidth.com/api/v1/oauth2/token'
         auth_header = 'Basic ' + ["#{@client_id}:#{@client_secret}"].pack('m').delete("\r\n")
-        conn = Faraday.new(url: token_url) do |faraday|
+        conn = Faraday.new(url: @access_token_url) do |faraday|
           faraday.request :url_encoded
           faraday.adapter Faraday.default_adapter
         end
