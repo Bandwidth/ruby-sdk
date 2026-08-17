@@ -1,4 +1,4 @@
-# Bandwidth::TransferAnswerCallback
+# Bandwidth::ReferCompleteCallback
 
 ## Properties
 
@@ -13,19 +13,19 @@
 | **direction** | [**CallDirectionEnum**](CallDirectionEnum.md) |  | [optional] |
 | **call_id** | **String** | The call id associated with the event. | [optional] |
 | **call_url** | **String** | The URL of the call associated with the event. | [optional] |
-| **enqueued_time** | **Time** | (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format. | [optional] |
 | **start_time** | **Time** | Time the call was started, in ISO 8601 format. | [optional] |
 | **answer_time** | **Time** | Time the call was answered, in ISO 8601 format. | [optional] |
 | **tag** | **String** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] |
-| **transfer_caller_id** | **String** | The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] |
-| **transfer_to** | **String** | The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] |
+| **refer_call_status** | [**ReferCallStatusEnum**](ReferCallStatusEnum.md) |  | [optional] |
+| **refer_sip_response_code** | **Integer** | (optional) The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). Present when a SIP response was received for the REFER. | [optional] |
+| **notify_sip_response_code** | **Integer** | (optional) The final SIP response code reported via NOTIFY (message/sipfrag body). Present only when the caller&#39;s endpoint sent a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was rejected before a subscription was established. | [optional] |
 
 ## Example
 
 ```ruby
 require 'bandwidth-sdk'
 
-instance = Bandwidth::TransferAnswerCallback.new(
+instance = Bandwidth::ReferCompleteCallback.new(
   event_type: bridgeComplete,
   event_time: 2022-06-17T22:19:40.375Z,
   account_id: 9900000,
@@ -35,12 +35,12 @@ instance = Bandwidth::TransferAnswerCallback.new(
   direction: null,
   call_id: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85,
   call_url: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85,
-  enqueued_time: 2022-06-17T22:20Z,
   start_time: 2022-06-17T22:19:40.375Z,
   answer_time: 2022-06-17T22:20Z,
   tag: exampleTag,
-  transfer_caller_id: +15555555555,
-  transfer_to: +15555555555
+  refer_call_status: null,
+  refer_sip_response_code: 202,
+  notify_sip_response_code: 200
 )
 ```
 

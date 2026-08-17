@@ -333,6 +333,8 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Bandwidth::RedirectCallback](docs/RedirectCallback.md)
  - [Bandwidth::RedirectMethodEnum](docs/RedirectMethodEnum.md)
+ - [Bandwidth::ReferCallStatusEnum](docs/ReferCallStatusEnum.md)
+ - [Bandwidth::ReferCompleteCallback](docs/ReferCompleteCallback.md)
  - [Bandwidth::SipConnectionMetadata](docs/SipConnectionMetadata.md)
  - [Bandwidth::SipCredentials](docs/SipCredentials.md)
  - [Bandwidth::SmsMessageContent](docs/SmsMessageContent.md)

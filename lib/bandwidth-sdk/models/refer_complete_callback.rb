@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module Bandwidth
-  # This event is sent to the transferDisconnectUrl of each <PhoneNumber> tag when its respective call leg ends for any reason. The event is sent in the normal case, when the transferred leg is answered and later hung up, but is also sent if the new leg was never answered in the first place, if it was rejected, and if the original call leg hung up before the transferred leg.
-  class TransferDisconnectCallback < ApiModelBase
+  # This event is sent to the referCompleteUrl of a call's <Refer> verb when the SIP REFER flow completes. On success, the call has been torn down and the BXML returned from this callback is ignored. On failure, the call remains active and the BXML returned from this callback is executed on the call.
+  class ReferCompleteCallback < ApiModelBase
     # The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, referComplete, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
     attr_accessor :event_type
 
@@ -42,38 +42,22 @@ module Bandwidth
     # The URL of the call associated with the event.
     attr_accessor :call_url
 
-    # (optional) If the event is related to the B leg of a <Transfer>, the call id of the original call leg that executed the <Transfer>. Otherwise, this field will not be present.
-    attr_accessor :parent_call_id
-
-    # (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.
-    attr_accessor :enqueued_time
-
     # Time the call was started, in ISO 8601 format.
     attr_accessor :start_time
 
     # Time the call was answered, in ISO 8601 format.
     attr_accessor :answer_time
 
-    # The time that the recording ended in ISO-8601 format
-    attr_accessor :end_time
-
     # (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
     attr_accessor :tag
 
-    # The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555).
-    attr_accessor :transfer_caller_id
+    attr_accessor :refer_call_status
 
-    # The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).
-    attr_accessor :transfer_to
+    # (optional) The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). Present when a SIP response was received for the REFER.
+    attr_accessor :refer_sip_response_code
 
-    # Reason the call failed - hangup, busy, timeout, cancel, rejected, callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded, error, or unknown.
-    attr_accessor :cause
-
-    # Text explaining the reason that caused the call to fail in case of errors.
-    attr_accessor :error_message
-
-    # Bandwidth's internal id that references the error event.
-    attr_accessor :error_id
+    # (optional) The final SIP response code reported via NOTIFY (message/sipfrag body). Present only when the caller's endpoint sent a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was rejected before a subscription was established.
+    attr_accessor :notify_sip_response_code
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -109,17 +93,12 @@ module Bandwidth
         :'direction' => :'direction',
         :'call_id' => :'callId',
         :'call_url' => :'callUrl',
-        :'parent_call_id' => :'parentCallId',
-        :'enqueued_time' => :'enqueuedTime',
         :'start_time' => :'startTime',
         :'answer_time' => :'answerTime',
-        :'end_time' => :'endTime',
         :'tag' => :'tag',
-        :'transfer_caller_id' => :'transferCallerId',
-        :'transfer_to' => :'transferTo',
-        :'cause' => :'cause',
-        :'error_message' => :'errorMessage',
-        :'error_id' => :'errorId'
+        :'refer_call_status' => :'referCallStatus',
+        :'refer_sip_response_code' => :'referSipResponseCode',
+        :'notify_sip_response_code' => :'notifySipResponseCode'
       }
     end
 
@@ -145,28 +124,20 @@ module Bandwidth
         :'direction' => :'CallDirectionEnum',
         :'call_id' => :'String',
         :'call_url' => :'String',
-        :'parent_call_id' => :'String',
-        :'enqueued_time' => :'Time',
         :'start_time' => :'Time',
         :'answer_time' => :'Time',
-        :'end_time' => :'Time',
         :'tag' => :'String',
-        :'transfer_caller_id' => :'String',
-        :'transfer_to' => :'String',
-        :'cause' => :'String',
-        :'error_message' => :'String',
-        :'error_id' => :'String'
+        :'refer_call_status' => :'ReferCallStatusEnum',
+        :'refer_sip_response_code' => :'Integer',
+        :'notify_sip_response_code' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'enqueued_time',
         :'answer_time',
         :'tag',
-        :'error_message',
-        :'error_id'
       ])
     end
 
@@ -174,14 +145,14 @@ module Bandwidth
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::TransferDisconnectCallback` initialize method'
+        fail ArgumentError, 'The input argument (attributes) must be a hash in `Bandwidth::ReferCompleteCallback` initialize method'
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::TransferDisconnectCallback`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Bandwidth::ReferCompleteCallback`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -222,14 +193,6 @@ module Bandwidth
         self.call_url = attributes[:'call_url']
       end
 
-      if attributes.key?(:'parent_call_id')
-        self.parent_call_id = attributes[:'parent_call_id']
-      end
-
-      if attributes.key?(:'enqueued_time')
-        self.enqueued_time = attributes[:'enqueued_time']
-      end
-
       if attributes.key?(:'start_time')
         self.start_time = attributes[:'start_time']
       end
@@ -238,32 +201,20 @@ module Bandwidth
         self.answer_time = attributes[:'answer_time']
       end
 
-      if attributes.key?(:'end_time')
-        self.end_time = attributes[:'end_time']
-      end
-
       if attributes.key?(:'tag')
         self.tag = attributes[:'tag']
       end
 
-      if attributes.key?(:'transfer_caller_id')
-        self.transfer_caller_id = attributes[:'transfer_caller_id']
+      if attributes.key?(:'refer_call_status')
+        self.refer_call_status = attributes[:'refer_call_status']
       end
 
-      if attributes.key?(:'transfer_to')
-        self.transfer_to = attributes[:'transfer_to']
+      if attributes.key?(:'refer_sip_response_code')
+        self.refer_sip_response_code = attributes[:'refer_sip_response_code']
       end
 
-      if attributes.key?(:'cause')
-        self.cause = attributes[:'cause']
-      end
-
-      if attributes.key?(:'error_message')
-        self.error_message = attributes[:'error_message']
-      end
-
-      if attributes.key?(:'error_id')
-        self.error_id = attributes[:'error_id']
+      if attributes.key?(:'notify_sip_response_code')
+        self.notify_sip_response_code = attributes[:'notify_sip_response_code']
       end
     end
 
@@ -296,17 +247,12 @@ module Bandwidth
           direction == o.direction &&
           call_id == o.call_id &&
           call_url == o.call_url &&
-          parent_call_id == o.parent_call_id &&
-          enqueued_time == o.enqueued_time &&
           start_time == o.start_time &&
           answer_time == o.answer_time &&
-          end_time == o.end_time &&
           tag == o.tag &&
-          transfer_caller_id == o.transfer_caller_id &&
-          transfer_to == o.transfer_to &&
-          cause == o.cause &&
-          error_message == o.error_message &&
-          error_id == o.error_id
+          refer_call_status == o.refer_call_status &&
+          refer_sip_response_code == o.refer_sip_response_code &&
+          notify_sip_response_code == o.notify_sip_response_code
     end
 
     # @see the `==` method
@@ -318,7 +264,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, parent_call_id, enqueued_time, start_time, answer_time, end_time, tag, transfer_caller_id, transfer_to, cause, error_message, error_id].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, start_time, answer_time, tag, refer_call_status, refer_sip_response_code, notify_sip_response_code].hash
     end
 
     # Builds the object from hash
