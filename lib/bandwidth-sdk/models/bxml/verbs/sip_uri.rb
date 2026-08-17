@@ -1,8 +1,10 @@
 module Bandwidth
   module Bxml
     class SipUri < Bandwidth::Bxml::Verb
+      # Shared nested verb used by both Transfer and Refer to specify a SIP URI destination.
+      #
       # Initializer
-      # @param uri [String] A SIP URI to transfer the call to (e.g. sip:user@server.com)
+      # @param uri [String] A SIP URI to transfer or refer the call to (e.g. sip:user@server.com)
       # @param attributes [Hash] The attributes to add to the element. Defaults to an empty hash.
       def initialize(uri, attributes = {})
         super('SipUri', uri, attributes)
