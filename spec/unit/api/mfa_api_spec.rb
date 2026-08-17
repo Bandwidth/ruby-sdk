@@ -6,8 +6,7 @@ describe 'MFAApi' do
   before(:all) do
     Bandwidth.configure do |config|
       config.debugging = true
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.access_token = 'abcd1234'
       config.ignore_operation_servers = true
       config.host = '127.0.0.1:4010'
     end
