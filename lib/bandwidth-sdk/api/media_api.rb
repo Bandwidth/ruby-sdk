@@ -22,7 +22,7 @@ module Bandwidth
     # Delete Media
     # Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete.  If you accidentally delete a media file you can immediately upload a new file with the same name.
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_media(account_id, media_id, opts = {})
@@ -33,7 +33,7 @@ module Bandwidth
     # Delete Media
     # Deletes a media file from Bandwidth API server. Make sure you don&#39;t have any application scripts still using the media before you delete.  If you accidentally delete a media file you can immediately upload a new file with the same name.
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_media_with_http_info(account_id, media_id, opts = {})
@@ -91,7 +91,7 @@ module Bandwidth
     # Get Media
     # Downloads a media file you previously uploaded.
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param [Hash] opts the optional parameters
     # @return [File]
     def get_media(account_id, media_id, opts = {})
@@ -102,7 +102,7 @@ module Bandwidth
     # Get Media
     # Downloads a media file you previously uploaded.
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def get_media_with_http_info(account_id, media_id, opts = {})
@@ -226,7 +226,7 @@ module Bandwidth
     # Upload Media
     # Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.
@@ -240,7 +240,7 @@ module Bandwidth
     # Upload Media
     # Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-    # @param media_id [String] Media ID to retrieve.
+    # @param media_id [String] The ID of the media file.
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.

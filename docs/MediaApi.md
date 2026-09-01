@@ -35,7 +35,7 @@ end
 
 api_instance = Bandwidth::MediaApi.new
 account_id = '9900000' # String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media ID to retrieve.
+media_id = 'bw.png' # String | The ID of the media file.
 
 begin
   # Delete Media
@@ -68,7 +68,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **account_id** | **String** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **media_id** | **String** | Media ID to retrieve. |  |
+| **media_id** | **String** | The ID of the media file. |  |
 
 ### Return type
 
@@ -109,7 +109,7 @@ end
 
 api_instance = Bandwidth::MediaApi.new
 account_id = '9900000' # String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media ID to retrieve.
+media_id = 'bw.png' # String | The ID of the media file.
 
 begin
   # Get Media
@@ -143,7 +143,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **account_id** | **String** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **media_id** | **String** | Media ID to retrieve. |  |
+| **media_id** | **String** | The ID of the media file. |  |
 
 ### Return type
 
@@ -261,7 +261,7 @@ end
 
 api_instance = Bandwidth::MediaApi.new
 account_id = '9900000' # String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media ID to retrieve.
+media_id = 'bw.png' # String | The ID of the media file.
 body = File.new('/path/to/some/file') # File | 
 opts = {
   content_type: 'audio/wav', # String | The media type of the entity-body.
@@ -299,7 +299,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **account_id** | **String** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **media_id** | **String** | Media ID to retrieve. |  |
+| **media_id** | **String** | The ID of the media file. |  |
 | **body** | **File** |  |  |
 | **content_type** | **String** | The media type of the entity-body. | [optional] |
 | **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional] |
