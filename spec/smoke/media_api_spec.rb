@@ -8,8 +8,8 @@ describe 'MediaApi Integration Tests' do
   before(:all) do
     config = Bandwidth::Configuration.new
     config.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
       config.return_binary_data = true
     end
     client = Bandwidth::ApiClient.new(config)
