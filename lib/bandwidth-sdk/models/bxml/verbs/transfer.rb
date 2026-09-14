@@ -9,6 +9,7 @@ module Bandwidth
         
         @attribute_map = {
           transfer_caller_id: 'transferCallerId',                               # Optional [String]: The caller ID to use when the call is transferred, if different. Must be in E.164 format (e.g. +15555555555) or be one of the following strings Restricted, Anonymous, Private, or Unavailable. Leave as default to pass along the number of the remote party. Defaults to None.
+          privacy: 'privacy',                                                   # Optional [Boolean]: Hide the calling number. The transfer_caller_display_name field can be used to customize the displayed name.
           transfer_caller_display_name: 'transferCallerDisplayName',            # Optional [String]: The caller display name to use when the call is transferred. May not exceed 256 characters nor contain control characters such as new lines. Defaults to None.
           call_timeout: 'callTimeout',                                          # Optional [Number]: The timeout (in seconds) for the callee to answer the call after it starts ringing. If the call does not start ringing within 30s, the call will be cancelled regardless of this value. Range: decimal values between 1 - 300. Default value is 30 seconds. Defaults to None.
           transfer_complete_url: 'transferCompleteUrl',                         # Optional [String]: URL to send the Transfer Complete event to and request new BXML. Optional but recommended. See below for further details. May be a relative URL. Defaults to None.

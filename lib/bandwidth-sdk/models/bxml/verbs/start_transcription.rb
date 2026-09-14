@@ -16,6 +16,8 @@ module Bandwidth
           password: 'password',                                   # Optional [String]: The password to send in the HTTP request to transcriptionEventUrl. If specified, the transcriptionEventUrl must be TLS-encrypted (i.e., https).
           destination: 'destination',                             # Optional [String]: A websocket URI to send the transcription to. A transcription of the specified tracks will be sent via websocket to this URL as a series of JSON messages. See below for more details on the websocket packet format.
           stabilized: 'stabilized',                               # Optional [Boolean]: Whether to send transcription update events to the specified destination only after they have become stable. Requires destination. Defaults to true.
+          detect_language: 'detectLanguage',                      # Optional [Boolean]: A boolean value to indicate that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. See the BXML documentation for the list of supported locales. Default is false.
+          preferred_languages: 'preferredLanguages',              # Optional [String]: A comma-separated list of language locales in which the transcription should be performed. Requires detect_language to be false. See the BXML documentation for the list of supported locales. Defaults to en-US.
         }
       end
 

@@ -15,7 +15,15 @@ describe 'Bandwidth::Bxml::Gather' do
       max_digits: 5,
       inter_digit_timeout: 5,
       first_digit_timeout: 5,
-      repeat_count: 5
+      repeat_count: 5,
+      input: 'dtmf',
+      hints: 'initial_hints',
+      language: 'en-US',
+      partial_result_callback: 'https://initial.com',
+      partial_result_callback_method: 'POST',
+      profanity_filter: true,
+      speech_model: 'default',
+      speech_timeout: 5
     }
   }
 
@@ -34,7 +42,15 @@ describe 'Bandwidth::Bxml::Gather' do
       max_digits: 10,
       inter_digit_timeout: 10,
       first_digit_timeout: 10,
-      repeat_count: 10
+      repeat_count: 10,
+      input: 'speech',
+      hints: 'new_hints',
+      language: 'es-US',
+      partial_result_callback: 'https://new.com',
+      partial_result_callback_method: 'GET',
+      profanity_filter: false,
+      speech_model: 'phone_call',
+      speech_timeout: 10
     }
   }
 
@@ -51,13 +67,13 @@ describe 'Bandwidth::Bxml::Gather' do
     end
 
     it 'tests the to_bxml method of the Gather instance' do
-      expected = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\"/>\n"
+      expected = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\" input=\"dtmf\" hints=\"initial_hints\" language=\"en-US\" partialResultCallback=\"https://initial.com\" partialResultCallbackMethod=\"POST\" profanityFilter=\"true\" speechModel=\"default\" speechTimeout=\"5\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Gather instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Gather gatherUrl=\"https://new.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://new.com\" gatherFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" terminatingDigits=\"10\" maxDigits=\"10\" interDigitTimeout=\"10\" firstDigitTimeout=\"10\" repeatCount=\"10\"/>\n"
+      expected = "\n<Gather gatherUrl=\"https://new.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://new.com\" gatherFallbackMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" terminatingDigits=\"10\" maxDigits=\"10\" interDigitTimeout=\"10\" firstDigitTimeout=\"10\" repeatCount=\"10\" input=\"speech\" hints=\"new_hints\" language=\"es-US\" partialResultCallback=\"https://new.com\" partialResultCallbackMethod=\"GET\" profanityFilter=\"false\" speechModel=\"phone_call\" speechTimeout=\"10\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
@@ -69,16 +85,16 @@ describe 'Bandwidth::Bxml::Gather' do
     end
 
     it 'tests the to_bxml method of the nested Gather instance' do
-      expected = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n</Gather>\n"
+      expected = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\" input=\"dtmf\" hints=\"initial_hints\" language=\"en-US\" partialResultCallback=\"https://initial.com\" partialResultCallbackMethod=\"POST\" profanityFilter=\"true\" speechModel=\"default\" speechTimeout=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n</Gather>\n"
       expect(instance_nested.to_bxml).to eq(expected)
     end
 
     it 'tests the add_verb method of the nested Gather instance' do
-      expected_single = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n</Gather>\n"
+      expected_single = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\" input=\"dtmf\" hints=\"initial_hints\" language=\"en-US\" partialResultCallback=\"https://initial.com\" partialResultCallbackMethod=\"POST\" profanityFilter=\"true\" speechModel=\"default\" speechTimeout=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n</Gather>\n"
       instance_nested.add_audio_verbs(speak_sentence)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
-      expected_multiple = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n</Gather>\n"
+      expected_multiple = "\n<Gather gatherUrl=\"https://initial.com\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://initial.com\" gatherFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDigits=\"5\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"5\" input=\"dtmf\" hints=\"initial_hints\" language=\"en-US\" partialResultCallback=\"https://initial.com\" partialResultCallbackMethod=\"POST\" profanityFilter=\"true\" speechModel=\"default\" speechTimeout=\"5\">\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <SpeakSentence><lang xml:lang=\"es-MX\">Hola</lang>ruby speak sentence <emphasis>SSML test</emphasis></SpeakSentence>\n  <PlayAudio>https://audio.url/audio1.wav</PlayAudio>\n</Gather>\n"
       instance_nested.add_audio_verbs([speak_sentence, play_audio])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end

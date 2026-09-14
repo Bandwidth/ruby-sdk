@@ -9,6 +9,7 @@ module Bandwidth
 
         @attribute_map = {
           event_callback_url: 'eventCallbackUrl',  # Optional [String]: URL to send events to during the connection lifecycle. May be a relative URL. Defaults to None.
+          event_fallback_url: 'eventFallbackUrl',  # Optional [String]: Fallback URL used by Bandwidth when delivery to event_callback_url fails. May be a relative URL.
         }
       end
 

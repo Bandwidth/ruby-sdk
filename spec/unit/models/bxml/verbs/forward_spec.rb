@@ -4,6 +4,8 @@ describe 'Bandwidth::Bxml::Forward' do
     {
       to: '+19195551234',
       from: '+19195554321',
+      privacy: true,
+      caller_display_name: 'Restricted',
       call_timeout: 5,
       diversion_treatment: 'propagate',
       diversion_reason: 'user-busy',
@@ -15,6 +17,8 @@ describe 'Bandwidth::Bxml::Forward' do
     {
       to: '+19195554321',
       from: '+19195551234',
+      privacy: false,
+      caller_display_name: 'new_display_name',
       call_timeout: 10,
       diversion_treatment: 'stack',
       diversion_reason: 'no-answer',
@@ -31,13 +35,13 @@ describe 'Bandwidth::Bxml::Forward' do
     end
 
     it 'tests the to_bxml method of the Forward instance' do
-      expected = "\n<Forward to=\"+19195551234\" from=\"+19195554321\" callTimeout=\"5\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\"/>\n"
+      expected = "\n<Forward to=\"+19195551234\" from=\"+19195554321\" privacy=\"true\" callerDisplayName=\"Restricted\" callTimeout=\"5\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Forward instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Forward to=\"+19195554321\" from=\"+19195551234\" callTimeout=\"10\" diversionTreatment=\"stack\" diversionReason=\"no-answer\" uui=\"4fa28015d8ede84bd1a493d6f3c0be5845960b74;encoding=base64,fdsa;encoding=jwt\"/>\n"
+      expected = "\n<Forward to=\"+19195554321\" from=\"+19195551234\" privacy=\"false\" callerDisplayName=\"new_display_name\" callTimeout=\"10\" diversionTreatment=\"stack\" diversionReason=\"no-answer\" uui=\"4fa28015d8ede84bd1a493d6f3c0be5845960b74;encoding=base64,fdsa;encoding=jwt\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
