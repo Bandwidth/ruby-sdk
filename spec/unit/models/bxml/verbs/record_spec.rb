@@ -9,6 +9,7 @@ describe 'Bandwidth::Bxml::Record' do
       recording_available_url: 'https://initial.com',
       recording_available_method: 'POST',
       transcribe: true,
+      detect_language: true,
       transcription_available_url: 'https://initial.com',
       transcription_available_method: 'POST',
       username: 'initial_username',
@@ -19,7 +20,8 @@ describe 'Bandwidth::Bxml::Record' do
       terminating_digits: '5',
       max_duration: 5,
       silence_timeout: 5,
-      file_format: 'wav'
+      file_format: 'wav',
+      recording_name: 'initial_recording_name'
     }
   }
 
@@ -32,6 +34,7 @@ describe 'Bandwidth::Bxml::Record' do
       recording_available_url: 'https://new.com',
       recording_available_method: 'GET',
       transcribe: true,
+      detect_language: false,
       transcription_available_url: 'https://new.com',
       transcription_available_method: 'GET',
       username: 'new_username',
@@ -42,7 +45,8 @@ describe 'Bandwidth::Bxml::Record' do
       terminating_digits: '0',
       max_duration: 10,
       silence_timeout: 10,
-      file_format: 'mp3'
+      file_format: 'mp3',
+      recording_name: 'new_recording_name'
     }
   }
 
@@ -55,13 +59,13 @@ describe 'Bandwidth::Bxml::Record' do
     end
 
     it 'tests the to_bxml method of the Record instance' do
-      expected = "\n<Record recordCompleteUrl=\"https://initial.com\" recordCompleteMethod=\"POST\" recordCompleteFallbackUrl=\"https://initial.com\" recordCompleteFallbackMethod=\"POST\" recordingAvailableUrl=\"https://initial.com\" recordingAvailableMethod=\"POST\" transcribe=\"true\" transcriptionAvailableUrl=\"https://initial.com\" transcriptionAvailableMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDuration=\"5\" silenceTimeout=\"5\" fileFormat=\"wav\"/>\n"
+      expected = "\n<Record recordCompleteUrl=\"https://initial.com\" recordCompleteMethod=\"POST\" recordCompleteFallbackUrl=\"https://initial.com\" recordCompleteFallbackMethod=\"POST\" recordingAvailableUrl=\"https://initial.com\" recordingAvailableMethod=\"POST\" transcribe=\"true\" detectLanguage=\"true\" transcriptionAvailableUrl=\"https://initial.com\" transcriptionAvailableMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" terminatingDigits=\"5\" maxDuration=\"5\" silenceTimeout=\"5\" fileFormat=\"wav\" recordingName=\"initial_recording_name\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Record instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Record recordCompleteUrl=\"https://new.com\" recordCompleteMethod=\"GET\" recordCompleteFallbackUrl=\"https://new.com\" recordCompleteFallbackMethod=\"GET\" recordingAvailableUrl=\"https://new.com\" recordingAvailableMethod=\"GET\" transcribe=\"true\" transcriptionAvailableUrl=\"https://new.com\" transcriptionAvailableMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" terminatingDigits=\"0\" maxDuration=\"10\" silenceTimeout=\"10\" fileFormat=\"mp3\"/>\n"
+      expected = "\n<Record recordCompleteUrl=\"https://new.com\" recordCompleteMethod=\"GET\" recordCompleteFallbackUrl=\"https://new.com\" recordCompleteFallbackMethod=\"GET\" recordingAvailableUrl=\"https://new.com\" recordingAvailableMethod=\"GET\" transcribe=\"true\" detectLanguage=\"false\" transcriptionAvailableUrl=\"https://new.com\" transcriptionAvailableMethod=\"GET\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" terminatingDigits=\"0\" maxDuration=\"10\" silenceTimeout=\"10\" fileFormat=\"mp3\" recordingName=\"new_recording_name\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end

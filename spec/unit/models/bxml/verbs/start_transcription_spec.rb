@@ -9,7 +9,9 @@ describe 'Bandwidth::Bxml::StartTranscription' do
       username: 'initial_username',
       password: 'initial_password',
       destination: 'https://initial.com',
-      stabilized: true
+      stabilized: true,
+      detect_language: false,
+      preferred_languages: 'en-US'
     }
   }
 
@@ -22,7 +24,9 @@ describe 'Bandwidth::Bxml::StartTranscription' do
       username: 'new_username',
       password: 'new_password',
       destination: 'https://new.com',
-      stabilized: false
+      stabilized: false,
+      detect_language: true,
+      preferred_languages: 'es-US'
     }
   }
 
@@ -39,13 +43,13 @@ describe 'Bandwidth::Bxml::StartTranscription' do
     end
 
     it 'tests the to_bxml method of the StartTranscription instance' do
-      expected = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\"/>\n"
+      expected = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\" detectLanguage=\"false\" preferredLanguages=\"en-US\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the StartTranscription instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<StartTranscription name=\"new_name\" tracks=\"outbound\" transcriptionEventUrl=\"https://new.com\" transcriptionEventMethod=\"GET\" username=\"new_username\" password=\"new_password\" destination=\"https://new.com\" stabilized=\"false\"/>\n"
+      expected = "\n<StartTranscription name=\"new_name\" tracks=\"outbound\" transcriptionEventUrl=\"https://new.com\" transcriptionEventMethod=\"GET\" username=\"new_username\" password=\"new_password\" destination=\"https://new.com\" stabilized=\"false\" detectLanguage=\"true\" preferredLanguages=\"es-US\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
@@ -57,16 +61,16 @@ describe 'Bandwidth::Bxml::StartTranscription' do
     end
 
     it 'tests the to_bxml method of the nested StartTranscription instance' do
-      expected = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n</StartTranscription>\n"
+      expected = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\" detectLanguage=\"false\" preferredLanguages=\"en-US\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n</StartTranscription>\n"
       expect(instance_nested.to_bxml).to eq(expected)
     end
 
     it 'tests the add_custom_param method of the nested StartTranscription instance' do
-      expected_single = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
+      expected_single = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\" detectLanguage=\"false\" preferredLanguages=\"en-US\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
       instance_nested.add_custom_params(custom_param_2)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
-      expected_multiple = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
+      expected_multiple = "\n<StartTranscription name=\"initial_name\" tracks=\"inbound\" transcriptionEventUrl=\"https://initial.com\" transcriptionEventMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" destination=\"https://initial.com\" stabilized=\"true\" detectLanguage=\"false\" preferredLanguages=\"en-US\">\n  <CustomParam name=\"custom_param_name_1\" value=\"custom_param_value_1\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n  <CustomParam name=\"custom_param_name_2\" value=\"custom_param_value_2\"/>\n</StartTranscription>\n"
       instance_nested.add_custom_params([custom_param_2, custom_param_2])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
