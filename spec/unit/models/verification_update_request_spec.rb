@@ -7,7 +7,8 @@ describe Bandwidth::VerificationUpdateRequest do
     use_case: 'baseline use case',
     use_case_summary: 'baseline summary',
     production_message_content: 'baseline message',
-    opt_in_workflow: { description: 'baseline opt-in', imageUrls: [] }
+    opt_in_workflow: { description: 'baseline opt-in', imageUrls: [] },
+    business_entity_type: Bandwidth::BusinessEntityTypeEnum::SOLE_PROPRIETOR
   }) }
   let(:verification_update_request_values) { Bandwidth::VerificationUpdateRequest.new({
     business_address: { name: 'Bandwidth' },
@@ -126,7 +127,8 @@ describe Bandwidth::VerificationUpdateRequest do
         use_case: 'baseline use case',
         use_case_summary: 'baseline summary',
         production_message_content: 'baseline message',
-        opt_in_workflow: { description: 'baseline opt-in', imageUrls: [] }
+        opt_in_workflow: { description: 'baseline opt-in', imageUrls: [] },
+        business_entity_type: Bandwidth::BusinessEntityTypeEnum::SOLE_PROPRIETOR
       })
       expect(verification_update_request_default.eql?(verification_update_request_equal)).to be true
       expect(verification_update_request_default.eql?(verification_update_request_values)).to be false

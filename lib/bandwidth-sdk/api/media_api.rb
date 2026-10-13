@@ -224,13 +224,13 @@ module Bandwidth
     end
 
     # Upload Media
-    # Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
+    # Upload a file.  Filename should always be unique. Reusing filenames may result in the wrong media being sent.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
     # @param media_id [String] The ID of the media file.
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.
-    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+    # @option opts [String] :cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior.
     # @return [nil]
     def upload_media(account_id, media_id, body, opts = {})
       upload_media_with_http_info(account_id, media_id, body, opts)
@@ -238,13 +238,13 @@ module Bandwidth
     end
 
     # Upload Media
-    # Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
+    # Upload a file.  Filename should always be unique. Reusing filenames may result in the wrong media being sent.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
     # @param account_id [String] This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
     # @param media_id [String] The ID of the media file.
     # @param body [File] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :content_type The media type of the entity-body.
-    # @option opts [String] :cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+    # @option opts [String] :cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior.
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def upload_media_with_http_info(account_id, media_id, body, opts = {})
       if @api_client.config.debugging

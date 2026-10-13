@@ -44,7 +44,8 @@ describe Bandwidth::TfvSubmissionWrapper do
           optInWorkflow: { description: 'opt-in via website', imageUrls: ['https://example.com/optin.png'] },
           privacyPolicyUrl: 'https://example.com/privacy',
           termsAndConditionsUrl: 'https://example.com/terms',
-          businessDba: 'Bandwidth Inc'
+          businessDba: 'Bandwidth Inc',
+          businessEntityType: 'SOLE_PROPRIETOR'
         }
       })
       expect(tfv_submission_wrapper_from_hash).to be_instance_of(Bandwidth::TfvSubmissionWrapper)

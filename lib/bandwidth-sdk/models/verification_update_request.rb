@@ -48,14 +48,14 @@ module Bandwidth
     # The company 'Doing Business As'.
     attr_accessor :business_dba
 
-    # Government-issued business identifying number.  **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.** 
+    # Government-issued business identifying number.  **This field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.** 
     attr_accessor :business_registration_number
 
     attr_accessor :business_registration_type
 
     attr_accessor :business_entity_type
 
-    # The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.  **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**  | Registration Type     | Supported Countries                | |----------------------|------------------------------------| | EIN                  | USA                                | | CBN                  | CAN                                | | NEQ                  | CAN                                | | PROVINCIAL_NUMBER    | CAN                                | | CRN                  | GBR, HKG                           | | VAT                  | GBR, IRL, BRA, NLD                 | | ACN                  | AUS                                | | ABN                  | AUS                                | | BRN                  | HKG                                | | SIREN                | FRA                                | | SIRET                | FRA                                | | NZBN                 | NZL                                | | UST_IDNR             | DEU                                | | CIF                  | ESP                                | | NIF                  | ESP                                | | CNPJ                 | BRA                                | | UID                  | CHE                                | | OTHER                | Must Provide Country Code          |
+    # The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.  **This field is required when `businessRegistrationNumber` is provided.**  | Registration Type     | Supported Countries                | |----------------------|------------------------------------| | EIN                  | USA                                | | CBN                  | CAN                                | | NEQ                  | CAN                                | | PROVINCIAL_NUMBER    | CAN                                | | CRN                  | GBR, HKG                           | | VAT                  | GBR, IRL, BRA, NLD                 | | ACN                  | AUS                                | | ABN                  | AUS                                | | BRN                  | HKG                                | | SIREN                | FRA                                | | SIRET                | FRA                                | | NZBN                 | NZL                                | | UST_IDNR             | DEU                                | | CIF                  | ESP                                | | NIF                  | ESP                                | | CNPJ                 | BRA                                | | UID                  | CHE                                | | OTHER                | Must Provide Country Code          |
     attr_accessor :business_registration_issuing_country
 
     # A message that gets sent to users requesting help.
@@ -250,6 +250,8 @@ module Bandwidth
 
       if attributes.key?(:'business_entity_type')
         self.business_entity_type = attributes[:'business_entity_type']
+      else
+        self.business_entity_type = nil
       end
 
       if attributes.key?(:'business_registration_issuing_country')
@@ -366,6 +368,10 @@ module Bandwidth
         invalid_properties.push('invalid value for "business_registration_number", the character length must be smaller than or equal to 500.')
       end
 
+      if @business_entity_type.nil?
+        invalid_properties.push('invalid value for "business_entity_type", business_entity_type cannot be nil.')
+      end
+
       if !@help_message_response.nil? && @help_message_response.to_s.length > 500
         invalid_properties.push('invalid value for "help_message_response", the character length must be smaller than or equal to 500.')
       end
@@ -408,6 +414,7 @@ module Bandwidth
       return false if !@terms_and_conditions_url.nil? && @terms_and_conditions_url.to_s.length > 500
       return false if !@business_dba.nil? && @business_dba.to_s.length > 500
       return false if !@business_registration_number.nil? && @business_registration_number.to_s.length > 500
+      return false if @business_entity_type.nil?
       return false if !@help_message_response.nil? && @help_message_response.to_s.length > 500
       return false if !@cv_token.nil? && @cv_token.to_s.length > 500
       return false if !@cv_token.nil? && @cv_token.to_s.length < 0
@@ -594,6 +601,16 @@ module Bandwidth
       end
 
       @business_registration_number = business_registration_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] business_entity_type Value to be assigned
+    def business_entity_type=(business_entity_type)
+      if business_entity_type.nil?
+        fail ArgumentError, 'business_entity_type cannot be nil'
+      end
+
+      @business_entity_type = business_entity_type
     end
 
     # Custom attribute writer method with validation
