@@ -15,7 +15,7 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::RbmSuggestionResponse.new(
   text: Yes, I would like to proceed,
-  postback_data: [B@d7c00de,
+  postback_data: [B@11fa11b2,
   paired_message_id: 1752697342534u24xerqdukke523x
 )
 ```
