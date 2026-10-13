@@ -242,7 +242,7 @@ end
 
 Upload Media
 
-Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
+Upload a file.  Filename should always be unique. Reusing filenames may result in the wrong media being sent.  A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
 
 ### Examples
 
@@ -265,7 +265,7 @@ media_id = 'bw.png' # String | The ID of the media file.
 body = File.new('/path/to/some/file') # File | 
 opts = {
   content_type: 'audio/wav', # String | The media type of the entity-body.
-  cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+  cache_control: 'no-cache' # String | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior.
 }
 
 begin
@@ -302,7 +302,7 @@ end
 | **media_id** | **String** | The ID of the media file. |  |
 | **body** | **File** |  |  |
 | **content_type** | **String** | The media type of the entity-body. | [optional] |
-| **cache_control** | **String** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional] |
+| **cache_control** | **String** | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. | [optional] |
 
 ### Return type
 
