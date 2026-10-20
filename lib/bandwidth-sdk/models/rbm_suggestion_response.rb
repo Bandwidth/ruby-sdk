@@ -15,10 +15,10 @@ require 'time'
 
 module Bandwidth
   class RbmSuggestionResponse < ApiModelBase
-    # The text associated with the suggestion response.
+    # The text of the suggestion the user tapped.
     attr_accessor :text
 
-    # Base64 payload the customer receives when the reply is clicked.
+    # Payload the customer receives when the reply is clicked.
     attr_accessor :postback_data
 
     # Corresponding parent message ID (MT).

@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **type** | [**RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |  |
 | **text** | **String** | Displayed text for user to click |  |
-| **postback_data** | **String** | Base64 payload the customer receives when the reply is clicked. |  |
+| **postback_data** | **String** | Payload the customer receives when the reply is clicked. |  |
 
 ## Example
 
@@ -15,8 +15,8 @@ require 'bandwidth-sdk'
 
 instance = Bandwidth::RbmActionBase.new(
   type: null,
-  text: Hello world,
-  postback_data: [B@11fa11b2
+  text: Track my order,
+  postback_data: track-order-43654
 )
 ```
 
