@@ -17,6 +17,7 @@
 | **media** | **Array&lt;String&gt;** | Optional media, not applicable for sms | [optional] |
 | **priority** | [**PriorityEnum**](PriorityEnum.md) |  | [optional] |
 | **channel** | [**MultiChannelMessageChannelEnum**](MultiChannelMessageChannelEnum.md) |  | [optional] |
+| **session** | [**RbmSession**](RbmSession.md) |  | [optional] |
 
 ## Example
 
@@ -36,7 +37,8 @@ instance = Bandwidth::StatusCallbackMessage.new(
   tag: custom string,
   media: [&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;],
   priority: null,
-  channel: null
+  channel: null,
+  session: null
 )
 ```
 

@@ -17,6 +17,7 @@
 | **media** | **Array&lt;String&gt;** | Optional media, not applicable for sms | [optional] |
 | **priority** | [**PriorityEnum**](PriorityEnum.md) |  | [optional] |
 | **channel** | [**MultiChannelMessageChannelEnum**](MultiChannelMessageChannelEnum.md) |  | [optional] |
+| **session** | [**RbmSession**](RbmSession.md) |  | [optional] |
 | **content** | [**MultiChannelMessageContent**](MultiChannelMessageContent.md) |  | [optional] |
 | **suggestion_response** | [**RbmSuggestionResponse**](RbmSuggestionResponse.md) |  | [optional] |
 | **location_response** | [**RbmLocationResponse**](RbmLocationResponse.md) |  | [optional] |
@@ -40,6 +41,7 @@ instance = Bandwidth::InboundCallbackMessage.new(
   media: [https://dev.bandwidth.com/images/bandwidth-logo.png, https://dev.bandwidth.com/images/github_logo.png],
   priority: null,
   channel: null,
+  session: null,
   content: null,
   suggestion_response: null,
   location_response: null
