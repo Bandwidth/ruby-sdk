@@ -288,7 +288,8 @@ module Bandwidth
 
     # Gets Bearer auth token string
     def oauth_bearer_token
-      "Bearer #{access_token_with_refresh}" unless access_token_with_refresh.nil?
+      token = access_token_with_refresh
+      "Bearer #{token}" unless token.nil?
     end
 
 
