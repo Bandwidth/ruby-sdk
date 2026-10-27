@@ -292,9 +292,78 @@ describe Bandwidth::ApiClient do
     end
   end
   
-  describe '#update_params_for_auth' do
-    it 'updates header and query params based on authentication settings' do
-      
+  describe 'request authentication' do
+    let(:messages_api) { Bandwidth::MessagesApi.new(api_client) }
+    let(:stubs) { Faraday::Adapter::Test::Stubs.new }
+    let(:token_requests) { [] }
+    let(:authorization_headers) { [] }
+    let(:expires_in) { 3600 }
+    let(:now) { Time.utc(2026, 1, 1) }
+
+    before do
+      allow(Time).to receive(:now).and_return(now)
+      allow(Faraday).to receive(:new).and_wrap_original do |original, *args, &block|
+        original.call(*args, &block).tap { |connection| connection.adapter :test, stubs }
+      end
+      config.client_id = 'client_id'
+      config.client_secret = 'client_secret'
+      stubs.post('https://api.bandwidth.com/api/v1/oauth2/token') do |request|
+        token_requests << request
+        [200, { 'Content-Type' => 'application/json' },
+         { access_token: "token_#{token_requests.length}", expires_in: expires_in }.to_json]
+      end
+      stubs.get('https://messaging.bandwidth.com/api/v2/users/account/messages') do |request|
+        authorization_headers << request.request_headers['Authorization']
+        [200, { 'Content-Type' => 'application/json' }, '{"data":[]}']
+      end
+    end
+
+    [1, 30, 60].each do |lifetime|
+      context "with a #{lifetime}-second token" do
+        let(:expires_in) { lifetime }
+
+        it 'acquires once per request and checks expiration again on the next request' do
+          messages_api.list_messages('account')
+          expect(token_requests.length).to eq(1)
+          expect(authorization_headers).to eq(['Bearer token_1'])
+
+          messages_api.list_messages('account')
+          expect(token_requests.length).to eq(2)
+          expect(authorization_headers).to eq(['Bearer token_1', 'Bearer token_2'])
+        end
+      end
+    end
+
+    it 'reuses a token until it reaches the 60-second expiration buffer' do
+      messages_api.list_messages('account')
+      allow(Time).to receive(:now).and_return(now + 3539)
+      messages_api.list_messages('account')
+      expect(token_requests.length).to eq(1)
+      expect(authorization_headers).to eq(['Bearer token_1', 'Bearer token_1'])
+
+      allow(Time).to receive(:now).and_return(now + 3540)
+      messages_api.list_messages('account')
+      expect(token_requests.length).to eq(2)
+      expect(authorization_headers.last).to eq('Bearer token_2')
+    end
+
+    it 'uses Basic authentication when OAuth credentials are absent' do
+      config.client_id = nil
+      config.client_secret = nil
+      config.username = 'username'
+      config.password = 'password'
+      messages_api.list_messages('account')
+      expect(token_requests).to be_empty
+      expect(authorization_headers).to eq(['Basic dXNlcm5hbWU6cGFzc3dvcmQ='])
+    end
+
+    [nil, []].each do |auth_names|
+      it "does not acquire a token when auth_names is #{auth_names.inspect}" do
+        api_client.call_api(:GET, '/users/account/messages',
+                            operation: :'MessagesApi.list_messages', auth_names: auth_names, header_params: {})
+        expect(token_requests).to be_empty
+        expect(authorization_headers).to eq([nil])
+      end
     end
   end
   
