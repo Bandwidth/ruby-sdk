@@ -121,8 +121,10 @@ describe Bandwidth::Configuration do
     end
 
     it 'returns the Bearer string using access_token_getter when defined' do
-      config.access_token_getter = proc { token }
-      expect(config.oauth_bearer_token).to eq("Bearer #{token}")
+      tokens = ['first_token', 'second_token']
+      config.access_token_getter = proc { tokens.shift }
+      expect(config.oauth_bearer_token).to eq('Bearer first_token')
+      expect(config.oauth_bearer_token).to eq('Bearer second_token')
     end
 
     it 'returns nil when no access_token is available' do
