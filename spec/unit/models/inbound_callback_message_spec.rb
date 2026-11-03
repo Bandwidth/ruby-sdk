@@ -23,7 +23,11 @@ describe Bandwidth::InboundCallbackMessage do
     tag: 'custom tag',
     media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],
     priority: Bandwidth::PriorityEnum::DEFAULT,
-    channel: Bandwidth::MultiChannelMessageChannelEnum::SMS
+    channel: Bandwidth::MultiChannelMessageChannelEnum::RBM,
+    session: Bandwidth::RbmSession.new({
+      can_initiate: false,
+      id: '0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d'
+    })
   }) }
 
   describe '#initialize' do
@@ -67,7 +71,11 @@ describe Bandwidth::InboundCallbackMessage do
         tag: 'custom tag',
         media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],
         priority: Bandwidth::PriorityEnum::DEFAULT,
-        channel: Bandwidth::MultiChannelMessageChannelEnum::SMS
+        channel: Bandwidth::MultiChannelMessageChannelEnum::RBM,
+        session: {
+          canInitiate: false,
+          id: '0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d'
+        }
       })
       expect(inbound_callback_message_from_hash).to be_instance_of(Bandwidth::InboundCallbackMessage)
       expect(inbound_callback_message_from_hash.id).to eq('1589228074636lm4k2je7j7jklbn2')
@@ -82,13 +90,16 @@ describe Bandwidth::InboundCallbackMessage do
       expect(inbound_callback_message_from_hash.tag).to eq('custom tag')
       expect(inbound_callback_message_from_hash.media).to eq(['https://dev.bandwidth.com/images/bandwidth-logo.png'])
       expect(inbound_callback_message_from_hash.priority).to eq(Bandwidth::PriorityEnum::DEFAULT)
-      expect(inbound_callback_message_from_hash.channel).to eq(Bandwidth::MultiChannelMessageChannelEnum::SMS)
+      expect(inbound_callback_message_from_hash.channel).to eq(Bandwidth::MultiChannelMessageChannelEnum::RBM)
+      expect(inbound_callback_message_from_hash.session).to be_instance_of(Bandwidth::RbmSession)
+      expect(inbound_callback_message_from_hash.session.can_initiate).to be false
+      expect(inbound_callback_message_from_hash.session.id).to eq('0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d')
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(inbound_callback_message_values.to_s).to eq({ :id => '1589228074636lm4k2je7j7jklbn2', :owner => '+19195554321', :applicationId => '93de2206-9669-4e07-948d-329f4b722ee2', :time => '2022-06-16T13:15:07.160Z', :segmentCount => 2, :direction => 'in', :to => ['+19195551234'], :from => '+19195554321', :text => 'Hello world', :tag => 'custom tag', :media => ['https://dev.bandwidth.com/images/bandwidth-logo.png'], :priority => 'default', :channel => 'SMS' }.to_s)
+      expect(inbound_callback_message_values.to_s).to eq({ :id => '1589228074636lm4k2je7j7jklbn2', :owner => '+19195554321', :applicationId => '93de2206-9669-4e07-948d-329f4b722ee2', :time => '2022-06-16T13:15:07.160Z', :segmentCount => 2, :direction => 'in', :to => ['+19195551234'], :from => '+19195554321', :text => 'Hello world', :tag => 'custom tag', :media => ['https://dev.bandwidth.com/images/bandwidth-logo.png'], :priority => 'default', :channel => 'RBM', :session => { :canInitiate => false, :id => '0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d' } }.to_s)
     end
   end
 
@@ -124,7 +135,11 @@ describe Bandwidth::InboundCallbackMessage do
         tag: 'custom tag',
         media: ['https://dev.bandwidth.com/images/bandwidth-logo.png'],
         priority: Bandwidth::PriorityEnum::DEFAULT,
-        channel: Bandwidth::MultiChannelMessageChannelEnum::SMS
+        channel: Bandwidth::MultiChannelMessageChannelEnum::RBM,
+        session: {
+          canInitiate: false,
+          id: '0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d'
+        }
       })
     end
   end

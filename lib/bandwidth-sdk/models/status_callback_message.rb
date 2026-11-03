@@ -50,6 +50,8 @@ module Bandwidth
 
     attr_accessor :channel
 
+    attr_accessor :session
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -87,7 +89,8 @@ module Bandwidth
         :'tag' => :'tag',
         :'media' => :'media',
         :'priority' => :'priority',
-        :'channel' => :'channel'
+        :'channel' => :'channel',
+        :'session' => :'session'
       }
     end
 
@@ -116,7 +119,8 @@ module Bandwidth
         :'tag' => :'String',
         :'media' => :'Array<String>',
         :'priority' => :'PriorityEnum',
-        :'channel' => :'MultiChannelMessageChannelEnum'
+        :'channel' => :'MultiChannelMessageChannelEnum',
+        :'session' => :'RbmSession'
       }
     end
 
@@ -212,6 +216,10 @@ module Bandwidth
 
       if attributes.key?(:'channel')
         self.channel = attributes[:'channel']
+      end
+
+      if attributes.key?(:'session')
+        self.session = attributes[:'session']
       end
     end
 
@@ -367,7 +375,8 @@ module Bandwidth
           tag == o.tag &&
           media == o.media &&
           priority == o.priority &&
-          channel == o.channel
+          channel == o.channel &&
+          session == o.session
     end
 
     # @see the `==` method
@@ -379,7 +388,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel, session].hash
     end
 
     # Builds the object from hash

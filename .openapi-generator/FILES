@@ -158,6 +158,7 @@ docs/RbmMessageContentRichCard.md
 docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
 docs/RbmOpenUrlEnum.md
+docs/RbmSession.md
 docs/RbmStandaloneCard.md
 docs/RbmSuggestionResponse.md
 docs/RbmWebViewEnum.md
@@ -381,6 +382,7 @@ lib/bandwidth-sdk/models/rbm_message_content_rich_card.rb
 lib/bandwidth-sdk/models/rbm_message_content_text.rb
 lib/bandwidth-sdk/models/rbm_message_media.rb
 lib/bandwidth-sdk/models/rbm_open_url_enum.rb
+lib/bandwidth-sdk/models/rbm_session.rb
 lib/bandwidth-sdk/models/rbm_standalone_card.rb
 lib/bandwidth-sdk/models/rbm_suggestion_response.rb
 lib/bandwidth-sdk/models/rbm_web_view_enum.rb

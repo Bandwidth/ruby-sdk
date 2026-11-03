@@ -75,6 +75,15 @@ module Bandwidth
     # Bandwidth's internal id that references the error event.
     attr_accessor :error_id
 
+    # (optional) The SIP status code of the final response that rejected an outbound call's (or transferred leg's) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.
+    attr_accessor :sip_response_code
+
+    # (optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call's INVITE. The reason phrase can help distinguish outcomes that share a status code, such as `603 Network Blocked` and `603 Decline`. Present only when an outbound call was rejected with a SIP response.
+    attr_accessor :sip_status_line
+
+    # (optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single `reason` key holding the raw, unmodified `Reason` header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a `Reason` header (for example, `v=analytics1` call-analytics block information from a terminating carrier). If the response carries more than one `Reason` header, all values are returned in the order received, separated by `, `. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth's usual camelCase JSON convention, since these are passthrough values from the caller's SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is `reason`.
+    attr_accessor :sip_headers
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -119,7 +128,10 @@ module Bandwidth
         :'transfer_to' => :'transferTo',
         :'cause' => :'cause',
         :'error_message' => :'errorMessage',
-        :'error_id' => :'errorId'
+        :'error_id' => :'errorId',
+        :'sip_response_code' => :'sipResponseCode',
+        :'sip_status_line' => :'sipStatusLine',
+        :'sip_headers' => :'sipHeaders'
       }
     end
 
@@ -155,7 +167,10 @@ module Bandwidth
         :'transfer_to' => :'String',
         :'cause' => :'String',
         :'error_message' => :'String',
-        :'error_id' => :'String'
+        :'error_id' => :'String',
+        :'sip_response_code' => :'Integer',
+        :'sip_status_line' => :'String',
+        :'sip_headers' => :'Hash<String, String>'
       }
     end
 
@@ -166,7 +181,7 @@ module Bandwidth
         :'answer_time',
         :'tag',
         :'error_message',
-        :'error_id'
+        :'error_id',
       ])
     end
 
@@ -265,6 +280,20 @@ module Bandwidth
       if attributes.key?(:'error_id')
         self.error_id = attributes[:'error_id']
       end
+
+      if attributes.key?(:'sip_response_code')
+        self.sip_response_code = attributes[:'sip_response_code']
+      end
+
+      if attributes.key?(:'sip_status_line')
+        self.sip_status_line = attributes[:'sip_status_line']
+      end
+
+      if attributes.key?(:'sip_headers')
+        if (value = attributes[:'sip_headers']).is_a?(Hash)
+          self.sip_headers = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -306,7 +335,10 @@ module Bandwidth
           transfer_to == o.transfer_to &&
           cause == o.cause &&
           error_message == o.error_message &&
-          error_id == o.error_id
+          error_id == o.error_id &&
+          sip_response_code == o.sip_response_code &&
+          sip_status_line == o.sip_status_line &&
+          sip_headers == o.sip_headers
     end
 
     # @see the `==` method
@@ -318,7 +350,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, parent_call_id, enqueued_time, start_time, answer_time, end_time, tag, transfer_caller_id, transfer_to, cause, error_message, error_id].hash
+      [event_type, event_time, account_id, application_id, from, to, direction, call_id, call_url, parent_call_id, enqueued_time, start_time, answer_time, end_time, tag, transfer_caller_id, transfer_to, cause, error_message, error_id, sip_response_code, sip_status_line, sip_headers].hash
     end
 
     # Builds the object from hash
