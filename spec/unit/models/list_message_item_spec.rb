@@ -52,6 +52,7 @@ describe Bandwidth::ListMessageItem do
       expect(Bandwidth::ListMessageItem.openapi_nullable).to eq(Set.new([
         :'carrier_name',
         :'message_size',
+        :'message_length',
         :'attachment_count',
         :'recipient_count',
         :'campaign_class',

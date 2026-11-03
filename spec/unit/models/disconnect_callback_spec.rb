@@ -21,6 +21,8 @@ describe Bandwidth::DisconnectCallback do
     tag: 'custom tag',
     sip_call_id: 'sip-call-id-12345',
     sip_response_code: '486',
+    sip_status_line: 'SIP/2.0 486 Busy Here',
+    sip_headers: { 'reason' => 'v=analytics1' }
   }) }
 
   describe '#initialize' do
@@ -77,6 +79,8 @@ describe Bandwidth::DisconnectCallback do
         tag: 'custom tag',
         sipCallId: 'sip-call-id-12345',
         sipResponseCode: 486,
+        sipStatusLine: 'SIP/2.0 486 Busy Here',
+        sipHeaders: { 'reason' => 'v=analytics1' }
       })
       expect(disconnect_callback_from_hash).to be_instance_of(Bandwidth::DisconnectCallback)
       expect(disconnect_callback_from_hash.event_type).to eq('disconnect')
@@ -98,12 +102,14 @@ describe Bandwidth::DisconnectCallback do
       expect(disconnect_callback_from_hash.tag).to eq('custom tag')
       expect(disconnect_callback_from_hash.sip_call_id).to eq('sip-call-id-12345')
       expect(disconnect_callback_from_hash.sip_response_code).to eq(486)
+      expect(disconnect_callback_from_hash.sip_status_line).to eq('SIP/2.0 486 Busy Here')
+      expect(disconnect_callback_from_hash.sip_headers).to eq({ 'reason' => 'v=analytics1' })
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(disconnect_callback_values.to_s).to eq({ :eventType => 'disconnect', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :direction => 'inbound', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :endTime => '2022-06-16T13:16:18.126Z', :cause => 'hangup', :errorMessage => 'call rejected', :errorId => '4642074b-7b58-478b-96e4-3a60955c6765', :tag => 'custom tag', :sipCallId => 'sip-call-id-12345', :sipResponseCode => '486' }.to_s)
+      expect(disconnect_callback_values.to_s).to eq({ :eventType => 'disconnect', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :direction => 'inbound', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :endTime => '2022-06-16T13:16:18.126Z', :cause => 'hangup', :errorMessage => 'call rejected', :errorId => '4642074b-7b58-478b-96e4-3a60955c6765', :tag => 'custom tag', :sipCallId => 'sip-call-id-12345', :sipResponseCode => '486', :sipStatusLine => 'SIP/2.0 486 Busy Here', :sipHeaders => { 'reason' => 'v=analytics1' } }.to_s)
     end
   end
 
@@ -135,7 +141,9 @@ describe Bandwidth::DisconnectCallback do
         errorId: '4642074b-7b58-478b-96e4-3a60955c6765',
         tag: 'custom tag',
         sipCallId: 'sip-call-id-12345',
-        sipResponseCode: '486'
+        sipResponseCode: '486',
+        sipStatusLine: 'SIP/2.0 486 Busy Here',
+        sipHeaders: { 'reason' => 'v=analytics1' }
       })
     end
   end
