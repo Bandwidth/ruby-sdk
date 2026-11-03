@@ -20,9 +20,10 @@ module Bandwidth
     MESSAGE_DELIVERED = 'message-delivered'.freeze
     MESSAGE_FAILED = 'message-failed'.freeze
     MESSAGE_READ = 'message-read'.freeze
+    SESSION_STARTED = 'session-started'.freeze
 
     def self.all_vars
-      @all_vars ||= [MESSAGE_SENDING, MESSAGE_SENT, MESSAGE_DELIVERED, MESSAGE_FAILED, MESSAGE_READ].freeze
+      @all_vars ||= [MESSAGE_SENDING, MESSAGE_SENT, MESSAGE_DELIVERED, MESSAGE_FAILED, MESSAGE_READ, SESSION_STARTED].freeze
     end
 
     # Builds the enum from string

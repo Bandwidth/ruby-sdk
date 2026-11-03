@@ -322,6 +322,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::RbmMessageContentText](docs/RbmMessageContentText.md)
  - [Bandwidth::RbmMessageMedia](docs/RbmMessageMedia.md)
  - [Bandwidth::RbmOpenUrlEnum](docs/RbmOpenUrlEnum.md)
+ - [Bandwidth::RbmSession](docs/RbmSession.md)
  - [Bandwidth::RbmStandaloneCard](docs/RbmStandaloneCard.md)
  - [Bandwidth::RbmSuggestionResponse](docs/RbmSuggestionResponse.md)
  - [Bandwidth::RbmWebViewEnum](docs/RbmWebViewEnum.md)

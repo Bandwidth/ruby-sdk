@@ -20,7 +20,7 @@ module Bandwidth
     # Displayed text for user to click
     attr_accessor :text
 
-    # Base64 payload the customer receives when the reply is clicked.
+    # Payload the customer receives when the reply is clicked.
     attr_accessor :postback_data
 
     # The latitude of the location. Must be in range [-90.000000, 90.000000].
