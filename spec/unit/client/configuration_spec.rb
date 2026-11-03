@@ -105,11 +105,21 @@ describe Bandwidth::Configuration do
     end
   end
 
-  describe '#basic_auth_token' do
-    it 'gets Basic Auth token string' do
-      config.username = 'username'
-      config.password = 'password'
-      expect(config.basic_auth_token).to eq('Basic dXNlcm5hbWU6cGFzc3dvcmQ=')
+  describe '#username=' do
+    it 'raises because basic auth is no longer supported' do
+      expect {
+        config.username = 'username'
+      }.to raise_error(ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.')
+      expect(config.username).to be_nil
+    end
+  end
+
+  describe '#password=' do
+    it 'raises because basic auth is no longer supported' do
+      expect {
+        config.password = 'password'
+      }.to raise_error(ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.')
+      expect(config.password).to be_nil
     end
   end
 
@@ -225,10 +235,10 @@ describe Bandwidth::Configuration do
   describe 'configure faraday connection' do
     it '#configure_faraday_connection #configure_connection' do
       config.configure_faraday_connection do |c|
-        config.username = 'username'
+        config.client_id = 'client_id'
       end
       config.configure_connection(faraday_connection)
-      expect(config.username).to eq('username')
+      expect(config.client_id).to eq('client_id')
     end
   end
 

@@ -42,15 +42,25 @@ module {{moduleName}}
     #   config.api_key_prefix['api_key'] = 'Token'
     attr_accessor :api_key_prefix
 
-    # Defines the username used with HTTP basic authentication.
+    # HTTP basic authentication is no longer supported. Always nil.
     #
-    # @return [String]
-    attr_accessor :username
+    # @return [nil]
+    attr_reader :username
 
-    # Defines the password used with HTTP basic authentication.
+    # HTTP basic authentication is no longer supported. Always nil.
     #
-    # @return [String]
-    attr_accessor :password
+    # @return [nil]
+    attr_reader :password
+
+    # @raise [ArgumentError] HTTP basic authentication is no longer supported
+    def username=(_username)
+      raise ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.'
+    end
+
+    # @raise [ArgumentError] HTTP basic authentication is no longer supported
+    def password=(_password)
+      raise ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.'
+    end
 
     # Defines the client ID used with OAuth2.
     # 
@@ -263,11 +273,6 @@ module {{moduleName}}
     def access_token_with_refresh
       return access_token if access_token_getter.nil?
       access_token_getter.call
-    end
-
-    # Gets Basic Auth token string
-    def basic_auth_token
-      'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
     end
 
     {{#authMethods}}
