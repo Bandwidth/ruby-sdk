@@ -83,7 +83,7 @@ describe 'CallsApi Integration Tests' do
   # Get Calls
   describe '#list_calls' do
     it 'gets a list of calls' do
-      data, status_code = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID, USER_NUMBER, BW_NUMBER)
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
