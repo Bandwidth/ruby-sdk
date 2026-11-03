@@ -80,12 +80,6 @@ require 'bandwidth-sdk'
 
 # Setup authorization
 Bandwidth.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR_USERNAME'
-  config.password = 'YOUR_PASSWORD'
-  # Configure faraday connection
-  config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
-
   # Configure OAuth2 access token for authorization: OAuth2
   config.access_token = 'YOUR_ACCESS TOKEN'
   # Or use your client ID and client secret to obtain an access token
@@ -384,10 +378,6 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-### Basic
-
-- **Type**: HTTP basic authentication
-
 ### OAuth2
 
 

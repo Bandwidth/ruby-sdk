@@ -8,7 +8,6 @@ info:
     email: letstalk@bandwidth.com
   version: 1.0.0
 security:
-  - Basic: []
   - OAuth2: []
 tags:
   - name: Messages
@@ -10129,19 +10128,12 @@ components:
             updateEndpointBxmlRequestExample:
               $ref: '#/components/examples/updateEndpointBxmlRequestExample'
   securitySchemes:
-    Basic:
-      type: http
-      scheme: basic
-      description: >-
-        Basic authentication is a simple authentication scheme built into the
-        HTTP protocol. To use it, send your HTTP requests with an
-        `Authorization` header that contains the word `Basic` followed by a
-        space and a Base64-encoded string `username:password`.
-
-
-        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
     OAuth2:
       type: oauth2
+      description: >-
+        OAuth2 client credentials. For information on obtaining credentials, see
+        [Credentials
+        Management](https://dev.bandwidth.com/docs/account/credentials/management/).
       flows:
         clientCredentials:
           tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
