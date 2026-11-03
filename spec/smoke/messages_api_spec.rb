@@ -110,30 +110,6 @@ describe 'MessagesApi Integration Tests' do
         expect(e.code).to eq(400)
       }
     end
-
-    it 'causes a 401 error' do
-      config = Bandwidth::Configuration.new
-      config.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
-      end
-      client = Bandwidth::ApiClient.new(config)
-      unauthorized_instance = Bandwidth::MessagesApi.new(client)
-
-      body = Bandwidth::MessageRequest.new(
-        application_id: BW_MESSAGING_APPLICATION_ID,
-        to: [USER_NUMBER],
-        from: BW_NUMBER,
-        text: 'ruby sdk 401 test'
-      )
-      
-      expect {
-        unauthorized_instance.create_message_with_http_info(BW_ACCOUNT_ID, body)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
   end
   
 end

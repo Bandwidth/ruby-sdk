@@ -3,8 +3,8 @@ describe 'MultiChannelApi' do
   before(:all) do
     config = Bandwidth::Configuration.new
     config.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
     client = Bandwidth::ApiClient.new(config)
     @multi_channel_api_instance = Bandwidth::MultiChannelApi.new(client)

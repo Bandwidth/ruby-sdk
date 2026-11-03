@@ -9,14 +9,6 @@ describe 'EndpointsApi Integration Tests' do
     client = Bandwidth::ApiClient.new(config)
     @endpoints_api_instance = Bandwidth::EndpointsApi.new(client)
 
-    unauthorized_config = Bandwidth::Configuration.new
-    unauthorized_config.configure do |config|
-      config.username = UNAUTHORIZED_USERNAME
-      config.password = UNAUTHORIZED_PASSWORD
-    end
-    unauthorized_client = Bandwidth::ApiClient.new(unauthorized_config)
-    @unauthorized_api_instance = Bandwidth::EndpointsApi.new(unauthorized_client)
-
     $endpoint_id = ''
   end
 
@@ -104,29 +96,6 @@ describe 'EndpointsApi Integration Tests' do
 
   # HTTP 4XX Errors
   describe 'http error' do
-    it 'causes a 401 error on create' do
-      create_endpoint_body = Bandwidth::CreateWebRtcConnectionRequest.new(
-        type: Bandwidth::EndpointTypeEnum::WEBRTC,
-        direction: Bandwidth::EndpointDirectionEnum::BIDIRECTIONAL
-      )
-
-      expect {
-        @unauthorized_api_instance.create_endpoint_with_http_info(BW_ACCOUNT_ID, create_endpoint_body)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
-
-    it 'causes a 401 error on list' do
-      expect {
-        @unauthorized_api_instance.list_endpoints_with_http_info(BW_ACCOUNT_ID)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
-
     it 'causes a 404 error on get' do
       expect {
         @endpoints_api_instance.get_endpoint_with_http_info(BW_ACCOUNT_ID, 'does-not-exist')

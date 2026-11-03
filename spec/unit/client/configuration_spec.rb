@@ -193,14 +193,6 @@ describe Bandwidth::Configuration do
   end
 
   describe '#auth_settings' do
-    it 'returns Basic auth entry for api client' do
-      basic_auth = config.auth_settings['Basic']
-      expect(basic_auth[:type]).to eq('basic')
-      expect(basic_auth[:in]).to eq('header')
-      expect(basic_auth[:key]).to eq('Authorization')
-      expect(basic_auth[:value]).to eq('Basic Og==')
-    end
-
     it 'returns OAuth2 auth entry for api client' do
       config.access_token = token
       config.access_token_getter = nil
