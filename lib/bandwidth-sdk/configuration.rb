@@ -296,13 +296,6 @@ module Bandwidth
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'Basic' =>
-          {
-            type: 'basic',
-            in: 'header',
-            key: 'Authorization',
-            value: basic_auth_token
-          },
         'OAuth2' =>
           {
             type: 'oauth2',

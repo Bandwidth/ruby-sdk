@@ -17,7 +17,7 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::InboundCallback.new(
-  time: 2024-12-02T20:15:57.278Z,
+  time: 2024-12-02T20:15:57.278201Z,
   type: null,
   to: +15552223333,
   description: Incoming message received,
