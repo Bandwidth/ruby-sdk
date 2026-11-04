@@ -39,16 +39,6 @@ describe Bandwidth::ApiClient do
     end
   end
 
-  describe '#basic_auth' do
-    it 'sets basic auth for the connection' do
-      api_client.config.username = 'username'
-      api_client.config.password = 'password'
-      api_client.basic_auth(faraday_connection)
-      expect(api_client.config.username).to eq('username')
-      expect(api_client.config.password).to eq('password')
-    end
-  end
-
   describe '#json_mime?' do
     it 'checks if the given MIME is a JSON MIME' do
       expect(api_client_default.json_mime?(nil)).to eq false
@@ -154,14 +144,12 @@ describe Bandwidth::ApiClient do
       expect(authorization_headers.last).to eq('Bearer token_2')
     end
 
-    it 'uses Basic authentication when OAuth credentials are absent' do
+    it 'sends no Authorization header when OAuth credentials are absent' do
       config.client_id = nil
       config.client_secret = nil
-      config.username = 'username'
-      config.password = 'password'
       messages_api.list_messages('account')
       expect(token_requests).to be_empty
-      expect(authorization_headers).to eq(['Basic dXNlcm5hbWU6cGFzc3dvcmQ='])
+      expect(authorization_headers).to eq([nil])
     end
 
     [nil, []].each do |auth_names|
