@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration Tests for Bandwidth::MessagesApi
 describe 'MessagesApi Integration Tests' do
   # message info

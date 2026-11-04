@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::MediaApi
 describe 'MediaApi' do
   # media info

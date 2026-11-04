@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::TollFreeVerificationApi
 describe 'TollFreeVerificationApi' do
   let (:webhook_subscription_request_schema) { Bandwidth::WebhookSubscriptionRequestSchema.new(

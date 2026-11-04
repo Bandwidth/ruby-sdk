@@ -45,7 +45,6 @@ jobs:
           bundle install
           rake smoke
         env:
-          RUBY_VERSION: 3.4
           OPERATING_SYSTEM: ubuntu
         shell: bash
 
@@ -74,7 +73,6 @@ jobs:
           bundle install
           rake smoke
         env:
-          RUBY_VERSION: 3.4
           OPERATING_SYSTEM: ubuntu
         shell: bash
 

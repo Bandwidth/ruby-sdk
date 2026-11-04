@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration tests for Bandwidth::TollFreeVerificationApi
 describe 'TollFreeVerificationApi' do
   before(:all) do

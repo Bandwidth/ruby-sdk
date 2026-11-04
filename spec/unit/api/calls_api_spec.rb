@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::CallsApi
 describe 'CallsApi' do
   let(:call_id) { 'c-1234' }
@@ -174,7 +176,7 @@ describe 'CallsApi' do
     it 'creates and updates a call' do
       update_call_body = Bandwidth::UpdateCall.new(
         state: Bandwidth::CallStateEnum::ACTIVE,
-        redirect_url: MANTECA_BASE_URL + '/bxml/pause'
+        redirect_url: BASE_CALLBACK_URL + '/bxml/pause'
       )
 
       _data, status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, call_id, update_call_body)

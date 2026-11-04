@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::RecordingsApi
 describe 'RecordingsApi' do
   let(:call_id) { 'c-1234' }

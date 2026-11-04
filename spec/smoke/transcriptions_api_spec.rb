@@ -1,4 +1,4 @@
-require_relative '../call_utils'
+require_relative 'smoke_helper'
 
 # Integration Tests for Bandwidth::TranscriptionsApi
 describe 'TranscriptionsApi Integration Tests' do
