@@ -277,8 +277,8 @@ module Bandwidth
   class << self
     # Customize default settings for the SDK using block.
     #   Bandwidth.configure do |config|
-    #     config.username = "xxx"
-    #     config.password = "xxx"
+    #     config.client_id = "xxx"
+    #     config.client_secret = "xxx"
     #   end
     # If no block given, return the default Configuration object.
     def configure

@@ -21,41 +21,4 @@ describe 'StatisticsApi Integration Tests' do
       expect(data.max_call_queue_size).to eq(7500)
     end
   end
-
-  # HTTP 4XX Errors
-  describe 'http error' do
-    it 'causes a 401 error' do
-      config = Bandwidth::Configuration.new
-      config.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
-      end
-      client = Bandwidth::ApiClient.new(config)
-      unauthorized_instance = Bandwidth::StatisticsApi.new(client)
-
-      expect {
-        unauthorized_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(401)
-      }
-    end
-
-    it 'causes a 403 error' do
-      config = Bandwidth::Configuration.new
-      config.configure do |config|
-        config.username = FORBIDDEN_USERNAME
-        config.password = FORBIDDEN_PASSWORD
-      end
-      client = Bandwidth::ApiClient.new(config)
-      forbidden_instance = Bandwidth::StatisticsApi.new(client)
-
-      expect {
-        forbidden_instance.get_statistics_with_http_info(BW_ACCOUNT_ID)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(403)
-      }
-    end
-  end
 end

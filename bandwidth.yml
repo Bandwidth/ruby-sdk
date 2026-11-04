@@ -8,7 +8,6 @@ info:
     email: letstalk@bandwidth.com
   version: 1.0.0
 security:
-  - Basic: []
   - OAuth2: []
 tags:
   - name: Messages
@@ -9309,7 +9308,6 @@ components:
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: IN_PROGRESS
-          results: []
         errors: []
     lookupInProgressExample:
       summary: Numbers Lookup In Progress
@@ -9482,7 +9480,8 @@ components:
         links: []
         data: {}
         errors:
-          - type: bad-request
+          - code: '1234'
+            type: bad-request
             description: >-
               Bad Request. Ensure that you have set the requestId as a URL path
               parameter.
@@ -9495,7 +9494,6 @@ components:
           - type: Unauthorized
             description: You are not authorized to access this resource.
             code: '1'
-        page: null
     forbiddenExample:
       summary: Forbidden Error
       value:
@@ -9505,14 +9503,14 @@ components:
           - type: Forbidden
             description: You do not have permission to access this resource.
             code: '2'
-        page: null
     unsupportedMediaTypeExample:
       summary: Unsupported Media Type Error
       value:
         links: []
         data: {}
         errors:
-          - type: invalid-content-type
+          - code: '1234'
+            type: invalid-content-type
             description: >-
               Invalid content-type. Ensure that your content-type header is set
               to application/json.
@@ -9522,7 +9520,8 @@ components:
         links: []
         data: {}
         errors:
-          - type: not-found
+          - code: '1234'
+            type: not-found
             description: >-
               RequestId not found. Ensure that the requestId used in the URL
               path is valid and maps to a previous request that was submitted.
@@ -9532,7 +9531,8 @@ components:
         links: []
         data: {}
         errors:
-          - type: rate-limiting
+          - code: '1234'
+            type: rate-limiting
             description: >-
               Rate limit exceeded. Wait for the time specified in the
               Retry-After header before sending another request.
@@ -10129,19 +10129,12 @@ components:
             updateEndpointBxmlRequestExample:
               $ref: '#/components/examples/updateEndpointBxmlRequestExample'
   securitySchemes:
-    Basic:
-      type: http
-      scheme: basic
-      description: >-
-        Basic authentication is a simple authentication scheme built into the
-        HTTP protocol. To use it, send your HTTP requests with an
-        `Authorization` header that contains the word `Basic` followed by a
-        space and a Base64-encoded string `username:password`.
-
-
-        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
     OAuth2:
       type: oauth2
+      description: >-
+        OAuth2 client credentials. For information on obtaining credentials, see
+        [Credentials
+        Management](https://dev.bandwidth.com/docs/account/credentials/management/).
       flows:
         clientCredentials:
           tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token

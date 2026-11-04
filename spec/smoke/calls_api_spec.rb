@@ -83,7 +83,7 @@ describe 'CallsApi Integration Tests' do
   # Get Calls
   describe '#list_calls' do
     it 'gets a list of calls' do
-      data, status_code = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID)
+      data, status_code = @calls_api_instance.list_calls_with_http_info(BW_ACCOUNT_ID, { to: USER_NUMBER, from: BW_NUMBER })
 
       expect(status_code).to eq(200)
       expect(data).to be_instance_of(Array)
@@ -94,58 +94,58 @@ describe 'CallsApi Integration Tests' do
   end
 
   # Get Call State Information
-  # describe 'get_call_state' do
-  #   it 'gets the call state' do
-  #     sleep(40) # wait 40s for voice API to update call status
-  #     data, status_code = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
+  describe 'get_call_state' do
+    it 'gets the call state' do
+      sleep(40) # wait 40s for voice API to update call status
+      data, status_code = @calls_api_instance.get_call_state_with_http_info(BW_ACCOUNT_ID, $call_info_id)
 
-  #     expect(status_code).to eq(200)
-  #     expect(data).to be_instance_of(Bandwidth::CallState)
-  #     expect(data.call_id).to eq($call_info_id)
-  #     expect(data.account_id).to eq(BW_ACCOUNT_ID)
-  #     expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
-  #     expect(data.start_time).to be_instance_of(Time).or be_nil
-  #     expect(data.last_update).to be_instance_of(Time)
-  #     expect(data.state).to be_instance_of(String)
-  #     expect(data.direction).to eq(direction)
-  #   end
-  # end
+      expect(status_code).to eq(200)
+      expect(data).to be_instance_of(Bandwidth::CallState)
+      expect(data.call_id).to eq($call_info_id)
+      expect(data.account_id).to eq(BW_ACCOUNT_ID)
+      expect(data.application_id).to eq(BW_VOICE_APPLICATION_ID)
+      expect(data.start_time).to be_instance_of(Time).or be_nil
+      expect(data.last_update).to be_instance_of(Time)
+      expect(data.state).to be_instance_of(String)
+      expect(data.direction).to eq(direction)
+    end
+  end
 
   # Update Call
-  # describe 'update_call' do
-  #   it 'creates and updates a call' do
-  #     update_call_body = Bandwidth::UpdateCall.new(
-  #       state: Bandwidth::CallStateEnum::ACTIVE,
-  #       redirect_url: MANTECA_BASE_URL + '/bxml/pause'
-  #     )
+  describe 'update_call' do
+    it 'creates and updates a call' do
+      update_call_body = Bandwidth::UpdateCall.new(
+        state: Bandwidth::CallStateEnum::ACTIVE,
+        redirect_url: MANTECA_BASE_URL + '/bxml/pause'
+      )
       
-  #     update_call_id = create_manteca_call(@calls_api_instance)
-  #     sleep(SLEEP_TIME_S)
+      update_call_id = create_manteca_call(@calls_api_instance)
+      sleep(SLEEP_TIME_S)
       
-  #     _update_data, update_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
-  #     expect(update_status_code).to eq(200)
-  #     sleep(SLEEP_TIME_S)
+      _update_data, update_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, update_call_body)
+      expect(update_status_code).to eq(200)
+      sleep(SLEEP_TIME_S)
       
-  #     _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
-  #     expect(complete_status_code).to eq(200)
-  #   end
-  # end
+      _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
+      expect(complete_status_code).to eq(200)
+    end
+  end
 
   # Update Call BXML
-  # describe 'update_call_bxml' do
-  #   it 'updates a call using bxml' do
-  #     update_call_id = create_manteca_call(@calls_api_instance)
-  #     sleep(SLEEP_TIME_S)
+  describe 'update_call_bxml' do
+    it 'updates a call using bxml' do
+      update_call_id = create_manteca_call(@calls_api_instance)
+      sleep(SLEEP_TIME_S)
 
-  #     update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>'
-  #     _update_data, update_status_code = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_bxml)
-  #     expect(update_status_code).to eq(204)
-  #     sleep(SLEEP_TIME_S)
+      update_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>'
+      _update_data, update_status_code = @calls_api_instance.update_call_bxml_with_http_info(BW_ACCOUNT_ID, update_call_id, update_bxml)
+      expect(update_status_code).to eq(204)
+      sleep(SLEEP_TIME_S)
       
-  #     _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
-  #     expect(complete_status_code).to eq(200)
-  #   end
-  # end
+      _complete_data, complete_status_code = @calls_api_instance.update_call_with_http_info(BW_ACCOUNT_ID, update_call_id, $complete_call_body)
+      expect(complete_status_code).to eq(200)
+    end
+  end
 
   # HTTP 4XX Errors
   describe 'http error' do

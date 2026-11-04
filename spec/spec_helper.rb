@@ -43,12 +43,8 @@ require_relative './call_utils'
 RSpec.configure do |config|
   config.before(:suite) {
     begin
-      BW_USERNAME = ENV.fetch('BW_USERNAME')
-      BW_PASSWORD = ENV.fetch('BW_PASSWORD')
       BW_CLIENT_ID = ENV.fetch('BW_CLIENT_ID')
       BW_CLIENT_SECRET = ENV.fetch('BW_CLIENT_SECRET')
-      FORBIDDEN_USERNAME = ENV.fetch('BW_USERNAME_FORBIDDEN')
-      FORBIDDEN_PASSWORD = ENV.fetch('BW_PASSWORD_FORBIDDEN')
       BW_ACCOUNT_ID = ENV.fetch('BW_ACCOUNT_ID')
       BW_VOICE_APPLICATION_ID = ENV.fetch('BW_VOICE_APPLICATION_ID')
       BW_MESSAGING_APPLICATION_ID = ENV.fetch('BW_MESSAGING_APPLICATION_ID')
@@ -68,8 +64,6 @@ RSpec.configure do |config|
 
     SLEEP_TIME_S = 3  # default sleep time in seconds
     MAX_RETRIES = 40
-    UNAUTHORIZED_USERNAME = 'bad_username'
-    UNAUTHORIZED_PASSWORD = 'bad_password'
     $active_calls = []
 
     $complete_call_body = Bandwidth::UpdateCall.new(
@@ -79,8 +73,8 @@ RSpec.configure do |config|
 
   config.after(:suite) {
     Bandwidth.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
     calls_api = Bandwidth::CallsApi.new
     cleanup_calls($active_calls, calls_api)
