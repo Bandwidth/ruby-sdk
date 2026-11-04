@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration Tests for Bandwidth::MediaApi
 describe 'MediaApi Integration Tests' do
   # media info

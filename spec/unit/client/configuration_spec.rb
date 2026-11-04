@@ -1,4 +1,5 @@
 require 'uri'
+require_relative '../constants'
 
 # Unit tests for Bandwidth::Configuration
 describe Bandwidth::Configuration do

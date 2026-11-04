@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration Tests for Bandwidth::EndpointsApi
 describe 'EndpointsApi Integration Tests' do
   before(:all) do

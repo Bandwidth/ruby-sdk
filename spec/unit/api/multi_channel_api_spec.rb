@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::MultiChannelApi
 describe 'MultiChannelApi' do
   before(:all) do

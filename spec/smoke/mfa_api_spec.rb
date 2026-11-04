@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
   # mfa info

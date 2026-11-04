@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration tests for Bandwidth::MultiChannelApi
 describe 'MultiChannelApi' do
   before(:all) do
