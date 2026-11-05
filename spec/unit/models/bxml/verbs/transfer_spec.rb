@@ -16,7 +16,9 @@ describe 'Bandwidth::Bxml::Transfer' do
       fallback_password: 'initial_fallback_password',
       tag: 'initial_tag',
       diversion_treatment: 'propagate',
-      diversion_reason: 'user-busy'
+      diversion_reason: 'user-busy',
+      attestation_level: 'A',
+      identity: 'initial_identity'
     }
   }
 
@@ -36,7 +38,9 @@ describe 'Bandwidth::Bxml::Transfer' do
       fallback_password: 'new_fallback_password',
       tag: 'new_tag',
       diversion_treatment: 'stack',
-      diversion_reason: 'no-answer'
+      diversion_reason: 'no-answer',
+      attestation_level: 'B',
+      identity: 'new_identity'
     }
   }
 
@@ -53,13 +57,13 @@ describe 'Bandwidth::Bxml::Transfer' do
     end
 
     it 'tests the to_bxml method of the Transfer instance' do
-      expected = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\"/>\n"
+      expected = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" attestationLevel=\"A\" identity=\"initial_identity\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
 
     it 'tests the set_attributes method of the Transfer instance' do
       instance.set_attributes(new_attributes)
-      expected = "\n<Transfer transferCallerId=\"+19195554321\" privacy=\"false\" transferCallerDisplayName=\"new_caller\" callTimeout=\"10\" transferCompleteUrl=\"https://new.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://new.com\" transferCompleteFallbackMethod=\"POST\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" diversionTreatment=\"stack\" diversionReason=\"no-answer\"/>\n"
+      expected = "\n<Transfer transferCallerId=\"+19195554321\" privacy=\"false\" transferCallerDisplayName=\"new_caller\" callTimeout=\"10\" transferCompleteUrl=\"https://new.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://new.com\" transferCompleteFallbackMethod=\"POST\" username=\"new_username\" password=\"new_password\" fallbackUsername=\"new_fallback_username\" fallbackPassword=\"new_fallback_password\" tag=\"new_tag\" diversionTreatment=\"stack\" diversionReason=\"no-answer\" attestationLevel=\"B\" identity=\"new_identity\"/>\n"
       expect(instance.to_bxml).to eq(expected)
     end
   end
@@ -71,16 +75,16 @@ describe 'Bandwidth::Bxml::Transfer' do
     end
 
     it 'tests the to_bxml method of the nested Transfer instance' do
-      expected = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
+      expected = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" attestationLevel=\"A\" identity=\"initial_identity\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
       expect(instance_nested.to_bxml).to eq(expected)
     end
 
     it 'tests the add_verb method of the nested Transfer instance' do
-      expected_single = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n</Transfer>\n"
+      expected_single = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" attestationLevel=\"A\" identity=\"initial_identity\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n</Transfer>\n"
       instance_nested.add_transfer_recipients(sip_uri)
       expect(instance_nested.to_bxml).to eq(expected_single)
 
-      expected_multiple = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
+      expected_multiple = "\n<Transfer transferCallerId=\"+19195551234\" privacy=\"true\" transferCallerDisplayName=\"initial_caller\" callTimeout=\"5\" transferCompleteUrl=\"https://initial.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"https://initial.com\" transferCompleteFallbackMethod=\"POST\" username=\"initial_username\" password=\"initial_password\" fallbackUsername=\"initial_fallback_username\" fallbackPassword=\"initial_fallback_password\" tag=\"initial_tag\" diversionTreatment=\"propagate\" diversionReason=\"user-busy\" attestationLevel=\"A\" identity=\"initial_identity\">\n  <PhoneNumber>+19195551234</PhoneNumber>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <SipUri>sip:1-999-123-4567@voip-provider.example.net</SipUri>\n  <PhoneNumber>+19195551234</PhoneNumber>\n</Transfer>\n"
       instance_nested.add_transfer_recipients([sip_uri, phone_number])
       expect(instance_nested.to_bxml).to eq(expected_multiple)
     end
