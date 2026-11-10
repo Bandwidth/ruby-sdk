@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::StatisticsApi
 describe 'StatisticsApi' do
   before(:all) do

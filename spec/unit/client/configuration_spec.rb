@@ -1,4 +1,5 @@
 require 'uri'
+require_relative '../constants'
 
 # Unit tests for Bandwidth::Configuration
 describe Bandwidth::Configuration do
@@ -105,11 +106,21 @@ describe Bandwidth::Configuration do
     end
   end
 
-  describe '#basic_auth_token' do
-    it 'gets Basic Auth token string' do
-      config.username = 'username'
-      config.password = 'password'
-      expect(config.basic_auth_token).to eq('Basic dXNlcm5hbWU6cGFzc3dvcmQ=')
+  describe '#username=' do
+    it 'raises because basic auth is no longer supported' do
+      expect {
+        config.username = 'username'
+      }.to raise_error(ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.')
+      expect(config.username).to be_nil
+    end
+  end
+
+  describe '#password=' do
+    it 'raises because basic auth is no longer supported' do
+      expect {
+        config.password = 'password'
+      }.to raise_error(ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.')
+      expect(config.password).to be_nil
     end
   end
 
@@ -121,8 +132,10 @@ describe Bandwidth::Configuration do
     end
 
     it 'returns the Bearer string using access_token_getter when defined' do
-      config.access_token_getter = proc { token }
-      expect(config.oauth_bearer_token).to eq("Bearer #{token}")
+      tokens = ['first_token', 'second_token']
+      config.access_token_getter = proc { tokens.shift }
+      expect(config.oauth_bearer_token).to eq('Bearer first_token')
+      expect(config.oauth_bearer_token).to eq('Bearer second_token')
     end
 
     it 'returns nil when no access_token is available' do
@@ -191,14 +204,6 @@ describe Bandwidth::Configuration do
   end
 
   describe '#auth_settings' do
-    it 'returns Basic auth entry for api client' do
-      basic_auth = config.auth_settings['Basic']
-      expect(basic_auth[:type]).to eq('basic')
-      expect(basic_auth[:in]).to eq('header')
-      expect(basic_auth[:key]).to eq('Authorization')
-      expect(basic_auth[:value]).to eq('Basic Og==')
-    end
-
     it 'returns OAuth2 auth entry for api client' do
       config.access_token = token
       config.access_token_getter = nil
@@ -231,10 +236,10 @@ describe Bandwidth::Configuration do
   describe 'configure faraday connection' do
     it '#configure_faraday_connection #configure_connection' do
       config.configure_faraday_connection do |c|
-        config.username = 'username'
+        config.client_id = 'client_id'
       end
       config.configure_connection(faraday_connection)
-      expect(config.username).to eq('username')
+      expect(config.client_id).to eq('client_id')
     end
   end
 

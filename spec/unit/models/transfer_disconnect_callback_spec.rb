@@ -21,7 +21,10 @@ describe Bandwidth::TransferDisconnectCallback do
     transfer_to: '+19195551234',
     cause: 'hangup',
     error_message: 'call rejected',
-    error_id: '4642074b-7b58-478b-96e4-3a60955c6765'
+    error_id: '4642074b-7b58-478b-96e4-3a60955c6765',
+    sip_response_code: 486,
+    sip_status_line: 'SIP/2.0 486 Busy Here',
+    sip_headers: { 'reason' => 'v=analytics1' }
   }) }
 
   describe '#initialize' do
@@ -78,7 +81,10 @@ describe Bandwidth::TransferDisconnectCallback do
         transferTo: '+19195551234',
         cause: 'hangup',
         errorMessage: 'call rejected',
-        errorId: '4642074b-7b58-478b-96e4-3a60955c6765'
+        errorId: '4642074b-7b58-478b-96e4-3a60955c6765',
+        sipResponseCode: 486,
+        sipStatusLine: 'SIP/2.0 486 Busy Here',
+        sipHeaders: { 'reason' => 'v=analytics1' }
       })
       expect(transfer_disconnect_callback_from_hash).to be_instance_of(Bandwidth::TransferDisconnectCallback)
       expect(transfer_disconnect_callback_from_hash.event_type).to eq('transferDisconnect')
@@ -101,12 +107,15 @@ describe Bandwidth::TransferDisconnectCallback do
       expect(transfer_disconnect_callback_from_hash.cause).to eq('hangup')
       expect(transfer_disconnect_callback_from_hash.error_message).to eq('call rejected')
       expect(transfer_disconnect_callback_from_hash.error_id).to eq('4642074b-7b58-478b-96e4-3a60955c6765')
+      expect(transfer_disconnect_callback_from_hash.sip_response_code).to eq(486)
+      expect(transfer_disconnect_callback_from_hash.sip_status_line).to eq('SIP/2.0 486 Busy Here')
+      expect(transfer_disconnect_callback_from_hash.sip_headers).to eq({ 'reason' => 'v=analytics1' })
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(transfer_disconnect_callback_values.to_s).to eq({ :eventType => 'transferDisconnect', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :direction => 'outbound', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :parentCallId => 'c-95ac29a2-1331029c-2cb0-4a07-b215-b22865662d99', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :endTime => '2022-06-16T13:16:18.126Z', :tag => 'custom tag', :transferCallerId => '+19195554321', :transferTo => '+19195551234', :cause => 'hangup', :errorMessage => 'call rejected', :errorId => '4642074b-7b58-478b-96e4-3a60955c6765' }.to_s)
+      expect(transfer_disconnect_callback_values.to_s).to eq({ :eventType => 'transferDisconnect', :eventTime => '2022-06-16T13:15:07.160Z', :accountId => '9900000', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :from => '+19195554321', :to => '+19195551234', :direction => 'outbound', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :parentCallId => 'c-95ac29a2-1331029c-2cb0-4a07-b215-b22865662d99', :enqueuedTime => '2022-06-16T13:15:07.160Z', :startTime => '2022-06-16T13:15:07.160Z', :answerTime => '2022-06-16T13:15:18.126Z', :endTime => '2022-06-16T13:16:18.126Z', :tag => 'custom tag', :transferCallerId => '+19195554321', :transferTo => '+19195551234', :cause => 'hangup', :errorMessage => 'call rejected', :errorId => '4642074b-7b58-478b-96e4-3a60955c6765', :sipResponseCode => 486, :sipStatusLine => 'SIP/2.0 486 Busy Here', :sipHeaders => { 'reason' => 'v=analytics1' } }.to_s)
     end
   end
 
@@ -139,7 +148,10 @@ describe Bandwidth::TransferDisconnectCallback do
         transferTo: '+19195551234',
         cause: 'hangup',
         errorMessage: 'call rejected',
-        errorId: '4642074b-7b58-478b-96e4-3a60955c6765'
+        errorId: '4642074b-7b58-478b-96e4-3a60955c6765',
+        sipResponseCode: 486,
+        sipStatusLine: 'SIP/2.0 486 Busy Here',
+        sipHeaders: { 'reason' => 'v=analytics1' }
       })
     end
   end

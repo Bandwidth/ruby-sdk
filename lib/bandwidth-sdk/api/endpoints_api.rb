@@ -74,7 +74,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'CreateEndpointResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['OAuth2']
 
       new_options = opts.merge(
         :operation => :"EndpointsApi.create_endpoint",
@@ -143,7 +143,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['OAuth2']
 
       new_options = opts.merge(
         :operation => :"EndpointsApi.delete_endpoint",
@@ -212,7 +212,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'EndpointResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['OAuth2']
 
       new_options = opts.merge(
         :operation => :"EndpointsApi.get_endpoint",
@@ -295,7 +295,7 @@ module Bandwidth
       return_type = opts[:debug_return_type] || 'ListEndpointsResponse'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['OAuth2']
 
       new_options = opts.merge(
         :operation => :"EndpointsApi.list_endpoints",
@@ -375,7 +375,7 @@ module Bandwidth
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Basic', 'OAuth2']
+      auth_names = opts[:debug_auth_names] || ['OAuth2']
 
       new_options = opts.merge(
         :operation => :"EndpointsApi.update_endpoint_bxml",

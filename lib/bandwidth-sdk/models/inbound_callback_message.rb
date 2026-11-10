@@ -49,6 +49,8 @@ module Bandwidth
 
     attr_accessor :channel
 
+    attr_accessor :session
+
     attr_accessor :content
 
     attr_accessor :suggestion_response
@@ -93,6 +95,7 @@ module Bandwidth
         :'media' => :'media',
         :'priority' => :'priority',
         :'channel' => :'channel',
+        :'session' => :'session',
         :'content' => :'content',
         :'suggestion_response' => :'suggestionResponse',
         :'location_response' => :'locationResponse'
@@ -125,6 +128,7 @@ module Bandwidth
         :'media' => :'Array<String>',
         :'priority' => :'PriorityEnum',
         :'channel' => :'MultiChannelMessageChannelEnum',
+        :'session' => :'RbmSession',
         :'content' => :'MultiChannelMessageContent',
         :'suggestion_response' => :'RbmSuggestionResponse',
         :'location_response' => :'RbmLocationResponse'
@@ -230,6 +234,10 @@ module Bandwidth
 
       if attributes.key?(:'channel')
         self.channel = attributes[:'channel']
+      end
+
+      if attributes.key?(:'session')
+        self.session = attributes[:'session']
       end
 
       if attributes.key?(:'content')
@@ -398,6 +406,7 @@ module Bandwidth
           media == o.media &&
           priority == o.priority &&
           channel == o.channel &&
+          session == o.session &&
           content == o.content &&
           suggestion_response == o.suggestion_response &&
           location_response == o.location_response
@@ -412,7 +421,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel, content, suggestion_response, location_response].hash
+      [id, owner, application_id, time, segment_count, direction, to, from, text, tag, media, priority, channel, session, content, suggestion_response, location_response].hash
     end
 
     # Builds the object from hash

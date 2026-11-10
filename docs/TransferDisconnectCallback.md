@@ -24,6 +24,9 @@
 | **cause** | **String** | Reason the call failed - hangup, busy, timeout, cancel, rejected, callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded, error, or unknown. | [optional] |
 | **error_message** | **String** | Text explaining the reason that caused the call to fail in case of errors. | [optional] |
 | **error_id** | **String** | Bandwidth&#39;s internal id that references the error event. | [optional] |
+| **sip_response_code** | **Integer** | (optional) The SIP status code of the final response that rejected an outbound call&#39;s (or transferred leg&#39;s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response. | [optional] |
+| **sip_status_line** | **String** | (optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call&#39;s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as &#x60;603 Network Blocked&#x60; and &#x60;603 Decline&#x60;. Present only when an outbound call was rejected with a SIP response. | [optional] |
+| **sip_headers** | **Hash&lt;String, String&gt;** | (optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single &#x60;reason&#x60; key holding the raw, unmodified &#x60;Reason&#x60; header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a &#x60;Reason&#x60; header (for example, &#x60;v&#x3D;analytics1&#x60; call-analytics block information from a terminating carrier). If the response carries more than one &#x60;Reason&#x60; header, all values are returned in the order received, separated by &#x60;, &#x60;. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is &#x60;reason&#x60;. | [optional] |
 
 ## Example
 
@@ -50,7 +53,10 @@ instance = Bandwidth::TransferDisconnectCallback.new(
   transfer_to: +15555555555,
   cause: busy,
   error_message: Call c-2a913f94-6a486f3a-3cae-4034-bcc3-f0c9fa77ca2f is already bridged with another call,
-  error_id: 4642074b-7b58-478b-96e4-3a60955c6765
+  error_id: 4642074b-7b58-478b-96e4-3a60955c6765,
+  sip_response_code: 486,
+  sip_status_line: SIP/2.0 603 Network Blocked,
+  sip_headers: {&quot;x-custom-header&quot;:&quot;customer-value&quot;,&quot;x-session-id&quot;:&quot;sess-12345&quot;}
 )
 ```
 

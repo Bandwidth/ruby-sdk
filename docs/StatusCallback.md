@@ -19,8 +19,8 @@
 require 'bandwidth-sdk'
 
 instance = Bandwidth::StatusCallback.new(
-  time: 2024-12-02T20:15:57.278Z,
-  event_time: 2024-12-02T20:15:58.278Z,
+  time: 2024-12-02T20:15:57.278201Z,
+  event_time: 2024-12-02T20:15:58.278205Z,
   type: null,
   to: +15552223333,
   description: Message delivered to handset.,

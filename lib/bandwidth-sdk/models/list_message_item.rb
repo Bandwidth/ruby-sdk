@@ -176,6 +176,7 @@ module Bandwidth
       Set.new([
         :'carrier_name',
         :'message_size',
+        :'message_length',
         :'attachment_count',
         :'recipient_count',
         :'campaign_class',

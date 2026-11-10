@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::EndpointsApi
 describe 'EndpointsApi' do
   let(:endpoint_id) { 'ep-abc123' }

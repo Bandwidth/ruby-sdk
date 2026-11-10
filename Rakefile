@@ -16,7 +16,7 @@ begin
     t.pattern = './spec/smoke/*_spec.rb'
   end
 
-  task default: :spec
+  task default: :unit
 rescue LoadError
   # no rspec available
 end

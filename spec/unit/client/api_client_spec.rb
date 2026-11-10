@@ -12,199 +12,6 @@ describe Bandwidth::ApiClient do
   let(:form_encoded_headers) { { 'Content-Type' => 'application/x-www-form-urlencoded' } }
   let(:error_data) { '{"error": true}' }
 
-  describe '#call_api' do
-    it 'calls api and returns a tempfile with name from content-disposition header' do
-      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 200, headers: media_headers, body: media_data)
-
-      opts = {
-        operation: :"MediaApi.get_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: nil,
-        auth_names: ['Basic'],
-        return_type: 'File'
-      }
-      data, status_code, headers = api_client.call_api(:GET, 'path', opts)
-
-      expect(status_code).to eq(200)
-      expect(headers).to eq(media_headers)
-      expect(data).to be_a(Tempfile)
-    end
-
-    it 'calls api and returns a tempfile' do
-      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 200, headers: named_media_headers, body: media_data)
-
-      opts = {
-        operation: :"MediaApi.get_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: nil,
-        auth_names: ['Basic'],
-        return_type: 'File'
-      }
-      data, status_code, headers = api_client.call_api(:GET, 'path', opts)
-
-      expect(status_code).to eq(200)
-      expect(headers).to eq(named_media_headers)
-      expect(data).to be_a(Tempfile)
-    end
-
-    it 'calls api and returns binary data' do
-      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 200, headers: media_headers, body: media_data)
-
-      api_client.config.return_binary_data = true
-      api_client.config.debugging = true
-
-      opts = {
-        operation: :"MediaApi.get_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: nil,
-        auth_names: ['Basic'],
-        return_type: 'File'
-      }
-      data, status_code, headers = api_client.call_api(:GET, 'path', opts)
-
-      expect(status_code).to eq(200)
-      expect(headers).to eq(media_headers)
-      expect(data).to eq(media_data)
-    end
-
-    it 'calls api and returns a hash' do
-      stub_request(:get, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 200, headers: json_headers, body: '{"id": 1}')
-
-      opts = {
-        operation: :"MessagesApi.list_messages",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: nil,
-        auth_names: ['Basic'],
-        return_type: 'Hash<String, Integer>'
-      }
-      data, status_code, headers = api_client.call_api(:GET, 'path', opts)
-
-      expect(status_code).to eq(200)
-      expect(headers).to eq(json_headers)
-      expect(data).to eq({ id: 1 })
-    end
-
-    it 'posts data and returns nothing' do
-      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 204)
-
-      api_client.config.debugging = true
-
-      opts = {
-        operation: :"MediaApi.upload_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: { id: 1 },
-        auth_names: ['Basic'],
-        return_type: nil
-      }
-      data, status_code = api_client.call_api(:POST, 'path', opts)
-
-      expect(status_code).to eq(204)
-      expect(data).to be nil
-    end
-
-    it 'posts multipart/form-data and returns nothing' do
-      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 204)
-
-      opts = {
-        operation: :"MediaApi.upload_media",
-        header_params: multipart_headers,
-        query_params: {},
-        form_params: { file: Tempfile.new('filename'), array: [1, 2, 3], string: '123' },
-        body: nil,
-        auth_names: ['Basic'],
-        return_type: nil
-      }
-      data, status_code = api_client.call_api(:POST, 'path', opts)
-
-      expect(status_code).to eq(204)
-      expect(data).to be nil
-    end
-
-    it 'calls api and handles HTTP error' do
-      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
-      to_return(status: 400, headers: json_headers, body: error_data)
-
-      opts = {
-        operation: :"MediaApi.upload_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: { id: 1 },
-        auth_names: ['Basic'],
-        return_type: nil
-      }
-      
-      expect {
-        api_client.call_api(:POST, 'path', opts)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(400)
-        expect(e.response_headers).to eq(json_headers)
-        expect(e.response_body).to eq('{"error": true}')
-      }
-    end
-
-    it 'calls api and handles timeout error' do
-      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
-      to_raise(Faraday::TimeoutError)
-
-      opts = {
-        operation: :"MediaApi.upload_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: { id: 1 },
-        auth_names: ['Basic'],
-        return_type: nil
-      }
-      
-      expect {
-        api_client.call_api(:POST, 'path', opts)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.message).to eq('Connection timed out')
-      }
-    end
-
-    it 'calls api and handles connection error' do
-      stub_request(:post, 'https://messaging.bandwidth.com/api/v2/path').
-      to_raise(Faraday::ConnectionFailed)
-
-      opts = {
-        operation: :"MediaApi.upload_media",
-        header_params: {},
-        query_params: {},
-        form_params: {},
-        body: { id: 1 },
-        auth_names: ['Basic'],
-        return_type: nil
-      }
-      
-      expect {
-        api_client.call_api(:POST, 'path', opts)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.message).to eq('Connection failed')
-      }
-    end
-  end if false # not needed since the api unit tests cover this
-
   describe '#build_request_body' do
     it 'builds application/x-www-form-urlencoded' do
       expect(api_client_default.build_request_body(form_encoded_headers, { id: 1 }, nil)).to eq('id=1')
@@ -229,16 +36,6 @@ describe Bandwidth::ApiClient do
       response = double('response', headers: headers, body: '2022-06-16')
       data = api_client_default.deserialize(response, 'Date')
       expect(data).to eq(Date.parse('2022-06-16'))
-    end
-  end
-
-  describe '#basic_auth' do
-    it 'sets basic auth for the connection' do
-      api_client.config.username = 'username'
-      api_client.config.password = 'password'
-      api_client.basic_auth(faraday_connection)
-      expect(api_client.config.username).to eq('username')
-      expect(api_client.config.password).to eq('password')
     end
   end
 
@@ -292,9 +89,76 @@ describe Bandwidth::ApiClient do
     end
   end
   
-  describe '#update_params_for_auth' do
-    it 'updates header and query params based on authentication settings' do
-      
+  describe 'request authentication' do
+    let(:messages_api) { Bandwidth::MessagesApi.new(api_client) }
+    let(:stubs) { Faraday::Adapter::Test::Stubs.new }
+    let(:token_requests) { [] }
+    let(:authorization_headers) { [] }
+    let(:expires_in) { 3600 }
+    let(:now) { Time.utc(2026, 1, 1) }
+
+    before do
+      allow(Time).to receive(:now).and_return(now)
+      allow(Faraday).to receive(:new).and_wrap_original do |original, *args, &block|
+        original.call(*args, &block).tap { |connection| connection.adapter :test, stubs }
+      end
+      config.client_id = 'client_id'
+      config.client_secret = 'client_secret'
+      stubs.post('https://api.bandwidth.com/api/v1/oauth2/token') do |request|
+        token_requests << request
+        [200, { 'Content-Type' => 'application/json' },
+         { access_token: "token_#{token_requests.length}", expires_in: expires_in }.to_json]
+      end
+      stubs.get('https://messaging.bandwidth.com/api/v2/users/account/messages') do |request|
+        authorization_headers << request.request_headers['Authorization']
+        [200, { 'Content-Type' => 'application/json' }, '{"data":[]}']
+      end
+    end
+
+    [1, 30, 60].each do |lifetime|
+      context "with a #{lifetime}-second token" do
+        let(:expires_in) { lifetime }
+
+        it 'acquires once per request and checks expiration again on the next request' do
+          messages_api.list_messages('account')
+          expect(token_requests.length).to eq(1)
+          expect(authorization_headers).to eq(['Bearer token_1'])
+
+          messages_api.list_messages('account')
+          expect(token_requests.length).to eq(2)
+          expect(authorization_headers).to eq(['Bearer token_1', 'Bearer token_2'])
+        end
+      end
+    end
+
+    it 'reuses a token until it reaches the 60-second expiration buffer' do
+      messages_api.list_messages('account')
+      allow(Time).to receive(:now).and_return(now + 3539)
+      messages_api.list_messages('account')
+      expect(token_requests.length).to eq(1)
+      expect(authorization_headers).to eq(['Bearer token_1', 'Bearer token_1'])
+
+      allow(Time).to receive(:now).and_return(now + 3540)
+      messages_api.list_messages('account')
+      expect(token_requests.length).to eq(2)
+      expect(authorization_headers.last).to eq('Bearer token_2')
+    end
+
+    it 'sends no Authorization header when OAuth credentials are absent' do
+      config.client_id = nil
+      config.client_secret = nil
+      messages_api.list_messages('account')
+      expect(token_requests).to be_empty
+      expect(authorization_headers).to eq([nil])
+    end
+
+    [nil, []].each do |auth_names|
+      it "does not acquire a token when auth_names is #{auth_names.inspect}" do
+        api_client.call_api(:GET, '/users/account/messages',
+                            operation: :'MessagesApi.list_messages', auth_names: auth_names, header_params: {})
+        expect(token_requests).to be_empty
+        expect(authorization_headers).to eq([nil])
+      end
     end
   end
   

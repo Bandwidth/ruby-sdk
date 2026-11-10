@@ -164,6 +164,7 @@ require 'bandwidth-sdk/models/rbm_message_content_rich_card'
 require 'bandwidth-sdk/models/rbm_message_content_text'
 require 'bandwidth-sdk/models/rbm_message_media'
 require 'bandwidth-sdk/models/rbm_open_url_enum'
+require 'bandwidth-sdk/models/rbm_session'
 require 'bandwidth-sdk/models/rbm_standalone_card'
 require 'bandwidth-sdk/models/rbm_suggestion_response'
 require 'bandwidth-sdk/models/rbm_web_view_enum'
@@ -276,8 +277,8 @@ module Bandwidth
   class << self
     # Customize default settings for the SDK using block.
     #   Bandwidth.configure do |config|
-    #     config.username = "xxx"
-    #     config.password = "xxx"
+    #     config.client_id = "xxx"
+    #     config.client_secret = "xxx"
     #   end
     # If no block given, return the default Configuration object.
     def configure

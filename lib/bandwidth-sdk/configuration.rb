@@ -49,15 +49,25 @@ module Bandwidth
     #   config.api_key_prefix['api_key'] = 'Token'
     attr_accessor :api_key_prefix
 
-    # Defines the username used with HTTP basic authentication.
+    # HTTP basic authentication is no longer supported. Always nil.
     #
-    # @return [String]
-    attr_accessor :username
+    # @return [nil]
+    attr_reader :username
 
-    # Defines the password used with HTTP basic authentication.
+    # HTTP basic authentication is no longer supported. Always nil.
     #
-    # @return [String]
-    attr_accessor :password
+    # @return [nil]
+    attr_reader :password
+
+    # @raise [ArgumentError] HTTP basic authentication is no longer supported
+    def username=(_username)
+      raise ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.'
+    end
+
+    # @raise [ArgumentError] HTTP basic authentication is no longer supported
+    def password=(_password)
+      raise ArgumentError, 'HTTP basic authentication is no longer supported. Use client_id and client_secret instead.'
+    end
 
     # Defines the client ID used with OAuth2.
     # 
@@ -281,27 +291,16 @@ module Bandwidth
       access_token_getter.call
     end
 
-    # Gets Basic Auth token string
-    def basic_auth_token
-      'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
-    end
-
     # Gets Bearer auth token string
     def oauth_bearer_token
-      "Bearer #{access_token_with_refresh}" unless access_token_with_refresh.nil?
+      token = access_token_with_refresh
+      "Bearer #{token}" unless token.nil?
     end
 
 
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'Basic' =>
-          {
-            type: 'basic',
-            in: 'header',
-            key: 'Authorization',
-            value: basic_auth_token
-          },
         'OAuth2' =>
           {
             type: 'oauth2',

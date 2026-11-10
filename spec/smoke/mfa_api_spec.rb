@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration Tests for Bandwidth::MFAApi
 describe 'MFAApi Integration Tests' do
   # mfa info
@@ -7,8 +9,8 @@ describe 'MFAApi Integration Tests' do
   before(:all) do
     config = Bandwidth::Configuration.new
     config.configure do |config|
-      config.username = BW_USERNAME
-      config.password = BW_PASSWORD
+      config.client_id = BW_CLIENT_ID
+      config.client_secret = BW_CLIENT_SECRET
     end
     client = Bandwidth::ApiClient.new(config)
     @mfa_api_instance = Bandwidth::MFAApi.new(client)
@@ -86,31 +88,6 @@ describe 'MFAApi Integration Tests' do
       }.to raise_error { |e|
         expect(e).to be_instance_of(Bandwidth::ApiError)
         expect(e.code).to eq(400)
-      }
-    end
-
-    it 'causes a 403 error' do
-      config = Bandwidth::Configuration.new
-      config.configure do |config|
-        config.username = UNAUTHORIZED_USERNAME
-        config.password = UNAUTHORIZED_PASSWORD
-      end
-      client = Bandwidth::ApiClient.new(config)
-      forbidden_instance = Bandwidth::MFAApi.new(client)
-
-      req_schema = Bandwidth::CodeRequest.new(
-        to: USER_NUMBER,
-        from: BW_NUMBER,
-        application_id: BW_MESSAGING_APPLICATION_ID,
-        message: message,
-        digits: digits
-      )
-      
-      expect {
-        forbidden_instance.generate_messaging_code_with_http_info(BW_ACCOUNT_ID, req_schema)
-      }.to raise_error { |e|
-        expect(e).to be_instance_of(Bandwidth::ApiError)
-        expect(e.code).to eq(403)
       }
     end
   end

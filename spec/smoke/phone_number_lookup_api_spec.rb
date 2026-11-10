@@ -1,3 +1,5 @@
+require_relative 'smoke_helper'
+
 # Integration tests for Bandwidth::PhoneNumberLookupApi
 describe 'PhoneNumberLookupApi' do
   let(:phone_numbers) { [BW_NUMBER, USER_NUMBER] }

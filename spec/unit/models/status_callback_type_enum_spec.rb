@@ -20,6 +20,10 @@ describe Bandwidth::StatusCallbackTypeEnum do
     it 'defines MESSAGE_READ' do
       expect(Bandwidth::StatusCallbackTypeEnum::MESSAGE_READ).to eq('message-read')
     end
+
+    it 'defines SESSION_STARTED' do
+      expect(Bandwidth::StatusCallbackTypeEnum::SESSION_STARTED).to eq('session-started')
+    end
   end
 
   describe '.all_vars' do
@@ -29,7 +33,8 @@ describe Bandwidth::StatusCallbackTypeEnum do
         'message-sent',
         'message-delivered',
         'message-failed',
-        'message-read'
+        'message-read',
+        'session-started'
       ])
     end
   end
@@ -41,6 +46,7 @@ describe Bandwidth::StatusCallbackTypeEnum do
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-delivered')).to eq('message-delivered')
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-failed')).to eq('message-failed')
       expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('message-read')).to eq('message-read')
+      expect(Bandwidth::StatusCallbackTypeEnum.build_from_hash('session-started')).to eq('session-started')
     end
 
     it 'raises an error for an invalid enum value' do

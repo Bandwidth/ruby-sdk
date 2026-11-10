@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::MFAApi
 describe 'MFAApi' do
   let(:message) { 'Your temporary {NAME} {SCOPE} code is: {CODE}' }

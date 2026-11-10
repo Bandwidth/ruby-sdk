@@ -1,3 +1,5 @@
+require_relative '../constants'
+
 # Unit tests for Bandwidth::MessagesApi
 describe 'MessagesApi' do
   before(:all) do
