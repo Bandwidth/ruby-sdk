@@ -30,7 +30,9 @@ describe Bandwidth::CreateCallResponse do
     password: 'pass',
     fallback_username: 'fallback_user',
     fallback_password: 'fallback_pass',
-    priority: 5
+    priority: 5,
+    requested_attestation_level: Bandwidth::AttestationLevelEnum::B,
+    identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"'
   }) }
 
   describe '#initialize' do
@@ -67,7 +69,9 @@ describe Bandwidth::CreateCallResponse do
         :'password',
         :'fallback_username',
         :'fallback_password',
-        :'priority'
+        :'priority',
+        :'requested_attestation_level',
+        :'identity'
       ]))
     end
   end
@@ -95,7 +99,9 @@ describe Bandwidth::CreateCallResponse do
         password: 'pass',
         fallbackUsername: 'fallback_user',
         fallbackPassword: 'fallback_pass',
-        priority: 5
+        priority: 5,
+        requestedAttestationLevel: 'B',
+        identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"'
       })
       expect(create_call_response_from_hash).to be_instance_of(Bandwidth::CreateCallResponse)
       expect(create_call_response_from_hash.application_id).to eq('04e88489-df02-4e34-a0ee-27a91849555f')
@@ -119,12 +125,14 @@ describe Bandwidth::CreateCallResponse do
       expect(create_call_response_from_hash.fallback_username).to eq('fallback_user')
       expect(create_call_response_from_hash.fallback_password).to eq('fallback_pass')
       expect(create_call_response_from_hash.priority).to eq(5)
+      expect(create_call_response_from_hash.requested_attestation_level).to eq(Bandwidth::AttestationLevelEnum::B)
+      expect(create_call_response_from_hash.identity).to eq('eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"')
     end
   end
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_call_response_values.to_s).to eq({ :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :accountId => '9900000', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :to => '+19195551234', :from => '+19195554321', :enqueuedTime => '2022-06-16T13:15:07.160Z', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1', :callTimeout => 30.0, :callbackTimeout => 15.0, :tag => 'custom tag', :answerMethod => 'POST', :answerUrl => 'https://example.com/answer', :answerFallbackMethod => 'POST', :answerFallbackUrl => 'https://example.com/answer-fallback', :disconnectMethod => 'POST', :disconnectUrl => 'https://example.com/disconnect', :username => 'user', :password => 'pass', :fallbackUsername => 'fallback_user', :fallbackPassword => 'fallback_pass', :priority => 5 }.to_s)
+      expect(create_call_response_values.to_s).to eq({ :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :accountId => '9900000', :callId => 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85', :to => '+19195551234', :from => '+19195554321', :enqueuedTime => '2022-06-16T13:15:07.160Z', :callUrl => 'https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-1', :callTimeout => 30.0, :callbackTimeout => 15.0, :tag => 'custom tag', :answerMethod => 'POST', :answerUrl => 'https://example.com/answer', :answerFallbackMethod => 'POST', :answerFallbackUrl => 'https://example.com/answer-fallback', :disconnectMethod => 'POST', :disconnectUrl => 'https://example.com/disconnect', :username => 'user', :password => 'pass', :fallbackUsername => 'fallback_user', :fallbackPassword => 'fallback_pass', :priority => 5, :requestedAttestationLevel => 'B', :identity => 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"' }.to_s)
     end
   end
 
@@ -167,7 +175,9 @@ describe Bandwidth::CreateCallResponse do
         password: 'pass',
         fallbackUsername: 'fallback_user',
         fallbackPassword: 'fallback_pass',
-        priority: 5
+        priority: 5,
+        requestedAttestationLevel: Bandwidth::AttestationLevelEnum::B,
+        identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"'
       })
     end
   end

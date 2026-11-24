@@ -25,6 +25,8 @@
 | **fallback_username** | **String** | Basic auth username. | [optional] |
 | **fallback_password** | **String** | Basic auth password. | [optional] |
 | **priority** | **Integer** | The priority of this call over other calls from your account. | [optional] |
+| **requested_attestation_level** | [**AttestationLevelEnum**](AttestationLevelEnum.md) | The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with. | [optional] |
+| **identity** | **String** | The &#x60;identity&#x60; value provided in the Create Call request, if any. | [optional] |
 
 ## Example
 
@@ -52,7 +54,9 @@ instance = Bandwidth::CreateCallResponse.new(
   password: mySecretPassword1!,
   fallback_username: mySecretUsername,
   fallback_password: mySecretPassword1!,
-  priority: 5
+  priority: 5,
+  requested_attestation_level: null,
+  identity: eyJhbGciOiJFUzI1NiIsInBwdCI6InNoYWtlbiIsInR5cCI6InBhc3Nwb3J0IiwieDV1IjoiaHR0cHM6Ly9jZXJ0LmV4YW1wbGUvY2VydC5wZW0ifQ.eyJhdHRlc3QiOiJBIiwiZGVzdCI6eyJ0biI6WyIxOTE5NTU1MTIzNCJdfSwiaWF0IjoxNzAwMDAwMDAwLCJvcmlnIjp7InRuIjoiMTU1NTU1NTEyMTIifSwib3JpZ2lkIjoiMTIzNCJ9.c2lnbmF0dXJl;info&#x3D;&lt;https://cert.example/cert.pem&gt;;alg&#x3D;ES256;ppt&#x3D;&quot;shaken&quot;
 )
 ```
 

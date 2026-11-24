@@ -30,6 +30,12 @@ module Bandwidth
     # A comma-separated list of 'User-To-User' headers to be sent in the INVITE when calling a SIP URI. Each value must end with an 'encoding' parameter as described in <a href='https://tools.ietf.org/html/rfc7433'>RFC 7433</a>. Only 'jwt', 'base64' and 'hex' encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.
     attr_accessor :uui
 
+    # The STIR/SHAKEN attestation level (`A`, `B`, or `C`) you request Bandwidth sign this call with. Applies to outbound calls to US destinations only, and only to accounts that use the <a href='/docs/voice/stir-shaken/hosted-signing-service'>Hosted Signing Service</a>; it is ignored for all other accounts. If omitted, the attestation policy configured on your account is used.  Cannot be combined with `identity`. A request that includes both is rejected with a `400`, as is any value other than `A`, `B`, or `C`.
+    attr_accessor :requested_attestation_level
+
+    # A complete SIP `Identity` header value that you signed yourself. It must be a valid STIR/SHAKEN PASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call and does not sign the call. Bandwidth checks only the format and size of the value, not the signature. Applies to outbound calls to US destinations only.  Cannot be combined with `requestedAttestationLevel`. A request that includes both, or a value that is too long or not in the expected format, is rejected with a `400`.
+    attr_accessor :identity
+
     # The id of the application associated with the `from` number.
     attr_accessor :application_id
 
@@ -104,6 +110,8 @@ module Bandwidth
         :'privacy' => :'privacy',
         :'display_name' => :'displayName',
         :'uui' => :'uui',
+        :'requested_attestation_level' => :'requestedAttestationLevel',
+        :'identity' => :'identity',
         :'application_id' => :'applicationId',
         :'answer_url' => :'answerUrl',
         :'answer_method' => :'answerMethod',
@@ -141,6 +149,8 @@ module Bandwidth
         :'privacy' => :'Boolean',
         :'display_name' => :'String',
         :'uui' => :'String',
+        :'requested_attestation_level' => :'AttestationLevelEnum',
+        :'identity' => :'String',
         :'application_id' => :'String',
         :'answer_url' => :'String',
         :'answer_method' => :'CallbackMethodEnum',
@@ -166,6 +176,8 @@ module Bandwidth
         :'privacy',
         :'display_name',
         :'uui',
+        :'requested_attestation_level',
+        :'identity',
         :'answer_method',
         :'username',
         :'password',
@@ -220,6 +232,14 @@ module Bandwidth
 
       if attributes.key?(:'uui')
         self.uui = attributes[:'uui']
+      end
+
+      if attributes.key?(:'requested_attestation_level')
+        self.requested_attestation_level = attributes[:'requested_attestation_level']
+      end
+
+      if attributes.key?(:'identity')
+        self.identity = attributes[:'identity']
       end
 
       if attributes.key?(:'application_id')
@@ -320,6 +340,19 @@ module Bandwidth
         invalid_properties.push('invalid value for "display_name", the character length must be smaller than or equal to 256.')
       end
 
+      if !@identity.nil? && @identity.to_s.length > 2000
+        invalid_properties.push('invalid value for "identity", the character length must be smaller than or equal to 2000.')
+      end
+
+      if !@identity.nil? && @identity.to_s.length < 1
+        invalid_properties.push('invalid value for "identity", the character length must be greater than or equal to 1.')
+      end
+
+      pattern = Regexp.new(/^ *[A-Za-z0-9\-_.+\/=;:<>"][A-Za-z0-9\-_.+\/=;:<>" ]*$/)
+      if !@identity.nil? && @identity !~ pattern
+        invalid_properties.push("invalid value for \"identity\", must conform to the pattern #{pattern}.")
+      end
+
       if @application_id.nil?
         invalid_properties.push('invalid value for "application_id", application_id cannot be nil.')
       end
@@ -394,6 +427,9 @@ module Bandwidth
       return false if @to.nil?
       return false if @from.nil?
       return false if !@display_name.nil? && @display_name.to_s.length > 256
+      return false if !@identity.nil? && @identity.to_s.length > 2000
+      return false if !@identity.nil? && @identity.to_s.length < 1
+      return false if !@identity.nil? && @identity !~ Regexp.new(/^ *[A-Za-z0-9\-_.+\/=;:<>"][A-Za-z0-9\-_.+\/=;:<>" ]*$/)
       return false if @application_id.nil?
       return false if @answer_url.nil?
       return false if @answer_url.to_s.length > 2048
@@ -441,6 +477,25 @@ module Bandwidth
       end
 
       @display_name = display_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] identity Value to be assigned
+    def identity=(identity)
+      if !identity.nil? && identity.to_s.length > 2000
+        fail ArgumentError, 'invalid value for "identity", the character length must be smaller than or equal to 2000.'
+      end
+
+      if !identity.nil? && identity.to_s.length < 1
+        fail ArgumentError, 'invalid value for "identity", the character length must be greater than or equal to 1.'
+      end
+
+      pattern = Regexp.new(/^ *[A-Za-z0-9\-_.+\/=;:<>"][A-Za-z0-9\-_.+\/=;:<>" ]*$/)
+      if !identity.nil? && identity !~ pattern
+        fail ArgumentError, "invalid value for \"identity\", must conform to the pattern #{pattern}."
+      end
+
+      @identity = identity
     end
 
     # Custom attribute writer method with validation
@@ -589,6 +644,8 @@ module Bandwidth
           privacy == o.privacy &&
           display_name == o.display_name &&
           uui == o.uui &&
+          requested_attestation_level == o.requested_attestation_level &&
+          identity == o.identity &&
           application_id == o.application_id &&
           answer_url == o.answer_url &&
           answer_method == o.answer_method &&
@@ -616,7 +673,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [to, from, privacy, display_name, uui, application_id, answer_url, answer_method, username, password, answer_fallback_url, answer_fallback_method, fallback_username, fallback_password, disconnect_url, disconnect_method, call_timeout, callback_timeout, machine_detection, priority, tag].hash
+      [to, from, privacy, display_name, uui, requested_attestation_level, identity, application_id, answer_url, answer_method, username, password, answer_fallback_url, answer_fallback_method, fallback_username, fallback_password, disconnect_url, disconnect_method, call_timeout, callback_timeout, machine_detection, priority, tag].hash
     end
 
     # Builds the object from hash
