@@ -60,6 +60,8 @@ describe 'CallsApi' do
         machine_detection: amd_config,
         priority: 5,
         tag: 'tag_example',
+        requested_attestation_level: Bandwidth::AttestationLevelEnum::B,
+        identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"',
       )
 
       data, status_code = @calls_api_instance.create_call_with_http_info(BW_ACCOUNT_ID, call_body)

@@ -12,6 +12,8 @@ describe Bandwidth::CreateCall do
     privacy: false,
     display_name: 'Caller Name',
     uui: 'eyJ0eXAiOiJKV1Q;encoding=jwt',
+    requested_attestation_level: Bandwidth::AttestationLevelEnum::B,
+    identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"',
     application_id: '04e88489-df02-4e34-a0ee-27a91849555f',
     answer_url: 'https://example.com/answer',
     answer_method: Bandwidth::CallbackMethodEnum::POST,
@@ -56,6 +58,8 @@ describe Bandwidth::CreateCall do
         :'privacy',
         :'display_name',
         :'uui',
+        :'requested_attestation_level',
+        :'identity',
         :'answer_method',
         :'username',
         :'password',
@@ -81,6 +85,8 @@ describe Bandwidth::CreateCall do
         privacy: false,
         displayName: 'Caller Name',
         uui: 'eyJ0eXAiOiJKV1Q;encoding=jwt',
+        requestedAttestationLevel: 'B',
+        identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"',
         applicationId: '04e88489-df02-4e34-a0ee-27a91849555f',
         answerUrl: 'https://example.com/answer',
         answerMethod: 'POST',
@@ -103,6 +109,8 @@ describe Bandwidth::CreateCall do
       expect(create_call_from_hash.privacy).to eq(false)
       expect(create_call_from_hash.display_name).to eq('Caller Name')
       expect(create_call_from_hash.uui).to eq('eyJ0eXAiOiJKV1Q;encoding=jwt')
+      expect(create_call_from_hash.requested_attestation_level).to eq(Bandwidth::AttestationLevelEnum::B)
+      expect(create_call_from_hash.identity).to eq('eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"')
       expect(create_call_from_hash.application_id).to eq('04e88489-df02-4e34-a0ee-27a91849555f')
       expect(create_call_from_hash.answer_url).to eq('https://example.com/answer')
       expect(create_call_from_hash.answer_method).to eq(Bandwidth::CallbackMethodEnum::POST)
@@ -123,7 +131,7 @@ describe Bandwidth::CreateCall do
 
   describe '#to_s' do
     it 'returns a string representation of the object' do
-      expect(create_call_values.to_s).to eq({ :to => '+19195551234', :from => '+19195554321', :privacy => false, :displayName => 'Caller Name', :uui => 'eyJ0eXAiOiJKV1Q;encoding=jwt', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :answerUrl => 'https://example.com/answer', :answerMethod => 'POST', :username => 'user', :password => 'pass', :answerFallbackUrl => 'https://example.com/answer-fallback', :answerFallbackMethod => 'POST', :fallbackUsername => 'fallback_user', :fallbackPassword => 'fallback_pass', :disconnectUrl => 'https://example.com/disconnect', :disconnectMethod => 'POST', :callTimeout => 30, :callbackTimeout => 15, :machineDetection => {}, :priority => 5, :tag => 'custom tag' }.to_s)
+      expect(create_call_values.to_s).to eq({ :to => '+19195551234', :from => '+19195554321', :privacy => false, :displayName => 'Caller Name', :uui => 'eyJ0eXAiOiJKV1Q;encoding=jwt', :requestedAttestationLevel => 'B', :identity => 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"', :applicationId => '04e88489-df02-4e34-a0ee-27a91849555f', :answerUrl => 'https://example.com/answer', :answerMethod => 'POST', :username => 'user', :password => 'pass', :answerFallbackUrl => 'https://example.com/answer-fallback', :answerFallbackMethod => 'POST', :fallbackUsername => 'fallback_user', :fallbackPassword => 'fallback_pass', :disconnectUrl => 'https://example.com/disconnect', :disconnectMethod => 'POST', :callTimeout => 30, :callbackTimeout => 15, :machineDetection => {}, :priority => 5, :tag => 'custom tag' }.to_s)
     end
   end
 
@@ -148,6 +156,8 @@ describe Bandwidth::CreateCall do
         privacy: false,
         displayName: 'Caller Name',
         uui: 'eyJ0eXAiOiJKV1Q;encoding=jwt',
+        requestedAttestationLevel: Bandwidth::AttestationLevelEnum::B,
+        identity: 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"',
         applicationId: '04e88489-df02-4e34-a0ee-27a91849555f',
         answerUrl: 'https://example.com/answer',
         answerMethod: Bandwidth::CallbackMethodEnum::POST,
@@ -185,6 +195,20 @@ describe Bandwidth::CreateCall do
       expect {
         Bandwidth::CreateCall.new({ to: 'a', from: 'a', display_name: 'a' * 257, application_id: 'a', answer_url: 'a' })
       }.to raise_error(ArgumentError, 'invalid value for "display_name", the character length must be smaller than or equal to 256.')
+    end
+
+    it '#identity=' do
+      expect {
+        Bandwidth::CreateCall.new({ to: 'a', from: 'a', application_id: 'a', answer_url: 'a', identity: 'a' * 2001 })
+      }.to raise_error(ArgumentError, 'invalid value for "identity", the character length must be smaller than or equal to 2000.')
+
+      expect {
+        Bandwidth::CreateCall.new({ to: 'a', from: 'a', application_id: 'a', answer_url: 'a', identity: '' })
+      }.to raise_error(ArgumentError, 'invalid value for "identity", the character length must be greater than or equal to 1.')
+
+      expect {
+        Bandwidth::CreateCall.new({ to: 'a', from: 'a', application_id: 'a', answer_url: 'a', identity: 'invalid!' })
+      }.to raise_error(ArgumentError, /invalid value for "identity", must conform to the pattern/)
     end
 
     it '#application_id=' do
