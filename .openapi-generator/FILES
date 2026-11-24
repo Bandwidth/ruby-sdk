@@ -9,6 +9,7 @@ docs/AdditionalDenialReason.md
 docs/Address.md
 docs/AnswerCallback.md
 docs/AsyncLookupRequest.md
+docs/AttestationLevelEnum.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
@@ -241,6 +242,7 @@ lib/bandwidth-sdk/models/additional_denial_reason.rb
 lib/bandwidth-sdk/models/address.rb
 lib/bandwidth-sdk/models/answer_callback.rb
 lib/bandwidth-sdk/models/async_lookup_request.rb
+lib/bandwidth-sdk/models/attestation_level_enum.rb
 lib/bandwidth-sdk/models/blocked_webhook.rb
 lib/bandwidth-sdk/models/bridge_complete_callback.rb
 lib/bandwidth-sdk/models/bridge_target_complete_callback.rb

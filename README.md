@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
  - [Bandwidth::Address](docs/Address.md)
  - [Bandwidth::AnswerCallback](docs/AnswerCallback.md)
  - [Bandwidth::AsyncLookupRequest](docs/AsyncLookupRequest.md)
+ - [Bandwidth::AttestationLevelEnum](docs/AttestationLevelEnum.md)
  - [Bandwidth::BlockedWebhook](docs/BlockedWebhook.md)
  - [Bandwidth::BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Bandwidth::BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)

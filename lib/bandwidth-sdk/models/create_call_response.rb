@@ -75,6 +75,12 @@ module Bandwidth
     # The priority of this call over other calls from your account.
     attr_accessor :priority
 
+    # The `requestedAttestationLevel` provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with.
+    attr_accessor :requested_attestation_level
+
+    # The `identity` value provided in the Create Call request, if any.
+    attr_accessor :identity
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -120,7 +126,9 @@ module Bandwidth
         :'password' => :'password',
         :'fallback_username' => :'fallbackUsername',
         :'fallback_password' => :'fallbackPassword',
-        :'priority' => :'priority'
+        :'priority' => :'priority',
+        :'requested_attestation_level' => :'requestedAttestationLevel',
+        :'identity' => :'identity'
       }
     end
 
@@ -157,7 +165,9 @@ module Bandwidth
         :'password' => :'String',
         :'fallback_username' => :'String',
         :'fallback_password' => :'String',
-        :'priority' => :'Integer'
+        :'priority' => :'Integer',
+        :'requested_attestation_level' => :'AttestationLevelEnum',
+        :'identity' => :'String'
       }
     end
 
@@ -175,7 +185,9 @@ module Bandwidth
         :'password',
         :'fallback_username',
         :'fallback_password',
-        :'priority'
+        :'priority',
+        :'requested_attestation_level',
+        :'identity'
       ])
     end
 
@@ -297,6 +309,14 @@ module Bandwidth
 
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
+      end
+
+      if attributes.key?(:'requested_attestation_level')
+        self.requested_attestation_level = attributes[:'requested_attestation_level']
+      end
+
+      if attributes.key?(:'identity')
+        self.identity = attributes[:'identity']
       end
     end
 
@@ -505,7 +525,9 @@ module Bandwidth
           password == o.password &&
           fallback_username == o.fallback_username &&
           fallback_password == o.fallback_password &&
-          priority == o.priority
+          priority == o.priority &&
+          requested_attestation_level == o.requested_attestation_level &&
+          identity == o.identity
     end
 
     # @see the `==` method
@@ -517,7 +539,7 @@ module Bandwidth
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_id, account_id, call_id, to, from, enqueued_time, call_url, call_timeout, callback_timeout, tag, answer_method, answer_url, answer_fallback_method, answer_fallback_url, disconnect_method, disconnect_url, username, password, fallback_username, fallback_password, priority].hash
+      [application_id, account_id, call_id, to, from, enqueued_time, call_url, call_timeout, callback_timeout, tag, answer_method, answer_url, answer_fallback_method, answer_fallback_url, disconnect_method, disconnect_url, username, password, fallback_username, fallback_password, priority, requested_attestation_level, identity].hash
     end
 
     # Builds the object from hash
